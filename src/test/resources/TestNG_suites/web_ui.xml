@@ -1,0 +1,49 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="Carina Demo Tests - Web UI"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	
+	<test verbose="1" name="Gmail login with encrypted data test">
+	    
+	    <parameter name="email" value="{crypt:ADaBT5qfw4DbPq5z+XgCBmtqZg7e0YEYQ/YS71a9S34=}"/>
+	    <parameter name="password" value="{crypt:QpW8TmjJfbPysq4Mj1VaFQ==}"/>
+	    
+		<classes>
+			<class name="com.qaprosoft.carina.core.demo.WebUITest">
+				<methods>
+					<include name="testGmailLoginWithEncryptedData" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test verbose="1" name="Gmail login with encrypted data test (invalid credentials)">
+	    
+	    <parameter name="email" value="{crypt:ADaBT5qfw4DbPq5z+XgCBmtqZg7e0YEYQ/YS71a9S34=}"/>
+	    <parameter name="password" value="{crypt:+jCImIE/ibrNo6/rfepqZA==}"/>
+	    
+		<classes>
+			<class name="com.qaprosoft.carina.core.demo.WebUITest">
+				<methods>
+					<include name="testGmailLoginWithEncryptedData" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test verbose="1" name="Google Maps WebUI test">
+	    
+	    <parameter name="from" value="Germany"/>
+	    <parameter name="to" value="France"/>
+	    
+		<classes>
+			<class name="com.qaprosoft.carina.core.demo.WebUITest">
+				<methods>
+					<include name="testGoogleMaps" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+</suite>

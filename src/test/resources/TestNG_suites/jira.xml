@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="Carina Demo Tests - Jira Integration"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	
+	<test verbose="1" name="Sum operation test">
+	    
+	    <parameter name="oper1" value="12"/>
+	    <parameter name="oper2" value="13"/>
+	    <parameter name="expSum" value="25"/>
+	    
+		<classes>
+			<class name="com.qaprosoft.carina.core.demo.JiraIntegrationTest">
+				<methods>
+					<include name="testSumOperation" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test verbose="1" name="Mult operation test">
+	    
+	    <parameter name="oper1" value="2"/>
+	    <parameter name="oper2" value="2"/>
+	    <parameter name="expMult" value="5"/>
+	    
+		<classes>
+			<class name="com.qaprosoft.carina.core.demo.JiraIntegrationTest">
+				<methods>
+					<include name="testMultOperation" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+</suite>

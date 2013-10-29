@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="Carina Demo Tests - REST"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+
+	<test verbose="1" name="GeoIP REST test">
+	    
+	    <parameter name="{excel_ds_args}" value="testTitle;ip;countryCode;countryName;latitude;longtitude"/>
+	    <parameter name="{excel_ds_uid}" value="testTitle"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/demo.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="rest"/>
+	    
+		<classes>
+			<class name="com.qaprosoft.carina.core.demo.RestTest">
+				<methods>
+					<include name="testRestService" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+</suite>
