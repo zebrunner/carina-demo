@@ -23,7 +23,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 
 public class GmailHomePage extends AbstractPage 
 {
-	@FindBy(xpath="//a[@class='gb_n gb_K gb_g gb_F']")
+	@FindBy(xpath="//a[@aria-expanded and child::span]")
 	public ExtendedWebElement loggedUser;
 	
 	public GmailHomePage(WebDriver driver) 
