@@ -10,7 +10,7 @@ import com.qaprosoft.carina.core.foundation.APITest;
 
 public class JiraIntegrationTest extends APITest
 {
-	@Test(description="JIRA#KUL-1")
+	@Test(description="JIRA#OKL-2")
 	@Parameters({ "oper1", "oper2", "expSum" })
 	public void testSumOperation(String oper1, String oper2, String expSum) throws IOException
 	{
@@ -18,7 +18,7 @@ public class JiraIntegrationTest extends APITest
 		Assert.assertEquals(Integer.valueOf(oper1) + Integer.valueOf(oper2), expextedResult, "Unexpected sum result!");
 	}
 	
-	@Test(description="JIRA#KUL-2")
+	@Test(description="JIRA#OKL-3")
 	@Parameters({ "oper1", "oper2", "expMult" })
 	public void testMultOperation(String oper1, String oper2, String expMult) throws IOException, InterruptedException
 	{
