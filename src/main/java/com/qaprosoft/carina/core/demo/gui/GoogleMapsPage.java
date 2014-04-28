@@ -28,22 +28,25 @@ public class GoogleMapsPage extends AbstractPage
 	@FindBy(name="q")
 	public ExtendedWebElement searchTextField;
 	
-	@FindBy(id="gbqfb")
+	@FindBy(className="searchbutton")
 	public ExtendedWebElement searchButton;
 	
-	@FindBy(linkText="Get directions")
+	@FindBy(className="out-of-box-close")
+	public ExtendedWebElement closeTipButton;
+	
+	@FindBy(xpath="//a[contains(., 'Directions') and @tabindex]")
 	public ExtendedWebElement getDirectionsLink;
 	
-	@FindBy(id="d_sub")
+	@FindBy(xpath="//div[@aria-label='Driving']")
 	public ExtendedWebElement getDirectionsButton;
 
-	@FindBy(id="d_d")
+	@FindBy(xpath="//div[@jsnamespace='directions']//input[contains(@placeholder, 'Choose starting')]")
 	public ExtendedWebElement pointATextField;
 	
-	@FindBy(id="d_daddr")
+	@FindBy(xpath="//div[@jsnamespace='directions']//input[not(contains(@placeholder, 'Choose starting'))]")
 	public ExtendedWebElement pointBTextField;
 	
-	@FindBy(xpath="//div[@class='dir-altroute-inner']")
+	@FindBy(xpath="//li[@class='cards-travel-advisory']")
 	public List<ExtendedWebElement> routes;
 	
 	public GoogleMapsPage(WebDriver driver) 
@@ -60,10 +63,8 @@ public class GoogleMapsPage extends AbstractPage
 	
 	public List<ExtendedWebElement> getDirections(String from, String to)
 	{
-		type(pointATextField, from);
-		pressEnter(pointATextField);
 		type(pointBTextField, to);
-		pressEnter(pointBTextField);
+		type(pointATextField, from);
 		click(getDirectionsButton);
 		pause(5);
 		return routes;
