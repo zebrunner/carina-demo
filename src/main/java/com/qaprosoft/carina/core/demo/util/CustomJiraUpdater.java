@@ -10,6 +10,7 @@ import net.rcarz.jiraclient.JiraClient;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 
 import com.qaprosoft.carina.core.foundation.jira.IJiraUpdater;
@@ -62,8 +63,8 @@ public class CustomJiraUpdater implements IJiraUpdater
 	}
 
 	@Override
-	public void updateAfterSuite(JiraClient jira, List<TestResultItem> results) throws Exception
+	public void updateAfterSuite(JiraClient arg0, ITestContext arg1, List<TestResultItem> arg2) throws Exception
 	{
-		// Do nothing after test suite
+		// TODO Auto-generated method stub
 	}
 }
