@@ -49,7 +49,7 @@ public class WebUITest extends UITest
 	{
 		GoogleMapsPage googleMapsPage = new GoogleMapsPage(driver);
 		googleMapsPage.open();
-		click(googleMapsPage.closeTipButton);
+//		click(googleMapsPage.closeTipButton);
 		googleMapsPage.search(to);
 		click(googleMapsPage.getDirectionsLink);
 //		Assert.assertEquals(googleMapsPage.pointBTextField.getAttribute(HTML.VALUE), to);
