@@ -51,7 +51,7 @@ public class WebUITest extends UITest
 		googleMapsPage.open();
 //		click(googleMapsPage.closeTipButton);
 		googleMapsPage.search(to);
-		click(googleMapsPage.getDirectionsLink);
+		googleMapsPage.click(googleMapsPage.getDirectionsLink);
 //		Assert.assertEquals(googleMapsPage.pointBTextField.getAttribute(HTML.VALUE), to);
 		List<ExtendedWebElement> routes = googleMapsPage.getDirections(from, to);
 		Assert.assertTrue(routes.size() > 0, "No routes found!");

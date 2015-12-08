@@ -17,8 +17,18 @@
 
 	<repositories>
 		<repository>
-			<id>carina-core</id>
-			<url>https://github.com/qaprosoft/carina-core/raw/master</url>
+			<id>qaprosoft_releases</id>
+			<name>Qaprosoft Releases</name>
+			<url>http://ci.qaprosoft.com:8081/nexus/content/repositories/releases/</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+		<repository>
+			<id>qaprosoft_snapshots</id>
+			<name>Qaprosoft Snapshots</name>
+			<url>http://ci.qaprosoft.com:8081/nexus/content/repositories/snapshots/</url>
+			<releases><enabled>false</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
 		</repository>
 	</repositories>
 

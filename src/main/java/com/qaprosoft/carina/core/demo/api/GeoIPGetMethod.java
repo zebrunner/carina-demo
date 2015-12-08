@@ -22,6 +22,8 @@ public class GeoIPGetMethod extends AbstractApiMethod
 	public GeoIPGetMethod(String type, String ip)
 	{
 		super();
-		setMethodPath("http://freegeoip.net/" + type + "/" + ip);
+		replaceUrlPlaceholder("base", "http://freegeoip.net");
+		replaceUrlPlaceholder("type", type);
+		replaceUrlPlaceholder("ip", ip);
 	}
 }

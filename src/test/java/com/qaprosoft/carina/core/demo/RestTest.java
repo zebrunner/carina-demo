@@ -32,12 +32,12 @@ public class RestTest extends APITest
 		GeoIPGetMethod geoIPGetMethod = apiMethodBuilder.build(new GeoIPGetMethod("xml", ip));
 		// Set response expectations
 		geoIPGetMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-		geoIPGetMethod.expectInResponse(Matchers.hasXPath("//Ip", Matchers.equalTo(ip)));
+		geoIPGetMethod.expectInResponse(Matchers.hasXPath("//IP", Matchers.equalTo(ip)));
 		geoIPGetMethod.expectInResponse(Matchers.hasXPath("//CountryCode", Matchers.equalTo(countryCode)));
 		geoIPGetMethod.expectInResponse(Matchers.hasXPath("//CountryName", Matchers.equalTo(countryName)));
 		geoIPGetMethod.expectInResponse(Matchers.hasXPath("//Latitude", Matchers.equalTo(laliture)));
 		geoIPGetMethod.expectInResponse(Matchers.hasXPath("//Longitude", Matchers.equalTo(longtitude)));
 		// Call REST service method
-		geoIPGetMethod.call();
+		geoIPGetMethod.callAPI();
 	}
 }

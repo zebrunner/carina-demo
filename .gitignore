@@ -10,3 +10,5 @@
 /target
 /test-output
 /.classpath
+/sql.log
+/application.log
