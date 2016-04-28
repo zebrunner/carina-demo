@@ -23,10 +23,12 @@ import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.demo.gui.onliner.HomePage;
 import com.qaprosoft.carina.core.demo.gui.onliner.LoginPage;
 import com.qaprosoft.carina.core.foundation.UITest;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
 public class OnlinerTest extends UITest
 {
 	@Test
+	@MethodOwner(owner = "akhursevich")
 	@Parameters({"email", "password", "username"})
 	public void testOnlinerLogin(String email, String password, String username)
 	{
