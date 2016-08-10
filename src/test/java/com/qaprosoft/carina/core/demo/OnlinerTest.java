@@ -38,6 +38,6 @@ public class OnlinerTest extends UITest
 		LoginPage loginPage = homePage.openLoginPage();
 		homePage = loginPage.login(email, password);
 		
-		Assert.assertTrue(homePage.isUserLoggedIn(username));
+		Assert.assertTrue(homePage.isUserLoggedIn(username), "User not looged in!");
 	}
 }
