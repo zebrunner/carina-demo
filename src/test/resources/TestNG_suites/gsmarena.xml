@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="gsmarenaSuite">
+    <test name="gsmarenaTests">
+        <parameter name="tableName" value="launch"/>
+        <parameter name="rowName" value="announced"/>
+        <classes>
+            <class name="com.qaprosoft.carina.core.demo.GsmArenaTests"/>
+        </classes>
+    </test>
+</suite>

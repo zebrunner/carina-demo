@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="apiSuite">
+    <test name="apiTests">
+        <classes>
+            <class name="com.qaprosoft.carina.core.demo.UserTests"/>
+        </classes>
+    </test>
+</suite>
