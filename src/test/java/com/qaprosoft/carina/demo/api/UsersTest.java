@@ -21,13 +21,14 @@ public class UsersTest extends APITest
 	}
 
 	@Test
-	public void testCreateUserMissingRequiredData()
+	public void testCreateUserMissingSomeFields()
 	{
 		PostUserMethod api = new PostUserMethod();
 		api.getProperties().remove("name");
 		api.getProperties().remove("username");
-		api.expectResponseStatus(HttpResponseStatusType.BAD_REQUEST_400);
+		api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
 		api.callAPI();
+		api.validateResponse();
 	}
 
 	@Test
@@ -37,6 +38,6 @@ public class UsersTest extends APITest
 		getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
 		getUsersMethods.callAPI();
 		getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-		getUsersMethods.validateResponseAgainstJSONSchema("api/users/_get/rs.json");
+		getUsersMethods.validateResponseAgainstJSONSchema("api/users/_get/rs.schema");
 	}
 }
