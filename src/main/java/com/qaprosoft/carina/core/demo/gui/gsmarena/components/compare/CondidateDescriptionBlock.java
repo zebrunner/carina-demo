@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.core.demo.gui.gsmarena.components.comparepage;
+package com.qaprosoft.carina.core.demo.gui.gsmarena.components.compare;
 
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
