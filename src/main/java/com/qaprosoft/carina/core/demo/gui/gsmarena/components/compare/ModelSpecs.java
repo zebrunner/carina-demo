@@ -2,27 +2,30 @@ package com.qaprosoft.carina.core.demo.gui.gsmarena.components.compare;
 
 import java.util.Map;
 
-public class ModelSpecs {
+public class ModelSpecs
+{
+	public enum SpecType
+	{
+		TECHNOLOGY("Technology"),
+		ANNOUNCED("Announced");
 
-    public enum SpecType {
+		private String type;
 
-        TECHNOLOGY("Technology"),
-        ANNOUNCED("Announced");
+		SpecType(String type)
+		{
+			this.type = type;
+		}
 
-        private String type;
+		public String getType()
+		{
+			return type;
+		}
+	}
 
-        SpecType(String type) {
-            this.type = type;
-        }
+	private Map<SpecType, String> modelSpecsMap;
 
-        public String getType() {
-            return type;
-        }
-    }
-
-    private Map<SpecType, String> modelSpecsMap;
-
-    public void setToModelSpecsMap(SpecType specTypeName, String spec) {
-        this.modelSpecsMap.put(specTypeName, spec);
-    }
+	public void setToModelSpecsMap(SpecType specTypeName, String spec)
+	{
+		this.modelSpecsMap.put(specTypeName, spec);
+	}
 }
