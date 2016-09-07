@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.dataproviders;
+package com.qaprosoft.carina.demo;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -28,7 +28,7 @@ import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSour
  * 
  * @author Alex Khursevich
  */
-public class CalculatorTest extends APITest
+public class DataprovidesSampleTest extends APITest
 {
 	/**
 	 * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments set for 1 test.

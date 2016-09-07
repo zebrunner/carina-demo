@@ -25,12 +25,18 @@ public class ModelSpecs
 
 	private Map<SpecType, String> modelSpecsMap;
 
-	public ModelSpecs() {
+	public ModelSpecs()
+	{
 		this.modelSpecsMap = new HashMap<>();
 	}
 
-	public void setToModelSpecsMap(SpecType specTypeName, String spec)
+	public void setToModelSpecsMap(SpecType specType, String spec)
 	{
-		this.modelSpecsMap.put(specTypeName, spec);
+		this.modelSpecsMap.put(specType, spec);
+	}
+	
+	public String readSpec(SpecType specType)
+	{
+		return modelSpecsMap.get(specType);
 	}
 }

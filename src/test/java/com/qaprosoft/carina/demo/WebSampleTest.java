@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.web;
+package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.demo.gui.gsmarena.components.compare.ModelSpecs;
+import com.qaprosoft.carina.core.demo.gui.gsmarena.components.compare.ModelSpecs.SpecType;
 import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.BrandModelsPage;
 import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.CompareModelsPage;
 import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.HomePage;
@@ -15,7 +16,7 @@ import com.qaprosoft.carina.core.foundation.UITest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
-public class GsmArenaTests extends UITest
+public class WebSampleTest extends UITest
 {
 	@Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-10001")
 	@MethodOwner(owner = "brutskov")
@@ -47,7 +48,11 @@ public class GsmArenaTests extends UITest
 		Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
 		// Open model compare page
 		CompareModelsPage comparePage = homePage.getFooterMenu().openComparePage();
+		// Compare 3 models
 		List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7");
-		System.out.println();
+		// Verify model announced dates
+		Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
+		Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2016, March");
+		Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2016, March");
 	}
 }
