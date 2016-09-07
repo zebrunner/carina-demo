@@ -5,7 +5,7 @@
         <parameter name="tableName" value="launch"/>
         <parameter name="rowName" value="announced"/>
         <classes>
-            <class name="com.qaprosoft.carina.core.demo.GsmArenaTests"/>
+            <class name="com.qaprosoft.carina.demo.web.GsmArenaTests"/>
         </classes>
     </test>
 </suite>

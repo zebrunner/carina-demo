@@ -3,7 +3,7 @@
 <suite name="apiSuite">
     <test name="apiTests">
         <classes>
-            <class name="com.qaprosoft.carina.core.demo.UserTests"/>
+            <class name="com.qaprosoft.carina.demo.api.UsersTest"/>
         </classes>
     </test>
 </suite>
