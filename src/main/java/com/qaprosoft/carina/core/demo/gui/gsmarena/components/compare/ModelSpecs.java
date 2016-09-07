@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.core.demo.gui.gsmarena.components.compare;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ModelSpecs
@@ -23,6 +24,10 @@ public class ModelSpecs
 	}
 
 	private Map<SpecType, String> modelSpecsMap;
+
+	public ModelSpecs() {
+		this.modelSpecsMap = new HashMap<>();
+	}
 
 	public void setToModelSpecsMap(SpecType specTypeName, String spec)
 	{
