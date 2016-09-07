@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo.web;
 
-import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.CompareModelsPage;
 import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.HomePage;
 import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.ModelInfoPage;
 import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.BrandModelsPage;
