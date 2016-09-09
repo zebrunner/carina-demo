@@ -15,12 +15,11 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.demo.api.*;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
-import com.qaprosoft.carina.core.demo.api.GetUserMethods;
-import com.qaprosoft.carina.core.demo.api.PostUserMethod;
 import com.qaprosoft.carina.core.foundation.APITest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
 
@@ -54,5 +53,29 @@ public class APISampleTest extends APITest
 		getUsersMethods.callAPI();
 		getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
 		getUsersMethods.validateResponseAgainstJSONSchema("api/users/_get/rs.schema");
+	}
+
+	@Test
+	public void testDeleteUsers() {
+		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
+		deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+		deleteUserMethod.callAPI();
+		deleteUserMethod.validateResponse();
+	}
+
+	@Test
+	public void testPutPosts() {
+		PutPostsMethod putPostsMethod = new PutPostsMethod();
+		putPostsMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+		putPostsMethod.callAPI();
+		putPostsMethod.validateResponse();
+	}
+
+	@Test
+	public void testPatchPosts() {
+		PatchPostsMethod patchPostsMethod = new PatchPostsMethod();
+		patchPostsMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+		patchPostsMethod.callAPI();
+		patchPostsMethod.validateResponse();
 	}
 }
