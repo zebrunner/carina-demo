@@ -46,13 +46,13 @@ public class WebSampleTest extends UITest
 		HomePage homePage = new HomePage(getDriver());
 		homePage.open();
 		Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
-		// Open model compare page
-		CompareModelsPage comparePage = homePage.getFooterMenu().openComparePage();
-		// Compare 3 models
-		List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7");
-		// Verify model announced dates
-		Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
-		Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2016, March");
-		Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2016, March");
+//		// Open model compare page
+//		CompareModelsPage comparePage = homePage.getFooterMenu().openComparePage();
+//		// Compare 3 models
+//		List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7");
+//		// Verify model announced dates
+//		Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
+//		Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2016, March");
+//		Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2016, March");
 	}
 }
