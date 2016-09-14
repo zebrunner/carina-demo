@@ -61,26 +61,11 @@ public class APISampleTest extends APITest
 	}
 
 	@Test
-	public void testDeleteUsers() {
+	public void testDeleteUsers()
+	{
 		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
 		deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
 		deleteUserMethod.callAPI();
 		deleteUserMethod.validateResponse();
-	}
-
-	@Test
-	public void testPutPosts() {
-		PutPostsMethod putPostsMethod = new PutPostsMethod();
-		putPostsMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-		putPostsMethod.callAPI();
-		putPostsMethod.validateResponse();
-	}
-
-	@Test
-	public void testPatchPosts() {
-		PatchPostsMethod patchPostsMethod = new PatchPostsMethod();
-		patchPostsMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-		patchPostsMethod.callAPI();
-		patchPostsMethod.validateResponse();
 	}
 }
