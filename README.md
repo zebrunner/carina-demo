@@ -12,3 +12,6 @@ Carina is a Java-based framework developed to simplify test automation process. 
 * Install and configure [Apache Maven 3.0.5+](http://maven.apache.org/)
 * Download and start latest [Selenium standalone server](http://www.seleniumhq.org/download/)
 * Download the latest version of [Eclipse](http://www.eclipse.org/downloads/) and install [TestNG plugin](http://testng.org/doc/download.html)
+
+### Wiki
+Read all information on [Carina Wiki page](https://github.com/qaprosoft/carina-demo/wiki).
