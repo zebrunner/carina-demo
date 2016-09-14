@@ -7,7 +7,7 @@ Carina is a Java-based framework developed to simplify test automation process. 
 * [TestNG](https://github.com/cbeust/testng) - testing framwork that helps to organize test cases and test suites
 * [Apache Maven](https://github.com/apache/maven) - project build tool
  
-### Pre-requesties
+### Environment requirements
 * Install and configure JDK 1.7
 * Install and configure [Apache Maven 3.0.5+](http://maven.apache.org/)
 * Download and start latest [Selenium standalone server](http://www.seleniumhq.org/download/)
