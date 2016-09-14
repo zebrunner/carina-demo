@@ -24,6 +24,11 @@ import com.qaprosoft.carina.core.demo.api.PostUserMethod;
 import com.qaprosoft.carina.core.foundation.APITest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
 
+/**
+ * This sample shows how create web test.
+ * 
+ * @author Alex Khursevich
+ */
 public class APISampleTest extends APITest
 {
 	@Test

@@ -31,6 +31,11 @@ import com.qaprosoft.carina.core.foundation.UITest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
+/**
+ * This sample shows how create web test.
+ * 
+ * @author Alex Khursevich
+ */
 public class WebSampleTest extends UITest
 {
 	@Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-10001")
