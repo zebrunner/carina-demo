@@ -2,6 +2,8 @@
 
 <suite verbose="1" name="Carina Demo Tests - API sample tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
 
+	<parameter name="suiteOwner" value="akhursevich" />
+
 	<test name="User api tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.APISampleTest" />

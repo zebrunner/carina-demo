@@ -16,12 +16,15 @@
 package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.demo.api.*;
+import com.qaprosoft.carina.core.demo.util.PO;
+
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.APITest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
+import com.qaprosoft.carina.core.foundation.performance.Timer;
 
 /**
  * This sample shows how create web test.
@@ -33,10 +36,12 @@ public class APISampleTest extends APITest
 	@Test
 	public void testCreateUser()
 	{
+		Timer.start(PO.CREATE_USER);
 		PostUserMethod api = new PostUserMethod();
 		api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
 		api.callAPI();
 		api.validateResponse();
+		Timer.stop(PO.CREATE_USER);
 	}
 
 	@Test
@@ -53,19 +58,23 @@ public class APISampleTest extends APITest
 	@Test
 	public void testGetUsers()
 	{
+		Timer.start(PO.GET_USER);
 		GetUserMethods getUsersMethods = new GetUserMethods();
 		getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
 		getUsersMethods.callAPI();
 		getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
 		getUsersMethods.validateResponseAgainstJSONSchema("api/users/_get/rs.schema");
+		Timer.stop(PO.GET_USER);
 	}
 
 	@Test
 	public void testDeleteUsers()
 	{
+		Timer.start(PO.DELETE_USER);
 		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
 		deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
 		deleteUserMethod.callAPI();
 		deleteUserMethod.validateResponse();
+		Timer.stop(PO.DELETE_USER);
 	}
 }
