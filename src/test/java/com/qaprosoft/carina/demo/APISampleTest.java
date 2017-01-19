@@ -15,13 +15,14 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.demo.api.*;
-import com.qaprosoft.carina.core.demo.util.PO;
-
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
+import com.qaprosoft.carina.core.demo.api.DeleteUserMethod;
+import com.qaprosoft.carina.core.demo.api.GetUserMethods;
+import com.qaprosoft.carina.core.demo.api.PostUserMethod;
+import com.qaprosoft.carina.core.demo.util.PO;
 import com.qaprosoft.carina.core.foundation.APITest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.performance.Timer;
@@ -33,8 +34,8 @@ import com.qaprosoft.carina.core.foundation.performance.Timer;
  */
 public class APISampleTest extends APITest
 {
-	@Test
-	public void testCreateUser()
+	@Test(description = "JIRA#DEMO-0001")
+	public void testCreateUser()throws InterruptedException
 	{
 		Timer.start(PO.CREATE_USER);
 		PostUserMethod api = new PostUserMethod();
@@ -44,8 +45,8 @@ public class APISampleTest extends APITest
 		Timer.stop(PO.CREATE_USER);
 	}
 
-	@Test
-	public void testCreateUserMissingSomeFields()
+	@Test(description = "JIRA#DEMO-0002")
+	public void testCreateUserMissingSomeFields()throws InterruptedException
 	{
 		PostUserMethod api = new PostUserMethod();
 		api.getProperties().remove("name");
@@ -55,8 +56,8 @@ public class APISampleTest extends APITest
 		api.validateResponse();
 	}
 
-	@Test
-	public void testGetUsers()
+	@Test(description = "JIRA#DEMO-0003")
+	public void testGetUsers() throws InterruptedException
 	{
 		Timer.start(PO.GET_USER);
 		GetUserMethods getUsersMethods = new GetUserMethods();
@@ -67,9 +68,10 @@ public class APISampleTest extends APITest
 		Timer.stop(PO.GET_USER);
 	}
 
-	@Test
-	public void testDeleteUsers()
+	@Test(description = "JIRA#DEMO-0004")
+	public void testDeleteUsers() throws InterruptedException
 	{
+		Thread.sleep(7000);
 		Timer.start(PO.DELETE_USER);
 		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
 		deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);

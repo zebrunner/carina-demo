@@ -42,7 +42,7 @@ public class DataprovidesSampleTest extends APITest
 	 *    - dsUid - data-source unique identifier, use TUID or set of parameters    
 	 *    - dsArgs - column names from spreadsheet
 	 */
-	@Test(dataProvider = "DataProvider")
+	@Test(dataProvider = "DataProvider", description = "JIRA#DEMO-0005")
 	@XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Calculator", dsUid = "TUID", dsArgs = "a,b,c")
 	public void testSumOperation(String a, String b, String c)
 	{
@@ -57,7 +57,7 @@ public class DataprovidesSampleTest extends APITest
 	 * 1. Create data-provider method that returns Object[][] and set DataProvider annotation.
 	 * 2. Specify data-provider name in @Test annotation.
 	 */
-	@Test(dataProvider = "DP1")
+	@Test(dataProvider = "DP1", description = "JIRA#DEMO-0006")
 	public void testMuliplyOperation(int a, int b, int c)
 	{
 		int actual = a * b;
@@ -82,7 +82,7 @@ public class DataprovidesSampleTest extends APITest
 	 * 1. List all parameter names in appropriate annotation.
 	 * 2. Pass all parameters from TestNG xml file (check test_suites/dataproviders.xml).
 	 */
-	@Test
+	@Test(description = "JIRA#DEMO-0007")
 	@Parameters({"a", "b", "c"})
 	public void testSubstractOperation(int a, int b, int c)
 	{

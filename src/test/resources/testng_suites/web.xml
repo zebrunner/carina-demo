@@ -4,6 +4,10 @@
 	
 	<parameter name="suiteOwner" value="akhursevich"/>
 
+	<listeners>
+		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
+	</listeners>
+
 	<test name="GSM Arena web tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
