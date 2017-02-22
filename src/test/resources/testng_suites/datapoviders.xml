@@ -32,7 +32,7 @@
 	<test name="Substract operation test">
 		<parameter name="a" value="12"/>
 		<parameter name="b" value="3"/>
-		<parameter name="c" value="9"/>
+		<parameter name="c" value="8"/>
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidesSampleTest">
 				<methods>

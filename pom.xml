@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>com.qaprosoft</groupId>
 			<artifactId>carina-core</artifactId>
-			<version>listener1.0-SNAPSHOT</version>
+			<version>4.183-SNAPSHOT</version>
 		</dependency>		
 	</dependencies>
 

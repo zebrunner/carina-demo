@@ -71,7 +71,6 @@ public class APISampleTest extends APITest
 	@Test(description = "JIRA#DEMO-0004")
 	public void testDeleteUsers() throws InterruptedException
 	{
-		Thread.sleep(7000);
 		Timer.start(PO.DELETE_USER);
 		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
 		deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
