@@ -20,7 +20,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.APITest;
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 
 /**
@@ -28,19 +28,15 @@ import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSour
  * 
  * @author Alex Khursevich
  */
-public class DataprovidesSampleTest extends APITest
+public class DataprovidesSampleTest extends AbstractTest
 {
 	/**
 	 * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments set for 1 test.
 	 * 
-	 * 1. Specify data-provider type:
-	 *    - @Test(dataProvider = "XLSDataProvider") allows parallel execution
-	 *    - @Test(dataProvider = "SingleDataProvider") allows single-thread execution
-	 * 2. In @XlsDataSourceParameters should contain:
-	 *    - path - xls/xlsx file path located in src/test/resources
-	 *    - sheet - xls spreadsheet name
-	 *    - dsUid - data-source unique identifier, use TUID or set of parameters    
-	 *    - dsArgs - column names from spreadsheet
+	 * 1. Specify data-provider type: - @Test(dataProvider = "XLSDataProvider") allows parallel execution
+	 * - @Test(dataProvider = "SingleDataProvider") allows single-thread execution 2. In @XlsDataSourceParameters should
+	 * contain: - path - xls/xlsx file path located in src/test/resources - sheet - xls spreadsheet name - dsUid -
+	 * data-source unique identifier, use TUID or set of parameters - dsArgs - column names from spreadsheet
 	 */
 	@Test(dataProvider = "DataProvider", description = "JIRA#DEMO-0005")
 	@XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Calculator", dsUid = "TUID", dsArgs = "a,b,c")
@@ -54,8 +50,8 @@ public class DataprovidesSampleTest extends APITest
 	/**
 	 * Paramatrization using TestNG dataproviders:
 	 * 
-	 * 1. Create data-provider method that returns Object[][] and set DataProvider annotation.
-	 * 2. Specify data-provider name in @Test annotation.
+	 * 1. Create data-provider method that returns Object[][] and set DataProvider annotation. 2. Specify data-provider
+	 * name in @Test annotation.
 	 */
 	@Test(dataProvider = "DP1", description = "JIRA#DEMO-0006")
 	public void testMuliplyOperation(int a, int b, int c)
@@ -65,25 +61,25 @@ public class DataprovidesSampleTest extends APITest
 		Assert.assertEquals(actual, expected, "Invalid sum result!");
 	}
 
-	@DataProvider(parallel = false, name="DP1")
+	@DataProvider(parallel = false, name = "DP1")
 	public static Object[][] dataprovider()
 	{
 		return new Object[][]
 		{
 				{ 2, 3, 6 },
 				{ 6, 6, 36 },
-				{ 5, 8, 40 }
-		};
+				{ 5, 8, 40 } };
 	}
-	
+
 	/**
 	 * Parametrization using TestNG annotation @Parameters:
 	 * 
-	 * 1. List all parameter names in appropriate annotation.
-	 * 2. Pass all parameters from TestNG xml file (check test_suites/dataproviders.xml).
+	 * 1. List all parameter names in appropriate annotation. 2. Pass all parameters from TestNG xml file (check
+	 * test_suites/dataproviders.xml).
 	 */
 	@Test(description = "JIRA#DEMO-0007")
-	@Parameters({"a", "b", "c"})
+	@Parameters(
+	{ "a", "b", "c" })
 	public void testSubstractOperation(int a, int b, int c)
 	{
 		int actual = Integer.valueOf(a) - Integer.valueOf(b);

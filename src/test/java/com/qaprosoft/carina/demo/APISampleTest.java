@@ -23,7 +23,7 @@ import com.qaprosoft.carina.core.demo.api.DeleteUserMethod;
 import com.qaprosoft.carina.core.demo.api.GetUserMethods;
 import com.qaprosoft.carina.core.demo.api.PostUserMethod;
 import com.qaprosoft.carina.core.demo.util.PO;
-import com.qaprosoft.carina.core.foundation.APITest;
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.performance.Timer;
 
@@ -32,7 +32,7 @@ import com.qaprosoft.carina.core.foundation.performance.Timer;
  * 
  * @author Alex Khursevich
  */
-public class APISampleTest extends APITest
+public class APISampleTest extends AbstractTest
 {
 	@Test(description = "JIRA#DEMO-0001")
 	public void testCreateUser()throws InterruptedException
