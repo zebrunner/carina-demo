@@ -4,6 +4,12 @@
 	
 	<parameter name="suiteOwner" value="akhursevich"/>
 
+	<parameter name="zafira_project" value="DEMO-WEB" />
+	<parameter name="jenkinsJobCreation" value="true" />
+	<parameter name="jenkinsJobFolder" value="WEB" />
+	<parameter name="jenkinsJobName" value="Web-Demo-Test" />
+	<parameter name="jenkinsEmail" value="akhursevich@qaprosoft.com" />
+
 	<listeners>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
 	</listeners>
