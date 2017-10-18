@@ -123,6 +123,8 @@ class Job {
                 booleanParam('rerun_failures', false, 'During \"Rebuild\" pick it to execute only failed cases')
                 configure addHiddenParameter('project', '', "unknown")
                 configure addHiddenParameter('overrideFields', '' , getCustomFields(currentSuite))
+
+                configure addExtensibleChoice('ci_run_id', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
             }
 
             /** Git Stuff **/
@@ -132,7 +134,6 @@ class Job {
                         git {
                             remote {
                                 url('${repository}')
-                                credentials('qJenkins-Token')
                             }
                             branch('${branch}')
                         }
@@ -146,7 +147,7 @@ class Job {
     static Closure addExtensibleChoice(choiceName, globalName, desc, choice) {
         //TODO:  Need to move the choiceListProvider into a parameterized class as well as that can change.
         return { node ->
-            node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.3.3') {
+            node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.4.1') {
                 name choiceName
                 description desc
                 editable false
@@ -158,6 +159,20 @@ class Job {
             }
         }
     }
+
+    static Closure addExtensibleGroovyChoice(choiceName, desc, choice) {
+        return { node ->
+            node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.4.1') {
+                name choiceName
+                description desc
+                editable true
+                choiceListProvider(class: 'jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider') {
+                    usePredefinedVariables false
+                }
+            }
+        }
+    }
+
 
     static Closure addHiddenParameter(paramName, paramDesc, paramValue) {
         return { node ->
