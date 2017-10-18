@@ -124,7 +124,7 @@ class Job {
                 configure addHiddenParameter('project', '', "unknown")
                 configure addHiddenParameter('overrideFields', '' , getCustomFields(currentSuite))
 
-                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID; return [randomUUID()]")
+                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID\nreturn [randomUUID()]")
             }
 
             /** Git Stuff **/
@@ -168,7 +168,7 @@ class Job {
                 editable true
                 choiceListProvider(class: 'jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider') {
 		    groovyScript {
-                	script "qwe"
+                	script scriptValue
 			sandbox true
 	            }
                     usePredefinedVariables false
