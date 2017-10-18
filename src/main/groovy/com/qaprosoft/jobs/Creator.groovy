@@ -100,13 +100,13 @@ class Job {
                         choiceParam('device', getDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
                         stringParam('build', '.*', "latest - use fresh build artifact from S3 or local storage;")
                         booleanParam('recoveryMode', true, 'Restart application between retries')
-                        booleanParam('auto_screenshot', false, 'Generate screenshots automatically during the test')
-                        booleanParam('keep_all_screenshots', false, 'Keep screenshots even if the tests pass')
+                        booleanParam('auto_screenshot', true, 'Generate screenshots automatically during the test')
+                        booleanParam('keep_all_screenshots', true, 'Keep screenshots even if the tests pass')
                         configure addHiddenParameter('browser', '', 'NULL')
                         break;
                     default:
-                        booleanParam('auto_screenshot', false, 'Generate screenshots automatically during the test')
-                        booleanParam('keep_all_screenshots', false, 'Keep screenshots even if the tests pass')
+                        booleanParam('auto_screenshot', true, 'Generate screenshots automatically during the test')
+                        booleanParam('keep_all_screenshots', true, 'Keep screenshots even if the tests pass')
                         configure addHiddenParameter('browser', '', 'NULL')
                         break;
                 }
@@ -118,10 +118,10 @@ class Job {
                 configure addHiddenParameter('ci_parent_build', '', '')
 
                 stringParam('email_list', currentSuite.getParameter("jenkinsEmail").toString(), 'List of Users to be emailed after the test')
-                choiceParam('retry_count', [1, 2, 3, 0], 'Number of Times to Retry a Failed Test')
+                choiceParam('retry_count', [0, 1, 2, 3], 'Number of Times to Retry a Failed Test')
                 booleanParam('develop', false, 'Check to execute test without registration to Zafira and TestRail')
                 booleanParam('rerun_failures', false, 'During \"Rebuild\" pick it to execute only failed cases')
-                configure addHiddenParameter('project', '', "SING")
+                configure addHiddenParameter('project', '', "unknown")
                 configure addHiddenParameter('overrideFields', '' , getCustomFields(currentSuite))
             }
 
