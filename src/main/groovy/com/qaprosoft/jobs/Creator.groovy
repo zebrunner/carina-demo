@@ -124,7 +124,7 @@ class Job {
                 configure addHiddenParameter('project', '', "unknown")
                 configure addHiddenParameter('overrideFields', '' , getCustomFields(currentSuite))
 
-                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID\nreturn [randomUUID()]")
+                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID\nreturn [randomUUID()]", false)
             }
 
             /** Git Stuff **/
@@ -160,12 +160,12 @@ class Job {
         }
     }
 
-    static Closure addExtensibleGroovyScript(choiceName, desc, scriptValue) {
+    static Closure addExtensibleGroovyScript(choiceName, desc, scriptValue, editableValue) {
         return { node ->
             node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.4.1') {
                 name choiceName
                 description desc
-                editable true
+                editable editableValue
                 choiceListProvider(class: 'jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider') {
 		    groovyScript {
                 	script scriptValue
