@@ -111,7 +111,7 @@ class Job {
                         break;
                 }
 
-                configure addExtensibleChoice('repository', "gc_REPOSITORIES", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
+                configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
                 configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
                 configure addHiddenParameter('suite', '', suiteName)
                 configure addHiddenParameter('ci_parent_url', '', '')

@@ -2,13 +2,13 @@
 
 <suite verbose="1" name="Carina Demo Tests - Web tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
 	
-	<parameter name="suiteOwner" value="akhursevich"/>
+	<parameter name="suiteOwner" value="demo"/>
 
 	<parameter name="zafira_project" value="DEMO-WEB" />
 	<parameter name="jenkinsJobCreation" value="true" />
-	<parameter name="jenkinsJobFolder" value="WEB" />
+	<parameter name="jenkinsJobFolder" value="DEMO" />
 	<parameter name="jenkinsJobName" value="Web-Demo-Test" />
-	<parameter name="jenkinsEmail" value="akhursevich@qaprosoft.com" />
+	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
 
 	<listeners>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
