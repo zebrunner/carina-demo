@@ -167,6 +167,7 @@ class Job {
                 description desc
                 editable true
                 choiceListProvider(class: 'jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider') {
+              		sandbox true
                     usePredefinedVariables false
                 }
             }
