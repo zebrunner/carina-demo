@@ -96,6 +96,10 @@ class Job {
                 choiceParam('env', getEnvironments(currentSuite), 'Environment to test against.')
 
                 switch(suiteName) {
+                    case ~/^(?!.*web).*api.*$/:
+                        configure addHiddenParameter('browser', '', 'NULL')
+                        booleanParam('keep_all_screenshots', false, '')
+                        break;
                     case ~/^.*android.*$/:
                         choiceParam('device', getDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
                         stringParam('build', '.*', "latest - use fresh build artifact from S3 or local storage;")
