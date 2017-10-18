@@ -124,7 +124,7 @@ class Job {
                 configure addHiddenParameter('project', '', "unknown")
                 configure addHiddenParameter('overrideFields', '' , getCustomFields(currentSuite))
 
-                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID\nreturn [randomUUID()]", false)
+                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID\nreturn [randomUUID()]", true)
             }
 
             /** Git Stuff **/
