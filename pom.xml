@@ -13,6 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<carina-core_version>5.52-SNAPSHOT</carina-core_version>
 		<suite>api</suite>
 	</properties>
 
@@ -37,7 +38,7 @@
 		<dependency>
 			<groupId>com.qaprosoft</groupId>
 			<artifactId>carina-core</artifactId>
-			<version>5.52-SNAPSHOT</version>
+			<version>${carina-core_version}</version>
 		</dependency>		
 	</dependencies>
 
@@ -60,6 +61,12 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
 					</suiteXmlFiles>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>com.qaprosoft.carina.core.foundation.listeners.HealthCheckListener,com.qaprosoft.zafira.listener.ZafiraListener</value>
+						</property>
+					</properties>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -10,9 +10,10 @@
 	<parameter name="jenkinsEnvironments" value="DEMO" />
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
 
-	
+
 	<listeners>
-		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
+		<listener
+			class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
 	</listeners>
 
 	<test name="Login AI tests">
