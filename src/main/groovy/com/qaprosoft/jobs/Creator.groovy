@@ -124,7 +124,7 @@ class Job {
                 configure addHiddenParameter('project', '', "unknown")
                 configure addHiddenParameter('overrideFields', '' , getCustomFields(currentSuite))
 
-                configure addExtensibleChoice('ci_run_id', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
+                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID; return [randomUUID()]")
             }
 
             /** Git Stuff **/
@@ -160,7 +160,7 @@ class Job {
         }
     }
 
-    static Closure addExtensibleGroovyChoice(choiceName, desc, choice) {
+    static Closure addExtensibleGroovyScript(choiceName, desc, script) {
         return { node ->
             node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.4.1') {
                 name choiceName
