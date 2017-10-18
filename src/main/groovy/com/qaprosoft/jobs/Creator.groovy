@@ -160,14 +160,17 @@ class Job {
         }
     }
 
-    static Closure addExtensibleGroovyScript(choiceName, desc, script) {
+    static Closure addExtensibleGroovyScript(choiceName, desc, scriptValue) {
         return { node ->
             node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.4.1') {
                 name choiceName
                 description desc
                 editable true
                 choiceListProvider(class: 'jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider') {
-              		sandbox true
+		    groovyScript {
+                	script "qwe"
+			sandbox true
+	            }
                     usePredefinedVariables false
                 }
             }
