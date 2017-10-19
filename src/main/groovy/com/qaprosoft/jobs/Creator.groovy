@@ -98,6 +98,7 @@ class Job {
                 switch(suiteName) {
                     case ~/^(?!.*web).*api.*$/:
                         configure addHiddenParameter('platform', '', 'API')
+                        configure addHiddenParameter('browser', '', 'NULL')
                         break;
                     case ~/^.*android.*$/:
                         choiceParam('device', getDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
@@ -108,6 +109,7 @@ class Job {
                         configure addHiddenParameter('browser', '', 'NULL')
                         break;
                     default:
+			throw new RuntimeException("Undefined suite test type: " + suiteName);
                         break;
                 }
 
