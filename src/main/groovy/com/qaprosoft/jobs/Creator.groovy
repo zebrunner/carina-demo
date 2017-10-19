@@ -97,8 +97,7 @@ class Job {
 
                 switch(suiteName) {
                     case ~/^(?!.*web).*api.*$/:
-                        configure addHiddenParameter('browser', '', 'NULL')
-                        booleanParam('keep_all_screenshots', false, '')
+                        configure addHiddenParameter('platform', '', 'API')
                         break;
                     case ~/^.*android.*$/:
                         choiceParam('device', getDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
@@ -109,9 +108,6 @@ class Job {
                         configure addHiddenParameter('browser', '', 'NULL')
                         break;
                     default:
-                        booleanParam('auto_screenshot', true, 'Generate screenshots automatically during the test')
-                        booleanParam('keep_all_screenshots', true, 'Keep screenshots even if the tests pass')
-                        configure addHiddenParameter('browser', '', 'NULL')
                         break;
                 }
 
