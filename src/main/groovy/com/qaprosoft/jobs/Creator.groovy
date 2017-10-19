@@ -100,6 +100,11 @@ class Job {
                         configure addHiddenParameter('platform', '', 'API')
                         configure addHiddenParameter('browser', '', 'NULL')
                         break;
+                    case ~/^.*web.*$/:
+                        configure addExtensibleChoice('browser', 'gc_BROWSER', 'Select a browser to run tests against.', 'chrome')
+                        booleanParam('auto_screenshot', true, 'Generate screenshots automatically during the test')
+                        booleanParam('keep_all_screenshots', true, 'Keep screenshots even if the tests pass')
+                        break;
                     case ~/^.*android.*$/:
                         choiceParam('device', getDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
                         stringParam('build', '.*', "latest - use fresh build artifact from S3 or local storage;")
