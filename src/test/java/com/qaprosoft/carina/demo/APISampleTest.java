@@ -27,6 +27,8 @@ import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.performance.Timer;
 
+import junit.framework.Assert;
+
 /**
  * This sample shows how create web test.
  * 
@@ -34,9 +36,13 @@ import com.qaprosoft.carina.core.foundation.performance.Timer;
  */
 public class APISampleTest extends AbstractTest
 {
+	public static int n = 0;
 	@Test(description = "JIRA#DEMO-0001")
 	public void testCreateUser()throws InterruptedException
 	{
+		if (n++ < 2) {
+			Assert.fail("attempt: " + n);
+		}
 		Timer.start(PO.CREATE_USER);
 		PostUserMethod api = new PostUserMethod();
 		api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
