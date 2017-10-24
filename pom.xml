@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>5.177-SNAPSHOT</carina-core_version>
+		<carina-core_version>5.2.0.2</carina-core_version>
 		<suite>api</suite>
 	</properties>
 

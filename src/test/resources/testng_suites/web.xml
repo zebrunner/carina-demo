@@ -4,7 +4,7 @@
 	
 	<parameter name="suiteOwner" value="demo"/>
 
-	<parameter name="zafira_project" value="DEMO-WEB" />
+	<parameter name="zafira_project" value="unknown" />
 	<parameter name="jenkinsJobCreation" value="true" />
 	<parameter name="jenkinsJobFolder" value="DEMO" />
 	<parameter name="jenkinsJobName" value="Web-Demo-Test" />

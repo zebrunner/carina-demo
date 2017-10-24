@@ -2,9 +2,9 @@
 
 <suite verbose="1" name="Carina Demo Tests - Dataproviders sample tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
 
-	<parameter name="suiteOwner" value="ivayner" />
+	<parameter name="suiteOwner" value="demo" />
 
-	<parameter name="zafira_project" value="demo" />
+	<parameter name="zafira_project" value="unknown" />
 	<parameter name="jenkinsJobCreation" value="true" />
 	<parameter name="jenkinsJobFolder" value="DEMO" />
 	<parameter name="jenkinsJobName" value="DataProvider-Demo-Test" />
