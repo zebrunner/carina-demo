@@ -27,13 +27,13 @@ public class LoginPage extends AbstractPage
 {
 	@FindBy(name = "email")
 	private ExtendedWebElement emailTextField;
-	
+
 	@FindBy(name = "password")
 	private ExtendedWebElement passwordTextField;
-	
+
 	@FindBy(xpath = "//input[@value='Log in']")
 	private ExtendedWebElement signInButton;
-	
+
 	@FindByAI(caption = "Google", label = Label.BUTTON)
 	private ExtendedWebElement googleButton;
 
@@ -49,7 +49,7 @@ public class LoginPage extends AbstractPage
 		passwordTextField.type(password);
 		signInButton.click();
 	}
-	
+
 	// AI usage
 	public void signInViaGoogle()
 	{

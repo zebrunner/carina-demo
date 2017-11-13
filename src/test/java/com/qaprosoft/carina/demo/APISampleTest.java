@@ -22,31 +22,30 @@ import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.demo.api.DeleteUserMethod;
 import com.qaprosoft.carina.core.demo.api.GetUserMethods;
 import com.qaprosoft.carina.core.demo.api.PostUserMethod;
-import com.qaprosoft.carina.core.demo.util.PO;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
-import com.qaprosoft.carina.core.foundation.performance.Timer;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
 /**
- * This sample shows how create web test.
+ * This sample shows how create REST API tests.
  * 
- * @author Alex Khursevich
+ * @author akhursevich
  */
 public class APISampleTest extends AbstractTest
 {
 	@Test(description = "JIRA#DEMO-0001")
-	public void testCreateUser()throws InterruptedException
+	@MethodOwner(owner="akhursevich")
+	public void testCreateUser() throws Exception
 	{
-		Timer.start(PO.CREATE_USER);
 		PostUserMethod api = new PostUserMethod();
 		api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
 		api.callAPI();
 		api.validateResponse();
-		Timer.stop(PO.CREATE_USER);
 	}
 
 	@Test(description = "JIRA#DEMO-0002")
-	public void testCreateUserMissingSomeFields()throws InterruptedException
+	@MethodOwner(owner="akhursevich")
+	public void testCreateUserMissingSomeFields() throws Exception
 	{
 		PostUserMethod api = new PostUserMethod();
 		api.getProperties().remove("name");
@@ -57,25 +56,23 @@ public class APISampleTest extends AbstractTest
 	}
 
 	@Test(description = "JIRA#DEMO-0003")
-	public void testGetUsers() throws InterruptedException
+	@MethodOwner(owner="akhursevich")
+	public void testGetUsers() 
 	{
-		Timer.start(PO.GET_USER);
 		GetUserMethods getUsersMethods = new GetUserMethods();
 		getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
 		getUsersMethods.callAPI();
 		getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
 		getUsersMethods.validateResponseAgainstJSONSchema("api/users/_get/rs.schema");
-		Timer.stop(PO.GET_USER);
 	}
 
 	@Test(description = "JIRA#DEMO-0004")
-	public void testDeleteUsers() throws InterruptedException
+	@MethodOwner(owner="akhursevich")
+	public void testDeleteUsers() 
 	{
-		Timer.start(PO.DELETE_USER);
 		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
 		deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
 		deleteUserMethod.callAPI();
 		deleteUserMethod.validateResponse();
-		Timer.stop(PO.DELETE_USER);
 	}
 }

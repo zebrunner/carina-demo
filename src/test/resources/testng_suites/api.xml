@@ -11,13 +11,46 @@
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
 
 	<listeners>
-		<listener
-			class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
+		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
 	</listeners>
 
-	<test name="User api tests">
+	<test name="User API tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.APISampleTest" />
+		</classes>
+	</test>
+	
+	<test name="Sum operation test">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
+				<methods>
+					<include name="testSumOperation"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test name="Multiply operation test">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
+				<methods>
+					<include name="testMuliplyOperation"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test name="Substract operation test">
+		<parameter name="a" value="12"/>
+		<parameter name="b" value="3"/>
+		<parameter name="c" value="9"/>
+		<classes>
+			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
+				<methods>
+					<include name="testSubstractOperation"/>
+				</methods>
+			</class>
 		</classes>
 	</test>
 

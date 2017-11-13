@@ -32,14 +32,14 @@ import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSour
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
 /**
- * This sample shows how create web test.
+ * This sample shows how create Web test.
  * 
- * @author Alex Khursevich
+ * @author akhursevich
  */
 public class WebSampleTest extends AbstractTest
 {
-	@Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-10001")
-	@MethodOwner(owner = "brutskov")
+	@Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
+	@MethodOwner(owner = "akhursevich")
 	@XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
 	public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery)
 	{
@@ -58,7 +58,8 @@ public class WebSampleTest extends AbstractTest
 		Assert.assertEquals(productInfoPage.readBattery(), battery, "Invalid battery info!");
 	}
 
-	@Test(description = "JIRA#AUTO-10002")
+	@Test(description = "JIRA#AUTO-0009")
+	@MethodOwner(owner = "akhursevich")
 	@Parameters
 	public void testCompareModels()
 	{
@@ -69,11 +70,10 @@ public class WebSampleTest extends AbstractTest
 		// Open model compare page
 		CompareModelsPage comparePage = homePage.getFooterMenu().openComparePage();
 		// Compare 3 models
-		List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5",
-				"Samsung Galaxy J7");
+		List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7");
 		// Verify model announced dates
 		Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
-		Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2016, March");
-		Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2016, March");
+		Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2017, June");
+		Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
 	}
 }

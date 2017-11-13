@@ -20,16 +20,22 @@ import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.demo.gui.stackoverflow.LoginPage;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
+/**
+ * This sample shows how to use Alice AI to find UI elements.
+ * 
+ * @author akhursevich
+ */
 public class AISampleTest extends AbstractTest
 {
-	@Test
+	@Test(description = "JIRA#AUTO-0010")
+	@MethodOwner(owner = "akhursevich")
 	public void testGoogleLoginWithAI()
 	{
 		LoginPage homePage = new LoginPage(getDriver());
 		homePage.open();
 		homePage.signInViaGoogle();
-		Assert.assertTrue(getDriver().getCurrentUrl().startsWith("https://accounts.google.com/signin"),
-				"Google login not opened");
+		Assert.assertTrue(getDriver().getCurrentUrl().startsWith("https://accounts.google.com/signin"), "Google login not opened");
 	}
 }
