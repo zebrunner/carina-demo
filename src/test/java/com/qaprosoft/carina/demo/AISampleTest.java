@@ -18,9 +18,9 @@ package com.qaprosoft.carina.demo;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.demo.gui.stackoverflow.LoginPage;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.gui.pages.LoginPage;
 
 /**
  * This sample shows how to use Alice AI to find UI elements.

@@ -19,12 +19,12 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
-import com.qaprosoft.carina.core.demo.api.DeleteUserMethod;
-import com.qaprosoft.carina.core.demo.api.GetUserMethods;
-import com.qaprosoft.carina.core.demo.api.PostUserMethod;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.api.DeleteUserMethod;
+import com.qaprosoft.carina.demo.api.GetUserMethods;
+import com.qaprosoft.carina.demo.api.PostUserMethod;
 
 /**
  * This sample shows how create REST API tests.

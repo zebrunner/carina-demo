@@ -21,15 +21,15 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.demo.gui.gsmarena.components.compare.ModelSpecs;
-import com.qaprosoft.carina.core.demo.gui.gsmarena.components.compare.ModelSpecs.SpecType;
-import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.BrandModelsPage;
-import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.CompareModelsPage;
-import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.HomePage;
-import com.qaprosoft.carina.core.demo.gui.gsmarena.pages.ModelInfoPage;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
+import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
+import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
+import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
+import com.qaprosoft.carina.demo.gui.pages.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
 
 /**
  * This sample shows how create Web test.
