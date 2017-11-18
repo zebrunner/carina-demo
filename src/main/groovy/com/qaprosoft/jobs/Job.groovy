@@ -146,6 +146,7 @@ class Job {
                 triggers {
                     cron(scheduling)
                 }
+            }
             properties {
                 disableConcurrentBuilds()
             }
