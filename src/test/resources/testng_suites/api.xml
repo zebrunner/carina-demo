@@ -5,7 +5,6 @@
 	<parameter name="suiteOwner" value="demo" />
 	<parameter name="zafira_project" value="unknown" />
 	<parameter name="jenkinsJobCreation" value="true" />
-	<parameter name="jenkinsJobFolder" value="DEMO" />
 	<parameter name="jenkinsJobName" value="API-Demo-Test" />
 	<parameter name="jenkinsEnvironments" value="DEMO" />
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
