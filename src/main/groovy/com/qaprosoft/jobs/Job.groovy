@@ -13,7 +13,7 @@ class Job {
 
             /** Properties & Parameters Area **/
             parameters {
-                choiceParam('env', getEnvironments(currentSuite), 'Environment to test against.')
+                choiceParam('env', getEnvironments(currentSuite.getParameter("jenkinsEnvironments")), 'Environment to test against.')
 
                 switch(suiteName) {
                     case ~/^(?!.*web).*api.*$/:
@@ -26,20 +26,33 @@ class Job {
                         booleanParam('keep_all_screenshots', true, 'Keep screenshots even if the tests pass')
                         break;
                     case ~/^.*android.*$/:
-                        choiceParam('device', getDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
+                        choiceParam('device', getAndroidDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
                         stringParam('build', '.*', "latest - use fresh build artifact from S3 or local storage;")
                         booleanParam('recoveryMode', true, 'Restart application between retries')
                         booleanParam('auto_screenshot', true, 'Generate screenshots automatically during the test')
                         booleanParam('keep_all_screenshots', true, 'Keep screenshots even if the tests pass')
                         configure addHiddenParameter('browser', '', 'NULL')
+                        configure addHiddenParameter('DefaultPool', '', currentSuite.getParameter("jenkinsMobileDefaultPool"))
+                        break;
+                    case ~/^.*ios.*$/:
+                        choiceParam('device', getiOSDeviceList(suiteName), "Select the Device a Test will run against.  ALL - Any available device, PHONE - Any available phone, TABLET - Any tablet")
+                        stringParam('build', '.*', "latest - use fresh build artifact from S3 or local storage;")
+                        booleanParam('recoveryMode', true, 'Restart application between retries')
+                        booleanParam('auto_screenshot', true, 'Generate screenshots automatically during the test')
+                        booleanParam('keep_all_screenshots', true, 'Keep screenshots even if the tests pass')
+                        configure addHiddenParameter('browser', '', 'NULL')
+                        configure addHiddenParameter('DefaultPool', '', currentSuite.getParameter("jenkinsMobileDefaultPool"))
                         break;
                     default:
-			throw new RuntimeException("Undefined suite test type: " + suiteName);
+                        booleanParam('auto_screenshot', false, 'Generate screenshots automatically during the test')
+                        booleanParam('keep_all_screenshots', false, 'Keep screenshots even if the tests pass')
+                        configure addHiddenParameter('browser', '', 'NULL')
                         break;
                 }
 
-                configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
+                configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/mfp_repo.git")
                 configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
+                configure addHiddenParameter('zafira_project', 'Zafira project name', currentSuite.getParameter("zafira_project"))
                 configure addHiddenParameter('suite', '', suiteName)
                 configure addHiddenParameter('ci_parent_url', '', '')
                 configure addHiddenParameter('ci_parent_build', '', '')
@@ -48,10 +61,16 @@ class Job {
                 choiceParam('retry_count', [0, 1, 2, 3], 'Number of Times to Retry a Failed Test')
                 booleanParam('develop', false, 'Check to execute test without registration to Zafira and TestRail')
                 booleanParam('rerun_failures', false, 'During \"Rebuild\" pick it to execute only failed cases')
-                configure addHiddenParameter('project', '', "unknown")
                 configure addHiddenParameter('overrideFields', '' , getCustomFields(currentSuite))
+                configure addExtensibleChoice('ci_run_id', '', 'import static java.util.UUID.randomUUID\nreturn [randomUUID()]')
 
-                configure addExtensibleGroovyScript('ci_run_id', "", "import static java.util.UUID.randomUUID\nreturn [randomUUID()]", true)
+                def threadCount = '1'
+                if (currentSuite.toXml().contains("jenkinsDefaultThreadCount")) {
+                	threadCount = currentSuite.getParameter("jenkinsDefaultThreadCount")
+                }
+                stringParam('thread_count', threadCount, 'number of threads, number')
+
+
             }
 
             /** Git Stuff **/
@@ -74,10 +93,10 @@ class Job {
     static Closure addExtensibleChoice(choiceName, globalName, desc, choice) {
         //TODO:  Need to move the choiceListProvider into a parameterized class as well as that can change.
         return { node ->
-            node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.4.1') {
+            node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.3.3') {
                 name choiceName
                 description desc
-                editable false
+                editable true
                 choiceListProvider(class: 'jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider') {
                     whenToAdd 'Triggered'
                     name globalName
@@ -87,18 +106,18 @@ class Job {
         }
     }
 
-    static Closure addExtensibleGroovyScript(choiceName, desc, scriptValue, editableValue) {
+    static Closure addExtensibleChoice(choiceName, desc, code) {
         return { node ->
-            node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.4.1') {
+            node / 'properties' / 'hudson.model.ParametersDefinitionProperty' / 'parameterDefinitions' << 'jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition'(plugin: 'extensible-choice-parameter@1.3.3') {
                 name choiceName
                 description desc
-                editable editableValue
+                editable true
                 choiceListProvider(class: 'jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider') {
-		    groovyScript {
-                	script scriptValue
-			sandbox true
-	            }
-                    usePredefinedVariables false
+                    groovyScript {
+                        script code
+                        sandbox true
+                        usePrefinedVariables false
+                    }
                 }
             }
         }
@@ -128,13 +147,11 @@ class Job {
                 triggers {
                     cron(scheduling)
                 }
-            }
-
-            properties {
+                        properties {
                 disableConcurrentBuilds()
             }
 
-            configure addExtensibleChoice('repository', "repositories", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
+            configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/mfp_repo.git")
             configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
             parameters {
                 choiceParam('env', getEnvironments(environments), 'Environment to test against.')
@@ -166,104 +183,48 @@ class Job {
         }
     }
 
-
-
-    static List<String> getEnvironments(currentSuite) {
-        def envList = getGenericSplit(currentSuite, "jenkinsEnvironments")
+    static List<String> getEnvironments(environments) {
+        def envList = getGenericSplit(environments)
 
         if (envList.isEmpty()) {
-            envList.add("QA")
+            envList.add("PROD")
         }
 
         return envList
     }
 
     static String getCustomFields(currentSuite) {
-        def overrideFields = getGenericSplit(currentSuite, "overrideFields")
+        def overrideFields = getGenericSplit(currentSuite.getParameter("overrideFields"))
         def prepCustomFields = ""
 
         if (!overrideFields.isEmpty()) {
             for (String customField : overrideFields) {
-                prepCustomFields = prepCustomFields + " -D" + customField
+                prepCustomFields = prepCustomFields + " -D" + customField.trim()
             }
         }
 
         return prepCustomFields
     }
 
-    static List<String> getGenericSplit(currentSuite, parameterName) {
-        String genericField = currentSuite.getParameter(parameterName)
+    static List<String> getGenericSplit(genericField) {
         def genericFields = []
 
         if (genericField != null) {
-            if (!genericField.contains(", ")) {
-                genericFields = genericField.split(",")
-            } else {
-                genericFields = genericField.split(", ")
-            }
+            genericFields = genericField.split(",")
         }
+
         return genericFields
     }
 
-    static List<String> getTagList(String tags) {
-        if (tags.contains(", ")) {
-            return tags.split(", ")
-        } else {
-            return tags.split(",")
-        }
-    }
 
-    static List<String> getDeviceList(String suite) {
-        def currentBuild = Thread.currentThread().executable
-        def workspace = currentBuild.getEnvVars()["WORKSPACE"]
-        def deviceList = ["ALL", "Samsung_Galaxy_TAB4_10", "Samsung_Galaxy_Note_4", "Samsung_Grand_Prime", "Samsung_Galaxy_S6", "Samsung_Galaxy_S7", "Motorola_Nexus_6"]
-
+    static List<String> getAndroidDeviceList(String suite) {
+        def deviceList = ["DefaultPool", "ANY", "Asus_Zenphone", "HTC_Desire_620","Huawei_Y540","Nexus_4","Nexus_5","Nexus_7_2012","Nexus_7_2013","LG_Nexus_4","LG_Nexus_5","LG_Nexus_5x","LG_G4","LG_Spirit","Lenovo_P780","Moto_Nexus_6","Moto_G","Moto_G_XT1032","MEIZU_M5S","OnePlus_One","Samsung_Galaxy_S4_mini","Samsung_Galaxy_S4_1","Samsung_Galaxy_S6","Samsung_Galaxy_S7","Samsung_Galaxy_Grand_2","Samsung_Galaxy_S5_mini","Samsung_Galaxy_Note3","Samsung_Galaxy_J5","Samsung_Grand_Prime","Samsung_Galaxy_Core_II",,"Samsung_Galaxy_S4_2","Samsung_Galaxy_S5","Samsung_Galaxy_S4_3","Samsung_Nexus_3","Samsung_Galaxy_S3","Samsung_Galaxy_A7","Samsung_Galaxy_A5","Samsung_Galaxy_S7_2","Samsung_Galaxy","Samsung_Galaxy_S8_Plus"]
         return deviceList
     }
 
-    static checkAndAddDevice(List<String> deviceList, String suite, Map deviceEntry) {
-
-        switch(suite.toLowerCase()) {
-            case ~/^.*handset.*$/:
-                deviceList.add(deviceEntry.get("device").toString())
-                checkAndAddDeviceType(deviceList, deviceEntry)
-                deviceList.sort { a,b -> a.toLowerCase() <=> b.toLowerCase() }
-                deviceList.remove("phone")
-                deviceList.add(0,"phone")
-            case ~/^.*tablet.*$/:
-                if (deviceEntry.get("deviceType").toString().toLowerCase().contains("tablet") && !deviceList.contains(deviceEntry.get("device"))) {
-                    deviceList.add(deviceEntry.get("device").toString())
-                    checkAndAddDeviceType(deviceList, deviceEntry)
-                    deviceList.sort { a,b -> a.toLowerCase() <=> b.toLowerCase()  }
-                    deviceList.remove("tablet")
-                    deviceList.add(0,"tablet")
-                }
-                break;
-            default:
-                deviceList.add(deviceEntry.get("device").toString())
-                checkAndAddDeviceType(deviceList, deviceEntry)
-                deviceList.sort { a,b -> a.toLowerCase() <=> b.toLowerCase()  }
-                break;
-        }
-    }
-
-    static checkAndAddDeviceType(List<String> deviceList, Map deviceEntry) {
-        if (!deviceList.contains(deviceEntry.get("deviceType").toString().toLowerCase())) {
-            deviceList.add(deviceEntry.get("deviceType").toString())
-        }
-        checkAndAddTag(deviceList, deviceEntry)
-
+    static List<String> getiOSDeviceList(String suite) {
+        def deviceList = ["DefaultPool", "ANY", "iPhone_7", "iPhone_7Plus"]
         return deviceList
     }
 
-    static checkAndAddTag(List<String> deviceList, Map deviceEntry) {
-        if (deviceEntry.get("tags") != null) {
-            for (String tag : getTagList(deviceEntry.get("tags").toString())) {
-                if (!deviceList.contains(tag.toLowerCase())) {
-                    deviceList.add(tag)
-                }
-            }
-        }
-        return deviceList
-    }
 }
