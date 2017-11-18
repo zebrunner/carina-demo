@@ -115,7 +115,7 @@ class Job {
         }
     }
 
-    static void createRegressionPipeline(pipelineJob, suiteName, List customFields) {
+    static void createRegressionPipeline(pipelineJob, suiteName, List customFields, String scheduling) {
         pipelineJob.with {
             description(suiteName)
             logRotator {
@@ -123,6 +123,13 @@ class Job {
             }
 
             authenticationToken('ciStart')
+
+            if (scheduling.length() > 0) {
+                triggers {
+                    cron(scheduling)
+                }
+            }
+
 
             configure addExtensibleChoice('repository', "repositories", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
             configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
