@@ -115,7 +115,7 @@ class Job {
         }
     }
 
-    static void createRegressionPipeline(pipelineJob, suiteName, List customFields, String scheduling) {
+    static void createRegressionPipeline(pipelineJob, suiteName, environments, List customFields, String scheduling) {
         pipelineJob.with {
             description(suiteName)
             logRotator {

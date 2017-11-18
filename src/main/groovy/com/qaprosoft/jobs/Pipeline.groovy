@@ -61,20 +61,15 @@ def scanPipelines(XmlSuite currentSuite, List listPipelines) {
     def pipelineNames = currentSuite.getParameter("jenkinsRegressionPipeline").toString().split(",")
 
     for (String pipelineName : pipelineNames) {
-        scanEnvironments(currentSuite, pipelineName, listPipelines)
-    }
-}
-
-def scanEnvironments(XmlSuite currentSuite, String pipelineName, List listPipelines) {
-    def jobEnvironments = currentSuite.getParameter("jenkinsEnvironments").toString().split(",")
-    for (String jobEnvironment : jobEnvironments) {
         def pipelineMap = [:]
 
         pipelineMap.put("name", pipelineName)
         pipelineMap.put("jobName", currentSuite.getParameter("jenkinsJobName").toString())
-        pipelineMap.put("environment", jobEnvironment)
+        pipelineMap.put("environments", currentSuite.getParameter("jenkinsEnvironments").toString())
         pipelineMap.put("overrideFields", currentSuite.getParameter("overrideFields").toString())
         pipelineMap.put("scheduling", currentSuite.getParameter("jenkinsPipelineScheduling").toString())
+
+
         println "\n"
         println "${pipelineMap.values()}"
         listPipelines.add(pipelineMap);
@@ -114,7 +109,7 @@ def settingUpPipeline(String jobFolder, List pipelineList) {
         }
     }
 
-    Job.createRegressionPipeline(pipelineJob(jobFolder + "/" + pipelineList.first().name), pipelineList.first().name, customFields, scheduling)
+    Job.createRegressionPipeline(pipelineJob(jobFolder + "/" + pipelineList.first().name), pipelineList.first().name, pipelineList.first().environments, customFields, scheduling)
 }
 
 def scanForCustomFields(Map pipelineItem, List existingCustomFieldsList) {
