@@ -50,7 +50,7 @@ class Job {
                         break;
                 }
 
-                configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/mfp_repo.git")
+                configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "https://github.com/qaprosoft/carina-demo.git")
                 configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
                 configure addHiddenParameter('zafira_project', 'Zafira project name', currentSuite.getParameter("zafira_project"))
                 configure addHiddenParameter('suite', '', suiteName)
@@ -151,7 +151,7 @@ class Job {
                 disableConcurrentBuilds()
             }
 
-            configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/mfp_repo.git")
+            configure addExtensibleChoice('repository', "gc_GIT_REPOSITORY", "Select a GitHub Testing Repository to run against", "https://github.com/qaprosoft/carina-demo.git")
             configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
             parameters {
                 choiceParam('env', getEnvironments(environments), 'Environment to test against.')
@@ -166,6 +166,7 @@ class Job {
                     }
                 }
             }
+
             configure addHiddenParameter('overrideFields', 'This allows for mass overriding of any fields in this pipeline.', '')
             definition {
                 cpsScm {
