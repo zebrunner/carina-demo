@@ -9,6 +9,8 @@ class Job {
                 numToKeep 100
             }
 
+            authenticationToken('ciStart')
+
             /** Properties & Parameters Area **/
             parameters {
                 choiceParam('env', getEnvironments(currentSuite), 'Environment to test against.')
@@ -119,10 +121,13 @@ class Job {
             logRotator {
                 numToKeep 100
             }
+
+            authenticationToken('ciStart')
+
             configure addExtensibleChoice('repository', "repositories", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
             configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
             parameters {
-                stringParam('email_list_for_pipeline', 'msarychau@qaprosoft.com', 'List of Users to be emailed after the test')
+                stringParam('email_list_for_pipeline', 'demo@qaprosoft.com', 'List of Users to be emailed after the test')
                 booleanParam('overrideEmail', false, 'Check to override email field on all Pipeline Jobs with above email')
                 for (String customField : customFields) {
                     if (!customField.contains("=")) {
