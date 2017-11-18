@@ -35,7 +35,6 @@ void createJobs() {
             if (currentSuite.toXml().contains("jenkinsJobCreation")) {
             
                 def jobFolder = "Automation"
-                def jobFolder = currentSuite.getParameter("jenkinsJobFolder").toString()
   		folder(jobFolder) {
         		displayName(jobFolder)
     		}
