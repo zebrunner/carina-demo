@@ -130,12 +130,16 @@ class Job {
                 }
             }
 
+            properties {
+                disableConcurrentBuilds()
+            }
 
             configure addExtensibleChoice('repository', "repositories", "Select a GitHub Testing Repository to run against", "git@github.com:qaprosoft/carina-demo.git")
             configure addExtensibleChoice('branch', "gc_GIT_BRANCH", "Select a GitHub Testing Repository Branch to run against", "master")
             parameters {
-                stringParam('email_list_for_pipeline', 'demo@qaprosoft.com', 'List of Users to be emailed after the test')
-                booleanParam('overrideEmail', false, 'Check to override email field on all Pipeline Jobs with above email')
+                choiceParam('env', getEnvironments(environments), 'Environment to test against.')
+                stringParam('email_list', '', 'List of Users to be emailed after the test. If empty then populate from jenkinsEmail suite property')
+                stringParam('retry_count', '2', "number of retries for failed tests")
                 for (String customField : customFields) {
                     if (!customField.contains("=")) {
                         stringParam(customField, "", "Custom Field")
@@ -152,7 +156,6 @@ class Job {
                         git {
                             remote {
                                 url('${repository}')
-                                credentials('qJenkins-Token')
                             }
                             branch('${branch}')
                         }
@@ -162,6 +165,8 @@ class Job {
             }
         }
     }
+
+
 
     static List<String> getEnvironments(currentSuite) {
         def envList = getGenericSplit(currentSuite, "jenkinsEnvironments")

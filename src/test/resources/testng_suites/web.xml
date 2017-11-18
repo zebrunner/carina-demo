@@ -11,11 +11,6 @@
 	<parameter name="jenkinsEnvironments" value="DEMO" />
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
 
-	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
-	<parameter name="jenkinsJobExecutionOrder" value="2"/>
-	<parameter name="jenkinsJobExecutionMode" value="continue"/>
-
-
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
 	</listeners>
