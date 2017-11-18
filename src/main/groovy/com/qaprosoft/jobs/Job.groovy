@@ -70,7 +70,6 @@ class Job {
                 }
                 stringParam('thread_count', threadCount, 'number of threads, number')
 
-
             }
 
             /** Git Stuff **/
@@ -147,7 +146,7 @@ class Job {
                 triggers {
                     cron(scheduling)
                 }
-                        properties {
+            properties {
                 disableConcurrentBuilds()
             }
 
