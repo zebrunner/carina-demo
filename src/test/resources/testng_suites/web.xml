@@ -4,14 +4,14 @@
 	
 	<parameter name="suiteOwner" value="demo"/>
 
-	<parameter name="zafira_project" value="unknown" />
-	<parameter name="jenkinsJobCreation" value="true" />
-	<parameter name="jenkinsJobName" value="Web-Demo-Test" />
-	<parameter name="jenkinsEnvironments" value="DEMO" />
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
+	<parameter name="zafira_project" value="unknown"/>
+	<parameter name="jenkinsJobCreation" value="true"/>
+	<parameter name="jenkinsJobName" value="Web-Demo-Test"/>
+	<parameter name="jenkinsEnvironments" value="DEMO"/>
+	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 
 	<listeners>
-		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
+		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 	</listeners>
 
 	<test name="GSM arena web tests">

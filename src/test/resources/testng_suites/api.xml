@@ -2,12 +2,12 @@
 
 <suite verbose="1" name="Carina Demo Tests - API sample tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
 
-	<parameter name="suiteOwner" value="demo" />
-	<parameter name="zafira_project" value="unknown" />
-	<parameter name="jenkinsJobCreation" value="true" />
-	<parameter name="jenkinsJobName" value="API-Demo-Test" />
-	<parameter name="jenkinsEnvironments" value="DEMO" />
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
+	<parameter name="suiteOwner" value="demo"/>
+	<parameter name="zafira_project" value="unknown"/>
+	<parameter name="jenkinsJobCreation" value="true"/>
+	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
+	<parameter name="jenkinsEnvironments" value="DEMO"/>
+	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
@@ -15,7 +15,7 @@
 
 
 	<listeners>
-		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
+		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 	</listeners>
 
 	<test name="User API tests">
