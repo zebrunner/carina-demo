@@ -1,4 +1,4 @@
-@Library('qaprosoft/jenkins-job-dsl')
+@Library('QPS-Jenkins')
 import com.qaprosoft.jenkins.TestJob;
 
 new TestJob().runJob()
