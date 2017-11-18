@@ -1,0 +1,4 @@
+@Library('UA-Jenkins')
+import com.qaprosoft.jenkins.Pipeline;
+
+new Pipeline().runPipeline()
