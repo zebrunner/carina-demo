@@ -34,12 +34,12 @@ import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
 /**
  * This sample shows how create Web test.
  * 
- * @author akhursevich
+ * @author qpsdemo
  */
 public class WebSampleTest extends AbstractTest
 {
 	@Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
-	@MethodOwner(owner = "akhursevich")
+	@MethodOwner(owner = "qpsdemo")
 	@XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
 	public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery)
 	{
@@ -59,7 +59,7 @@ public class WebSampleTest extends AbstractTest
 	}
 
 	@Test(description = "JIRA#AUTO-0009")
-	@MethodOwner(owner = "akhursevich")
+	@MethodOwner(owner = "qpsdemo")
 	@Parameters
 	public void testCompareModels()
 	{

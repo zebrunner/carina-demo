@@ -30,7 +30,7 @@ import com.qaprosoft.carina.demo.gui.pages.LoginPage;
 public class AISampleTest extends AbstractTest
 {
 	@Test(description = "JIRA#AUTO-0010")
-	@MethodOwner(owner = "akhursevich")
+	@MethodOwner(owner = "qpsdemo")
 	public void testGoogleLoginWithAI()
 	{
 		LoginPage homePage = new LoginPage(getDriver());

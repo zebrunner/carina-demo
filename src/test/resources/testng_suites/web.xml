@@ -2,8 +2,7 @@
 
 <suite verbose="1" name="Carina Demo Tests - Web tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
 	
-	<parameter name="suiteOwner" value="demo"/>
-
+	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="unknown"/>
 	<parameter name="jenkinsJobCreation" value="true"/>
 	<parameter name="jenkinsJobName" value="Web-Demo-Test"/>

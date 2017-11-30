@@ -29,12 +29,12 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
 /**
  * This sample shows how create REST API tests.
  * 
- * @author akhursevich
+ * @author qpsdemo
  */
 public class APISampleTest extends AbstractTest
 {
 	@Test(description = "JIRA#DEMO-0001")
-	@MethodOwner(owner="akhursevich")
+	@MethodOwner(owner="qpsdemo")
 	public void testCreateUser() throws Exception
 	{
 		PostUserMethod api = new PostUserMethod();
@@ -44,7 +44,7 @@ public class APISampleTest extends AbstractTest
 	}
 
 	@Test(description = "JIRA#DEMO-0002")
-	@MethodOwner(owner="akhursevich")
+	@MethodOwner(owner="qpsdemo")
 	public void testCreateUserMissingSomeFields() throws Exception
 	{
 		PostUserMethod api = new PostUserMethod();
@@ -56,7 +56,7 @@ public class APISampleTest extends AbstractTest
 	}
 
 	@Test(description = "JIRA#DEMO-0003")
-	@MethodOwner(owner="akhursevich")
+	@MethodOwner(owner="qpsdemo")
 	public void testGetUsers() 
 	{
 		GetUserMethods getUsersMethods = new GetUserMethods();
@@ -67,7 +67,7 @@ public class APISampleTest extends AbstractTest
 	}
 
 	@Test(description = "JIRA#DEMO-0004")
-	@MethodOwner(owner="akhursevich")
+	@MethodOwner(owner="qpsdemo")
 	public void testDeleteUsers() 
 	{
 		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
