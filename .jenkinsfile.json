@@ -1,0 +1,13 @@
+{
+  "name": "carina-demo",
+  "sub_projects": [
+    {
+      "name": ".",
+      "multi_maven": false,
+      "pr_checker": true,
+      "deployable": false,
+      "tests_module": "",
+      "suites_folder": "testng_suites"
+    }
+  ]
+}
