@@ -4,7 +4,7 @@
     {
       "name": ".",
       "multi_maven": false,
-      "pr_checker": true,
+      "pr_checker": false,
       "deployable": false,
       "tests_module": "",
       "suites_folder": "testng_suites"
