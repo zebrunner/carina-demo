@@ -33,7 +33,7 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  */
 public class APISampleTest extends AbstractTest
 {
-	@Test(description = "JIRA#DEMO-0001")
+	@TestTTTT(description = "JIRA#DEMO-0001")
 	@MethodOwner(owner="qpsdemo")
 	public void testCreateUser() throws Exception
 	{
