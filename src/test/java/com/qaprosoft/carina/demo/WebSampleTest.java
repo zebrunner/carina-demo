@@ -15,7 +15,9 @@
  */
 package com.qaprosoft.carina.demo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
@@ -24,6 +26,7 @@ import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
 import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
@@ -41,14 +44,20 @@ public class WebSampleTest extends AbstractTest
 	@Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
 	@MethodOwner(owner = "qpsdemo")
 	@XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
-	public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery)
+	public void testModelSpecs2Drivers(String brand, String model, String display, String camera, String ram, String battery)
 	{
 		// Open GSM Arena home page and verify page is opened
 		HomePage homePage = new HomePage(getDriver());
 		homePage.open();
+		HomePage homePage2 = new HomePage(getDriver("2"));
+		homePage2.open();
 		Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+		Assert.assertTrue(homePage2.isPageOpened(), "Home page is not opened");
+		homePage2.selectBrand(brand);
+		Screenshot.capture(getDriver("2"), "2nd driver");
 		// Select phone brand
 		BrandModelsPage productsPage = homePage.selectBrand(brand);
+		Screenshot.capture(getDriver(), "1st driver");
 		// Select phone model
 		ModelInfoPage productInfoPage = productsPage.selectModel(model);
 		// Verify phone specifications
