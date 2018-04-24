@@ -15,24 +15,22 @@
  */
 package com.qaprosoft.carina.demo;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.testng.Assert;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
+import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
 import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
+import org.testng.Assert;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import java.util.List;
 
 /**
  * This sample shows how create Web test.
@@ -77,12 +75,14 @@ public class WebSampleTest extends AbstractTest
 		homePage.open();
 		Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
 		// Open model compare page
-		CompareModelsPage comparePage = homePage.getFooterMenu().openComparePage();
+		FooterMenu footerMenu = homePage.getFooterMenu();
+		Assert.assertTrue(footerMenu.isUIObjectPresent(2), "Footer menu wasn't found!");
+		CompareModelsPage comparePage = footerMenu.openComparePage();
 		// Compare 3 models
-		List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7");
+		List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7 Pro");
 		// Verify model announced dates
 		Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
-		Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2017, June");
+		Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2016, September");
 		Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
 	}
 }
