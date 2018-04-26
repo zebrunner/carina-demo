@@ -17,7 +17,7 @@
     <suite>api</suite>
   </properties>
 
-  <repositories>
+  <!--repositories>
 	<repository>
 		<id>qaprosoft_snapshots</id>
 		<name>Qaprosoft Snapshots</name>
@@ -29,7 +29,7 @@
 			<enabled>true</enabled>
 		</snapshots>
 	</repository>
-  </repositories>
+  </repositories-->
 
   <dependencies>
     <dependency>
