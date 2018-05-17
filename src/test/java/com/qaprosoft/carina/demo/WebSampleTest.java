@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 QAPROSOFT (http://qaprosoft.com/).
+ * Copyright 2013-2018 QAPROSOFT (http://qaprosoft.com/).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,22 +15,25 @@
  */
 package com.qaprosoft.carina.demo;
 
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
 import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
-import org.testng.Assert;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
-import java.util.List;
+import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 
 /**
  * This sample shows how create Web test.
@@ -41,19 +44,13 @@ public class WebSampleTest extends AbstractTest {
     @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
-    public void testModelSpecs2Drivers(String brand, String model, String display, String camera, String ram, String battery) {
+    public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery) {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        HomePage homePage2 = new HomePage(getDriver("2"));
-        homePage2.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
-        Assert.assertTrue(homePage2.isPageOpened(), "Home page is not opened");
-        homePage2.selectBrand(brand);
-        Screenshot.capture(getDriver("2"), "2nd driver");
         // Select phone brand
         BrandModelsPage productsPage = homePage.selectBrand(brand);
-        Screenshot.capture(getDriver(), "1st driver");
         // Select phone model
         ModelInfoPage productInfoPage = productsPage.selectModel(model);
         // Verify phone specifications
@@ -65,7 +62,6 @@ public class WebSampleTest extends AbstractTest {
 
     @Test(description = "JIRA#AUTO-0009")
     @MethodOwner(owner = "qpsdemo")
-    @Parameters
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
@@ -81,5 +77,24 @@ public class WebSampleTest extends AbstractTest {
         Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
         Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2016, September");
         Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
+    }
+    
+    @Test(description = "JIRA#AUTO-0010")
+    @MethodOwner(owner = "qpsdemo")
+    public void testNewsSearch() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+        
+        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
+        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
+        
+        final String searchQ = "iphone";
+        List<NewsItem> news = newsPage.searchNews(searchQ);
+        Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
+        for(NewsItem n : news) {
+            System.out.println(n.readTitle());
+            Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
+        }
     }
 }

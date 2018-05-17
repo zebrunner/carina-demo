@@ -17,20 +17,6 @@
     <suite>api</suite>
   </properties>
 
-  <!--repositories>
-	<repository>
-		<id>qaprosoft_snapshots</id>
-		<name>Qaprosoft Snapshots</name>
-		<url>http://ci.qaprosoft.com/nexus/content/repositories/snapshots/</url>
-		<releases>
-			<enabled>false</enabled>
-		</releases>
-		<snapshots>
-			<enabled>true</enabled>
-		</snapshots>
-	</repository>
-  </repositories-->
-
   <dependencies>
     <dependency>
       <groupId>com.qaprosoft</groupId>
@@ -42,6 +28,11 @@
       <artifactId>httpclient</artifactId>
       <version>${httpclient.version}</version>
     </dependency>
+     <dependency>
+         <groupId>log4j</groupId>
+         <artifactId>log4j</artifactId>
+         <version>1.2.17</version>
+     </dependency>
   </dependencies>
 
   <build>
