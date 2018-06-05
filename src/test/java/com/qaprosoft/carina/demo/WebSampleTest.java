@@ -41,7 +41,7 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  * @author qpsdemo
  */
 public class WebSampleTest extends AbstractTest {
-    @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
+/*    @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
     public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery) {
@@ -77,24 +77,27 @@ public class WebSampleTest extends AbstractTest {
         Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
         Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2016, September");
         Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
-    }
+    }*/
     
     @Test(description = "JIRA#AUTO-0010")
     @MethodOwner(owner = "qpsdemo")
     public void testNewsSearch() {
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
-        
-        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
-        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
-        
-        final String searchQ = "iphone";
-        List<NewsItem> news = newsPage.searchNews(searchQ);
-        Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
-        for(NewsItem n : news) {
-            System.out.println(n.readTitle());
-            Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
-        }
+    	HomePage homePage = new HomePage(getDriver());
+    	for (int i = 0; i< 1000; i++) {
+	        homePage.open();
+	        pause(10);
+    	}
+//        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+//        
+//        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
+//        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
+//        
+//        final String searchQ = "iphone";
+//        List<NewsItem> news = newsPage.searchNews(searchQ);
+//        Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
+//        for(NewsItem n : news) {
+//            System.out.println(n.readTitle());
+//            Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
+//        }
     }
 }
