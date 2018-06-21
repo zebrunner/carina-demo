@@ -14,6 +14,9 @@
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
+	<!-- example declaring non default retry_count -->
+	<parameter name="jenkinsDefaultRetryCount" value="2"/>
+
 	<!-- declaring custom arguments-->
     	<parameter name="stringParam::stringArg::custom string desc" value="string value" />
     	<parameter name="booleanParam::booleanArg::custom boolean desc" value="true" />
