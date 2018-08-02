@@ -12,7 +12,7 @@
 
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
-	<parameter name="jenkinsPipelineBrowsers" value="chrome 67.0,firefox 66.0"/>
+	<parameter name="jenkinsPipelineBrowsers" value="chrome 67.0,firefox 60.0"/>
 	<parameter name="jenkinsJobExecutionOrder" value="2"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
