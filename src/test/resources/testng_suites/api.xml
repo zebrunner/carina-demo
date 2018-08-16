@@ -15,7 +15,6 @@
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
