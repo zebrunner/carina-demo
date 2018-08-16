@@ -51,6 +51,7 @@
 		<parameter name="b" value="3"/>
 		<parameter name="c" value="9"/>
 		<parameter name="d" value="9"/>
+		<parameter name="e" value="9"/>
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
