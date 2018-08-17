@@ -53,7 +53,6 @@
 		</classes>
 	</test>
 
-
 	<test name="Substract operation test">
 		<parameter name="a" value="12"/>
 		<parameter name="b" value="3"/>
