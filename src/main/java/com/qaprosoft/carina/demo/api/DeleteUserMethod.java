@@ -26,4 +26,5 @@ public class DeleteUserMethod extends AbstractApiMethodV2
 		super("api/users/_delete/rq.json", "api/users/_delete/rs.json", "api/users/user.properties");
 		replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
 	}
+	
 }
