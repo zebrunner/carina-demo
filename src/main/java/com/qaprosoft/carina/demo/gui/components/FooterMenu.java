@@ -48,5 +48,5 @@ public class FooterMenu extends AbstractUIObject
 		compareLink.click();
 		return new CompareModelsPage(driver);
 	}
-	
 }
+
