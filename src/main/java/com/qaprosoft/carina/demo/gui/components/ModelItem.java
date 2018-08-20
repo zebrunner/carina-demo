@@ -46,4 +46,5 @@ public class ModelItem extends AbstractUIObject
 		modelLink.click();
 		return new ModelInfoPage(driver);
 	}
+	
 }
