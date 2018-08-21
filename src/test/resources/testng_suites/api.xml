@@ -28,6 +28,7 @@
 	</test>
 	
 	
+	
 	<test name="Sum operation test">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
