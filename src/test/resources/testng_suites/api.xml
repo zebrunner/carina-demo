@@ -21,6 +21,7 @@
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
 	</listeners>
 
+	
 	<test name="User API tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.APISampleTest" />
@@ -47,9 +48,6 @@
 		</classes>
 	</test>
 
-	
-	
-	
 	<test name="Substract operation test">
 		<parameter name="a" value="12"/>
 		<parameter name="b" value="3"/>
@@ -66,6 +64,3 @@
 		</classes>
 	</test>
 </suite>
-
-
-
