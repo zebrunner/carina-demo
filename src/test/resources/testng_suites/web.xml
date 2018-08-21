@@ -23,6 +23,7 @@
 	</listeners>
 	
 	
+	
 	<test name="GSM arena web tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
