@@ -15,8 +15,6 @@
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-	
-	
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
@@ -52,7 +50,7 @@
 		</classes>
 	</test>
 
-	
+
 	<test name="Substract operation test">
 		<parameter name="a" value="12"/>
 		<parameter name="b" value="3"/>
@@ -67,5 +65,6 @@
 		</classes>
 	</test>
 </suite>
+
 
 
