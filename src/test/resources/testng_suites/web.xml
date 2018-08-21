@@ -27,6 +27,7 @@
 		</classes>
 	</test>
 	
+	
 	<!-- test name="AI login tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.AISampleTest" />
