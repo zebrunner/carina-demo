@@ -8,7 +8,7 @@
 	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="api"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com,demo2@qaprosoft.com"/>
+	<parameter name="jenkinsEmail" value="demo@qaprosoft.com,demo2@qaprosoft.com,demo3@qaprosoft.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
@@ -40,7 +40,6 @@
 	</test>
 	
 	
-	
 	<test name="Multiply operation test">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
@@ -51,7 +50,6 @@
 		</classes>
 	</test>
 
-	
 	
 	<test name="Substract operation test">
 		<parameter name="a" value="12"/>
@@ -67,7 +65,5 @@
 		</classes>
 	</test>
 </suite>
-
-
 
 
