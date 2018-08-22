@@ -1,6 +1,6 @@
 [
   {
-    "id": 323,
+    "id": 23,
     <#if name??>"name": "${name}",</#if>
     <#if username??>"username": "${username}",</#if>
     "email": "Sincere@april.biz",
@@ -23,5 +23,3 @@
     }
   }
 ]
-
-
