@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite verbose="1" name="Carina Demo Tests - API sample tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
-
 	
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="test"/>
@@ -56,7 +55,7 @@
 		<parameter name="a" value="32"/>
 		<parameter name="b" value="3"/>
 		<parameter name="c" value="9"/>
-		<parameter name="d" value="91"/>
+		<parameter name="d" value="9"/>
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
@@ -66,8 +65,3 @@
 		</classes>
 	</test>
 </suite>
-
-
-
-
-
