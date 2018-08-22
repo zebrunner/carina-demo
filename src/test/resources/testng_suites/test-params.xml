@@ -44,7 +44,6 @@
 		</classes>
 	</test>
 	
-	
 	<test name="Multiply operation test">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
@@ -54,13 +53,11 @@
 			</class>
 		</classes>
 	</test>
-
-	
 	
 	<test name="Substract operation test">
 		<parameter name="a" value="12"/>
 		<parameter name="b" value="3"/>
-		<parameter name="c" value="9"/>
+		<parameter name="c" value="91"/>
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
