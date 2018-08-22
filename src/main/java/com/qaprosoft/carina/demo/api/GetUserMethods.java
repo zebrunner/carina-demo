@@ -28,3 +28,4 @@ public class GetUserMethods extends AbstractApiMethodV2
 		replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
 	}
 }
+
