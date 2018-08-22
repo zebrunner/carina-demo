@@ -28,8 +28,6 @@
 		</classes>
 	</test>
 	
-	
-	
 	<test name="Sum operation test">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
@@ -40,7 +38,6 @@
 		</classes>
 	</test>
 	
-	
 	<test name="Multiply operation test">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
@@ -50,10 +47,6 @@
 			</class>
 		</classes>
 	</test>
-
-	
-	
-	
 	
 	<test name="Substract operation test">
 		<parameter name="a" value="32"/>
@@ -69,3 +62,4 @@
 		</classes>
 	</test>
 </suite>
+
