@@ -14,28 +14,18 @@
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
-
-	
-	
 	
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
 	</listeners>
 
-	
-	
-	
 	<test name="User API tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.APISampleTest" />
 		</classes>
 	</test>
-	
-	
-	
-	
-	
+		
 	<test name="Sum operation test">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
@@ -57,7 +47,6 @@
 		</classes>
 	</test>
 	
-	
 	<test name="Substract operation test">
 		<parameter name="a" value="32"/>
 		<parameter name="b" value="3"/>
@@ -72,5 +61,7 @@
 		</classes>
 	</test>
 	
-	
 </suite>
+
+
+
