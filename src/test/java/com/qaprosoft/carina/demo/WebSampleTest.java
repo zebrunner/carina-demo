@@ -41,7 +41,6 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  * @author qpsdemo
  */
 public class WebSampleTest extends AbstractTest {
-
     @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
