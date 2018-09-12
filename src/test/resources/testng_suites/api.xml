@@ -24,6 +24,4 @@
 			<class name="com.qaprosoft.carina.demo.APISampleTest" />
 		</classes>
 	</test>
-
-
 </suite>
