@@ -47,6 +47,10 @@ public class WebSampleTest extends AbstractTest {
     public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery) {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
+        
+        if (homePage.toString().equals("qwe")) {
+        	// do nothing
+        }
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         // Select phone brand
