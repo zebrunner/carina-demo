@@ -49,7 +49,7 @@
 	</test>
 
 	<test name="Substract operation test">
-		<parameter name="a" value="10"/>
+		<parameter name="a" value="4"/>
 		<parameter name="b" value="7"/>
 		<parameter name="c" value="10"/>
 		<classes>
