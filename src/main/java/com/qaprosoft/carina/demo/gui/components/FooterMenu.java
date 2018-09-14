@@ -41,6 +41,9 @@ public class FooterMenu extends AbstractUIObject {
 
     public HomePage openHomePage() {
         homeLink.click();
+        if (newsLink.toString().equals("qwe")) {
+        	// do nothing
+        }
         return new HomePage(driver);
     }
 
