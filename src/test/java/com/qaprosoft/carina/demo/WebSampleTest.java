@@ -97,4 +97,5 @@ public class WebSampleTest extends AbstractTest {
             Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
         }
     }
+
 }
