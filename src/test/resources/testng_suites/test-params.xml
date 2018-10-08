@@ -13,6 +13,7 @@
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
+	
 
 	<!-- example declaring non default retry_count -->
 	<parameter name="jenkinsDefaultRetryCount" value="2"/>
