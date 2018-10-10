@@ -15,6 +15,9 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.annotations.Test;
 
@@ -43,6 +46,9 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0002")
     @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P6)
+    @TestTag(name = "area", value = "API")
+    @TestTag(name = "specialization", value = "negative")
     public void testCreateUserMissingSomeFields() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.getProperties().remove("name");
@@ -54,6 +60,7 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0003")
     @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P0)
     public void testGetUsers() {
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);

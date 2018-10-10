@@ -15,6 +15,9 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
@@ -55,6 +58,8 @@ public class DataprovidersSampleTest extends AbstractTest {
      */
     @Test(dataProvider = "DP1", description = "JIRA#DEMO-0006")
     @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P0)
+    @TestTag(name = "area", value = "data provider multiply")
     public void testMuliplyOperation(int a, int b, int c) {
         int actual = a * b;
         int expected = c;
