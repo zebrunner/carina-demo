@@ -46,8 +46,8 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 public class WebSampleTest extends AbstractTest {
     @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P2)
-    @TestTag(name = "area", value = "data provider")
+    @TestPriority(Priority.P3)
+    @TestTag(name = "area test", value = "data provider")
     @TestTag(name = "specialization", value = "xlsx")
     @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
     public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery) {
@@ -69,8 +69,8 @@ public class WebSampleTest extends AbstractTest {
 
     @Test(description = "JIRA#AUTO-0009")
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P4)
-    @TestTag(name = "area", value = "compare")
+    @TestPriority(Priority.P1)
+    @TestTag(name = "area test", value = "web")
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
