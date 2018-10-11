@@ -58,8 +58,8 @@ public class DataprovidersSampleTest extends AbstractTest {
      */
     @Test(dataProvider = "DP1", description = "JIRA#DEMO-0006")
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P0)
-    @TestTag(name = "area", value = "data provider multiply")
+    @TestPriority(Priority.P3)
+    @TestTag(name = "area multi", value = "data provider multiply")
     public void testMuliplyOperation(int a, int b, int c) {
         int actual = a * b;
         int expected = c;
