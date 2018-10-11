@@ -14,6 +14,8 @@
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
+	<parameter name="suitePriority" value="P0"/>
+
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>

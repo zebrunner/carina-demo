@@ -41,8 +41,8 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P6)
-    @TestTag(name = "area", value = "API1")
+    @TestPriority(Priority.P5)
+    @TestTag(name = "area21", value = "API1")
     @TestTag(name = "priority", value = "P0")
     @TestTag(name = "feature", value = "feature1")
     public void testCreateUser() throws Exception {
@@ -54,9 +54,9 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0002")
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P4)
-    @TestTag(name = "area6", value = "API2")
-    @TestTag(name = "specialization7", value = "negativ6")
+    @TestPriority(Priority.P5)
+    @TestTag(name = "area22", value = "API2")
+    @TestTag(name = "specialization22", value = "negativ6")
     public void testCreateUserMissingSomeFields() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.getProperties().remove("name");
@@ -68,7 +68,7 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0003")
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P0)
+    @TestPriority(Priority.P3)
     public void testGetUsers() {
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
@@ -89,7 +89,7 @@ public class APISampleTest extends AbstractTest {
     @Test(description = "JIRA#DEMO-0003")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P5)
-    @TestTag(name = "specialization local1", value = "negative6")
+    @TestTag(name = "specialization local2", value = "negative7")
     public void testGetUsersInSnapshot() {
         LOGGER.info("Execute on snapshot.");
         GetUserMethods getUsersMethods = new GetUserMethods();
