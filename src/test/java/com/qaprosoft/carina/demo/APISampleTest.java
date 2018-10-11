@@ -54,7 +54,6 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0002")
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P5)
     @TestTag(name = "area22", value = "API2")
     @TestTag(name = "specialization22", value = "negativ6")
     public void testCreateUserMissingSomeFields() throws Exception {
@@ -89,7 +88,7 @@ public class APISampleTest extends AbstractTest {
     @Test(description = "JIRA#DEMO-0003")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P5)
-    @TestTag(name = "specialization local2", value = "negative7")
+    @TestTag(name = "specialization local3", value = "negative8")
     public void testGetUsersInSnapshot() {
         LOGGER.info("Execute on snapshot.");
         GetUserMethods getUsersMethods = new GetUserMethods();
