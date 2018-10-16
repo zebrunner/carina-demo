@@ -42,7 +42,7 @@ public class APISampleTest extends AbstractTest {
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P5)
-    @TestTag(name = "area21", value = "API1")
+    @TestTag(name = "area31", value = "API3")
     @TestTag(name = "priority", value = "P0")
     @TestTag(name = "feature", value = "feature1")
     public void testCreateUser() throws Exception {
