@@ -37,19 +37,19 @@ import java.util.Set;
 public class TagManagerTest {
     protected static final Logger LOGGER = Logger.getLogger(TagManagerTest.class);
 
-    private static final String TAG_NAME = "tag1";
-    private static final String TAG_NAME2 = "tag2";
-    private static final String TAG_VALUE = "testTag1";
-    private static final String TAG_VALUE2 = "testTag2";
+    private static final String TAG_NAME = "tag3";
+    private static final String TAG_NAME2 = "tag4";
+    private static final String TAG_VALUE = "testTag3";
+    private static final String TAG_VALUE2 = "testTag4";
     private static final String FORBIDDEN_KEY_PRIORITY = "priority";
     private static final String FORBIDDEN_KEY_FEATURE = "feature";
 
     @Test
-    @TestPriority(Priority.P2)
+    @TestPriority(Priority.P1)
     public void testPriority() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
-        Assert.assertEquals(priority, "P2");
+        Assert.assertEquals(priority, "P1");
     }
 
     @Test
@@ -161,7 +161,7 @@ public class TagManagerTest {
     }
 
     @Test
-    @LCFeature(Feature.LCUI)
+    @LCFeature(Feature.PBS)
     @TestTag(name = TAG_NAME2, value = TAG_VALUE2)
     @TestTag(name = TAG_NAME, value = TAG_VALUE)
     @TestTag(name = FORBIDDEN_KEY_PRIORITY, value = "P0")
@@ -169,7 +169,7 @@ public class TagManagerTest {
     public void testZafiraGetTagsMethodWoPriority() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
-        Assert.assertEquals(priority, "");
+        Assert.assertEquals(priority, "P6");
         Map<String, String> tags = TagManager.getTags(result);
         Assert.assertFalse(tags.containsKey(FORBIDDEN_KEY_PRIORITY));
         Assert.assertFalse(tags.containsKey(FORBIDDEN_KEY_FEATURE));

@@ -14,7 +14,7 @@
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-	<parameter name="suitePriority" value="P3"/>
+	<parameter name="suitePriority" value="P6"/>
 
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
