@@ -29,6 +29,7 @@
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
 	</listeners>
 
+	
 	<test name="Sum operation test">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
