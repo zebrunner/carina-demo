@@ -14,6 +14,8 @@ import java.util.Set;
 
 public class LCZafiraConfigurator extends ZafiraConfigurator {
 
+    private static final String IGNORED_FEATURE = "UNKNOWN";
+
     @Override
     public Set<TagType> getTestTags(ITestResult test) {
         LOGGER.debug("Collecting TestTags");
@@ -28,7 +30,7 @@ public class LCZafiraConfigurator extends ZafiraConfigurator {
         }
 
         String testFeature = LCFeatureManager.getFeature(test);
-        if (testFeature != null && !testFeature.isEmpty()) {
+        if (testFeature != null && !testFeature.isEmpty() && !testFeature.equalsIgnoreCase(IGNORED_FEATURE)) {
             TagType feature = new TagType();
             feature.setName(SpecialKeywords.TEST_FEATURE_KEY);
             feature.setValue(testFeature);

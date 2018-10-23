@@ -44,9 +44,19 @@ public class TagManagerTest {
     private static final String FORBIDDEN_KEY_PRIORITY = "priority";
     private static final String FORBIDDEN_KEY_FEATURE = "feature";
 
+    private static final String IGNORED_FEATURE = "UNKNOWN";
+
     @Test
     @TestPriority(Priority.P1)
     public void testPriority() {
+        ITestResult result = Reporter.getCurrentTestResult();
+        String priority = PriorityManager.getPriority(result);
+        Assert.assertEquals(priority, "P1");
+    }
+
+    @Test
+    @TestPriority(Priority.P1)
+    public void testPriorityExample() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
         Assert.assertEquals(priority, "P1");
@@ -146,7 +156,7 @@ public class TagManagerTest {
         Assert.assertEquals(tags.get(TAG_NAME2), TAG_VALUE2);
         Assert.assertEquals(tags.size(), 2);
         Set<TagType> tagsTypes = getTestTags(result);
-        Assert.assertEquals(tagsTypes.size(), 4);
+        Assert.assertEquals(tagsTypes.size(), 3);
         for (TagType entry : tagsTypes) {
             if (entry.getName().equals(SpecialKeywords.TEST_PRIORITY_KEY)) {
                 Assert.assertEquals(entry.getValue(), "P2");
@@ -179,7 +189,7 @@ public class TagManagerTest {
         Assert.assertEquals(tags.get(TAG_NAME2), TAG_VALUE2);
         Assert.assertEquals(tags.size(), 2);
         Set<TagType> tagsTypes = getTestTags(result);
-        Assert.assertEquals(tagsTypes.size(), 3);
+        Assert.assertEquals(tagsTypes.size(), 4);
         for (TagType entry : tagsTypes) {
             if (entry.getName().equals(TAG_NAME2)) {
                 Assert.assertEquals(entry.getValue(), TAG_VALUE2);
@@ -223,6 +233,30 @@ public class TagManagerTest {
         Assert.assertEquals(feature, "UNKNOWN");
     }
 
+    @Test
+    @TestPriority(Priority.P1)
+    public void testLCEmptyFeature() {
+        ITestResult result = Reporter.getCurrentTestResult();
+        String priority = PriorityManager.getPriority(result);
+        Assert.assertEquals(priority, "P1");
+        String feature = LCFeatureManager.getFeature(result);
+        Assert.assertEquals(feature, "UNKNOWN");
+
+        Set<TagType> tagsTypes = getTestTags(result);
+        for (TagType entry : tagsTypes) {
+            if (entry.getName().equals(SpecialKeywords.TEST_FEATURE_KEY)) {
+                Assert.assertEquals(entry.getValue(), "");
+            }
+        }
+
+        tagsTypes.stream().forEachOrdered((entry) -> {
+            Object currentKey = entry.getName();
+            Object currentValue = entry.getValue();
+            LOGGER.info(currentKey + "=" + currentValue);
+        });
+    }
+
+
 
     private Set<TagType> getTestTags(ITestResult test) {
         LOGGER.debug("Collecting TestTags");
@@ -237,7 +271,7 @@ public class TagManagerTest {
         }
 
         String testFeature = LCFeatureManager.getFeature(test);
-        if (testFeature != null && !testFeature.isEmpty()) {
+        if (testFeature != null && !testFeature.isEmpty() && !testFeature.equalsIgnoreCase(IGNORED_FEATURE)) {
             TagType feature = new TagType();
             feature.setName(SpecialKeywords.TEST_FEATURE_KEY);
             feature.setValue(testFeature);
