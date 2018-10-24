@@ -46,9 +46,9 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 public class WebSampleTest extends AbstractTest {
     @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
-    @MethodOwner(owner = "qpsdemoAPI", platform = "api")
+/*    @MethodOwner(owner = "qpsdemoAPI", platform = "api")
     @MethodOwner(owner = "qpsdemoDesktop", platform = "desktop")
-    @MethodOwner(owner = "qpsdemoWEB", platform = "web")
+    @MethodOwner(owner = "qpsdemoWEB", platform = "web")*/
     @TestPriority(Priority.P3)
     @TestTag(name = "area test", value = "data provider")
     @TestTag(name = "specialization", value = "xlsx")

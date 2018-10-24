@@ -50,12 +50,13 @@ public class TagManagerTest {
 
     @Test
     @TestPriority(Priority.P1)
-    @MethodOwner(owner = "qpsdemo", platform = "desktop")
+    @MethodOwner(owner = "qpsdemo")
+    //@MethodOwner(owner = "qpsdemo", platform = "desktop")
     public void testPriority() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
         Assert.assertEquals(priority, "P1");
-        String ownerName = Ownership.getMethodOwner(result, Ownership.OwnerType.PLATFORM);
+        String ownerName = Ownership.getMethodOwner(result, Ownership.OwnerType.PRIMARY);
         LOGGER.info("Owner:= " + ownerName);
         Assert.assertEquals(ownerName, "qpsdemo");
     }
@@ -69,6 +70,7 @@ public class TagManagerTest {
     }
 
     @Test
+    @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P0)
     public void testPriorityCompliance() {
         ITestResult result = Reporter.getCurrentTestResult();
@@ -78,6 +80,7 @@ public class TagManagerTest {
 
 
     @Test
+    @MethodOwner(owner = "qpsdemo", secondaryOwner = "secondOwner")
     @TestPriority(value = Priority.P1)
     @TestTag(name = TAG_NAME, value = TAG_VALUE)
     public void testTags() {
@@ -88,6 +91,7 @@ public class TagManagerTest {
     }
 
     @Test
+    @MethodOwner(owner = "qpsdemo", secondaryOwner = "secondOwner")
     @TestPriority(Priority.P2)
     @TestTag(name = TAG_NAME, value = TAG_VALUE)
     @TestTag(name = TAG_NAME2, value = TAG_VALUE2)
