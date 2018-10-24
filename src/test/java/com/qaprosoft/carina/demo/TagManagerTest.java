@@ -16,6 +16,8 @@
 package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.ownership.Ownership;
 import com.qaprosoft.carina.core.foundation.utils.tag.*;
 import com.qaprosoft.carina.demo.zafira.tag.Feature;
 import com.qaprosoft.carina.demo.zafira.tag.LCFeature;
@@ -48,10 +50,14 @@ public class TagManagerTest {
 
     @Test
     @TestPriority(Priority.P1)
+    @MethodOwner(owner = "qpsdemo", platform = "desktop")
     public void testPriority() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
         Assert.assertEquals(priority, "P1");
+        String ownerName = Ownership.getMethodOwner(result, Ownership.OwnerType.PLATFORM);
+        LOGGER.info("Owner:= " + ownerName);
+        Assert.assertEquals(ownerName, "qpsdemo");
     }
 
     @Test
