@@ -41,8 +41,8 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
-    @MethodOwner(owner = "qpsdemoAPI", platform = "api")
-    @MethodOwner(owner = "qpsdemoDesktop", platform = "desktop")
+    //@MethodOwner(owner = "qpsdemoAPI", platform = "api")
+    //@MethodOwner(owner = "qpsdemoDesktop", platform = "desktop")
     @TestPriority(Priority.P5)
     @TestTag(name = "area", value = "API0")
     @TestTag(name = "priority", value = "P0")
@@ -56,8 +56,8 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0002")
     @MethodOwner(owner = "qpsdemo")
-    @MethodOwner(owner = "qpsdemoAPI", platform = "api")
-    @MethodOwner(owner = "qpsdemoDesktop", platform = "desktop")
+    //@MethodOwner(owner = "qpsdemoAPI", platform = "api")
+    //@MethodOwner(owner = "qpsdemoDesktop", platform = "desktop")
     @TestTag(name = "area22", value = "API2")
     @TestTag(name = "specialization22", value = "negativ6")
     public void testCreateUserMissingSomeFields() throws Exception {
