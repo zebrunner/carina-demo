@@ -43,8 +43,8 @@ public class APISampleTest extends AbstractTest {
     @MethodOwner(owner = "qpsdemo")
     //@MethodOwner(owner = "qpsdemoAPI", platform = "api")
     //@MethodOwner(owner = "qpsdemoDesktop", platform = "desktop")
-    @TestPriority(Priority.P1)
-    @TestTag(name = "area", value = "API1")
+    @TestPriority(Priority.P2)
+    @TestTag(name = "area", value = "API2")
     @TestTag(name = "priority", value = "P0")
     @TestTag(name = "feature", value = "feature0")
     public void testCreateUser() throws Exception {
