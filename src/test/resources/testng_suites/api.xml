@@ -14,11 +14,6 @@
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-	<listeners>
-		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
-		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
-	</listeners>
-
 	<test name="User API tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.APISampleTest" />
