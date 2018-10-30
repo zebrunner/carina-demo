@@ -44,9 +44,9 @@ public class APISampleTest extends AbstractTest {
     @MethodOwner(owner = "qpsdemoAPI", platform = "api")
     @MethodOwner(owner = "qpsdemoDesktop", platform = "desktop")
     @TestPriority(Priority.P5)
-    @TestTag(name = "area31", value = "API3")
+    @TestTag(name = "area", value = "API0")
     @TestTag(name = "priority", value = "P0")
-    @TestTag(name = "feature", value = "feature1")
+    @TestTag(name = "feature", value = "feature0")
     public void testCreateUser() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
