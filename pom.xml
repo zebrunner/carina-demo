@@ -11,11 +11,26 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <carina-core_version>LATEST</carina-core_version>
+    <carina-core_version>RELEASE</carina-core_version>
     <httpclient.version>4.5.3</httpclient.version>
     <java.version>1.8</java.version>
     <suite>api</suite>
   </properties>
+
+    <repositories>
+        <repository>
+            <id>qaprosoft_snapshots</id>
+            <name>Qaprosoft Snapshots</name>
+            <url>https://ci.qaprosoft.com/nexus/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 
   <dependencies>
     <dependency>
