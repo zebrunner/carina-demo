@@ -15,6 +15,7 @@
 	<parameter name="jenkinsPipelineBrowsers" value="chrome,firefox"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
+	<parameter name="jenkinsQueueRegistration" value="false"/>
 
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
