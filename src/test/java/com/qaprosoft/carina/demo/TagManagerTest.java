@@ -48,7 +48,6 @@ public class TagManagerTest {
     @Test
     @TestPriority(Priority.P1)
     @MethodOwner(owner = "qpsdemo")
-    //@MethodOwner(owner = "qpsdemoAPI", platform = "api")
     public void testPriority() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
