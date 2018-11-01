@@ -3,7 +3,7 @@
 <suite verbose="1" name="Carina Demo Tests - API sample tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
-	<parameter name="zafira_project" value="test"/>
+	<parameter name="zafira_project" value="UNKNOWN"/>
 	<parameter name="jenkinsJobCreation" value="true"/>
 	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="api"/>
@@ -11,7 +11,8 @@
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 	
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
-	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
+	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>	
+	<parameter name="jenkinsPipelineLanguages" value="fr_FR:fr,en_US:en,es_ES:es,it_IT:it,de_DE:de,pt_PT:pt,zh_CN:zh-rCN,ja_JP:ja,ko_KR:ko"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
 	<parameter name="suitePriority" value="P3"/>
