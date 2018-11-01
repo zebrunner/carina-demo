@@ -5,6 +5,6 @@ import java.lang.annotation.Target;
 
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.METHOD)
-public @interface LCFeature {
+public @interface DemoFeature {
     Feature value() default Feature.UNKNOWN;
 }

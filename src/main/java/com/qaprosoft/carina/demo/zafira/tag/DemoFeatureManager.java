@@ -7,10 +7,10 @@ import org.testng.ITestResult;
 import java.lang.reflect.Method;
 
 
-public class LCFeatureManager {
-    protected static final Logger LOGGER = Logger.getLogger(LCFeatureManager.class);
+public class DemoFeatureManager {
+    protected static final Logger LOGGER = Logger.getLogger(DemoFeatureManager.class);
 
-    private LCFeatureManager() {
+    private DemoFeatureManager() {
     }
 
     public static String getFeature(ITestResult result) {
@@ -34,8 +34,8 @@ public class LCFeatureManager {
                 }
             }
 
-            if (testMethod != null && testMethod.isAnnotationPresent(LCFeature.class)) {
-                LCFeature methodAnnotation = testMethod.getAnnotation(LCFeature.class);
+            if (testMethod != null && testMethod.isAnnotationPresent(DemoFeature.class)) {
+                DemoFeature methodAnnotation = testMethod.getAnnotation(DemoFeature.class);
                 feature = methodAnnotation.value().toString();
 
                 LOGGER.debug("Method '" + testMethod + "' feature is: " + feature);

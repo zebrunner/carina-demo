@@ -20,8 +20,8 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.ownership.Ownership;
 import com.qaprosoft.carina.core.foundation.utils.tag.*;
 import com.qaprosoft.carina.demo.zafira.tag.Feature;
-import com.qaprosoft.carina.demo.zafira.tag.LCFeature;
-import com.qaprosoft.carina.demo.zafira.tag.LCFeatureManager;
+import com.qaprosoft.carina.demo.zafira.tag.DemoFeature;
+import com.qaprosoft.carina.demo.zafira.tag.DemoFeatureManager;
 import com.qaprosoft.zafira.models.dto.TagType;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -148,7 +148,7 @@ public class TagManagerTest {
 
     @Test
     @TestPriority(Priority.P2)
-    @LCFeature(Feature.UNKNOWN)
+    @DemoFeature(Feature.UNKNOWN)
     @TestTag(name = TAG_NAME2, value = TAG_VALUE2)
     @TestTag(name = TAG_NAME, value = TAG_VALUE)
     @TestTag(name = FORBIDDEN_KEY_PRIORITY, value = "P0")
@@ -181,7 +181,7 @@ public class TagManagerTest {
     }
 
     @Test
-    @LCFeature(Feature.PBS)
+    @DemoFeature(Feature.FEATURE1)
     @TestTag(name = TAG_NAME2, value = TAG_VALUE2)
     @TestTag(name = TAG_NAME, value = TAG_VALUE)
     @TestTag(name = FORBIDDEN_KEY_PRIORITY, value = "P0")
@@ -215,8 +215,8 @@ public class TagManagerTest {
 
     @Test
     @TestPriority(Priority.P2)
-    @LCFeature(Feature.LOGIN)
-    public void testLCFeatureTag() {
+    @DemoFeature(Feature.LOGIN)
+    public void testDemoFeatureTag() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
         Assert.assertEquals(priority, "P2");
@@ -224,14 +224,14 @@ public class TagManagerTest {
         Assert.assertFalse(tags.containsKey(FORBIDDEN_KEY_FEATURE));
         Assert.assertEquals(tags.size(), 0);
 
-        String feature = LCFeatureManager.getFeature(result);
+        String feature = DemoFeatureManager.getFeature(result);
         Assert.assertEquals(feature, "LOGIN");
     }
 
     @Test
     @TestPriority(Priority.P1)
-    @LCFeature(Feature.UNKNOWN)
-    public void testLCFeatureUnknownTag() {
+    @DemoFeature(Feature.UNKNOWN)
+    public void testDemoFeatureUnknownTag() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
         Assert.assertEquals(priority, "P1");
@@ -239,17 +239,17 @@ public class TagManagerTest {
         Assert.assertFalse(tags.containsKey(FORBIDDEN_KEY_FEATURE));
         Assert.assertEquals(tags.size(), 0);
 
-        String feature = LCFeatureManager.getFeature(result);
+        String feature = DemoFeatureManager.getFeature(result);
         Assert.assertEquals(feature, "UNKNOWN");
     }
 
     @Test
     @TestPriority(Priority.P1)
-    public void testLCEmptyFeature() {
+    public void testDemoEmptyFeature() {
         ITestResult result = Reporter.getCurrentTestResult();
         String priority = PriorityManager.getPriority(result);
         Assert.assertEquals(priority, "P1");
-        String feature = LCFeatureManager.getFeature(result);
+        String feature = DemoFeatureManager.getFeature(result);
         Assert.assertEquals(feature, "UNKNOWN");
 
         Set<TagType> tagsTypes = getTestTags(result);
@@ -280,7 +280,7 @@ public class TagManagerTest {
             tags.add(priority);
         }
 
-        String testFeature = LCFeatureManager.getFeature(test);
+        String testFeature = DemoFeatureManager.getFeature(test);
         if (testFeature != null && !testFeature.isEmpty() && !testFeature.equalsIgnoreCase(IGNORED_FEATURE)) {
             TagType feature = new TagType();
             feature.setName(SpecialKeywords.TEST_FEATURE_KEY);

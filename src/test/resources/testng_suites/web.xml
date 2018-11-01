@@ -18,6 +18,9 @@
 
 	<parameter name="suitePriority" value="P1"/>
 
+	<parameter name="overrideFields"
+			   value="core_log_level=DEBUG" />
+
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
