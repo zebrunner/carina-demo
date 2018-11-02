@@ -12,7 +12,7 @@
 	
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>	
-	<parameter name="jenkinsPipelineLanguages" value="fr_FR:fr,en_US:en,es_ES:es,it_IT:it,de_DE:de,pt_PT:pt,zh_CN:zh-rCN,ja_JP:ja,ko_KR:ko"/>
+	<parameter name="jenkinsPipelineLanguages" value="fr:fr_FR,en:en_US,es:es_ES,it:it_IT,de:de_DE,pt:pt_PT,zh-rCN:zh_CN,ja:ja_JP,ko:ko_KR"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
 	<listeners>
