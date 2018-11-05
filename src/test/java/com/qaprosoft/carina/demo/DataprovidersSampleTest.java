@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 QAPROSOFT (http://qaprosoft.com/).
+ * Copyright 2013-2018 QAPROSOFT (http://qaprosoft.com/).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
@@ -55,6 +58,8 @@ public class DataprovidersSampleTest extends AbstractTest {
      */
     @Test(dataProvider = "DP1", description = "JIRA#DEMO-0006")
     @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestTag(name = "area multi", value = "data provider multiply")
     public void testMuliplyOperation(int a, int b, int c) {
         int actual = a * b;
         int expected = c;
