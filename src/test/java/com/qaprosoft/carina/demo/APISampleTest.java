@@ -57,7 +57,7 @@ public class APISampleTest extends AbstractTest {
 		PostUserMethod api = new PostUserMethod();
 		api.getProperties().remove("name");
 		api.getProperties().remove("username");
-		api.expectResponseStatus(HttpResponseStatusType.OK_200);
+		api.expectResponseStatus(HttpResponseStatusType.OK_201);
 		api.callAPI();
 		api.validateResponse();
 	}
