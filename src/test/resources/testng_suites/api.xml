@@ -15,6 +15,14 @@
 	<parameter name="jenkinsPipelineLocales" value="fr_FR,en_US,es_ES,it_IT,de_DE,pt_PT,zh_CN:zh-rCN,ja_JP,ko_KR"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
+
+	<parameter name="TestRailSuiteId" value="1" />
+	<parameter name="TestRailProjectId" value="1" />
+	
+	<parameter name="qTestProjectId" value="2" />
+	<parameter name="qTestCycleId" value="2" />
+
+
 	<listeners>
 		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>

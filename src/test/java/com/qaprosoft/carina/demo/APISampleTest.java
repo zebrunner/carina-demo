@@ -21,6 +21,8 @@ import org.testng.annotations.Test;
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
+import com.qaprosoft.carina.core.foundation.report.qtest.QTestTestCase;
+import com.qaprosoft.carina.core.foundation.report.testrail.TestRailTestCase;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
@@ -38,10 +40,9 @@ public class APISampleTest extends AbstractTest {
 
 	@Test(description = "JIRA#DEMO-0001")
 	@MethodOwner(owner = "qpsdemo")
-	@TestPriority(Priority.P0)
-	@TestTag(name = "area", value = "API0")
-	@TestTag(name = "priority", value = "P0")
-	@TestTag(name = "feature", value = "feature0")
+	@TestRailTestCase(id="1")
+	@TestRailTestCase(id="10", platform="ANDROID")
+	@QTestTestCase(id="1")
 	public void testCreateUser() throws Exception {
 		PostUserMethod api = new PostUserMethod();
 		api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
@@ -51,8 +52,8 @@ public class APISampleTest extends AbstractTest {
 
 	@Test(description = "JIRA#DEMO-0002")
 	@MethodOwner(owner = "qpsdemo")
-	@TestTag(name = "area22", value = "API2")
-	@TestTag(name = "specialization22", value = "negativ6")
+	@TestRailTestCase(id="2")
+	@QTestTestCase(id="2")
 	public void testCreateUserMissingSomeFields() throws Exception {
 		PostUserMethod api = new PostUserMethod();
 		api.getProperties().remove("name");
@@ -64,7 +65,10 @@ public class APISampleTest extends AbstractTest {
 
 	@Test(description = "JIRA#DEMO-0003")
 	@MethodOwner(owner = "qpsdemo")
-	@TestPriority(Priority.P3)
+	@TestRailTestCase(id="3")
+	@TestRailTestCase(id="4")
+	@QTestTestCase(id="3")
+	@QTestTestCase(id="4")
 	public void testGetUsers() {
 		GetUserMethods getUsersMethods = new GetUserMethods();
 		getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
@@ -75,6 +79,12 @@ public class APISampleTest extends AbstractTest {
 
 	@Test(description = "JIRA#DEMO-0004")
 	@MethodOwner(owner = "qpsdemo")
+	@TestRailTestCase(id="5")
+	@TestRailTestCase(id="6")
+	@TestRailTestCase(id="7")
+	@QTestTestCase(id="5")
+	@QTestTestCase(id="6")
+	@QTestTestCase(id="7")	
 	public void testDeleteUsers() {
 		DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
 		deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
