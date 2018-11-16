@@ -63,7 +63,7 @@ public class DataprovidersSampleTest extends AbstractTest {
     @TestRailCases(testCasesId = "44")
     @TestTag(name = "area multi", value = "data provider multiply")
     public void testMuliplyOperation(String TUID, String testRailColumn, int a, int b, int c) {
-        setTestRailCase(testRailColumn.split(","));
+        setCases(testRailColumn.split(","));
         int actual = a * b;
         int expected = c;
         Assert.assertEquals(actual, expected, "Invalid sum result!");
