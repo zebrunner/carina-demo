@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite verbose="1" name="Carina Demo Tests - Web tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
+<suite verbose="1" name="Carina Demo Tests - Web tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" annotations="JDK">
 	
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
 	<parameter name="jenkinsJobCreation" value="true"/>
-	<parameter name="jenkinsJobName" value="Web-Demo-Test"/>
+	<parameter name="jenkinsJobName" value="Web-Demo-Test-parallel-tests"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
@@ -18,9 +18,33 @@
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-	<test name="GSM arena web tests">
+	<test name="GSM arena web tests1">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
+			<class name="com.qaprosoft.carina.demo.WebSampleTest">
+				<methods>
+					<include name="testModelSpecs" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test name="GSM arena web tests2">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.WebSampleTest">
+				<methods>
+					<include name="testCompareModels" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+		<test name="GSM arena web tests3">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.WebSampleTest">
+				<methods>
+					<include name="testNewsSearch" />
+				</methods>
+			</class>
 		</classes>
 	</test>
 	
