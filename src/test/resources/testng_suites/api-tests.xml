@@ -21,43 +21,20 @@
 	
 	<parameter name="qTestProjectId" value="2" />
 	<parameter name="qTestCycleId" value="2" />
-	<test name="User API tests - testCreateUser">
+	<test name="User API tests - 1">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.APISampleTest">
+			<class name="com.qaprosoft.carina.demo.APISampleTest" />
+		</classes>
+	</test>
+
+	<test name="User API tests - 2">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.APISampleTest2">
 				<methods>
-					<include name="testCreateUser" />
+					<include name="testCreateUserMissingSomeFields2" />
 				</methods>
 			</class>
 		</classes>
 	</test>
 
-	<test name="User API tests - testCreateUserMissingSomeFields">
-		<classes>
-			<class name="com.qaprosoft.carina.demo.APISampleTest">
-				<methods>
-					<include name="testCreateUserMissingSomeFields" />
-				</methods>
-			</class>
-		</classes>
-	</test>
-
-	<test name="User API tests - testGetUsers">
-		<classes>
-			<class name="com.qaprosoft.carina.demo.APISampleTest">
-				<methods>
-					<include name="testGetUsers" />
-				</methods>
-			</class>
-		</classes>
-	</test>
-	
-	<test name="User API tests - testDeleteUsers">
-		<classes>
-			<class name="com.qaprosoft.carina.demo.APISampleTest">
-				<methods>
-					<include name="testDeleteUsers" />
-				</methods>
-			</class>
-		</classes>
-	</test>
 </suite>
