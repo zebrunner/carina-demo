@@ -28,11 +28,6 @@
     	<parameter name="choiceParam::choiceArg::custom choice desc" value="1, 2, 3" />
 
 
-	<parameter name="TestRailSuiteId" value="4" />
-	<parameter name="TestRailProjectId" value="4" />
-
-	<parameter name="qTestProjectId" value="5" />
-	<parameter name="qTestCycleId" value="5" />
 	<test name="Sum operation test">
 		<parameter name="{ds_custom_provider}" value="true" />
 		<classes>
