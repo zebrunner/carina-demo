@@ -11,7 +11,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <carina-core_version>RELEASE</carina-core_version>
+    <carina-core_version>1.0-SNAPSHOT</carina-core_version>
     <httpclient.version>4.5.3</httpclient.version>
     <java.version>1.8</java.version>
     <suite>api</suite>
@@ -89,10 +89,10 @@
             <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
           </suiteXmlFiles>
           <properties>
-            <!--property>
+            <property>
               <name>listener</name>
-              <value>com.qaprosoft.carina.core.foundation.listeners.HealthCheckListener,com.qaprosoft.zafira.listener.ZafiraListener</value>
-            </property-->
+              <value>com.qaprosoft.zafira.listener.ZafiraListener</value>
+            </property>
           </properties>
         </configuration>
       </plugin>

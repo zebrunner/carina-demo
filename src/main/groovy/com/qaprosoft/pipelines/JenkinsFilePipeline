@@ -1,4 +1,0 @@
-@Library('QPS-Jenkins')
-import com.qaprosoft.jenkins.Pipeline;
-
-new Pipeline().runPipeline()

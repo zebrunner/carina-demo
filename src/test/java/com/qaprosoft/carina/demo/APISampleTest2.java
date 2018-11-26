@@ -35,7 +35,7 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  *
  * @author qpsdemo
  */
-public class APISampleTest extends AbstractTest {
+public class APISampleTest2 extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
@@ -44,7 +44,7 @@ public class APISampleTest extends AbstractTest {
     @QTestCases(id = "1")
     @QTestCases(id = "100", platform = "Android")
     @QTestCases(id = "200", platform = "API")
-    public void testCreateUser() throws Exception {
+    public void testCreateUser2() throws Exception {
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
         api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
@@ -56,7 +56,7 @@ public class APISampleTest extends AbstractTest {
     @MethodOwner(owner = "qpsdemo")
     @TestRailCases(testCasesId = "2")
     @QTestCases(id = "2")
-    public void testCreateUserMissingSomeFields() throws Exception {
+    public void testCreateUserMissingSomeFields2() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.getProperties().remove("name");
         api.getProperties().remove("username");
@@ -71,7 +71,7 @@ public class APISampleTest extends AbstractTest {
     @TestRailCases(testCasesId = "4")
     @QTestCases(id = "3")
     @QTestCases(id = "4")
-    public void testGetUsers() {
+    public void testGetUsers2() {
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
         getUsersMethods.callAPI();
@@ -88,7 +88,7 @@ public class APISampleTest extends AbstractTest {
     @QTestCases(id = "6")
     @QTestCases(id = "7")
     @TestPriority(Priority.P1)
-    public void testDeleteUsers() {
+    public void testDeleteUsers2() {
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
         deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteUserMethod.callAPI();

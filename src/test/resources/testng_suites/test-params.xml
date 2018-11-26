@@ -2,6 +2,10 @@
 
 <suite verbose="1" name="Carina Demo - Test Cutom Params creation" skipfailedinvocationcounts="false" junit="false" parallel="tests" annotations="JDK">
 
+	<listeners>
+		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
+	</listeners>
+
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
 	<parameter name="jenkinsJobCreation" value="true"/>
@@ -23,12 +27,14 @@
     	<parameter name="hiddenParam::hiddenArg::custom hidden desc" value="hidden value" />
     	<parameter name="choiceParam::choiceArg::custom choice desc" value="1, 2, 3" />
 
-	<listeners>
-		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
-		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
-	</listeners>
 
+	<parameter name="TestRailSuiteId" value="4" />
+	<parameter name="TestRailProjectId" value="4" />
+
+	<parameter name="qTestProjectId" value="5" />
+	<parameter name="qTestCycleId" value="5" />
 	<test name="Sum operation test">
+		<parameter name="{ds_custom_provider}" value="true" />
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
@@ -37,8 +43,9 @@
 			</class>
 		</classes>
 	</test>
-	
+
 	<test name="Multiply operation test">
+		<parameter name="{ds_custom_provider}" value="true" />
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
