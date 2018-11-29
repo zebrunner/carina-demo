@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 QAPROSOFT (http://qaprosoft.com/).
+ * Copyright 2013-2018 QAPROSOFT (http://qaprosoft.com/).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,19 +22,23 @@ import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.api.DeleteUserMethod;
 import com.qaprosoft.carina.demo.api.GetUserMethods;
 import com.qaprosoft.carina.demo.api.PostUserMethod;
 
 /**
  * This sample shows how create REST API tests.
- * 
+ *
  * @author qpsdemo
  */
 public class APISampleTest extends AbstractTest {
+
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
+        setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
         api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
         api.callAPI();
@@ -64,10 +68,12 @@ public class APISampleTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-0004")
     @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P1)
     public void testDeleteUsers() {
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
         deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         deleteUserMethod.callAPI();
         deleteUserMethod.validateResponse();
     }
+
 }
