@@ -33,7 +33,7 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  *
  * @author qpsdemo
  */
-public class APISampleTest extends AbstractTest {
+public class APISampleTest extends {
 
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
