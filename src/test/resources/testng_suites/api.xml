@@ -12,8 +12,7 @@
 	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="api"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="multiline" value="TZ=US/Eastern
-					  H 9-19 * * 1-5"/>
+	<parameter name="scheduling" value="TZ=US/Eastern\nH 9-19 * * 1-5"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 	
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
