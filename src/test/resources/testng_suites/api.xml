@@ -18,9 +18,8 @@
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 <!-- 	<parameter name="jenkinsPipelineLocales" value="fr_FR,en_US,es_ES,it_IT,de_DE,pt_PT,zh_CN:zh-rCN,ja_JP,ko_KR"/> -->
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
-	<parameter name="scheduling" value="H 1 * * 1-5" />
 
-<!-- 	<parameter name="scheduling" value="TZ=US/Eastern\nH 9-19 * * 1-5"/> -->
+	<parameter name="scheduling" value="TZ=US/Eastern\nH 9-19 * * 1-5"/>
 <!-- 	<parameter name="jenkinsJobExecutionOrder" value="ordered"/> -->
 <!-- 	<parameter name="jenkinsQueueRegistration" value="false"/> -->
 
