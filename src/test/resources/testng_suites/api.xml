@@ -12,7 +12,7 @@
 	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="api"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="timezone" value="TZ=US/Eastern:H 9-19 * * 1-5"/>
+	<parameter name="user.timezone" value="TZ=US/Eastern:H 9-19 * * 1-5"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 	
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
