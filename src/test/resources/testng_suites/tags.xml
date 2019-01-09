@@ -20,6 +20,13 @@
 
 	<parameter name="suitePriority" value="P6"/>
 
+	<parameter name="choiceParam::test_rules::Select test execution rule" value="PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg,PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg&amp;&amp;tag4=testTag4,PRIORITY=>P1,PRIORITY=>P2,TAGS=>feature=reg"/>
+
+	<listeners>
+		<listener
+				class-name="com.qaprosoft.carina.core.foundation.listeners.FilterTestsListener" />
+	</listeners>
+
 	<test name="Tags tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.TagManagerTest" />

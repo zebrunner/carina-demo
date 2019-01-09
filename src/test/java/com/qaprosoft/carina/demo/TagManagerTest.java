@@ -61,6 +61,7 @@ public class TagManagerTest {
 
 	@Test
 	@TestPriority(Priority.P1)
+	@TestTag(name = "feature", value = "reg")
 	public void testPriorityExample() {
 		ITestResult result = Reporter.getCurrentTestResult();
 		String priority = PriorityManager.getPriority(result);
