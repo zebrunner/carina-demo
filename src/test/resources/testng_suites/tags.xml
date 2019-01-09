@@ -21,8 +21,12 @@
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
 	<parameter name="suitePriority" value="P6"/>
+<!--
 
 	<parameter name="extensibleChoice::test_run_rules::Select test execution rule" value="PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg,PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg&amp;&amp;tag4=testTag4,PRIORITY=>P1,PRIORITY=>P2,TAGS=>feature=reg"/>
+-->
+
+	<parameter name="choiceParam::test_run_rules::Select test execution rule" value="PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg,PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg&amp;&amp;tag4=testTag4,PRIORITY=>P1,PRIORITY=>P2,TAGS=>feature=reg"/>
 
 	<test name="Tags tests">
 		<classes>
