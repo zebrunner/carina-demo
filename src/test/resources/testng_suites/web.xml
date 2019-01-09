@@ -14,7 +14,8 @@
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
-
+	<parameter name="jenkinsDefaultBrowser" value="safari"/>
+<!-- 	<parameter name="scheduling" value="H 9-19 * * 1-5"/> -->
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 
