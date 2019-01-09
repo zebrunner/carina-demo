@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite verbose="1" name="Carina Demo Tests - Tags tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
+<suite verbose="1" name="Carina Demo Tests - All tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
 
 	<listeners>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
@@ -11,23 +11,18 @@
 	<parameter name="suiteOwner" value="qpsdemoSuite"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
 	<parameter name="jenkinsJobCreation" value="true"/>
-	<parameter name="jenkinsJobName" value="Tags-Demo-Test"/>
+	<parameter name="jenkinsJobName" value="All-Demo-Tests"/>
 	<parameter name="jenkinsJobType" value="api"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 
-	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
-	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
-	<parameter name="jenkinsJobExecutionMode" value="continue"/>
-
-	<parameter name="suitePriority" value="P6"/>
-
 	<parameter name="choiceParam::test_run_rules::Select test execution rule" value="PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg,PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg&amp;&amp;tag4=testTag4,PRIORITY=>P1,PRIORITY=>P2,TAGS=>feature=reg"/>
 
-	<test name="Tags tests">
-		<classes>
-			<class name="com.qaprosoft.carina.demo.TagManagerTest" />
-		</classes>
+
+	<test name="All tests">
+		<packages>
+			<package name="com.qaprosoft.carina.demo"/>
+		</packages>
 	</test>
 	
 </suite>
