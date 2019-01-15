@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo.gui.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -25,6 +26,8 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 
 public class HomePage extends AbstractPage {
+    Logger LOGGER = Logger.getLogger(HomePage.class);
+    
     @FindBy(id = "footmenu")
     private FooterMenu footerMenu;
 
