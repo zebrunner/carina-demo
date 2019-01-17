@@ -16,7 +16,9 @@
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 
-	<parameter name="choiceParam::test_run_rules::Select test execution rule" value="PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg,PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg&amp;&amp;tag4=testTag4,PRIORITY=>P1,PRIORITY=>P2,TAGS=>feature=reg"/>
+	<!--<parameter name="choiceParam::test_run_rules::Select test execution rule" value="PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg,PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg&amp;&amp;tag4=testTag4,PRIORITY=>P1,PRIORITY=>P2,TAGS=>feature=reg"/>
+-->
+	<parameter name="stringParam::test_run_rules::Select test execution rule. Example: PRIORITY=>P1&amp;&amp;P2;;TAGS=>tag3=testTag3&amp;&amp;feature=reg" value=""/>
 
 
 	<test name="All tests">
