@@ -10,6 +10,10 @@
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 	
+	<parameter name="jenkinsGitHubProject" value="https://github.com/qaprosoft/carina"/>
+	<parameter name="jenkinsGitHubHookTrigger" value="true"/>
+	<parameter name="jenkinsQuietPeriod" value="3"/>
+	
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 <!-- 	<parameter name="jenkinsPipelineLocales" value="fr_FR,en_US,es_ES,it_IT,de_DE,pt_PT,zh_CN:zh-rCN,ja_JP,ko_KR"/> -->
