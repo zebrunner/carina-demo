@@ -48,16 +48,10 @@ public class TagManagerTest extends AbstractTest {
 	private static final String TAG_VALUE2 = "testTag4";
 	private static final String FORBIDDEN_KEY_PRIORITY = "priority";
 	
-	private static int num = 0;
-
 	@Test
 	@TestPriority(Priority.P1)
 	@MethodOwner(owner = "qpsdemo")
 	public void testPriority() {
-	    if (num == 0) {
-	        num++;
-	        Assert.fail("qwe");
-	    }
 		ITestResult result = Reporter.getCurrentTestResult();
 		String priority = PriorityManager.getPriority(result);
 		Assert.assertEquals(priority, "P1");
