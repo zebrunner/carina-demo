@@ -25,6 +25,7 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.ownership.Ownership;
@@ -38,7 +39,7 @@ import com.qaprosoft.zafira.models.dto.TagType;
 /**
  * Tests for {@link TagManager}
  */
-public class TagManagerTest {
+public class TagManagerTest extends AbstractTest {
 	protected static final Logger LOGGER = Logger.getLogger(TagManagerTest.class);
 
 	private static final String TAG_NAME = "tag3";
@@ -46,11 +47,17 @@ public class TagManagerTest {
 	private static final String TAG_VALUE = "testTag3";
 	private static final String TAG_VALUE2 = "testTag4";
 	private static final String FORBIDDEN_KEY_PRIORITY = "priority";
+	
+	private static int num = 0;
 
 	@Test
 	@TestPriority(Priority.P1)
 	@MethodOwner(owner = "qpsdemo")
 	public void testPriority() {
+	    if (num == 0) {
+	        num++;
+	        Assert.fail("qwe");
+	    }
 		ITestResult result = Reporter.getCurrentTestResult();
 		String priority = PriorityManager.getPriority(result);
 		Assert.assertEquals(priority, "P1");
