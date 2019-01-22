@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -38,7 +39,7 @@ import com.qaprosoft.zafira.models.dto.TagType;
 /**
  * Tests for {@link TagManager}
  */
-public class TagManagerTest {
+public class TagManagerTest extends AbstractTest {
 	protected static final Logger LOGGER = Logger.getLogger(TagManagerTest.class);
 
 	private static final String TAG_NAME = "tag3";
