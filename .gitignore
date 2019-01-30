@@ -16,7 +16,9 @@
 .project
 *.log
 *.apk
+!src/main/resources/carinademoexample.apk
 *.zip
+!src/main/resources/carinademoexample.zip
 .settings/*
 target/*
 test-output/*
