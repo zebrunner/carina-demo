@@ -13,6 +13,7 @@
 	<parameter name="jenkinsGitHubProject" value="https://github.com/qaprosoft/carina"/>
 	<parameter name="jenkinsGitHubHookTrigger" value="true"/>
 	<parameter name="jenkinsQuietPeriod" value="3"/>
+	<parameter name="jenkinsDefaultRetryCount" value="5"/>
 	
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
