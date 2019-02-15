@@ -7,6 +7,7 @@
 	<parameter name="zafira_project" value="UNKNOWN" />
 	<parameter name="jenkinsJobCreation" value="true" />
 	<parameter name="jenkinsJobName" value="Mobile-iOS-Demo-Test" />
+	<parameter name="jenkinsJobType" value="ios"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
 	<parameter name="jenkinsEnvironments" value="DEMO" />
 
