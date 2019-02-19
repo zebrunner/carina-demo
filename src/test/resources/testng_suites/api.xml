@@ -21,6 +21,7 @@
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 <!-- 	<parameter name="jenkinsJobExecutionOrder" value="ordered"/> -->
 <!-- 	<parameter name="jenkinsQueueRegistration" value="false"/> -->
+	<parameter name="overrideFields" value="driver_mode=method_mode,carina_core_version=6.0.9"/>
 
 	<test name="User API tests">
 		<classes>
