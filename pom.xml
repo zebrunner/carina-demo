@@ -31,7 +31,6 @@
         </repository>
     </repositories>
 
-
   <dependencies>
     <dependency>
       <groupId>com.qaprosoft</groupId>
