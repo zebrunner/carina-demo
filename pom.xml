@@ -16,7 +16,6 @@
     <suite>api</suite>
   </properties>
 
-	
     <repositories>
         <repository>
             <id>qaprosoft_snapshots</id>
