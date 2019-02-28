@@ -15,7 +15,7 @@
 	<parameter name="jenkinsQuietPeriod" value="3"/>
 	<parameter name="jenkinsDefaultRetryCount" value="5"/>
 	
-	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
+<!-- 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/> -->
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 <!-- 	<parameter name="jenkinsPipelineLocales" value="fr_FR,en_US,es_ES,it_IT,de_DE,pt_PT,zh_CN:zh-rCN,ja_JP,ko_KR"/> -->
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
