@@ -16,6 +16,7 @@
 package com.qaprosoft.carina.demo;
 
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
@@ -37,6 +38,7 @@ public class APISampleTest extends AbstractTest {
     
     @BeforeClass()
     public void testMethod() {
+//        throw new NullPointerException();
     }
     
     @Test(description = "JIRA#DEMO-0001")
