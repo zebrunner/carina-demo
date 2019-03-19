@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
@@ -46,6 +47,11 @@ public class TagManagerTest {
 	private static final String TAG_VALUE = "testTag3";
 	private static final String TAG_VALUE2 = "testTag4";
 	private static final String FORBIDDEN_KEY_PRIORITY = "priority";
+
+	@BeforeClass()
+	public void testMethod() {
+		throw new NullPointerException();
+	}
 
 	@Test
 	@TestPriority(Priority.P1)

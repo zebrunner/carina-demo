@@ -36,11 +36,6 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  */
 public class APISampleTest extends AbstractTest {
     
-    @BeforeClass()
-    public void testMethod() {
-//        throw new NullPointerException();
-    }
-    
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
