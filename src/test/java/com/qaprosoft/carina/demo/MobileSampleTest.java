@@ -2,6 +2,8 @@ package com.qaprosoft.carina.demo;
 
 import java.io.File;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.android.UIElements;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,9 +13,6 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 
 public class MobileSampleTest extends AbstractTest {
 
@@ -33,6 +32,36 @@ public class MobileSampleTest extends AbstractTest {
 		loginPage.checkPrivacyPolicyCheckbox();
 		CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
 		Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
+	}
+
+	@Test(description = "JIRA#DEMO-0011")
+	@MethodOwner(owner = "qpsdemo")
+	public void testWebView() {
+		setApplicationPath();
+		WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+		LoginPageBase loginPage = welcomePage.clickNextBtn();
+		CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
+		WebViewBase webViewBase = carinaDescriptionPage.navitateToWebview();
+		webViewBase.goToContactUsPage();
+		webViewBase.fillContactPage();
+		Assert.assertTrue(webViewBase.wasSuccessfulMessageSent(),"message was not sent!");
+	}
+
+	@Test(description = "JIRA#DEMO-0011")
+	@MethodOwner(owner = "qpsdemo")
+	public void testUIElements() {
+		setApplicationPath();
+		WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+		LoginPageBase loginPage = welcomePage.clickNextBtn();
+		CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
+		UIElementsBase uiElements = carinaDescriptionPage.navigateToUIElements();
+		uiElements.fillInText("some Text");
+		uiElements.fillInDate("22/10/2018");
+		uiElements.fillInEmail("some@email.com");
+		uiElements.checkCopy();
+		uiElements.selectFemale();
+		uiElements.selectOther();
+
 	}
 	
 	private void setApplicationPath() {

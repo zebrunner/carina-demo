@@ -1,12 +1,12 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
@@ -17,8 +17,52 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 	@FindBy(xpath = "//android.view.View[@text = 'CARINA facts']")
 	private ExtendedWebElement carinaFactsSubTitle;
 
+	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Web View']")
+	private ExtendedWebElement webviewLink;
+
+	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Charts']")
+	private ExtendedWebElement chartsLink;
+
+	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Map']")
+	private ExtendedWebElement mapLink;
+
+	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'UI elements']")
+	private ExtendedWebElement uiElementsLink;
+
+
+	@FindBy(className = "android.widget.ImageButton")
+	private ExtendedWebElement leftMenuButton;
+
 	public CarinaDescriptionPage(WebDriver driver) {
 		super(driver);
+	}
+
+	@Override
+	public WebViewBase navitateToWebview() {
+		leftMenuButton.click();
+		webviewLink.click();
+		return initPage(getDriver(), WebViewBase.class);
+	}
+
+	@Override
+	public ChartsBase navigateToCharts() {
+		leftMenuButton.click();
+		chartsLink.click();
+		return initPage(getDriver(), ChartsBase.class);
+	}
+
+	@Override
+	public MapsBase navigateToMap() {
+		leftMenuButton.click();
+		mapLink.click();
+		return initPage(getDriver(), MapsBase.class);
+	}
+
+	@Override
+	public UIElementsBase navigateToUIElements() {
+		leftMenuButton.click();
+		uiElementsLink.click();
+		return initPage(getDriver(), UIElementsBase.class);
 	}
 
 	@Override
