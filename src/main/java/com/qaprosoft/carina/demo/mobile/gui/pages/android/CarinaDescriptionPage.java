@@ -11,7 +11,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
-	@FindBy(xpath = "//android.webkit.WebViewPagePage[@text = 'Carina - open source test automation framework']")
+	@FindBy(xpath = "//android.webkit.WebView[@text = 'Carina - open source test automation framework']")
 	private ExtendedWebElement webViewTitle;
 
 	@FindBy(xpath = "//android.view.View[@text = 'CARINA facts']")

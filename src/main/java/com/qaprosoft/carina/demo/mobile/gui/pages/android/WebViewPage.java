@@ -10,7 +10,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import java.util.Set;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
-public class WebViewPagePage extends WebViewPageBase {
+public class WebViewPage extends WebViewPageBase {
 
     private AppiumDriver webViewDriver;
     private final String webViewContext;
@@ -23,7 +23,7 @@ public class WebViewPagePage extends WebViewPageBase {
     private final By BY_SUBMIT = By.xpath("//button[@type='submit' and text()='Send']");
     private final By BY_SUCCESS_MESSAGE = By.xpath("//div[contains(@class,'t-form__successbox')]");
 
-    public WebViewPagePage(WebDriver driver) {
+    public WebViewPage(WebDriver driver) {
         super(driver);
         webViewDriver = (AppiumDriver)(((EventFiringWebDriver) getDriver()).getWrappedDriver());
         Set contextNames = webViewDriver.getContextHandles();
