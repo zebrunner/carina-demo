@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,8 +9,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.Set;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = WebViewBase.class)
-public class WebView extends WebViewBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
+public class WebViewPagePage extends WebViewPageBase {
 
     private AppiumDriver webViewDriver;
     private final String webViewContext;
@@ -23,7 +23,7 @@ public class WebView extends WebViewBase {
     private final By BY_SUBMIT = By.xpath("//button[@type='submit' and text()='Send']");
     private final By BY_SUCCESS_MESSAGE = By.xpath("//div[contains(@class,'t-form__successbox')]");
 
-    public WebView(WebDriver driver) {
+    public WebViewPagePage(WebDriver driver) {
         super(driver);
         webViewDriver = (AppiumDriver)(((EventFiringWebDriver) getDriver()).getWrappedDriver());
         Set contextNames = webViewDriver.getContextHandles();

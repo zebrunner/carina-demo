@@ -2,7 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -14,20 +14,20 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import static io.appium.java_client.touch.offset.PointOption.point;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UIElementsBase.class)
-public class UIElements extends UIElementsBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
+public class UIElementsPage extends UIElementsPageBase {
     @FindBy(id = "editText")
-    private ExtendedWebElement text;
+    private ExtendedWebElement textField;
 
     @FindBy(id = "editText2")
-    private ExtendedWebElement email;
+    private ExtendedWebElement emailField;
 
     @FindBy(id = "editText3")
-    private ExtendedWebElement date;
+    private ExtendedWebElement dateField;
 
 
     @FindBy(id = "checkBox2")
-    private ExtendedWebElement checkBox;
+    private ExtendedWebElement checkBoxButton;
 
     @FindBy(id = "radioButton")
     private ExtendedWebElement maleRadioButton;
@@ -39,45 +39,45 @@ public class UIElements extends UIElementsBase {
     private ExtendedWebElement otherRadioButton;
 
     @FindBy(id = "radioButton5")
-    private ExtendedWebElement seekBar;
+    private ExtendedWebElement seekBarButton;
 
 
-    public void fillInText(String text) {
-        this.text.type(text);
+    public void typeText(String text) {
+        textField.type(text);
     }
 
-    public void fillInEmail(String email) {
-        this.email.type(email);
+    public void typeEmail(String email) {
+        emailField.type(email);
     }
 
-    public void fillInDate(String date) {
-        this.date.type(date);
+    public void typeDate(String date) {
+        dateField.type(date);
     }
 
     public void selectMale() {
-        this.maleRadioButton.click();
+        maleRadioButton.click();
     }
 
     public void selectFemale() {
-        this.femaleRadioButton.click();
+        femaleRadioButton.click();
     }
 
     public void selectOther() {
-        this.otherRadioButton.click();
+        otherRadioButton.click();
     }
 
     @Override
     public void checkCopy() {
-        ScrollToElement(checkBox);
-        this.checkBox.click();
+        scrollToElement(checkBoxButton);
+        checkBoxButton.click();
     }
 
 
-    public UIElements(WebDriver driver) {
+    public UIElementsPage(WebDriver driver) {
         super(driver);
     }
 
-    private AndroidElement ScrollToElement(ExtendedWebElement element) {
+    private AndroidElement scrollToElement(ExtendedWebElement element) {
         AndroidDriver driver = (AndroidDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver());
         AndroidElement output = null;
         int numberOfTimes = 10;

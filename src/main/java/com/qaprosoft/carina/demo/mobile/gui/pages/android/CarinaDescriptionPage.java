@@ -11,7 +11,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
-	@FindBy(xpath = "//android.webkit.WebView[@text = 'Carina - open source test automation framework']")
+	@FindBy(xpath = "//android.webkit.WebViewPagePage[@text = 'Carina - open source test automation framework']")
 	private ExtendedWebElement webViewTitle;
 
 	@FindBy(xpath = "//android.view.View[@text = 'CARINA facts']")
@@ -20,7 +20,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Web View']")
 	private ExtendedWebElement webviewLink;
 
-	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Charts']")
+	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'ChartsPage']")
 	private ExtendedWebElement chartsLink;
 
 	@FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Map']")
@@ -38,31 +38,31 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 	}
 
 	@Override
-	public WebViewBase navitateToWebview() {
+	public WebViewPageBase navitateToWebviewPage() {
 		leftMenuButton.click();
 		webviewLink.click();
-		return initPage(getDriver(), WebViewBase.class);
+		return initPage(getDriver(), WebViewPageBase.class);
 	}
 
 	@Override
-	public ChartsBase navigateToCharts() {
+	public ChartsPageBase navigateToChartsPage() {
 		leftMenuButton.click();
 		chartsLink.click();
-		return initPage(getDriver(), ChartsBase.class);
+		return initPage(getDriver(), ChartsPageBase.class);
 	}
 
 	@Override
-	public MapsBase navigateToMap() {
+	public MapsPageBase navigateToMapPage() {
 		leftMenuButton.click();
 		mapLink.click();
-		return initPage(getDriver(), MapsBase.class);
+		return initPage(getDriver(), MapsPageBase.class);
 	}
 
 	@Override
-	public UIElementsBase navigateToUIElements() {
+	public UIElementsPageBase navigateToUIElementsPage() {
 		leftMenuButton.click();
 		uiElementsLink.click();
-		return initPage(getDriver(), UIElementsBase.class);
+		return initPage(getDriver(), UIElementsPageBase.class);
 	}
 
 	@Override

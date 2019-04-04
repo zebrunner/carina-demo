@@ -9,12 +9,12 @@ public abstract class CarinaDescriptionPageBase extends AbstractPage {
 		super(driver);
 	}
 
-	public abstract WebViewBase navitateToWebview();
+	public abstract WebViewPageBase navitateToWebviewPage();
 
-	public abstract ChartsBase navigateToCharts();
+	public abstract ChartsPageBase navigateToChartsPage();
 
-	public abstract MapsBase navigateToMap();
+	public abstract MapsPageBase navigateToMapPage();
 
-	public abstract UIElementsBase navigateToUIElements();
+	public abstract UIElementsPageBase navigateToUIElementsPage();
 
 }

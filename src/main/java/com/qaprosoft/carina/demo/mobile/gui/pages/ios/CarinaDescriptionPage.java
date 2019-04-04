@@ -12,6 +12,8 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Pred
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
+	private static final String THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID = "This method is not yet implemented for iOS";
+
 	@FindBy(xpath = "name = 'CARINA' AND type = 'XCUIElementTypeStaticText'")
 	@Predicate
 	private ExtendedWebElement webViewTitle;
@@ -21,23 +23,23 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 	}
 
 	@Override
-	public WebViewBase navitateToWebview() {
-		return null;
+	public WebViewPageBase navitateToWebviewPage() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
 	}
 
 	@Override
-	public ChartsBase navigateToCharts() {
-		return null;
+	public ChartsPageBase navigateToChartsPage() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
 	}
 
 	@Override
-	public MapsBase navigateToMap() {
-		return null;
+	public MapsPageBase navigateToMapPage() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
 	}
 
 	@Override
-	public UIElementsBase navigateToUIElements() {
-		return null;
+	public UIElementsPageBase navigateToUIElementsPage() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
 	}
 
 	@Override

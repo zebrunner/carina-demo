@@ -3,9 +3,9 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class WebViewBase extends AbstractPage {
+public abstract class WebViewPageBase extends AbstractPage {
 
-    public WebViewBase(WebDriver driver) {
+    public WebViewPageBase(WebDriver driver) {
         super(driver);
     }
 
