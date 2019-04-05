@@ -41,6 +41,9 @@ public class UIElementsPage extends UIElementsPageBase {
     @FindBy(id = "radioButton5")
     private ExtendedWebElement seekBarButton;
 
+    @FindBy(className = "android.widget.ScrollView")
+    private ExtendedWebElement container;
+
     public void typeText(String text) {
         textField.type(text);
     }
@@ -67,7 +70,7 @@ public class UIElementsPage extends UIElementsPageBase {
 
     @Override
     public void checkCopy() {
-        MobileUtils.swipe(checkBoxButton, MobileUtils.Direction.DOWN);
+        MobileUtils.swipe(femaleRadioButton, container, 10);
         checkBoxButton.click();
     }
 
@@ -75,28 +78,4 @@ public class UIElementsPage extends UIElementsPageBase {
         super(driver);
     }
 
-    private AndroidElement scrollToElement(ExtendedWebElement element) {
-        AndroidDriver driver = (AndroidDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver());
-        AndroidElement output = null;
-        int numberOfTimes = 10;
-        Dimension size = driver.manage().window().getSize();
-        int anchor = size.width / 2;
-        int startPoint = size.height - 10;
-        int endPoint = size.height / 2;
-
-        for (int i = 0; i < numberOfTimes; i++) {
-            try {
-                new TouchAction(driver)
-                        .longPress(point(anchor, startPoint))
-                        .moveTo(point(anchor, endPoint))
-                        .release()
-                        .perform();
-                output = (AndroidElement) driver.findElement(element.getBy());
-                i = numberOfTimes;
-            } catch (NoSuchElementException ex) {
-                System.out.println(String.format("Element not available. Scrolling (%s) times...", i + 1));
-            }
-        }
-        return output;
-    }
 }
