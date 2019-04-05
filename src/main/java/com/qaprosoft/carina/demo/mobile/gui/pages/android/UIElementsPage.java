@@ -53,15 +53,15 @@ public class UIElementsPage extends UIElementsPageBase {
         dateField.type(date);
     }
 
-    public void selectMale() {
+    public void clickOnMaleRadioButton() {
         maleRadioButton.click();
     }
 
-    public void selectFemale() {
+    public void clickOnFemaleRadioButton() {
         femaleRadioButton.click();
     }
 
-    public void selectOther() {
+    public void clickOnOtherRadioButton() {
         otherRadioButton.click();
     }
 

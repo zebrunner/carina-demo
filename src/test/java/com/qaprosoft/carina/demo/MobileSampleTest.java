@@ -58,8 +58,8 @@ public class MobileSampleTest extends AbstractTest {
 		uiElements.typeDate("22/10/2018");
 		uiElements.typeEmail("some@email.com");
 		uiElements.checkCopy();
-		uiElements.selectFemale();
-		uiElements.selectOther();
+		uiElements.clickOnFemaleRadioButton();
+		uiElements.clickOnOtherRadioButton();
 
 	}
 	

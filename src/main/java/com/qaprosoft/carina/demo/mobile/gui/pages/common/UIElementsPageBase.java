@@ -12,11 +12,11 @@ public abstract class UIElementsPageBase extends AbstractPage {
 
     public abstract void typeDate(String date);
 
-    public abstract void selectMale();
+    public abstract void clickOnMaleRadioButton();
 
-    public abstract void selectFemale();
+    public abstract void clickOnFemaleRadioButton();
 
-    public abstract void selectOther();
+    public abstract void clickOnOtherRadioButton();
 
     public abstract void checkCopy();
 
