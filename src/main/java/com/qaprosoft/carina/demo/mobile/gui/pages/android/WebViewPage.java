@@ -1,10 +1,12 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.Set;
@@ -16,16 +18,27 @@ public class WebViewPage extends WebViewPageBase {
     private final String webViewContext;
     private final String NATIVE_APP = "NATIVE_APP";
 
-    private final By BY_CONTACT_US = By.className("t708__btn");
-    private final By BY_EMAIL = By.xpath("//input[@name='Email']");
-    private final By BY_NAME = By.xpath("//input[@name='Name']");
-    private final By BY_QUESTION = By.xpath("//textarea[@name='Textarea']");
-    private final By BY_SUBMIT = By.xpath("//button[@type='submit' and text()='Send']");
-    private final By BY_SUCCESS_MESSAGE = By.xpath("//div[contains(@class,'t-form__successbox')]");
+    @FindBy(className = "t708__btn")
+    private ExtendedWebElement contactUsLink;
+
+    @FindBy(xpath = "//input[@name='Email']")
+    private ExtendedWebElement emailField;
+
+    @FindBy(xpath = "//input[@name='Name']")
+    private ExtendedWebElement nameField;
+
+    @FindBy(xpath = "//textarea[@name='Textarea']")
+    private ExtendedWebElement questionField;
+
+    @FindBy(xpath = "//button[@type='submit' and text()='Send']")
+    private ExtendedWebElement submitButton;
+
+    @FindBy(xpath = "//div[contains(@class,'t-form__successbox')]")
+    private ExtendedWebElement successLabel;
 
     public WebViewPage(WebDriver driver) {
         super(driver);
-        webViewDriver = (AppiumDriver)(((EventFiringWebDriver) getDriver()).getWrappedDriver());
+        webViewDriver = (AppiumDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver());
         Set contextNames = webViewDriver.getContextHandles();
         contextNames.forEach(System.out::println);
         webViewContext = contextNames.toArray()[1].toString();
@@ -34,29 +47,31 @@ public class WebViewPage extends WebViewPageBase {
     @Override
     public void goToContactUsPage() {
         webViewDriver.context(webViewContext);
-        webViewDriver.findElement(BY_CONTACT_US).click();
+        webViewDriver.findElement(contactUsLink.getBy()).click();
         webViewDriver.context(NATIVE_APP);
     }
 
     public void fillContactPage() {
+        final String EMAIL = "contact@email.com";
+        final String NAME = "John Doe";
+        final String MESSAGE = "Your framework is awesome";
         webViewDriver.context(webViewContext);
-        webViewDriver.findElement(BY_EMAIL).sendKeys("contact@email.com");
-        webViewDriver.findElement(BY_NAME).sendKeys("John Doe");
-        webViewDriver.findElement(BY_QUESTION).sendKeys("Your framework is awesome");
-        webViewDriver.hideKeyboard();
-        webViewDriver.findElement(BY_SUBMIT).click();
+        webViewDriver.findElement(emailField.getBy()).sendKeys(EMAIL);
+        webViewDriver.findElement(nameField.getBy()).sendKeys(NAME);
+        webViewDriver.findElement(questionField.getBy()).sendKeys(MESSAGE);
+        MobileUtils.hideKeyboard();
+        webViewDriver.findElement(submitButton.getBy()).click();
         webViewDriver.context(NATIVE_APP);
     }
 
-    public boolean wasSuccessfulMessageSent(){
-        boolean found= false;
+    public boolean isSuccessfullMessagePresent() {
+        boolean found = false;
         webViewDriver.context(webViewContext);
-        if (webViewDriver.findElements(BY_SUCCESS_MESSAGE).size()==1){
+        if (webViewDriver.findElements(successLabel.getBy()).size() == 1) {
             found = true;
         }
         webViewDriver.context(NATIVE_APP);
         return found;
     }
-
 
 }

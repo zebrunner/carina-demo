@@ -23,7 +23,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 	}
 
 	@Override
-	public WebViewPageBase navitateToWebviewPage() {
+	public WebViewPageBase navigateToWebviewPage() {
 		throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
 	}
 

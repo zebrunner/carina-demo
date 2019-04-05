@@ -38,7 +38,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 	}
 
 	@Override
-	public WebViewPageBase navitateToWebviewPage() {
+	public WebViewPageBase navigateToWebviewPage() {
 		leftMenuButton.click();
 		webviewLink.click();
 		return initPage(getDriver(), WebViewPageBase.class);

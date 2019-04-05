@@ -13,7 +13,7 @@ public abstract class WebViewPageBase extends AbstractPage {
 
     public abstract void fillContactPage();
 
-    public abstract boolean wasSuccessfulMessageSent();
+    public abstract boolean isSuccessfullMessagePresent();
 
 
 }

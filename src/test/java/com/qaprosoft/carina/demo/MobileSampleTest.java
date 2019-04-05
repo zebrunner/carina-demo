@@ -40,10 +40,10 @@ public class MobileSampleTest extends AbstractTest {
 		WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
 		LoginPageBase loginPage = welcomePage.clickNextBtn();
 		CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
-		WebViewPageBase webViewPageBase = carinaDescriptionPage.navitateToWebviewPage();
+		WebViewPageBase webViewPageBase = carinaDescriptionPage.navigateToWebviewPage();
 		webViewPageBase.goToContactUsPage();
 		webViewPageBase.fillContactPage();
-		Assert.assertTrue(webViewPageBase.wasSuccessfulMessageSent(),"message was not sent!");
+		Assert.assertTrue(webViewPageBase.isSuccessfullMessagePresent(),"message was not sent!");
 	}
 
 	@Test(description = "JIRA#DEMO-0011")

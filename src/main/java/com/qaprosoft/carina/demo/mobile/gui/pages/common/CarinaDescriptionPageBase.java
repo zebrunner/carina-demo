@@ -5,16 +5,16 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class CarinaDescriptionPageBase extends AbstractPage {
 
-	public CarinaDescriptionPageBase(WebDriver driver) {
-		super(driver);
-	}
+    public CarinaDescriptionPageBase(WebDriver driver) {
+        super(driver);
+    }
 
-	public abstract WebViewPageBase navitateToWebviewPage();
+    public abstract WebViewPageBase navigateToWebviewPage();
 
-	public abstract ChartsPageBase navigateToChartsPage();
+    public abstract ChartsPageBase navigateToChartsPage();
 
-	public abstract MapsPageBase navigateToMapPage();
+    public abstract MapsPageBase navigateToMapPage();
 
-	public abstract UIElementsPageBase navigateToUIElementsPage();
+    public abstract UIElementsPageBase navigateToUIElementsPage();
 
 }

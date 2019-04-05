@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
 import io.appium.java_client.TouchAction;
@@ -25,7 +26,6 @@ public class UIElementsPage extends UIElementsPageBase {
     @FindBy(id = "editText3")
     private ExtendedWebElement dateField;
 
-
     @FindBy(id = "checkBox2")
     private ExtendedWebElement checkBoxButton;
 
@@ -40,7 +40,6 @@ public class UIElementsPage extends UIElementsPageBase {
 
     @FindBy(id = "radioButton5")
     private ExtendedWebElement seekBarButton;
-
 
     public void typeText(String text) {
         textField.type(text);
@@ -68,10 +67,9 @@ public class UIElementsPage extends UIElementsPageBase {
 
     @Override
     public void checkCopy() {
-        scrollToElement(checkBoxButton);
+        MobileUtils.swipe(checkBoxButton, MobileUtils.Direction.DOWN);
         checkBoxButton.click();
     }
-
 
     public UIElementsPage(WebDriver driver) {
         super(driver);
@@ -83,7 +81,6 @@ public class UIElementsPage extends UIElementsPageBase {
         int numberOfTimes = 10;
         Dimension size = driver.manage().window().getSize();
         int anchor = size.width / 2;
-        // Swipe up to scroll down
         int startPoint = size.height - 10;
         int endPoint = size.height / 2;
 
