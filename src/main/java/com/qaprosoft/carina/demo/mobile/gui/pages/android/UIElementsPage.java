@@ -39,7 +39,7 @@ public class UIElementsPage extends UIElementsPageBase {
     private ExtendedWebElement otherRadioButton;
 
     @FindBy(id = "radioButton5")
-    private ExtendedWebElement seekBarButton;
+    private ExtendedWebElement seekBarRadioButton;
 
     @FindBy(className = "android.widget.ScrollView")
     private ExtendedWebElement container;
