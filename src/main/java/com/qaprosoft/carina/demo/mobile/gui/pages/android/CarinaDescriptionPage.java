@@ -17,7 +17,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     private ExtendedWebElement carinaFactsSubTitle;
 
     @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Web View']")
-    private ExtendedWebElement webviewLink;
+    private ExtendedWebElement webViewLink;
 
     @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'ChartsPage']")
     private ExtendedWebElement chartsLink;
@@ -38,7 +38,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     @Override
     public WebViewPageBase navigateToWebViewPage() {
         leftMenuButton.click();
-        webviewLink.click();
+        webViewLink.click();
         return initPage(getDriver(), WebViewPageBase.class);
     }
 
