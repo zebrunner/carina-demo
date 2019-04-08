@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo;
 
 import java.io.File;
 
+import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
@@ -40,10 +41,14 @@ public class MobileSampleTest extends AbstractTest {
 		WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
 		LoginPageBase loginPage = welcomePage.clickNextBtn();
 		CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
-		WebViewPageBase webViewPageBase = carinaDescriptionPage.navigateToWebviewPage();
-		webViewPageBase.goToContactUsPage();
-		webViewPageBase.fillContactPage();
-		Assert.assertTrue(webViewPageBase.isSuccessfullMessagePresent(),"message was not sent!");
+		WebViewPageBase webViewPageBase = carinaDescriptionPage.navigateToWebViewPage();
+		ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
+		contactUsPage.typeName("John Doe");
+		contactUsPage.typeEmail("some@email.com");
+		contactUsPage.typeQuestion("your framework is awesome");
+		MobileUtils.hideKeyboard();
+		contactUsPage.submit();
+		Assert.assertTrue(contactUsPage.isSuccessMessagePresent(),"message was not sent!");
 	}
 
 	@Test(description = "JIRA#DEMO-0011")

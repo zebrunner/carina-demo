@@ -1,12 +1,11 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
@@ -37,7 +36,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     }
 
     @Override
-    public WebViewPageBase navigateToWebviewPage() {
+    public WebViewPageBase navigateToWebViewPage() {
         leftMenuButton.click();
         webviewLink.click();
         return initPage(getDriver(), WebViewPageBase.class);

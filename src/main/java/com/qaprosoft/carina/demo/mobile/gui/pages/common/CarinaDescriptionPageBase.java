@@ -9,7 +9,7 @@ public abstract class CarinaDescriptionPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract WebViewPageBase navigateToWebviewPage();
+    public abstract WebViewPageBase navigateToWebViewPage();
 
     public abstract ChartsPageBase navigateToChartsPage();
 

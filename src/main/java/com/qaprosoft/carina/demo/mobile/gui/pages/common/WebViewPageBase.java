@@ -9,11 +9,6 @@ public abstract class WebViewPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void goToContactUsPage();
-
-    public abstract void fillContactPage();
-
-    public abstract boolean isSuccessfullMessagePresent();
-
+    public abstract ContactUsPageBase goToContactUsPage();
 
 }
