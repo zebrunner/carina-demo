@@ -29,27 +29,22 @@ public class ContactUsPage extends ContactUsPageBase {
     }
 
     public void typeName(String name) {
-        changeToWebViewContext(getDriver());
         nameField.type(name);
     }
 
     public void typeEmail(String email) {
-        changeToWebViewContext(getDriver());
         emailField.type(email);
     }
 
     public void typeQuestion(String question) {
-        changeToWebViewContext(getDriver());
         questionField.type(question);
     }
 
     public void submit() {
-        changeToWebViewContext(getDriver());
         submitButton.click();
     }
 
     public boolean isSuccessMessagePresent() {
-        changeToWebViewContext(getDriver());
         return successLabel.isElementPresent();
     }
 }

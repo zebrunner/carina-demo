@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo;
 import java.io.File;
 
 import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
+import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
@@ -43,6 +44,7 @@ public class MobileSampleTest extends AbstractTest {
 		CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
 		WebViewPageBase webViewPageBase = carinaDescriptionPage.navigateToWebViewPage();
 		ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
+		DriverHelper.changeToWebViewContext(getDriver());
 		contactUsPage.typeName("John Doe");
 		contactUsPage.typeEmail("some@email.com");
 		contactUsPage.typeQuestion("your framework is awesome");

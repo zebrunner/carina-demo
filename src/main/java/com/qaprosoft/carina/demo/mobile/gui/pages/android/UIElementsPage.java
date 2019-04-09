@@ -1,7 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
 import org.openqa.selenium.WebDriver;
@@ -44,25 +43,28 @@ public class UIElementsPage extends UIElementsPageBase {
         emailField.type(email);
     }
 
+    @Override
     public void typeDate(String date) {
         dateField.type(date);
     }
 
+    @Override
     public void clickOnMaleRadioButton() {
         maleRadioButton.click();
     }
 
+    @Override
     public void clickOnFemaleRadioButton() {
         femaleRadioButton.click();
     }
 
+    @Override
     public void clickOnOtherRadioButton() {
         otherRadioButton.click();
     }
 
     @Override
     public void checkCopy() {
-        MobileUtils.swipe(femaleRadioButton, container, 10);
         checkBoxButton.click();
     }
 
