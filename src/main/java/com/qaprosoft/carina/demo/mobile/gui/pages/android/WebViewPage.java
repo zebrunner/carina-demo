@@ -20,7 +20,6 @@ public class WebViewPage extends WebViewPageBase {
 
     @Override
     public ContactUsPageBase goToContactUsPage() {
-        changeToWebViewContext(getDriver());
         contactUsLink.click();
         return initPage(getDriver(), ContactUsPageBase.class);
     }
