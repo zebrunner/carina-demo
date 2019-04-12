@@ -18,4 +18,6 @@ public abstract class ContactUsPageBase extends AbstractPage {
     public abstract void submit();
 
     public abstract boolean isSuccessMessagePresent();
+
+    public abstract boolean isRecaptchaPresent();
 }

@@ -10,11 +10,19 @@ import com.qaprosoft.carina.core.foundation.webdriver.MobileContextHelper;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.File;
 
 public class MobileSampleTest extends AbstractTest {
+
+    @DataProvider(name = "contactMessage", parallel = false)
+    public Object[][] contactMessage() {
+        return new Object[][]
+            { { "Jose", "I like your framework" }, { "Saul", "I would like to know more" }, { "Bhupesh", "It is awesome" } };
+
+    }
 
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
@@ -25,7 +33,7 @@ public class MobileSampleTest extends AbstractTest {
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
         LoginPageBase loginPage = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active");
+        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         loginPage.typeName(username);
         loginPage.typePassword(password);
         loginPage.selectMaleSex();
@@ -34,22 +42,24 @@ public class MobileSampleTest extends AbstractTest {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-    @Test(description = "JIRA#DEMO-0011")
+    @Test(dataProvider = "contactMessage",description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
-    public void testWebView() {
+    public void testWebView(String name, String message) {
         setApplicationPath();
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         LoginPageBase loginPage = welcomePage.clickNextBtn();
-        CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
-        WebViewPageBase webViewPageBase = carinaDescriptionPage.navigateToWebViewPage();
-        MobileContextHelper.changeToWebViewContext(getDriver());
+        loginPage.login();
+        WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
+        MobileContextHelper contextHelper = new MobileContextHelper();
+        contextHelper.changeToWebViewContext(getDriver());
         ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
-        contactUsPage.typeName("John Doe");
+        contactUsPage.typeName(name);
         contactUsPage.typeEmail("some@email.com");
-        contactUsPage.typeQuestion("your framework is awesome");
+        contactUsPage.typeQuestion(message);
         MobileUtils.hideKeyboard();
         contactUsPage.submit();
-        Assert.assertTrue(contactUsPage.isSuccessMessagePresent(), "message was not sent!");
+        Assert.assertTrue(contactUsPage.isSuccessMessagePresent()|| contactUsPage.isRecaptchaPresent(),
+            "message was not sent or captcha was not displayed");
     }
 
     @Test(description = "JIRA#DEMO-0011")
@@ -63,6 +73,7 @@ public class MobileSampleTest extends AbstractTest {
         uiElements.typeText("some Text");
         uiElements.typeDate("22/10/2018");
         uiElements.typeEmail("some@email.com");
+        uiElements.swipeToFemaleRadioButton();
         uiElements.checkCopy();
         uiElements.clickOnFemaleRadioButton();
         uiElements.clickOnOtherRadioButton();

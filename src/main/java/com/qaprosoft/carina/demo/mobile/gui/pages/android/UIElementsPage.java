@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
 import org.openqa.selenium.WebDriver;
@@ -66,6 +67,10 @@ public class UIElementsPage extends UIElementsPageBase {
     @Override
     public void checkCopy() {
         checkBoxButton.click();
+    }
+
+    public void swipeToFemaleRadioButton(){
+        MobileUtils.swipe(femaleRadioButton, container, 10);
     }
 
     public UIElementsPage(WebDriver driver) {

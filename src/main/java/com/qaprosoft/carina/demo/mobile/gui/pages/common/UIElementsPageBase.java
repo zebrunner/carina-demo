@@ -22,4 +22,6 @@ public abstract class UIElementsPageBase extends AbstractPage {
 
     public abstract void checkCopy();
 
+    public abstract void swipeToFemaleRadioButton();
+
 }

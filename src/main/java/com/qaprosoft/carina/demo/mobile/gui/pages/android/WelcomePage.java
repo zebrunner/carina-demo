@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomePage extends WelcomePageBase {
 
-    @FindBy(xpath = "//*[contains(@resource-id, 'title')][@text = 'Welcome to Carina World!']")
+    @FindBy(id = "carina_logo")
     private ExtendedWebElement title;
 
     @FindBy(id = "next_button")

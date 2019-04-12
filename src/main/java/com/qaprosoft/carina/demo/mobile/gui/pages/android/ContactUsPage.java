@@ -6,6 +6,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ContactUsPageBase.class)
 public class ContactUsPage extends ContactUsPageBase {
 
@@ -24,27 +25,40 @@ public class ContactUsPage extends ContactUsPageBase {
     @FindBy(xpath = "//div[contains(@class,'t-form__successbox')]")
     private ExtendedWebElement successLabel;
 
+    @FindBy(id = "g-recaptcha-response")
+    private ExtendedWebElement recaptcha;
+
     public ContactUsPage(WebDriver driver) {
         super(driver);
     }
 
+    @Override
     public void typeName(String name) {
         nameField.type(name);
     }
 
+    @Override
     public void typeEmail(String email) {
         emailField.type(email);
     }
 
+    @Override
     public void typeQuestion(String question) {
         questionField.type(question);
     }
 
+    @Override
     public void submit() {
         submitButton.click();
     }
 
+    @Override
     public boolean isSuccessMessagePresent() {
         return successLabel.isElementPresent();
+    }
+
+    @Override
+    public boolean isRecaptchaPresent() {
+        return recaptcha.isElementPresent();
     }
 }
