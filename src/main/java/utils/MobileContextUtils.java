@@ -7,41 +7,17 @@ import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
 import java.util.Set;
 
 public class MobileContextUtils {
 
     private static final Logger LOGGER = Logger.getLogger(DriverHelper.class);
 
-    private static AppiumDriver getDriverSafe(WebDriver driver) {
+    private AppiumDriver getDriverSafe(WebDriver driver) {
         if (driver instanceof EventFiringWebDriver) {
             driver = ((EventFiringWebDriver) driver).getWrappedDriver();
             if (driver instanceof AppiumDriver) {
                 return (AppiumDriver) driver;
-            }
-        }
-        if (driver instanceof Proxy) {
-            InvocationHandler innerProxy = Proxy.getInvocationHandler(driver);
-            Field locatorField = null;
-            try {
-                locatorField = innerProxy.getClass().getDeclaredField("arg$2");
-            } catch (NoSuchFieldException e) {
-                LOGGER.error(e.getMessage());
-            }
-            if (locatorField!=null) {
-                locatorField.setAccessible(true);
-                WebDriver appiumDriver = null;
-                try {
-                    appiumDriver = (WebDriver) locatorField.get(innerProxy);
-                } catch (IllegalAccessException e) {
-                    LOGGER.error(e.getMessage());
-                }
-                if (appiumDriver instanceof AppiumDriver) {
-                    return (AppiumDriver) appiumDriver;
-                }
             }
         }
         throw new ClassCastException("Appium Driver can not be casted from the actual driver.");
