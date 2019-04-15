@@ -110,5 +110,4 @@ public class UIElementsPage extends UIElementsPageBase {
         MobileUtils.swipe(femaleRadioButton, container, 10);
     }
 
-
 }

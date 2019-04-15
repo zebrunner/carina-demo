@@ -61,4 +61,5 @@ public class ContactUsPage extends ContactUsPageBase {
     public boolean isRecaptchaPresent() {
         return recaptcha.isElementPresent();
     }
+
 }

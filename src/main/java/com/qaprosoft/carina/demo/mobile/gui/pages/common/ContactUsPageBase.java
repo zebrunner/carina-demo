@@ -20,4 +20,5 @@ public abstract class ContactUsPageBase extends AbstractPage {
     public abstract boolean isSuccessMessagePresent();
 
     public abstract boolean isRecaptchaPresent();
+
 }

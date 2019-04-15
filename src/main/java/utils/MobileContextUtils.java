@@ -15,19 +15,16 @@ public class MobileContextUtils {
 
     private static final Logger LOGGER = Logger.getLogger(DriverHelper.class);
 
-    private AppiumDriver getDriverSafe() {
+    private WebDriver getDriverSafe() {
         WebDriver driver = getDriver();
         if (driver instanceof EventFiringWebDriver) {
             driver = ((EventFiringWebDriver) driver).getWrappedDriver();
-            if (driver instanceof AppiumDriver) {
-                return (AppiumDriver) driver;
-            }
         }
-        throw new ClassCastException("Appium Driver can not be casted from the actual driver.");
+        return driver;
     }
 
     public void switchMobileContext(View context) {
-        AppiumDriver driver = getDriverSafe();
+        AppiumDriver<?> driver = (AppiumDriver<?>) getDriverSafe();
         DriverHelper help = new DriverHelper();
         Set<String> contextHandles = help.performIgnoreException(driver::getContextHandles);
         String desiredContext = "";
