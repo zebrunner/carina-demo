@@ -6,23 +6,16 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.webdriver.MobileContextHelper;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.MobileContextUtils;
 
 import java.io.File;
 
 public class MobileSampleTest extends AbstractTest {
 
-    @DataProvider(name = "contactMessage", parallel = false)
-    public Object[][] contactMessage() {
-        return new Object[][]
-            { { "Jose", "I like your framework" }, { "Saul", "I would like to know more" }, { "Bhupesh", "It is awesome" } };
-
-    }
 
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
@@ -42,20 +35,20 @@ public class MobileSampleTest extends AbstractTest {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-    @Test(dataProvider = "contactMessage",description = "JIRA#DEMO-0011")
+    @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
-    public void testWebView(String name, String message) {
+    public void testWebView() {
         setApplicationPath();
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         LoginPageBase loginPage = welcomePage.clickNextBtn();
         loginPage.login();
         WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
-        MobileContextHelper contextHelper = new MobileContextHelper();
-        contextHelper.changeToWebViewContext(getDriver());
+        MobileContextUtils contextHelper = new MobileContextUtils();
+        contextHelper.switchMobileContext(MobileContextUtils.View.WEB,getDriver());
         ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
-        contactUsPage.typeName(name);
+        contactUsPage.typeName("John Doe");
         contactUsPage.typeEmail("some@email.com");
-        contactUsPage.typeQuestion(message);
+        contactUsPage.typeQuestion("This is a message");
         MobileUtils.hideKeyboard();
         contactUsPage.submit();
         Assert.assertTrue(contactUsPage.isSuccessMessagePresent()|| contactUsPage.isRecaptchaPresent(),
