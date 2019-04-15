@@ -12,15 +12,27 @@ public abstract class UIElementsPageBase extends AbstractPage {
 
     public abstract void typeEmail(String email);
 
+    public abstract String getEmail();
+
+    public abstract String getText();
+
+    public abstract String getDate();
+
     public abstract void typeDate(String date);
 
     public abstract void clickOnMaleRadioButton();
 
     public abstract void clickOnFemaleRadioButton();
 
+    public abstract boolean isFemaleRadioButtonSelected();
+
     public abstract void clickOnOtherRadioButton();
 
+    public abstract boolean isOthersRadioButtonSelected();
+
     public abstract void checkCopy();
+
+    public abstract boolean isCopyChecked();
 
     public abstract void swipeToFemaleRadioButton();
 

@@ -40,8 +40,24 @@ public class UIElementsPage extends UIElementsPageBase {
         textField.type(text);
     }
 
+    @Override
     public void typeEmail(String email) {
         emailField.type(email);
+    }
+
+    @Override
+    public String getEmail(){
+        return emailField.getText();
+    }
+
+    @Override
+    public String getText(){
+        return textField.getText();
+    }
+
+    @Override
+    public String getDate(){
+        return dateField.getText();
     }
 
     @Override
@@ -65,8 +81,23 @@ public class UIElementsPage extends UIElementsPageBase {
     }
 
     @Override
+    public boolean isFemaleRadioButtonSelected(){
+        return femaleRadioButton.isChecked();
+    }
+
+    @Override
+    public boolean isOthersRadioButtonSelected(){
+        return otherRadioButton.isChecked();
+    }
+
+    @Override
     public void checkCopy() {
         checkBoxButton.click();
+    }
+
+    @Override
+    public boolean isCopyChecked(){
+        return checkBoxButton.isChecked();
     }
 
     public void swipeToFemaleRadioButton(){
