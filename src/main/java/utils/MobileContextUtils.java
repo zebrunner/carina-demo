@@ -9,11 +9,14 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.Set;
 
+import static com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils.getDriver;
+
 public class MobileContextUtils {
 
     private static final Logger LOGGER = Logger.getLogger(DriverHelper.class);
 
-    private AppiumDriver getDriverSafe(WebDriver driver) {
+    private AppiumDriver getDriverSafe() {
+        WebDriver driver = getDriver();
         if (driver instanceof EventFiringWebDriver) {
             driver = ((EventFiringWebDriver) driver).getWrappedDriver();
             if (driver instanceof AppiumDriver) {
@@ -23,8 +26,8 @@ public class MobileContextUtils {
         throw new ClassCastException("Appium Driver can not be casted from the actual driver.");
     }
 
-    public void switchMobileContext(View context, WebDriver dvr) {
-        AppiumDriver<?> driver = (AppiumDriver<?>) getDriverSafe(dvr);
+    public void switchMobileContext(View context) {
+        AppiumDriver<?> driver = (AppiumDriver<?>) getDriverSafe();
         DriverHelper help = new DriverHelper();
         Set<String> contextHandles = help.performIgnoreException(driver::getContextHandles);
         String desiredContext = "";

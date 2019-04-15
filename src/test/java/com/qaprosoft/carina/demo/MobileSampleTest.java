@@ -48,7 +48,7 @@ public class MobileSampleTest extends AbstractTest {
         loginPage.login();
         WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
         MobileContextUtils contextHelper = new MobileContextUtils();
-        contextHelper.switchMobileContext(View.WEB, getDriver());
+        contextHelper.switchMobileContext(View.WEB);
         ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
         contactUsPage.typeName("John Doe");
         contactUsPage.typeEmail("some@email.com");
