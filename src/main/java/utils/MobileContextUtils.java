@@ -27,7 +27,7 @@ public class MobileContextUtils {
     }
 
     public void switchMobileContext(View context) {
-        AppiumDriver<?> driver = (AppiumDriver<?>) getDriverSafe();
+        AppiumDriver driver = getDriverSafe();
         DriverHelper help = new DriverHelper();
         Set<String> contextHandles = help.performIgnoreException(driver::getContextHandles);
         String desiredContext = "";

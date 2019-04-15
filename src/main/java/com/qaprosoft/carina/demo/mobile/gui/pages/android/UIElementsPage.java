@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
 public class UIElementsPage extends UIElementsPageBase {
+
     @FindBy(id = "editText")
     private ExtendedWebElement textField;
 
@@ -36,6 +37,11 @@ public class UIElementsPage extends UIElementsPageBase {
     @FindBy(className = "android.widget.ScrollView")
     private ExtendedWebElement container;
 
+    public UIElementsPage(WebDriver driver) {
+        super(driver);
+    }
+
+    @Override
     public void typeText(String text) {
         textField.type(text);
     }
@@ -104,8 +110,5 @@ public class UIElementsPage extends UIElementsPageBase {
         MobileUtils.swipe(femaleRadioButton, container, 10);
     }
 
-    public UIElementsPage(WebDriver driver) {
-        super(driver);
-    }
 
 }

@@ -10,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
 public class WebViewPage extends WebViewPageBase {
 
-
     @FindBy(className = "t708__btn")
     private ExtendedWebElement contactUsLink;
 
@@ -23,6 +22,5 @@ public class WebViewPage extends WebViewPageBase {
         contactUsLink.click();
         return initPage(getDriver(), ContactUsPageBase.class);
     }
-
 
 }
