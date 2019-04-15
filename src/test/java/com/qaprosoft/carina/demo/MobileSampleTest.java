@@ -1,27 +1,17 @@
 package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
-import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.MobileContextUtils;
 import utils.MobileContextUtils.View;
 
-import java.io.File;
 
 public class MobileSampleTest extends AbstractTest {
-
-    @BeforeClass
-    public void setup() {
-        String pathToApp = R.CONFIG.get("application.path");
-        Configuration.setMobileApp(new File(pathToApp).getAbsolutePath());
-    }
 
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
@@ -83,4 +73,5 @@ public class MobileSampleTest extends AbstractTest {
         uiElements.clickOnOtherRadioButton();
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
+
 }
