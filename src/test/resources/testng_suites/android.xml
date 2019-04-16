@@ -18,6 +18,7 @@
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO" />
 	<parameter name="jenkinsJobExecutionOrder" value="1" />
 	<parameter name="jenkinsJobExecutionMode" value="continue" />
+	<parameter name="auto_screenshot" value="false" />
 
 	<test name="Mobile test">
 		<classes>

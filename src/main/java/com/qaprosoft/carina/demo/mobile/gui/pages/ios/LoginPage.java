@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -71,6 +72,17 @@ public class LoginPage extends LoginPageBase {
 	@Override
 	public boolean isLoginBtnActive() {
 		return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
+	}
+
+	@Override
+	public CarinaDescriptionPageBase login(){
+		String username = "Test user";
+		String password = RandomStringUtils.randomAlphabetic(10);
+		typeName(username);
+		typePassword(password);
+		selectMaleSex();
+		checkPrivacyPolicyCheckbox();
+		return clickLoginBtn();
 	}
 
 }
