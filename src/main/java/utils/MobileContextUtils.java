@@ -46,7 +46,7 @@ public class MobileContextUtils {
 
     public enum View {
         NATIVE("NATIVE_APP"),
-        WEB("WEBVIEW_chrome");
+        WEB("WEBVIEW_unknown");
 
         String viewName;
 
