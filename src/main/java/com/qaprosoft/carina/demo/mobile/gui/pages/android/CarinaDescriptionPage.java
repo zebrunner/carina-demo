@@ -10,8 +10,8 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
-    @FindBy(xpath = "//android.webkit.WebView[@text = 'Carina - open source test automation framework']")
-    private ExtendedWebElement webViewTitle;
+    @FindBy(id = "content_frame")
+    private ExtendedWebElement webViewContent;
 
     @FindBy(xpath = "//android.view.View[@text = 'CARINA facts']")
     private ExtendedWebElement carinaFactsSubTitle;
@@ -65,7 +65,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
     @Override
     public boolean isPageOpened() {
-        return webViewTitle.isElementPresent();
+        return webViewContent.isElementPresent();
     }
 
 }
