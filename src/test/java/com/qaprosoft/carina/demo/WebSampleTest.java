@@ -55,7 +55,12 @@ public class WebSampleTest extends AbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        
+        //Closing advertising if it's displayed
+        homePage.getWeValuePrivacyAd().closeAdIfPresent();
+        
         // Select phone brand
+        homePage = new HomePage(getDriver());
         BrandModelsPage productsPage = homePage.selectBrand(brand);
         // Select phone model
         ModelInfoPage productInfoPage = productsPage.selectModel(model);
