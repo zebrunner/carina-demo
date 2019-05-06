@@ -24,6 +24,7 @@ import org.openqa.selenium.support.FindBy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 
 public class HomePage extends AbstractPage {
     Logger LOGGER = Logger.getLogger(HomePage.class);
@@ -53,5 +54,9 @@ public class HomePage extends AbstractPage {
             }
         }
         throw new RuntimeException("Unable to open brand: " + brand);
+    }
+    
+    public WeValuePrivacyAd getWeValuePrivacyAd() {
+    	return new WeValuePrivacyAd(driver);
     }
 }
