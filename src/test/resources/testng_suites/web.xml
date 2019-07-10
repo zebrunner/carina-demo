@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 
-<suite verbose="1" name="Carina Demo Tests - Web tests" skipfailedinvocationcounts="false" junit="false" parallel="methods" data-provider-thread-count="50" annotations="JDK">
+<suite verbose="1" name="Carina Demo Tests - Web" skipfailedinvocationcounts="false" junit="false" parallel="methods" annotations="JDK">
 
   <listeners>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
@@ -14,6 +14,9 @@
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	
+	<!-- Example howto override default job thread_count via jobDSL parameter -->
+	<parameter name="jenkinsDefaultThreadCount" value="3"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>

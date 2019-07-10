@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Carina Demo Tests - Mobile sample tests" verbose="1"
+<suite name="Carina Demo Tests - Mobile Sample (iOS)" verbose="1"
 	skipfailedinvocationcounts="false" junit="false" parallel="tests"
 	data-provider-thread-count="1" annotations="JDK">
 
