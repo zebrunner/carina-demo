@@ -1,6 +1,6 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.cucumber.CucumberRunner;
+import com.qaprosoft.carina.core.foundation.cucumber.CucumberBaseTest;
 
 import cucumber.api.CucumberOptions;
 
@@ -13,7 +13,7 @@ import cucumber.api.CucumberOptions;
                 "junit:target/cucumber-core-test-report.xml"}
         //,plugin = "json:target/cucumber1.json"
 )
-public class CucumberWebSampleTest extends CucumberRunner {
+public class CucumberWebSampleTest extends CucumberBaseTest {
     //do nothing here as everything is declared in "GSMArenaNews.feature" and steps
 
 }

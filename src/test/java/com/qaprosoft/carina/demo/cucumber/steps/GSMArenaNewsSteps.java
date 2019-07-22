@@ -5,18 +5,13 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.cucumber.CucumberRunner;
-import com.qaprosoft.carina.core.foundation.utils.image.ImageProcessing;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -54,19 +49,6 @@ public class GSMArenaNewsSteps extends CucumberRunner {
             System.out.println(n.readTitle());
             Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
         }
-    }
-
-    @After
-    public void takeScreenshotOfFailure(Scenario scenario) {
-        LOGGER.info("In  @After takeScreenshotOfFailure");
-        if (scenario.isFailed()) {
-            LOGGER.error("Cucumber Scenario FAILED! Creating screenshot.");
-            byte[] screenshot=((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
-
-            screenshot = ImageProcessing.imageResize(screenshot);
-            scenario.embed(screenshot, "image/png"); //stick it in the report
-        }
-
     }
 
 }
