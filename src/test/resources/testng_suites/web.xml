@@ -1,6 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite verbose="1" name="Carina Demo Tests - Web tests" skipfailedinvocationcounts="false" junit="false" parallel="methods" data-provider-thread-count="50" annotations="JDK">
+
+<suite verbose="1" name="Carina Demo Tests - Web Sample" skipfailedinvocationcounts="false" junit="false" parallel="methods" annotations="JDK">
+
+  <listeners>
+		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
+	</listeners>
 	
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
@@ -9,18 +14,16 @@
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	
+	<!-- Example howto override default job thread_count via jobDSL parameter -->
+	<parameter name="jenkinsDefaultThreadCount" value="3"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 
-	<parameter name="jenkinsPipelineBrowsers" value="chrome,firefox"/>
+	<parameter name="jenkinsPipelineBrowsers" value="browser: chrome; browser: firefox"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
-
-	<listeners>
-		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
-		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
-	</listeners>
 
 	<test name="GSM arena web tests">
 		<classes>

@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite verbose="1" name="Carina Demo Tests - API sample tests" skipfailedinvocationcounts="false" junit="false" parallel="tests" data-provider-thread-count="50" annotations="JDK">
+<suite verbose="1" name="Carina Demo Tests - API Sample" skipfailedinvocationcounts="false" junit="false" parallel="tests" annotations="JDK">
+
+	<listeners>
+		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
+	</listeners>
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
@@ -8,7 +12,7 @@
 	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="api"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	<parameter name="jenkinsSlackChannels" value="slack-test,slack-test2"/>
 	
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>	
@@ -16,11 +20,6 @@
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 <!-- 	<parameter name="jenkinsJobExecutionOrder" value="ordered"/> -->
 <!-- 	<parameter name="jenkinsQueueRegistration" value="false"/> -->
-
-	<listeners>
-		<listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
-		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
-	</listeners>
 
 	<test name="User API tests">
 		<classes>

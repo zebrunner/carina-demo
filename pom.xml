@@ -66,7 +66,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.8.0</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
@@ -96,14 +96,15 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M3</version>
         <configuration>
+          <useSystemClassLoader>false</useSystemClassLoader>
           <suiteXmlFiles>
             <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
           </suiteXmlFiles>
           <properties>
-            <!--property>
+            <property>
               <name>listener</name>
-              <value>com.qaprosoft.carina.core.foundation.listeners.HealthCheckListener,com.qaprosoft.zafira.listener.ZafiraListener</value>
-            </property-->
+              <value>com.qaprosoft.zafira.listener.ZafiraListener</value>
+            </property>
           </properties>
         </configuration>
       </plugin>
