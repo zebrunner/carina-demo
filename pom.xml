@@ -11,8 +11,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <carina-core_version>6.1.25-SNAPSHOT</carina-core_version>
-    <carina-cucumber_version>1.0-SNAPSHOT</carina-cucumber_version>
+    <carina-core_version>RELEASE</carina-core_version>
+    <carina-cucumber_version>RELEASE</carina-cucumber_version>
     <httpclient.version>4.5.3</httpclient.version>
     <java.version>1.8</java.version>
     <suite>api</suite>
