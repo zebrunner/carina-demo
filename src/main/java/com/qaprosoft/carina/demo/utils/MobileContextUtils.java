@@ -1,4 +1,4 @@
-package utils;
+package com.qaprosoft.carina.demo.utils;
 
 import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
 import io.appium.java_client.AppiumDriver;

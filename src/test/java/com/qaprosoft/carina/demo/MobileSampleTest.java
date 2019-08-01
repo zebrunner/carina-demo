@@ -1,14 +1,20 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.MobileContextUtils;
-import utils.MobileContextUtils.View;
+
+import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
+import com.qaprosoft.carina.demo.utils.MobileContextUtils;
+import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 
 
 public class MobileSampleTest extends AbstractTest {
@@ -30,7 +36,8 @@ public class MobileSampleTest extends AbstractTest {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-    @Test(description = "JIRA#DEMO-0011")
+    @SuppressWarnings("deprecation")
+	@Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
     public void testWebView() {
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
