@@ -18,14 +18,14 @@ package com.qaprosoft.carina.demo;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
-import org.testng.annotations.BeforeMethod;
+import com.qaprosoft.carina.demo.db.services.UserPreferenceService;
+import com.qaprosoft.carina.demo.db.services.UserService;
+import com.qaprosoft.carina.demo.db.services.impl.UserPreferenceServiceImpl;
+import com.qaprosoft.carina.demo.db.services.impl.UserServiceImpl;
 import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.demo.db.mappers.UserMapper;
-import com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper;
 import com.qaprosoft.carina.demo.db.models.User;
 import com.qaprosoft.carina.demo.db.models.User.Status;
-import com.qaprosoft.carina.demo.utils.ConnectionFactory;
 import com.qaprosoft.carina.demo.db.models.UserPreference;
 
 import java.util.UUID;
@@ -37,14 +37,12 @@ import java.util.UUID;
  */
 public class DBSampleTest extends AbstractTest {
 	
-	private UserMapper userMapper;
+	private final UserService userService;
+	private final UserPreferenceService userPreferenceService;
 
-	private UserPreferenceMapper userPreferenceMapper;
-
-	@BeforeMethod
-	public void setup() {
-		userMapper = ConnectionFactory.getUserMapper();
-		userPreferenceMapper = ConnectionFactory.getUserPreferenceMapperMapper();
+	public DBSampleTest() {
+		this.userService = new UserServiceImpl();
+		this.userPreferenceService = new UserPreferenceServiceImpl();
 	}
 	
 	private static User USER = new User() {
@@ -65,15 +63,16 @@ public class DBSampleTest extends AbstractTest {
 	
 	@Test
 	public void createUser() {
-		userMapper.createUser(USER);
-		checkUser(userMapper.getUserById(USER.getId()));
+		USER = userService.create(USER);
+		User user = userService.retrieveById(USER.getId());
+		checkUser(user);
 	}
 	
 	@Test(dependsOnMethods="createUser")
 	public void createUserPreference() {
 		USER_PREFERENCE.setUserId(USER.getId());
-		userPreferenceMapper.createUserPreference(USER_PREFERENCE);
-		User user = userMapper.getUserById(USER.getId());
+		USER_PREFERENCE = userPreferenceService.create(USER_PREFERENCE);
+		User user = userService.retrieveById(USER.getId());
 		checkUserPreference(user.getPreferences().get(0));
 	}
 	
@@ -83,14 +82,16 @@ public class DBSampleTest extends AbstractTest {
 		USER.setFirstName("Roy");
 		USER.setLastName("Johns");
 		USER.setStatus(Status.INACTIVE);
-		userMapper.updateUser(USER);
-		checkUser(userMapper.getUserById(USER.getId()));
+		USER = userService.update(USER);
+		User user = userService.retrieveById(USER.getId());
+		checkUser(user);
 	}
 	
 	@Test(dependsOnMethods="updateUser")
 	public void deleteUser() {
-		userMapper.deleteUser(USER);
-		assertNull(userMapper.getUserById(USER.getId()));
+		userService.remove(USER);
+		User user = userService.retrieveById(USER.getId());
+		assertNull(user);
 	}
 	
 	private void checkUser(User user) {

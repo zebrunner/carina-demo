@@ -19,5 +19,8 @@ import com.qaprosoft.carina.demo.db.models.UserPreference;
 
 public interface UserPreferenceMapper {
 
-	void createUserPreference(UserPreference userPreference);
+	void create(UserPreference userPreference);
+
+	UserPreference findById(Long id);
+
 }

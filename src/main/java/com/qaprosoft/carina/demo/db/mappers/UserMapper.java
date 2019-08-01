@@ -19,13 +19,14 @@ import com.qaprosoft.carina.demo.db.models.User;
 
 public interface UserMapper {
 
-	void createUser(User user);
+	void create(User user);
 
-	User getUserById(long id);
+	User findById(long id);
 
-	User getUserByUserName(String username);
+	User findByUserName(String username);
 
-	void updateUser(User user);
+	void update(User user);
 
-	void deleteUser(User user);
+	void delete(User user);
+
 }

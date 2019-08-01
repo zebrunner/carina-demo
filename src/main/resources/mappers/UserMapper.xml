@@ -3,7 +3,7 @@
 
 <mapper namespace="com.qaprosoft.carina.demo.db.mappers.UserMapper">
 
-	<insert id="createUser" useGeneratedKeys="true" keyProperty="id">
+	<insert id="create" useGeneratedKeys="true" keyProperty="id">
 		<![CDATA[
 			INSERT INTO carina.USERS (USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, STATUS)
 			VALUES (
@@ -40,21 +40,21 @@
 		]]>
 	</sql>
 
-	<select id="getUserById" resultMap="UserResultMap">
+	<select id="findById" resultMap="UserResultMap">
 		<include refid="getUser" />
 		<![CDATA[
 			WHERE U.ID = #{id};
 		]]>
 	</select>
 
-	<select id="getUserByUserName" resultMap="UserResultMap">
+	<select id="findByUserName" resultMap="UserResultMap">
 		<include refid="getUser" />
 		<![CDATA[
 			WHERE U.USERNAME = #{username};
 		]]>
 	</select>
 
-	<update id="updateUser">
+	<update id="update">
 		<![CDATA[
 			UPDATE
 			    carina.USERS
@@ -92,7 +92,7 @@
 		]]>
 	</update>
 
-	<delete id="deleteUser">
+	<delete id="delete">
 		<![CDATA[
 			DELETE FROM carina.USERS
 			WHERE ID = #{id}
