@@ -29,7 +29,7 @@ public class ConnectionFactory {
 	private static SqlSessionFactory factory;
 
 	static {
-		Reader reader = null;
+		Reader reader;
 		try {
 			reader = Resources.getResourceAsReader("mybatis-config.xml");
 		} catch (IOException e) {

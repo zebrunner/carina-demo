@@ -17,6 +17,8 @@ package com.qaprosoft.carina.demo;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.demo.db.mappers.UserMapper;
@@ -26,6 +28,8 @@ import com.qaprosoft.carina.demo.db.models.User.Status;
 import com.qaprosoft.carina.demo.utils.ConnectionFactory;
 import com.qaprosoft.carina.demo.db.models.UserPreference;
 
+import java.util.UUID;
+
 /**
  * This sample shows how create DB test.
  * 
@@ -33,13 +37,19 @@ import com.qaprosoft.carina.demo.db.models.UserPreference;
  */
 public class DBSampleTest extends AbstractTest {
 	
-	private UserMapper userMapper = ConnectionFactory.getUserMapper();
+	private UserMapper userMapper;
 
-	private UserPreferenceMapper userPreferenceMapper = ConnectionFactory.getUserPreferenceMapperMapper();
+	private UserPreferenceMapper userPreferenceMapper;
+
+	@BeforeMethod
+	public void setup() {
+		userMapper = ConnectionFactory.getUserMapper();
+		userPreferenceMapper = ConnectionFactory.getUserPreferenceMapperMapper();
+	}
 	
 	private static User USER = new User() {
 		{
-			setUsername("bmarley");
+			setUsername("bmarley" + UUID.randomUUID());
 			setFirstName("Bob");
 			setLastName("Marley");
 			setStatus(Status.ACTIVE);
@@ -63,7 +73,8 @@ public class DBSampleTest extends AbstractTest {
 	public void createUserPreference() {
 		USER_PREFERENCE.setUserId(USER.getId());
 		userPreferenceMapper.createUserPreference(USER_PREFERENCE);
-		checkUserPreference(userMapper.getUserById(USER.getId()).getPreferences().get(0));
+		User user = userMapper.getUserById(USER.getId());
+		checkUserPreference(user.getPreferences().get(0));
 	}
 	
 	@Test(dependsOnMethods="createUserPreference")
