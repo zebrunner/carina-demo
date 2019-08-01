@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.utils;
+package com.qaprosoft.carina.demo.db;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.qaprosoft.carina.demo.db.mappers.UserMapper;
-import com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper;
-
 public class ConnectionFactory {
+
 	private static SqlSessionFactory factory;
 
 	static {
@@ -38,15 +39,24 @@ public class ConnectionFactory {
 		factory = new SqlSessionFactoryBuilder().build(reader);
 	}
 
-	public static SqlSessionFactory getSqlSessionFactory() {
-		return factory;
+	public static <T> void execute(Class<T> mapperClass, Consumer<T> executor) {
+		executeQuery(mapperClass, mapper -> {
+			executor.accept(mapper);
+			return null;
+		});
 	}
 
-	public static UserMapper getUserMapper() {
-		return ConnectionFactory.getSqlSessionFactory().openSession(true).getMapper(UserMapper.class);
+	public static <T, R> R executeQuery(Class<T> mapperClass, Function<T, R> executor) {
+		R result;
+		try (SqlSession session = ConnectionFactory.openSession()) {
+			T mapper = session.getMapper(mapperClass);
+			result = executor.apply(mapper);
+		}
+		return result;
 	}
 
-	public static UserPreferenceMapper getUserPreferenceMapperMapper() {
-		return ConnectionFactory.getSqlSessionFactory().openSession(true).getMapper(UserPreferenceMapper.class);
+	private static SqlSession openSession() {
+		return factory.openSession(true);
 	}
+
 }

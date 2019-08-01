@@ -3,7 +3,7 @@
 
 <mapper namespace="com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper">
 
-	<insert id="createUserPreference" useGeneratedKeys="true"
+	<insert id="create" useGeneratedKeys="true"
 		keyProperty="id">
 		<![CDATA[
 			INSERT INTO carina.USER_PREFERENCES (NAME, VALUE, USER_ID)
@@ -27,7 +27,7 @@
 		]]>
 	</sql>
 
-	<select id="getUserPreferenceById"
+	<select id="findById"
 		resultMap="UserPreferenceResultMap">
 		<include refid="getUserPreference" />
 		<![CDATA[
