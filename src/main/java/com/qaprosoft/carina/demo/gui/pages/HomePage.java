@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo.gui.pages;
 
 import java.util.List;
 
+import com.qaprosoft.carina.demo.gui.components.Header;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -32,8 +33,12 @@ public class HomePage extends AbstractPage {
     @FindBy(id = "footmenu")
     private FooterMenu footerMenu;
 
+    @FindBy(id = "header")
+    private Header header;
+
     @FindBy(xpath = "//div[contains(@class, 'brandmenu-v2')]//a")
     private List<ExtendedWebElement> brandLinks;
+
 
     public HomePage(WebDriver driver) {
         super(driver);

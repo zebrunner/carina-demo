@@ -112,4 +112,13 @@ public class WebSampleTest extends AbstractTest {
         }
     }
 
+    @Test(description = "TEST-001")
+    public void testHeader() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+        
+
+    }
+
 }
