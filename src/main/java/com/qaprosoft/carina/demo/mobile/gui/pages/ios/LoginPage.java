@@ -1,6 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
