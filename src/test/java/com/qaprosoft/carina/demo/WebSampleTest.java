@@ -42,7 +42,7 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  */
 public class WebSampleTest extends AbstractTest {
 
-    @Test(description = "JIRA#AUTO-0009", invocationCount = 200, threadPoolSize = 100)
+    @Test(description = "JIRA#AUTO-0009", invocationCount = 20, threadPoolSize = 10)
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
     @TestTag(name = "area test", value = "web")
