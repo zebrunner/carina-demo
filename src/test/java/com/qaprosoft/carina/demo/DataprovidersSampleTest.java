@@ -91,7 +91,7 @@ public class DataprovidersSampleTest extends AbstractTest {
     @TestPriority(Priority.P3)
     @TestRailCases(testCasesId = "44")
     @TestTag(name = "area multi", value = "data provider multiply")
-    public void testMuliplyOperation(String TUID, String testRailColumn, int a, int b, int c) {
+    public void testMuliplyOperation(String testRailColumn, int a, int b, int c) {
         setCases(testRailColumn.split(","));
         int actual = a * b;
         int expected = c;
@@ -101,9 +101,9 @@ public class DataprovidersSampleTest extends AbstractTest {
     @DataProvider(parallel = false, name = "DP1")
     public static Object[][] dataprovider() {
         return new Object[][]{
-                {"TUID: Data1", "111,112", 2, 3, 6},
-                {"TUID: Data2", "114", 6, 6, 36},
-                {"TUID: Data3", "113", 5, 8, 40}};
+                {"111,112", 2, 3, 6},
+                {"114", 6, 6, 36},
+                {"113", 5, 8, 40}};
     }
 
     /**
