@@ -24,6 +24,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
@@ -114,22 +115,25 @@ public class WebSampleTest extends AbstractTest {
 
 	@Test
 	public void testHeaderBaseElements() {
-		// Open GSM Arena home page and verify page is opened
+
 		HomePage homePage = new HomePage(getDriver());
 		homePage.open();
 		Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertTrue(homePage.isBurgerMenuPresent(), "Burger menu is not present");
 
-		Assert.assertTrue(homePage.checkBurgerMenu(), "Burger menu is not present");
-		Assert.assertTrue(homePage.checkLogo(), "Logo is not present");
-		Assert.assertTrue(homePage.checkSearchLabel(), "Search label is not present");
-		Assert.assertTrue(homePage.checkTipIcon(), "Tip icon is not present");
-		Assert.assertTrue(homePage.checkFbIcon(), "Facebook icon is not present");
-		Assert.assertTrue(homePage.checkTwitterIcon(), "Twitter icon is not present");
-		Assert.assertTrue(homePage.checkInstagramIcon(), "Instagram icon is not present");
-		Assert.assertTrue(homePage.checkYouTubeIcon(), "Youtube icon is not present");
-		Assert.assertTrue(homePage.checkRssIcon(), "Rss icon is not present");
-		Assert.assertTrue(homePage.checkLoginIcon(), "Lojin icon is not present");
-		Assert.assertTrue(homePage.checkSignUpIcon(), "SignUp icon is not present");
+		softAssert.assertTrue(homePage.isLogoPresent(), "Logo is not present");
+		softAssert.assertTrue(homePage.isSearchLabelPresent(), "Search label is not present");
+		softAssert.assertTrue(homePage.isTipIconPresent(), "Tip icon is not present");
+		softAssert.assertTrue(homePage.isFbIconPresent(), "Facebook icon is not present");
+		softAssert.assertTrue(homePage.isTwitterIconPresent(), "Twitter icon is not present");
+		softAssert.assertTrue(homePage.isInstagramIconPresent(), "Instagram icon is not present");
+		softAssert.assertTrue(homePage.isYouTubeIconPresent(), "Youtube icon is not present");
+		softAssert.assertTrue(homePage.isRssIconPresent(), "Rss icon is not present");
+		softAssert.assertTrue(homePage.isLoginIconPresent(), "Lojin icon is not present");
+		softAssert.assertTrue(homePage.isSignUpIconPresent(), "SignUp icon is not present");
+
+		softAssert.assertAll();
 
 	}
 

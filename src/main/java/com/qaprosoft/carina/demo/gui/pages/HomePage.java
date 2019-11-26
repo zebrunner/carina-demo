@@ -60,7 +60,7 @@ public class HomePage extends AbstractPage {
 		return new WeValuePrivacyAd(driver);
 	}
 
-	@FindBy(xpath = "//*[@type='button']")
+	@FindBy(xpath = "//button[@aria-label='Toggle Navigation']")
 	private ExtendedWebElement burgerMenuBtn;
 
 	@FindBy(id = "logo")
@@ -90,50 +90,50 @@ public class HomePage extends AbstractPage {
 	@FindBy(xpath = "//*[@class='login-icon']")
 	private ExtendedWebElement loginIcon;
 
-	@FindBy(xpath = "//*[contains(@class,'signup-icon')]//i")
+	@FindBy(xpath = "//*[contains(@class,'signup-icon')]")
 	private ExtendedWebElement signUpIcon;
 
-	public boolean checkBurgerMenu() {
+	public boolean isBurgerMenuPresent() {
 		return burgerMenuBtn.isPresent();
 	}
 
-	public boolean checkLogo() {
+	public boolean isLogoPresent() {
 		return gsmLogoBtn.isPresent();
 	}
 
-	public boolean checkSearchLabel() {
+	public boolean isSearchLabelPresent() {
 		return searchLabelBtn.isPresent();
 	}
 
-	public boolean checkTipIcon() {
+	public boolean isTipIconPresent() {
 		return tipUsIcon.isPresent();
 	}
 
-	public boolean checkFbIcon() {
+	public boolean isFbIconPresent() {
 		return fbIcon.isPresent();
 	}
 
-	public boolean checkTwitterIcon() {
+	public boolean isTwitterIconPresent() {
 		return twitterIcon.isPresent();
 	}
 
-	public boolean checkInstagramIcon() {
+	public boolean isInstagramIconPresent() {
 		return instIcon.isPresent();
 	}
 
-	public boolean checkYouTubeIcon() {
+	public boolean isYouTubeIconPresent() {
 		return youTubeIcon.isPresent();
 	}
 
-	public boolean checkRssIcon() {
+	public boolean isRssIconPresent() {
 		return rssIcon.isPresent();
 	}
 
-	public boolean checkLoginIcon() {
+	public boolean isLoginIconPresent() {
 		return loginIcon.isPresent();
 	}
 
-	public boolean checkSignUpIcon() {
+	public boolean isSignUpIconPresent() {
 		return signUpIcon.isPresent();
 	}
 }
