@@ -18,7 +18,11 @@ package com.qaprosoft.carina.demo.gui.pages;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -93,6 +97,36 @@ public class HomePage extends AbstractPage {
 	@FindBy(xpath = "//*[contains(@class,'signup-icon')]")
 	private ExtendedWebElement signUpIcon;
 
+	@FindBy(id = "login-popup2")
+	private ExtendedWebElement loginWind;
+
+	@FindBy(xpath = "//*[@id='login-popup2']/form/p")
+	private ExtendedWebElement loginLogo;
+
+	@FindBy(id = "email")
+	private ExtendedWebElement emailField;
+
+	@FindBy(id = "upass")
+	private ExtendedWebElement passwordField;
+
+	@FindBy(xpath = "//*[@id='nick-submit' and @value='Log in']")
+	private ExtendedWebElement loginBtn;
+
+	@FindBy(xpath = "//*[@id='login-popup2']/a")
+	private ExtendedWebElement iForgotPasswordLink;
+
+	@FindBy(id = "login-active")
+	private ExtendedWebElement userMenuIcon;
+
+	@FindBy(xpath = "//*[@class ='head-icon icon-signout']")
+	private ExtendedWebElement logOutBtn;
+
+	@FindBy(xpath = "//*[@class ='normal-text res-error' and .//text()='Login failed.' and .//text()='Reason: Wrong password.']")
+	private ExtendedWebElement wrongPasswordMessage;
+
+	@FindBy(xpath = "//*[@class='pad-single pad-finder']")
+	private ExtendedWebElement phoneFinderBtn;
+
 	public boolean isBurgerMenuPresent() {
 		return burgerMenuBtn.isPresent();
 	}
@@ -136,4 +170,91 @@ public class HomePage extends AbstractPage {
 	public boolean isSignUpIconPresent() {
 		return signUpIcon.isPresent();
 	}
+
+	public void clickLoginIcon() {
+		loginIcon.click();
+	}
+
+	public boolean isLoginWindowPresent() {
+		return loginWind.isPresent();
+	}
+
+	public boolean isLoginLogoPresent() {
+		return loginLogo.isPresent();
+	}
+
+	public boolean isEmailFieldPresent() {
+		return emailField.isPresent();
+	}
+
+	public boolean isPasswordFieldPresent() {
+		return passwordField.isPresent();
+	}
+
+	public boolean isLoginBtnPresent() {
+		return loginBtn.isPresent();
+	}
+
+	public boolean isIForgotPasswordLinkPresent() {
+		return iForgotPasswordLink.isPresent();
+	}
+
+	public void inputLogin(String login) {
+		emailField.type(login);
+	}
+
+	public void inputPassword(String pass) {
+		passwordField.type(pass);
+	}
+
+	public void clickLoginBtn() {
+		loginBtn.click();
+	}
+
+	public boolean isUserMenuPresent() {
+		return userMenuIcon.isPresent();
+	}
+
+	public void clickLogOutBtn() {
+		logOutBtn.click();
+	}
+
+	public boolean isOpened() {
+		LOGGER.info("Page is opened : " + isPageOpened());
+		return isPageOpened() && gsmLogoBtn.isElementPresent();
+	}
+
+	public boolean isWrongPasswordMessagePresent() {
+		return wrongPasswordMessage.isPresent();
+	}
+
+	public boolean checkNewUrl() {
+		return getDriver().getCurrentUrl().contains("login.php3");
+
+	}
+
+	public PhoneFinderPage clickPhoneFinderMenu() {
+		phoneFinderBtn.click();
+		return new PhoneFinderPage(driver);
+	}
+
+//Methods for find tooltips	
+	public String getTooltipEmailMessage() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement field = driver.findElement(By.id("email"));
+//		return (Boolean) js.executeScript("return arguments[0].checkValidity();", field);
+		return (String) js.executeScript("return arguments[0].validationMessage;", field);
+
+	}
+	
+	public String getTooltipPasswordMessage() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement field = driver.findElement(By.id("upass"));
+//		return (Boolean) js.executeScript("return arguments[0].checkValidity();", field);
+		return (String) js.executeScript("return arguments[0].validationMessage;", field);
+
+	}
+
 }

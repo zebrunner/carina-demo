@@ -22,12 +22,15 @@ import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
@@ -115,7 +118,6 @@ public class WebSampleTest extends AbstractTest {
 
 	@Test
 	public void testHeaderBaseElements() {
-
 		HomePage homePage = new HomePage(getDriver());
 		homePage.open();
 		Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
@@ -132,9 +134,91 @@ public class WebSampleTest extends AbstractTest {
 		softAssert.assertTrue(homePage.isRssIconPresent(), "Rss icon is not present");
 		softAssert.assertTrue(homePage.isLoginIconPresent(), "Lojin icon is not present");
 		softAssert.assertTrue(homePage.isSignUpIconPresent(), "SignUp icon is not present");
-
 		softAssert.assertAll();
 
 	}
 
+//Scenario 0
+	@Test
+	public void testLoginWindow() {
+		HomePage homePage = new HomePage(getDriver());
+		homePage.open();
+		Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+
+		homePage.clickLoginBtn();
+		Assert.assertTrue(homePage.isLoginWindowPresent(), "Login dialog window is not opened");
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertTrue(homePage.isLoginLogoPresent(), "Login Logo is not present");
+		softAssert.assertTrue(homePage.isEmailFieldPresent(), "Email field is not present");
+		softAssert.assertTrue(homePage.isPasswordFieldPresent(), "Password field is not present");
+		softAssert.assertTrue(homePage.isLoginBtnPresent(), "Login button is not present");
+		softAssert.assertTrue(homePage.isIForgotPasswordLinkPresent(), "Email field is not present");
+		softAssert.assertAll();
+	}
+
+//Scenario 1
+	@Test
+	public void testAuthorizaton() {
+		HomePage homePage = new HomePage(getDriver());
+		homePage.open();
+		Assert.assertTrue(homePage.isOpened(), "Home page is not opened");
+		homePage.clickLoginIcon();
+		Assert.assertTrue(homePage.isLoginWindowPresent(), "Login dialog window is not opened");
+		homePage.inputLogin(R.TESTDATA.get("email"));
+		homePage.inputPassword(R.TESTDATA.get("password"));
+		homePage.clickLoginBtn();
+		Assert.assertTrue(homePage.isUserMenuPresent(), "User menu is not present");
+
+		homePage.clickLogOutBtn();
+	}
+
+//Scenario 2
+	@Test
+	public void testFailedEmailAuthorization() {
+		HomePage homePage = new HomePage(getDriver());
+		homePage.open();
+		Assert.assertTrue(homePage.isOpened(), "Home page is not opened");
+		homePage.clickLoginIcon();
+		Assert.assertTrue(homePage.isLoginWindowPresent(), "Login dialog window is not opened");
+		homePage.inputLogin("s9rowamail.ru");
+		homePage.inputPassword(R.TESTDATA.get("password"));
+		homePage.clickLoginBtn();
+		homePage.getTooltipEmailMessage();
+		Assert.assertEquals(homePage.getTooltipEmailMessage(),
+				"Please include an '@' in the email address. 's9rowamail.ru' is missing an '@'.",
+				"Error email message is not equal");
+	}
+
+//Scenario 3	
+	@Test
+	public void testInvalidPasswordAuthorization() {
+		HomePage homePage = new HomePage(getDriver());
+		homePage.open();
+		Assert.assertTrue(homePage.isOpened(), "Home page is not opened");
+		homePage.clickLoginIcon();
+		Assert.assertTrue(homePage.isLoginWindowPresent(), "Login dialog window is not opened");
+		homePage.inputLogin(R.TESTDATA.get("email"));
+		homePage.inputPassword("12");
+		homePage.clickLoginBtn();
+		homePage.getTooltipPasswordMessage();
+		Assert.assertEquals(homePage.getTooltipPasswordMessage(), "Please match the requested format.",
+				"Error password message is not equal");
+	}
+
+//Scenario 4
+	@Test
+	public void testWrongPasswordAuthorization() {
+		HomePage homePage = new HomePage(getDriver());
+		homePage.open();
+		Assert.assertTrue(homePage.isOpened(), "Home page is not opened");
+		homePage.clickLoginIcon();
+		Assert.assertTrue(homePage.isLoginWindowPresent(), "Login dialog window is not opened");
+		homePage.inputLogin(R.TESTDATA.get("email"));
+		homePage.inputPassword("1234567");
+		homePage.clickLoginBtn();
+		Assert.assertTrue(homePage.checkNewUrl(), "Page is not opened");
+		LOGGER.info("Page is checked");
+		Assert.assertTrue(homePage.isWrongPasswordMessagePresent(), "Error message is not present");
+
+	}
 }
