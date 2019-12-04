@@ -8,7 +8,7 @@
 	</listeners>
 	
 	<parameter name="capabilities" value="browserName=chrome"/>
-	<parameter name="suiteOwner" value="qpsdemo"/>
+	<parameter name="suiteOwner" value="qpsdemo, cat_begemot"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
 	<parameter name="jenkinsJobCreation" value="true"/>
  	<parameter name="jenkinsJobName" value="Web-Demo-Test"/>
