@@ -21,9 +21,15 @@ public class GlossaryPage extends AbstractPage {
 
 	@FindBy(xpath = "//div[@class='st-text']/h3[text()='%s']")
 	private ExtendedWebElement itemsLetter;
+	
+	@FindBy(xpath = "//h1[@class='article-info-name' and text()='Mobile terms glossary']")
+	private ExtendedWebElement mobileTermsGlossatyIcon;
+	
 
 	public boolean isOpened() {
 		LOGGER.info("Page is opened ");
+		
+		mobileTermsGlossatyIcon.isElementPresent();
 		return getDriver().getCurrentUrl().contains("glossary.php3");
 	}
 
