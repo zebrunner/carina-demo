@@ -45,7 +45,7 @@ public class GlossaryPage extends AbstractPage {
 		List<String> list = items.stream().map(c -> c.getText()).map(c -> c.toUpperCase()).collect(Collectors.toList());
 
 		for (String word : list) {
-			if (!word.startsWith(s)) {
+			if (!word.startsWith(itemsLetter.format(s).getText())) {
 				return false;
 			}
 		}
