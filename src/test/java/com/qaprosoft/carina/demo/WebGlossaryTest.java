@@ -25,7 +25,7 @@ public class WebGlossaryTest extends AbstractTest {
 			softAssert.assertTrue(glossaryPage.isGlossarySectionSortedAlphabetically(symb),
 					String.format("Glossary items %s is not alphabetically", symb));
 
-			Assert.assertTrue(glossaryPage.isStartLetterSectionEqualsTo(symb), "Capital letter is not compare");
+			softAssert.assertTrue(glossaryPage.isStartLetterSectionEqualsTo(symb), "Capital letter is not compare");
 		}
 		softAssert.assertAll();
 	}

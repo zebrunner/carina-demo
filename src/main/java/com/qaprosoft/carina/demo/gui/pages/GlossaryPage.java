@@ -1,33 +1,26 @@
 package com.qaprosoft.carina.demo.gui.pages;
 
-import static com.qaprosoft.carina.core.foundation.webdriver.IDriverPool.LOGGER;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.hibernate.validator.constraints.Length;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.owlike.genson.convert.DefaultConverters.PrimitiveConverterFactory.booleanConverter;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.sun.java_cup.internal.runtime.virtual_parse_stack;
 
 public class GlossaryPage extends AbstractPage {
+	Logger LOGGER = Logger.getLogger(GlossaryPage.class);
 
 	public GlossaryPage(WebDriver driver) {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//div[@class='st-text']/h3[text()='%s']/following-sibling::p[1]")
-	private List<ExtendedWebElement> items;
-
 	@FindBy(xpath = "//div[@class='st-text']/h3[text()='%s']")
-	private List<ExtendedWebElement> itemsLetter;
+	private ExtendedWebElement itemsLetter;
 
 	public boolean isOpened() {
 		LOGGER.info("Page is opened ");
@@ -35,21 +28,24 @@ public class GlossaryPage extends AbstractPage {
 	}
 
 	public boolean isGlossarySectionSortedAlphabetically(String s) {
-
+		List<ExtendedWebElement> items = findExtendedWebElements(
+				By.xpath(String.format("//div[@class='st-text']/h3[text()='%s']/following-sibling::p[1]/a", s)));
 		for (int i = 0, j = i + 1; j < items.size(); i++, j++) {
 
-			if (items.get(i).format(s).getText().compareToIgnoreCase(items.get(j).getText()) < 0) {
+			if (items.get(i).getText().compareToIgnoreCase(items.get(j).getText()) > 0) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	public boolean isStartLetterSectionEqualsTo(String str) {
-		List<String> list = items.stream().map(c -> c.getText()).collect(Collectors.toList());
+	public boolean isStartLetterSectionEqualsTo(String s) {
+		List<ExtendedWebElement> items = findExtendedWebElements(
+				By.xpath(String.format("//div[@class='st-text']/h3[text()='%s']/following-sibling::p[1]/a", s)));
+		List<String> list = items.stream().map(c -> c.getText()).map(c -> c.toUpperCase()).collect(Collectors.toList());
 
 		for (String word : list) {
-			if (!word.startsWith(str)) {
+			if (!word.startsWith(s)) {
 				return false;
 			}
 		}
