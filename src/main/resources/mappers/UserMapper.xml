@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qaprosoft.carina.demo.db.mappers.UserMapper">
+
+	<insert id="create" useGeneratedKeys="true" keyProperty="id">
+		<![CDATA[
+			INSERT INTO carina.USERS (USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, STATUS)
+			VALUES (
+				#{username},
+				#{password},
+			    #{firstName},
+				#{lastName},
+				#{email},
+				#{status}
+			)
+		]]>
+	</insert>
+
+	<sql id="getUser">
+		<![CDATA[
+			SELECT
+				U.ID AS USER_ID,
+				U.USERNAME AS USER_USERNAME,
+				U.PASSWORD AS USER_PASSWORD,
+				U.FIRST_NAME AS USER_FIRST_NAME,
+				U.LAST_NAME AS USER_LAST_NAME,
+				U.EMAIL AS USER_EMAIL,
+				U.STATUS AS USER_STATUS,
+				UP.ID AS USER_PREFERENCE_ID,
+				UP.NAME AS USER_PREFERENCE_NAME,
+				UP.VALUE AS USER_PREFERENCE_VALUE,
+				UP.USER_ID AS USER_PREFERENCE_USER_ID
+			FROM
+				carina.USERS U
+			LEFT JOIN
+				carina.USER_PREFERENCES UP
+			ON
+				UP.USER_ID = U.ID
+		]]>
+	</sql>
+
+	<select id="findById" resultMap="UserResultMap">
+		<include refid="getUser" />
+		<![CDATA[
+			WHERE U.ID = #{id};
+		]]>
+	</select>
+
+	<select id="findByUserName" resultMap="UserResultMap">
+		<include refid="getUser" />
+		<![CDATA[
+			WHERE U.USERNAME = #{username};
+		]]>
+	</select>
+
+	<update id="update">
+		<![CDATA[
+			UPDATE
+			    carina.USERS
+		]]>
+		<set>
+			<if test="null != firstName">
+		            <![CDATA[
+		               FIRST_NAME = #{firstName},
+		            ]]>
+			</if>
+			<if test="null != lastName">
+		            <![CDATA[
+		               LAST_NAME = #{lastName},
+		            ]]>
+			</if>
+			<if test="null != email">
+		            <![CDATA[
+		               EMAIL = #{email},
+		            ]]>
+			</if>
+			<if test="null != username">
+		            <![CDATA[
+		               USERNAME = #{username},	
+		            ]]>
+			</if>
+			<if test="null != password">
+		            <![CDATA[
+		               PASSWORD = #{password},	
+		            ]]>
+			</if>
+		</set>
+		<![CDATA[
+			WHERE
+			    ID = #{id}
+		]]>
+	</update>
+
+	<delete id="delete">
+		<![CDATA[
+			DELETE FROM carina.USERS
+			WHERE ID = #{id}
+		]]>
+	</delete>
+
+	<resultMap type="com.qaprosoft.carina.demo.db.models.User"
+		id="UserResultMap" autoMapping="false">
+		<id column="USER_ID" property="id" />
+		<result column="USER_USERNAME" property="username" />
+		<result column="USER_PASSWORD" property="password" />
+		<result column="USER_FIRST_NAME" property="firstName" />
+		<result column="USER_LAST_NAME" property="lastName" />
+		<result column="USER_EMAIL" property="email" />
+		<result column="USER_STATUS" property="status" />
+		<collection property="preferences"
+			ofType="com.qaprosoft.carina.demo.db.models.UserPreference"
+			resultMap="com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper.UserPreferenceResultMap" />
+	</resultMap>
+
+</mapper>
