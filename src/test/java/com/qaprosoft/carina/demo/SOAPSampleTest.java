@@ -7,7 +7,6 @@ import com.qaprosoft.carina.demo.api.soap.CountryInfoClient;
 import com.qaprosoft.carina.demo.api.soap.CountryInfoConfiguration;
 import com.qaprosoft.carina.demo.base.SOAPTest;
 import countryinfo.wsdl.CapitalCityResponse;
-import groovy.util.logging.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,7 +19,6 @@ import org.testng.annotations.Test;
  *
  * @author qpsdemo
  */
-@Log4j2
 @SpringBootTest
 @ContextConfiguration(classes = {CountryInfoConfiguration.class})
 public class SOAPSampleTest extends SOAPTest {
