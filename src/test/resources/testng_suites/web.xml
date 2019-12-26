@@ -6,6 +6,8 @@
   <listeners>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
 	</listeners>
+	
+	<parameter name="jenkinsJobDisabled" value="true"/>
 	<parameter name="maxNumberKeepBuilds" value="666"/>
 	<parameter name="capabilities" value="browserName=chrome"/>
 	<parameter name="suiteOwner" value="qpsdemo, cat_begemot"/>
