@@ -14,9 +14,9 @@
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsSlackChannels" value="slack-test"/>
 	
-	<parameter name="jenkinsRegressionMatrix" value="Carina-Demo-Regression-Pipeline,LocalizationTesting"/>
-	<parameter name="jenkinsPipelineMatrix" value="env: DEMO, branch: master; env:DEMO, branch: #601"/>	
-	<parameter name="jenkinsPipelineMatrix_LocalizationTesting" value="locale: fr_FR, language: fr_FR; locale: zh_CN, language: zh-rCN; locale: ko_KR, language: ko_KR;"/>	
+	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline,LocalizationTesting"/>
+	<parameter name="jenkinsRegressionMatrix" value="env: DEMO, branch: master; env:DEMO, branch: #601"/>	
+	<parameter name="jenkinsRegressionMatrix_LocalizationTesting" value="locale: fr_FR, language: fr_FR; locale: zh_CN, language: zh-rCN; locale: ko_KR, language: ko_KR;"/>	
 <!-- 	<parameter name="jenkinsPipelineLocales" value="fr_FR,en_US,es_ES,it_IT,de_DE,pt_PT,zh_CN:zh-rCN,ja_JP,ko_KR"/> -->
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>	
 
