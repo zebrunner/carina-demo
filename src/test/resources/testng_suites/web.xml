@@ -19,9 +19,10 @@
 	<parameter name="jenkinsDefaultThreadCount" value="3"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
-	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
-        <parameter name="jenkinsRegressionMatrix" value="branch: 601test, browser: chrome; branch: 602test, browser:firefox"/>
+
+        <parameter name="jenkinsRegressionMatrix" value="branch: 601test, browser: chrome; branch: 602test, browser:firefox, browserVersion:78"/>
 	<parameter name="jenkinsPipelineBrowsers" value="browser: chrome; browser: firefox"/>
+	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
