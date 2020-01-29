@@ -20,7 +20,7 @@
 
 	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
 
-        <parameter name="jenkinsRegressionMatrix" value="branch: 601test, browser: chrome; branch: 602test, browser:firefox, browser_version:69"/>
+        <parameter name="jenkinsRegressionMatrix" value="branch: 601test, browser: chrome, language: fr_FR; branch: 602test, browser:firefox, browser_version:69"/>
 	<parameter name="jenkinsPipelineBrowsers" value="browser: chrome; browser: firefox"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
