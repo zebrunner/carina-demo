@@ -23,7 +23,7 @@
 
        
 	<parameter name="jenkinsRegressionScheduling" value="TZ=US/Eastern::H 3 * * 1-5"/>
-	<parameter name="jenkinsRegressionScheduling_NewJobwithTimer" value="TZ=H 5 * * *"/>
+	<parameter name="jenkinsRegressionScheduling_NewJobwithTimer" value="H 5 * * *"/>
 	
 	<parameter name="jenkinsPipelineBrowsers" value="browser: chrome; browser: firefox"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
