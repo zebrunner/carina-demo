@@ -18,9 +18,12 @@
 	<!-- Example howto override default job thread_count via jobDSL parameter -->
 	<parameter name="jenkinsDefaultThreadCount" value="3"/>
 
-	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
+	<parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline,NewJobwithTimer"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
-
+	
+        <jenkinsRegressionScheduling="TZ=US/Eastern::H 3 * * 1-5"/>
+        <jenkinsRegressionScheduling_NewJobwithTimer="TZ=H 5 * * *"/>
+	
 	<parameter name="jenkinsPipelineBrowsers" value="browser: chrome; browser: firefox"/>
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
