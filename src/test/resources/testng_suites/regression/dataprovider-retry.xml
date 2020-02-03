@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="Carina Demo - DataProvider With Retry" parallel="methods">
+
+	<listeners>
+		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
+	</listeners>
+
+	<parameter name="suiteOwner" value="qpsdemo"/>
+	<parameter name="zafira_project" value="UNKNOWN"/>
+	<parameter name="jenkinsJobName" value="API-DataProvider-Retry"/>
+	<parameter name="jenkinsJobType" value="api"/>
+	<parameter name="jenkinsEnvironments" value="DEMO"/>
+	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+
+	<parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
+	<parameter name="jenkinsRegressionMatrix_full_regression" value="retry_count=0; retry_count=1; retry_count=3; retry_count=5"/>
+	
+	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
+	<parameter name="jenkinsJobExecutionMode" value="continue"/>
+
+	<!-- example declaring non default retry_count -->
+	<parameter name="jenkinsDefaultRetryCount" value="5"/>
+
+
+	<test name="DataProvider with Retry">
+		<parameter name="{ds_custom_provider}" value="true" />
+		<classes>
+			<class name="com.qaprosoft.carina.demo.regression.DataproviderRetryTest">
+				<methods>
+					<include name="testDataproviderRetry"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>
