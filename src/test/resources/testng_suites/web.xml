@@ -13,9 +13,6 @@
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
-	
-	<!-- Example howto override default job thread_count via jobDSL parameter -->
-	<parameter name="jenkinsDefaultThreadCount" value="3"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
