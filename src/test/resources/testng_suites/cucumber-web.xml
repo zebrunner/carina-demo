@@ -7,10 +7,6 @@
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>
 	
-    <parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
-    <parameter name="jenkinsPipelineEnvironments" value="DEMO"/>	
-
-
     <test verbose="1"
           name="GSM Arena News - Web tests by cucumber">
         <classes>
