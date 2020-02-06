@@ -1,5 +1,6 @@
 @Library('QPS-Pipeline')_
 import com.qaprosoft.jenkins.pipeline.runner.maven.QARunner
+import com.qaprosoft.jenkins.pipeline.Organization
 
 echo "MEW_MEW_MEW"
 // new com.qaprosoft.jenkins.pipeline.runner.maven.QARunner(this).onPush()
@@ -27,7 +28,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    QARunner.Organization.register()
+                    Organization.register()
                 }
             }
         }
