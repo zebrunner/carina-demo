@@ -27,7 +27,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    QARunner.Organization(this).register()
+                    QARunner.register()
                 }
             }
         }
