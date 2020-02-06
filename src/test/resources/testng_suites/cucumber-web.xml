@@ -3,6 +3,10 @@
     <parameter name="suiteOwner" value="qpsdemo"/>
     <parameter name="zafira_project" value="UNKNOWN"/>
 
+    <parameter name="jenkinsJobName" value="Soap-Web-Test"/>
+    <parameter name="jenkinsJobType" value="web"/>
+    <parameter name="jenkinsEnvironments" value="DEMO"/>
+	
     <test verbose="1"
           name="GSM Arena News - Web tests by cucumber">
         <classes>
