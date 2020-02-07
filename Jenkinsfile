@@ -28,7 +28,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    org = new Organization()
+                    def org = new Organization()
                     org.register()
                 }
             }
