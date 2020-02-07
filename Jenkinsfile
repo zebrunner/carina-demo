@@ -28,7 +28,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    def org = new Organization(params.folderName, params.folderName, 'test_description', params.pipelineLibrary, params.runnerClass)
+                    def org = Organization(params.folderName, params.folderName, 'test_description', params.pipelineLibrary, params.runnerClass)
                     org.register()
                 }
             }
