@@ -1,17 +1,15 @@
 package com.qaprosoft.carina.demo.utils;
 
-import static com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils.getDriver;
-
-import java.util.Set;
-
+import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
+import io.appium.java_client.AppiumDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
+import java.util.Set;
 
-import io.appium.java_client.AppiumDriver;
+import static com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils.getDriver;
 
 public class MobileContextUtils {
 
