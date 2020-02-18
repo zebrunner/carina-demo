@@ -5,6 +5,7 @@
 
 	<parameter name="suiteOwner" value="qpsdemo" />
 	<parameter name="zafira_project" value="UNKNOWN" />
+	<parameter name="provider" value="mcloud"/>
 	<parameter name="jenkinsJobName" value="Mobile-Android-Demo-Test" />
 	<parameter name="jenkinsJobType" value="android"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
