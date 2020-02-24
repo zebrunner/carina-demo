@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.regression;
+package com.qaprosoft.carina.demo.regression.dataprovider;
 
 import java.util.Random;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.regression.DataproviderRetryTest;
 
 /**
  * This sample test DataProvider with retries and it's registration in Zafira.
@@ -30,18 +30,18 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
  *
  * @author qpsdemo
  */
-public class DataproviderRetryTest extends AbstractTest {
+public class DataproviderRetryTest2 extends AbstractTest {
 
     /**
-     * Paramaterization using TestNG dataproviders:
+     * Parametrization using TestNG dataproviders:
      * <p>
      * 1. Create data-provider method that returns Object[][] and set DataProvider annotation. 2. Specify data-provider
      * name in @Test annotation.
      */
-    @Test(dataProvider = "DP1")
+    @Test(dataProvider = "DP1", dataProviderClass=DataproviderRetryTest.class)
     @MethodOwner(owner = "qpsdemo")
-    public void testDataproviderRetry(String testRailColumn, int a, int b, int c) {
-        boolean isPassed = (new Random().nextInt(2) == 1) ? true : false;
+    public void testDataproviderRetry2(String testRailColumn, int a, int b, int c) {
+        boolean isPassed = (new Random().nextInt(4) == 1) ? true : false;
         Assert.assertTrue(isPassed);
         
         setCases(testRailColumn.split(","));
@@ -49,21 +49,5 @@ public class DataproviderRetryTest extends AbstractTest {
         int expected = c;
         Assert.assertEquals(actual, expected, "Invalid sum result!");
     }
-
-    @DataProvider(parallel = false, name = "DP1")
-    public static Object[][] dataprovider() {
-        return new Object[][]{
-                {"111,112", 2, 3, 6},
-                {"114", 6, 6, 36},
-                {"111,112", 2, 3, 6},
-                {"114", 6, 6, 36},
-                {"111,112", 2, 3, 6},
-                {"114", 6, 6, 36},
-                {"111,112", 2, 3, 6},
-                {"114", 6, 6, 36},
-                {"111,112", 2, 3, 6},
-                {"114", 6, 6, 36}};
-    }
-
 
 }

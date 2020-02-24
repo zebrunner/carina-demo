@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite verbose="1" name="Carina Demo - DataProvider With Retry" parallel="methods">
+<suite verbose="1" name="DataProvider Test With Retry (50% pass rate)" parallel="methods">
 
 	<listeners>
 		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
@@ -24,7 +24,6 @@
 
 
 	<test name="DataProvider with Retry">
-		<parameter name="{ds_custom_provider}" value="true" />
 		<classes>
 			<class name="com.qaprosoft.carina.demo.regression.DataproviderRetryTest">
 				<methods>
