@@ -25,19 +25,13 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.regression.DataproviderRetryTest;
 
 /**
- * This sample test DataProvider with retries and it's registration in Zafira.
- * It just generate failure in 50% of cases and on retry should improve statistic
+ * Carina regression test with retries and it's registration in Zafira.
+ * It just generate failure in 75% of cases and on retry should improve statistic
  *
  * @author qpsdemo
  */
 public class DataproviderRetryTest1 extends AbstractTest {
 
-    /**
-     * Parametrization using TestNG dataproviders:
-     * <p>
-     * 1. Create data-provider method that returns Object[][] and set DataProvider annotation. 2. Specify data-provider
-     * name in @Test annotation.
-     */
     @Test(dataProvider = "DP1", dataProviderClass=DataproviderRetryTest.class)
     @MethodOwner(owner = "qpsdemo")
     public void testDataproviderRetry1(String testRailColumn, int a, int b, int c) {
