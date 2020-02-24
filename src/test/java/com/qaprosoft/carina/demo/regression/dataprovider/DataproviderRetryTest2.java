@@ -22,7 +22,6 @@ import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.regression.DataproviderRetryTest;
 
 /**
  * Carina regression test with retries and it's registration in Zafira.
