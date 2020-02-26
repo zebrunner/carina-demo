@@ -30,10 +30,10 @@ public class XlsDataproviderRetryTest extends AbstractTest {
     
     @Test(dataProvider = "DataProvider")
     @MethodOwner(owner = "qpsdemo")
-    @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Data", dsUid = "TUID", dsArgs = "arg")
+    @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Data", dsUid = "TestTitle", dsArgs = "Args")
     public void testMethod(String arg) {
     	LOGGER.info("arg: " + arg);
-        boolean isPassed = (new Random().nextInt(2) == 1) ? true : false;
+        boolean isPassed = (new Random().nextInt(3) == 1) ? true : false;
         Assert.assertTrue(isPassed);
     }
     
