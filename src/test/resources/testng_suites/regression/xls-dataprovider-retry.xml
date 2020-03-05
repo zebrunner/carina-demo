@@ -13,7 +13,7 @@
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 
-	<parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
+	<parameter name="jenkinsRegressionPipeline" value="full_regression"/>
 	<parameter name="jenkinsRegressionMatrix_full_regression" value="retry_count:0; retry_count:3"/>
 	
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
