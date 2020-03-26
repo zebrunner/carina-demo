@@ -27,6 +27,7 @@ import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.api.DeleteUserMethod;
 import com.qaprosoft.carina.demo.api.GetUserMethods;
 import com.qaprosoft.carina.demo.api.PostUserMethod;
+import com.qaprosoft.carina.core.foundation.report.ReportContext;
 
 /**
  * This sample shows how create REST API tests.
