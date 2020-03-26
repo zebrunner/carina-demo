@@ -38,6 +38,13 @@ public class APISampleTest extends AbstractTest {
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
+        String filePath = ReportContext.getArtifactsFolder().getAbsolutePath() + File.separator + fileName;
+        try {
+            file = new File(filePath);
+            FileUtils.writeStringToFile(file, "file content line");
+        } catch (IOException e) {
+            LOGGER.warn("Error has been occurred during artifact generation: " + fileName, e);
+        }
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
         api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
