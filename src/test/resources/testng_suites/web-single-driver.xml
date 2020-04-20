@@ -1,7 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
-
-<suite verbose="1" name="Carina Demo Tests - Web Single Driver Sample" junit="false" parallel="tests" annotations="JDK" >
+<suite verbose="1" name="Carina Demo Tests - Web Single Driver Sample" parallel="tests" annotations="JDK" >
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
