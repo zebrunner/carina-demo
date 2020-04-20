@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <carina-core_version>6.4.764-SNAPSHOT</carina-core_version>
+        <carina-core_version>6.4.34-SNAPSHOT</carina-core_version>
         <carina-cucumber_version>RELEASE</carina-cucumber_version>
         <httpclient.version>4.5.3</httpclient.version>
         <java.version>1.8</java.version>
@@ -132,7 +132,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0-M4</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
