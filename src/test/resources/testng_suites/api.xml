@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - API Sample" parallel="methods" thread-count="5" annotations="JDK">
+<suite verbose="1" name="Carina Demo Tests - API Sample" parallel="methods" thread-count="5">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>

@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - Web Sample" parallel="methods" annotations="JDK">
+<suite verbose="1" name="Carina Demo Tests - Web Sample" parallel="methods">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
@@ -20,4 +20,5 @@
 			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
 		</classes>
 	</test>
+
 </suite>

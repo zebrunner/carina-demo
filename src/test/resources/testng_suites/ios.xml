@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Carina Demo Tests - Mobile Sample (iOS)" verbose="1" parallel="tests" annotations="JDK">
+<suite name="Carina Demo Tests - Mobile Sample (iOS)" verbose="1" parallel="tests">
 
 	<parameter name="suiteOwner" value="qpsdemo" />
 	<parameter name="zafira_project" value="UNKNOWN" />
