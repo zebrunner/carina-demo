@@ -1,5 +1,4 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
 <suite verbose="1" name="XLS DataProvider Test With Retry (33% pass rate)" parallel="methods">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
