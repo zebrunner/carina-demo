@@ -17,7 +17,7 @@
         <httpclient.version>4.5.3</httpclient.version>
         <java.version>1.8</java.version>
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-        <suite>api</suite>
+        <suite>testng_suites/api.xml</suite>
     </properties>
 
     <repositories>
@@ -136,7 +136,7 @@
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
+                        <suiteXmlFile>${project.build.directory}/test-classes/${suite}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
