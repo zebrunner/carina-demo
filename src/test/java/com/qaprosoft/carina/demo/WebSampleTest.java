@@ -44,6 +44,7 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  * @author qpsdemo
  */
 public class WebSampleTest extends AbstractTest {
+    private static final String NotUserVar = "aaa";
     @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
