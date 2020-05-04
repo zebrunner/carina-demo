@@ -27,6 +27,7 @@ import com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper;
 
 public class ConnectionFactory {
 	private static SqlSessionFactory factory;
+	private String unUsedVar;
 
 	static {
 		Reader reader = null;
