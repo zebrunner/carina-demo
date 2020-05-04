@@ -12,6 +12,10 @@ import org.openqa.selenium.support.FindBy;
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
     private static final String THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID = "This method is not yet implemented for iOS";
+    
+    private Integer randomInt;
+    
+    private String randomString;
 
     @FindBy(xpath = "name = 'CARINA' AND type = 'XCUIElementTypeStaticText'")
     @Predicate
