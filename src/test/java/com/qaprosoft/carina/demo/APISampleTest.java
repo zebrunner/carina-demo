@@ -16,6 +16,9 @@
 package com.qaprosoft.carina.demo;
 
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
@@ -34,6 +37,20 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  * @author qpsdemo
  */
 public class APISampleTest extends AbstractTest {
+	@BeforeSuite()
+	public void beforeSuite() {
+		pause(5);
+	}
+	
+	@BeforeClass()
+	public void beforeClass() {
+		pause(5);
+	}
+	
+	@BeforeMethod()
+	public void beforeMethod() {
+		pause(5);
+	}
 
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
