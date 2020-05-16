@@ -1,14 +1,15 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
+
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
-public class UIElementsPage extends UIElementsPageBase {
+public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {
 
     @FindBy(id = "editText")
     private ExtendedWebElement textField;
@@ -107,7 +108,7 @@ public class UIElementsPage extends UIElementsPageBase {
     }
 
     public void swipeToFemaleRadioButton(){
-        MobileUtils.swipe(femaleRadioButton, container, 10);
+        swipe(femaleRadioButton, container, 10);
     }
 
 }

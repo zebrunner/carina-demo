@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
-import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
+import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
-public class LoginPage extends LoginPageBase {
+public class LoginPage extends LoginPageBase implements IMobileUtils {
 
 	@FindBy(id = "name")
 	private ExtendedWebElement nameInputField;
@@ -39,7 +39,7 @@ public class LoginPage extends LoginPageBase {
 	@Override
 	public void typeName(String name) {
 		nameInputField.type(name);
-		MobileUtils.hideKeyboard();
+		hideKeyboard();
 	}
 
 	@Override
