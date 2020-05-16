@@ -45,6 +45,7 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  */
 public class WebSampleTest extends AbstractTest {
     private static final String NotUserVar = "aaa";
+    private static final String s2 = null;
     @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
@@ -53,6 +54,9 @@ public class WebSampleTest extends AbstractTest {
     @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
     public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery) {
         // Open GSM Arena home page and verify page is opened
+        if (s2.isEmpty()) {
+            // do nothing
+        }
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
