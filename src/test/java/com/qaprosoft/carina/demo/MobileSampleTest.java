@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.mobile.MobileUtils;
+import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
@@ -17,7 +17,7 @@ import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 
 
-public class MobileSampleTest extends AbstractTest {
+public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
@@ -36,7 +36,6 @@ public class MobileSampleTest extends AbstractTest {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-    @SuppressWarnings("deprecation")
 	@Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
     public void testWebView() {
@@ -50,7 +49,8 @@ public class MobileSampleTest extends AbstractTest {
         contactUsPage.typeName("John Doe");
         contactUsPage.typeEmail("some@email.com");
         contactUsPage.typeQuestion("This is a message");
-        MobileUtils.hideKeyboard();
+        //TODO: [VD] move page driver related action outside from test class!
+        hideKeyboard();
         contactUsPage.submit();
         Assert.assertTrue(contactUsPage.isSuccessMessagePresent() || contactUsPage.isRecaptchaPresent(),
             "message was not sent or captcha was not displayed");
