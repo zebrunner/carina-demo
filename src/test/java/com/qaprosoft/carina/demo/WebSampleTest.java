@@ -81,7 +81,26 @@ public class WebSampleTest extends AbstractTest {
             Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
         }
         
-        pause(120);
+        pause(40);
+        quitDriver();
+        
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        homePage2.getFooterMenu().openNewsPage();
+        pause(40);
+        
     }
 
 }
