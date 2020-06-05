@@ -57,8 +57,7 @@ public class WebSampleTest extends AbstractTest {
         HomePage homePage2 = new HomePage(getDriver());
         homePage2.open();
         Assert.assertTrue(homePage2.isPageOpened(), "Home page is not opened!");
-
-        
+        pause(30);
         // Open model compare page
         FooterMenu footerMenu = homePage.getFooterMenu();
         Assert.assertTrue(footerMenu.isUIObjectPresent(2), "Footer menu wasn't found!");
@@ -66,7 +65,7 @@ public class WebSampleTest extends AbstractTest {
         // Compare 3 models
         List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7 Pro");
         // Verify model announced dates
-        Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2015, November");
+        Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2016, March 31");
         Assert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2015, June");
         Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
         
