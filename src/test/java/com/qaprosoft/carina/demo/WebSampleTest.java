@@ -57,7 +57,6 @@ public class WebSampleTest extends AbstractTest {
         HomePage homePage2 = new HomePage(getDriver("2nd-driver"));
         homePage2.open();
         Assert.assertTrue(homePage2.isPageOpened(), "Home page is not opened!");
-        pause(30);
         // Open model compare page
         FooterMenu footerMenu = homePage.getFooterMenu();
         Assert.assertTrue(footerMenu.isUIObjectPresent(2), "Footer menu wasn't found!");
@@ -80,7 +79,9 @@ public class WebSampleTest extends AbstractTest {
         for(NewsItem n : news) {
             System.out.println(n.readTitle());
             Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
-        }        
+        }
+        
+        pause(120);
     }
 
 }
