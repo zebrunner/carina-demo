@@ -54,7 +54,7 @@ public class WebSampleTest extends AbstractTest {
         
         
         // Open GSM Arena home page for news search
-        HomePage homePage2 = new HomePage(getDriver());
+        HomePage homePage2 = new HomePage(getDriver("2nd-driver"));
         homePage2.open();
         Assert.assertTrue(homePage2.isPageOpened(), "Home page is not opened!");
         pause(30);
