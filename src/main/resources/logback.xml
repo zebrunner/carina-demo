@@ -12,7 +12,7 @@
             <level>INFO</level>
         </filter>
         <encoder>
-            <pattern>%cyan(%d{yyyy-MM-dd HH:mm:ss}) %yellow(%C{1.}) [%magenta(%t)] [%highlight(%level)]: %msg%n%throwable</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
