@@ -28,7 +28,7 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
  * @author qpsdemo
  */
 public class HelloWorld extends AbstractTest {
-	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorld.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorld.class);
 
     @Test()
     @MethodOwner(owner = "qpsdemo")

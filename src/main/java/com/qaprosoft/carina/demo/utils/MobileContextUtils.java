@@ -15,7 +15,7 @@ import io.appium.java_client.AppiumDriver;
 
 public class MobileContextUtils implements IDriverPool {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(MobileContextUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MobileContextUtils.class);
 
     private WebDriver getDriverSafe() {
         WebDriver driver = getDriver();
