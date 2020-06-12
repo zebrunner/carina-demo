@@ -12,7 +12,7 @@
             <level>INFO</level>
         </filter>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss} %logger{0} [%thread] [%level] %msg%n</pattern>
         </encoder>
     </appender>
 
