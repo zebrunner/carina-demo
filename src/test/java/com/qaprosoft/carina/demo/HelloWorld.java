@@ -13,29 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.regression.dataprovider;
-
-import java.util.Random;
+package com.qaprosoft.carina.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
-public class XlsDataproviderRetryTest extends AbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(XlsDataproviderRetryTest.class);
-    
-    @Test(dataProvider = "DataProvider")
+/**
+ * This is Hello World carina-demo tests.
+ *
+ * @author qpsdemo
+ */
+public class HelloWorld extends AbstractTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorld.class);
+
+    @Test()
     @MethodOwner(owner = "qpsdemo")
-    @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Data", dsUid = "TestTitle", dsArgs = "Args")
-    public void testMethod(String arg) {
-    	LOGGER.info("arg: " + arg);
-        boolean isPassed = (new Random().nextInt(3) == 1) ? true : false;
-        Assert.assertTrue(isPassed);
+    public void helloWorld() {
+        LOGGER.info("Hello World!");
     }
-    
 }
