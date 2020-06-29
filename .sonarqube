@@ -6,3 +6,5 @@ sonar.sources=src
 sonar.java.binaries=target/classes
 sonar.java.test.binaries=target/test-classes
 sonar.junit.reportPaths=target/surefire-reports
+sonar.auth.github.clientId.secured=Iv1.6ea84df2ce3c37a6
+sonar.auth.github.clientSecret.secured=2aa0b3f86542d000adc5f5c084bfbc2d8998eb80
