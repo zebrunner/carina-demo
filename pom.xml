@@ -115,11 +115,6 @@
 				  <goals>
 					<goal>sonar</goal>
 				  </goals>
-			  		<configuration>
-						<sonar.alm.github.app.id>70790</sonar.alm.github.app.id>
-						<sonar.alm.github.app.name>SonarQubePRChecksQps</sonar.alm.github.app.name>
-						<sonar.alm.github.app.privateKey.secured>00:e2:b6:d1:ad:84:73:e3:75:e9:59:e8:64:82:6c:48:ba:14:c4:2e</sonar.alm.github.app.privateKey.secured>
-					</configuration>
 				</execution>
 			  </executions>
 			</plugin>
