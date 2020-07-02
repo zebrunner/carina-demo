@@ -105,7 +105,6 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>	
-			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
