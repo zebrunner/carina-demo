@@ -105,18 +105,6 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			<plugin>	
-				  <groupId>org.sonarsource.scanner.maven</groupId>	
-					  <artifactId>sonar-maven-plugin</artifactId>	
-					  <version>3.7.0.1746</version>	
-						  <executions>	
-							<execution>		
-							  <goals>	
-								<goal>sonar</goal>	
-							  </goals>	
-							</execution>	
-						  </executions>	
-			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
