@@ -110,8 +110,7 @@
 					  <artifactId>sonar-maven-plugin</artifactId>	
 					  <version>3.7.0.1746</version>	
 						  <executions>	
-							<execution>	
-							  <phase>test</phase>	
+							<execution>		
 							  <goals>	
 								<goal>sonar</goal>	
 							  </goals>	
