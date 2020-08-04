@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class WikipediaHomePage_Pt extends AbstractPage implements WikipediaHomePage {
 
-    @FindBy(xpath = "//div[@class='hp']/div/table/tbody/tr/td/span")
+    @FindBy(xpath = "//span[@class='hp-welkom-1']")
     private ExtendedWebElement welcomeText;
 
     public WikipediaHomePage_Pt(WebDriver driver) {
