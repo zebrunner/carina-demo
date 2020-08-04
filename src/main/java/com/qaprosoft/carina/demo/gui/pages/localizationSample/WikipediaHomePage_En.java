@@ -22,7 +22,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class WikipediaHomePage_En extends AbstractPage implements WikipediaHomePage{
 
-    @FindBy(xpath = "//div[@id='mp-welcome']")
+    @FindBy(id = "mp-welcome")
     private ExtendedWebElement welcomeText;
 
     public WikipediaHomePage_En(WebDriver driver) {

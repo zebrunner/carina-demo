@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MainPage extends AbstractPage {
 
-    @FindBy(xpath = "//div[@id='js-lang-lists']/div[1]/ul/li/a")
+    @FindBy(xpath = "//div[@id='js-lang-lists']//a")
     private List<ExtendedWebElement> langList;
 
     @FindBy(id = "js-lang-list-button")
@@ -34,50 +34,27 @@ public class MainPage extends AbstractPage {
         super(driver);
     }
 
-    public String initEnglishPage(Languages lang) {
-        langListBtn.clickIfPresent();
-        for (ExtendedWebElement e : langList) {
-            if (e.getText().equalsIgnoreCase(lang.getText())) {
-                e.click();
-                WikipediaHomePage_En home = new WikipediaHomePage_En(getDriver());
-                return home.getWelcomeText();
-            }
-        }
-        return null;
-    }
-
-    public String initSpanishPage(Languages lang) {
-        langListBtn.clickIfPresent();
-        for (ExtendedWebElement e : langList) {
-            if (e.getText().equalsIgnoreCase(lang.getText())) {
-                e.click();
-                WikipediaHomePage_Es home = new WikipediaHomePage_Es(getDriver());
-                return home.getWelcomeText();
-            }
-        }
-        return null;
-    }
-
-    public String initFrenchPage(Languages lang) {
-        langListBtn.clickIfPresent();
-        for (ExtendedWebElement e : langList) {
-            if (e.getText().equalsIgnoreCase(lang.getText())) {
-                e.click();
-                WikipediaHomePage_Fr home = new WikipediaHomePage_Fr(getDriver());
-                return home.getWelcomeText();
-            }
-        }
-        return null;
-    }
-
     public String initPage(Languages lang) {
-        switch (lang) {
-            case ES:
-                return initSpanishPage(lang);
-            case FR:
-                return initFrenchPage(lang);
-            default:
-                return initEnglishPage(lang);
+        langListBtn.clickIfPresent();
+        for (ExtendedWebElement e : langList) {
+            if (e.getText().equalsIgnoreCase(lang.getText())) {
+                e.click();
+                switch (lang) {
+                    case ES:
+                        WikipediaHomePage homeEs = new WikipediaHomePage_Es(getDriver());
+                        return homeEs.getWelcomeText();
+                    case FR:
+                        WikipediaHomePage homeFr = new WikipediaHomePage_Fr(getDriver());
+                        return homeFr.getWelcomeText();
+                    case PT:
+                        WikipediaHomePage homePt = new WikipediaHomePage_Pt(getDriver());
+                        return homePt.getWelcomeText();
+                    default:
+                        WikipediaHomePage_En home = new WikipediaHomePage_En(getDriver());
+                        return home.getWelcomeText();
+                }
+            }
         }
+        return null;
     }
 }

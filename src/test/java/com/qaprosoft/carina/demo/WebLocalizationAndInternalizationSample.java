@@ -33,7 +33,6 @@ public class WebLocalizationAndInternalizationSample extends AbstractTest {
         Assert.assertTrue(mainPage.isPageOpened());
 
         String welcomeText = mainPage.initPage(Languages.valueOf(lang));
-        System.out.println(welcomeText);
         Assert.assertEquals(welcomeText, message);
     }
 
@@ -42,7 +41,8 @@ public class WebLocalizationAndInternalizationSample extends AbstractTest {
         return new Object[][]{
                 {"EN", "Welcome to Wikipedia,"},
                 {"ES", "Bienvenidos a Wikipedia,"},
-                {"FR", "Wikipédia"}};
+                {"FR", "Wikipédia"},
+                {"PT", "Bem-vindos à Wikipédia"}};
     }
 
 }
