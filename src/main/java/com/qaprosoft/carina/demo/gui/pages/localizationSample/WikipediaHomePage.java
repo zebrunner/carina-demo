@@ -15,8 +15,22 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
-public interface WikipediaHomePage {
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
-    String getWelcomeText();
+public class WikipediaHomePage extends AbstractPage{
 
+    @FindBy(id = "{l10n:HomePage.id}")
+    private ExtendedWebElement welcomeText;
+
+    public WikipediaHomePage(WebDriver driver) {
+        super(driver);
+    }
+
+    public String getWelcomeText() {
+        return welcomeText.getText();
+    }
 }
+

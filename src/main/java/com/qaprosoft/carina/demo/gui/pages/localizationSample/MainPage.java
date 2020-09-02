@@ -21,6 +21,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class MainPage extends AbstractPage {
 
@@ -34,27 +35,19 @@ public class MainPage extends AbstractPage {
         super(driver);
     }
 
-    public String initPage(Languages lang) {
+    public String initPage() throws Exception {
         langListBtn.clickIfPresent();
-        for (ExtendedWebElement e : langList) {
-            if (e.getText().equalsIgnoreCase(lang.getText())) {
-                e.click();
-                switch (lang) {
-                    case ES:
-                        WikipediaHomePage homeEs = new WikipediaHomePage_Es(getDriver());
-                        return homeEs.getWelcomeText();
-                    case FR:
-                        WikipediaHomePage homeFr = new WikipediaHomePage_Fr(getDriver());
-                        return homeFr.getWelcomeText();
-                    case PT:
-                        WikipediaHomePage homePt = new WikipediaHomePage_Pt(getDriver());
-                        return homePt.getWelcomeText();
-                    default:
-                        WikipediaHomePage_En home = new WikipediaHomePage_En(getDriver());
-                        return home.getWelcomeText();
+        if (!langList.isEmpty()) {
+            for (ExtendedWebElement e : langList) {
+                if (e.getText().equals(ResourceBundle.getBundle("l10n.carina_demo").getString("HomePage.language"))) {
+                    e.click();
+                    WikipediaHomePage home = new WikipediaHomePage(getDriver());
+                    return home.getWelcomeText();
                 }
             }
         }
+        else throw new Exception("Not such language.");
+
         return null;
     }
 }
