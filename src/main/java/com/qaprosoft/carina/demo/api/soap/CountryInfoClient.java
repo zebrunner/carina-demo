@@ -1,12 +1,14 @@
 package com.qaprosoft.carina.demo.api.soap;
 
-import com.qaprosoft.carina.core.foundation.utils.R;
-import countryinfo.wsdl.CapitalCity;
-import countryinfo.wsdl.CapitalCityResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import com.qaprosoft.carina.core.foundation.utils.R;
+
+import countryinfo.wsdl.CapitalCity;
+import countryinfo.wsdl.CapitalCityResponse;
 
 public class CountryInfoClient extends WebServiceGatewaySupport {
 

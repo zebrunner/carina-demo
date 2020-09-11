@@ -17,8 +17,7 @@ package com.qaprosoft.carina.demo;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -37,7 +36,7 @@ import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
  * Tests for {@link TagManager}
  */
 public class TagManagerTest extends AbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TagManagerTest.class);
+    private Logger LOGGER = Logger.getLogger(TagManagerTest.class);
 
     private static final String TAG_NAME = "tag3";
     private static final String TAG_NAME2 = "tag4";

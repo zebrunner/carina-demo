@@ -15,8 +15,7 @@
  */
 package com.qaprosoft.carina.demo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
@@ -28,7 +27,7 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
  * @author qpsdemo
  */
 public class HelloWorld extends AbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorld.class);
+    private Logger LOGGER = Logger.getLogger(HelloWorld.class);
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
