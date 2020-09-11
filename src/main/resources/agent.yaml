@@ -3,7 +3,3 @@ reporting:
   server:
     hostname: https://stage.qaprosoft.farm
     access-token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJGYzVHY1EwMVZsUUtTaWF4WDVVbjJEdDZab01wMTdmdiIsInRlbmFudCI6InN0YWdlIiwiZXhwIjozNzQ3MzI1OTQyfQ.QIMTX2CK8WBiT_EIr_RWJYgErOvHaTlSBmFvBuEpoyX2Of5gIONl0ScTXRDd70BvtKKE2KDzyXmsvhgmUApk7g
-  run:
-    display-name: My Carina-Demo Run
-    build: 1.0.0.44-SNAPSHOT
-    environment: stage
