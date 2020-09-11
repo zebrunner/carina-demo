@@ -1,0 +1,9 @@
+reporting:
+  enabled: true
+  server:
+    hostname: https://stage.qaprosoft.farm
+    access-token: changeme
+  run:
+    display-name: My Carina Demo Run
+    build: 1.0.0.44-SNAPSHOT
+    environment: stage
