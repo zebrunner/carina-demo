@@ -5,6 +5,12 @@
 
     <property name="LOG_HOME" value="target/logback"/>
 
+<appender name="ReportingAppender" class="com.zebrunner.agent.core.appender.logback.ReportingAppender">
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+</appender>
+
     <!-- Send debug messages to System.out -->
     <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>true</withJansi>
@@ -18,6 +24,7 @@
 
     <!-- By default, the level of the root level is set to DEBUG -->
     <root level="info">
+        <appender-ref ref="ReportingAppender"/>
         <appender-ref ref="ConsoleAppender"/>
         <appender-ref ref="FileAppender"/>
     </root>

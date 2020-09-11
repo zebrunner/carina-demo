@@ -15,12 +15,7 @@
  *******************************************************************************/
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.utils.ownership.Ownership;
-import com.qaprosoft.carina.core.foundation.utils.tag.*;
-import com.qaprosoft.zafira.models.dto.TagType;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +24,14 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.ownership.Ownership;
+import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
+import com.qaprosoft.carina.core.foundation.utils.tag.PriorityManager;
+import com.qaprosoft.carina.core.foundation.utils.tag.TagManager;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 
 /**
  * Tests for {@link TagManager}
@@ -127,7 +127,7 @@ public class TagManagerTest extends AbstractTest {
         Assert.assertEquals(tags.size(), 0);
     }
 
-    @Test
+/*    @Test
     @TestPriority(Priority.P2)
     @TestTag(name = TAG_NAME2, value = TAG_VALUE2)
     @TestTag(name = TAG_NAME, value = TAG_VALUE)
@@ -212,5 +212,5 @@ public class TagManagerTest extends AbstractTest {
         LOGGER.info("Found " + tags.size() + " new TestTags");
         return tags;
     }
-
+*/
 }

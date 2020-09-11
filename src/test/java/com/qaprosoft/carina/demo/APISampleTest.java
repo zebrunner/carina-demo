@@ -16,6 +16,9 @@
 package com.qaprosoft.carina.demo;
 
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
@@ -34,10 +37,13 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  * @author qpsdemo
  */
 public class APISampleTest extends AbstractTest {
+    private static final Logger LOGGER  = LoggerFactory.getLogger(APISampleTest.class);
+    
 
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
+        LOGGER.info("test");
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
         api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
