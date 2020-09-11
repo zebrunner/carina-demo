@@ -15,9 +15,11 @@
  *******************************************************************************/
 package com.qaprosoft.carina.demo;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -32,11 +34,12 @@ import com.qaprosoft.carina.core.foundation.utils.tag.TagManager;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 
+
 /**
  * Tests for {@link TagManager}
  */
 public class TagManagerTest extends AbstractTest {
-    private Logger LOGGER = Logger.getLogger(TagManagerTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private static final String TAG_NAME = "tag3";
     private static final String TAG_NAME2 = "tag4";

@@ -15,8 +15,11 @@
  */
 package com.qaprosoft.carina.demo;
 
-import org.apache.log4j.Logger;
+import java.lang.invoke.MethodHandles;
+
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
@@ -35,7 +38,7 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  * @author qpsdemo
  */
 public class APISampleTest extends AbstractTest {
-    private Logger LOGGER = Logger.getLogger(APISampleTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     
 
     @Test(description = "JIRA#DEMO-0001")
