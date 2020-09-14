@@ -70,7 +70,7 @@ public class APISampleTest extends AbstractTest {
         getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
         getUsersMethods.callAPI();
         getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getUsersMethods.validateResponseAgainstJSONSchema("api/users/_get/rs.schema");
+        getUsersMethods.validateResponseAgainstSchema("api/users/_get/rs.schema");
     }
 
     @Test(description = "JIRA#DEMO-0004")
