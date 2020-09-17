@@ -58,12 +58,6 @@
             <version>${carina-cucumber_version}</version>
         </dependency>        
 		<dependency>
-			<groupId>com.zebrunner</groupId>
-			<artifactId>agent-testng</artifactId>
-			<version>1.0.0.46-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.30</version>
