@@ -46,4 +46,8 @@ public class NewsPage extends AbstractPage {
         return news;
     }
     
+	public void openNewsByIndex(int ind) {
+		news.get(ind).openNews();
+	}
+
 }

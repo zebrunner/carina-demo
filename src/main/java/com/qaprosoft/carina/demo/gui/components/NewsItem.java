@@ -15,6 +15,7 @@
  */
 package com.qaprosoft.carina.demo.gui.components;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -34,4 +35,9 @@ public class NewsItem extends AbstractUIObject {
     public String readTitle() {
         return titleLink.getElement().getText();
     }
+
+	public void openNews() {
+		Logger.getLogger(NewsItem.class).info("Clicking news " + titleLink.getText());
+		titleLink.click();
+	}
 }
