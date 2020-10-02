@@ -1,24 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
-<suite verbose="1" name="Carina Demo Tests - API Sample" skipfailedinvocationcounts="false" junit="false" parallel="tests" annotations="JDK">
-
-	<listeners>
-		<listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
-	</listeners>
+<suite verbose="1" name="Carina Demo Tests - API Sample" parallel="methods" thread-count="5">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="zafira_project" value="UNKNOWN"/>
 	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="api"/>
 
-	<!-- Example howto override default job thread_count via jobDSL parameter -->
-	<parameter name="jenkinsDefaultThreadCount" value="3"/>
-
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsSlackChannels" value="slack-test"/>
 	
-	<parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
-	<parameter name="jenkinsRegressionScheduling_nightly_regression" value="H 2 * * *"/>
+	<parameter name="jenkinsRegressionPipeline" value="api_regression, full_regression"/>
+	<parameter name="jenkinsRegressionScheduling_api_regression" value="H 2 * * *"/>
 
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>	
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>

@@ -1,21 +1,19 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Carina Demo Tests - Mobile Sample (Android)" verbose="1"
-	skipfailedinvocationcounts="false" junit="false" parallel="methods"
-	data-provider-thread-count="1" annotations="JDK">
+<suite name="Carina Demo Tests - Mobile Sample (Android)" verbose="1" parallel="methods">
 
 	<parameter name="suiteOwner" value="qpsdemo" />
 	<parameter name="zafira_project" value="UNKNOWN" />
+	<parameter name="provider" value="mcloud"/>
 	<parameter name="jenkinsJobName" value="Mobile-Android-Demo-Test" />
 	<parameter name="jenkinsJobType" value="android"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
 	<parameter name="jenkinsEnvironments" value="DEMO" />
 
-	<parameter name="stringParam::capabilities.app::path to carina demo mobile application on the appium server host" value="/opt/apk/carinademoexample.apk" />
+	<parameter name="stringParam::capabilities.app::path to carina demo mobile application" value="https://qaprosoft.s3-us-west-2.amazonaws.com/carinademoexample.apk" />
 
-	<parameter name="jenkinsDefaultThreadCount" value="1" />
 	<parameter name="jenkinsMobileDefaultPool" value="ANY" />
 
- 	<parameter name="jenkinsRegressionPipeline" value="full_regression" />
+ 	<parameter name="jenkinsRegressionPipeline" value="mobile_regression, full_regression" />
 	<parameter name="jenkinsPipelineEnvironments" value="DEMO" />
 	<parameter name="jenkinsJobExecutionOrder" value="3" />
 	<parameter name="jenkinsJobExecutionMode" value="continue" />

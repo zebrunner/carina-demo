@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - Web tests (Cucumber)" annotations="JDK">
+<suite verbose="1" name="Carina Demo Tests - Web tests (Cucumber)">
     <parameter name="suiteOwner" value="qpsdemo"/>
     <parameter name="zafira_project" value="UNKNOWN"/>
 
-    <parameter name="jenkinsJobName" value="Soap-Web-Test"/>
+    <parameter name="jenkinsJobName" value="Cucumber-Web-Test"/>
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>
 	

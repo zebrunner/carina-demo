@@ -1,11 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite verbose="1" name="Carina Demo Tests - SOAP Sample" skipfailedinvocationcounts="false" junit="false"
-       parallel="tests" annotations="JDK">
-
-    <listeners>
-        <listener class-name="com.qaprosoft.zafira.listener.ZafiraListener"/>
-    </listeners>
+<suite verbose="1" name="Carina Demo Tests - SOAP Sample" parallel="methods">
 
     <parameter name="suiteOwner" value="qpsdemo"/>
     <parameter name="zafira_project" value="UNKNOWN"/>
@@ -14,7 +9,7 @@
     <parameter name="jenkinsEnvironments" value="DEMO"/>
     <parameter name="jenkinsSlackChannels" value="slack-test,slack-test2"/>
 
-    <parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
+    <parameter name="jenkinsRegressionPipeline" value="api_regression, full_regression"/>
     <parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
     <parameter name="jenkinsJobExecutionMode" value="continue"/>
 
