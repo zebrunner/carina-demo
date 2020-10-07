@@ -39,7 +39,7 @@ public class WikipediaHomePage extends AbstractPage {
         setPageAbsoluteURL("https://www.wikipedia.org/");
     }
 
-    public String getWelcomeText() throws Exception {
+    public String getWelcomeText() {
         langListBtn.clickIfPresent();
         if (!langList.isEmpty()) {
             for (ExtendedWebElement languageBtn : langList) {
@@ -49,8 +49,6 @@ public class WikipediaHomePage extends AbstractPage {
                 }
             }
         }
-        else throw new Exception("List of languages is empty!");
-
         return null;
     }
 }

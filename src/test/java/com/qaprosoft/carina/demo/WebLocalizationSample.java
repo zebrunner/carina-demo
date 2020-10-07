@@ -17,7 +17,7 @@ public class WebLocalizationSample extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "qpsdemo")
-    public void testLanguages() throws Exception {
+    public void testLanguages() {
 
         WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
         wikipediaHomePage.open();
