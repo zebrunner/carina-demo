@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2018 QAPROSOFT (http://qaprosoft.com/).
+ * Copyright 2013-2020 QAPROSOFT (http://qaprosoft.com/).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,18 +21,12 @@ import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.ChromeCapabilities;
 import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.FirefoxCapabilities;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
-import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -44,34 +38,29 @@ import java.util.List;
  */
 public class WebMultipleBrowserTest extends AbstractTest {
 
-    WebDriver firefoxDriver = null;
     DesiredCapabilities ffCaps = new FirefoxCapabilities().getCapability("Firefox Test");
     String ffHost = "http://localhost:4444/wd/hub";
 
-    WebDriver chromeDriver = null;
     DesiredCapabilities chromeCaps = new ChromeCapabilities().getCapability("Chrome Test");
     String chromeHost = "http://localhost:4545/wd/hub";
 
-    @BeforeSuite
-    public void initializeDrivers() {
-        firefoxDriver = getDriver("firefox", ffCaps, ffHost);
-        chromeDriver = getDriver("chrome", chromeCaps, chromeHost);
-    }
-
     @Test
     @MethodOwner(owner = "qpsdemo")
-    public void chromeBrowserTest() {
-        HomePage chromeHomePage = new HomePage(chromeDriver);
+    public void multipleBrowserTest() {
+        HomePage chromeHomePage = new HomePage(getDriver("chrome", chromeCaps, chromeHost));
         chromeHomePage.open();
         Assert.assertTrue(chromeHomePage.isPageOpened(), "Chrome home page is not opened!");
 
-        NewsPage newsPage = chromeHomePage.getFooterMenu().openNewsPage();
+        HomePage firefoxHomePage = new HomePage(getDriver("firefox", ffCaps, ffHost));
+        firefoxHomePage.open();
+        Assert.assertTrue(firefoxHomePage.isPageOpened(), "Firefox home page is not opened!");
+        Assert.assertEquals(firefoxHomePage.getDriver().getTitle(), "GSMArena.com - mobile phone reviews, news, specifications and more...");
+        Screenshot.capture(firefoxHomePage.getDriver(), "Firefox capture!");
 
+        NewsPage newsPage = chromeHomePage.getFooterMenu().openNewsPage();
         final String searchQ = "iphone";
         List<NewsItem> news = newsPage.searchNews(searchQ);
-
-        Screenshot.capture(chromeDriver,"News page capture!");
-
+        Screenshot.capture(chromeHomePage.getDriver(), "Chrome capture!");
         Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
 
         for(NewsItem n : news) {
@@ -79,36 +68,5 @@ public class WebMultipleBrowserTest extends AbstractTest {
             Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
         }
 
-    }
-
-    @Test(dataProvider = "DP1")
-    @MethodOwner(owner = "qpsdemo")
-    public void firefoxBrowserTest(String brand, String model, String ram) {
-        HomePage firefoxHomePage = new HomePage(firefoxDriver);
-        firefoxHomePage.open();
-        Assert.assertTrue(firefoxHomePage.isPageOpened(), "Firefox home page is not opened!");
-
-        BrandModelsPage brandPage = firefoxHomePage.selectBrand(brand);
-
-        ModelInfoPage modelInfoPage = brandPage.selectModel(model);
-
-        Screenshot.capture(firefoxDriver,"News page capture!");
-
-        Assert.assertEquals(modelInfoPage.readRam(), ram);
-    }
-
-    @DataProvider(name = "DP1")
-    public static Object[][] dataProvider() {
-        return new Object[][]{
-                {"Xiaomi", "Poco C3", "3/4GB RAM"},
-                {"Samsung", "Galaxy M51", "6/8GB RAM"},
-                {"Asus", "Zenfone 6 ZS630KL", "6/8GB RAM"}
-        };
-    }
-
-    @AfterSuite
-    public void tearDown() {
-        firefoxDriver.quit();
-        chromeDriver.quit();
     }
 }

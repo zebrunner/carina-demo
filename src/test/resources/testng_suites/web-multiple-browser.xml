@@ -13,12 +13,7 @@
 
     <test name="Multiple Browser Test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.WebMultipleBrowserTest">
-                <methods>
-                    <include name="firefoxBrowserTest"/>
-                    <include name="chromeBrowserTest"/>
-                </methods>
-            </class>
+            <class name="com.qaprosoft.carina.demo.WebMultipleBrowserTest"/>
         </classes>
     </test>
 
