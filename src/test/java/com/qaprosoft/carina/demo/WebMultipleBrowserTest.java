@@ -38,20 +38,14 @@ import java.util.List;
  */
 public class WebMultipleBrowserTest extends AbstractTest {
 
-    DesiredCapabilities ffCaps = new FirefoxCapabilities().getCapability("Firefox Test");
-    String ffHost = "http://localhost:4444/wd/hub";
-
-    DesiredCapabilities chromeCaps = new ChromeCapabilities().getCapability("Chrome Test");
-    String chromeHost = "http://localhost:4545/wd/hub";
-
     @Test
     @MethodOwner(owner = "qpsdemo")
     public void multipleBrowserTest() {
-        HomePage chromeHomePage = new HomePage(getDriver("chrome", chromeCaps, chromeHost));
+        HomePage chromeHomePage = new HomePage(getDriver("chrome", new ChromeCapabilities().getCapability("Chrome Test")));
         chromeHomePage.open();
         Assert.assertTrue(chromeHomePage.isPageOpened(), "Chrome home page is not opened!");
 
-        HomePage firefoxHomePage = new HomePage(getDriver("firefox", ffCaps, ffHost));
+        HomePage firefoxHomePage = new HomePage(getDriver("firefox", new FirefoxCapabilities().getCapability("Firefox Test")));
         firefoxHomePage.open();
         Assert.assertTrue(firefoxHomePage.isPageOpened(), "Firefox home page is not opened!");
         Assert.assertEquals(firefoxHomePage.getDriver().getTitle(), "GSMArena.com - mobile phone reviews, news, specifications and more...");
