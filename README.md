@@ -1,4 +1,4 @@
-### Getting started(test)
+### Getting started(test)(2)
 * Install and configure JDK 1.8
 * Install and configure [Apache Maven 3.6.0+](http://maven.apache.org/)
 * Download and start the latest [Selenium standalone server](http://www.seleniumhq.org/download/)
