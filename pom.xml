@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <carina-core_version>7.0.0-SNAPSHOT</carina-core_version>
         <carina-cucumber_version>1.0.3</carina-cucumber_version>
-        <httpclient.version>4.5.3</httpclient.version>
         <java.version>1.8</java.version>
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
         <suite>helloWorld</suite>
@@ -148,28 +147,6 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.11.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>countryinfo.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?wsdl
-                            </url>
-                        </schema>
-                    </schemas>
                 </configuration>
             </plugin>
         </plugins>
