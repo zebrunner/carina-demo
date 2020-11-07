@@ -7,17 +7,17 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 
-import com.qaprosoft.carina.core.foundation.cucumber.CucumberRunner;
+import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-public class GSMArenaNewsSteps extends CucumberRunner {
+public class GSMArenaNewsSteps implements IDriverPool {
     
     HomePage homePage = null;
     NewsPage newsPage = null;
@@ -50,5 +50,10 @@ public class GSMArenaNewsSteps extends CucumberRunner {
             Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
         }
     }
+
+	@When("I open news #{int}")
+	public void iOpenParticularNews(int index) {
+		newsPage.openNewsByIndex(index);
+	}
 
 }
