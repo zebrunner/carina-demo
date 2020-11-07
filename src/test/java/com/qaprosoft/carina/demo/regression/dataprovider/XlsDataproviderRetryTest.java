@@ -15,6 +15,7 @@
  */
 package com.qaprosoft.carina.demo.regression.dataprovider;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -26,8 +27,9 @@ import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
+
 public class XlsDataproviderRetryTest extends AbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(XlsDataproviderRetryTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     
     @Test(dataProvider = "DataProvider")
     @MethodOwner(owner = "qpsdemo")

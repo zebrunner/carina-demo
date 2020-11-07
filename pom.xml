@@ -12,10 +12,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <carina-core_version>cucumber-7.0-SNAPSHOT</carina-core_version>
-        <carina-cucumber_version>1.0.17-SNAPSHOT</carina-cucumber_version>
-        <httpclient.version>4.5.3</httpclient.version>
-        <java.version>1.8</java.version>
+        <carina-core_version>7.0.0-beta1</carina-core_version>
+        <carina-cucumber_version>1.2-beta1</carina-cucumber_version>
+        <java.version>11</java.version>
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
         <suite>helloWorld</suite>
     </properties>
@@ -44,17 +43,32 @@
             <groupId>com.qaprosoft</groupId>
             <artifactId>carina-cucumber</artifactId>
             <version>${carina-cucumber_version}</version>
+        </dependency>        
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+        <!-- Log4j2 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.13.3</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.13.3</version>
         </dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.2.3</version>
-		</dependency>
+
+        <dependency>
+            <!--we need it to reuse benefits of zebrunner testng agent for webdriver sesssion(s) declaration -->
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.10.10</version>
+        </dependency>
+
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -106,21 +120,15 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.4</version>
+                <!-- plugin is required to refer to com.zebrunner.agent-core in maven-surefire-plugin argLine -->
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
                 <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
+                <execution>
+                    <id>getClasspathFilenames</id>
+                    <goals>
+                        <goal>properties</goal>
+                    </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -129,32 +137,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
+                    <!--argLine>-javaagent:${com.zebrunner:agent-core:jar}</argLine-->
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.14.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>countryinfo.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?wsdl
-                            </url>
-                        </schema>
-                    </schemas>
                 </configuration>
             </plugin>
         </plugins>

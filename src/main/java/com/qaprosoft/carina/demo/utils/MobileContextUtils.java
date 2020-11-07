@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.utils;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Set;
 
 import org.openqa.selenium.NotFoundException;
@@ -13,9 +14,10 @@ import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
 
 import io.appium.java_client.AppiumDriver;
 
+
 public class MobileContextUtils implements IDriverPool {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MobileContextUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private WebDriver getDriverSafe() {
         WebDriver driver = getDriver();
