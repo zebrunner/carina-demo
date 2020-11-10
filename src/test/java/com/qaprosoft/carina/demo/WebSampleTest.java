@@ -17,17 +17,16 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
-import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
-import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
@@ -44,13 +43,10 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  * @author qpsdemo
  */
 public class WebSampleTest extends AbstractTest {
-    @Test(dataProvider = "SingleDataProvider", description = "JIRA#AUTO-0008")
+    @Test(description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
-    @TestTag(name = "area test", value = "data provider")
-    @TestTag(name = "specialization", value = "xlsx")
-    @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "GSMArena", dsUid = "TUID", dsArgs = "brand, model, display, camera, ram, battery")
-    public void testModelSpecs(String brand, String model, String display, String camera, String ram, String battery) {
+    public void testModelSpecs() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -61,14 +57,14 @@ public class WebSampleTest extends AbstractTest {
         
         // Select phone brand
         homePage = new HomePage(getDriver());
-        BrandModelsPage productsPage = homePage.selectBrand(brand);
+        BrandModelsPage productsPage = homePage.selectBrand("Samsung");
         // Select phone model
-        ModelInfoPage productInfoPage = productsPage.selectModel(model);
+        ModelInfoPage productInfoPage = productsPage.selectModel("Galaxy S10+");
         // Verify phone specifications
-        Assert.assertEquals(productInfoPage.readDisplay(), display, "Invalid display info!");
-        Assert.assertEquals(productInfoPage.readCamera(), camera, "Invalid camera info!");
-        Assert.assertEquals(productInfoPage.readRam(), ram, "Invalid ram info!");
-        Assert.assertEquals(productInfoPage.readBattery(), battery, "Invalid battery info!");
+        Assert.assertEquals(productInfoPage.readDisplay(), "6.4\"", "Invalid display info!");
+        Assert.assertEquals(productInfoPage.readCamera(), "16MP", "Invalid camera info!");
+        Assert.assertEquals(productInfoPage.readRam(), "8/12GB RAM", "Invalid ram info!");
+        Assert.assertEquals(productInfoPage.readBattery(), "4100mAh", "Invalid battery info!");
     }
 
 
