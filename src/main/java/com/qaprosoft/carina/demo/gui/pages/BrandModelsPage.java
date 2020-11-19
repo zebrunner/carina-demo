@@ -29,6 +29,7 @@ public class BrandModelsPage extends AbstractPage {
 
     public BrandModelsPage(WebDriver driver) {
         super(driver);
+        compilation failure here!
     }
 
     public ModelInfoPage selectModel(String modelName) {
