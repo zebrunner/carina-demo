@@ -35,6 +35,7 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  */
 public class APISampleTest extends AbstractTest {
     String unusedVar="";
+    qwe
     
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")
