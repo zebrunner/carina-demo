@@ -7,7 +7,7 @@
 	<parameter name="jenkinsJobType" value="api"/>
 
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsSlackChannels" value="slack-test"/>
+	<parameter name="jenkinsSlackChannels" value="slack-test,slack-test2,spg-test"/>
 	
 	<parameter name="jenkinsRegressionPipeline" value="api_regression, full_regression"/>
 	<parameter name="jenkinsRegressionScheduling_api_regression" value="H 2 * * *"/>
