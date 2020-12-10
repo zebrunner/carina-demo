@@ -14,12 +14,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <carina-core_version>7.0.0-SNAPSHOT</carina-core_version>
         <carina-cucumber_version>1.0.3</carina-cucumber_version>
+        <zebrunner-agent.version>1.2.0.140-SNAPSHOT</zebrunner-agent.version>
         <java.version>11</java.version>
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
         <suite>helloWorld</suite>
     </properties>
 
     <repositories>
+	    <repository>
+	        <id>zebrunner_snapshots</id>
+	        <name>zebrunner Snapshots</name>
+	        <url>https://nexus.zebrunner.dev/repository/ce-snapshots/</url>
+	        <releases>
+	            <enabled>false</enabled>
+	        </releases>
+	        <snapshots>
+	            <enabled>true</enabled>
+	        </snapshots>
+	    </repository>
         <repository>
             <id>qaprosoft_snapshots</id>
             <name>Qaprosoft Snapshots</name>
@@ -66,9 +78,8 @@
             <!--we need it to reuse benefits of zebrunner testng agent for webdriver sesssion(s) declaration -->
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>1.10.10</version>
+            <version>1.10.18</version>
         </dependency>
-
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -119,8 +130,8 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-            <plugin>
                 <!-- plugin is required to refer to com.zebrunner.agent-core in maven-surefire-plugin argLine -->
+            <!--plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.1.2</version>
                 <executions>
@@ -131,12 +142,13 @@
                     </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
+                    <argLine>-javaagent:${settings.localRepository}/com/zebrunner/agent-core/${zebrunner-agent.version}/agent-core-${zebrunner-agent.version}.jar</argLine>
                     <!--argLine>-javaagent:${com.zebrunner:agent-core:jar}</argLine-->
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
