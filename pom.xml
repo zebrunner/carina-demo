@@ -148,7 +148,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
-                    <!--argLine>-javaagent:${settings.localRepository}/com/zebrunner/agent-core/${zebrunner-agent.version}/agent-core-${zebrunner-agent.version}.jar</argLine-->
+                    <argLine>-javaagent:${settings.localRepository}/com/zebrunner/agent-core/${zebrunner-agent.version}/agent-core-${zebrunner-agent.version}.jar</argLine>
                     <!--argLine>-javaagent:${com.zebrunner:agent-core:jar}</argLine-->
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
