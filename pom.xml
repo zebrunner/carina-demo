@@ -126,8 +126,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
                 <!-- plugin is required to refer to com.zebrunner.agent-core in maven-surefire-plugin argLine -->
