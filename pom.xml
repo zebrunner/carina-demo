@@ -14,9 +14,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <carina-core_version>7.0.0-SNAPSHOT</carina-core_version>
         <carina-cucumber_version>1.0.3</carina-cucumber_version>
-        <zebrunner-agent.version>1.2.0.140-SNAPSHOT</zebrunner-agent.version>
         <java.version>11</java.version>
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
+        <zebrunner-agent.version>LATEST</zebrunner-agent.version>
         <suite>helloWorld</suite>
     </properties>
 
@@ -120,42 +120,55 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-                <!-- plugin is required to refer to com.zebrunner.agent-core in maven-surefire-plugin argLine -->
-            <!--plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.2</version>
-                <executions>
-                <execution>
-                    <id>getClasspathFilenames</id>
-                    <goals>
-                        <goal>properties</goal>
-                    </goals>
-                    </execution>
-                </executions>
-            </plugin-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
-                <configuration>
-                    <argLine>-javaagent:${settings.localRepository}/com/zebrunner/agent-core/${zebrunner-agent.version}/agent-core-${zebrunner-agent.version}.jar</argLine>
-                    <!--argLine>-javaagent:${com.zebrunner:agent-core:jar}</argLine-->
-                    <useSystemClassLoader>false</useSystemClassLoader>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
-            </plugin>
-        </plugins>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.8.1</version>
+			<configuration>
+				<source>${java.version}</source>
+				<target>${java.version}</target>
+			</configuration>
+		</plugin>
+		<!-- plugin required to add zebrunner-agent depenency via javaagent argLine -->
+		<!-- For Eclipse install maven-dependency-plugin connector!  -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <artifactItems>
+            <artifactItem>
+              <groupId>com.zebrunner</groupId>
+              <artifactId>agent-core</artifactId>
+               <version>${zebrunner-agent.version}</version>
+              <outputDirectory>${project.build.directory}/agent</outputDirectory>
+              <destFileName>zebrunner-agent.jar</destFileName>
+            </artifactItem>
+          </artifactItems>
+        </configuration>
+      </plugin>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-surefire-plugin</artifactId>
+		<version>3.0.0-M4</version>
+		<configuration>
+			<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar</argLine>
+			<useSystemClassLoader>false</useSystemClassLoader>
+			<suiteXmlFiles>
+				<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
+			</suiteXmlFiles>
+		</configuration>
+	</plugin>
+	</plugins>
     </build>
 </project>
