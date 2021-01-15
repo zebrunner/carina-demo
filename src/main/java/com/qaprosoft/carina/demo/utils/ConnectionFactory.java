@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -43,10 +44,14 @@ public class ConnectionFactory {
 	}
 
 	public static UserMapper getUserMapper() {
-		return ConnectionFactory.getSqlSessionFactory().openSession(true).getMapper(UserMapper.class);
+		try (SqlSession sqlSession = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
+			return sqlSession.getMapper(UserMapper.class);
+		}
 	}
 
 	public static UserPreferenceMapper getUserPreferenceMapperMapper() {
-		return ConnectionFactory.getSqlSessionFactory().openSession(true).getMapper(UserPreferenceMapper.class);
+		try (SqlSession sqlSession = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
+			return sqlSession.getMapper(UserPreferenceMapper.class);
+		}
 	}
 }
