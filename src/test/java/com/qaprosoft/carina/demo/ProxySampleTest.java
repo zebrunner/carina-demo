@@ -17,12 +17,8 @@ package com.qaprosoft.carina.demo;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -30,7 +26,6 @@ import com.qaprosoft.carina.browsermobproxy.ProxyPool;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.zebrunner.agent.core.registrar.Artifact;
@@ -56,8 +51,16 @@ public class ProxySampleTest extends AbstractTest {
         proxy.newHar();
     }
     
-    @AfterTest(alwaysRun = true)
-    public void generateHar() {
+    @Test(description = "JIRA#AUTO-0010")
+    @MethodOwner(owner = "qpsdemo")
+    public void testNewsSearch() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+        
+        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
+        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
+        
         // Saving har to a file...
         String name = "ProxyReport.har";
         File file = new File(name);
@@ -69,18 +72,6 @@ public class ProxySampleTest extends AbstractTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    
-    @Test(description = "JIRA#AUTO-0010")
-    @MethodOwner(owner = "qpsdemo")
-    public void testNewsSearch() {
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
-        
-        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
-        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
-        
     }
 
 
