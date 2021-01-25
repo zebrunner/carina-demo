@@ -17,22 +17,11 @@
 		<carina-cucumber_version>1.2-beta1</carina-cucumber_version>
 		<java.version>11</java.version>
 		<spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-		<zebrunner-agent.version>LATEST</zebrunner-agent.version>
+		<zebrunner-agent.version>1.1.1</zebrunner-agent.version>
 		<suite>helloWorld</suite>
 	</properties>
 
 	<repositories>
-		<repository>
-			<id>zebrunner_snapshots</id>
-			<name>zebrunner Snapshots</name>
-			<url>https://nexus.zebrunner.dev/repository/ce-snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
 		<repository>
 			<id>qaprosoft_snapshots</id>
 			<name>Qaprosoft Snapshots</name>
