@@ -13,11 +13,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>7.0.0-SNAPSHOT</carina-core_version>
-		<carina-cucumber_version>1.2-beta1</carina-cucumber_version>
+		<carina-core_version>7.0.1-SNAPSHOT</carina-core_version>
+		<carina-cucumber_version>7.0.0</carina-cucumber_version>
 		<java.version>11</java.version>
 		<spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-		<zebrunner-agent.version>1.1.1</zebrunner-agent.version>
+		<zebrunner-agent.version>1.1.2.159-SNAPSHOT</zebrunner-agent.version>
 		<suite>helloWorld</suite>
 	</properties>
 
@@ -26,6 +26,17 @@
 			<id>qaprosoft_snapshots</id>
 			<name>Qaprosoft Snapshots</name>
 			<url>https://ci.qaprosoft.com/nexus/content/repositories/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>zebrunner_snapshots</id>
+			<name>zebrunner Snapshots</name>
+			<url>https://nexus.zebrunner.dev/repository/ce-snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
