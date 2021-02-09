@@ -17,7 +17,10 @@ package com.qaprosoft.carina.demo;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -39,6 +42,8 @@ import net.lightbody.bmp.proxy.CaptureType;
  * @author qpsdemo
  */
 public class ProxySampleTest extends AbstractTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    
     BrowserMobProxy proxy;
     
     @BeforeTest(alwaysRun = true)
@@ -51,7 +56,7 @@ public class ProxySampleTest extends AbstractTest {
         proxy.newHar();
     }
     
-    @Test(description = "JIRA#AUTO-0010")
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     public void testNewsSearch() {
         HomePage homePage = new HomePage(getDriver());
@@ -70,7 +75,7 @@ public class ProxySampleTest extends AbstractTest {
             proxy.getHar().writeTo(file);
             Artifact.attachToTest(name, file);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Unable to generate har archive!", e);
         }
     }
 
