@@ -22,7 +22,7 @@ import java.lang.invoke.MethodHandles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.browsermobproxy.ProxyPool;
@@ -46,7 +46,7 @@ public class ProxySampleTest extends AbstractTest {
     
     BrowserMobProxy proxy;
     
-    @BeforeTest(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void startProxy()
     {
         R.CONFIG.put("browsermob_proxy", "true");
