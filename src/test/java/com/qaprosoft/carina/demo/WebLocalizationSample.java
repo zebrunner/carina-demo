@@ -46,8 +46,6 @@ public class WebLocalizationSample extends AbstractTest {
      * _config.properties should be filled correctly.
      * For example: for Japan language you should use:
      * locale=ja_JP
-     * language=ja_JP
-     * browser_language=ja_JP
      *
      * add_new_localization=true - for creation and false for checking.
      * add_new_localization_path=./src/main/resources/L10N/ - path for newly created l10n file
