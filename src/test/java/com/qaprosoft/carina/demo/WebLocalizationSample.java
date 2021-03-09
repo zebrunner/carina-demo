@@ -41,16 +41,16 @@ public class WebLocalizationSample extends AbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     /**
-     * Do not execute on CI. Config properties should be filled correctly.
+     * Do not execute on CI. _config.properties should be filled correctly.
      * For example: for Japan language you should use:
      * locale=ja_JP
      * language=ja_JP
      * browser_language=ja_JP
      *
      * add_new_localization=true - for creation and false for checking.
-     * add_new_localization_path=./src/main/resources/L10N/
-     * add_new_localization_encoding=ISO-2022-JP
-     * add_new_localization_property_name=locale_
+     * add_new_localization_path=./src/main/resources/L10N/ - path for newly created l10n file
+     * add_new_localization_encoding=UTF-8 (use ISO-2022-JP if you can't have UTF-8 property file or there are issues with comparison)
+     * add_new_localization_property_name=new_locale_ - name of l10n file. Copy all required values in your existing locale_ja_JP.properties
      * Read more details in com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser
      */
     public void testAddNewLanguages() {
