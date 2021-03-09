@@ -36,6 +36,10 @@ public class WebLocalizationSample extends AbstractTest {
         String expectedWelcomeText = L10N.getText("HomePage.welcomeText");
 
         Assert.assertEquals(welcomeText, expectedWelcomeText, "Wikipedia welcome text was not the expected.");
+
+        wikipediaHomePage.clickDiscussionBtn();
+
+        pause(5);
     }
 
     @Test

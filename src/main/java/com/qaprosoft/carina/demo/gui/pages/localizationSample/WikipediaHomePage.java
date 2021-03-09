@@ -45,6 +45,10 @@ public class WikipediaHomePage extends AbstractPage {
     @FindBy(id = "pt-createaccount")
     private ExtendedWebElement createAccountElem;
 
+    @FindBy(linkText = "{L10N:discussionElem}")
+    private ExtendedWebElement discussionBtn;
+
+
     public WikipediaHomePage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("https://www.wikipedia.org/");
@@ -64,6 +68,10 @@ public class WikipediaHomePage extends AbstractPage {
             }
         }
         return null;
+    }
+
+    public void clickDiscussionBtn() {
+        discussionBtn.click();
     }
 
     public void openLangList() {
