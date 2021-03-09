@@ -16,12 +16,14 @@
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
 import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
+import com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Locale;
 
 public class WikipediaHomePage extends AbstractPage {
 
@@ -34,6 +36,15 @@ public class WikipediaHomePage extends AbstractPage {
     @FindBy(id = "{L10N:HomePage.welcomeTextId}")
     private ExtendedWebElement welcomeText;
 
+    @FindBy(id = "pt-anontalk")
+    private ExtendedWebElement discussionElem;
+
+    @FindBy(id = "pt-anoncontribs")
+    private ExtendedWebElement contribElem;
+
+    @FindBy(id = "pt-createaccount")
+    private ExtendedWebElement createAccountElem;
+
     public WikipediaHomePage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("https://www.wikipedia.org/");
@@ -45,10 +56,32 @@ public class WikipediaHomePage extends AbstractPage {
             for (ExtendedWebElement languageBtn : langList) {
                 if (languageBtn.getAttribute("lang").equals(L10N.getDefaultLocale().getLanguage())) {
                     languageBtn.click();
-                    return welcomeText.getText();
+                    if (welcomeText.isPresent()) {
+                        return welcomeText.getText();
+                    }
+                    return "";
                 }
             }
         }
         return null;
+    }
+
+    public void openLangList() {
+        langListBtn.clickIfPresent();
+    }
+
+    public boolean checkLocalization(Locale actualLocale) {
+        L10Nparser.setActualLocale(actualLocale);
+        boolean ret = L10Nparser.checkLocalizationText(contribElem, "HomePage.contribElem");
+        L10Nparser.saveLocalization();
+        return ret;
+    }
+
+    public boolean checkMultipleLocalization(Locale actualLocale) {
+        ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem, welcomeText};
+        L10Nparser.setActualLocale(actualLocale);
+        boolean ret = L10Nparser.checkMultipleLocalization(localizationCheckList, false);
+        L10Nparser.saveLocalization();
+        return ret;
     }
 }
