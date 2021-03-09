@@ -38,14 +38,12 @@ public class WebLocalizationSample extends AbstractTest {
         Assert.assertEquals(welcomeText, expectedWelcomeText, "Wikipedia welcome text was not the expected.");
 
         wikipediaHomePage.clickDiscussionBtn();
-
-        pause(5);
     }
 
     @Test
     @MethodOwner(owner = "qpsdemo")
     /**
-     * Do not execute on CI. _config.properties should be filled correctly.
+     * _config.properties should be filled correctly.
      * For example: for Japan language you should use:
      * locale=ja_JP
      * language=ja_JP
@@ -53,7 +51,7 @@ public class WebLocalizationSample extends AbstractTest {
      *
      * add_new_localization=true - for creation and false for checking.
      * add_new_localization_path=./src/main/resources/L10N/ - path for newly created l10n file
-     * add_new_localization_encoding=UTF-8 (use ISO-2022-JP if you can't have UTF-8 property file or there are issues with comparison)
+     * add_new_localization_encoding=UTF-8 (use ISO-2022-JP if you can't have UTF-8 property file or there are issues with comparison or interaction)
      * add_new_localization_property_name=new_locale_ - name of l10n file. Copy all required values in your existing locale_ja_JP.properties
      * Read more details in com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser
      */
