@@ -70,8 +70,13 @@ public class WebLocalizationSample extends AbstractTest {
         Locale actualLocale = L10Nparser.getActualLocale();
         LOGGER.info(actualLocale.toString());
 
+        L10Nparser.setActualLocale(actualLocale);
+
         sa.assertTrue(wikipediaHomePage.checkLocalization(actualLocale), "Localization error: " + L10Nparser.getAssertErrorMsg());
+
         sa.assertTrue(wikipediaHomePage.checkMultipleLocalization(actualLocale), "Localization error: " + L10Nparser.getAssertErrorMsg());
+
+        L10Nparser.saveLocalization();
         sa.assertAll();
     }
 

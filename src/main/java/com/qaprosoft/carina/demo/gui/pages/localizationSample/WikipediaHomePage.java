@@ -33,7 +33,7 @@ public class WikipediaHomePage extends AbstractPage {
     @FindBy(id = "js-lang-list-button")
     private ExtendedWebElement langListBtn;
 
-    @FindBy(id = "{L10N:HomePage.welcomeTextId}")
+    @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
     private ExtendedWebElement welcomeText;
 
     @FindBy(id = "pt-anontalk")
@@ -71,17 +71,11 @@ public class WikipediaHomePage extends AbstractPage {
     }
 
     public boolean checkLocalization(Locale actualLocale) {
-        L10Nparser.setActualLocale(actualLocale);
-        boolean ret = L10Nparser.checkLocalizationText(contribElem, "HomePage.contribElem");
-        L10Nparser.saveLocalization();
-        return ret;
+        return L10Nparser.checkLocalizationText(contribElem, "HomePage.contribElem");
     }
 
     public boolean checkMultipleLocalization(Locale actualLocale) {
         ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem, welcomeText};
-        L10Nparser.setActualLocale(actualLocale);
-        boolean ret = L10Nparser.checkMultipleLocalization(localizationCheckList, false);
-        L10Nparser.saveLocalization();
-        return ret;
+        return L10Nparser.checkMultipleLocalization(localizationCheckList, false);
     }
 }
