@@ -78,11 +78,11 @@ public class WikipediaHomePage extends AbstractPage {
         langListBtn.clickIfPresent();
     }
 
-    public boolean checkLocalization(Locale actualLocale) {
+    public boolean checkLocalization() {
         return L10Nparser.checkLocalizationText(contribElem, "HomePage.contribElem");
     }
 
-    public boolean checkMultipleLocalization(Locale actualLocale) {
+    public boolean checkMultipleLocalization() {
         ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem, welcomeText};
         return L10Nparser.checkMultipleLocalization(localizationCheckList, false);
     }

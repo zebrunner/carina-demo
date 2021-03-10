@@ -1,19 +1,19 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
-import com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser;
-import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
+import java.lang.invoke.MethodHandles;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.lang.invoke.MethodHandles;
-import java.util.Locale;
+import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
+import com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser;
+import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
 
 /**
  * This sample shows how create Web Localization test with Resource Bundle.
@@ -22,7 +22,6 @@ import java.util.Locale;
  */
 
 public class WebLocalizationSample extends AbstractTest {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
@@ -34,9 +33,12 @@ public class WebLocalizationSample extends AbstractTest {
 
         String welcomeText = wikipediaHomePage.getWelcomeText();
         String expectedWelcomeText = L10N.getText("HomePage.welcomeText");
-
         Assert.assertEquals(welcomeText, expectedWelcomeText, "Wikipedia welcome text was not the expected.");
 
+        
+        L10Nparser.setActualLocale(Configuration.get(Configuration.Parameter.LOCALE));
+        Assert.assertTrue(wikipediaHomePage.checkMultipleLocalization(), L10Nparser.getAssertErrorMsg());
+        
         wikipediaHomePage.clickDiscussionBtn();
     }
 
@@ -67,14 +69,8 @@ public class WebLocalizationSample extends AbstractTest {
         // Can be changed dynamically during test execution.
         L10Nparser.setActualLocale(Configuration.get(Configuration.Parameter.LOCALE));
 
-        Locale actualLocale = L10Nparser.getActualLocale();
-        LOGGER.info(actualLocale.toString());
-
-        L10Nparser.setActualLocale(actualLocale);
-
-        sa.assertTrue(wikipediaHomePage.checkLocalization(actualLocale), "Localization error: " + L10Nparser.getAssertErrorMsg());
-
-        sa.assertTrue(wikipediaHomePage.checkMultipleLocalization(actualLocale), "Localization error: " + L10Nparser.getAssertErrorMsg());
+        sa.assertTrue(wikipediaHomePage.checkLocalization(), "Localization error: " + L10Nparser.getAssertErrorMsg());
+        sa.assertTrue(wikipediaHomePage.checkMultipleLocalization(), "Localization error: " + L10Nparser.getAssertErrorMsg());
 
         L10Nparser.saveLocalization();
         sa.assertAll();
