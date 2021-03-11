@@ -16,14 +16,12 @@
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
 import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
-import com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.Locale;
 
 public class WikipediaHomePage extends AbstractPage {
 
@@ -33,57 +31,26 @@ public class WikipediaHomePage extends AbstractPage {
     @FindBy(id = "js-lang-list-button")
     private ExtendedWebElement langListBtn;
 
-    @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
-    private ExtendedWebElement welcomeText;
-
-    @FindBy(id = "pt-anontalk")
-    private ExtendedWebElement discussionElem;
-
-    @FindBy(id = "pt-anoncontribs")
-    private ExtendedWebElement contribElem;
-
-    @FindBy(id = "pt-createaccount")
-    private ExtendedWebElement createAccountElem;
-
-    @FindBy(linkText = "{L10N:discussionElem}")
-    private ExtendedWebElement discussionBtn;
-
-
     public WikipediaHomePage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("https://www.wikipedia.org/");
     }
 
-    public String getWelcomeText() {
-        langListBtn.clickIfPresent();
+    public WikipediaLocalePage goToWikipediaLocalePage(WebDriver driver) {
+        openLangList();
         if (!langList.isEmpty()) {
             for (ExtendedWebElement languageBtn : langList) {
                 if (languageBtn.getAttribute("lang").equals(L10N.getDefaultLocale().getLanguage())) {
                     languageBtn.click();
-                    if (welcomeText.isPresent()) {
-                        return welcomeText.getText();
-                    }
-                    return "";
+                    return new WikipediaLocalePage(driver);
                 }
             }
         }
-        return null;
-    }
-
-    public void clickDiscussionBtn() {
-        discussionBtn.click();
+        throw new RuntimeException("No language ref was found");
     }
 
     public void openLangList() {
         langListBtn.clickIfPresent();
     }
 
-    public boolean checkLocalization() {
-        return L10Nparser.checkLocalizationText(contribElem, "HomePage.contribElem");
-    }
-
-    public boolean checkMultipleLocalization() {
-        ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem, welcomeText};
-        return L10Nparser.checkMultipleLocalization(localizationCheckList, false);
-    }
 }
