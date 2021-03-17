@@ -16,6 +16,7 @@
     <parameter name="jenkinsJobExecutionMode" value="continue"/>
 
     <parameter name="choiceParam::locale::supported locales in example" value="en_US, es_ES, de_DE, ja_JP, zh_CN, ru_RU, hu_HU" />
+    <parameter name="jenkinsAutoScreenshot" value="true"/>
 
     <test name="Wikipedia Localization Test">
         <classes>
