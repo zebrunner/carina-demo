@@ -18,6 +18,7 @@
 	<parameter name="jenkinsJobExecutionOrder" value="3" />
 	<parameter name="jenkinsJobExecutionMode" value="continue" />
 	<parameter name="auto_screenshot" value="false" />
+	<parameter name="jenkinsAutoScreenshot" value="true"/>
 
 	<test name="Mobile test">
 		<classes>

@@ -6,7 +6,8 @@
     <parameter name="jenkinsJobName" value="Cucumber-Web-Test"/>
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>
-	
+    <parameter name="jenkinsAutoScreenshot" value="true"/>
+
     <test verbose="1"
           name="GSM Arena News - Web tests by cucumber">
         <classes>

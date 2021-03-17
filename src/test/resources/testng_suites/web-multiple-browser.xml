@@ -10,6 +10,7 @@
 
     <parameter name="jenkinsRegressionPipeline" value="web_regression"/>
     <parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
+    <parameter name="jenkinsAutoScreenshot" value="true"/>
 
     <test name="Multiple Browser Test">
         <classes>

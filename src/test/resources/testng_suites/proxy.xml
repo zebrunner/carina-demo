@@ -13,6 +13,7 @@
 
 	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
+	<parameter name="jenkinsAutoScreenshot" value="true"/>
 
 	<test name="GSM arena proxy web test">
 		<classes>
