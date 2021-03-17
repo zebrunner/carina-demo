@@ -25,7 +25,6 @@ import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaLocalePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -48,17 +47,21 @@ public class WebLocalizationSample extends AbstractTest {
         WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
         wikipediaHomePage.open();
 
+        SoftAssert softAssert = new SoftAssert();
+
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
         String welcomeText = wikipediaLocalePage.getWelcomeText();
         String expectedWelcomeText = L10N.getText("HomePage.welcomeText");
 
-        Assert.assertEquals(welcomeText, expectedWelcomeText.trim(), "Wikipedia welcome text was not the expected.");
+        softAssert.assertEquals(welcomeText, expectedWelcomeText.trim(), "Wikipedia welcome text was not the expected.");
 
         wikipediaLocalePage.clickDiscussionBtn();
         String expectedDiscussionText = L10N.getText("discussionElem");
         String discussionText = wikipediaLocalePage.getDiscussionText();
 
-        Assert.assertEquals(discussionText,expectedDiscussionText.trim(),"Wikipedia discussion text was not the expected");
+        softAssert.assertEquals(discussionText,expectedDiscussionText.trim(),"Wikipedia discussion text was not the expected");
+
+        softAssert.assertAll();
     }
 
     @Test

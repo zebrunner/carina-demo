@@ -23,7 +23,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class WikipediaLocalePage extends AbstractPage {
 
-    @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}']")
+    @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
     private ExtendedWebElement welcomeText;
 
     @FindBy(id = "pt-anoncontribs")
