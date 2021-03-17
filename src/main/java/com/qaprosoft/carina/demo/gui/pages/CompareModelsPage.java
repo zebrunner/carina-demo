@@ -18,6 +18,9 @@ package com.qaprosoft.carina.demo.gui.pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -28,11 +31,20 @@ import com.qaprosoft.carina.demo.gui.components.compare.CondidateBlock;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 
 public class CompareModelsPage extends AbstractPage {
+
+    private final String comparePageUrl = "https://www.gsmarena.com/compare.php3";
+
     @FindBy(xpath = "//div[contains(@class, 'candidate-search')]")
     private List<CondidateBlock> condidateBlocks;
 
+    @FindBy(className = "compare-candidates")
+    private ExtendedWebElement compareMenu;
+
     public CompareModelsPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(compareMenu);
+        setPageAbsoluteURL(comparePageUrl);
+        //setPageURL("/compare.php3");
     }
 
     public List<ModelSpecs> compareModels(String... models) {
