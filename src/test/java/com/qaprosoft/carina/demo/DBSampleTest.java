@@ -53,7 +53,7 @@ public class DBSampleTest extends AbstractTest {
 	};
 
 	@Test
-	@TestLabel(name = "feature", value = "bd")
+	@TestLabel(name = "feature", value = "database")
 	public void createUser() {
 		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
@@ -63,7 +63,7 @@ public class DBSampleTest extends AbstractTest {
 	}
 
 	@Test(dependsOnMethods = "createUser")
-	@TestLabel(name = "feature", value = "bd")
+	@TestLabel(name = "feature", value = "database")
 	public void createUserPreference() {
 		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
@@ -75,7 +75,7 @@ public class DBSampleTest extends AbstractTest {
 	}
 
 	@Test(dependsOnMethods = "createUserPreference")
-	@TestLabel(name = "feature", value = "bd")
+	@TestLabel(name = "feature", value = "database")
 	public void updateUser() {
 		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
@@ -89,7 +89,7 @@ public class DBSampleTest extends AbstractTest {
 	}
 
 	@Test(dependsOnMethods = "updateUser")
-	@TestLabel(name = "feature", value = "bd")
+	@TestLabel(name = "feature", value = "database")
 	public void deleteUser() {
 		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);

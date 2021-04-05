@@ -46,8 +46,7 @@ public class WebSampleTest extends AbstractTest {
     @Test(description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
-    @TestLabel(name = "area test", value = "web")
-    @TestLabel(name = "test type", value = "regression")
+    @TestLabel(name = "area test", value = {"web", "regression"})
     public void testModelSpecs() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
@@ -73,8 +72,7 @@ public class WebSampleTest extends AbstractTest {
     @Test(description = "JIRA#AUTO-0009")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
-    @TestLabel(name = "area test", value = "web")
-    @TestLabel(name = "test type", value = "acceptance")
+    @TestLabel(name = "area test", value = {"web", "acceptance"})
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
@@ -94,8 +92,7 @@ public class WebSampleTest extends AbstractTest {
     
     @Test(description = "JIRA#AUTO-0010")
     @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "area test", value = "mobile")
-    @TestLabel(name = "test type", value = "acceptance")
+    @TestLabel(name = "area test", value = {"mobile", "acceptance"})
     public void testNewsSearch() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
