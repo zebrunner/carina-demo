@@ -46,7 +46,7 @@ public class WebSampleTest extends AbstractTest {
     @Test(description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
-    @TestLabel(name = "area test", value = {"web", "regression"})
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testModelSpecs() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
@@ -60,19 +60,19 @@ public class WebSampleTest extends AbstractTest {
         homePage = new HomePage(getDriver());
         BrandModelsPage productsPage = homePage.selectBrand("Samsung");
         // Select phone model
-        ModelInfoPage productInfoPage = productsPage.selectModel("Galaxy S10+");
+        ModelInfoPage productInfoPage = productsPage.selectModel("Galaxy A52 5G");
         // Verify phone specifications
-        Assert.assertEquals(productInfoPage.readDisplay(), "6.4\"", "Invalid display info!");
-        Assert.assertEquals(productInfoPage.readCamera(), "16MP", "Invalid camera info!");
-        Assert.assertEquals(productInfoPage.readRam(), "8/12GB RAM", "Invalid ram info!");
-        Assert.assertEquals(productInfoPage.readBattery(), "4100mAh", "Invalid battery info!");
+        Assert.assertEquals(productInfoPage.readDisplay(), "6.5\"", "Invalid display info!");
+        Assert.assertEquals(productInfoPage.readCamera(), "64MP", "Invalid camera info!");
+        Assert.assertEquals(productInfoPage.readRam(), "6/8GB RAM", "Invalid ram info!");
+        Assert.assertEquals(productInfoPage.readBattery(), "4500mAh", "Invalid battery info!");
     }
 
 
     @Test(description = "JIRA#AUTO-0009")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
-    @TestLabel(name = "area test", value = {"web", "acceptance"})
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
