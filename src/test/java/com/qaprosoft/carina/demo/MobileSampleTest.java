@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo;
 
+import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testLoginUser() {
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
@@ -38,6 +40,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
 	@Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         LoginPageBase loginPage = welcomePage.clickNextBtn();
@@ -58,6 +61,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
     @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = {"mobile", "acceptance"})
     public void testUIElements() {
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         LoginPageBase loginPage = welcomePage.clickNextBtn();
