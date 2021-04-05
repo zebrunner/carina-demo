@@ -18,6 +18,7 @@ package com.qaprosoft.carina.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -49,7 +50,7 @@ public class WebSampleSingleDriver extends AbstractTest {
     
     @Test
     @MethodOwner(owner = "qpsdemo")
-    @TestTag(name = "area test", value = "web")
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testOpenPage() {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
@@ -57,7 +58,7 @@ public class WebSampleSingleDriver extends AbstractTest {
     
     @Test(dependsOnMethods="testOpenPage") //for dependent tests Carina keeps driver sessions by default
     @MethodOwner(owner = "qpsdemo")
-    @TestTag(name = "area test", value = "web")
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testOpenCompare() {
         // Open GSM Arena home page and verify page is opened
         // Open model compare page
@@ -69,7 +70,7 @@ public class WebSampleSingleDriver extends AbstractTest {
     
     @Test(dependsOnMethods="testOpenCompare") //for dependent tests Carina keeps driver sessions by default
     @MethodOwner(owner = "qpsdemo")
-    @TestTag(name = "area test", value = "web")
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testReadSpecs() {
         // Compare 3 models
         specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7 Pro");
@@ -77,7 +78,7 @@ public class WebSampleSingleDriver extends AbstractTest {
     
     @Test(dependsOnMethods="testReadSpecs") //for dependent tests Carina keeps driver sessions by default
     @MethodOwner(owner = "qpsdemo")
-    @TestTag(name = "area test", value = "web")
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testCompareModels() {
         // Verify model announced dates
         Assert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2016, March 31");

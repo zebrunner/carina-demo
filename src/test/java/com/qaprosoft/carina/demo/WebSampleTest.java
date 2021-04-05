@@ -92,7 +92,7 @@ public class WebSampleTest extends AbstractTest {
     
     @Test(description = "JIRA#AUTO-0010")
     @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "area test", value = {"mobile", "acceptance"})
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testNewsSearch() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();

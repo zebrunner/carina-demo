@@ -28,7 +28,6 @@ import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 
 /**
  * This sample shows how to use data-providers.
@@ -90,7 +89,6 @@ public class DataprovidersSampleTest extends AbstractTest {
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
     @TestRailCases(testCasesId = "44")
-    @TestTag(name = "area multi", value = "data provider multiply")
     public void testMuliplyOperation(String TUID, String testRailColumn, int a, int b, int c) {
         setCases(testRailColumn.split(","));
         int actual = a * b;
