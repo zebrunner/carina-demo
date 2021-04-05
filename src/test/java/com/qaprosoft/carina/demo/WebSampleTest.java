@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
+import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
@@ -26,7 +27,6 @@ import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
@@ -46,6 +46,7 @@ public class WebSampleTest extends AbstractTest {
     @Test(description = "JIRA#AUTO-0008")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
+    @TestLabel(name = "area test", value = {"web", "regression"})
     public void testModelSpecs() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
@@ -71,7 +72,7 @@ public class WebSampleTest extends AbstractTest {
     @Test(description = "JIRA#AUTO-0009")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
-    @TestTag(name = "area test", value = "web")
+    @TestLabel(name = "area test", value = {"web", "acceptance"})
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
@@ -91,6 +92,7 @@ public class WebSampleTest extends AbstractTest {
     
     @Test(description = "JIRA#AUTO-0010")
     @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "area test", value = {"mobile", "acceptance"})
     public void testNewsSearch() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
