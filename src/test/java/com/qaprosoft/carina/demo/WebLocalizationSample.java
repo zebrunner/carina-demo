@@ -23,6 +23,7 @@ import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
 import com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaLocalePage;
+import com.zebrunner.agent.core.annotation.TestLabel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -42,6 +43,7 @@ public class WebLocalizationSample extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
     public void testLanguages() {
 
         WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
@@ -66,6 +68,7 @@ public class WebLocalizationSample extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
     /**
      * _config.properties should be filled correctly.
      * For example: for Japan language you should use:
