@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,8 +15,12 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
+
     @FindBy(id = "name")
     private ExtendedWebElement nameInputField;
+
+    @FindBy(xpath = "//*[@text='CARINA']")
+    private ExtendedWebElement textFromLoginPage;
 
     @FindBy(id = "password")
     private ExtendedWebElement passwordInputField;
@@ -36,11 +41,31 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         super(driver);
     }
 
+    public boolean isFieldTypeNamePresented() {
+        return nameInputField.isElementPresent();
+    }
+
     @Override
     public void typeName(String name) {
         nameInputField.type(name);
         hideKeyboard();
     }
+
+
+    public String getTypeName() {
+        return nameInputField.getText();
+    }
+
+    public String getTypePassword() {
+        return passwordInputField.getText();
+    }
+
+
+    @Override
+    public boolean isFieldTypePasswordPresented() {
+        return passwordInputField.isElementPresent();
+    }
+
 
     @Override
     public void typePassword(String password) {
@@ -48,9 +73,49 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public void selectMaleSex() {
-        maleRadioBtn.click();
+    public boolean isMaleRadioBtnPresented() {
+        return maleRadioBtn.isElementPresent();
     }
+
+    @Override
+    public boolean isMaleRadioBtnUnchecked() {
+        maleRadioBtn.uncheck();
+        return false;
+    }
+
+    @Override
+    public boolean isFemaleRadioBtnChecked() {
+        return femaleRadioBtn.isChecked();
+    }
+
+
+    @Override
+    public boolean isFeMaleRadioBtnPresented() {
+        return femaleRadioBtn.isElementPresent();
+    }
+
+    @Override
+    public void selectMaleSex() {
+        femaleRadioBtn.click();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckboxUnchecked() {
+        privacyPolicyCheckbox.uncheck();
+        return false;
+    }
+
+
+    @Override
+    public boolean isPrivacyPolicyCheckboxPresented() {
+        return privacyPolicyCheckbox.isElementPresent();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckboxChecked() {
+        return privacyPolicyCheckbox.isChecked();
+    }
+
 
     @Override
     public void checkPrivacyPolicyCheckbox() {
@@ -62,10 +127,19 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         loginBtn.click();
         return initPage(getDriver(), CarinaDescriptionPageBase.class);
     }
+    public WebViewPageBase clickLoginButton() {
+        loginBtn.click();
+        return initPage(getDriver(), WebViewPageBase.class);
+    }
 
     @Override
     public boolean isLoginBtnActive() {
         return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
+    }
+
+    @Override
+    public boolean isPageOpened() {
+        return textFromLoginPage.isElementPresent();
     }
 
     @Override

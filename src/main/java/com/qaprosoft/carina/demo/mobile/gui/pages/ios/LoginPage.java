@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -48,6 +49,7 @@ public class LoginPage extends LoginPageBase {
 		nameInputField.type(name);
 	}
 
+
 	@Override
 	public void typePassword(String password) {
 		passwordInputField.type(password);
@@ -64,9 +66,20 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
+	public boolean isPageOpened() {
+		return loginBtn.isElementPresent();
+	}
+
+	@Override
 	public CarinaDescriptionPageBase clickLoginBtn() {
 		loginBtn.click();
 		return initPage(getDriver(), CarinaDescriptionPageBase.class);
+	}
+
+	@Override
+	public WebViewPageBase clickLoginButton() {
+		loginBtn.click();
+		return initPage(getDriver(), WebViewPageBase.class);
 	}
 
 	@Override
@@ -74,8 +87,68 @@ public class LoginPage extends LoginPageBase {
 		return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
 	}
 
+
 	@Override
-	public CarinaDescriptionPageBase login(){
+	public boolean isFieldTypeNamePresented() {
+		return nameInputField.isElementPresent();
+	}
+
+	@Override
+	public boolean isFieldTypePasswordPresented() {
+		return passwordInputField.isElementPresent();
+	}
+
+	@Override
+	public boolean isMaleRadioBtnPresented() {
+		maleRadioBtn.isElementPresent();
+		return false;
+	}
+
+	@Override
+	public boolean isFeMaleRadioBtnPresented() {
+		femaleRadioBtn.isElementPresent();
+		return false;
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxPresented() {
+		return privacyPolicyCheckbox.isElementPresent();
+	}
+
+	@Override
+	public boolean isMaleRadioBtnUnchecked() {
+		maleRadioBtn.uncheck();
+		return false;
+	}
+
+	@Override
+	public boolean isFemaleRadioBtnChecked() {
+		return femaleRadioBtn.isChecked();
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxUnchecked() {
+		privacyPolicyCheckbox.uncheck();
+		return false;
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxChecked() {
+		return privacyPolicyCheckbox.isChecked();
+	}
+
+	@Override
+	public String getTypeName() {
+		return nameInputField.getText();
+	}
+
+	@Override
+	public String getTypePassword() {
+		return passwordInputField.getText();
+	}
+
+	@Override
+	public CarinaDescriptionPageBase login() {
 		String username = "Test user";
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);

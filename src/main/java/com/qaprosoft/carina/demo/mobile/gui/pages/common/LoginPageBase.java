@@ -20,7 +20,33 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract CarinaDescriptionPageBase clickLoginBtn();
 
+	public abstract WebViewPageBase clickLoginButton();
+
 	public abstract boolean isLoginBtnActive();
+
+	public abstract boolean isFieldTypeNamePresented();
+
+	public abstract boolean isFieldTypePasswordPresented();
+
+	public abstract boolean isMaleRadioBtnPresented();
+
+	public abstract boolean isFeMaleRadioBtnPresented();
+
+	public abstract boolean isPrivacyPolicyCheckboxPresented();
+
+	public abstract boolean isMaleRadioBtnUnchecked();
+
+	public abstract boolean isFemaleRadioBtnChecked();
+
+	public abstract boolean isPrivacyPolicyCheckboxUnchecked();
+
+	public abstract boolean isPrivacyPolicyCheckboxChecked();
+
+
+	public abstract String getTypeName();
+
+	public abstract String getTypePassword();
+
 
 	public abstract CarinaDescriptionPageBase login();
 
