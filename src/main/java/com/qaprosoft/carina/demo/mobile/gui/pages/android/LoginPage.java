@@ -36,6 +36,8 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
     @FindBy(id = "login_button")
     private ExtendedWebElement loginBtn;
+    @FindBy(id = "login_button")
+    private ExtendedWebElement signUpButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -101,8 +103,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public boolean isPrivacyPolicyCheckboxUnchecked() {
-        privacyPolicyCheckbox.uncheck();
-        return false;
+       return privacyPolicyCheckbox.isChecked();
     }
 
 
@@ -127,6 +128,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         loginBtn.click();
         return initPage(getDriver(), CarinaDescriptionPageBase.class);
     }
+
     public WebViewPageBase clickLoginButton() {
         loginBtn.click();
         return initPage(getDriver(), WebViewPageBase.class);
@@ -135,6 +137,10 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @Override
     public boolean isLoginBtnActive() {
         return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
+    }
+    @Override
+    public boolean isSignUpBtnIsNotActive() {
+        return Boolean.parseBoolean(signUpButton.getAttribute("checked"));
     }
 
     @Override

@@ -87,6 +87,11 @@ public class LoginPage extends LoginPageBase {
 		return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
 	}
 
+	@Override
+	public boolean isSignUpBtnIsNotActive() {
+		return false;
+	}
+
 
 	@Override
 	public boolean isFieldTypeNamePresented() {

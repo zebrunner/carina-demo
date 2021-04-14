@@ -108,6 +108,8 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
         loginPageBase.selectMaleSex();
         Assert.assertTrue(loginPageBase.isFemaleRadioBtnChecked(), "Female radio button is not checked");
+        Assert.assertTrue(loginPageBase.isSignUpBtnIsNotActive(), "Sign Up button is not active");
+
 
         loginPageBase.checkPrivacyPolicyCheckbox();
         Assert.assertTrue(loginPageBase.isPrivacyPolicyCheckboxChecked(), "Privacy policy checkbox is not present");
