@@ -87,44 +87,19 @@ public class LoginPage extends LoginPageBase {
 		return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
 	}
 
-	@Override
-	public boolean isSignUpBtnIsNotActive() {
-		return false;
-	}
+
 
 
 	@Override
-	public boolean isFieldTypeNamePresented() {
-		return nameInputField.isElementPresent();
-	}
-
-	@Override
-	public boolean isFieldTypePasswordPresented() {
+	public boolean verifyFieldsArePresented() {
 		return passwordInputField.isElementPresent();
 	}
 
 	@Override
-	public boolean isMaleRadioBtnPresented() {
-		maleRadioBtn.isElementPresent();
-		return false;
-	}
-
-	@Override
-	public boolean isFeMaleRadioBtnPresented() {
-		femaleRadioBtn.isElementPresent();
-		return false;
-	}
-
-	@Override
-	public boolean isPrivacyPolicyCheckboxPresented() {
-		return privacyPolicyCheckbox.isElementPresent();
-	}
-
-	@Override
 	public boolean isMaleRadioBtnUnchecked() {
-		maleRadioBtn.uncheck();
 		return false;
 	}
+
 
 	@Override
 	public boolean isFemaleRadioBtnChecked() {

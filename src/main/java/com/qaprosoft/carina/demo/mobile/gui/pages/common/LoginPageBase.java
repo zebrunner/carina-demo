@@ -24,17 +24,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
     public abstract boolean isLoginBtnActive();
 
-    public abstract boolean isSignUpBtnIsNotActive();
-
-    public abstract boolean isFieldTypeNamePresented();
-
-    public abstract boolean isFieldTypePasswordPresented();
-
-    public abstract boolean isMaleRadioBtnPresented();
-
-    public abstract boolean isFeMaleRadioBtnPresented();
-
-    public abstract boolean isPrivacyPolicyCheckboxPresented();
+    public abstract boolean verifyFieldsArePresented();
 
     public abstract boolean isMaleRadioBtnUnchecked();
 

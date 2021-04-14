@@ -43,9 +43,6 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         super(driver);
     }
 
-    public boolean isFieldTypeNamePresented() {
-        return nameInputField.isElementPresent();
-    }
 
     @Override
     public void typeName(String name) {
@@ -64,8 +61,12 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
 
     @Override
-    public boolean isFieldTypePasswordPresented() {
-        return passwordInputField.isElementPresent();
+    public boolean verifyFieldsArePresented() {
+        return nameInputField.isElementPresent() &&
+                passwordInputField.isElementPresent() &&
+                maleRadioBtn.isElementPresent() &&
+                femaleRadioBtn.isElementPresent() &&
+                privacyPolicyCheckbox.isElementPresent();
     }
 
 
@@ -74,15 +75,10 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         passwordInputField.type(password);
     }
 
-    @Override
-    public boolean isMaleRadioBtnPresented() {
-        return maleRadioBtn.isElementPresent();
-    }
 
     @Override
     public boolean isMaleRadioBtnUnchecked() {
-        maleRadioBtn.uncheck();
-        return false;
+        return maleRadioBtn.isChecked();
     }
 
     @Override
@@ -92,24 +88,13 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
 
     @Override
-    public boolean isFeMaleRadioBtnPresented() {
-        return femaleRadioBtn.isElementPresent();
-    }
-
-    @Override
     public void selectMaleSex() {
         femaleRadioBtn.click();
     }
 
     @Override
     public boolean isPrivacyPolicyCheckboxUnchecked() {
-       return privacyPolicyCheckbox.isChecked();
-    }
-
-
-    @Override
-    public boolean isPrivacyPolicyCheckboxPresented() {
-        return privacyPolicyCheckbox.isElementPresent();
+        return privacyPolicyCheckbox.isChecked();
     }
 
     @Override
@@ -137,10 +122,6 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @Override
     public boolean isLoginBtnActive() {
         return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
-    }
-    @Override
-    public boolean isSignUpBtnIsNotActive() {
-        return Boolean.parseBoolean(signUpButton.getAttribute("checked"));
     }
 
     @Override

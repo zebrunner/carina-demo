@@ -38,7 +38,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-	@Test(description = "JIRA#DEMO-0011")
+    @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
@@ -56,7 +56,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         hideKeyboard();
         contactUsPage.submit();
         Assert.assertTrue(contactUsPage.isSuccessMessagePresent() || contactUsPage.isRecaptchaPresent(),
-            "message was not sent or captcha was not displayed");
+                "message was not sent or captcha was not displayed");
     }
 
     @Test(description = "JIRA#DEMO-0011")
@@ -94,11 +94,10 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
         Assert.assertTrue(loginPageBase.isPageOpened(), "Login page is not opened");
 
-        Assert.assertTrue(loginPageBase.isFieldTypeNamePresented(), "Field type name is not presented");
-        Assert.assertTrue(loginPageBase.isFieldTypePasswordPresented(), "Field type password is not presented");
-        Assert.assertTrue(loginPageBase.isMaleRadioBtnPresented() || loginPageBase.isMaleRadioBtnUnchecked(), "Field male radio button is not presented");
-        Assert.assertTrue(loginPageBase.isFeMaleRadioBtnPresented() || loginPageBase.isFemaleRadioBtnChecked(), "Field female radio button is not presented");
-        Assert.assertTrue(loginPageBase.isPrivacyPolicyCheckboxPresented() || loginPageBase.isPrivacyPolicyCheckboxUnchecked(), "Field privacy  checkbox is not presented");
+        Assert.assertTrue(loginPageBase.verifyFieldsArePresented(), "Verify fields are presented");
+        Assert.assertFalse(loginPageBase.isMaleRadioBtnUnchecked(), "Field male radio button is not checked");
+        Assert.assertFalse(loginPageBase.isFemaleRadioBtnChecked(), "Field female radio button is not checked");
+        Assert.assertFalse(loginPageBase.isPrivacyPolicyCheckboxUnchecked(), "Field privacy  checkbox is not checked");
 
         loginPageBase.typeName(name);
         Assert.assertEquals(loginPageBase.getTypeName(), name, "Name is not typed");
@@ -108,7 +107,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
         loginPageBase.selectMaleSex();
         Assert.assertTrue(loginPageBase.isFemaleRadioBtnChecked(), "Female radio button is not checked");
-        Assert.assertTrue(loginPageBase.isSignUpBtnIsNotActive(), "Sign Up button is not active");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active when it should be disabled");
 
 
         loginPageBase.checkPrivacyPolicyCheckbox();
@@ -119,4 +118,4 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
 
     }
-    }
+}
