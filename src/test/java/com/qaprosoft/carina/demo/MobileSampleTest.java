@@ -85,4 +85,29 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
 
+    @Test(description = "JIRA#DEMO-0011")
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = {"mobile", "acceptance"})
+    public void testMyApp(){
+        String username = "Test user";
+        String password = RandomStringUtils.randomAlphabetic(10);
+        WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome Page is not Opened!");
+        LoginPageBase loginPage = welcomePage.clickNextBtn();
+        Assert.assertTrue(loginPage.isNameInputFieldPresent(), "Name Input Field is not present");
+        Assert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password Input Filed is not Present!");
+        Assert.assertTrue(loginPage.isMaleRadioBtnPresent(), "Male Radio Button is not Present");
+        Assert.assertTrue(loginPage.isFemaleRadioBtnPresent(), "Female Radio Button is not Present");
+        Assert.assertTrue(loginPage.isPrivacyPolicyCheckBoxPresent(), "Privacy Policy Field is not Present");
+        loginPage.typeName(username);
+        loginPage.typePassword(password);
+        loginPage.selectMaleSex();
+        Assert.assertTrue(loginPage.isMaleRadioBtnChecked(), "Male button is not checked");
+        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is not active");
+        loginPage.checkPrivacyPolicyCheckbox();
+        Assert.assertTrue(loginPage.isPrivacyPolicyCheckBoxChecked(), "Privacy Policy is not Checked");
+        CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
+        Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
+    }
+
 }
