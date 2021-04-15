@@ -16,6 +16,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
+import org.testng.asserts.SoftAssert;
 
 
 public class MobileSampleTest extends AbstractTest implements IMobileUtils {
@@ -38,7 +39,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-	@Test(description = "JIRA#DEMO-0011")
+    @Test(description = "JIRA#DEMO-0011")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
@@ -56,7 +57,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         hideKeyboard();
         contactUsPage.submit();
         Assert.assertTrue(contactUsPage.isSuccessMessagePresent() || contactUsPage.isRecaptchaPresent(),
-            "message was not sent or captcha was not displayed");
+                "message was not sent or captcha was not displayed");
     }
 
     @Test(description = "JIRA#DEMO-0011")
@@ -85,4 +86,41 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
 
+    @Test(description = "JIRA#DEMO-0011")
+    @MethodOwner(owner = "Kolchiba Yevhenii")
+    public void verifyLoginPage() {
+        SoftAssert asert = new SoftAssert();
+        String name = "User";
+        String password = RandomStringUtils.randomAlphabetic(10);
+        WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
+        LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
+        Assert.assertTrue(loginPageBase.isPageOpened(), "Login page is not opened");
+
+        asert.assertTrue(loginPageBase.isNameFieldPresent(), "Field type name is not presented");
+        asert.assertTrue(loginPageBase.isPasswordFieldPresent(), "Field type password is not presented");
+        asert.assertTrue(loginPageBase.isMaleRadioBtnPresent(), "Field male radio button is not presented");
+        asert.assertTrue(loginPageBase.isFemaleRadioBtnPresent(), "Field female radio button is not presented");
+        asert.assertTrue(loginPageBase.isPrivacyPolicyCheckboxPresent(), "Field privacy checkbox is not presented");
+
+        asert.assertFalse(loginPageBase.isMaleRadioBtnChecked(), "Field male radio button is not checked");
+        asert.assertFalse(loginPageBase.isFemaleRadioBtnChecked(), "Field female radio button is not checked");
+        asert.assertFalse(loginPageBase.isPrivacyPolicyCheckboxChecked(), "Field privacy checkbox is not checked");
+
+        loginPageBase.typeName(name);
+        asert.assertEquals(loginPageBase.getFieldName(), name, "Name is not typed");
+
+        loginPageBase.typePassword(password);
+        asert.assertEquals(loginPageBase.getFieldPassword(), password, "Password is not typed");
+
+        loginPageBase.selectMaleSex();
+        asert.assertTrue(loginPageBase.isMaleRadioBtnChecked(), "Female radio button is not checked");
+        asert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active when it should be disabled");
+
+        loginPageBase.checkPrivacyPolicyCheckbox();
+        asert.assertTrue(loginPageBase.isPrivacyPolicyCheckboxChecked(), "Privacy policy checkbox is not present");
+
+        WebViewPageBase webViewPageBase = loginPageBase.clickLoginButton();
+        Assert.assertTrue(webViewPageBase.isPageOpened(), "Web view page isn't opened");
+    }
 }
+

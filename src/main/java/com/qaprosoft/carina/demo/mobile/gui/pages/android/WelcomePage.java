@@ -31,5 +31,4 @@ public class WelcomePage extends WelcomePageBase {
         nextBtn.click();
         return initPage(getDriver(), LoginPageBase.class);
     }
-
 }

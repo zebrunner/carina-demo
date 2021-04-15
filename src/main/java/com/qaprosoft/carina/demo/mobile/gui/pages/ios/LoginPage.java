@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,8 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase {
+
+	private static final String THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS = "This method is not yet implemented for iOS";
 
 	@FindBy(xpath = "type = 'XCUIElementTypeTextField'")
 	@Predicate
@@ -59,8 +62,18 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
+	public void selectFemaleSex() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
 	public void checkPrivacyPolicyCheckbox() {
-		privacyPolicyCheckbox.click();
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isPageOpened() {
+		return loginBtn.isElementPresent();
 	}
 
 	@Override
@@ -70,12 +83,68 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
+	public WebViewPageBase clickLoginButton() {
+		loginBtn.click();
+		return initPage(getDriver(), WebViewPageBase.class);
+	}
+
+	@Override
 	public boolean isLoginBtnActive() {
 		return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
 	}
 
 	@Override
-	public CarinaDescriptionPageBase login(){
+	public boolean isNameFieldPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isPasswordFieldPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isMaleRadioBtnPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isFemaleRadioBtnPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxPresent() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isMaleRadioBtnChecked() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isFemaleRadioBtnChecked() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxChecked() {
+		return privacyPolicyCheckbox.isChecked();
+	}
+
+	@Override
+	public String getFieldName() {
+		throw new UnsupportedOperationException(THIS_METHOD_IS_NOT_IMPLEMENTED_FOR_IOS);
+	}
+
+	@Override
+	public String getFieldPassword() {
+		return passwordInputField.getText();
+	}
+
+	@Override
+	public CarinaDescriptionPageBase login() {
 		String username = "Test user";
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);
@@ -84,5 +153,4 @@ public class LoginPage extends LoginPageBase {
 		checkPrivacyPolicyCheckbox();
 		return clickLoginBtn();
 	}
-
 }
