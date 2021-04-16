@@ -1,21 +1,16 @@
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import com.qaprosoft.carina.demo.utils.MobileContextUtils;
+import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
-import com.qaprosoft.carina.demo.utils.MobileContextUtils;
-import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 import org.testng.asserts.SoftAssert;
 
 
@@ -86,12 +81,11 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
 
-    @Test(description = "JIRA#DEMO-0011")
+    @Test(description = "JIRA#DEMO-001")
     @MethodOwner(owner = "Kolchiba Yevhenii")
     public void verifyLoginPage() {
         SoftAssert softAssert = new SoftAssert();
         String name = "User";
-        String password = RandomStringUtils.randomAlphabetic(10);
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
         LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
         Assert.assertTrue(loginPageBase.isPageOpened(), "Login page is not opened");
@@ -104,20 +98,20 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
 
         softAssert.assertFalse(loginPageBase.isMaleRadioBtnChecked(), "Field male radio button is not checked");
         softAssert.assertFalse(loginPageBase.isFemaleRadioBtnChecked(), "Field female radio button is not checked");
-        Assert.assertFalse(loginPageBase.isPrivacyPolicyCheckboxChecked(), "Field privacy checkbox is not checked");
+        softAssert.assertFalse(loginPageBase.isPrivacyPolicyCheckboxChecked(), "Field privacy checkbox is not checked");
 
         loginPageBase.typeName(name);
         softAssert.assertEquals(loginPageBase.getFieldName(), name, "Name is not typed");
 
-        loginPageBase.typePassword(password);
-        softAssert.assertEquals(loginPageBase.getFieldPassword(), password, "Password is not typed");
+        loginPageBase.typePassword(R.TESTDATA.get("pass"));
+        softAssert.assertEquals(loginPageBase.getFieldPassword(), R.TESTDATA.getDecrypted("pass"), "Password is not typed");
 
         loginPageBase.selectMaleSex();
         softAssert.assertTrue(loginPageBase.isMaleRadioBtnChecked(), "Female radio button is not checked");
         Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active when it should be disabled");
 
         loginPageBase.checkPrivacyPolicyCheckbox();
-        Assert.assertTrue(loginPageBase.isPrivacyPolicyCheckboxChecked(), "Privacy policy checkbox is not present");
+        softAssert.assertTrue(loginPageBase.isPrivacyPolicyCheckboxChecked(), "Privacy policy checkbox is not present");
 
         WebViewPageBase webViewPageBase = loginPageBase.clickLoginButton();
         Assert.assertTrue(webViewPageBase.isPageOpened(), "Web view page isn't opened");
