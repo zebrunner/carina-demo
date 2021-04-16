@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
@@ -15,26 +16,43 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
-    @FindBy(id = "name")
+//    @FindBy(id = "name")
+//    private ExtendedWebElement nameInputField;
+
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/login_button\")")
+    private ExtendedWebElement loginBtn;
+
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/name\")")
     private ExtendedWebElement nameInputField;
 
     @FindBy(xpath = "//*[@text='CARINA']")
     private ExtendedWebElement title;
 
-    @FindBy(id = "password")
+    //    @FindBy(id = "password")
+//    private ExtendedWebElement passwordInputField;
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/password\")")
     private ExtendedWebElement passwordInputField;
 
-    @FindBy(id = "radio_male")
+//    @FindBy(id = "radio_male")
+//    private ExtendedWebElement maleRadioBtn;
+
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/radio_male\")")
     private ExtendedWebElement maleRadioBtn;
 
-    @FindBy(id = "radio_female")
+//    @FindBy(id = "radio_female")
+//    private ExtendedWebElement femaleRadioBtn;
+
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/radio_female\")")
     private ExtendedWebElement femaleRadioBtn;
 
-    @FindBy(id = "checkbox")
+//    @FindBy(id = "checkbox")
+//    private ExtendedWebElement privacyPolicyCheckbox;
+
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/checkbox\")")
     private ExtendedWebElement privacyPolicyCheckbox;
 
-    @FindBy(id = "login_button")
-    private ExtendedWebElement loginBtn;
+//    @FindBy(id = "login_button")
+//    private ExtendedWebElement loginBtn;
 
     public LoginPage(WebDriver driver) {
         super(driver);

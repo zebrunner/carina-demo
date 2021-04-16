@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,9 @@ public class WelcomePage extends WelcomePageBase {
 
     @FindBy(id = "next_button")
     private ExtendedWebElement nextBtn;
+
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/next_button\")")
+    private ExtendedWebElement uiBtn;
 
     public WelcomePage(WebDriver driver) {
         super(driver);

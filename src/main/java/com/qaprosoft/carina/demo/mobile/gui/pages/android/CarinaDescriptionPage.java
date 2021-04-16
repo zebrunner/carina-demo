@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -28,7 +29,10 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'UI elements']")
     private ExtendedWebElement uiElementsLink;
 
-    @FindBy(className = "android.widget.ImageButton")
+//    @FindBy(className = "android.widget.ImageButton")
+//    private ExtendedWebElement leftMenuButton;
+
+    @ExtendedFindBy(androidUIAutomator ="new UiSelector().description(\"Navigate up\")")
     private ExtendedWebElement leftMenuButton;
 
     public CarinaDescriptionPage(WebDriver driver) {
@@ -67,5 +71,4 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     public boolean isPageOpened() {
         return webViewContent.isElementPresent();
     }
-
 }
