@@ -15,8 +15,8 @@ public class WelcomePage extends WelcomePageBase {
     @FindBy(id = "carina_logo")
     private ExtendedWebElement title;
 
-    @FindBy(id = "next_button")
-    private ExtendedWebElement nextBtn;
+//    @FindBy(id = "next_button")
+//    private ExtendedWebElement nextBtn;
 
     @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/next_button\")")
     private ExtendedWebElement uiBtn;
@@ -32,7 +32,7 @@ public class WelcomePage extends WelcomePageBase {
 
     @Override
     public LoginPageBase clickNextBtn() {
-        nextBtn.click();
+        uiBtn.click();
         return initPage(getDriver(), LoginPageBase.class);
     }
 }
