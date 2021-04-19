@@ -2,7 +2,7 @@
 <suite verbose="1" name="Carina Demo Tests - Web Single Driver Sample" parallel="tests">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
-	<parameter name="zafira_project" value="UNKNOWN"/>
+	<parameter name="reporting.project-key" value="UNKNOWN"/>
 	<parameter name="jenkinsJobName" value="Web-Demo-Single-Driver-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>

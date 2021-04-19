@@ -2,7 +2,7 @@
 <suite verbose="1" name="Carina Demo Tests - Web Localization Sample" parallel="methods">
 
     <parameter name="suiteOwner" value="qpsdemo"/>
-    <parameter name="zafira_project" value="UNKNOWN"/>
+    <parameter name="reporting.project-key" value="UNKNOWN"/>
     <parameter name="jenkinsJobName" value="Web-Localization-Demo-Test"/>
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>

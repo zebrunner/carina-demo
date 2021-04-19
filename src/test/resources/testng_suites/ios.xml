@@ -2,7 +2,7 @@
 <suite name="Carina Demo Tests - Mobile Sample (iOS)" verbose="1" parallel="tests">
 
 	<parameter name="suiteOwner" value="qpsdemo" />
-	<parameter name="zafira_project" value="UNKNOWN" />
+	<parameter name="reporting.project-key" value="UNKNOWN"/>
 	<parameter name="provider" value="mcloud"/>
 	<parameter name="jenkinsJobName" value="Mobile-iOS-Demo-Test" />
 	<parameter name="jenkinsJobType" value="ios"/>
