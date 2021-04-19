@@ -9,6 +9,7 @@ import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

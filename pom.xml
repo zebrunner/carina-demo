@@ -74,6 +74,13 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.13.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.3.0</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<dependency>
 			<!--we need it to reuse benefits of zebrunner testng agent for webdriver
