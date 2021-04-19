@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,6 +13,8 @@ import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
@@ -19,8 +22,8 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 //    @FindBy(id = "name")
 //    private ExtendedWebElement nameInputField;
 
-    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/login_button\")")
-    private ExtendedWebElement loginBtn;
+//    @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/login_button\")")
+//    private ExtendedWebElement loginBtn;
 
     @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/name\")")
     private ExtendedWebElement nameInputField;
@@ -51,8 +54,8 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @ExtendedFindBy(androidUIAutomator = "new UiSelector().resourceIdMatches(\".*id/checkbox\")")
     private ExtendedWebElement privacyPolicyCheckbox;
 
-//    @FindBy(id = "login_button")
-//    private ExtendedWebElement loginBtn;
+    @FindBy(id = "login_button")
+    private ExtendedWebElement loginBtn;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -134,11 +137,15 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public CarinaDescriptionPageBase clickLoginBtn() {
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()));
         loginBtn.click();
         return initPage(getDriver(), CarinaDescriptionPageBase.class);
     }
 
     public WebViewPageBase clickLoginButton() {
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()));
         loginBtn.click();
         return initPage(getDriver(), WebViewPageBase.class);
     }

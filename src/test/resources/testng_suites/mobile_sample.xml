@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test name="Mobile Sample test">
+<suite verbose="1" name="Carina Demo Test - Mobile Sample" parallel="methods">
+   <test name="Mobile Sample test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.MobileSampleTest" />
+            <class name="com.qaprosoft.carina.demo.MobileSampleTest"/>
+            ...
         </classes>
+        ...
     </test>
+    ...
 </suite>
