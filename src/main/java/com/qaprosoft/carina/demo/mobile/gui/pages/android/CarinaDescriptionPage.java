@@ -58,8 +58,7 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
     @Override
     public MapsPageBase navigateToMapPage() {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(leftMenuButton.getBy()));
+        waitUntil(ExpectedConditions.presenceOfElementLocated(leftMenuButton.getBy()), 10);
         leftMenuButton.click();
         mapLink.click();
         return initPage(getDriver(), MapsPageBase.class);

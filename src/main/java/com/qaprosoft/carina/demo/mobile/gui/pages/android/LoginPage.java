@@ -137,15 +137,13 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public CarinaDescriptionPageBase clickLoginBtn() {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()));
+        waitUntil(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()), 10);
         loginBtn.click();
         return initPage(getDriver(), CarinaDescriptionPageBase.class);
     }
 
     public WebViewPageBase clickLoginButton() {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()));
+        waitUntil(ExpectedConditions.presenceOfElementLocated(loginBtn.getBy()), 10);
         loginBtn.click();
         return initPage(getDriver(), WebViewPageBase.class);
     }
