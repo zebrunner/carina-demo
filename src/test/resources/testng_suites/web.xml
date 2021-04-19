@@ -2,7 +2,6 @@
 <suite verbose="1" name="Carina Demo Tests - Web Sample" parallel="methods">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
-	<parameter name="reporting.project-key" value="UNKNOWN"/>
 	<parameter name="jenkinsJobName" value="Web-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>

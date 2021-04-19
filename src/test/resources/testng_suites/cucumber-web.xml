@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="Carina Demo Tests - Web tests (Cucumber)">
     <parameter name="suiteOwner" value="qpsdemo"/>
-    <parameter name="reporting.project-key" value="UNKNOWN"/>
 
     <parameter name="jenkinsJobName" value="Cucumber-Web-Test"/>
     <parameter name="jenkinsJobType" value="web"/>
