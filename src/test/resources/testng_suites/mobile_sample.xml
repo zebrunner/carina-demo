@@ -2,9 +2,6 @@
    <test name="Mobile Sample test">
         <classes>
             <class name="com.qaprosoft.carina.demo.MobileSampleTest"/>
-            ...
         </classes>
-        ...
     </test>
-    ...
 </suite>
