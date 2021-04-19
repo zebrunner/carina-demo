@@ -13,7 +13,5 @@ public abstract class MapsPageBase extends AbstractPage {
 
     public abstract boolean isZoomOutButtonPresent();
 
-    public abstract boolean isZoomInAboutZoomOutButton();
-
-
+    public abstract boolean isZoomInAboveZoomOutButton();
 }

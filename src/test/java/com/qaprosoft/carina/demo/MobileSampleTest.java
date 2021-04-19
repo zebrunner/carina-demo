@@ -4,8 +4,6 @@ import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
@@ -134,6 +132,6 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(mapsPage.isPageOpened(), "Maps page is not opened");
         Assert.assertTrue(mapsPage.isZoomInButtonPresent(), "Zoom in button is not present");
         Assert.assertTrue(mapsPage.isZoomOutButtonPresent(), "Zoom out button is not present");
-        Assert.assertTrue(mapsPage.isZoomInAboutZoomOutButton(), "Zoom In button isn't above Zoom Out button");
+        Assert.assertTrue(mapsPage.isZoomInAboveZoomOutButton(), "Zoom In button isn't above Zoom Out button");
     }
 }

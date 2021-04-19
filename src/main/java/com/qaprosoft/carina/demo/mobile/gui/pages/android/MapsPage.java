@@ -38,13 +38,10 @@ public class MapsPage extends MapsPageBase {
     }
 
     @Override
-    public boolean isZoomInAboutZoomOutButton() {
-        int zoomIn = zoomInButton.getLocation().getY();
-        int zoomOut = zoomOutButton.getLocation().getY();
-        if (zoomIn < zoomOut) {
-            return true;
-        }
-        return false;
+    public boolean isZoomInAboveZoomOutButton() {
+        int yCoordZoomIn = zoomInButton.getLocation().getY();
+        int yCoordZoomOut = zoomOutButton.getLocation().getY();
+        return (yCoordZoomIn < yCoordZoomOut);
     }
 
     @Override
