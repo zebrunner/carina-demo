@@ -24,7 +24,7 @@ import org.openqa.selenium.support.FindBy;
 public class WikipediaLocalePage extends AbstractPage {
 
     @L10NElement
-    @FindBy(xpath = "//*[@class='mw-headline']")
+    @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
     private ExtendedWebElement welcomeText;
 
     @L10NElement
