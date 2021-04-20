@@ -24,7 +24,7 @@ import org.openqa.selenium.support.FindBy;
 public class WikipediaLocalePage extends AbstractPage {
 
     @L10NElement
-    @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
+    @FindBy(xpath = "//*[@class='mw-headline']")
     private ExtendedWebElement welcomeText;
 
     @L10NElement
@@ -53,16 +53,23 @@ public class WikipediaLocalePage extends AbstractPage {
         super(driver);
     }
 
-    public boolean checkMultipleLocalization() {
-        ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem, welcomeText};
-        return L10N.checkMultipleLocalization(localizationCheckList);
-    }
-
     public String getWelcomeText(){
         if (welcomeText.isPresent()) {
             return welcomeText.getText();
         }
         return "";
+    }
+
+    public void hoverWelcomeText(){
+        welcomeText.hover();
+    }
+
+    public void hoverContribElem(){
+        contribElem.hover();
+    }
+
+    public void hoverCreateAccountElem(){
+        createAccountElem.hover();
     }
 
     public void clickDiscussionBtn() {

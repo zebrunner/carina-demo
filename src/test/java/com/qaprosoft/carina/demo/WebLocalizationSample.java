@@ -63,7 +63,9 @@ public class WebLocalizationSample extends AbstractTest {
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
-        wikipediaLocalePage.checkMultipleLocalization();
+        wikipediaLocalePage.hoverWelcomeText();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.hoverCreateAccountElem();
 
         wikipediaLocalePage.clickDiscussionBtn();
 
