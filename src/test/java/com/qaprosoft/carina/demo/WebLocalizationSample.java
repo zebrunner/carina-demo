@@ -16,6 +16,7 @@
 
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.resources.L10N;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
@@ -47,7 +48,6 @@ public class WebLocalizationSample extends AbstractTest {
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
         wikipediaLocalePage.hoverContribElem();
-
         wikipediaLocalePage.clickDiscussionBtn();
 
         L10N.assertAll();
@@ -66,6 +66,8 @@ public class WebLocalizationSample extends AbstractTest {
         wikipediaLocalePage.hoverWelcomeText();
         wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.hoverCreateAccountElem();
+
+        wikipediaLocalePage.hoverHeaders();
 
         wikipediaLocalePage.clickDiscussionBtn();
 

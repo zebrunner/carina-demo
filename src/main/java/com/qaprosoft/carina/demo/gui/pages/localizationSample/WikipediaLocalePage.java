@@ -21,11 +21,17 @@ import com.qaprosoft.carina.core.resources.annotation.L10NElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class WikipediaLocalePage extends AbstractPage {
 
     @L10NElement
     @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
     private ExtendedWebElement welcomeText;
+
+    @L10NElement
+    @FindBy(xpath = "//nav[@id='p-navigation']/descendant::ul[@class='vector-menu-content-list']/*")
+    private List<ExtendedWebElement> pageLinks;
 
     @L10NElement
     @FindBy(id = "pt-anoncontribs")
@@ -74,5 +80,11 @@ public class WikipediaLocalePage extends AbstractPage {
 
     public void clickDiscussionBtn() {
         discussionElem.click();
+    }
+
+    public void hoverHeaders(){
+        for (ExtendedWebElement pageLink: pageLinks) {
+            pageLink.hover();
+        }
     }
 }
