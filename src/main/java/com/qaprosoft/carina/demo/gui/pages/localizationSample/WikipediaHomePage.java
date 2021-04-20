@@ -15,7 +15,6 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
-import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;

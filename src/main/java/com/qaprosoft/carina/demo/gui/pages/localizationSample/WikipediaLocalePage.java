@@ -15,23 +15,27 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
-import com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.core.resources.annotation.L10NElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class WikipediaLocalePage extends AbstractPage {
 
-    @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
+    @L10NElement
+    @FindBy(xpath = "//*[@class='mw-headline']")
     private ExtendedWebElement welcomeText;
 
+    @L10NElement
     @FindBy(id = "pt-anoncontribs")
     private ExtendedWebElement contribElem;
 
+    @L10NElement
     @FindBy(id = "pt-createaccount")
     private ExtendedWebElement createAccountElem;
 
+    @L10NElement
     @FindBy(id = "pt-anontalk")
     private ExtendedWebElement discussionElem;
 
@@ -50,8 +54,8 @@ public class WikipediaLocalePage extends AbstractPage {
     }
 
     public boolean checkMultipleLocalization() {
-        ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem};
-        return L10Nparser.checkMultipleLocalization(localizationCheckList);
+        ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem, welcomeText};
+        return L10N.checkMultipleLocalization(localizationCheckList);
     }
 
     public String getWelcomeText(){
@@ -59,6 +63,18 @@ public class WikipediaLocalePage extends AbstractPage {
             return welcomeText.getText();
         }
         return "";
+    }
+
+    public void hoverWelcomeText(){
+        welcomeText.hover();
+    }
+
+    public void hoverContribElem(){
+        contribElem.hover();
+    }
+
+    public void hoverCreateAccountElem(){
+        createAccountElem.hover();
     }
 
     public void clickDiscussionBtn() {
