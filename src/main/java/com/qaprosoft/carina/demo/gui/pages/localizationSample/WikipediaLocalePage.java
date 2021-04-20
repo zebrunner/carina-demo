@@ -65,18 +65,6 @@ public class WikipediaLocalePage extends AbstractPage {
         return "";
     }
 
-    public void hoverWelcomeText(){
-        welcomeText.hover();
-    }
-
-    public void hoverContribElem(){
-        contribElem.hover();
-    }
-
-    public void hoverCreateAccountElem(){
-        createAccountElem.hover();
-    }
-
     public void clickDiscussionBtn() {
         discussionElem.click();
     }
