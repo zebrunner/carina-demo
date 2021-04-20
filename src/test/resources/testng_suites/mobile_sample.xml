@@ -1,15 +1,28 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Test - Mobile Sample" parallel="methods">
+<suite name="Carina Demo Tests - Mobile Sample (Android)" verbose="1" parallel="methods">
 
-    <test name="Mobile Sample test">
-        <parameter name="deviceName" value="Mi_A2_Lite" />
-        <parameter name="udid" value="emulator-5554" />
-        <parameter name="platformVersion" value="11.0" />
-        <parameter name="url" value="http://localhost:4723/wd/hub" />
-        <parameter name="app" value="https://qaprosoft.s3-us-west-2.amazonaws.com/carinademoexample.apk" />
+<!--    <parameter name="suiteOwner" value="qpsdemo" />-->
+<!--    <parameter name="zafira_project" value="UNKNOWN" />-->
+<!--    <parameter name="provider" value="mcloud"/>-->
+<!--    <parameter name="jenkinsJobName" value="Mobile-Android-Demo-Test" />-->
+<!--    <parameter name="jenkinsJobType" value="android"/>-->
+<!--    <parameter name="jenkinsEmail" value="demo@qaprosoft.com" />-->
+<!--    <parameter name="jenkinsEnvironments" value="DEMO" />-->
 
+    <parameter name="stringParam::capabilities.app::path to carina demo mobile application" value="https://qaprosoft.s3-us-west-2.amazonaws.com/carinademoexample.apk" />
+
+<!--    <parameter name="jenkinsMobileDefaultPool" value="ANY" />-->
+
+<!--    <parameter name="jenkinsRegressionPipeline" value="mobile_regression" />-->
+<!--    <parameter name="jenkinsPipelineEnvironments" value="DEMO" />-->
+<!--    <parameter name="jenkinsJobExecutionOrder" value="3" />-->
+<!--    <parameter name="jenkinsJobExecutionMode" value="continue" />-->
+<!--    <parameter name="jenkinsAutoScreenshot" value="true"/>-->
+
+    <test name="Mobile test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.MobileSampleTest"/>
+            <class name="com.qaprosoft.carina.demo.MobileSampleTest" />
         </classes>
     </test>
+
 </suite>

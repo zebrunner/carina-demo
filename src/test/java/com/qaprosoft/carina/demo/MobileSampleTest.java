@@ -35,7 +35,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-    @Test(description = "JIRA#DEMO-0011")
+    @Test(description = "JIRA#DEMO-0011", enabled = false)
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
