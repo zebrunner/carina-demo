@@ -17,12 +17,12 @@ package com.qaprosoft.carina.demo;
 
 import java.util.HashMap;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
@@ -34,7 +34,7 @@ import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
  *
  * @author qpsdemo
  */
-public class DataprovidersSampleTest extends AbstractTest {
+public class DataprovidersSampleTest implements IAbstractTest {
     /**
      * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments set for 1 test.
      * <p>

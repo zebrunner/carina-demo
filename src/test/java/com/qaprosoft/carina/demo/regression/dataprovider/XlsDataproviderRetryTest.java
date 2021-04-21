@@ -18,17 +18,17 @@ package com.qaprosoft.carina.demo.regression.dataprovider;
 import java.lang.invoke.MethodHandles;
 import java.util.Random;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
 
-public class XlsDataproviderRetryTest extends AbstractTest {
+public class XlsDataproviderRetryTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     
     @Test(dataProvider = "DataProvider")

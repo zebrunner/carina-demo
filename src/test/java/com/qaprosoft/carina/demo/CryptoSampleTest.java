@@ -15,7 +15,7 @@
  *******************************************************************************/
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
  *
  * @author qpsdemo
  */
-public class CryptoSampleTest extends AbstractTest {
+public class CryptoSampleTest implements IAbstractTest {
 
     @Test
     public void testPlaceholdersWithEncryptionTestData() {

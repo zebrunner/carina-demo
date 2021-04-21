@@ -18,14 +18,13 @@ package com.qaprosoft.carina.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.utils.tag.TestTag;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
@@ -37,7 +36,7 @@ import com.qaprosoft.carina.demo.gui.pages.HomePage;
  * 
  * @author qpsdemo
  */
-public class WebSampleSingleDriver extends AbstractTest {
+public class WebSampleSingleDriver implements IAbstractTest {
     HomePage homePage = null;
     CompareModelsPage comparePage = null;
     List<ModelSpecs> specs = new ArrayList<>();
