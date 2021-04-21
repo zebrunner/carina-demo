@@ -17,7 +17,7 @@ package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.core.resources.annotation.L10NElement;
+import com.qaprosoft.carina.core.resources.annotation.Localized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -25,23 +25,23 @@ import java.util.List;
 
 public class WikipediaLocalePage extends AbstractPage {
 
-    @L10NElement
+    @Localized
     @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
     private ExtendedWebElement welcomeText;
 
-    @L10NElement
+    @Localized
     @FindBy(xpath = "//nav[@id='p-navigation']/descendant::ul[@class='vector-menu-content-list']/*")
     private List<ExtendedWebElement> pageLinks;
 
-    @L10NElement
+    @Localized
     @FindBy(id = "pt-anoncontribs")
     private ExtendedWebElement contribElem;
 
-    @L10NElement
+    @Localized
     @FindBy(id = "pt-createaccount")
     private ExtendedWebElement createAccountElem;
 
-    @L10NElement
+    @Localized
     @FindBy(id = "pt-anontalk")
     private ExtendedWebElement discussionElem;
 
