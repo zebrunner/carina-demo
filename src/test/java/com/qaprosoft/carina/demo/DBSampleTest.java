@@ -18,10 +18,10 @@ package com.qaprosoft.carina.demo;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.ibatis.session.SqlSession;
 import org.testng.annotations.Test;
-import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.demo.db.mappers.UserMapper;
 import com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper;
 import com.qaprosoft.carina.demo.db.models.User;
@@ -34,7 +34,7 @@ import com.qaprosoft.carina.demo.db.models.UserPreference;
  * 
  * @author qpsdemo
  */
-public class DBSampleTest extends AbstractTest {
+public class DBSampleTest implements IAbstractTest {
 
 	private static User USER = new User() {
 		{

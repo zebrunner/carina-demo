@@ -17,11 +17,11 @@ package com.qaprosoft.carina.demo.regression.dataprovider;
 
 import java.util.Random;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
 /**
@@ -30,7 +30,7 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
  *
  * @author qpsdemo
  */
-public class DataproviderRetryTest extends AbstractTest {
+public class DataproviderRetryTest implements IAbstractTest {
     @Test(dataProvider = "DP1")
     @MethodOwner(owner = "qpsdemo")
     public void testDataproviderRetry(String testRailColumn, int a, int b, int c) {

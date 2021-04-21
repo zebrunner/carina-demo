@@ -16,7 +16,7 @@
 
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
@@ -38,7 +38,7 @@ import java.util.Locale;
  * @author qpsdemo
  */
 
-public class WebLocalizationSample extends AbstractTest {
+public class WebLocalizationSample implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test

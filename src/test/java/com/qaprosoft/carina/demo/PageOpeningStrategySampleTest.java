@@ -1,6 +1,6 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
  *
  * @author qpsdemo
  */
-public class PageOpeningStrategySampleTest extends AbstractTest {
+public class PageOpeningStrategySampleTest implements IAbstractTest {
 
     @Test
     @MethodOwner(owner = "qpsdemo")
