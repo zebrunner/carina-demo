@@ -4,12 +4,13 @@ import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.mobile.gui.pages.android.SkipPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.android.WelcomeNotePage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -134,5 +135,19 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(mapsPage.isZoomInButtonPresent(), "Zoom in button is not present");
         Assert.assertTrue(mapsPage.isZoomOutButtonPresent(), "Zoom out button is not present");
         Assert.assertTrue(mapsPage.isZoomInAboveZoomOutButton(), "Zoom In button isn't above Zoom Out button");
+    }
+
+    @Test(description = "JIRA#DEMO-003")
+    @MethodOwner(owner = "Kolchiba Yevhenii")
+    public void verifyTextPage() {
+        PermissionPageBase permissionPage = initPage(getDriver(), PermissionPageBase.class);
+        WelcomeNotePageBase welcomeNotePage = permissionPage.clickAllowButton();
+        SkipPageBase skipPage = welcomeNotePage.clickNextBtn();
+        HomePageBase homePage = skipPage.clickSkipBtn();
+        NoteDescriptionPageBase noteDescriptionPage = homePage.clickNoteBtn();
+        TextPageBase textPage = noteDescriptionPage.navigateToTextPage();
+        Assert.assertTrue(textPage.isPageOpened(), "Text page is not opened");
+        textPage.typeText("User");
+        Assert.assertEquals(textPage.getTypeText(), "User", "Text is not typed");
     }
 }

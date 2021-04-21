@@ -81,20 +81,12 @@
 			<version>7.3.0</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
 			<version>7.3.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.141.59</version>
-		</dependency>
-
-
 
 		<dependency>
 			<!--we need it to reuse benefits of zebrunner testng agent for webdriver
@@ -139,6 +131,12 @@
 					<artifactId>android-json</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.qaprosoft</groupId>
+			<artifactId>carina-dataprovider</artifactId>
+			<version>7.0.2</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
