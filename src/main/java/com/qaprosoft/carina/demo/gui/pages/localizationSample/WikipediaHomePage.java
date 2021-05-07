@@ -15,13 +15,15 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.core.resources.L10N;
+import java.util.List;
+import java.util.Locale;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 
 public class WikipediaHomePage extends AbstractPage {
 
@@ -40,7 +42,9 @@ public class WikipediaHomePage extends AbstractPage {
         openLangList();
         if (!langList.isEmpty()) {
             for (ExtendedWebElement languageBtn : langList) {
-                if (languageBtn.getAttribute("lang").equals(L10N.getDefaultLocale().getLanguage())) {
+                String localeStr = Configuration.get(Configuration.Parameter.LOCALE);
+                Locale locale = parseLocale(localeStr);
+                if (languageBtn.getAttribute("lang").equals(locale.getLanguage())) {
                     languageBtn.click();
                     return new WikipediaLocalePage(driver);
                 }
@@ -48,9 +52,19 @@ public class WikipediaHomePage extends AbstractPage {
         }
         throw new RuntimeException("No language ref was found");
     }
-
+    
     public void openLangList() {
         langListBtn.clickIfPresent();
     }
 
+    private Locale parseLocale(String localeToParse) {
+        String[] localeSetttings = localeToParse.trim().split("_");
+        String lang, country = "";
+        lang = localeSetttings[0];
+        if (localeSetttings.length > 1) {
+            country = localeSetttings[1];
+        }
+
+        return new Locale(lang, country);
+    }
 }

@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>7.0.4.1-SNAPSHOT</carina-core_version>
+		<carina-core_version>test-SNAPSHOT</carina-core_version>
 		<carina-cucumber_version>7.0.2</carina-cucumber_version>
 		<java.version>11</java.version>
 		<spring-boot.version>2.2.2.RELEASE</spring-boot.version>

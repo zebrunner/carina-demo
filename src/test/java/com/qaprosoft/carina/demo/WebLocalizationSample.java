@@ -16,17 +16,18 @@
 
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.resources.L10N;
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
-import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaLocalePage;
-import com.zebrunner.agent.core.annotation.TestLabel;
+import java.lang.invoke.MethodHandles;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import java.lang.invoke.MethodHandles;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
+import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
+import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaLocalePage;
+import com.zebrunner.agent.core.annotation.TestLabel;
 
 /**
  * This sample shows how create Web Localization test with Resource Bundle.
@@ -71,7 +72,7 @@ public class WebLocalizationSample implements IAbstractTest {
 
         wikipediaLocalePage.clickDiscussionBtn();
 
-        L10N.saveLocalization();
+        L10N.flush();
         L10N.assertAll();
     }
 }
