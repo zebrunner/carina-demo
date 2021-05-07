@@ -15,23 +15,33 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
-import com.qaprosoft.carina.core.foundation.utils.resources.L10Nparser;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.core.resources.annotation.Localized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class WikipediaLocalePage extends AbstractPage {
 
+    @Localized
     @FindBy(xpath = "//*[@id='{L10N:HomePage.welcomeTextId}' or @class='welcome-title']")
     private ExtendedWebElement welcomeText;
 
+    @Localized
+    @FindBy(xpath = "//nav[@id='p-navigation']/descendant::ul[@class='vector-menu-content-list']/*")
+    private List<ExtendedWebElement> pageLinks;
+
+    @Localized
     @FindBy(id = "pt-anoncontribs")
     private ExtendedWebElement contribElem;
 
+    @Localized
     @FindBy(id = "pt-createaccount")
     private ExtendedWebElement createAccountElem;
 
+    @Localized
     @FindBy(id = "pt-anontalk")
     private ExtendedWebElement discussionElem;
 
@@ -49,11 +59,6 @@ public class WikipediaLocalePage extends AbstractPage {
         super(driver);
     }
 
-    public boolean checkMultipleLocalization() {
-        ExtendedWebElement[] localizationCheckList = {discussionElem, createAccountElem, contribElem};
-        return L10Nparser.checkMultipleLocalization(localizationCheckList);
-    }
-
     public String getWelcomeText(){
         if (welcomeText.isPresent()) {
             return welcomeText.getText();
@@ -61,7 +66,25 @@ public class WikipediaLocalePage extends AbstractPage {
         return "";
     }
 
+    public void hoverWelcomeText(){
+        welcomeText.hover();
+    }
+
+    public void hoverContribElem(){
+        contribElem.hover();
+    }
+
+    public void hoverCreateAccountElem(){
+        createAccountElem.hover();
+    }
+
     public void clickDiscussionBtn() {
         discussionElem.click();
+    }
+
+    public void hoverHeaders(){
+        for (ExtendedWebElement pageLink: pageLinks) {
+            pageLink.hover();
+        }
     }
 }
