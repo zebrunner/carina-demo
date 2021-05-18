@@ -46,6 +46,12 @@ public class DataprovidersSampleTest implements IAbstractTest {
      * - sheet - xls spreadsheet name 
      * - dsUid - data-source unique identifier, use TUID or set of parameters 
      * - dsArgs - column names from spreadsheet
+     *
+     * @param a String
+     *
+     * @param b String
+     *
+     * @param c String
      */
     @Test(dataProvider = "DataProvider", description = "JIRA#DEMO-0005")
     @MethodOwner(owner = "qpsdemo")
@@ -58,7 +64,8 @@ public class DataprovidersSampleTest implements IAbstractTest {
     }
     
     /**
-     * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments as Map<String, String> for 1 test.
+     *
+     * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments as Map&lt;String, String&gt; for 1 test.
      * For datasets with huge number of columns just remove dsArgs parameter to return whole row as single map object  
      * <p>
      * 1. Specify data-provider type: 
@@ -67,7 +74,9 @@ public class DataprovidersSampleTest implements IAbstractTest {
      * 2. In @XlsDataSourceParameters should contain: 
      * - path - xls/xlsx file path located in src/test/resources
      * - sheet - xls spreadsheet name 
-     * - dsUid - data-source unique identifier, use TUID or set of parameters 
+     * - dsUid - data-source unique identifier, use TUID or set of parameters
+     *
+     * @param args HashMap&lt;String, String&gt;
      */
     @Test(dataProvider = "DataProvider", description = "JIRA#DEMO-0005")
     @MethodOwner(owner = "qpsdemo")
@@ -84,6 +93,16 @@ public class DataprovidersSampleTest implements IAbstractTest {
      * <p>
      * 1. Create data-provider method that returns Object[][] and set DataProvider annotation. 2. Specify data-provider
      * name in @Test annotation.
+     *
+     * @param TUID String
+     *
+     * @param testRailColumn String
+     *
+     * @param a int
+     *
+     * @param b int
+     *
+     * @param c int
      */
     @Test(dataProvider = "DP1", description = "JIRA#DEMO-0006")
     @MethodOwner(owner = "qpsdemo")
@@ -109,6 +128,11 @@ public class DataprovidersSampleTest implements IAbstractTest {
      * <p>
      * 1. List all parameter names in appropriate annotation. 2. Pass all parameters from TestNG xml file (check
      * test_suites/dataproviders.xml).
+     * @param a int
+     *
+     * @param b int
+     *
+     * @param c int
      */
     @Test(description = "JIRA#DEMO-0007")
     @MethodOwner(owner = "qpsdemo")
