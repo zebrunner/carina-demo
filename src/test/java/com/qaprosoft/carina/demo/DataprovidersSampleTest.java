@@ -93,6 +93,16 @@ public class DataprovidersSampleTest implements IAbstractTest {
      * <p>
      * 1. Create data-provider method that returns Object[][] and set DataProvider annotation. 2. Specify data-provider
      * name in @Test annotation.
+     *
+     * @param TUID String
+     *
+     * @param testRailColumn String
+     *
+     * @param a int
+     *
+     * @param b int
+     *
+     * @param c int
      */
     @Test(dataProvider = "DP1", description = "JIRA#DEMO-0006")
     @MethodOwner(owner = "qpsdemo")
@@ -118,6 +128,11 @@ public class DataprovidersSampleTest implements IAbstractTest {
      * <p>
      * 1. List all parameter names in appropriate annotation. 2. Pass all parameters from TestNG xml file (check
      * test_suites/dataproviders.xml).
+     * @param a int
+     *
+     * @param b int
+     *
+     * @param c int
      */
     @Test(description = "JIRA#DEMO-0007")
     @MethodOwner(owner = "qpsdemo")
