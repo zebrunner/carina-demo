@@ -17,13 +17,13 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.zebrunner.agent.core.annotation.TestLabel;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
@@ -39,7 +39,7 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 
 /**
  * This sample shows how create Web test.
- * 
+ *
  * @author qpsdemo
  */
 public class WebSampleTest implements IAbstractTest {

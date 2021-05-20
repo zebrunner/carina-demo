@@ -16,10 +16,6 @@
 
 package com.qaprosoft.carina.demo;
 
-import java.lang.invoke.MethodHandles;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
@@ -36,13 +32,11 @@ import com.zebrunner.agent.core.annotation.TestLabel;
  */
 
 public class WebLocalizationSample implements IAbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = "l10n")
     public void testLanguages() {
-
         WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
         wikipediaHomePage.open();
 
@@ -58,7 +52,6 @@ public class WebLocalizationSample implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = "l10n")
     public void testAddNewLanguages() {
-
         WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
         wikipediaHomePage.open();
 

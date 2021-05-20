@@ -17,13 +17,13 @@ package com.qaprosoft.carina.demo;
 
 import java.lang.invoke.MethodHandles;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
@@ -39,7 +39,7 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  */
 public class APISampleTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    
+
 
     @Test(description = "JIRA#DEMO-0001")
     @MethodOwner(owner = "qpsdemo")

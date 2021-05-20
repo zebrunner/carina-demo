@@ -17,11 +17,11 @@ package com.qaprosoft.carina.demo.regression.dataprovider;
 
 import java.util.Random;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
 /**
@@ -36,7 +36,7 @@ public class DataproviderRetryTest implements IAbstractTest {
     public void testDataproviderRetry(String testRailColumn, int a, int b, int c) {
         boolean isPassed = (new Random().nextInt(2) == 1) ? true : false;
         Assert.assertTrue(isPassed);
-        
+
         setCases(testRailColumn.split(","));
         int actual = a * b;
         int expected = c;

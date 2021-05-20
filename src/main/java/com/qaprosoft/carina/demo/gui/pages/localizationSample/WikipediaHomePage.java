@@ -52,7 +52,7 @@ public class WikipediaHomePage extends AbstractPage {
         }
         throw new RuntimeException("No language ref was found");
     }
-    
+
     public void openLangList() {
         langListBtn.clickIfPresent();
     }
