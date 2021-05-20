@@ -17,12 +17,12 @@ package com.qaprosoft.carina.demo;
 
 import java.util.HashMap;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;

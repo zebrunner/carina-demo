@@ -15,10 +15,10 @@
 	<parameter name="jenkinsDefaultRetryCount" value="2"/>
 
 	<!-- declaring custom arguments-->
-    	<parameter name="stringParam::stringArg::custom string desc" value="string value" />
-    	<parameter name="booleanParam::booleanArg::custom boolean desc" value="true" />
-    	<parameter name="hiddenParam::hiddenArg::custom hidden desc" value="hidden value" />
-    	<parameter name="choiceParam::choiceArg::custom choice desc" value="1, 2, 3" />
+	<parameter name="stringParam::stringArg::custom string desc" value="string value" />
+	<parameter name="booleanParam::booleanArg::custom boolean desc" value="true" />
+	<parameter name="hiddenParam::hiddenArg::custom hidden desc" value="hidden value" />
+	<parameter name="choiceParam::choiceArg::custom choice desc" value="1, 2, 3" />
 
 
 	<test name="Sum operation test">

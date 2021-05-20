@@ -33,7 +33,7 @@ import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 
 public class HomePage extends AbstractPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    
+
     @FindBy(id = "footmenu")
     private FooterMenu footerMenu;
 

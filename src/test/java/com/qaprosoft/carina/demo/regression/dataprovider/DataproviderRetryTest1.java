@@ -17,10 +17,10 @@ package com.qaprosoft.carina.demo.regression.dataprovider;
 
 import java.util.Random;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
 /**
