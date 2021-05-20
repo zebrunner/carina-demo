@@ -36,7 +36,7 @@ import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 
-    @Test(description = "JIRA#DEMO-0011")
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testLoginUser() {
@@ -54,7 +54,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-	@Test(description = "JIRA#DEMO-0011")
+	@Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
@@ -75,7 +75,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
             "message was not sent or captcha was not displayed");
     }
 
-    @Test(description = "JIRA#DEMO-0011")
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "acceptance"})
     public void testUIElements() {
