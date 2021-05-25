@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>7.1.6-SNAPSHOT</carina-core_version>
+		<carina-core_version>7.1.6-clistener-SNAPSHOT</carina-core_version>
 		<carina-cucumber_version>7.0.2</carina-cucumber_version>
 		<java.version>11</java.version>
 		<spring-boot.version>2.2.2.RELEASE</spring-boot.version>
@@ -166,6 +166,12 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
 					</suiteXmlFiles>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>com.qaprosoft.carina.core.foundation.listeners.CarinaListener</value>
+						</property>
+					</properties>
 				</configuration>
 			</plugin>
 		</plugins>

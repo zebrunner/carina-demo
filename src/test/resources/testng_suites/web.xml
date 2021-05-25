@@ -15,6 +15,10 @@
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 	<parameter name="jenkinsAutoScreenshot" value="true"/>
 
+	<listeners>
+		<listener class-name="com.qaprosoft.carina.core.foundation.listeners.CarinaListener"/>
+	</listeners>
+
 	<test name="GSM arena web tests">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
