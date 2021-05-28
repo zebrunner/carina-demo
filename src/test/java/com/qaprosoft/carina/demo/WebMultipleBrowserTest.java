@@ -15,7 +15,7 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.ChromeCapabilities;
@@ -35,7 +35,7 @@ import java.util.List;
  *
  * @author qpsdemo
  */
-public class WebMultipleBrowserTest extends AbstractTest {
+public class WebMultipleBrowserTest implements IAbstractTest {
 
     @Test
     @MethodOwner(owner = "qpsdemo")

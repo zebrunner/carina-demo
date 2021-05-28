@@ -17,13 +17,13 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
-import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.zebrunner.agent.core.annotation.TestLabel;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
@@ -39,11 +39,11 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 
 /**
  * This sample shows how create Web test.
- * 
+ *
  * @author qpsdemo
  */
-public class WebSampleTest extends AbstractTest {
-    @Test(description = "JIRA#AUTO-0008")
+public class WebSampleTest implements IAbstractTest {
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = {"web", "regression"})
@@ -69,7 +69,7 @@ public class WebSampleTest extends AbstractTest {
     }
 
 
-    @Test(description = "JIRA#AUTO-0009")
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "acceptance"})
@@ -90,7 +90,7 @@ public class WebSampleTest extends AbstractTest {
         Assert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
     }
     
-    @Test(description = "JIRA#AUTO-0010")
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testNewsSearch() {

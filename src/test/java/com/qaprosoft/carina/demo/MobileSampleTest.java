@@ -1,3 +1,18 @@
+/*
+ * Copyright 2013-2021 QAPROSOFT (http://qaprosoft.com/).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.qaprosoft.carina.demo;
 
 import com.zebrunner.agent.core.annotation.TestLabel;
@@ -5,9 +20,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
@@ -18,9 +34,9 @@ import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 
 
-public class MobileSampleTest extends AbstractTest implements IMobileUtils {
+public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 
-    @Test(description = "JIRA#DEMO-0011")
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testLoginUser() {
@@ -38,7 +54,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-	@Test(description = "JIRA#DEMO-0011")
+	@Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
@@ -59,7 +75,7 @@ public class MobileSampleTest extends AbstractTest implements IMobileUtils {
             "message was not sent or captcha was not displayed");
     }
 
-    @Test(description = "JIRA#DEMO-0011")
+    @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "acceptance"})
     public void testUIElements() {

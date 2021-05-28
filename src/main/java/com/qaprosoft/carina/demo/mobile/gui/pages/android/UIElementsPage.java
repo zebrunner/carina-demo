@@ -107,7 +107,7 @@ public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {
         return checkBoxButton.isChecked();
     }
 
-    public void swipeToFemaleRadioButton(){
+    public void swipeToFemaleRadioButton() {
         swipe(femaleRadioButton, container, 10);
     }
 
