@@ -38,13 +38,13 @@ public class DataprovidersSampleTest implements IAbstractTest {
     /**
      * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments set for 1 test.
      * <p>
-     * 1. Specify data-provider type: 
+     * 1. Specify data-provider type:
      * - @Test(dataProvider = "XLSDataProvider") allows parallel execution
-     * - @Test(dataProvider = "SingleDataProvider") allows single-thread execution 
-     * 2. In @XlsDataSourceParameters should contain: 
+     * - @Test(dataProvider = "SingleDataProvider") allows single-thread execution
+     * 2. In @XlsDataSourceParameters should contain:
      * - path - xls/xlsx file path located in src/test/resources
-     * - sheet - xls spreadsheet name 
-     * - dsUid - data-source unique identifier, use TUID or set of parameters 
+     * - sheet - xls spreadsheet name
+     * - dsUid - data-source unique identifier, use TUID or set of parameters
      * - dsArgs - column names from spreadsheet
      *
      * @param a String
@@ -62,18 +62,18 @@ public class DataprovidersSampleTest implements IAbstractTest {
         int expected = Integer.valueOf(c);
         Assert.assertEquals(actual, expected, "Invalid sum result!");
     }
-    
+
     /**
      *
      * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments as Map&lt;String, String&gt; for 1 test.
-     * For datasets with huge number of columns just remove dsArgs parameter to return whole row as single map object  
+     * For datasets with huge number of columns just remove dsArgs parameter to return whole row as single map object
      * <p>
-     * 1. Specify data-provider type: 
+     * 1. Specify data-provider type:
      * - @Test(dataProvider = "XLSDataProvider") allows parallel execution
-     * - @Test(dataProvider = "SingleDataProvider") allows single-thread execution 
-     * 2. In @XlsDataSourceParameters should contain: 
+     * - @Test(dataProvider = "SingleDataProvider") allows single-thread execution
+     * 2. In @XlsDataSourceParameters should contain:
      * - path - xls/xlsx file path located in src/test/resources
-     * - sheet - xls spreadsheet name 
+     * - sheet - xls spreadsheet name
      * - dsUid - data-source unique identifier, use TUID or set of parameters
      *
      * @param args HashMap&lt;String, String&gt;
