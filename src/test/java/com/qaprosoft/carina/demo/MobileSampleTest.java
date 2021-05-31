@@ -72,7 +72,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         hideKeyboard();
         contactUsPage.submit();
         Assert.assertTrue(contactUsPage.isErrorMessagePresent() || contactUsPage.isRecaptchaPresent(),
-            "Error message or captcha was not displayed");
+                "Error message or captcha was not displayed");
     }
 
     @Test()

@@ -113,7 +113,7 @@ public class WebSampleTest implements IAbstractTest {
         for(NewsItem n : news) {
             System.out.println(n.readTitle());
             softAssert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ),
-                    "Invalid search results for "+ n.readTitle());
+                    "Invalid search results for " + n.readTitle());
         }
         softAssert.assertAll();
     }
