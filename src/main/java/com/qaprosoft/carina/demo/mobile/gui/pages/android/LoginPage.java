@@ -33,7 +33,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     private ExtendedWebElement loginBtn;
 
     @FindBy(id = "loginForm")
-    private ExtendedWebElement logForm;
+    private ExtendedWebElement loginForm;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -46,28 +46,33 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean namePresented() {
+    public boolean isNamePresented() {
         return nameInputField.isPresent();
     }
 
     @Override
-    public boolean passPresented(){
+    public boolean isPassPresented(){
         return passwordInputField.isPresent();
     }
 
     @Override
-    public boolean genderPresented() {
-       if(maleRadioBtn.isPresent() && femaleRadioBtn.isPresent()){
-           return true;
-       }
-       else{
-           return false;
-       }
+    public boolean isNameEntered(String name) {
+        return nameInputField.getText().equals(name);
+    }
+
+    @Override
+    public boolean isPassEntered(String pass) {
+        return passwordInputField.getText().equals(pass);
+    }
+
+    @Override
+    public boolean isGenderPresented() {
+       return (maleRadioBtn.isPresent() && femaleRadioBtn.isPresent());
     }
 
     @Override
     public boolean isPageOpened() {
-        return logForm.isElementPresent();
+        return loginForm.isElementPresent();
     }
 
     @Override

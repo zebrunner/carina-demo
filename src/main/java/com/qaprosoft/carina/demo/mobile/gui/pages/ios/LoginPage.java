@@ -39,6 +39,9 @@ public class LoginPage extends LoginPageBase {
 	@Predicate
 	private ExtendedWebElement loginBtn;
 
+	@FindBy(id = "loginForm")
+	private ExtendedWebElement loginForm;
+
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
@@ -86,33 +89,43 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public boolean namePresented() {
-		return false;
+	public boolean isNamePresented() throws Exception {
+	throw new Exception("There is no method yet");
 	}
 
 	@Override
-	public boolean passPresented() {
-		return false;
+	public boolean isPassPresented() throws Exception {
+		throw new Exception("There is no method yet");
 	}
 
 	@Override
-	public boolean genderPresented() {
-		return false;
+	public boolean isNameEntered(String name) throws Exception {
+		throw new Exception("There is no method yet");
+	}
+
+	@Override
+	public boolean isPassEntered(String pass) throws Exception {
+		throw new Exception("There is no method yet");
+	}
+
+	@Override
+	public boolean isGenderPresented() throws Exception {
+		throw new Exception("There is no method yet");
 	}
 
 	@Override
 	public boolean isPageOpened() {
-		return false;
+		return loginForm.isElementPresent();
 	}
 
 	@Override
-	public boolean isMaleSelected() {
-		return false;
+	public boolean isMaleSelected() throws Exception {
+		throw new Exception("There is no method yet");
 	}
 
 	@Override
-	public boolean isPrivacyChecked() {
-		return false;
+	public boolean isPrivacyChecked() throws Exception {
+		throw new Exception("There is no method yet");
 	}
 
 }

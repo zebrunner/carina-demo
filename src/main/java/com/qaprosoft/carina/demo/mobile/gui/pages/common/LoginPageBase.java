@@ -28,17 +28,23 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract CarinaDescriptionPageBase login();
 
-	public abstract boolean namePresented();
+	public abstract boolean isNamePresented() throws Exception;
 
-	public abstract boolean passPresented();
+	public abstract boolean isPassPresented() throws Exception;
 
-	public abstract boolean genderPresented();
+	public abstract boolean isNameEntered(String name) throws Exception;
+
+	public abstract boolean isPassEntered(String pass) throws Exception;
+
+	public abstract boolean isGenderPresented() throws Exception;
 
 	public abstract boolean isPageOpened();
 
-	public abstract boolean isMaleSelected();
+	public abstract boolean isMaleSelected() throws Exception;
 
-	public abstract boolean isPrivacyChecked();
+	public abstract boolean isPrivacyChecked() throws Exception;
+
+
 
 
 
