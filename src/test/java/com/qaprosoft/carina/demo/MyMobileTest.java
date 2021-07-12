@@ -29,6 +29,8 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(loginPageBase.isNamePresented(), "Name field isn't present on the Login Form.");
         Assert.assertTrue(loginPageBase.isPassPresented(), "Password field isn't present on the Login Form.");
         Assert.assertTrue(loginPageBase.isGenderPresented(), "Male radio isn't present on the Login Form.");
+        Assert.assertFalse(loginPageBase.isPrivacyChecked(), "Privacy is checked by default.");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(),"Login button is active with empty fields.");
 
         //3rd step
         loginPageBase.typeName(name);

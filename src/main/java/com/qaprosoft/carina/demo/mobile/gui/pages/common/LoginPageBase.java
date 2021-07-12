@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 
 public abstract class LoginPageBase extends AbstractPage {
 
-
-
 	public LoginPageBase(WebDriver driver) {
 		super(driver);
 	}
@@ -28,21 +26,21 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract CarinaDescriptionPageBase login();
 
-	public abstract boolean isNamePresented() throws Exception;
+	public abstract boolean isNamePresented();
 
-	public abstract boolean isPassPresented() throws Exception;
+	public abstract boolean isPassPresented();
 
-	public abstract boolean isNameEntered(String name) throws Exception;
+	public abstract boolean isNameEntered(String name);
 
-	public abstract boolean isPassEntered(String pass) throws Exception;
+	public abstract boolean isPassEntered(String pass);
 
-	public abstract boolean isGenderPresented() throws Exception;
+	public abstract boolean isGenderPresented();
 
 	public abstract boolean isPageOpened();
 
-	public abstract boolean isMaleSelected() throws Exception;
+	public abstract boolean isMaleSelected();
 
-	public abstract boolean isPrivacyChecked() throws Exception;
+	public abstract boolean isPrivacyChecked();
 
 
 
