@@ -10,5 +10,5 @@ public abstract class WelcomePageBase extends AbstractPage {
     }
 
     public abstract LoginPageBase clickNextBtn();
-
+ 
 }

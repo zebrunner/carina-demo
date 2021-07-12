@@ -85,4 +85,34 @@ public class LoginPage extends LoginPageBase {
 		return clickLoginBtn();
 	}
 
+	@Override
+	public boolean namePresented() {
+		return false;
+	}
+
+	@Override
+	public boolean passPresented() {
+		return false;
+	}
+
+	@Override
+	public boolean genderPresented() {
+		return false;
+	}
+
+	@Override
+	public boolean isPageOpened() {
+		return false;
+	}
+
+	@Override
+	public boolean isMaleSelected() {
+		return false;
+	}
+
+	@Override
+	public boolean isPrivacyChecked() {
+		return false;
+	}
+
 }
