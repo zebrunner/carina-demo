@@ -25,7 +25,7 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
         SoftAssert softAssert= new SoftAssert();
         //1st step
         LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
-        softAssert.assertTrue(loginPageBase.isPageOpened(), "Login Form isn't open.");
+        Assert.assertTrue(loginPageBase.isPageOpened(), "Login Form isn't open.");
 
         //2nd step
         softAssert.assertTrue(loginPageBase.isNamePresented(), "Name field isn't present on the Login Form.");
@@ -53,6 +53,7 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(carinaPageBase.isPageOpened(), "Can't log in.");
 
         softAssert.assertAll();
+
 
     }
 
