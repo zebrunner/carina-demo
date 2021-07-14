@@ -25,7 +25,7 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
 
-        SoftAssert softAssert= new SoftAssert();
+        SoftAssert softAssert = new SoftAssert();
         //1st step
         LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
         Assert.assertTrue(loginPageBase.isPageOpened(), "Login Form isn't open.");
@@ -35,13 +35,13 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(loginPageBase.isPassPresented(), "Password field isn't present on the Login Form.");
         softAssert.assertTrue(loginPageBase.isGenderPresented(), "Male radio isn't present on the Login Form.");
         softAssert.assertFalse(loginPageBase.isPrivacyChecked(), "Privacy is checked by default.");
-        softAssert.assertFalse(loginPageBase.isLoginBtnActive(),"Login button is active with empty fields.");
+        softAssert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active with empty fields.");
 
         //3rd step
         loginPageBase.typeName(name);
         loginPageBase.typePassword(pass);
         softAssert.assertTrue(loginPageBase.isNameEntered(name), "Name field isn't filled.");
-        softAssert.assertTrue(loginPageBase.isPassEntered(pass),"Pass field isn't filled.");
+        softAssert.assertTrue(loginPageBase.isPassEntered(pass), "Pass field isn't filled.");
         //4th step
         loginPageBase.selectMaleSex();
         softAssert.assertTrue(loginPageBase.isMaleSelected(), "Male radio not selected.");
@@ -56,15 +56,16 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(carinaPageBase.isPageOpened(), "Can't log in.");
 
         softAssert.assertAll();
+
     }
 
     @Test(description = "My mobile test for map")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void mapTest(){
+    public void mapTest() {
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
-        SoftAssert softAssert= new SoftAssert();
+        SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
         CarinaDescriptionPageBase carinaPageBase = loginPageBase.login();
         MapsPageBase mapsPageBase = carinaPageBase.navigateToMapPage();
@@ -75,5 +76,19 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
 
     }
 
+    @Test(description = "My mobile test for login button")
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void loginButtonActivation() {
+
+        WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
+        loginPageBase.typeName(name);
+        loginPageBase.typePassword(pass);
+        loginPageBase.selectMaleSex();
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active without checked privacy.");
+
+    }
 
 }
