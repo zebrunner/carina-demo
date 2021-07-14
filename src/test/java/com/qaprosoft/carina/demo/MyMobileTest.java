@@ -6,6 +6,7 @@ import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
@@ -13,6 +14,10 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class MyMobileTest implements IAbstractTest, IMobileUtils {
+
+
+
+
     @Test(description = "My mobile test for login")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
@@ -51,6 +56,13 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(loginPageBase.isLoginBtnActive(), "Login button isn't clickable.");
         CarinaDescriptionPageBase carinaPageBase = loginPageBase.clickLoginBtn();
         softAssert.assertTrue(carinaPageBase.isPageOpened(), "Can't log in.");
+
+        //7th step
+        MapsPageBase mapsPageBase = carinaPageBase.navigateToMapPage();
+        Assert.assertTrue(mapsPageBase.isPageOpened(), "Can't open Map Page.");
+        Assert.assertTrue(mapsPageBase.isZoomInPresented(), "No Zoom In button on map.");
+        Assert.assertTrue(mapsPageBase.isZoomOutPresented(), "No Zoom Out button on map.");
+        Assert.assertTrue(mapsPageBase.areBtnsRightOrder(), "Button aren't in a right order.");
 
         softAssert.assertAll();
 
