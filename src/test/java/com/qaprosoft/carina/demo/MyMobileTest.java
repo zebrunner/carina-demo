@@ -15,15 +15,13 @@ import org.testng.asserts.SoftAssert;
 
 public class MyMobileTest implements IAbstractTest, IMobileUtils {
 
-
-
+    private final String name = "Yaroslav";
+    private final String pass = "pass123";
 
     @Test(description = "My mobile test for login")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void LoginTest() throws Exception {
-        String name = "Yaroslav";
-        String pass = "pass123";
+    public void loginTest() {
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
 
@@ -57,16 +55,25 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
         CarinaDescriptionPageBase carinaPageBase = loginPageBase.clickLoginBtn();
         softAssert.assertTrue(carinaPageBase.isPageOpened(), "Can't log in.");
 
-        //7th step
+        softAssert.assertAll();
+    }
+
+    @Test(description = "My mobile test for map")
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void mapTest(){
+
+        WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
+        SoftAssert softAssert= new SoftAssert();
+        LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
+        CarinaDescriptionPageBase carinaPageBase = loginPageBase.login();
         MapsPageBase mapsPageBase = carinaPageBase.navigateToMapPage();
         Assert.assertTrue(mapsPageBase.isPageOpened(), "Can't open Map Page.");
         Assert.assertTrue(mapsPageBase.isZoomInPresented(), "No Zoom In button on map.");
         Assert.assertTrue(mapsPageBase.isZoomOutPresented(), "No Zoom Out button on map.");
         Assert.assertTrue(mapsPageBase.areBtnsRightOrder(), "Button aren't in a right order.");
 
-        softAssert.assertAll();
-
-
     }
+
 
 }
