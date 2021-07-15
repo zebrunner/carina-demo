@@ -20,7 +20,7 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
 
     @Test(description = "My mobile test for login")
     @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestLabel(name = "login", value = {"mobile", "regression"})
     public void loginTest() {
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
@@ -62,7 +62,7 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
     @Test(description = "My mobile test for map")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void mapTest() {
+    public void mapTest() throws InterruptedException {
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
         SoftAssert softAssert = new SoftAssert();
@@ -78,7 +78,7 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
 
     @Test(description = "My mobile test for login button")
     @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestLabel(name = "loginButton", value = {"mobile", "regression"})
     public void loginButtonActivation() {
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);

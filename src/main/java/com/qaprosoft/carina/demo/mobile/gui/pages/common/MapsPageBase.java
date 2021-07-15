@@ -16,4 +16,5 @@ public abstract class MapsPageBase extends AbstractPage {
     public abstract boolean isZoomOutPresented();
 
     public abstract boolean areBtnsRightOrder();
+
 }
