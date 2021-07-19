@@ -2,19 +2,13 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MapsPageBase.class)
 public class MapsPage extends MapsPageBase {
-
-
 
     @FindBy(xpath = "//android.widget.ImageView[@content-desc='Zoom in']")
     private ExtendedWebElement zoomInBtn;
@@ -24,14 +18,6 @@ public class MapsPage extends MapsPageBase {
 
     @FindBy(xpath = "//android.view.View[@content-desc='Google Map']")
     private ExtendedWebElement googleMap;
-
-    @ExtendedFindBy(androidUIAutomator = "")
-    private ExtendedWebElement zoomInUI;
-
-    @ExtendedFindBy(androidUIAutomator = "")
-    private ExtendedWebElement zoomOutUI;
-
-
 
     public MapsPage(WebDriver driver) {
         super(driver);

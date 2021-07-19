@@ -62,7 +62,7 @@ public class MyMobileTest implements IAbstractTest, IMobileUtils {
     @Test(description = "My mobile test for map")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void mapTest() throws InterruptedException {
+    public void mapTest() {
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
         SoftAssert softAssert = new SoftAssert();
