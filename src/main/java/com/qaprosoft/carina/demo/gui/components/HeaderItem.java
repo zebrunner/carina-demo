@@ -94,10 +94,10 @@ public class HeaderItem extends AbstractUIObject {
         return rssIcon.isPresent();
     }
 
-    public void login(String name, String pass) {
+    public void login(String email, String pass) {
         loginButton.click();
         emailField.click();
-        emailField.type(name);
+        emailField.type(email);
         passField.click();
         passField.type(pass);
         loginFormButton.click();

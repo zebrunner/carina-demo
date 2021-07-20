@@ -10,19 +10,21 @@ import org.testng.annotations.Test;
 
 public class MyWebTest implements IAbstractTest {
 
-    private String name = "gordiy99@gmail.com";
+    private String email = "gordiy99@gmail.com";
     private String pass = "123456gsm";
-    private String creds = null;
+    private final String USER_NOT_FOUND = "Reason: User record not found.";
+    private final String WRONG_PASSWORD = "Reason: Wrong password.";
 
     @Test(description = "Header items are present")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "header", value = "web")
-    public void headerPresent() {
+    public void headerValidation() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         HeaderItem headerItem = new HeaderItem(getDriver());
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         Assert.assertTrue(headerItem.isMenuPresented(), "Menu isn't present.");
+        Assert.assertTrue(headerItem.isSiteLogoPresented(), "Site logo isn't present.");
         Assert.assertTrue(headerItem.isSearchBarPresented(), "Search bar isn't present.");
         Assert.assertTrue(headerItem.isTipLogoPresented(), "Tip isn't present.");
         Assert.assertTrue(headerItem.isFbIconPresented(), "Facebook isn't presented.");
@@ -42,7 +44,7 @@ public class MyWebTest implements IAbstractTest {
         homePage.open();
         HeaderItem headerItem = new HeaderItem(getDriver());
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        headerItem.login(name, pass);
+        headerItem.login(email, pass);
         Assert.assertTrue(homePage.isUserLogged(), "User isn't logged in.");
     }
 
@@ -50,26 +52,26 @@ public class MyWebTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "login", value = "web")
     public void loginWrongEmail() {
-        creds = "email";
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         HeaderItem headerItem = new HeaderItem(getDriver());
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        headerItem.login(name + "1", pass);
-        Assert.assertTrue(homePage.wrongCred(creds));
+        headerItem.login(email + "1", pass);
+        Assert.assertEquals(homePage.getErrorMessage(), USER_NOT_FOUND, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), USER_NOT_FOUND));
+        Assert.assertFalse(homePage.isUserLogged());
     }
 
     @Test(description = "Login with wrong password")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "login", value = "web")
     public void loginWrongPass() {
-        creds = "pass";
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         HeaderItem headerItem = new HeaderItem(getDriver());
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        headerItem.login(name, pass + "1");
-        Assert.assertTrue(homePage.wrongCred(creds));
+        headerItem.login(email, pass + "1");
+        Assert.assertEquals(homePage.getErrorMessage(), WRONG_PASSWORD,String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), WRONG_PASSWORD));
+        Assert.assertFalse(homePage.isUserLogged());
     }
 
 }

@@ -55,11 +55,8 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//*[@class='head-icon icon-user']")
     private ExtendedWebElement loggedIcon;
 
-    @FindBy(xpath = "//*[contains(text(), 'Reason: User record not found.')]")
-    private ExtendedWebElement wrongEmail;
-
-    @FindBy(xpath = "//*[contains(text(), 'Reason: Wrong password.')]")
-    private ExtendedWebElement wrongPass;
+    @FindBy(xpath = "//*[@class='normal-text res-error']/p")
+    private ExtendedWebElement errorMessage;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -71,13 +68,8 @@ public class HomePage extends AbstractPage {
         return headerItem;
     }
 
-    public boolean wrongCred(String type) {
-        if (type == "email") {
-            return wrongEmail.isPresent();
-        } else if (type == "pass") {
-            return wrongPass.isPresent();
-        }
-        return false;
+    public String getErrorMessage() {
+        return errorMessage.getText();
     }
 
     public boolean isUserLogged() {
