@@ -7,6 +7,7 @@ import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class MyWebTest implements IAbstractTest {
 
@@ -19,21 +20,23 @@ public class MyWebTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "header", value = "web")
     public void headerValidation() {
+        SoftAssert softAssert = new SoftAssert();
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         HeaderItem headerItem = new HeaderItem(getDriver());
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
-        Assert.assertTrue(headerItem.isMenuPresented(), "Menu isn't present.");
-        Assert.assertTrue(headerItem.isSiteLogoPresented(), "Site logo isn't present.");
-        Assert.assertTrue(headerItem.isSearchBarPresented(), "Search bar isn't present.");
-        Assert.assertTrue(headerItem.isTipLogoPresented(), "Tip isn't present.");
-        Assert.assertTrue(headerItem.isFbIconPresented(), "Facebook isn't presented.");
-        Assert.assertTrue(headerItem.isTwIconPresented(), "Twitter isn't present.");
-        Assert.assertTrue(headerItem.isInstIconPresented(), "Instagram isn't present.");
-        Assert.assertTrue(headerItem.isYtIconPresented(), "YouTube isn't present.");
-        Assert.assertTrue(headerItem.isRssIconPresented(), "RSS isn't present.");
-        Assert.assertTrue(headerItem.isLoginButtonPresented(), "Login button isn't present.");
-        Assert.assertTrue(headerItem.isSignUpButtonPresented(), "Sign Up button isn't present.");
+        softAssert.assertTrue(headerItem.isMenuPresented(), "Menu isn't present.");
+        softAssert.assertTrue(headerItem.isSiteLogoPresented(), "Site logo isn't present.");
+        softAssert.assertTrue(headerItem.isSearchBarPresented(), "Search bar isn't present.");
+        softAssert.assertTrue(headerItem.isTipLogoPresented(), "Tip isn't present.");
+        softAssert.assertTrue(headerItem.isFbIconPresented(), "Facebook isn't presented.");
+        softAssert.assertTrue(headerItem.isTwIconPresented(), "Twitter isn't present.");
+        softAssert.assertTrue(headerItem.isInstIconPresented(), "Instagram isn't present.");
+        softAssert.assertTrue(headerItem.isYtIconPresented(), "YouTube isn't present.");
+        softAssert.assertTrue(headerItem.isRssIconPresented(), "RSS isn't present.");
+        softAssert.assertTrue(headerItem.isLoginButtonPresented(), "Login button isn't present.");
+        softAssert.assertTrue(headerItem.isSignUpButtonPresented(), "Sign Up button isn't present.");
+        softAssert.assertAll();
     }
 
     @Test(description = "Login with currect creds")
@@ -70,7 +73,7 @@ public class MyWebTest implements IAbstractTest {
         HeaderItem headerItem = new HeaderItem(getDriver());
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
         headerItem.login(email, pass + "1");
-        Assert.assertEquals(homePage.getErrorMessage(), WRONG_PASSWORD,String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), WRONG_PASSWORD));
+        Assert.assertEquals(homePage.getErrorMessage(), WRONG_PASSWORD, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), WRONG_PASSWORD));
         Assert.assertFalse(homePage.isUserLogged(), "User is logged in.");
     }
 
