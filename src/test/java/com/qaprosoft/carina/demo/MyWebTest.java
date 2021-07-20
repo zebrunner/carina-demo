@@ -58,7 +58,7 @@ public class MyWebTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
         headerItem.login(email + "1", pass);
         Assert.assertEquals(homePage.getErrorMessage(), USER_NOT_FOUND, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), USER_NOT_FOUND));
-        Assert.assertFalse(homePage.isUserLogged());
+        Assert.assertFalse(homePage.isUserLogged(), "User is logged in.");
     }
 
     @Test(description = "Login with wrong password")
@@ -71,7 +71,7 @@ public class MyWebTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
         headerItem.login(email, pass + "1");
         Assert.assertEquals(homePage.getErrorMessage(), WRONG_PASSWORD,String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), WRONG_PASSWORD));
-        Assert.assertFalse(homePage.isUserLogged());
+        Assert.assertFalse(homePage.isUserLogged(), "User is logged in.");
     }
 
 }
