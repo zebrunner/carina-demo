@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.constants.IConstant;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
@@ -62,14 +63,12 @@ public class MyWebTest implements IAbstractTest, IConstant {
     public void loginWrongEmail() {
         HomePage homePage = new HomePage(getDriver());
         HeaderItem headerItem = new HeaderItem(getDriver());
-        LoginService loginService = new LoginService();
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
         Assert.assertTrue(headerItem.isLoginButtonPresented(), "Login button isn't present.");
-        headerItem.login(EMAIL + 1, PASS);
-        Assert.assertTrue(headerItem.isUserLogged(), "User isn't logged in.");
-        Assert.assertEquals(homePage.getErrorMessage(), USER_NOT_FOUND, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), USER_NOT_FOUND));
+        headerItem.login(R.TESTDATA.get("email") + 1, R.TESTDATA.get("password"));
         Assert.assertFalse(headerItem.isUserLogged(), "User is logged in.");
+        Assert.assertEquals(homePage.getErrorMessage(), USER_NOT_FOUND, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), USER_NOT_FOUND));
     }
 
     @Test(description = "Login with wrong password")
@@ -77,13 +76,12 @@ public class MyWebTest implements IAbstractTest, IConstant {
     @TestLabel(name = "login", value = "web")
     public void loginWrongPass() {
         HomePage homePage = new HomePage(getDriver());
-        LoginService loginService = new LoginService();
         HeaderItem headerItem = new HeaderItem(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
         Assert.assertTrue(headerItem.isLoginButtonPresented(), "Login button isn't present.");
-        headerItem.login(EMAIL, PASS + 1);
-        Assert.assertTrue(headerItem.isUserLogged(), "User isn't logged in.");
+        headerItem.login(R.TESTDATA.get("email"), R.TESTDATA.get("password") + 1);
+        Assert.assertFalse(headerItem.isUserLogged(), "User isn't logged in.");
         Assert.assertEquals(homePage.getErrorMessage(), WRONG_PASSWORD, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), WRONG_PASSWORD));
     }
 

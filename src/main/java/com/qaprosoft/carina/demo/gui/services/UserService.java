@@ -1,15 +1,15 @@
 package com.qaprosoft.carina.demo.gui.services;
 
-import com.qaprosoft.carina.demo.constants.IConstant;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.gui.components.User;
 import org.apache.commons.lang3.RandomStringUtils;
 
-public class UserService implements IConstant {
+public class UserService {
 
     public static User getUser() {
         User user = new User();
-        user.setEmail(EMAIL);
-        user.setPassword(PASS);
+        user.setEmail(R.TESTDATA.get("email"));
+        user.setPassword(R.TESTDATA.get("password"));
         return user;
     }
 
