@@ -52,9 +52,6 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//*[@class='tooltip'][contains(@style,'display: block')]")
     private ExtendedWebElement loginForm;
 
-    @FindBy(xpath = "//*[@class='head-icon icon-user']")
-    private ExtendedWebElement loggedIcon;
-
     @FindBy(xpath = "//*[@class='normal-text res-error']/p")
     private ExtendedWebElement errorMessage;
 
@@ -70,10 +67,6 @@ public class HomePage extends AbstractPage {
 
     public String getErrorMessage() {
         return errorMessage.getText();
-    }
-
-    public boolean isUserLogged() {
-        return loggedIcon.isPresent();
     }
 
     public FooterMenu getFooterMenu() {

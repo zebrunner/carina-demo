@@ -56,7 +56,7 @@ public class NewsPage extends AbstractPage {
         searchButton.click();
         return news;
     }
-    public String firstArticleTitle(){
+    public String getFirstArticleTitle(){
         return firstArticle.getText();
     }
     public ArticlePage openFirstArticle() {

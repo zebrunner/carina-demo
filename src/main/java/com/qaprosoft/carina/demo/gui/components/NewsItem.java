@@ -26,7 +26,6 @@ public class NewsItem extends AbstractUIObject {
 
     @FindBy(xpath="./a")
     public ExtendedWebElement titleLink;
-
     
     public NewsItem(WebDriver driver, SearchContext sc) {
         super(driver, sc);

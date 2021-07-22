@@ -2,12 +2,14 @@ package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.constants.IConstant;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.HeaderItem;
-import com.qaprosoft.carina.demo.gui.components.LoginService;
+import com.qaprosoft.carina.demo.gui.services.LoginService;
 import com.qaprosoft.carina.demo.gui.pages.ArticlePage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.services.UserService;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,14 +19,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.lang.invoke.MethodHandles;
 
-public class MyWebTest implements IAbstractTest {
+public class MyWebTest implements IAbstractTest, IConstant {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
-    private String email = "gordiy99@gmail.com";
-    private String pass = "123456gsm";
-    private final String USER_NOT_FOUND = "Reason: User record not found.";
-    private final String WRONG_PASSWORD = "Reason: Wrong password.";
-    private final String SEARCH_RESULT = "Results for \"%s\"";
 
     @Test(description = "Header items are present")
     @MethodOwner(owner = "qpsdemo")
@@ -32,7 +28,6 @@ public class MyWebTest implements IAbstractTest {
     public void headerValidation() {
         SoftAssert softAssert = new SoftAssert();
         HomePage homePage = new HomePage(getDriver());
-        LoginService loginService = new LoginService(getDriver());
         homePage.open();
         HeaderItem headerItem = new HeaderItem(getDriver());
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
@@ -45,8 +40,8 @@ public class MyWebTest implements IAbstractTest {
         softAssert.assertTrue(headerItem.isInstIconPresented(), "Instagram isn't present.");
         softAssert.assertTrue(headerItem.isYtIconPresented(), "YouTube isn't present.");
         softAssert.assertTrue(headerItem.isRssIconPresented(), "RSS isn't present.");
-        softAssert.assertFalse(loginService.isLoginButtonPresented(), "Login button isn't present.");
-        softAssert.assertTrue(loginService.isSignUpButtonPresented(), "Sign Up button isn't present.");
+        softAssert.assertFalse(headerItem.isLoginButtonPresented(), "Login button isn't present.");
+        softAssert.assertTrue(headerItem.isSignUpButtonPresented(), "Sign Up button isn't present.");
         softAssert.assertAll();
     }
 
@@ -55,11 +50,10 @@ public class MyWebTest implements IAbstractTest {
     @TestLabel(name = "login", value = "web")
     public void loginTest() {
         HomePage homePage = new HomePage(getDriver());
-        LoginService loginService = new LoginService(getDriver());
+        LoginService loginService = new LoginService();
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        loginService.login(email, pass);
-        Assert.assertTrue(homePage.isUserLogged(), "User isn't logged in.");
+        loginService.login(UserService.getUser());
     }
 
     @Test(description = "Login with wrong email")
@@ -67,12 +61,15 @@ public class MyWebTest implements IAbstractTest {
     @TestLabel(name = "login", value = "web")
     public void loginWrongEmail() {
         HomePage homePage = new HomePage(getDriver());
-        LoginService loginService = new LoginService(getDriver());
+        HeaderItem headerItem = new HeaderItem(getDriver());
+        LoginService loginService = new LoginService();
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        loginService.login(email + "1", pass);
+        Assert.assertTrue(headerItem.isLoginButtonPresented(), "Login button isn't present.");
+        headerItem.login(EMAIL + 1, PASS);
+        Assert.assertTrue(headerItem.isUserLogged(), "User isn't logged in.");
         Assert.assertEquals(homePage.getErrorMessage(), USER_NOT_FOUND, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), USER_NOT_FOUND));
-        Assert.assertFalse(homePage.isUserLogged(), "User is logged in.");
+        Assert.assertFalse(headerItem.isUserLogged(), "User is logged in.");
     }
 
     @Test(description = "Login with wrong password")
@@ -80,12 +77,14 @@ public class MyWebTest implements IAbstractTest {
     @TestLabel(name = "login", value = "web")
     public void loginWrongPass() {
         HomePage homePage = new HomePage(getDriver());
-        LoginService loginService = new LoginService(getDriver());
+        LoginService loginService = new LoginService();
+        HeaderItem headerItem = new HeaderItem(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        loginService.login(email, pass + "1");
+        Assert.assertTrue(headerItem.isLoginButtonPresented(), "Login button isn't present.");
+        headerItem.login(EMAIL, PASS + 1);
+        Assert.assertTrue(headerItem.isUserLogged(), "User isn't logged in.");
         Assert.assertEquals(homePage.getErrorMessage(), WRONG_PASSWORD, String.format("Found message: %s, expected: %s", homePage.getErrorMessage(), WRONG_PASSWORD));
-        Assert.assertFalse(homePage.isUserLogged(), "User is logged in.");
     }
 
     @Test(description = "First article check")
@@ -93,22 +92,18 @@ public class MyWebTest implements IAbstractTest {
     @TestLabel(name = "article", value = "web")
     public void articleVerifying() {
         HomePage homePage = new HomePage(getDriver());
-        LoginService loginService = new LoginService(getDriver());
+        LoginService loginService = new LoginService();
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        Assert.assertEquals(loginService.isLoginButtonPresented(), "Login button isn't present.");
-        loginService.login(email, pass);
-        Assert.assertTrue(homePage.isUserLogged(), "User isn't logged in.");
+        loginService.login(UserService.getUser());
         FooterMenu footerMenu = homePage.getFooterMenu();
         NewsPage newsPage = footerMenu.openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page isn't opened.");
-        String articleTitleFromSearch = newsPage.firstArticleTitle();
+        String articleTitleFromSearch = newsPage.getFirstArticleTitle();
         ArticlePage articlePage = newsPage.openFirstArticle();
         Assert.assertEquals(articleTitleFromSearch, articlePage.articleTitle(), String.format("Expected title: '%s', actual - '%s'", articleTitleFromSearch, articlePage.articleTitle()));
         Assert.assertTrue(articlePage.isArticlePresented(), "Article isn't opened.");
-        Assert.assertEquals(loginService.isLogoutButtonPresented(), "Logout button isn't presented.");
         loginService.logout();
-        Assert.assertEquals(loginService.isSignUpButtonPresented(), "Can't logout.");
     }
 
     @Test(description = "Articles search check")
@@ -117,12 +112,11 @@ public class MyWebTest implements IAbstractTest {
     public void articleSearching() {
         String search_text = "iPhone";
         SoftAssert softAssert = new SoftAssert();
-        LoginService loginService = new LoginService(getDriver());
+        LoginService loginService = new LoginService();
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened.");
-        loginService.login(email, pass);
-        Assert.assertTrue(homePage.isUserLogged(), "User isn't logged in.");
+        loginService.login(UserService.getUser());
         FooterMenu footerMenu = homePage.getFooterMenu();
         NewsPage newsPage = footerMenu.openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page isn't opened.");
