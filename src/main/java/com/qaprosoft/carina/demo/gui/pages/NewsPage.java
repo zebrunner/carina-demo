@@ -31,42 +31,45 @@ public class NewsPage extends AbstractPage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(className="searchFor")
+    @FindBy(className = "searchFor")
     private ExtendedWebElement searchTextField;
-    
-    @FindBy(xpath="//input[@value='Search']")
+
+    @FindBy(xpath = "//input[@value='Search']")
     private ExtendedWebElement searchButton;
-    
-    @FindBy(xpath="//div[@class='news-item']")
+
+    @FindBy(xpath = "//div[@class='news-item']")
     private List<NewsItem> news;
 
-    @FindBy(xpath="//*[@class='floating-title']/div[1]/a")
+    @FindBy(xpath = "//*[@class='floating-title']/div[1]/a")
     private ExtendedWebElement firstArticle;
 
-    @FindBy(xpath = "//*[@class='article-tags clearfix']")
-    private ExtendedWebElement articleTag;
+    @FindBy(xpath = "//*[@class='article-info-name']")
+    private ExtendedWebElement resultSearchTextField;
 
     public NewsPage(WebDriver driver) {
         super(driver);
         setPageURL("/news.php3");
     }
-    
+
     public List<NewsItem> searchNews(String q) {
         searchTextField.type(q);
         searchButton.click();
         return news;
     }
-
-    public void openFirstArticle(){
+    public String firstArticleTitle(){
+        return firstArticle.getText();
+    }
+    public ArticlePage openFirstArticle() {
         firstArticle.click();
+        return new ArticlePage(driver);
     }
 
-    public boolean isArticlePresented(){
-        return articleTag.isPresent();
+    public boolean areArticlesContain(String text) {
+        return news.stream().allMatch((a) -> a.readTitle().contains(text));
     }
 
-    public boolean areArticlesContain(String text){
-        return news.stream().allMatch((a)->a.readTitle().contains(text));
+    public String getResultSearchText(){
+        return resultSearchTextField.getText();
     }
 
 }

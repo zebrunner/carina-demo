@@ -34,20 +34,6 @@ public class HeaderItem extends AbstractUIObject {
     @FindBy(xpath = "//*[@class='head-icon icon-soc-rss2 icomoon-liga']")
     private ExtendedWebElement rssIcon;
 
-    @FindBy(xpath = "//*[@class='head-icon icon-login']")
-    private ExtendedWebElement loginButton;
-
-    @FindBy(xpath = "//*[@id='email']")
-    private ExtendedWebElement emailField;
-
-    @FindBy(xpath = "//*[@id='upass']")
-    private ExtendedWebElement passField;
-
-    @FindBy(xpath = "//*[@class='button']")
-    private ExtendedWebElement loginFormButton;
-
-    @FindBy(xpath ="//*[@class='head-icon icon-user-plus']")
-    private ExtendedWebElement signUpButton;
 
 
     public HeaderItem(WebDriver driver, SearchContext searchContext) {
@@ -92,23 +78,6 @@ public class HeaderItem extends AbstractUIObject {
 
     public boolean isRssIconPresented() {
         return rssIcon.isPresent();
-    }
-
-    public void login(String email, String pass) {
-        loginButton.click();
-        emailField.click();
-        emailField.type(email);
-        passField.click();
-        passField.type(pass);
-        loginFormButton.click();
-    }
-
-    public boolean isLoginButtonPresented() {
-        return loginButton.isPresent();
-    }
-
-    public boolean isSignUpButtonPresented(){
-        return signUpButton.isPresent();
     }
 
 }
