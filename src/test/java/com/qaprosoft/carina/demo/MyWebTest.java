@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.dataprovider.annotations.CsvDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
@@ -11,15 +12,18 @@ import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.qaprosoft.carina.demo.gui.services.UserService;
 import com.zebrunner.agent.core.annotation.TestLabel;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import static com.qaprosoft.carina.demo.constants.IConstant.*;
 
 import java.lang.invoke.MethodHandles;
+import java.util.HashMap;
 
 public class MyWebTest implements IAbstractTest {
 
@@ -111,11 +115,13 @@ public class MyWebTest implements IAbstractTest {
         Assert.assertTrue(headerItem.isSignUpButtonPresented(), "Can't logout.");
     }
 
-    @Test(description = "Articles search check")
+    @Test(description = "Articles search check", dataProvider = "DataProvider")
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "article", value = "web")
-    public void articleSearching() {
-        String search_text = "iPhone";
+    @CsvDataSourceParameters(path="csv/phones.csv", dsUid = "ID")
+    public void articleSearching(HashMap<String, String> value) {
+        String search_text = value.get("value");
+        LOGGER.info(search_text);
         SoftAssert softAssert = new SoftAssert();
         LoginService loginService = new LoginService();
         HomePage homePage = new HomePage(getDriver());
