@@ -26,7 +26,6 @@ public class LoginService implements IDriverPool {
         HeaderItem headerItem = new HeaderItem(getDriver());
         if (headerItem.isLoginButtonPresented()) {
             headerItem.login(user.getEmail(), user.getPassword());
-            Assert.assertTrue(headerItem.isUserLogged(), "User isn't logged in.");
         } else {
             LOGGER.info("User already logged in.");
         }
@@ -36,7 +35,7 @@ public class LoginService implements IDriverPool {
         HeaderItem headerItem = new HeaderItem(getDriver());
         if (headerItem.isLogoutButtonPresented()) {
             headerItem.clickLogoutButton();
-            Assert.assertTrue(headerItem.isSignUpButtonPresented(), "Can't logout.");
+
         } else {
             LOGGER.info("User isn't logged in, can't logout.");
         }

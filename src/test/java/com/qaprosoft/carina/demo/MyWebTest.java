@@ -108,6 +108,7 @@ public class MyWebTest implements IAbstractTest {
         Assert.assertEquals(articleTitleFromSearch, articlePage.getArticleTitle(), String.format("Expected title: '%s', actual - '%s'", articleTitleFromSearch, articlePage.getArticleTitle()));
         Assert.assertTrue(articlePage.isArticlePresented(), "Article isn't opened.");
         loginService.logout();
+        Assert.assertTrue(headerItem.isSignUpButtonPresented(), "Can't logout.");
     }
 
     @Test(description = "Articles search check")
