@@ -35,7 +35,7 @@ public class CryptoSampleTest implements IAbstractTest {
 
     @Test
     public void testEncryption() {
-        Assert.assertEquals(R.CONFIG.get("password"), "EncryptMe");
+        Assert.assertEquals(R.CONFIG.get("user_password"), "EncryptMe");
     }
 
     @Test

@@ -6,10 +6,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class UserService {
 
-    public static User getUser() {
+    public static User getRealUser() {
         User user = new User();
-        user.setEmail(R.TESTDATA.get("email"));
-        user.setPassword(R.TESTDATA.get("password"));
+        user.setEmail(R.TESTDATA.get("user_email"));
+        user.setPassword(R.TESTDATA.get("user_password"));
         return user;
     }
 

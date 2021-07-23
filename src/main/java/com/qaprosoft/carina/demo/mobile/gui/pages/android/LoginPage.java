@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +17,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(id = "name")
     private ExtendedWebElement nameInputField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "user_password")
     private ExtendedWebElement passwordInputField;
 
     @FindBy(id = "radio_male")

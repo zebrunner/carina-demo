@@ -99,7 +99,7 @@ public class HeaderItem extends AbstractUIObject {
         return rssIcon.isPresent();
     }
 
-    public void logout(){
+    public void clickLogoutButton(){
         logoutButton.click();
     }
 

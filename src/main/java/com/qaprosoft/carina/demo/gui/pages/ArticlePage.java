@@ -17,7 +17,7 @@ public class ArticlePage extends AbstractPage {
         super(driver);
     }
 
-    public String articleTitle(){
+    public String getArticleTitle(){
         return articleTitle.getText();
     }
 
