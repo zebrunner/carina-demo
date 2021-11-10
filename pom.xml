@@ -17,7 +17,7 @@
 		<carina-cucumber_version>RELEASE</carina-cucumber_version>
 		<java.version>11</java.version>
 		<spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-		<zebrunner-agent.version>1.6.5.255-SNAPSHOT</zebrunner-agent.version>
+		<zebrunner-agent.version>1.6.5.256-SNAPSHOT</zebrunner-agent.version>
 		<suite>helloWorld</suite>
 	</properties>
 
