@@ -6,7 +6,7 @@
 	<parameter name="jenkinsJobName" value="Mobile-iOS-Preferences-Test" />
 	<parameter name="jenkinsJobType" value="ios"/>
 	<parameter name="jenkinsEnvironments" value="DEMO" />
-	<parameter name="capabilities" value="#bundleId=com.apple.Preferences;platformName=iOS;deviceName=ANY" />
+	<parameter name="capabilities" value="bundleId=com.apple.Preferences;platformName=iOS;deviceName=ANY" />
 
 	<parameter name="jenkinsMobileDefaultPool" value="ANY" />
 
