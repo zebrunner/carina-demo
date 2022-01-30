@@ -3,7 +3,7 @@
 
 	<parameter name="suiteOwner" value="qpsdemo" />
 	<parameter name="provider" value="mcloud"/>
-	<parameter name="jenkinsJobName" value="Mobile-iOS-Demo-Test" />
+	<parameter name="jenkinsJobName" value="Mobile-iOS-Simulator-Demo-Test" />
 	<parameter name="jenkinsJobType" value="ios"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
 	<parameter name="jenkinsEnvironments" value="DEMO" />
