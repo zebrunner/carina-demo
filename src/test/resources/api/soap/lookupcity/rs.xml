@@ -1,0 +1,11 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://www.w3.org/2001/XMLSchema">
+    <SOAP-ENV:Body>
+        <LookupCityResponse xmlns="http://tempuri.org">
+            <LookupCityResult>
+                <#if city??><City>${city}</City></#if>
+                <#if state??><State>"${state}</State></#if>
+                <#if zipCode??><Zip>"${zipCode}"</Zip></#if>
+            </LookupCityResult>
+        </LookupCityResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
