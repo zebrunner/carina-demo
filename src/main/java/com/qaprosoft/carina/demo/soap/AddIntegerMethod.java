@@ -1,10 +1,7 @@
 package com.qaprosoft.carina.demo.soap;
 
 import com.qaprosoft.carina.core.foundation.api.AbstractApiMethodV2;
-import com.qaprosoft.carina.core.foundation.api.annotation.Endpoint;
-import com.qaprosoft.carina.core.foundation.api.annotation.RequestTemplatePath;
-import com.qaprosoft.carina.core.foundation.api.annotation.ResponseTemplatePath;
-import com.qaprosoft.carina.core.foundation.api.annotation.SuccessfulHttpStatus;
+import com.qaprosoft.carina.core.foundation.api.annotation.*;
 import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
@@ -13,9 +10,10 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 @RequestTemplatePath(path = "api/soap/addinteger/rq.xml")
 @ResponseTemplatePath(path = "api/soap/addinteger/rs.xml")
-public class AddInteger extends AbstractApiMethodV2 {
+@ContentType(type = "text/xml")
+public class AddIntegerMethod extends AbstractApiMethodV2 {
 
-    public AddInteger() {
+    public AddIntegerMethod() {
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("soap_url"));
     }
 }

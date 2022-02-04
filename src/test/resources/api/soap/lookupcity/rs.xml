@@ -2,9 +2,9 @@
     <SOAP-ENV:Body>
         <LookupCityResponse xmlns="http://tempuri.org">
             <LookupCityResult>
-                <#if city??><City>${city}</City></#if>
-                <#if state??><State>"${state}</State></#if>
-                <#if zipCode??><Zip>"${zipCode}"</Zip></#if>
+                <City>New York</City>
+                <State>NY</State>
+                <Zip>10005</Zip>
             </LookupCityResult>
         </LookupCityResponse>
     </SOAP-ENV:Body>
