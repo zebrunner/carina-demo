@@ -15,7 +15,6 @@ public class SoapSampleTest implements IAbstractTest {
     public void testAddInteger() {
         AddIntegerMethod soap = new AddIntegerMethod();
         soap.setProperties("api/soap/soap.properties");
-        soap.setHeaders(String.format("SOAPAction=%s", "http://tempuri.org/SOAP.Demo.AddInteger"));
 
         Response response = soap.callAPIExpectSuccess();
         XmlPath rsBody = XmlPath.given(response.asString());
@@ -25,10 +24,9 @@ public class SoapSampleTest implements IAbstractTest {
     }
 
     @Test
-    public void testLookupCity() throws Exception{
+    public void testLookupCity() {
         LookupCityMethod soap = new LookupCityMethod();
         soap.setProperties("api/soap/soap.properties");
-        soap.setHeaders(String.format("SOAPAction=%s", "http://tempuri.org/SOAP.Demo.LookupCity"));
 
         soap.callAPIExpectSuccess();
         soap.validateXmlResponse(XmlCompareMode.STRICT);
