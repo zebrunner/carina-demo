@@ -82,5 +82,4 @@ public class APISampleTest implements IAbstractTest {
         deleteUserMethod.callAPI();
         deleteUserMethod.validateResponse();
     }
-
 }
