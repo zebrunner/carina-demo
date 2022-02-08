@@ -38,8 +38,8 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
  * @author qpsdemo
  */
 public class APISampleTest implements IAbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
@@ -47,8 +47,8 @@ public class APISampleTest implements IAbstractTest {
         LOGGER.info("test");
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
-        api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
-        api.callAPI();
+        api.setProperties("api/users/user.properties");
+        api.callAPIExpectSuccess();
         api.validateResponse();
     }
 
@@ -56,10 +56,10 @@ public class APISampleTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUserMissingSomeFields() throws Exception {
         PostUserMethod api = new PostUserMethod();
+        api.setProperties("api/users/user.properties");
         api.getProperties().remove("name");
         api.getProperties().remove("username");
-        api.expectResponseStatus(HttpResponseStatusType.CREATED_201);
-        api.callAPI();
+        api.callAPIExpectSuccess();
         api.validateResponse();
     }
 
@@ -67,8 +67,7 @@ public class APISampleTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     public void testGetUsers() {
         GetUserMethods getUsersMethods = new GetUserMethods();
-        getUsersMethods.expectResponseStatus(HttpResponseStatusType.OK_200);
-        getUsersMethods.callAPI();
+        getUsersMethods.callAPIExpectSuccess();
         getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getUsersMethods.validateResponseAgainstSchema("api/users/_get/rs.schema");
     }
@@ -78,8 +77,8 @@ public class APISampleTest implements IAbstractTest {
     @TestPriority(Priority.P1)
     public void testDeleteUsers() {
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
-        deleteUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        deleteUserMethod.callAPI();
+        deleteUserMethod.setProperties("api/users/user.properties");
+        deleteUserMethod.callAPIExpectSuccess();
         deleteUserMethod.validateResponse();
     }
 }
