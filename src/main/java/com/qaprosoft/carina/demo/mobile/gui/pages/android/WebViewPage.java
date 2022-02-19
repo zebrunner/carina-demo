@@ -23,4 +23,14 @@ public class WebViewPage extends WebViewPageBase {
         return initPage(getDriver(), ContactUsPageBase.class);
     }
 
+    @Override
+    public boolean isOpened() {
+        return contactUsLink.isElementPresent();
+    }
+
+    @Override
+    public boolean isContactUsLinkPresent() {
+        return contactUsLink.isPresent();
+    }
+
 }

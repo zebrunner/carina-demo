@@ -42,9 +42,9 @@ public class CondidateBlock extends AbstractUIObject {
     }
 
     public void getFirstPhone() {
-		pause(1);
-		Assert.assertTrue(autocompleteSearchElements.size() > 0, "No phones found!");
-		autocompleteSearchElements.get(0).assertElementPresent();
+        pause(1);
+        Assert.assertTrue(autocompleteSearchElements.size() > 0, "No phones found!");
+        autocompleteSearchElements.get(0).assertElementPresent();
         autocompleteSearchElements.get(0).click();
     }
 }

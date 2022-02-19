@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -37,6 +38,41 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public boolean isNameInputFieldPresent() {
+        return nameInputField.isPresent();
+    }
+
+    @Override
+    public boolean isPasswordInputFieldPresent() {
+        return passwordInputField.isPresent();
+    }
+
+    @Override
+    public boolean isMaleRadioBtnPresent() {
+        return maleRadioBtn.isPresent();
+    }
+
+    @Override
+    public boolean isFemaleRadioBtnPresent() {
+        return femaleRadioBtn.isPresent();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckboxPresent() {
+        return privacyPolicyCheckbox.isPresent();
+    }
+
+    @Override
+    public String getUsername() {
+        return nameInputField.getText();
+    }
+
+    @Override
+    public String getPassword() {
+        return passwordInputField.getText();
+    }
+
+    @Override
     public void typeName(String name) {
         nameInputField.type(name);
         hideKeyboard();
@@ -53,6 +89,26 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public void selectFemaleSex() {
+        femaleRadioBtn.click();
+    }
+
+    @Override
+    public boolean isFemaleRadioButtonChecked() {
+        return femaleRadioBtn.isChecked();
+    }
+
+    @Override
+    public boolean isMaleRadioButtonChecked() {
+        return maleRadioBtn.isChecked();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckboxChecked() {
+        return privacyPolicyCheckbox.isChecked();
+    }
+
+    @Override
     public void checkPrivacyPolicyCheckbox() {
         privacyPolicyCheckbox.click();
     }
@@ -62,6 +118,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         loginBtn.click();
         return initPage(getDriver(), CarinaDescriptionPageBase.class);
     }
+
 
     @Override
     public boolean isLoginBtnActive() {
@@ -77,6 +134,11 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         selectMaleSex();
         checkPrivacyPolicyCheckbox();
         return clickLoginBtn();
+    }
+
+    @Override
+    public boolean isOpened() {
+        return loginBtn.isElementPresent();
     }
 
 }

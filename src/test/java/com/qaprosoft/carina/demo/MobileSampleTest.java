@@ -32,6 +32,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
+import org.testng.asserts.SoftAssert;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
@@ -101,4 +102,37 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
 
+    @Test()
+    @MethodOwner(owner = "kpetrushko")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void testVerifyLoginPage() {
+        String username = "Test user";
+        String password = RandomStringUtils.randomAlphabetic(10);
+        SoftAssert softAssert = new SoftAssert();
+        WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
+        LoginPageBase loginPage = welcomePage.clickNextBtn();
+        Assert.assertTrue(loginPage.isOpened(), "Login page isn`t opened");
+        softAssert.assertTrue(loginPage.isNameInputFieldPresent(), "Name input field is null");
+        softAssert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field is null");
+        softAssert.assertTrue(loginPage.isMaleRadioBtnPresent(), "Male radio button is null");
+        softAssert.assertTrue(loginPage.isFemaleRadioBtnPresent(), "Female radio button is null");
+        softAssert.assertTrue(loginPage.isPrivacyPolicyCheckboxPresent(), "Privacy Policy Checkbox is null");
+        softAssert.assertAll();
+        loginPage.typeName(username);
+        Assert.assertEquals(loginPage.getUsername(), username, "Name was not typed");
+        loginPage.typePassword(password);
+        Assert.assertEquals(loginPage.getPassword(), password, "Password was not typed");
+        loginPage.selectFemaleSex();
+        Assert.assertTrue(loginPage.isFemaleRadioButtonChecked(), "Female radio button was not checked");
+        loginPage.selectMaleSex();
+        Assert.assertTrue(loginPage.isMaleRadioButtonChecked(), "Male radio button was not checked");
+        loginPage.checkPrivacyPolicyCheckbox();
+        Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxChecked(), "Privacy Policy Checkbox was not checked");
+        CarinaDescriptionPageBase carinaDescription = loginPage.clickLoginBtn();
+        Assert.assertTrue(carinaDescription.isPageOpened(), "Carina description page isn't opened");
+        WebViewPageBase webViewPage = carinaDescription.navigateToWebViewPage();
+        Assert.assertTrue(webViewPage.isOpened(), "Web View Page isn`t opened");
+        Assert.assertTrue(webViewPage.isContactUsLinkPresent(), "Contact us link is null");
+    }
 }
