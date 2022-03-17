@@ -43,8 +43,6 @@ import java.util.List;
  */
 public class CustomWebTest implements IAbstractTest {
 
-
-
     @Test()
     @MethodOwner(owner = "qpsdemo")
     public void testHeaderElements() {
@@ -69,10 +67,8 @@ public class CustomWebTest implements IAbstractTest {
         softAssert.assertTrue(headerLinks.get(5).isElementPresent(), "Merch Link wasn't found");
         softAssert.assertTrue(headerLinks.get(6).isElementPresent(), "Login Link wasn't found");
         softAssert.assertTrue(headerLinks.get(7).isElementPresent(), "SignUp Link wasn't found");
-
         softAssert.assertAll();
 
-        System.out.println("ALL Upper Elements found");
         menuButton.click();
 
         List<ExtendedWebElement> menuItems = headerMenu.getMenuItems();
@@ -87,14 +83,7 @@ public class CustomWebTest implements IAbstractTest {
         softAssert1.assertTrue(menuItems.get(7).isElementPresent(),"Merch wasn't found");
         softAssert1.assertTrue(menuItems.get(8).isElementPresent(),"Coverage wasn't found");
         softAssert1.assertTrue(menuItems.get(9).isElementPresent(),"Contact wasn't found");
-
         softAssert1.assertAll();
-
-        System.out.println("Congrats, man !");
-
-
-
-
     }
 
 
