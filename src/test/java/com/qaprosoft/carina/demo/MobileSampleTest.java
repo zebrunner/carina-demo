@@ -100,5 +100,4 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         uiElements.clickOnOtherRadioButton();
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
-
 }

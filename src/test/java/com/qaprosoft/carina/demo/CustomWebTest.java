@@ -15,62 +15,75 @@
  */
 package com.qaprosoft.carina.demo;
 
-import java.util.List;
-
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
+import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.components.HeaderMenu;
+import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
+import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
+import com.qaprosoft.carina.demo.gui.pages.*;
+import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
-import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.demo.gui.components.FooterMenu;
-import com.qaprosoft.carina.demo.gui.components.NewsItem;
-import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
-import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
-import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import java.util.List;
 
 /**
  * This sample shows how create Web test.
  *
  * @author qpsdemo
  */
-public class WebSampleTest implements IAbstractTest {
+public class CustomWebTest implements IAbstractTest {
+
     @Test()
     @MethodOwner(owner = "qpsdemo")
-    @TestPriority(Priority.P3)
-    @TestLabel(name = "feature", value = {"web", "regression"})
-    public void testModelSpecs() {
+    public void testHeaderElements() {
         // Open GSM Arena home page and verify page is opened
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
-        
-        //Closing advertising if it's displayed
-        homePage.getWeValuePrivacyAd().closeAdIfPresent();
-        
-        // Select phone brand
-        homePage = new HomePage(getDriver());
-        BrandModelsPage productsPage = homePage.selectBrand("Samsung");
-        // Select phone model
-        ModelInfoPage productInfoPage = productsPage.selectModel("Galaxy A52 5G");
-        // Verify phone specifications
+
+        HeaderMenu headerMenu = homePage.getHeaderMenu();
+        Assert.assertTrue(headerMenu.isUIObjectPresent(10), "Header menu wasn't found!");
+        ExtendedWebElement menuButton = headerMenu.getMenuButton();
+        Assert.assertTrue(menuButton.isElementPresent(),"Menu Button wasn't found");
+        ExtendedWebElement logo = headerMenu.getLogo();
+        Assert.assertTrue(logo.isElementPresent(), "Logo wasn't found");
+        List<ExtendedWebElement> headerLinks = headerMenu.getHeaderLinks();
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(productInfoPage.readDisplay(), "6.5\"", "Invalid display info!");
-        softAssert.assertEquals(productInfoPage.readCamera(), "64MP", "Invalid camera info!");
-        softAssert.assertEquals(productInfoPage.readRam(), "6/8GB RAM", "Invalid ram info!");
-        softAssert.assertEquals(productInfoPage.readBattery(), "4500mAh", "Invalid battery info!");
+        softAssert.assertTrue(headerLinks.get(0).isElementPresent(), "Tip Us Link wasn't found");
+        softAssert.assertTrue(headerLinks.get(1).isElementPresent(), "Youtube Link wasn't found");
+        softAssert.assertTrue(headerLinks.get(2).isElementPresent(), "Instagram Link wasn't found");
+        softAssert.assertTrue(headerLinks.get(3).isElementPresent(), "RSS Link wasn't found");
+        softAssert.assertTrue(headerLinks.get(4).isElementPresent(), "ArenaEV Link wasn't found");
+        softAssert.assertTrue(headerLinks.get(5).isElementPresent(), "Merch Link wasn't found");
+        softAssert.assertTrue(headerLinks.get(6).isElementPresent(), "Login Link wasn't found");
+        softAssert.assertTrue(headerLinks.get(7).isElementPresent(), "SignUp Link wasn't found");
         softAssert.assertAll();
+
+        menuButton.click();
+
+        List<ExtendedWebElement> menuItems = headerMenu.getMenuItems();
+        SoftAssert softAssert1 = new SoftAssert();
+        softAssert1.assertTrue(menuItems.get(0).isElementPresent(),"Home wasn't found");
+        softAssert1.assertTrue(menuItems.get(1).isElementPresent(),"News wasn't found");
+        softAssert1.assertTrue(menuItems.get(2).isElementPresent(),"Reviews wasn't found");
+        softAssert1.assertTrue(menuItems.get(3).isElementPresent(),"Videos wasn't found");
+        softAssert1.assertTrue(menuItems.get(4).isElementPresent(),"Featured wasn't found");
+        softAssert1.assertTrue(menuItems.get(5).isElementPresent(),"Phone Finder wasn't found");
+        softAssert1.assertTrue(menuItems.get(6).isElementPresent(),"Deals wasn't found");
+        softAssert1.assertTrue(menuItems.get(7).isElementPresent(),"Merch wasn't found");
+        softAssert1.assertTrue(menuItems.get(8).isElementPresent(),"Coverage wasn't found");
+        softAssert1.assertTrue(menuItems.get(9).isElementPresent(),"Contact wasn't found");
+        softAssert1.assertAll();
     }
 
 
@@ -96,7 +109,7 @@ public class WebSampleTest implements IAbstractTest {
         softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
         softAssert.assertAll();
     }
-    
+    /*
     @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"web", "acceptance"})
@@ -119,4 +132,6 @@ public class WebSampleTest implements IAbstractTest {
         }
         softAssert.assertAll();
     }
+
+     */
 }
