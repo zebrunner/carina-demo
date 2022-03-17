@@ -20,6 +20,7 @@ import java.util.List;
 
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.demo.gui.components.HeaderMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -42,6 +43,9 @@ public class HomePage extends AbstractPage {
 
     @FindBy(className = "news-column-index")
     private ExtendedWebElement newsColumn;
+
+    @FindBy(xpath = "//div[@class='top-bar clearfix']")
+    private HeaderMenu headerMenu;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -68,5 +72,9 @@ public class HomePage extends AbstractPage {
     
     public WeValuePrivacyAd getWeValuePrivacyAd() {
     	return new WeValuePrivacyAd(driver);
+    }
+
+    public HeaderMenu getHeaderMenu() {
+        return headerMenu;
     }
 }

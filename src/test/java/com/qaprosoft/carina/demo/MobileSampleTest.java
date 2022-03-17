@@ -101,4 +101,21 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
 
+    @Test()
+    @MethodOwner(owner = "qpsdemo")
+    public void customLogin(){
+        WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
+        Assert.assertTrue(welcomePageBase.isPageOpened(), "idi nahuy");
+        String username = "Test user";
+        String password = RandomStringUtils.randomAlphanumeric(10);
+        LoginPageBase loginPageBase = welcomePageBase.clickNextBtn();
+        loginPageBase.typeName(username);
+        loginPageBase.typePassword(password);
+        loginPageBase.selectMaleSex();
+        loginPageBase.checkPrivacyPolicyCheckbox();
+        CarinaDescriptionPageBase carinaDescriptionPageBase = loginPageBase.clickLoginBtn();
+        Assert.assertTrue(carinaDescriptionPageBase.isPageOpened(), "Page not opened");
+
+    }
+
 }
