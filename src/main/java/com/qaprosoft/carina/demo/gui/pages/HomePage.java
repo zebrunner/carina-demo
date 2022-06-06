@@ -59,7 +59,7 @@ public class HomePage extends AbstractPage {
             String currentBrand = brandLink.getText();
             LOGGER.info("currentBrand: " + currentBrand);
             if (brand.equalsIgnoreCase(currentBrand)) {
-                brandLink.click();
+                brandLink.clickByJs();
                 return new BrandModelsPage(driver);
             }
         }
