@@ -37,7 +37,7 @@ public class CompareModelsPage extends AbstractPage {
     @FindBy(className = "compare-candidates")
     private ExtendedWebElement compareMenu;
 
-    @FindBy(xpath = "//tr[.//a[text()='%s']]//td[@class='nfo'][%d]")
+    @FindBy(xpath = ".//tr[.//a[text()='%s']]//td[@class='nfo'][%d]")
     private ExtendedWebElement specifications;
 
     public CompareModelsPage(WebDriver driver) {
