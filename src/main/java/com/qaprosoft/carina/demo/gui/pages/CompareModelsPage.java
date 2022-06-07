@@ -15,17 +15,18 @@
  */
 package com.qaprosoft.carina.demo.gui.pages;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
+import com.qaprosoft.carina.core.foundation.retry.ActionPoller;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.compare.CondidateBlock;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CompareModelsPage extends AbstractPage {
 
@@ -48,6 +49,13 @@ public class CompareModelsPage extends AbstractPage {
         CondidateBlock condidateBlock;
         List<ModelSpecs> modelSpecs = new ArrayList<>();
         ModelSpecs modelSpec;
+        ActionPoller<Boolean> actionPoller = ActionPoller.builder();
+        actionPoller.task(() -> condidateBlocks.isEmpty())
+                .until(isEmpty -> !isEmpty)
+                .pollEvery(1, ChronoUnit.SECONDS)
+                .stopAfter(15, ChronoUnit.SECONDS)
+                .execute();
+
         for (int index = 0; index < models.length; index++) {
             modelSpec = new ModelSpecs();
             condidateBlock = condidateBlocks.get(index);
