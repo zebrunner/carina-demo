@@ -63,6 +63,7 @@ public class CompareModelsPage extends AbstractPage {
             condidateBlock = condidateBlocks.get(index);
             condidateBlock.sendKeysToInputField(models[index]);
             condidateBlock.getFirstPhone();
+            pause(3);
             for (ModelSpecs.SpecType type : ModelSpecs.SpecType.values()) {
                 ExtendedWebElement spec = specifications.format(type.getType(), index + 1);
                 modelSpec.setToModelSpecsMap(type, spec.getText());
