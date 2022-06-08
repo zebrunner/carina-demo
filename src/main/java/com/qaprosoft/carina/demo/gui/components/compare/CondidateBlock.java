@@ -47,6 +47,5 @@ public class CondidateBlock extends AbstractUIObject {
         ExtendedWebElement autocompleteSearchElement = autocompleteSearchElements.get(0);
         autocompleteSearchElement.assertElementPresent();
         autocompleteSearchElement.click();
-        autocompleteSearchElement.waitUntilElementDisappear(5);
     }
 }
