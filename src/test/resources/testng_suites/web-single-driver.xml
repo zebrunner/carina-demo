@@ -8,9 +8,8 @@
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
-	<parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
 
-	<parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome; browser: firefox; browser: opera"/>
+	<parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome; browser: firefox"/>
 	<parameter name="jenkinsJobExecutionOrder" value="2"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 	<parameter name="jenkinsAutoScreenshot" value="true"/>
