@@ -8,12 +8,9 @@
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="full_regression"/>
-	<parameter name="jenkinsRegressionMatrix_full_regression" value="retry_count:0; retry_count:1; retry_count:3; retry_count:5"/>
-	
+
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-	<!-- example declaring non default retry_count -->
-	<parameter name="jenkinsDefaultRetryCount" value="5"/>
 
 
 	<test name="DataProvider with Retry">
