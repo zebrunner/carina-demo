@@ -18,11 +18,7 @@
 
 	<test name="DataProvider with Retry">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.regression.dataprovider.DataproviderRetryTest">
-				<methods>
-					<include name="testDataproviderRetry"/>
-				</methods>
-			</class>
+			<class name="com.qaprosoft.carina.demo.regression.dataprovider.DataproviderRetryTest"/>
 		</classes>
 	</test>
 
