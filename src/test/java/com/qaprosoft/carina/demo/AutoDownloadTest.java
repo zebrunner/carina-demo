@@ -31,8 +31,8 @@ public class AutoDownloadTest implements IAbstractTest {
     @DataProvider(name = "validArtifacts", parallel = false)
     public Object[][] artifactURLs() {
         return new Object[][] { { URLS[0], "NULL", "NULL" },
-                { URLS[1], "/tmp/111", "NULL" },
-                { URLS[2], "NULL", "/tmp/111" } };
+                { URLS[1], "/workdir/111", "NULL" },
+                { URLS[2], "NULL", "/workdir/111" } };
     }
 
     @Test(dataProvider = "validArtifacts")
@@ -83,7 +83,7 @@ public class AutoDownloadTest implements IAbstractTest {
 
         LOGGER.info("Auto download folder: {}", ReportContext.getAutoDownloadFolder().getAbsolutePath());
         LOGGER.info("Artifact's folder: {}", ReportContext.getArtifactsFolder().getAbsolutePath());
-        
+
         List<String> fileNames = new ArrayList<>();
         for (String url : URLS) {
             fileNames.add(AutoDownloadUtils.getFileNameFromURL(url));
