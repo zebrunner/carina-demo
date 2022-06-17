@@ -13,7 +13,7 @@
     <parameter name="jenkinsJobExecutionOrder" value="1"/>
     <parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-    <test name="GSM arena web tests">
+    <test name="Auto download test">
         <classes>
             <class name="com.qaprosoft.carina.demo.AutoDownloadTest"/>
         </classes>
