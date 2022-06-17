@@ -12,10 +12,17 @@
     <parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome; browser: firefox"/>
     <parameter name="jenkinsJobExecutionOrder" value="1"/>
     <parameter name="jenkinsJobExecutionMode" value="continue"/>
+    <parameter name="jenkinsAutoScreenshot" value="true"/>
 
     <test name="Auto download test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.AutoDownloadTest"/>
+            <class name="com.qaprosoft.carina.demo.AutoDownloadTest">
+                <methods>
+                    <include name="downloadArtifactTest"/>
+                    <include name="downloadArtifactsTest"/>
+                </methods>
+
+            </class>
         </classes>
     </test>
 
