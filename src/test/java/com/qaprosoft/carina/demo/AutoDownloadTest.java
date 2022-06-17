@@ -42,6 +42,9 @@ public class AutoDownloadTest implements IAbstractTest {
         R.CONFIG.put("auto_download_folder", autoDownloadFolder, true);
         R.CONFIG.put("custom_artifacts_folder", customArtifactsFolder, true);
 
+        LOGGER.info("Auto download folder: {}", ReportContext.getAutoDownloadFolder().getAbsolutePath());
+        LOGGER.info("Artifact's folder: {}", ReportContext.getArtifactsFolder().getAbsolutePath());
+
         String fileName = AutoDownloadUtils.getFileNameFromURL(artifactURL);
 
         ReportContext.deleteAllArtifacts();
@@ -78,6 +81,9 @@ public class AutoDownloadTest implements IAbstractTest {
         R.CONFIG.put("auto_download_folder", autoDownloadFolder, true);
         R.CONFIG.put("custom_artifacts_folder", customArtifactsFolder, true);
 
+        LOGGER.info("Auto download folder: {}", ReportContext.getAutoDownloadFolder().getAbsolutePath());
+        LOGGER.info("Artifact's folder: {}", ReportContext.getArtifactsFolder().getAbsolutePath());
+        
         List<String> fileNames = new ArrayList<>();
         for (String url : URLS) {
             fileNames.add(AutoDownloadUtils.getFileNameFromURL(url));
