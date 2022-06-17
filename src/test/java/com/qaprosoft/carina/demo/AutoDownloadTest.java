@@ -31,8 +31,8 @@ public class AutoDownloadTest implements IAbstractTest {
     @DataProvider(name = "validArtifacts", parallel = false)
     public Object[][] artifactURLs() {
         return new Object[][] { { URLS[0], "NULL", "NULL" },
-                { URLS[1], System.getProperty("user.home") + "/tmp/111", "NULL" },
-                { URLS[2], "NULL", System.getProperty("user.home") + "/tmp/111" } };
+                { URLS[1], "/tmp/111", "NULL" },
+                { URLS[2], "NULL", "/tmp/111" } };
     }
 
     @Test(dataProvider = "validArtifacts")
