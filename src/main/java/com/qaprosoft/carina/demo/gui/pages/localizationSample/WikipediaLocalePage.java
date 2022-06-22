@@ -49,6 +49,10 @@ public class WikipediaLocalePage extends AbstractPage {
     @FindBy(linkText = "{L10N:discussionElem}")
     private ExtendedWebElement discussionBtn;
 
+    //    @Localized
+    @FindBy(xpath = "//body")
+    private WikipediaBody wikipediaBody;
+
     public String getDiscussionText(){
         if (discussionBtn.isPresent()) {
             return discussionBtn.getText();
@@ -88,4 +92,9 @@ public class WikipediaLocalePage extends AbstractPage {
             pageLink.hover();
         }
     }
+
+    public WikipediaBody getWikipediaBody() {
+        return wikipediaBody;
+    }
+
 }

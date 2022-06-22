@@ -48,6 +48,13 @@ public class WikipediaHomePage extends AbstractPage {
                     languageBtn.click();
                     return new WikipediaLocalePage(driver);
                 }
+                //Fix for he_IL
+                if(locale.getLanguage().equals("iw") && localeStr.contains("he")) {
+                    if(languageBtn.getAttribute("lang").equals("he")) {
+                        languageBtn.click();
+                        return new WikipediaLocalePage(driver);
+                    }
+                }
             }
         }
         throw new RuntimeException("No language ref was found");

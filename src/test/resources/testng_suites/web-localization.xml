@@ -26,4 +26,14 @@
         </classes>
     </test>
 
+<!--    <test name="Wikipedia Localization Test DataProvider">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.WebLocalizationSample" >
+                <methods>
+                    <include name="testLanguagesMulti" />
+                </methods>
+            </class>
+        </classes>
+    </test>-->
+
 </suite>

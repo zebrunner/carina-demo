@@ -16,6 +16,8 @@
 
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.utils.R;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
@@ -41,9 +43,10 @@ public class WebLocalizationSample implements IAbstractTest {
         wikipediaHomePage.open();
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
-
+        System.out.println(wikipediaLocalePage.getWelcomeText());
         wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.clickDiscussionBtn();
+
 
         L10N.assertAll();
     }
@@ -57,15 +60,53 @@ public class WebLocalizationSample implements IAbstractTest {
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
-        wikipediaLocalePage.hoverWelcomeText();
-        wikipediaLocalePage.hoverContribElem();
-        wikipediaLocalePage.hoverCreateAccountElem();
+        //wikipediaLocalePage.hoverWelcomeText();
+        //wikipediaLocalePage.hoverContribElem();
+        //wikipediaLocalePage.hoverCreateAccountElem();
 
-        wikipediaLocalePage.hoverHeaders();
-
-        wikipediaLocalePage.clickDiscussionBtn();
+        //wikipediaLocalePage.hoverHeaders();
+        wikipediaLocalePage.getWikipediaBody().hoverContribElem();
+        wikipediaLocalePage.getWikipediaBody().clickDiscussionBtn();
+        //wikipediaLocalePage.clickDiscussionBtn();
 
         L10N.flush();
+        L10N.assertAll();
+    }
+
+    @DataProvider(name = "languagesProvider")
+    public Object[][] dpMethod() {
+        return new Object[][]{
+
+                {"en_US"},
+                {"de_DE"},
+                {"es_ES"},
+                {"ru_RU"},
+                {"hu_HU"},
+                {"ja_JP"},
+                {"zh_CN"},
+                {"ar_DZ"},
+                //                {Languages.FRENCH},
+                //                {Languages.PORTUGUESE},
+                ////                {Languages.CHINESE},
+                //                {Languages.SPANISH}
+        };
+    }
+
+    @Test(dataProvider = "languagesProvider")
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguagesMulti(String lang) {
+        R.CONFIG.put("locale", lang, true);
+        L10N.setLocale(lang);
+        L10N.load();
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+        //System.out.println(wikipediaLocalePage.getWelcomeText());
+        wikipediaLocalePage.getWikipediaBody().hoverContribElem();
+        wikipediaLocalePage.getWikipediaBody().clickDiscussionBtn();
+
         L10N.assertAll();
     }
 }
