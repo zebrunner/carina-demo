@@ -42,8 +42,8 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 
     @BeforeSuite(groups = "firstGroup")
     public void firstBeforeSuite() {
-        LOGGER.info("First group logger before suite");
-        getDriver();
+        LOGGER.info("First group logger before suite without driver");
+        //getDriver();
     }
 
     @BeforeSuite(groups = "secondGroup")
