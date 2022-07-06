@@ -15,15 +15,9 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.zebrunner.agent.core.annotation.TestLabel;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
@@ -32,13 +26,35 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
+import java.lang.invoke.MethodHandles;
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 
-    @Test()
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+    @BeforeSuite(groups = "firstGroup")
+    public void firstBeforeSuite() {
+        LOGGER.info("First group logger before suite");
+        getDriver();
+    }
+
+    @BeforeSuite(groups = "secondGroup")
+    public void secondBeforeSuite() {
+        LOGGER.info("Second group logger before suite");
+        getDriver();
+    }
+
+    @Test(groups = { "firstGroup" })
     @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestLabel(name = "feature", value = { "mobile", "regression" })
     public void testLoginUser() {
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
@@ -54,7 +70,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
-	@Test()
+    @Test(groups = { "secondGroup" })
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
