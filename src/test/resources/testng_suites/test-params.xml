@@ -21,7 +21,6 @@
 
 
 	<test name="Sum operation test">
-		<parameter name="{ds_custom_provider}" value="true" />
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
@@ -33,7 +32,6 @@
 	</test>
 
 	<test name="Multiply operation test">
-		<parameter name="{ds_custom_provider}" value="true" />
 		<classes>
 			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
