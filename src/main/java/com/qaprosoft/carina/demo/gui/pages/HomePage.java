@@ -20,6 +20,7 @@ import java.util.List;
 
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.demo.gui.components.TopNavbarComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -34,6 +35,8 @@ import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 public class HomePage extends AbstractPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    @FindBy(id = "social-connect")
+    private TopNavbarComponent topNavbarComponent;
     @FindBy(id = "footmenu")
     private FooterMenu footerMenu;
 
@@ -47,6 +50,10 @@ public class HomePage extends AbstractPage {
         super(driver);
         setUiLoadedMarker(newsColumn);
         setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
+    }
+
+    public TopNavbarComponent getTopNavbarComponent(){
+        return topNavbarComponent;
     }
 
     public FooterMenu getFooterMenu() {
