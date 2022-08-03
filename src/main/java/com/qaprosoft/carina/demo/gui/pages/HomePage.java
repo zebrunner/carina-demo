@@ -20,6 +20,7 @@ import java.util.List;
 
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.demo.gui.components.Header;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -36,7 +37,10 @@ public class HomePage extends AbstractPage {
 
     @FindBy(id = "footmenu")
     private FooterMenu footerMenu;
-
+    @FindBy(id = "header")
+    private Header headerMenu;
+    @FindBy(id = "header")
+    private ExtendedWebElement header;
     @FindBy(xpath = "//div[contains(@class, 'brandmenu-v2')]//a")
     private List<ExtendedWebElement> brandLinks;
 
@@ -47,6 +51,12 @@ public class HomePage extends AbstractPage {
         super(driver);
         setUiLoadedMarker(newsColumn);
         setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
+    }
+    public boolean isHeaderPresent() {
+        return header.isPresent();
+    }
+    public Header getHeader() {
+        return headerMenu;
     }
 
     public FooterMenu getFooterMenu() {
@@ -65,8 +75,8 @@ public class HomePage extends AbstractPage {
         }
         throw new RuntimeException("Unable to open brand: " + brand);
     }
-    
+
     public WeValuePrivacyAd getWeValuePrivacyAd() {
-    	return new WeValuePrivacyAd(driver);
+        return new WeValuePrivacyAd(driver);
     }
 }
