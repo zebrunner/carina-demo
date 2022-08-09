@@ -59,6 +59,11 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
+	public void selectFemaleSex() {
+		femaleRadioBtn.click();
+	}
+
+	@Override
 	public void checkPrivacyPolicyCheckbox() {
 		privacyPolicyCheckbox.click();
 	}

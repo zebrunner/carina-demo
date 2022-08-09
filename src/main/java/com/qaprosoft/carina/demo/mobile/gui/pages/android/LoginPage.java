@@ -52,6 +52,10 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         maleRadioBtn.click();
     }
 
+    public void selectFemaleSex(){
+        femaleRadioBtn.click();
+    }
+
     @Override
     public void checkPrivacyPolicyCheckbox() {
         privacyPolicyCheckbox.click();
