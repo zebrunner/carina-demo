@@ -1,4 +1,4 @@
-package mytests.mobile;
+package my.tests.mobile;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.mobile.gui.pages.android.CarinaDescriptionPage;
