@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
+import com.qaprosoft.carina.demo.gui.components.Header;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
@@ -117,5 +118,30 @@ public class WebSampleTest implements IAbstractTest {
         }
         softAssert.assertAll();
     }
+
+    @Test()
+    @TestLabel(name = "feature", value = {"web", "regression"})
+    public void testHeaderElementsVerifying() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        Header header = homePage.getHeader();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(header.isHamburgerMenuPresent(),"Hamburger menu isn't displayed");
+        softAssert.assertTrue(header.isLogoPresent(),"Logo isn't displayed");
+        softAssert.assertTrue(header.isSearchFormPresent(),"Search form isn't displayed");
+        softAssert.assertTrue(header.isSearchLinePresent(),"Search line menu isn't displayed");
+        softAssert.assertTrue(header.isSearchButtonPresent(),"Search button isn't displayed");
+        softAssert.assertTrue(header.isIconTipUsPresent(),"Tip us icon isn't displayed");
+        softAssert.assertTrue(header.isIconYoutubePresent(),"Youtube icon isn't displayed");
+        softAssert.assertTrue(header.isIconInstagramPresent(),"Instagram isn't displayed");
+        softAssert.assertTrue(header.isIconRSSPresent(),"RSS icon isn't displayed");
+        softAssert.assertTrue(header.isIconSpecsCarPresent(),"Specs car icon isn't displayed");
+        softAssert.assertTrue(header.isIconCartPresent(),"Cart icon isn't displayed");
+        softAssert.assertTrue(header.isIconLoginPresent(),"Login icon isn't displayed");
+        softAssert.assertTrue(header.isIconSignUpPresent(),"Sign up icon isn't displayed");
+        softAssert.assertAll();
+    }
+
 
 }
