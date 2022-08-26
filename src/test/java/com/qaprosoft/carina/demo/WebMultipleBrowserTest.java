@@ -18,8 +18,8 @@ package com.qaprosoft.carina.demo;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
-import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.ChromeCapabilities;
-import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.FirefoxCapabilities;
+import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.ChromeCapabilities;
+import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.FirefoxCapabilities;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
@@ -40,11 +40,11 @@ public class WebMultipleBrowserTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     public void multipleBrowserTest() {
-        HomePage chromeHomePage = new HomePage(getDriver("chrome", new ChromeCapabilities().getCapabilities("Chrome Test")));
+        HomePage chromeHomePage = new HomePage(getDriver("chrome", new ChromeCapabilities().getCapability("Chrome Test")));
         chromeHomePage.open();
         Assert.assertTrue(chromeHomePage.isPageOpened(), "Chrome home page is not opened!");
 
-        HomePage firefoxHomePage = new HomePage(getDriver("firefox", new FirefoxCapabilities().getCapabilities("Firefox Test")));
+        HomePage firefoxHomePage = new HomePage(getDriver("firefox", new FirefoxCapabilities().getCapability("Firefox Test")));
         firefoxHomePage.open();
         Assert.assertTrue(firefoxHomePage.isPageOpened(), "Firefox home page is not opened!");
         Assert.assertEquals(firefoxHomePage.getDriver().getTitle(), "GSMArena.com - mobile phone reviews, news, specifications and more...");
