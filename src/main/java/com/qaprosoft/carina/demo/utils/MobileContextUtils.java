@@ -1,18 +1,16 @@
 package com.qaprosoft.carina.demo.utils;
 
-import java.lang.invoke.MethodHandles;
-import java.util.Set;
-
+import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
+import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
-import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
-
-import io.appium.java_client.AppiumDriver;
+import java.lang.invoke.MethodHandles;
+import java.util.Set;
 
 
 public class MobileContextUtils implements IDriverPool {
@@ -23,6 +21,16 @@ public class MobileContextUtils implements IDriverPool {
         WebDriver driver = getDriver();
         if (driver instanceof EventFiringWebDriver) {
             driver = ((EventFiringWebDriver) driver).getWrappedDriver();
+        }
+        return driver;
+    }
+
+    /**
+     * Returns a pure driver without listeners
+     */
+    public WebDriver getPureDriver(WebDriver driver) {
+        if (driver instanceof EventFiringWebDriver) {
+            return ((EventFiringWebDriver) driver).getWrappedDriver();
         }
         return driver;
     }
