@@ -16,7 +16,7 @@
 
 	<test name="GSM arena web tests">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
+			<class name="com.qaprosoft.carina.demo.WebFactorySampleTest" />
 		</classes>
 	</test>
 
