@@ -15,26 +15,24 @@
  */
 package com.qaprosoft.carina.demo;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.invoke.MethodHandles;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import com.qaprosoft.carina.browsermobproxy.ProxyPool;
+import com.browserup.bup.BrowserUpProxy;
+import com.browserup.bup.proxy.CaptureType;
+import com.qaprosoft.carina.browserupproxy.ProxyPool;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.zebrunner.agent.core.registrar.Artifact;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.proxy.CaptureType;
+import java.io.File;
+import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 
 /**
  * This sample shows how generate har file with proxied Web test content.
@@ -44,7 +42,7 @@ import net.lightbody.bmp.proxy.CaptureType;
 public class ProxySampleTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    BrowserMobProxy proxy;
+    BrowserUpProxy proxy;
 
     @BeforeMethod(alwaysRun = true)
     public void startProxy()
