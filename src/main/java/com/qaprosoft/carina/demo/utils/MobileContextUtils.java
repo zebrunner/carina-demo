@@ -6,16 +6,34 @@ import io.appium.java_client.remote.SupportsContextSwitching;
 import org.openqa.selenium.ContextAware;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.decorators.Decorated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Set;
 
-
 public class MobileContextUtils implements IDriverPool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+    private WebDriver getDriverSafe() {
+        WebDriver driver = getDriver();
+        if (driver instanceof Decorated<?>) {
+            driver = (WebDriver) ((Decorated<?>) driver).getOriginal();
+        }
+        return driver;
+    }
+
+    /**
+     * Returns a pure driver without listeners
+     */
+    public WebDriver getPureDriver(WebDriver driver) {
+        if (driver instanceof Decorated<?>) {
+            driver = (WebDriver) ((Decorated<?>) driver).getOriginal();
+        }
+        return driver;
+    }
 
     public void switchMobileContext(View context) {
         WebDriver driver = getDriver();
