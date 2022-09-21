@@ -74,6 +74,14 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.zebrunner/agent-testng -->
+		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>agent-testng</artifactId>
+			<version>1.7.4.306-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
