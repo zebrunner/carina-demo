@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<carina-core_version>7.4.26.1810-SNAPSHOT</carina-core_version>
 		<java.version>11</java.version>
-		<zebrunner-agent.version>1.7.2</zebrunner-agent.version>
+		<zebrunner-agent.version>1.8.0.304-SNAPSHOT</zebrunner-agent.version>
 		<suite>helloWorld</suite>
 	</properties>
 
@@ -103,7 +103,7 @@
 					<artifactItems>
 						<artifactItem>
 							<groupId>com.zebrunner</groupId>
-							<artifactId>agent-core</artifactId>
+							<artifactId>agent-testng</artifactId>
 							<version>${zebrunner-agent.version}</version>
 							<outputDirectory>${project.build.directory}/agent</outputDirectory>
 							<destFileName>zebrunner-agent.jar</destFileName>
