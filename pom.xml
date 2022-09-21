@@ -16,7 +16,6 @@
 		<carina-core_version>7.4.24</carina-core_version>
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.7.3</zebrunner-agent.version>
-		<zebrunner-agent-testng.version>1.7.4.306-SNAPSHOT</zebrunner-agent-testng.version>
 
 		<suite>helloWorld</suite>
 	</properties>
@@ -75,13 +74,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.zebrunner/agent-testng -->
-		<dependency>
-			<groupId>com.zebrunner</groupId>
-			<artifactId>agent-testng</artifactId>
-			<version>${zebrunner-agent-testng.version}</version>
-			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
