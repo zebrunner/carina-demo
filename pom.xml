@@ -16,6 +16,8 @@
 		<carina-core_version>7.4.26.1810-SNAPSHOT</carina-core_version>
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.8.0.304-SNAPSHOT</zebrunner-agent.version>
+		<zebrunner-agenttestng.version>1.8.0.305-SNAPSHOT</zebrunner-agenttestng.version>
+
 		<suite>helloWorld</suite>
 	</properties>
 
@@ -74,6 +76,14 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>agent-testng</artifactId>
+			<version>${zebrunner-agenttestng.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -103,7 +113,7 @@
 					<artifactItems>
 						<artifactItem>
 							<groupId>com.zebrunner</groupId>
-							<artifactId>agent-testng</artifactId>
+							<artifactId>agent-core</artifactId>
 							<version>${zebrunner-agent.version}</version>
 							<outputDirectory>${project.build.directory}/agent</outputDirectory>
 							<destFileName>zebrunner-agent.jar</destFileName>
