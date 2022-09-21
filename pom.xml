@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<carina-core_version>7.4.24</carina-core_version>
 		<java.version>11</java.version>
-		<zebrunner-agent.version>1.7.4.306-SNAPSHOT</zebrunner-agent.version>
+		<zebrunner-agent.version>1.7.2</zebrunner-agent.version>
 		<suite>helloWorld</suite>
 	</properties>
 
@@ -74,14 +74,6 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
 		</dependency>
-		<dependency>
-			<groupId>com.zebrunner</groupId>
-			<artifactId>agent-testng</artifactId>
-			<version>${zebrunner-agent.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -98,12 +90,38 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>3.3.0</version>
-
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<artifactItems>
+						<artifactItem>
+							<groupId>com.zebrunner</groupId>
+							<artifactId>agent-core</artifactId>
+							<version>${zebrunner-agent.version}</version>
+							<outputDirectory>${project.build.directory}/agent</outputDirectory>
+							<destFileName>zebrunner-agent.jar</destFileName>
+						</artifactItem>
+					</artifactItems>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M6</version>
+				<configuration>
+					<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar</argLine>
+					<useSystemClassLoader>false</useSystemClassLoader>
+					<suiteXmlFiles>
+						<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
