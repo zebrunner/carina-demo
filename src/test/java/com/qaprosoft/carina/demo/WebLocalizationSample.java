@@ -42,6 +42,7 @@ public class WebLocalizationSample implements IAbstractTest {
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
+        wikipediaLocalePage.openMenu();
         wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.clickDiscussionBtn();
 

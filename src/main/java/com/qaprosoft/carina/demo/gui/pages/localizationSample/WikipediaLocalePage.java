@@ -15,14 +15,13 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.localizationSample;
 
-import java.util.List;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Localized;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class WikipediaLocalePage extends AbstractPage {
 
@@ -48,6 +47,9 @@ public class WikipediaLocalePage extends AbstractPage {
 
     @FindBy(linkText = "{L10N:discussionElem}")
     private ExtendedWebElement discussionBtn;
+
+    @FindBy(id = "p-personal")
+    private ExtendedWebElement menu;
 
     public String getDiscussionText(){
         if (discussionBtn.isPresent()) {
@@ -88,4 +90,14 @@ public class WikipediaLocalePage extends AbstractPage {
             pageLink.hover();
         }
     }
+
+    /**
+     * On page with jp language, discussion button hidden in this menu
+     */
+    public void openMenu() {
+        if (this.menu.isPresent()) {
+            this.menu.click();
+        }
+    }
+
 }
