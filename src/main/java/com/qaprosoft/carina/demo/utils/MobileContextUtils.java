@@ -2,11 +2,11 @@ package com.qaprosoft.carina.demo.utils;
 
 import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
-import io.appium.java_client.remote.SupportsContextSwitching;
+//import io.appium.java_client.remote.SupportsContextSwitching;
 import org.openqa.selenium.ContextAware;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.decorators.Decorated;
+//import org.openqa.selenium.support.decorators.Decorated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,10 +22,10 @@ public class MobileContextUtils implements IDriverPool {
      * Returns a pure driver without listeners
      */
     public WebDriver getPureDriver(WebDriver driver) {
-        if (driver instanceof Decorated<?>) {
-            driver = (WebDriver) ((Decorated<?>) driver).getOriginal();
-        }
-        return driver;
+//        if (driver instanceof Decorated<?>) {
+//            driver = (WebDriver) ((Decorated<?>) driver).getOriginal();
+//        }
+        return null;
     }
 
     public void switchMobileContext(View context) {
@@ -46,7 +46,7 @@ public class MobileContextUtils implements IDriverPool {
             throw new NotFoundException("Desired context is not present");
         }
         LOGGER.info("Switching to context : " + context.getView());
-        ((SupportsContextSwitching) driver).context(desiredContext);
+//        ((SupportsContextSwitching) driver).context(desiredContext);
     }
 
     public enum View {
