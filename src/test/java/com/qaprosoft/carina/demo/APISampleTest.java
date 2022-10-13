@@ -27,6 +27,9 @@ import com.qaprosoft.carina.demo.api.PostUserMethod;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
@@ -41,6 +44,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class APISampleTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+    @BeforeMethod(onlyForGroups = {"testt", "testt2"})
+    public void beforeMethod() {
+
+    }
+
+    @AfterMethod(onlyForGroups = {"testt"})
+    public void afterMethod() {
+    }
 
     @Test(groups = "testt")
     @MethodOwner(owner = "mpoppins")
@@ -62,7 +74,7 @@ public class APISampleTest implements IAbstractTest {
         api.validateResponse();
     }
 
-    @Test(groups = "testt")
+    @Test(groups = "testt2")
     @MethodOwner(owner = "mpoppins")
     public void testCreateUserMissingSomeFields() throws Exception {
         PostUserMethod api = new PostUserMethod();
