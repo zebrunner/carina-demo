@@ -43,7 +43,7 @@ public class APISampleTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "mpoppins")
     public void testCreateUser() throws Exception {
         LOGGER.info("test");
         setCases("4555,54545");
