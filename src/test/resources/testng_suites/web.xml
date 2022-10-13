@@ -14,9 +14,14 @@
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 	<parameter name="jenkinsAutoScreenshot" value="true"/>
 
-	<test name="GSM arena web tests">
+	<test name="GSM arena web tests" parallel="classes" thread-count="3">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
+			<class name="com.qaprosoft.carina.demo.WebLocalizationSample" >
+				<methods>
+					<include name="testLanguages" />
+				</methods>
+			</class>
 		</classes>
 	</test>
 

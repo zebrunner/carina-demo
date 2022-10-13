@@ -45,7 +45,7 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  */
 public class WebSampleTest implements IAbstractTest {
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "mpoppins")
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = {"web", "regression"})
     public void testModelSpecs() {

@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - API Sample" parallel="methods" thread-count="5">
+<suite verbose="1" name="Carina Demo Tests - API Sample" parallel="tests" thread-count="5">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
 	<parameter name="jenkinsJobName" value="API-Demo-Test"/>
@@ -13,9 +13,26 @@
 
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-	<test name="User API tests">
+	<test name="User API tests" parallel="classes" thread-count="3">
 		<classes>
 			<class name="com.qaprosoft.carina.demo.APISampleTest" />
+			<class name="com.qaprosoft.carina.demo.regression.dataprovider.XlsDataproviderRetryTest" />
+		</classes>
+	</test>
+	<test name="User API tests2" parallel="classes" thread-count="3">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.APISampleTest" />
+			<class name="com.qaprosoft.carina.demo.regression.dataprovider.XlsDataproviderRetryTest" />
+			<class name="com.qaprosoft.carina.demo.regression.dataprovider.DataproviderRetryTest">
+				<methods>
+					<include name="testDataproviderRetry"/>
+				</methods>
+			</class>
+			<class name="com.qaprosoft.carina.demo.regression.dataprovider.DataproviderRetryTest2">
+				<methods>
+					<include name="testDataproviderRetry2"/>
+				</methods>
+			</class>
 		</classes>
 	</test>
 

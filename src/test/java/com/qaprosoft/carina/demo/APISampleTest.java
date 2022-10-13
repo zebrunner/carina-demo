@@ -42,7 +42,7 @@ public class APISampleTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test()
+    @Test(groups = "testt")
     @MethodOwner(owner = "mpoppins")
     public void testCreateUser() throws Exception {
         LOGGER.info("test");
@@ -62,8 +62,8 @@ public class APISampleTest implements IAbstractTest {
         api.validateResponse();
     }
 
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @Test(groups = "testt")
+    @MethodOwner(owner = "mpoppins")
     public void testCreateUserMissingSomeFields() throws Exception {
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
@@ -83,7 +83,7 @@ public class APISampleTest implements IAbstractTest {
     }
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @MethodOwner(owner = "mpoppins")
     @TestPriority(Priority.P1)
     public void testDeleteUsers() {
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
