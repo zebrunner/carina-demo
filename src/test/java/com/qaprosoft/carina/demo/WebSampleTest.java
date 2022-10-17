@@ -44,7 +44,7 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  * @author qpsdemo
  */
 public class WebSampleTest implements IAbstractTest {
-    @Test()
+    @Test(description = "Test Model specs")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = {"web", "regression"})
@@ -72,7 +72,7 @@ public class WebSampleTest implements IAbstractTest {
     }
 
 
-    @Test()
+    @Test(description = "Compare models test")
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "acceptance"})
