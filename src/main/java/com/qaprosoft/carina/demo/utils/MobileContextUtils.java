@@ -2,11 +2,10 @@ package com.qaprosoft.carina.demo.utils;
 
 import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
-import io.appium.java_client.remote.SupportsContextSwitching;
-import org.openqa.selenium.ContextAware;
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.decorators.Decorated;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,20 +17,28 @@ public class MobileContextUtils implements IDriverPool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    private WebDriver getDriverSafe() {
+        WebDriver driver = getDriver();
+        if (driver instanceof EventFiringWebDriver) {
+            driver = ((EventFiringWebDriver) driver).getWrappedDriver();
+        }
+        return driver;
+    }
+
     /**
      * Returns a pure driver without listeners
      */
     public WebDriver getPureDriver(WebDriver driver) {
-        if (driver instanceof Decorated<?>) {
-            driver = (WebDriver) ((Decorated<?>) driver).getOriginal();
+        if (driver instanceof EventFiringWebDriver) {
+            return ((EventFiringWebDriver) driver).getWrappedDriver();
         }
         return driver;
     }
 
     public void switchMobileContext(View context) {
-        WebDriver driver = getDriver();
+        AppiumDriver<?> driver = (AppiumDriver<?>) getDriverSafe();
         DriverHelper help = new DriverHelper();
-        Set<String> contextHandles = help.performIgnoreException(((ContextAware) driver)::getContextHandles);
+        Set<String> contextHandles = help.performIgnoreException(driver::getContextHandles);
         String desiredContext = "";
         boolean isContextPresent = false;
         LOGGER.info("Existing contexts: ");
@@ -46,7 +53,7 @@ public class MobileContextUtils implements IDriverPool {
             throw new NotFoundException("Desired context is not present");
         }
         LOGGER.info("Switching to context : " + context.getView());
-        ((SupportsContextSwitching) driver).context(desiredContext);
+        driver.context(desiredContext);
     }
 
     public enum View {
