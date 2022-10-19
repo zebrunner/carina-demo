@@ -18,6 +18,7 @@ package com.qaprosoft.carina.demo;
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.APIMethodPoller;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
@@ -42,9 +43,10 @@ public class APISampleTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test()
+    @Test(threadPoolSize = 20, invocationCount = 10)
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
+        R.CONFIG.put("explicit_timeout", "30", true);
         LOGGER.info("test");
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
