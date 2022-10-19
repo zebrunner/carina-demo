@@ -43,7 +43,7 @@ public class APISampleTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test(threadPoolSize = 20, invocationCount = 10)
+    @Test(threadPoolSize = 4, invocationCount = 4)
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
         R.CONFIG.put("explicit_timeout", "30", true);
@@ -64,9 +64,10 @@ public class APISampleTest implements IAbstractTest {
         api.validateResponse();
     }
 
-    @Test()
+    @Test(threadPoolSize = 4, invocationCount = 4)
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUserMissingSomeFields() throws Exception {
+        R.CONFIG.put("explicit_timeout", "30", true);
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
         api.getProperties().remove("name");
@@ -75,19 +76,21 @@ public class APISampleTest implements IAbstractTest {
         api.validateResponse();
     }
 
-    @Test()
+    @Test(threadPoolSize = 4, invocationCount = 4)
     @MethodOwner(owner = "qpsdemo")
     public void testGetUsers() {
+        R.CONFIG.put("explicit_timeout", "30", true);
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.callAPIExpectSuccess();
         getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getUsersMethods.validateResponseAgainstSchema("api/users/_get/rs.schema");
     }
 
-    @Test()
+    @Test(threadPoolSize = 4, invocationCount = 4)
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
     public void testDeleteUsers() {
+        R.CONFIG.put("explicit_timeout", "30", true);
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
         deleteUserMethod.setProperties("api/users/user.properties");
         deleteUserMethod.callAPIExpectSuccess();
