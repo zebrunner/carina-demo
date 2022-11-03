@@ -21,8 +21,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import com.zebrunner.carina.utils.ownership.MethodOwner;
 
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;

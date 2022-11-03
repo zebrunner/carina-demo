@@ -25,9 +25,9 @@ import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
-import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.zebrunner.carina.utils.ownership.MethodOwner;
+import com.zebrunner.carina.utils.tag.Priority;
+import com.zebrunner.carina.utils.tag.TestPriority;
 
 /**
  * This sample shows how to use data-providers.
