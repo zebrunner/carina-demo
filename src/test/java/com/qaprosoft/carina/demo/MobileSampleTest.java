@@ -15,6 +15,7 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.report.ownership.MethodOwner;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
@@ -22,7 +23,6 @@ import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.zebrunner.carina.utils.ownership.MethodOwner;
 
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;

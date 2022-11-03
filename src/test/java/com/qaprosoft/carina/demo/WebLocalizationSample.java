@@ -16,10 +16,10 @@
 
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.report.ownership.MethodOwner;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.ownership.MethodOwner;
 import com.zebrunner.carina.utils.resources.L10N;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaLocalePage;

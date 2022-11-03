@@ -17,6 +17,9 @@ package com.qaprosoft.carina.demo;
 
 import java.util.HashMap;
 
+import com.qaprosoft.carina.core.foundation.report.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.report.tag.Priority;
+import com.qaprosoft.carina.core.foundation.report.tag.TestPriority;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
@@ -25,9 +28,6 @@ import org.testng.annotations.Test;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
-import com.zebrunner.carina.utils.ownership.MethodOwner;
-import com.zebrunner.carina.utils.tag.Priority;
-import com.zebrunner.carina.utils.tag.TestPriority;
 
 /**
  * This sample shows how to use data-providers.
