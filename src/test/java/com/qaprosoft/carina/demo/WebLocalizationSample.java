@@ -19,8 +19,8 @@ package com.qaprosoft.carina.demo;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.utils.resources.L10N;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaLocalePage;
 import com.zebrunner.agent.core.annotation.TestLabel;
