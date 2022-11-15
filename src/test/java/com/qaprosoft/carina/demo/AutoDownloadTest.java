@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.report.ReportContext;
-import com.qaprosoft.carina.core.foundation.utils.R;
+import com.zebrunner.carina.utils.report.ReportContext;
+import com.zebrunner.carina.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;

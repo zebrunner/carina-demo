@@ -2,9 +2,9 @@ package com.qaprosoft.carina.demo;
 
 import com.amazonaws.regions.Regions;
 import com.qaprosoft.amazon.AmazonS3Manager;
-import com.qaprosoft.carina.core.foundation.report.ReportContext;
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
-import com.qaprosoft.carina.core.foundation.utils.R;
+import com.zebrunner.carina.utils.report.ReportContext;
+import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.R;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
