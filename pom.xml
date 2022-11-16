@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<carina-core_version>8.0.1</carina-core_version>
 		<java.version>11</java.version>
-		<zebrunner-agent.version>1.9.0</zebrunner-agent.version>
+		<zebrunner-agent.version>1.9.1</zebrunner-agent.version>
 		<suite>helloWorld</suite>
 	</properties>
 
@@ -38,6 +38,17 @@
 			<groupId>com.qaprosoft</groupId>
 			<artifactId>carina-core</artifactId>
 			<version>${carina-core_version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zebrunner</groupId>
+					<artifactId>agent-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>agent-core</artifactId>
+			<version>1.9.1</version>
 		</dependency>
 
 		<dependency>
