@@ -15,19 +15,12 @@
  */
 package com.qaprosoft.carina.demo;
 
-import java.util.List;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
+import com.qaprosoft.carina.core.foundation.report.ReportContext;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
 import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
@@ -37,6 +30,17 @@ import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.pages.UploadFileAppPage;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.List;
 
 /**
  * This sample shows how create Web test.
@@ -110,12 +114,32 @@ public class WebSampleTest implements IAbstractTest {
         List<NewsItem> news = newsPage.searchNews(searchQ);
         Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
         SoftAssert softAssert = new SoftAssert();
-        for(NewsItem n : news) {
+        for (NewsItem n : news) {
             System.out.println(n.readTitle());
             softAssert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ),
                     "Invalid search results for " + n.readTitle());
         }
         softAssert.assertAll();
+    }
+
+    @Test()
+    @MethodOwner(owner = "qpsdemo")
+    public void attachFile() throws URISyntaxException {
+        String url = "https://www.free-css.com/assets/files/free-css-templates/download/page280/klassy-cafe.zip";
+        DriverHelper driverHelper = new DriverHelper(getDriver());
+        driverHelper.openURL(url);
+        pause(3);
+
+        File file = ReportContext.getArtifact(getDriver(), "klassy-cafe.zip");
+        UploadFileAppPage uploadFileAppPage = new UploadFileAppPage(getDriver());
+        uploadFileAppPage.open();
+        uploadFileAppPage.sendFile(file.getAbsolutePath());
+        uploadFileAppPage.submit();
+        if (getDriver().getPageSource().contains("File Uploaded!")) {
+            System.out.println("file uploaded");
+        } else {
+            System.out.println("file not uploaded");
+        }
     }
 
 }
