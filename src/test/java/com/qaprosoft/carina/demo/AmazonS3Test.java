@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo;
 
 import com.amazonaws.regions.Regions;
-import com.qaprosoft.amazon.AmazonS3Manager;
+import com.zebrunner.carina.amazon.AmazonS3Manager;
 import com.zebrunner.carina.utils.report.ReportContext;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.R;
