@@ -15,21 +15,25 @@
  */
 package com.qaprosoft.carina.demo;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-
-import org.apache.ibatis.session.SqlSession;
-import org.testng.annotations.Test;
-
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
-
+import com.qaprosoft.carina.demo.db.DB;
 import com.qaprosoft.carina.demo.db.mappers.UserMapper;
 import com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper;
 import com.qaprosoft.carina.demo.db.models.User;
 import com.qaprosoft.carina.demo.db.models.User.Status;
-import com.qaprosoft.carina.demo.utils.ConnectionFactory;
 import com.qaprosoft.carina.demo.db.models.UserPreference;
+import com.qaprosoft.carina.demo.utils.ConnectionFactory;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import java.util.Optional;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 
 /**
  * This sample shows how create DB test.
@@ -54,20 +58,31 @@ public class DBSampleTest implements IAbstractTest {
 		}
 	};
 
-	@Test
+	@DataProvider(parallel = true, name = "DP1")
+	public static Object[][] dataprovider() {
+		return new Object[][] {
+				{ DB.MYSQL },
+				{ DB.PSQL } };
+	}
+
+	@Test(dataProvider = "DP1")
 	@TestLabel(name = "feature", value = "database")
-	public void createUser() {
-		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
+	public void createUser(DB db) {
+		Optional<SqlSessionFactory> ssf = ConnectionFactory.getSqlSessionFactory(db);
+		Assert.assertNotEquals(ssf, Optional.empty(), "There should be SQL session factory");
+		try (SqlSession session = ssf.get().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
 			userMapper.create(USER);
 			checkUser(userMapper.findById(USER.getId()));
 		}
 	}
 
-	@Test(dependsOnMethods = "createUser")
+	@Test(dependsOnMethods = "createUser", dataProvider = "DP1")
 	@TestLabel(name = "feature", value = "database")
-	public void createUserPreference() {
-		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
+	public void createUserPreference(DB db) {
+		Optional<SqlSessionFactory> ssf = ConnectionFactory.getSqlSessionFactory(db);
+		Assert.assertTrue(ssf.isPresent(), "There should be SQL session factory");
+		try (SqlSession session = ssf.get().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
 			UserPreferenceMapper userPreferenceMapper = session.getMapper(UserPreferenceMapper.class);
 			USER_PREFERENCE.setUserId(USER.getId());
@@ -76,10 +91,12 @@ public class DBSampleTest implements IAbstractTest {
 		}
 	}
 
-	@Test(dependsOnMethods = "createUserPreference")
+	@Test(dependsOnMethods = "createUserPreference", dataProvider = "DP1")
 	@TestLabel(name = "feature", value = "database")
-	public void updateUser() {
-		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
+	public void updateUser(DB db) {
+		Optional<SqlSessionFactory> ssf = ConnectionFactory.getSqlSessionFactory(db);
+		Assert.assertTrue(ssf.isPresent(), "There should be SQL session factory");
+		try (SqlSession session = ssf.get().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
 			USER.setUsername("rjohns");
 			USER.setFirstName("Roy");
@@ -90,10 +107,12 @@ public class DBSampleTest implements IAbstractTest {
 		}
 	}
 
-	@Test(dependsOnMethods = "updateUser")
+	@Test(dependsOnMethods = "updateUser", dataProvider = "DP1")
 	@TestLabel(name = "feature", value = "database")
-	public void deleteUser() {
-		try (SqlSession session = ConnectionFactory.getSqlSessionFactory().openSession(true)) {
+	public void deleteUser(DB db) {
+		Optional<SqlSessionFactory> ssf = ConnectionFactory.getSqlSessionFactory(db);
+		Assert.assertTrue(ssf.isPresent(), "There should be SQL session factory");
+		try (SqlSession session = ssf.get().openSession(true)) {
 			UserMapper userMapper = session.getMapper(UserMapper.class);
 			userMapper.delete(USER);
 			assertNull(userMapper.findById(USER.getId()));
