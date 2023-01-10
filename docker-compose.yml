@@ -1,0 +1,34 @@
+##DOCKER
+#services:
+#  app:
+#    build: .
+#    volumes:
+#      - .:/carina-solvd
+#      - ~/target:/carina-solvd/target
+
+##Selenoid
+services:
+  selenoid:
+    image: "aerokube/selenoid"
+    network_mode: bridge
+    restart: unless-stopped
+    ports:
+      - "4444:4444"
+    volumes:
+      - "$PWD:/etc/selenoid/" # assumed current dir contains browsers.json
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/Users/bekamakharadze/DockerVideos/video/:/opt/selenoid/video/"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=/Users/bekamakharadze/DockerVideos/video/
+  selenoid-ui:
+    image: "aerokube/selenoid-ui"
+    network_mode: bridge
+    depends_on:
+      - selenoid
+    links:
+      - selenoid
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    command: [ "--selenoid-uri", "http://selenoid:4444" ]
+
