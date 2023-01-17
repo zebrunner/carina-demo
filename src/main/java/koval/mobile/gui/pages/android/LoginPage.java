@@ -7,6 +7,7 @@ import koval.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import koval.mobile.gui.pages.common.LoginPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import koval.*;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {

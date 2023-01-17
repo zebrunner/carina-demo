@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import koval.mobile.gui.pages.android.LoginPage;
 import koval.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import koval.mobile.gui.pages.common.LoginPageBase;
 import koval.mobile.gui.pages.common.WelcomePageBase;
@@ -13,21 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import koval.mobile.gui.pages.android.LoginPage.Gender;
 
 import java.lang.invoke.MethodHandles;
 
 
 public class LoginCheckTest implements IAbstractTest, IMobileUtils {
-
-    public enum Gender {
-        MALE("Male"), FEMALE("Female");
-        public final String label;
-
-        Gender(String label) {
-            this.label = label;
-        }
-
-    }
 
     @DataProvider(name = "Name_Password")
     public static Object[][] dataprovider() {
