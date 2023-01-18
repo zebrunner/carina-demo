@@ -5,27 +5,13 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import koval.mobile.gui.pages.common.LoginPageBase;
+import koval.mobile.gui.pages.service.enums.Gender;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import koval.*;
+
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
-
-    public enum Gender {
-        MALE("Male"), FEMALE("Female");
-
-        public final String label;
-
-        Gender(String label) {
-            this.label = label;
-        }
-
-        @Override
-        public String toString() { //return values Male/Female
-            return label;
-        }
-    }
 
     @FindBy(id = "name")
     private ExtendedWebElement nameInputField;
@@ -33,7 +19,11 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(id = "password")
     private ExtendedWebElement passwordInputField;
 
-    @FindBy(xpath = "//*[@text='%s']") //male female gender radiobuttons in one webelement
+    /**
+     * LoginPage: Gender-RadioButton
+     * male and female gender in one webelement
+     */
+    @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement genderRadioBtn;
 
     @FindBy(id = "checkbox")
@@ -47,40 +37,37 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public void typeName(String name) {
+    public LoginPageBase typeName(String name) {
         nameInputField.type(name);
         hideKeyboard();
+        return this;
     }
 
     @Override
-    public void typePassword(String password) {
+    public LoginPageBase typePassword(String password) {
         passwordInputField.type(password);
+        return this;
+    }
+
+    /**
+     * LoginPage: Select gender-method
+     * enter selected gender into xpath and click
+     */
+    @Override
+    public LoginPageBase selectGender(Gender gender) {
+        genderRadioBtn.format(gender.toString()).check();
+        return this;
     }
 
     @Override
-    public void selectGender(String gender) { //enter selected gender into xpath and click
-        genderRadioBtn.format(gender).check();
+    public boolean isSelectedGenderChecked(Gender gender) {
+        return genderRadioBtn.format(gender.toString()).isChecked();
     }
 
     @Override
-    public boolean isSelectedGenderChecked(String gender) {
-        return genderRadioBtn.format(gender).isChecked();
-    }
-
-    @Override
-    public boolean isAnyGenderChecked() {
-
-        Gender[] genders = Gender.values();
-
-        for (Gender gender : genders)
-            if (genderRadioBtn.format(gender).isChecked()) return true;
-
-        return false;
-    }
-
-    @Override
-    public void checkPrivacyPolicyCheckbox() {
+    public LoginPageBase checkPrivacyPolicyCheckbox() {
         privacyPolicyCheckbox.click();
+        return this;
     }
 
     @Override

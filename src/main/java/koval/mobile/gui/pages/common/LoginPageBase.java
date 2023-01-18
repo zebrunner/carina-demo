@@ -2,6 +2,7 @@ package koval.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.gui.pages.android.LoginPage;
+import koval.mobile.gui.pages.service.enums.Gender;
 import org.openqa.selenium.WebDriver;
 
 public abstract class LoginPageBase extends AbstractPage {
@@ -10,17 +11,15 @@ public abstract class LoginPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void typeName(String name);
+    public abstract LoginPageBase typeName(String name);
 
-    public abstract void typePassword(String password);
+    public abstract LoginPageBase typePassword(String password);
 
-    public abstract void selectGender(String gender);
+    public abstract LoginPageBase selectGender(Gender gender);
 
-    public abstract boolean isSelectedGenderChecked(String gender);
+    public abstract boolean isSelectedGenderChecked(Gender gender);
 
-    public abstract boolean isAnyGenderChecked();
-
-    public abstract void checkPrivacyPolicyCheckbox();
+    public abstract LoginPageBase checkPrivacyPolicyCheckbox();
 
     public abstract CarinaDescriptionPageBase clickLoginBtn();
 
