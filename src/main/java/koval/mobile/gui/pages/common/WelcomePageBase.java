@@ -1,4 +1,4 @@
-package koval;
+package koval.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 
@@ -8,6 +8,7 @@ public abstract class WelcomePageBase extends AbstractPage {
     public WelcomePageBase(WebDriver driver) {
         super(driver);
     }
+
     public abstract LoginPageBase clickNextBtn();
 
 }

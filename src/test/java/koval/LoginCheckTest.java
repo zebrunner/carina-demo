@@ -4,11 +4,30 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import koval.mobile.gui.pages.common.CarinaDescriptionPageBase;
+import koval.mobile.gui.pages.common.LoginPageBase;
+import koval.mobile.gui.pages.common.WelcomePageBase;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import koval.mobile.gui.pages.service.enums.Gender;
 
 
 public class LoginCheckTest implements IAbstractTest, IMobileUtils {
+
+    private static final String SPACEFIELD = " ";
+    private static final String EMPTYFIELD = "";
+    private static final Gender FEMALEGENDER = Gender.FEMALE;
+
+    @DataProvider(name = "Name_Password")
+    public static Object[][] dataprovider() {
+        return new Object[][]{
+                {"Diana", RandomStringUtils.randomAlphabetic(5), true},
+                {"Yana", EMPTYFIELD, false},
+                {EMPTYFIELD, RandomStringUtils.randomAlphabetic(5), false}
+        };
+    }
 
     @Test()
     @MethodOwner(owner = "koval")
@@ -16,25 +35,28 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
     public void testAllEmpty() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
+
     }
+
     @Test()
     @MethodOwner(owner = "koval")
     @TestLabel(name = "2. login check. login with empty fields and checked buttons", value = {"mobile"})
     public void testEmptyFields() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
-        loginPageBase.selectFemaleSex();
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
+        loginPageBase.selectGender(FEMALEGENDER);
+        Assert.assertTrue(loginPageBase.isSelectedGenderChecked(FEMALEGENDER), "[ LOGIN PAGE ] Selected gender is wrong!");
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
     @Test()
@@ -42,148 +64,145 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "3. login check. login by entering space to the fields(name, password)", value = {"mobile"})
     public void testFieldsWithSpace() {
 
-    WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-    Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        boolean isAnyGenderChecked = false;
 
-    LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-    Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
-    loginPageBase.typeName(" ");
-    loginPageBase.typePassword(" ");
-    loginPageBase.selectFemaleSex();
-    loginPageBase.checkPrivacyPolicyCheckbox();
+        WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
-    CarinaDescriptionPageBase carinaDescriptionPage = loginPageBase.clickLoginBtn();
-    Assert.assertTrue(carinaDescriptionPage.isPageOpened(),"Page is not opened!");
+        LoginPageBase loginPageBase = welcomePage.clickNextBtn();
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
+        loginPageBase.typeName(SPACEFIELD);
+        loginPageBase.typePassword(SPACEFIELD);
+        loginPageBase.selectGender(FEMALEGENDER);
+        loginPageBase.checkPrivacyPolicyCheckbox();
+        Assert.assertTrue(loginPageBase.isSelectedGenderChecked(FEMALEGENDER), "[ LOGIN PAGE ] Gender is not checked!");
+        CarinaDescriptionPageBase carinaDescriptionPage = loginPageBase.clickLoginBtn();
+        Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "[ CARINA DESCRIPTION PAGE ]Page is not opened!");
     }
 
-    @Test()
+    @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
     @TestLabel(name = "4. login check. login without entering password", value = {"mobile"})
-    public void testWithoutPasswordField() {
-        String name = "Diana";
+    public void testWithoutPasswordField(String name, String passsword, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.typeName(name);
-        loginPageBase.selectFemaleSex();
+        loginPageBase.selectGender(FEMALEGENDER);
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
-    @Test()
+    @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
     @TestLabel(name = "5. login check. login without entering name", value = {"mobile"})
-    public void testWithoutNameField() {
-        String password = "diana21";
+    public void testWithoutNameField(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.typePassword(password);
-        loginPageBase.selectFemaleSex();
+        loginPageBase.selectGender(FEMALEGENDER);
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
-    @Test()
+    @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
     @TestLabel(name = "6. login check. login with unchecked sex-radiobutton", value = {"mobile"})
-    public void testWithSexUnchecked() {
-        String name = "Diana";
-        String password = "diana21";
+    public void testWithSexUnchecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.typeName(name);
         loginPageBase.typePassword(password);
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        for (Gender gender : Gender.values())
+            Assert.assertFalse(loginPageBase.isSelectedGenderChecked(gender), "[ LOGIN PAGE ] Gender is checked!");
+
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
-    @Test()
+    @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
     @TestLabel(name = "7. login check. login with unchecked privacyPolicy-checkBox", value = {"mobile"})
-    public void testWithPrivacyPolicyUnchecked() {
-        String name = "Diana";
-        String password = "diana21";
+    public void testWithPrivacyPolicyUnchecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.typeName(name);
         loginPageBase.typePassword(password);
-        loginPageBase.selectFemaleSex();
+        loginPageBase.selectGender(FEMALEGENDER);
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
-    @Test()
+    @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
     @TestLabel(name = "8. login check. login with checked privacyPolicy-checkBox and field name", value = {"mobile"})
-    public void testWithOnlyPrivacyPolicyChecked() {
-        String name = "Diana";
+    public void testWithOnlyPrivacyPolicyChecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.checkPrivacyPolicyCheckbox();
         loginPageBase.typeName(name);
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
-    @Test()
+    @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
     @TestLabel(name = "9. login check. login with checked privacyPolicy-checkBox and then unchecked", value = {"mobile"})
-    public void testWithPrivacyPolicyChecked() {
-        String name = "Diana";
-        String password = "diana21";
+    public void testWithPrivacyPolicyChecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.typeName(name);
         loginPageBase.typePassword(password);
-        loginPageBase.selectFemaleSex();
+        loginPageBase.selectGender(FEMALEGENDER);
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
 
-        loginPageBase.checkPrivacyPolicyCheckbox(); //unchecked
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        loginPageBase.checkPrivacyPolicyCheckbox();
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
     @Test()
     @MethodOwner(owner = "koval")
     @TestLabel(name = "10. login check. login with checked only sex-radiobutton/empty name and password fields",
-             value = {"mobile"})
+            value = {"mobile"})
     public void testOnlySexChecked() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
-        loginPageBase.selectFemaleSex();
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
+        loginPageBase.selectGender(FEMALEGENDER);
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
     @Test()
@@ -193,33 +212,32 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
     public void testOnlyPrivacyPolicyChecked() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
-    @Test()
+
+    @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
     @TestLabel(name = "12. login check. login by entering correct data to the fields", value = {"mobile"})
-    public void testCorrectFields() {
-        String name = "Diana";
-        String password = "diana21";
+    public void testCorrectFields(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened!");
+        Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
-        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "Login button is active!");
+        Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.typeName(name);
         loginPageBase.typePassword(password);
-        loginPageBase.selectFemaleSex();
+        loginPageBase.selectGender(FEMALEGENDER);
         loginPageBase.checkPrivacyPolicyCheckbox();
 
         CarinaDescriptionPageBase carinaDescriptionPage = loginPageBase.clickLoginBtn();
-        Assert.assertTrue(carinaDescriptionPage.isPageOpened(),"Page is not opened!");
+        Assert.assertEquals(carinaDescriptionPage.isPageOpened(), expectedResult,"[ CARINA DESCRIPTION PAGE ] Page is not opened!");
     }
 
 }
