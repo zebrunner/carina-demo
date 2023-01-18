@@ -40,13 +40,13 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     public LoginPageBase typeName(String name) {
         nameInputField.type(name);
         hideKeyboard();
-        return this;
+        return initPage(getDriver(), LoginPageBase.class);
     }
 
     @Override
     public LoginPageBase typePassword(String password) {
         passwordInputField.type(password);
-        return this;
+        return initPage(getDriver(), LoginPageBase.class);
     }
 
     /**
@@ -55,19 +55,19 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
      */
     @Override
     public LoginPageBase selectGender(Gender gender) {
-        genderRadioBtn.format(gender.toString()).check();
-        return this;
+        genderRadioBtn.format(gender.getName()).check();
+        return initPage(getDriver(), LoginPageBase.class);
     }
 
     @Override
     public boolean isSelectedGenderChecked(Gender gender) {
-        return genderRadioBtn.format(gender.toString()).isChecked();
+        return genderRadioBtn.format(gender.getName()).isChecked();
     }
 
     @Override
     public LoginPageBase checkPrivacyPolicyCheckbox() {
         privacyPolicyCheckbox.click();
-        return this;
+        return initPage(getDriver(), LoginPageBase.class);
     }
 
     @Override

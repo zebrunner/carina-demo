@@ -10,8 +10,10 @@ public enum Gender {
         this.label = label;
     }
 
-    @Override
-    public String toString() { //return values Male/Female
+    /*
+    return values Male/Female
+     */
+    public String getName() {
         return label;
     }
 }
