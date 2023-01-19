@@ -18,7 +18,7 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
 
     private static final String SPACEFIELD = " ";
     private static final String EMPTYFIELD = "";
-    private static final Gender FEMALEGENDER = Gender.FEMALE;
+    static final Gender FEMALEGENDER = Gender.FEMALE;
 
     @DataProvider(name = "Name_Password")
     public static Object[][] dataprovider() {
@@ -76,6 +76,7 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
         loginPageBase.selectGender(FEMALEGENDER);
         loginPageBase.checkPrivacyPolicyCheckbox();
         Assert.assertTrue(loginPageBase.isSelectedGenderChecked(FEMALEGENDER), "[ LOGIN PAGE ] Gender is not checked!");
+
         CarinaDescriptionPageBase carinaDescriptionPage = loginPageBase.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "[ CARINA DESCRIPTION PAGE ]Page is not opened!");
     }
