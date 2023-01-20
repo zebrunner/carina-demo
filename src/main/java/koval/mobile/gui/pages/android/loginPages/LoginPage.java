@@ -13,23 +13,23 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
-    @FindBy(id = "name")
+    @FindBy(id = "com.solvd.carinademoapplication:id/name")
     private ExtendedWebElement nameInputField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "com.solvd.carinademoapplication:id/password")
     private ExtendedWebElement passwordInputField;
 
     /**
      * LoginPage: Gender-RadioButton
      * male and female gender in one webelement
      */
-    @FindBy(xpath = "//*[@text='%s']")
+    @FindBy(xpath = "//android.widget.RadioButton[@text='%s']")
     private ExtendedWebElement genderRadioBtn;
 
-    @FindBy(id = "checkbox")
+    @FindBy(id = "com.solvd.carinademoapplication:id/checkbox")
     private ExtendedWebElement privacyPolicyCheckbox;
 
-    @FindBy(id = "login_button")
+    @FindBy(id = "com.solvd.carinademoapplication:id/login_button")
     private ExtendedWebElement loginBtn;
 
     public LoginPage(WebDriver driver) {

@@ -15,7 +15,6 @@ public abstract class LeftMenuModalBase extends AbstractPage {
         super(driver);
     }
 
-//    public abstract LeftMenuModalBase openMenu();
 
     public abstract boolean isElementPresent(Menu menu);
 

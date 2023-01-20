@@ -25,33 +25,11 @@ public class WebViewPage extends WebViewPageBase {
     @FindBy(className = "android.widget.TextView")
     private ExtendedWebElement title;
 
-    @FindBy(id = "content_frame")
+    @FindBy(id = "com.solvd.carinademoapplication:id/content_frame")
     private ExtendedWebElement webViewContent;
-
-    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
-    private LeftMenuModal leftMenuModal;
-
-//    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
-//    private ExtendedWebElement leftMenuModal;
 
     public WebViewPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    public LeftMenuModalBase openMenu() {
-        leftMenuModal.openMenu();
-        return initPage(getDriver(), LeftMenuModalBase.class);
-    }
-
-    @Override
-    public AbstractPage openPage(Menu menu) {
-        return leftMenuModal.openPage(menu);
-    }
-
-    @Override
-    public boolean isMenuElementPresent(Menu menu) {
-        return leftMenuModal.isElementPresent(menu);
     }
 
     @Override

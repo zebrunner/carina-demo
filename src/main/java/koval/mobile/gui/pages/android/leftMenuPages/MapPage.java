@@ -19,30 +19,11 @@ public class MapPage extends MapPageBase {
     @FindBy(className = "android.widget.TextView")
     private ExtendedWebElement title;
 
-    @FindBy(xpath = "//android.widget.RelativeLayout[@index='2']")
+    @FindBy(xpath = "//*[@content-desc='Google Map']")
     private ExtendedWebElement mapImage;
-
-    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
-    private LeftMenuModal leftMenuModal;
 
     public MapPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    public LeftMenuModalBase openMenu() {
-        leftMenuModal.openMenu();
-        return initPage(getDriver(), LeftMenuModalBase.class);
-    }
-
-    @Override
-    public AbstractPage openPage(Menu menu) {
-        return leftMenuModal.openPage(menu);
-    }
-
-    @Override
-    public boolean isMenuElementPresent(Menu menu) {
-        return leftMenuModal.isElementPresent(menu);
     }
 
     @Override

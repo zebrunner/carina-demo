@@ -11,11 +11,5 @@ public abstract class UIElementsPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract LeftMenuModalBase openMenu();
-
-    public abstract AbstractPage openPage(Menu menu);
-
-    public abstract boolean isMenuElementPresent(Menu menu);
-
     public abstract boolean isProfileImagePresent();
 }

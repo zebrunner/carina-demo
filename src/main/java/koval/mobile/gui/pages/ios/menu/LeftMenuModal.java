@@ -17,8 +17,6 @@ public class LeftMenuModal extends LeftMenuModalBase {
         super(driver);
     }
 
-
-
     @Override
     public boolean isElementPresent(Menu menu) {
         throw new NotImplementedException();
@@ -26,7 +24,7 @@ public class LeftMenuModal extends LeftMenuModalBase {
 
     @Override
     public LeftMenuModalBase openMenu() {
-        return null;
+        throw new NotImplementedException();
     }
 
 

@@ -16,21 +16,6 @@ public class UIElementsPage extends UIElementsPageBase {
     }
 
     @Override
-    public LeftMenuModalBase openMenu() {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public AbstractPage openPage(Menu menu) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public boolean isMenuElementPresent(Menu menu) {
-        throw new NotImplementedException();
-    }
-
-    @Override
     public boolean isProfileImagePresent() {
         throw new NotImplementedException();
     }

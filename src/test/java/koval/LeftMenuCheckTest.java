@@ -5,6 +5,7 @@ import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.mobile.gui.pages.common.leftMenuPages.*;
+import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
 import koval.mobile.gui.pages.service.enums.Menu;
 import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
 import org.slf4j.Logger;
@@ -27,18 +28,18 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
         Assert.assertTrue(webViewPageBasePage.isPageOpened(), "[ WEB PAGE ] Page is not opened!");
 
-        MenuPageBase basePage = initPage(getDriver(), MenuPageBase.class);
-        basePage.openMenu();
-        //webViewPageBasePage.openMenu();
+        LeftMenuModalBase menuModalBase = initPage(getDriver(), LeftMenuModalBase.class);
+        menuModalBase.openMenu();
 
         for (Menu menu : Menu.values()) {
-            Assert.assertTrue(webViewPageBasePage.isMenuElementPresent(menu), String.format("[ WEB VIEW  ] '%s' page is not present!", menu));
+            Assert.assertTrue(menuModalBase.isElementPresent(menu),
+                    String.format("[ WEB VIEW  ] '%s' page is not present!", menu));
         }
        /*
         Open MAP PAGE
         check if it opens/ map image is present
          */
-        MapPageBase mapPageBase = (MapPageBase) webViewPageBasePage.openPage(Menu.MAP);
+        MapPageBase mapPageBase = (MapPageBase) menuModalBase.openPage(Menu.MAP);
 
         Assert.assertTrue(mapPageBase.isPageOpened(), "[ MAP PAGE ] Map page is not opened!");
         Assert.assertTrue(mapPageBase.isMapImagePresent(), "[ MAP PAGE ] Map Image is not present!");
@@ -46,10 +47,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         Open CHARTS PAGE
         check if it opens/ venn diagram is present
          */
-       // mapPageBase.openMenu();
-        basePage.openMenu();
-
-        ChartsPageBase chartsPageBase = (ChartsPageBase) webViewPageBasePage.openPage(Menu.CHARTS);
+        ChartsPageBase chartsPageBase = (ChartsPageBase) menuModalBase.openPage(Menu.CHARTS);
 
         Assert.assertTrue(chartsPageBase.isPageOpened(), "[ CHARTS PAGE ] Charts page is not opened!");
         Assert.assertTrue(chartsPageBase.isVennDiagramPresent(), "[ CHARTS PAGE ] Venn Diagram is not present!");
@@ -57,10 +55,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         Open UI ELEMENTS PAGE
         check if it opens/ Profile Image is present
          */
-        //chartsPageBase.openMenu();
-        basePage.openMenu();
-
-        UIElementsPageBase elementsPageBase = (UIElementsPageBase) webViewPageBasePage.openPage(Menu.UI_ELEMENTS);
+        UIElementsPageBase elementsPageBase = (UIElementsPageBase) menuModalBase.openPage(Menu.UI_ELEMENTS);
 
         Assert.assertTrue(elementsPageBase.isPageOpened(), "[ UI ELEMENTS PAGE ] UI elements page is not opened!");
         Assert.assertTrue(elementsPageBase.isProfileImagePresent(), "[ UI ELEMENTS PAGE ] Profile Image is not present!");
@@ -68,10 +63,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         Open WEB VIEW PAGE
         check if it opens/ Web View Image is present
          */
-       // elementsPageBase.openMenu();
-        basePage.openMenu();
-
-        WebViewPageBase webViewPageBase = (WebViewPageBase) webViewPageBasePage.openPage(Menu.WEB_VIEW);
+        WebViewPageBase webViewPageBase = (WebViewPageBase) menuModalBase.openPage(Menu.WEB_VIEW);
         Assert.assertTrue(webViewPageBase.isPageOpened(), "[ WEB VIEW PAGE ] Web View page is not opened!");
         Assert.assertTrue(webViewPageBase.isElementPresent(), "[ WEB VIEW PAGE ] Web View Image is not present!");
 

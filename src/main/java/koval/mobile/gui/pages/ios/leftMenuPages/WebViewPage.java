@@ -15,22 +15,6 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
-    public AbstractPage openMenu() {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public AbstractPage openPage(Menu menu) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public boolean isMenuElementPresent(Menu menu) {
-        throw new NotImplementedException();
-    }
-
-
-    @Override
     public boolean isElementPresent() {
         throw new NotImplementedException();
     }

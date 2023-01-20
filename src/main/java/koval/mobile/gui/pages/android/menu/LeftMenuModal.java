@@ -49,6 +49,7 @@ public class LeftMenuModal extends LeftMenuModalBase{
 
     @Override
     public AbstractPage openPage(Menu menu) {
+        menuButton.click();
         menuElement.format(menu.getPageName()).click();
             return initPage(getDriver(), menu.getClassName());
     }

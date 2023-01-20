@@ -14,10 +14,10 @@ import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_F
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomePage extends WelcomePageBase {
 
-    @FindBy(id = "carina_logo")
+    @FindBy(id = "com.solvd.carinademoapplication:id/carina_logo")
     private ExtendedWebElement title;
 
-    @FindBy(id = "next_button")
+    @FindBy(id = "com.solvd.carinademoapplication:id/next_button")
     private ExtendedWebElement nextBtn;
 
     public WelcomePage(WebDriver driver) {

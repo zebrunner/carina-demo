@@ -15,36 +15,16 @@ import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_F
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = ChartsPageBase.class)
 public class ChartsPage extends ChartsPageBase {
-
-    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
-    private LeftMenuModal leftMenuModal;
-
+    
     @FindBy(className = "android.widget.TextView")
     private ExtendedWebElement title;
 
-    @FindBy(xpath = "//*[@text='venn chart ']")
+    @FindBy(xpath = "//android.view.View[@text='venn chart ']")
     private ExtendedWebElement vennDiagram;
 
     public ChartsPage(WebDriver driver) {
         super(driver);
     }
-
-    @Override
-    public LeftMenuModalBase openMenu() {
-        leftMenuModal.openMenu();
-        return initPage(getDriver(), LeftMenuModalBase.class);
-    }
-
-    @Override
-    public AbstractPage openPage(Menu menu) {
-        return leftMenuModal.openPage(menu);
-    }
-
-    @Override
-    public boolean isMenuElementPresent(Menu menu) {
-        return leftMenuModal.isElementPresent(menu);
-    }
-
 
     @Override
     public boolean isPageOpened() {

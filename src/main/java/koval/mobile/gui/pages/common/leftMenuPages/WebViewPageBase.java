@@ -10,12 +10,5 @@ public abstract class WebViewPageBase extends AbstractPage {
         super(driver);
     }
 
-
-    public abstract AbstractPage openMenu();
-
-    public abstract AbstractPage openPage(Menu menu);
-
-    public abstract boolean isMenuElementPresent(Menu menu);
-
     public abstract boolean isElementPresent();
 }

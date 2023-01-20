@@ -16,36 +16,15 @@ import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_F
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
 public class UIElementsPage extends UIElementsPageBase {
 
-    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
-    private LeftMenuModal leftMenuModal;
-
     @FindBy(className = "android.widget.TextView")
     private ExtendedWebElement title;
 
-    @FindBy(id = "imageView")
+    @FindBy(id = "com.solvd.carinademoapplication:id/imageView")
     private ExtendedWebElement profileImage;
 
     public UIElementsPage(WebDriver driver) {
         super(driver);
     }
-
-
-    @Override
-    public LeftMenuModalBase openMenu() {
-        leftMenuModal.openMenu();
-        return initPage(getDriver(), LeftMenuModalBase.class);
-    }
-
-    @Override
-    public AbstractPage openPage(Menu menu) {
-        return leftMenuModal.openPage(menu);
-    }
-
-    @Override
-    public boolean isMenuElementPresent(Menu menu) {
-        return leftMenuModal.isElementPresent(menu);
-    }
-
 
     @Override
     public boolean isPageOpened() {

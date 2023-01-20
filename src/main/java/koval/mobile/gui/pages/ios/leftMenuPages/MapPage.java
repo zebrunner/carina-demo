@@ -17,21 +17,6 @@ public class MapPage extends MapPageBase {
     }
 
     @Override
-    public LeftMenuModalBase openMenu() {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public AbstractPage openPage(Menu menu) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public boolean isMenuElementPresent(Menu menu) {
-        throw new NotImplementedException();
-    }
-
-    @Override
     public boolean isPageOpened() {
         throw new NotImplementedException();
     }
