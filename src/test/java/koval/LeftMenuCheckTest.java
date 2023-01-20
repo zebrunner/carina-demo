@@ -3,15 +3,8 @@ package koval;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.mobile.gui.pages.android.BasePage;
-import koval.mobile.gui.pages.common.leftMenuPages.ChartsPageBase;
-import koval.mobile.gui.pages.common.leftMenuPages.MapPageBase;
-import koval.mobile.gui.pages.common.leftMenuPages.UIElementsPageBase;
-import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
-import koval.mobile.gui.pages.common.loginPages.LoginPageBase;
-import koval.mobile.gui.pages.common.loginPages.WelcomePageBase;
+import koval.mobile.gui.pages.common.leftMenuPages.*;
 import koval.mobile.gui.pages.service.enums.Menu;
 import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
 import org.slf4j.Logger;
@@ -34,7 +27,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
         Assert.assertTrue(webViewPageBasePage.isPageOpened(), "[ WEB PAGE ] Page is not opened!");
 
-        BasePage basePage = initPage(getDriver(), BasePage.class);
+        MenuPageBase basePage = initPage(getDriver(), MenuPageBase.class);
         basePage.openMenu();
         //webViewPageBasePage.openMenu();
 

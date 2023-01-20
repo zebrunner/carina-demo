@@ -1,6 +1,7 @@
 package koval.mobile.gui.pages.ios.leftMenuPages;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
@@ -15,23 +16,23 @@ public class WebViewPage extends WebViewPageBase {
 
     @Override
     public AbstractPage openMenu() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public AbstractPage openPage(Menu menu) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public boolean isMenuElementPresent(Menu menu) {
-        return false;
+        throw new NotImplementedException();
     }
 
 
     @Override
     public boolean isElementPresent() {
-        return false;
+        throw new NotImplementedException();
     }
 
 }
