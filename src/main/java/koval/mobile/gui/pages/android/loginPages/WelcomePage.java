@@ -1,13 +1,15 @@
-package koval.mobile.gui.pages.android;
+package koval.mobile.gui.pages.android.loginPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import koval.mobile.gui.pages.common.LoginPageBase;
-import koval.mobile.gui.pages.common.WelcomePageBase;
+import koval.mobile.gui.pages.common.loginPages.LoginPageBase;
+import koval.mobile.gui.pages.common.loginPages.WelcomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+
+import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_FIVE;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomePage extends WelcomePageBase {
@@ -24,7 +26,7 @@ public class WelcomePage extends WelcomePageBase {
 
     @Override
     public boolean isPageOpened() {
-        return title.isElementPresent();
+        return title.isElementPresent(TIMEOUT_FIVE);
     }
 
     @Override

@@ -1,9 +1,9 @@
-package koval.mobile.gui.pages.ios;
+package koval.mobile.gui.pages.ios.loginPages;
 
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import koval.mobile.gui.pages.common.LoginPageBase;
-import koval.mobile.gui.pages.common.WelcomePageBase;
+import koval.mobile.gui.pages.common.loginPages.LoginPageBase;
+import koval.mobile.gui.pages.common.loginPages.WelcomePageBase;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
