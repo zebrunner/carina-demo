@@ -4,9 +4,10 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import koval.mobile.gui.pages.common.LoginPageBase;
-import koval.mobile.gui.pages.common.WelcomePageBase;
+import koval.mobile.gui.pages.common.loginPages.LoginPageBase;
+import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
+import koval.mobile.gui.pages.common.loginPages.WelcomePageBase;
+import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -14,11 +15,7 @@ import org.testng.annotations.Test;
 import koval.mobile.gui.pages.service.enums.Gender;
 
 
-public class LoginCheckTest implements IAbstractTest, IMobileUtils {
-
-    private static final String SPACEFIELD = " ";
-    private static final String EMPTYFIELD = "";
-    private static final Gender FEMALEGENDER = Gender.FEMALE;
+public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUtils {
 
     @DataProvider(name = "Name_Password")
     public static Object[][] dataprovider() {
@@ -53,7 +50,7 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
         LoginPageBase loginPageBase = welcomePage.clickNextBtn();
         Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
         loginPageBase.selectGender(FEMALEGENDER);
-        Assert.assertTrue(loginPageBase.isSelectedGenderChecked(FEMALEGENDER), "[ LOGIN PAGE ] Selected gender is wrong!");
+        Assert.assertTrue(loginPageBase.isGenderChecked(FEMALEGENDER), "[ LOGIN PAGE ] Selected gender is wrong!");
         loginPageBase.checkPrivacyPolicyCheckbox();
 
         Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
@@ -64,8 +61,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "3. login check. login by entering space to the fields(name, password)", value = {"mobile"})
     public void testFieldsWithSpace() {
 
-        boolean isAnyGenderChecked = false;
-
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         Assert.assertTrue(welcomePage.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
@@ -75,9 +70,11 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
         loginPageBase.typePassword(SPACEFIELD);
         loginPageBase.selectGender(FEMALEGENDER);
         loginPageBase.checkPrivacyPolicyCheckbox();
-        Assert.assertTrue(loginPageBase.isSelectedGenderChecked(FEMALEGENDER), "[ LOGIN PAGE ] Gender is not checked!");
-        CarinaDescriptionPageBase carinaDescriptionPage = loginPageBase.clickLoginBtn();
-        Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "[ CARINA DESCRIPTION PAGE ]Page is not opened!");
+        Assert.assertTrue(loginPageBase.isGenderChecked(FEMALEGENDER), "[ LOGIN PAGE ] Gender is not checked!");
+
+        WebViewPageBase webViewPageBase = loginPageBase.clickLoginBtn();
+        Assert.assertTrue(webViewPageBase.isPageOpened(), "[ WEB VIEW PAGE PAGE ]Page is not opened!");
+
     }
 
     @Test(dataProvider = "Name_Password")
@@ -129,8 +126,8 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
         loginPageBase.typePassword(password);
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        for (Gender gender : Gender.values())
-            Assert.assertFalse(loginPageBase.isSelectedGenderChecked(gender), "[ LOGIN PAGE ] Gender is checked!");
+        for (Gender gender : Gender.values()){
+            Assert.assertFalse(loginPageBase.isGenderChecked(gender), "[ LOGIN PAGE ] Gender is checked!");}
 
         Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
@@ -236,8 +233,8 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils {
         loginPageBase.selectGender(FEMALEGENDER);
         loginPageBase.checkPrivacyPolicyCheckbox();
 
-        CarinaDescriptionPageBase carinaDescriptionPage = loginPageBase.clickLoginBtn();
-        Assert.assertEquals(carinaDescriptionPage.isPageOpened(), expectedResult,"[ CARINA DESCRIPTION PAGE ] Page is not opened!");
+        WebViewPageBase webViewPageBase = loginPageBase.clickLoginBtn();
+        Assert.assertEquals(webViewPageBase.isPageOpened(), expectedResult,"[ WEB VIEW PAGE ] Page is not opened!");
     }
 
 }

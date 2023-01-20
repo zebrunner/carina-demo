@@ -1,10 +1,10 @@
-package koval.mobile.gui.pages.android;
+package koval.mobile.gui.pages.android.loginPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import koval.mobile.gui.pages.common.LoginPageBase;
+import koval.mobile.gui.pages.common.loginPages.LoginPageBase;
+import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.service.enums.Gender;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -13,23 +13,23 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
-    @FindBy(id = "name")
+    @FindBy(id = "com.solvd.carinademoapplication:id/name")
     private ExtendedWebElement nameInputField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "com.solvd.carinademoapplication:id/password")
     private ExtendedWebElement passwordInputField;
 
     /**
      * LoginPage: Gender-RadioButton
      * male and female gender in one webelement
      */
-    @FindBy(xpath = "//*[@text='%s']")
+    @FindBy(xpath = "//android.widget.RadioButton[@text='%s']")
     private ExtendedWebElement genderRadioBtn;
 
-    @FindBy(id = "checkbox")
+    @FindBy(id = "com.solvd.carinademoapplication:id/checkbox")
     private ExtendedWebElement privacyPolicyCheckbox;
 
-    @FindBy(id = "login_button")
+    @FindBy(id = "com.solvd.carinademoapplication:id/login_button")
     private ExtendedWebElement loginBtn;
 
     public LoginPage(WebDriver driver) {
@@ -60,7 +60,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isSelectedGenderChecked(Gender gender) {
+    public boolean isGenderChecked(Gender gender) {
         return genderRadioBtn.format(gender.getName()).isChecked();
     }
 
@@ -71,9 +71,9 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public CarinaDescriptionPageBase clickLoginBtn() {
+    public WebViewPageBase clickLoginBtn() {
         loginBtn.click();
-        return initPage(getDriver(), CarinaDescriptionPageBase.class);
+        return initPage(getDriver(), WebViewPageBase.class);
     }
 
     @Override

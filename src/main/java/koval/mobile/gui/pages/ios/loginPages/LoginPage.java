@@ -1,10 +1,10 @@
-package koval.mobile.gui.pages.ios;
+package koval.mobile.gui.pages.ios.loginPages;
 
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import koval.mobile.gui.pages.common.LoginPageBase;
+import koval.mobile.gui.pages.common.loginPages.LoginPageBase;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
+import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.service.enums.Gender;
 import org.openqa.selenium.WebDriver;
 
@@ -31,7 +31,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isSelectedGenderChecked(Gender gender) {
+    public boolean isGenderChecked(Gender gender) {
         throw new NotImplementedException();
     }
 
@@ -41,7 +41,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public CarinaDescriptionPageBase clickLoginBtn() {
+    public WebViewPageBase clickLoginBtn() {
         throw new NotImplementedException();
     }
 
