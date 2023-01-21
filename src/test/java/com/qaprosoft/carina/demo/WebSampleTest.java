@@ -15,11 +15,14 @@
  */
 package com.qaprosoft.carina.demo;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -44,6 +47,8 @@ import com.qaprosoft.carina.demo.gui.pages.NewsPage;
  * @author qpsdemo
  */
 public class WebSampleTest implements IAbstractTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    
     @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
@@ -53,6 +58,10 @@ public class WebSampleTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        
+        // to generate idle timeout exception
+        LOGGER.info("slleping 65 sec to raise idle exception");
+        pause(65);
         
         //Closing advertising if it's displayed
         homePage.getWeValuePrivacyAd().closeAdIfPresent();
@@ -81,6 +90,11 @@ public class WebSampleTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        
+        // to generate idle timeout exception
+        LOGGER.info("slleping 65 sec to raise idle exception");
+        pause(65);
+        
         // Open model compare page
         FooterMenu footerMenu = homePage.getFooterMenu();
         Assert.assertTrue(footerMenu.isUIObjectPresent(2), "Footer menu wasn't found!");
@@ -102,6 +116,10 @@ public class WebSampleTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+        
+        // to generate idle timeout exception
+        LOGGER.info("slleping 65 sec to raise idle exception");
+        pause(65);
         
         NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
