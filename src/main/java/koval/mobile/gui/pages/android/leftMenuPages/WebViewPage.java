@@ -7,7 +7,7 @@ import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.android.menu.LeftMenuModal;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -39,7 +39,7 @@ public class WebViewPage extends WebViewPageBase {
 
     @Override
     public boolean isPageOpened() {
-        return title.getText().equals(Menu.WEB_VIEW.getPageName());
+        return title.getText().equals(LeftMenu.WEB_VIEW.getPageName());
     }
 
 }

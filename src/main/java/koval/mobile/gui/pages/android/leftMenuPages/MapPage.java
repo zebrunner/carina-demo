@@ -7,7 +7,7 @@ import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.android.menu.LeftMenuModal;
 import koval.mobile.gui.pages.common.leftMenuPages.MapPageBase;
 import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -28,7 +28,7 @@ public class MapPage extends MapPageBase {
 
     @Override
     public boolean isPageOpened() {
-        return title.getText().equals(Menu.MAP.getPageName());
+        return title.getText().equals(LeftMenu.MAP.getPageName());
     }
 
     @Override

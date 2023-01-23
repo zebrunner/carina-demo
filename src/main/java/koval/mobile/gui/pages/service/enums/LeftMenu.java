@@ -7,7 +7,7 @@ import koval.mobile.gui.pages.common.leftMenuPages.MapPageBase;
 import koval.mobile.gui.pages.common.leftMenuPages.UIElementsPageBase;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 
-public enum Menu{
+public enum LeftMenu{
 
     WEB_VIEW("Web View", WebViewPageBase.class),
 
@@ -20,7 +20,7 @@ public enum Menu{
     private final String pageName;
     private final Class<? extends AbstractPage> className;
 
-    Menu(String pageName, Class<? extends AbstractPage> className) {
+    LeftMenu(String pageName, Class<? extends AbstractPage> className) {
         this.pageName = pageName;
         this.className = className;
     }

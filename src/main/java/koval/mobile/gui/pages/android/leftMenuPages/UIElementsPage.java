@@ -7,7 +7,7 @@ import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.android.menu.LeftMenuModal;
 import koval.mobile.gui.pages.common.leftMenuPages.UIElementsPageBase;
 import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -28,7 +28,7 @@ public class UIElementsPage extends UIElementsPageBase {
 
     @Override
     public boolean isPageOpened() {
-        return title.getText().equals(Menu.UI_ELEMENTS.getPageName());
+        return title.getText().equals(LeftMenu.UI_ELEMENTS.getPageName());
     }
 
     @Override

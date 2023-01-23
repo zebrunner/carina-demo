@@ -6,7 +6,7 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.common.leftMenuPages.UIElementsPageBase;
 import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = UIElementsPageBase.class)
