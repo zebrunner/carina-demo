@@ -41,6 +41,11 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public LoginPageBase checkPrivacyPolicyCheckbox(boolean status) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public CarinaDescriptionPageBase clickLoginBtn() {
         throw new NotImplementedException();
     }

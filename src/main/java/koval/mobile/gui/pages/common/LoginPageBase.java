@@ -21,6 +21,8 @@ public abstract class LoginPageBase extends AbstractPage {
 
     public abstract LoginPageBase checkPrivacyPolicyCheckbox();
 
+    public abstract LoginPageBase checkPrivacyPolicyCheckbox(boolean status);
+
     public abstract CarinaDescriptionPageBase clickLoginBtn();
 
     public abstract boolean isLoginBtnActive();
