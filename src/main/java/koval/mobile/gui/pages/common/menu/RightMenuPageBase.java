@@ -21,4 +21,8 @@ public abstract class RightMenuPageBase extends AbstractPage {
     public abstract RightMenuPageBase openPage(RightMenu menu);
 
     public abstract boolean isElementPresent(RightMenu menu);
+
+    public abstract boolean isElementSelected(RightMenu menu);
+
+    public abstract boolean isElementSelected(int index);
 }

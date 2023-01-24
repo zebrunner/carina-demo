@@ -22,7 +22,7 @@ public class RightMenuPage extends RightMenuPageBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(xpath = "//*[@resource-id='rec42972268']/child::*")
+    @FindBy(xpath = "//*[@resource-id='t-header']/child::*//*[@class='android.widget.TextView'][2]")
     private ExtendedWebElement rightMenuButton;
 
 
@@ -61,12 +61,13 @@ public class RightMenuPage extends RightMenuPageBase {
 //        return false;
 //    }
 
+    List<String> leftMenuItemsList = new ArrayList<>();
+    List<String> enumList = new ArrayList<>();
 
     @Override
     public boolean isRightMenuContainsAllElements() {
 
-        List<String> leftMenuItemsList = new ArrayList<>();
-        List<String> enumList = new ArrayList<>();
+
 
        // webViewContent.scrollTo();
 
@@ -116,9 +117,17 @@ public class RightMenuPage extends RightMenuPageBase {
         return menuElement.format(menu.getPageName()).isElementPresent(TIMEOUT_FIVE);
     }
 
-//    @Override
-//    public boolean isElementSelected(RightMenu menu) {
-//        return menuElement.format(menu.getPageName()).;
-//    }
+    @Override
+    public boolean isElementSelected(RightMenu menu) {
+
+            return Boolean.parseBoolean(menuElement.format(menu.getPageName()).getAttribute("selected"));
+    }
+
+    @Override
+    public boolean isElementSelected(int index) {
+
+        return Boolean.parseBoolean(menuElement.format(leftMenuItemsList.get(index)).getAttribute("selected"));
+    }
+
 
 }

@@ -47,4 +47,14 @@ public class RightMenuPage extends RightMenuPageBase {
         throw new NotImplementedException();
     }
 
+    @Override
+    public boolean isElementSelected(RightMenu menu) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean isElementSelected(int index) {
+        throw new NotImplementedException();
+    }
+
 }

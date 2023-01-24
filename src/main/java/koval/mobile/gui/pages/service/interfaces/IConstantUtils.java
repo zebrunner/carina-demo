@@ -11,4 +11,6 @@ public interface IConstantUtils {
     String EMPTYFIELD = "";
 
     int TIMEOUT_FIVE = 5;
+
+    int FOURTH_ELEMENT = 4;
 }

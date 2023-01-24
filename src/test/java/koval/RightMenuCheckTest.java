@@ -43,5 +43,10 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
 
         getDriver().navigate().back();
 
+  //      Assert.assertTrue(rightMenuPageBase.isElementSelected(RightMenu.CONTACT_US),
+   //             "[ WEB PAGE, LEFT MENU ] Link of opened page is not selected!");
+
+        Assert.assertTrue(rightMenuPageBase.isElementSelected(FOURTH_ELEMENT),
+                "[ WEB PAGE, LEFT MENU ] Link Contact Us is not selected!");
     }
 }
