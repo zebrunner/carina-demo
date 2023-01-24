@@ -78,11 +78,12 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @Override
     public LoginPageBase checkPrivacyPolicyCheckbox(boolean status) {
 
-        LOGGER.info("[ Privacy Police Checkbox status ] Expected: " + status + ". Actual: " + privacyPolicyCheckbox.isChecked());
+        LOGGER.info("[ Privacy Police Checkbox status ] Expected: {} . Actual: {}", status, privacyPolicyCheckbox.isChecked());
 
-        if(status != privacyPolicyCheckbox.isChecked())
-        {
-            privacyPolicyCheckbox.click();
+        if (status) {
+            privacyPolicyCheckbox.check();
+        } else {
+            privacyPolicyCheckbox.uncheck();
         }
         return initPage(getDriver(), LoginPageBase.class);
     }
