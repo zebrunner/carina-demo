@@ -31,18 +31,11 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
         Assert.assertTrue(webViewPageBasePage.isPageOpened(), "[ WEB PAGE ] Page is not opened!");
 
-
         //open first page
         webViewPageBasePage.openPageByIndex(1);
 
         //return to web view page
         basePage.getBack();
-
-
-
-
-
-
 
     }
 }
