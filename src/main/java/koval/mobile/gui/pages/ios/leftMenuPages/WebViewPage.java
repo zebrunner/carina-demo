@@ -8,10 +8,22 @@ import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.WebDriver;
 
+import java.util.List;
+
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = WebViewPageBase.class)
 public class WebViewPage extends WebViewPageBase {
     public WebViewPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public List<String> getRightMenuElementsToList() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public AbstractPage openPageByIndex(int pageIndex) {
+        throw new NotImplementedException();
     }
 
     @Override

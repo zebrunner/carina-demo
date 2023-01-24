@@ -9,27 +9,30 @@ import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 
 public enum RightMenu {
 
-    READ_ON_GITHUB("Read on GitHub"),
+    READ_ON_GITHUB("Read on GitHub", 0),
 
-    INSTALLATION_GUIDE("Installation Guide"),
+    INSTALLATION_GUIDE("Installation Guide", 1),
 
-    GO_TO_ZEBRUNNER("Go to Zebrunner"),
+    GO_TO_ZEBRUNNER("Go to Zebrunner", 2),
 
-    DONATE("Donate"),
+    DONATE("Donate", 3),
 
- //   DONjATE("Donkate"),
-
-    CONTACT_US("Contact Us");
+    CONTACT_US("Contact Us", 4);
 
     private final String pageName;
+    private final int pageIndex;
 
-
-    RightMenu(String pageName) {
+    RightMenu(String pageName, int pageIndex) {
         this.pageName = pageName;
+        this.pageIndex = pageIndex;
     }
 
     public String getPageName() {
         return pageName;
+    }
+
+    public int getPageIndex() {
+        return pageIndex;
     }
 
 }
