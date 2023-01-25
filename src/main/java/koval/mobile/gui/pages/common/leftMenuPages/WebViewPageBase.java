@@ -14,7 +14,12 @@ public abstract class WebViewPageBase extends AbstractPage {
 
     public abstract List<String> getRightMenuElementsToList();
 
+    public abstract List<String> getEnumElementsToList();
+
     public abstract AbstractPage openPageByIndex(int pageIndex);
 
+    public abstract AbstractPage openMenu();
+
     public abstract boolean isElementPresent();
+
 }

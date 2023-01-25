@@ -35,5 +35,9 @@ public enum RightMenu {
         return pageIndex;
     }
 
+    @Override
+    public String toString() {
+        return pageName;
+    }
 }
 

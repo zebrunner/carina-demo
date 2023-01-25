@@ -22,7 +22,17 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
+    public List<String> getEnumElementsToList() {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public AbstractPage openPageByIndex(int pageIndex) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public AbstractPage openMenu() {
         throw new NotImplementedException();
     }
 
@@ -30,5 +40,7 @@ public class WebViewPage extends WebViewPageBase {
     public boolean isElementPresent() {
         throw new NotImplementedException();
     }
+
+
 
 }

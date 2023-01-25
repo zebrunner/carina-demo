@@ -17,11 +17,4 @@ public interface IConstantUtils {
 
     int FOURTH_ELEMENT = 4;
 
-
-//     default void getBack() {
-//        getDriver().navigate().back();
-//
-//        // return initPage(getDriver(), RightMenuPageBase.class);
-//    }
-
 }

@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.lang.invoke.MethodHandles;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,27 +44,39 @@ public class WebViewPage extends WebViewPageBase {
     @Override
     public List<String> getRightMenuElementsToList() {
 
-        rightMenuButton.click();
-        Assert.assertFalse(listOfMenuElement.isEmpty(), "[WEB VIEW PAGE] List is empty");
-
-        for (RightMenu menu : RightMenu.values())
-            Assert.assertEquals(listOfMenuElement.get(menu.getPageIndex()).getText(), menu.getPageName(), String.format("[WEB VIEW PAGE] '%s' is not present", menu.getPageName()));
+        if (listOfMenuElement.isEmpty()) {
+            Assert.fail("[WEB VIEW PAGE] List is empty");
+        }
 
         return listOfMenuElement.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
     }
 
-    @Override
-    public AbstractPage openPageByIndex(int pageIndex) {
 
-        if (pageIndex < 1 || pageIndex > getRightMenuElementsToList().size()) {
-            Assert.fail(String.format("[ WEB VIEW PAGE, RIGHT MENU] There is no element by index '%s'.", pageIndex));
+    @Override
+    public List<String> getEnumElementsToList() {
+        return EnumSet.allOf(RightMenu.class).stream().map(RightMenu::getPageName).collect(Collectors.toList());
+    }
+
+
+    @Override
+    public AbstractPage openPageByIndex(int index) {
+
+        if (listOfMenuElement.isEmpty() || index > listOfMenuElement.size()) {
+            Assert.fail(String.format("[ WEB VIEW PAGE, RIGHT MENU] There is no element by index '%s'.", index));
         }
 
-        pageIndex--;
-        listOfMenuElement.get(pageIndex).click();
+        listOfMenuElement.get(index).click();
 
         return initPage(getDriver(), WebViewPageBase.class);
     }
+
+    @Override
+    public AbstractPage openMenu() {
+
+        rightMenuButton.click();
+        return initPage(getDriver(), WebViewPageBase.class);
+    }
+
 
     @Override
     public boolean isElementPresent() {
@@ -74,5 +87,6 @@ public class WebViewPage extends WebViewPageBase {
     public boolean isPageOpened() {
         return title.getText().equals(LeftMenu.WEB_VIEW.getPageName());
     }
+
 
 }
