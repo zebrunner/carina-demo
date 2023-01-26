@@ -42,7 +42,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         MapPageBase mapPageBase = (MapPageBase) menuModalBase.openPage(LeftMenu.MAP);
 
         Assert.assertTrue(mapPageBase.isPageOpened(), "[ MAP PAGE ] Map page is not opened!");
-        Assert.assertTrue(mapPageBase.isMapImagePresent(), "[ MAP PAGE ] Map Image is not present!");
+        Assert.assertTrue(mapPageBase.isMapImagePresent(TIMEOUT_FIVE), "[ MAP PAGE ] Map Image is not present!");
         /*
         Open CHARTS PAGE
         check if it opens/ venn diagram is present
@@ -50,7 +50,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         ChartsPageBase chartsPageBase = (ChartsPageBase) menuModalBase.openPage(LeftMenu.CHARTS);
 
         Assert.assertTrue(chartsPageBase.isPageOpened(), "[ CHARTS PAGE ] Charts page is not opened!");
-        Assert.assertTrue(chartsPageBase.isVennDiagramPresent(), "[ CHARTS PAGE ] Venn Diagram is not present!");
+        Assert.assertTrue(chartsPageBase.isVennDiagramPresent(TIMEOUT_FIVE), "[ CHARTS PAGE ] Venn Diagram is not present!");
          /*
         Open UI ELEMENTS PAGE
         check if it opens/ Profile Image is present
@@ -58,14 +58,14 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         UIElementsPageBase elementsPageBase = (UIElementsPageBase) menuModalBase.openPage(LeftMenu.UI_ELEMENTS);
 
         Assert.assertTrue(elementsPageBase.isPageOpened(), "[ UI ELEMENTS PAGE ] UI elements page is not opened!");
-        Assert.assertTrue(elementsPageBase.isProfileImagePresent(), "[ UI ELEMENTS PAGE ] Profile Image is not present!");
+        Assert.assertTrue(elementsPageBase.isProfileImagePresent(TIMEOUT_FIVE), "[ UI ELEMENTS PAGE ] Profile Image is not present!");
         /*
         Open WEB VIEW PAGE
         check if it opens/ Web View Image is present
          */
         WebViewPageBase webViewPageBase = (WebViewPageBase) menuModalBase.openPage(LeftMenu.WEB_VIEW);
         Assert.assertTrue(webViewPageBase.isPageOpened(), "[ WEB VIEW PAGE ] Web View page is not opened!");
-        Assert.assertTrue(webViewPageBase.isElementPresent(), "[ WEB VIEW PAGE ] Web View Image is not present!");
+        Assert.assertTrue(webViewPageBase.isWebViewElementPresent(TIMEOUT_FIVE), "[ WEB VIEW PAGE ] Web View Image is not present!");
 
     }
 }

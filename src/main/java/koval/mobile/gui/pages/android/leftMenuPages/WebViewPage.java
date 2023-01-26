@@ -4,9 +4,11 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.service.enums.LeftMenu;
 import koval.mobile.gui.pages.service.enums.RightMenu;
+import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -21,9 +23,20 @@ import java.util.stream.Collectors;
 import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_FIVE;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
-public class WebViewPage extends WebViewPageBase {
+public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConstantUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+
+    @FindBy(xpath = "//android.widget.TextView[@text='s']")
+    private ExtendedWebElement listOfTopics;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='support@zebrunner.com']")
+    private ExtendedWebElement emailTextElement;
+
+
+    @FindBy(xpath = "//*[@resource-id='com.solvd.carinademoapplication:id/lin']/child::*//*[@class='android.webkit.WebView']")
+    private ExtendedWebElement webViewContainer;
 
     @FindBy(className = "android.widget.TextView")
     private ExtendedWebElement title;
@@ -51,10 +64,14 @@ public class WebViewPage extends WebViewPageBase {
         return listOfMenuElement.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
     }
 
-
     @Override
-    public List<String> getEnumElementsToList() {
-        return EnumSet.allOf(RightMenu.class).stream().map(RightMenu::getPageName).collect(Collectors.toList());
+    public String[] getParsedEmail() {
+
+    swipe(emailTextElement, webViewContainer, Direction.UP, COUNT_SIX, HIGH_SPEED);
+
+        Assert.assertTrue(isEmailTextElementPresent(TIMEOUT_FIVE));
+
+        return emailTextElement.getText().split("@");
     }
 
 
@@ -79,8 +96,13 @@ public class WebViewPage extends WebViewPageBase {
 
 
     @Override
-    public boolean isElementPresent() {
-        return webViewContent.isElementPresent(TIMEOUT_FIVE);
+    public boolean isWebViewElementPresent(long timeOut) {
+        return webViewContent.isElementPresent(timeOut);
+    }
+
+    @Override
+    public boolean isEmailTextElementPresent(long timeOut) {
+        return emailTextElement.isElementPresent(timeOut);
     }
 
     @Override

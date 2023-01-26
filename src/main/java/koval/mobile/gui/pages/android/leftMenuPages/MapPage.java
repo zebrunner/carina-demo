@@ -32,7 +32,7 @@ public class MapPage extends MapPageBase {
     }
 
     @Override
-    public boolean isMapImagePresent() {
-        return mapImage.isElementPresent(TIMEOUT_FIVE);
+    public boolean isMapImagePresent(long timeOut) {
+        return mapImage.isElementPresent(timeOut);
     }
 }

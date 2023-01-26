@@ -17,9 +17,10 @@ public class ChartsPage extends ChartsPageBase {
     }
 
     @Override
-    public boolean isVennDiagramPresent() {
-        throw new NotImplementedException();
+    public boolean isVennDiagramPresent(long timeOut) {
+        return false;
     }
+
 
     @Override
     public boolean isPageOpened() {

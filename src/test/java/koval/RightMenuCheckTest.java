@@ -41,13 +41,9 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
         webViewPageBasePage.openMenu();
 
         //compare enum elements to list with index
-//        for (RightMenu menu : RightMenu.values()) {
-//            Assert.assertEquals(webViewPageBasePage.getRightMenuElementsToList().get(menu.getPageIndex()), menu.getPageName(), String.format("[WEB VIEW PAGE] Page '%s' is not present", menu.getPageName()));
-//        }
-
-        //compare enum elements to list
-        Assert.assertEquals(webViewPageBasePage.getEnumElementsToList(), webViewPageBasePage.getRightMenuElementsToList(),
-                "Lists of Enum elements and webelements are not equal!");
+        for (RightMenu menu : RightMenu.values()) {
+            Assert.assertEquals(webViewPageBasePage.getRightMenuElementsToList().get(menu.getPageIndex()), menu.getPageName(), String.format("[WEB VIEW PAGE] Page '%s' is not present", menu.getPageName()));
+        }
 
         //open second page
         webViewPageBasePage.openPageByIndex(1);

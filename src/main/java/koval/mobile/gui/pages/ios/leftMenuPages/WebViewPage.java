@@ -5,7 +5,6 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
-import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -22,9 +21,10 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
-    public List<String> getEnumElementsToList() {
-        throw new NotImplementedException();
+    public String[] getParsedEmail() {
+        return null;
     }
+
 
     @Override
     public AbstractPage openPageByIndex(int pageIndex) {
@@ -37,8 +37,13 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
-    public boolean isElementPresent() {
-        throw new NotImplementedException();
+    public boolean isWebViewElementPresent(long timeOut) {
+        return false;
+    }
+
+    @Override
+    public boolean isEmailTextElementPresent(long timeOut) {
+        return false;
     }
 
 

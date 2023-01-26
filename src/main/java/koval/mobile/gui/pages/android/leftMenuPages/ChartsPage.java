@@ -32,7 +32,7 @@ public class ChartsPage extends ChartsPageBase {
     }
 
     @Override
-    public boolean isVennDiagramPresent() {
-        return vennDiagram.isElementPresent(TIMEOUT_FIVE);
+    public boolean isVennDiagramPresent(long timeOut) {
+        return vennDiagram.isElementPresent(timeOut);
     }
 }

@@ -15,6 +15,13 @@ public interface IConstantUtils {
 
     int TIMEOUT_FIVE = 5;
 
+    int TIMEOUT_ONE = 1;
+
     int FOURTH_ELEMENT = 4;
 
+    int HIGH_SPEED = 80;
+
+    int COUNT_SIX = 6;
+
+    String[] ExpectedEmailParts = {"support", "zebrunner.com"};
 }

@@ -32,7 +32,7 @@ public class UIElementsPage extends UIElementsPageBase {
     }
 
     @Override
-    public boolean isProfileImagePresent() {
-        return profileImage.isElementPresent(TIMEOUT_FIVE);
+    public boolean isProfileImagePresent(long timeOut) {
+        return profileImage.isElementPresent(timeOut);
     }
 }
