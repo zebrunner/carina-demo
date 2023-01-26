@@ -4,9 +4,10 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
+import koval.mobile.gui.pages.common.InstallationGuidWebPageBase;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.service.enums.LeftMenu;
-import koval.mobile.gui.pages.service.enums.RightMenu;
+import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -14,14 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.lang.invoke.MethodHandles;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_FIVE;
-
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
-public class WebViewPage extends WebViewPageBase {
+public class WebViewPage extends WebViewPageBase implements IConstantUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -51,13 +49,6 @@ public class WebViewPage extends WebViewPageBase {
         return listOfMenuElement.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
     }
 
-
-    @Override
-    public List<String> getEnumElementsToList() {
-        return EnumSet.allOf(RightMenu.class).stream().map(RightMenu::getPageName).collect(Collectors.toList());
-    }
-
-
     @Override
     public AbstractPage openPageByIndex(int index) {
 
@@ -67,20 +58,20 @@ public class WebViewPage extends WebViewPageBase {
 
         listOfMenuElement.get(index).click();
 
-        return initPage(getDriver(), WebViewPageBase.class);
+        return initPage(getDriver(), InstallationGuidWebPageBase.class);
+
     }
 
     @Override
     public AbstractPage openMenu() {
-
         rightMenuButton.click();
         return initPage(getDriver(), WebViewPageBase.class);
     }
 
 
     @Override
-    public boolean isElementPresent() {
-        return webViewContent.isElementPresent(TIMEOUT_FIVE);
+    public boolean isWebViewContentPresent(long timeout) {
+        return webViewContent.isElementPresent(timeout);
     }
 
     @Override

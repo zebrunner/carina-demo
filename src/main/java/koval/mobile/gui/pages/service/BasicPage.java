@@ -18,7 +18,6 @@ public class BasicPage extends BasicPageBase {
     @Override
     public void getBack() {
         getDriver().navigate().back();
-
     }
 
 }

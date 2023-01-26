@@ -14,14 +14,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static com.zebrunner.agent.core.webdriver.RemoteWebDriverFactory.getDriver;
 
 
 public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMobileUtils, IConstantUtils {
@@ -40,17 +34,13 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
 
         webViewPageBasePage.openMenu();
 
-        //compare enum elements to list with index
-//        for (RightMenu menu : RightMenu.values()) {
-//            Assert.assertEquals(webViewPageBasePage.getRightMenuElementsToList().get(menu.getPageIndex()), menu.getPageName(), String.format("[WEB VIEW PAGE] Page '%s' is not present", menu.getPageName()));
-//        }
-
-        //compare enum elements to list
-        Assert.assertEquals(webViewPageBasePage.getEnumElementsToList(), webViewPageBasePage.getRightMenuElementsToList(),
-                "Lists of Enum elements and webelements are not equal!");
+        //compare enum elements to list by index
+        for (RightMenu menu : RightMenu.values()) {
+            Assert.assertEquals(webViewPageBasePage.getRightMenuElementsToList().get(menu.getPageIndex()), menu.getPageName(), String.format("[WEB VIEW PAGE] Page '%s' is not present", menu.getPageName()));
+        }
 
         //open second page
-        webViewPageBasePage.openPageByIndex(1);
+       webViewPageBasePage.openPageByIndex(1);
 
         //return to web view page
         pageBase.getBack();
