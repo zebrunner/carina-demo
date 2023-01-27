@@ -103,11 +103,11 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
     }
 
     @Override
-    public String[] getParsedEmail() {
+    public String getParsedEmail() {
 
         swipe(emailTextElement, webViewContainer, Direction.UP, COUNT_THREE, HIGH_SPEED);
 
-        return emailTextElement.getText().split("@");
+        return emailTextElement.getText().split("@")[1];
     }
 
 

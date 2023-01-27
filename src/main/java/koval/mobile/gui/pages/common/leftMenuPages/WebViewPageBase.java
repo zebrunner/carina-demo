@@ -20,7 +20,7 @@ public abstract class WebViewPageBase extends AbstractPage {
 
     public abstract List<String> getRightMenuElementsToList();
 
-    public abstract String[] getParsedEmail();
+    public abstract String getParsedEmail();
 
     public abstract String getEmailAgent();
 
