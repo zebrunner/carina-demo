@@ -14,6 +14,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -27,6 +29,7 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
     @TestLabel(name = "1. Open Web View Page and then each page from right menu", value = {"mobile"})
     public void testOpeningPages() {
 
+
         BasicPageBase pageBase = initPage(getDriver(), BasicPageBase.class);
 
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
@@ -34,9 +37,12 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
 
         webViewPageBasePage.openMenu();
 
+        List<String> rightMenuElementsList = webViewPageBasePage.getRightMenuElementsToList();
+
         //compare enum elements to list by index
         for (RightMenu menu : RightMenu.values()) {
-            Assert.assertEquals(webViewPageBasePage.getRightMenuElementsToList().get(menu.getPageIndex()), menu.getPageName(), String.format("[WEB VIEW PAGE] Page '%s' is not present", menu.getPageName()));
+            Assert.assertEquals(rightMenuElementsList.get(menu.getPageIndex()), menu.getPageName(),
+                    String.format("[WEB VIEW PAGE] Page '%s' is not present", menu.getPageName()));
         }
 
         //open second page
