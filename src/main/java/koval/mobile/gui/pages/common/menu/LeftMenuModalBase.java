@@ -1,7 +1,7 @@
 package koval.mobile.gui.pages.common.menu;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
@@ -16,10 +16,10 @@ public abstract class LeftMenuModalBase extends AbstractPage {
     }
 
 
-    public abstract boolean isElementPresent(Menu menu);
-
+    public abstract boolean isElementPresent(LeftMenu menu);
 
     public abstract LeftMenuModalBase openMenu();
 
-    public abstract AbstractPage openPage(Menu menu);
+    public abstract AbstractPage openPage(LeftMenu menu);
+
 }

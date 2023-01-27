@@ -6,7 +6,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -48,15 +48,17 @@ public class LeftMenuModal extends LeftMenuModalBase{
     }
 
     @Override
-    public AbstractPage openPage(Menu menu) {
+    public AbstractPage openPage(LeftMenu menu) {
         menuButton.click();
         menuElement.format(menu.getPageName()).click();
             return initPage(getDriver(), menu.getClassName());
     }
 
     @Override
-    public boolean isElementPresent(Menu menu) {
+    public boolean isElementPresent(LeftMenu menu) {
         return menuElement.format(menu.getPageName()).isElementPresent(TIMEOUT_FIVE);
     }
+
+
 
 }

@@ -7,7 +7,7 @@ import com.zebrunner.carina.utils.factory.DeviceType.Type;
 
 
 import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
 import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = LeftMenuModalBase.class)
@@ -18,7 +18,7 @@ public class LeftMenuModal extends LeftMenuModalBase {
     }
 
     @Override
-    public boolean isElementPresent(Menu menu) {
+    public boolean isElementPresent(LeftMenu menu) {
         throw new NotImplementedException();
     }
 
@@ -29,7 +29,7 @@ public class LeftMenuModal extends LeftMenuModalBase {
 
 
     @Override
-    public AbstractPage openPage(Menu menu) {
+    public AbstractPage openPage(LeftMenu menu) {
         throw new NotImplementedException();
     }
 

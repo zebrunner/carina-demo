@@ -5,8 +5,9 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
-import koval.mobile.gui.pages.service.enums.Menu;
 import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 @DeviceType(pageType = Type.IOS_PHONE, parentClass = WebViewPageBase.class)
 public class WebViewPage extends WebViewPageBase {
@@ -15,8 +16,27 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
-    public boolean isElementPresent() {
+    public List<String> getRightMenuElementsToList() {
         throw new NotImplementedException();
     }
+
+    @Override
+    public AbstractPage openPageByIndex(int pageIndex) {
+        throw new NotImplementedException();
+    }
+
+
+    @Override
+    public AbstractPage openMenu() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean isWebViewContentPresent(long timeout) {
+        return false;
+    }
+
+
+
 
 }

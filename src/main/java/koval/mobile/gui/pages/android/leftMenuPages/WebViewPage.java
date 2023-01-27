@@ -4,21 +4,22 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import koval.mobile.gui.pages.android.menu.LeftMenuModal;
+import koval.mobile.gui.pages.common.InstallationGuidWebPageBase;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
-import koval.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.mobile.gui.pages.service.enums.Menu;
+import koval.mobile.gui.pages.service.enums.LeftMenu;
+import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
 import java.lang.invoke.MethodHandles;
-
-import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_FIVE;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
-public class WebViewPage extends WebViewPageBase {
+public class WebViewPage extends WebViewPageBase implements IConstantUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -28,18 +29,55 @@ public class WebViewPage extends WebViewPageBase {
     @FindBy(id = "com.solvd.carinademoapplication:id/content_frame")
     private ExtendedWebElement webViewContent;
 
+    @FindBy(xpath = "//*[@resource-id='t-header']/child::*//*[@class='android.widget.TextView'][2]")
+    private ExtendedWebElement rightMenuButton;
+
+    @FindBy(xpath = "//*[@resource-id='nav42972268']/child::*//*[@class='android.widget.TextView']")
+    private List<ExtendedWebElement> listOfMenuElement;
+
     public WebViewPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public boolean isElementPresent() {
-        return webViewContent.isElementPresent(TIMEOUT_FIVE);
+    public List<String> getRightMenuElementsToList() {
+
+        if (listOfMenuElement.isEmpty()) {
+            Assert.fail("[WEB VIEW PAGE] List is empty");
+        }
+
+        return listOfMenuElement.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
+    }
+
+    @Override
+    public AbstractPage openPageByIndex(int index) {
+
+        if (listOfMenuElement.isEmpty() || index > listOfMenuElement.size()) {
+            Assert.fail(String.format("[ WEB VIEW PAGE, RIGHT MENU] There is no element by index '%s'.", index));
+        }
+
+        listOfMenuElement.get(index).click();
+
+        return initPage(getDriver(), InstallationGuidWebPageBase.class);
+
+    }
+
+    @Override
+    public AbstractPage openMenu() {
+        rightMenuButton.click();
+        return initPage(getDriver(), WebViewPageBase.class);
+    }
+
+
+    @Override
+    public boolean isWebViewContentPresent(long timeout) {
+        return webViewContent.isElementPresent(timeout);
     }
 
     @Override
     public boolean isPageOpened() {
-        return title.getText().equals(Menu.WEB_VIEW.getPageName());
+        return title.getText().equals(LeftMenu.WEB_VIEW.getPageName());
     }
+
 
 }
