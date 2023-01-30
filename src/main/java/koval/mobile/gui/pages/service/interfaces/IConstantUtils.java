@@ -23,15 +23,17 @@ public interface IConstantUtils {
 
     int FOURTH_ELEMENT = 4;
 
-    int HIGH_SPEED = 70;
+    int HIGH_SPEED = 60;
 
-    int MEDIUM_SPEED = 160;
+    int MEDIUM_SPEED = 660;
 
-    int LOW_SPEED = 400;
+    int LOW_SPEED = 1600;
 
     int COUNT_THREE = 3;
 
-    int COUNT_TEN = 10;
+    int COUNT_FIVE = 5;
+
+    int COUNT_TWENTY_NINE = 29;
 
     int COUNT_TWO = 2;
 

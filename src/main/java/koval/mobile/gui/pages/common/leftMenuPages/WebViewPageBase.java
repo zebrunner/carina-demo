@@ -1,7 +1,6 @@
 package koval.mobile.gui.pages.common.leftMenuPages;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import koval.mobile.gui.pages.service.enums.Topic;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -12,15 +11,16 @@ public abstract class WebViewPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract List<String> getTopicsToListFirst();
+
+
 
     public abstract List<String> getTopicsToList();
 
-    public abstract String getFirstTopic();
+
 
     public abstract List<String> getRightMenuElementsToList();
 
-    public abstract String getParsedEmail();
+    public abstract String getEmail();
 
     public abstract String getEmailAgent();
 
@@ -33,9 +33,4 @@ public abstract class WebViewPageBase extends AbstractPage {
 
     public abstract boolean isWebViewElementPresent(long timeOut);
 
-    public abstract boolean isEmailTextElementPresent(long timeOut);
-
-    public abstract boolean isTopicPresent(long timeOut);
-
-    public abstract boolean isTopicPresent(Topic topic);
 }

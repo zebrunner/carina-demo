@@ -7,7 +7,6 @@ import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.service.enums.LeftMenu;
-import koval.mobile.gui.pages.service.enums.Topic;
 import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -25,15 +24,10 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-
-    @FindBy(xpath = "//android.view.View[@text='Welcome to CARINA']")
-    private ExtendedWebElement firstTopic;
-
-    @FindBy(xpath = "//android.view.View[@text='%s']")
-    private ExtendedWebElement topicText;
-
-    @FindBy(xpath = "//android.view.View")
-    private List<ExtendedWebElement> listOfTopics;
+    @FindBy(xpath = "//*[@resource-id='rec40292376']/child::*//*[@class='android.view.View'][7]/child::*[@class='android.widget.TextView'] |" +
+            " //*[@resource-id='rec40368342']/child::*[@class='android.view.View'][1] |" +
+            " //*[@resource-id='rec40091305']/child::*[@class='android.view.View'][1]")
+    private List<ExtendedWebElement> listOfTopicElements;
 
     @FindBy(xpath = "//android.widget.TextView[@text='support@zebrunner.com']")
     private ExtendedWebElement emailTextElement;
@@ -57,39 +51,23 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
         super(driver);
     }
 
-
-    @Override
-    public List<String> getTopicsToListFirst() {
-        swipeInContainer(webViewContainer, Direction.UP, COUNT_TWO, MEDIUM_SPEED);
-        LOGGER.info(String.valueOf(listOfTopics.get(0).getElement()));
-
-        return listOfTopics.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
-    }
-
-
     @Override
     public List<String> getTopicsToList() {
 
-        List<String> listOfTopics = new ArrayList<>();
+        List<String> listOfTopic = new ArrayList<>();
+        int count = 5;
+        int expectedSizeOfListElements = 3;
 
-        swipeInContainer(webViewContainer, Direction.UP, COUNT_TWO, MEDIUM_SPEED);
+        while (listOfTopic.size() != expectedSizeOfListElements) {
 
-        listOfTopics.add(topicText.format(Topic.WELCOME_TO_CARINA.getTopicName()).getText());
+            swipeInContainer(webViewContainer, Direction.UP, count, MEDIUM_SPEED);
 
-        swipeInContainer(webViewContainer, Direction.UP, COUNT_TEN, MEDIUM_SPEED);
+            // adding web element to List<String> by xpath
+            listOfTopic.add(String.valueOf(listOfTopicElements.get(0).getText()).replaceAll("\n",""));
+            count *= 2;
+        }
 
-        listOfTopics.add(topicText.format(Topic.SEAMLESS_INTEGRATION.getTopicName()).getText());
-
-        return listOfTopics;
-    }
-
-
-    @Override
-    public String getFirstTopic() {
-
-        swipeInContainer(webViewContainer, Direction.UP, 3, MEDIUM_SPEED);
-
-        return firstTopic.getText();
+        return listOfTopic;
     }
 
     @Override
@@ -103,16 +81,16 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
     }
 
     @Override
-    public String getParsedEmail() {
+    public String getEmail() {
 
         swipe(emailTextElement, webViewContainer, Direction.UP, COUNT_THREE, HIGH_SPEED);
 
-        return emailTextElement.getText().split("@")[1];
+        return emailTextElement.getText();
     }
-
 
     @Override
     public String getEmailAgent() {
+
         swipe(emailTextElement, webViewContainer, Direction.UP, COUNT_THREE, HIGH_SPEED);
 
         return emailTextElement.getText().substring(emailTextElement.getText().lastIndexOf('@') + 1);
@@ -120,6 +98,7 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
 
     @Override
     public String getEmailName() {
+
         swipe(emailTextElement, webViewContainer, Direction.UP, COUNT_THREE, HIGH_SPEED);
 
         return emailTextElement.getText().substring(0, emailTextElement.getText().lastIndexOf('@'));
@@ -144,31 +123,14 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
         return initPage(getDriver(), WebViewPageBase.class);
     }
 
-
     @Override
     public boolean isWebViewElementPresent(long timeOut) {
         return webViewContent.isElementPresent(timeOut);
     }
 
     @Override
-    public boolean isEmailTextElementPresent(long timeOut) {
-        return false;
-    }
-
-    @Override
-    public boolean isTopicPresent(long timeOut) {
-        return false;
-    }
-
-    @Override
-    public boolean isTopicPresent(Topic topic) {
-        return firstTopic.isElementPresent();
-    }
-
-    @Override
     public boolean isPageOpened() {
         return title.getText().equals(LeftMenu.WEB_VIEW.getPageName());
     }
-
 
 }

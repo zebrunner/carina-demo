@@ -5,7 +5,6 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
-import koval.mobile.gui.pages.service.enums.Topic;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -16,19 +15,9 @@ public class WebViewPage extends WebViewPageBase {
         super(driver);
     }
 
-    @Override
-    public List<String> getTopicsToListFirst() {
-        return null;
-    }
 
     @Override
     public List<String> getTopicsToList() {
-        return null;
-    }
-
-
-    @Override
-    public String getFirstTopic() {
         return null;
     }
 
@@ -38,9 +27,12 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
-    public String[] getParsedEmail() {
+    public String getEmail() {
         return null;
     }
+
+
+
 
     @Override
     public String getEmailAgent() {
@@ -67,21 +59,5 @@ public class WebViewPage extends WebViewPageBase {
     public boolean isWebViewElementPresent(long timeOut) {
         return false;
     }
-
-    @Override
-    public boolean isEmailTextElementPresent(long timeOut) {
-        return false;
-    }
-
-    @Override
-    public boolean isTopicPresent(long timeOut) {
-        return false;
-    }
-
-    @Override
-    public boolean isTopicPresent(Topic topic) {
-        return false;
-    }
-
 
 }
