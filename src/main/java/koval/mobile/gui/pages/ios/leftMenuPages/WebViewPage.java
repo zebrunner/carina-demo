@@ -18,7 +18,7 @@ public class WebViewPage extends WebViewPageBase {
 
     @Override
     public List<String> getTopicsToList() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -28,22 +28,18 @@ public class WebViewPage extends WebViewPageBase {
 
     @Override
     public String getEmail() {
-        return null;
+        throw new NotImplementedException();
     }
-
-
-
 
     @Override
     public String getEmailAgent() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public String getEmailName() {
-        return null;
+        throw new NotImplementedException();
     }
-
 
     @Override
     public AbstractPage openPageByIndex(int pageIndex) {
@@ -57,7 +53,7 @@ public class WebViewPage extends WebViewPageBase {
 
     @Override
     public boolean isWebViewElementPresent(long timeOut) {
-        return false;
+        throw new NotImplementedException();
     }
 
 }

@@ -11,12 +11,7 @@ public abstract class WebViewPageBase extends AbstractPage {
         super(driver);
     }
 
-
-
-
     public abstract List<String> getTopicsToList();
-
-
 
     public abstract List<String> getRightMenuElementsToList();
 

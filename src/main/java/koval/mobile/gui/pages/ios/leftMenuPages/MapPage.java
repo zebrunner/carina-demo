@@ -18,7 +18,7 @@ public class MapPage extends MapPageBase {
 
     @Override
     public boolean isMapImagePresent(long timeOut) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
