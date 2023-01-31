@@ -60,8 +60,8 @@ public class WebSampleTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         
         // to generate idle timeout exception
-        LOGGER.info("slleping 90 sec to raise idle exception");
-        pause(90);
+        LOGGER.info("slleping 130 sec to raise idle exception");
+        pause(130);
         
         //Closing advertising if it's displayed
         homePage.getWeValuePrivacyAd().closeAdIfPresent();
@@ -92,8 +92,8 @@ public class WebSampleTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         
         // to generate idle timeout exception
-        LOGGER.info("slleping 90 sec to raise idle exception");
-        pause(90);
+        LOGGER.info("slleping 130 sec to raise idle exception");
+        pause(130);
         
         // Open model compare page
         FooterMenu footerMenu = homePage.getFooterMenu();
@@ -118,8 +118,8 @@ public class WebSampleTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
         
         // to generate idle timeout exception
-        LOGGER.info("slleping 90 sec to raise idle exception");
-        pause(90);
+        LOGGER.info("slleping 130 sec to raise idle exception");
+        pause(130);
         
         NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
