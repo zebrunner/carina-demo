@@ -36,6 +36,7 @@ public class WebViewPage extends WebViewPageBase {
         throw new NotImplementedException();
     }
 
+
     @Override
     public AbstractPage openMenu() {
         throw new NotImplementedException();

@@ -67,5 +67,6 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         Assert.assertTrue(webViewPageBase.isPageOpened(), "[ WEB VIEW PAGE ] Web View page is not opened!");
         Assert.assertTrue(webViewPageBase.isWebViewElementPresent(TIMEOUT_FIVE), "[ WEB VIEW PAGE ] Web View Image is not present!");
 
+
     }
 }

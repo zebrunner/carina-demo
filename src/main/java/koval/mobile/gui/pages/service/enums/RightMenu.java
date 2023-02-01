@@ -2,6 +2,8 @@ package koval.mobile.gui.pages.service.enums;
 
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+
+import koval.mobile.gui.pages.common.InstallationGuidWebPageBase;
 import koval.mobile.gui.pages.common.leftMenuPages.ChartsPageBase;
 import koval.mobile.gui.pages.common.leftMenuPages.MapPageBase;
 import koval.mobile.gui.pages.common.leftMenuPages.UIElementsPageBase;
@@ -22,6 +24,8 @@ public enum RightMenu {
     private final String pageName;
     private final int pageIndex;
 
+
+
     RightMenu(String pageName, int pageIndex) {
         this.pageName = pageName;
         this.pageIndex = pageIndex;
@@ -31,9 +35,12 @@ public enum RightMenu {
         return pageName;
     }
 
+
+
     public int getPageIndex() {
         return pageIndex;
     }
+
 
     @Override
     public String toString() {
