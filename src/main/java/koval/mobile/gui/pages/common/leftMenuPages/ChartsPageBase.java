@@ -8,5 +8,7 @@ public abstract class ChartsPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isVennDiagramPresent(long timeout);
+
+    public abstract boolean isVennDiagramPresent(long timeOut);
+
 }

@@ -14,12 +14,14 @@ public class MapPage extends MapPageBase {
     }
 
     @Override
-    public boolean isPageOpened() {
+    public boolean isMapImagePresent(long timeOut) {
         throw new NotImplementedException();
     }
 
     @Override
-    public boolean isMapImagePresent(long timeout) {
+    public boolean isPageOpened() {
         throw new NotImplementedException();
     }
+
+
 }

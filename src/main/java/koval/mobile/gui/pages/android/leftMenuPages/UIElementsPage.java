@@ -13,7 +13,7 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
 public class UIElementsPage extends UIElementsPageBase {
 
-    @FindBy(className = "android.widget.TextView")
+    @FindBy(className = "/*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
     @FindBy(id = "com.solvd.carinademoapplication:id/imageView")
@@ -29,7 +29,8 @@ public class UIElementsPage extends UIElementsPageBase {
     }
 
     @Override
-    public boolean isProfileImagePresent(long timeout) {
-        return profileImage.isElementPresent(timeout);
+    public boolean isProfileImagePresent(long timeOut) {
+        return profileImage.isElementPresent(timeOut);
+
     }
 }

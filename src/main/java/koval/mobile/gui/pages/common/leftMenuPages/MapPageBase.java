@@ -9,5 +9,6 @@ public abstract class MapPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isMapImagePresent(long timeout);
+    public abstract boolean isMapImagePresent(long timeOut);
+
 }

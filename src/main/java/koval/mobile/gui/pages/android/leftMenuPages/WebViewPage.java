@@ -4,7 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import koval.mobile.gui.pages.common.InstallationGuidWebPageBase;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.mobile.gui.pages.service.enums.LeftMenu;
 import koval.mobile.gui.pages.service.interfaces.IConstantUtils;
@@ -15,15 +15,33 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
-public class WebViewPage extends WebViewPageBase implements IConstantUtils {
+
+public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConstantUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(className = "android.widget.TextView")
+    @FindBy(xpath = "//*[@resource-id='allrecords']/child::*[@resource-id='rec40292376']/child::*/*[@class='android.view.View'][1]/child::*[@class='android.widget.TextView'] |" +
+            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40368342']/child::*[@class='android.view.View'][1] |" +
+            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40091305']/child::*[@class='android.view.View'][1]")
+    private ExtendedWebElement topicElements;
+
+    @FindBy(xpath = "//*[@resource-id='allrecords']/child::*[@resource-id='rec40292376']/child::*/*[@class='android.view.View'][1]/child::*[@class='android.widget.TextView'] |" +
+            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40368342']/child::*[@class='android.view.View'][1] |" +
+            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40091305']/child::*[@class='android.view.View'][1]")
+    private List<ExtendedWebElement> listOfTopicElements;
+
+    @FindBy(xpath = "//*[@resource-id='t-footer']/child::*//*[@class='android.view.View'][3]/child::*[@class='android.view.View'][1]/child::*[@class='android.widget.TextView']")
+    private ExtendedWebElement emailTextElement;
+
+    @FindBy(xpath = "//*[@resource-id='com.solvd.carinademoapplication:id/lin']/child::*//*[@class='android.webkit.WebView']")
+    private ExtendedWebElement webViewContainer;
+
+    @FindBy(className = "/*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
     @FindBy(id = "com.solvd.carinademoapplication:id/content_frame")
@@ -40,6 +58,27 @@ public class WebViewPage extends WebViewPageBase implements IConstantUtils {
     }
 
     @Override
+    public List<String> getTopicsToList() {
+
+        List<String> listOfTopic = new ArrayList<>();
+        int expectedSizeOfListElements = 3;
+
+        while (listOfTopic.size() != expectedSizeOfListElements) {
+
+                swipe(topicElements, MEDIUM_SPEED);
+
+                listOfTopic.add(String.valueOf(listOfTopicElements.get(0).getText()));
+
+                LOGGER.info(listOfTopic.toString());
+
+                while (topicElements.isElementPresent(TIMEOUT_FIVE)) {
+                    swipeUp(LOW_SPEED);
+                }
+        }
+        return listOfTopic;
+    }
+
+    @Override
     public List<String> getRightMenuElementsToList() {
 
         if (listOfMenuElement.isEmpty()) {
@@ -48,6 +87,15 @@ public class WebViewPage extends WebViewPageBase implements IConstantUtils {
 
         return listOfMenuElement.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
     }
+
+    @Override
+    public String getEmail() {
+
+        swipe(emailTextElement, webViewContainer, Direction.UP, COUNT_THREE, HIGH_SPEED);
+
+        return emailTextElement.getText();
+    }
+
 
     @Override
     public AbstractPage openPageByIndex(int index) {
@@ -68,16 +116,15 @@ public class WebViewPage extends WebViewPageBase implements IConstantUtils {
         return initPage(getDriver(), WebViewPageBase.class);
     }
 
-
     @Override
-    public boolean isWebViewContentPresent(long timeout) {
-        return webViewContent.isElementPresent(timeout);
+    public boolean isWebViewElementPresent(long timeOut) {
+        return webViewContent.isElementPresent(timeOut);
+
     }
 
     @Override
     public boolean isPageOpened() {
         return title.getText().equals(LeftMenu.WEB_VIEW.getPageName());
     }
-
 
 }

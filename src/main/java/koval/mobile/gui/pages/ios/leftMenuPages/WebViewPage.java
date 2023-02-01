@@ -15,8 +15,19 @@ public class WebViewPage extends WebViewPageBase {
         super(driver);
     }
 
+
+    @Override
+    public List<String> getTopicsToList() {
+        throw new NotImplementedException();
+    }
+
     @Override
     public List<String> getRightMenuElementsToList() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public String getEmail() {
         throw new NotImplementedException();
     }
 
@@ -32,11 +43,8 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
-    public boolean isWebViewContentPresent(long timeout) {
-        return false;
+    public boolean isWebViewElementPresent(long timeOut) {
+        throw new NotImplementedException();
     }
-
-
-
 
 }

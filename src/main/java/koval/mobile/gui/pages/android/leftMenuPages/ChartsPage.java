@@ -13,7 +13,7 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = ChartsPageBase.class)
 public class ChartsPage extends ChartsPageBase {
     
-    @FindBy(className = "android.widget.TextView")
+    @FindBy(className = "//*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
     @FindBy(xpath = "//android.view.View[@text='venn chart ']")
@@ -29,7 +29,8 @@ public class ChartsPage extends ChartsPageBase {
     }
 
     @Override
-    public boolean isVennDiagramPresent(long timeout) {
-        return vennDiagram.isElementPresent(timeout);
+    public boolean isVennDiagramPresent(long timeOut) {
+        return vennDiagram.isElementPresent(timeOut);
+
     }
 }

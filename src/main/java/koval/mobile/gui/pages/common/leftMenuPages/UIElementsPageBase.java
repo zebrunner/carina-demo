@@ -9,5 +9,7 @@ public abstract class UIElementsPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isProfileImagePresent(long timeout);
+
+    public abstract boolean isProfileImagePresent(long timeOut);
+
 }

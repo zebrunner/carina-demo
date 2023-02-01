@@ -14,7 +14,8 @@ public class UIElementsPage extends UIElementsPageBase {
     }
 
     @Override
-    public boolean isProfileImagePresent(long timeout) {
+
+    public boolean isProfileImagePresent(long timeOut) {
         throw new NotImplementedException();
     }
 
