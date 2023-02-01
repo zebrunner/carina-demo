@@ -13,7 +13,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,7 +22,7 @@ public class SwipeCheckTest extends LoginTest implements IAbstractTest, IMobileU
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "1.1. Open Web View Page and parse mail", value = {"mobile"})
+    @TestLabel(name = "1. Open Web View Page and parse mail", value = {"mobile"})
     public void testParseMail() {
 
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
@@ -34,22 +33,7 @@ public class SwipeCheckTest extends LoginTest implements IAbstractTest, IMobileU
         String mailAgent = StringUtils.split(mail, "@")[1];
 
         Assert.assertEquals(mailName, EXPECTED_EMAIL_NAME, "[WEB VIEW] Parsed mail name is wrong!");
-        Assert.assertEquals(mailAgent, EXPECTED_EMAIL_AGENT, "[WEB VIEW] Parsed mail agent is wrong");
-    }
-
-    @Test()
-    @MethodOwner(owner = "koval")
-    @TestLabel(name = "1.2. Open Web View Page and return parsed mail", value = {"mobile"})
-    public void testParseMailSecond() {
-
-        WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
-        Assert.assertTrue(webViewPageBasePage.isPageOpened(), "[ WEB PAGE ] Page is not opened!");
-
-        String mailName = webViewPageBasePage.getEmailName();
-        String mailAgent = webViewPageBasePage.getEmailAgent();
-
-        Assert.assertEquals(mailName, EXPECTED_EMAIL_NAME, "[WEB VIEW] Parsed mail name is wrong!");
-        Assert.assertEquals(mailAgent, EXPECTED_EMAIL_AGENT, "[WEB VIEW] Parsed mail agent is wrong");
+        Assert.assertEquals(mailAgent, EXPECTED_EMAIL_AGENT, "[WEB VIEW] Parsed mail agent is wrong!");
     }
 
     @Test()
@@ -60,10 +44,9 @@ public class SwipeCheckTest extends LoginTest implements IAbstractTest, IMobileU
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
         Assert.assertTrue(webViewPageBasePage.isPageOpened(), "[ WEB PAGE ] Page is not opened!");
 
-        List<String> expectedListOfTopics = Arrays.asList("Welcome to CARINA", "How CARINA works", "Seamless integration");
-        List<String> actualListOfTopics = webViewPageBasePage.getTopicsToList(); //get list of topics by swiping
+        List<String> actualListOfTopics = webViewPageBasePage.getTopicsToList();
 
-        Assert.assertEquals(actualListOfTopics, expectedListOfTopics,
+        Assert.assertEquals(actualListOfTopics, EXPECTED_LIST_OF_TOPICS,
                 "[ WEB VIEW ] Actual list is not equal to expected list of topics !");
 
     }

@@ -17,10 +17,6 @@ public abstract class WebViewPageBase extends AbstractPage {
 
     public abstract String getEmail();
 
-    public abstract String getEmailAgent();
-
-    public abstract String getEmailName();
-
     public abstract AbstractPage openPageByIndex(int pageIndex);
 
     public abstract AbstractPage openMenu();

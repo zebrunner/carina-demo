@@ -2,7 +2,9 @@ package koval.mobile.gui.pages.service.interfaces;
 
 import koval.mobile.gui.pages.service.enums.Gender;
 
-import static com.zebrunner.agent.core.webdriver.RemoteWebDriverFactory.getDriver;
+import java.util.Arrays;
+import java.util.List;
+
 
 
 public interface IConstantUtils {
@@ -19,23 +21,14 @@ public interface IConstantUtils {
 
     int TIMEOUT_FIVE = 5;
 
-    int TIMEOUT_ONE = 1;
-
-    int FOURTH_ELEMENT = 4;
-
     int HIGH_SPEED = 60;
 
-    int MEDIUM_SPEED = 660;
+    int MEDIUM_SPEED = 620;
 
-    int LOW_SPEED = 1600;
+    int LOW_SPEED = 2000;
 
     int COUNT_THREE = 3;
 
-    int COUNT_FIVE = 5;
+    List<String> EXPECTED_LIST_OF_TOPICS = Arrays.asList("Welcome to CARINA", "How CARINA works\n", "Seamless integration");
 
-    int COUNT_TWENTY_NINE = 29;
-
-    int COUNT_TWO = 2;
-
-    String[] ExpectedEmailParts = {"support", "zebrunner.com"};
 }

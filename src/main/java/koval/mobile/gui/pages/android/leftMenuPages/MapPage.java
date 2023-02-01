@@ -16,7 +16,7 @@ import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_F
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = MapPageBase.class)
 public class MapPage extends MapPageBase {
 
-    @FindBy(className = "android.widget.TextView")
+    @FindBy(className = "/*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
     @FindBy(xpath = "//*[@content-desc='Google Map']")

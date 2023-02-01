@@ -32,16 +32,6 @@ public class WebViewPage extends WebViewPageBase {
     }
 
     @Override
-    public String getEmailAgent() {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public String getEmailName() {
-        throw new NotImplementedException();
-    }
-
-    @Override
     public AbstractPage openPageByIndex(int pageIndex) {
         throw new NotImplementedException();
     }

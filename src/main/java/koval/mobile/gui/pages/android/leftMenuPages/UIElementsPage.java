@@ -16,7 +16,7 @@ import static koval.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_F
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
 public class UIElementsPage extends UIElementsPageBase {
 
-    @FindBy(className = "android.widget.TextView")
+    @FindBy(className = "/*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
     @FindBy(id = "com.solvd.carinademoapplication:id/imageView")

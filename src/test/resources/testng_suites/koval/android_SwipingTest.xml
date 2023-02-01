@@ -6,16 +6,25 @@
 
 
 
-    <test name="Swiping check test">
+    <test name="1. Get Parsed Mail">
         <classes>
             <class name="koval.SwipeCheckTest">
                 <methods>
                     <include name="testParseMail"/>
-                    <include name="testGetTopics"/>
                 </methods>
             </class>
         </classes>
     </test>
 
+
+    <test name="2. Get Topics">
+        <classes>
+            <class name="koval.SwipeCheckTest">
+                <methods>
+                    <include name="testGetTopics"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>
