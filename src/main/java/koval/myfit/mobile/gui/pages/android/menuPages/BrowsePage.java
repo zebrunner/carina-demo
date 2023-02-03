@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = BrowsePageBase.class)
 public class BrowsePage extends BrowsePageBase {
+
     public BrowsePage(WebDriver driver) {
         super(driver);
     }

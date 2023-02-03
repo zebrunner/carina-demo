@@ -4,7 +4,6 @@ package koval.myfit.mobile.gui.pages.android.menuPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.myfit.mobile.gui.pages.android.menu.DownMenuModal;
 import koval.myfit.mobile.gui.pages.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.pages.common.menuPages.HomePageBase;
@@ -38,8 +37,14 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public WelcomePageBase clickSignOutBtn() {
+    public HomePageBase clickProfileImage() {
         profileImage.click();
+        return initPage(getDriver(), HomePageBase.class);
+    }
+
+    @Override
+    public WelcomePageBase clickSignOutBtn() {
+        clickProfileImage();
         signOutButton.click();
         return initPage(getDriver(), WelcomePageBase.class);
     }

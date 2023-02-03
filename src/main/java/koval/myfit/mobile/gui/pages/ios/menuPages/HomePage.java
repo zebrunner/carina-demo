@@ -24,6 +24,11 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
+    public HomePageBase clickProfileImage() {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public WelcomePageBase clickSignOutBtn() {
         throw new NotImplementedException();
     }
