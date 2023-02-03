@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import java.lang.invoke.MethodHandles;
 
 
-public class GoogleFitTest extends LoginTest implements IAbstractTest, IMobileUtils {
+public class GoogleFitTest extends LoginTest{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
