@@ -1,4 +1,4 @@
-package koval.myfit.mobile.gui.pages.android.menuPages;
+package koval.myfit.mobile.gui.pages.ios.menuPages;
 
 
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -7,9 +7,8 @@ import koval.myfit.mobile.gui.pages.common.menuPages.JournalPageBase;
 import org.openqa.selenium.WebDriver;
 
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = JournalPageBase.class)
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = JournalPageBase.class)
 public class JournalPage extends JournalPageBase implements IMobileUtils {
-
     public JournalPage(WebDriver driver) {
         super(driver);
     }

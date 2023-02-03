@@ -4,7 +4,6 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import koval.carinademo.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.myfit.mobile.gui.pages.common.menu.DownMenuModalBase;
 import koval.myfit.mobile.gui.pages.service.enums.DownMenuElement;
 import org.openqa.selenium.SearchContext;
@@ -38,7 +37,7 @@ public class DownMenuModal extends DownMenuModalBase {
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
 
         if (listOfMenuElement.isEmpty()) {
-            Assert.fail("d");
+            Assert.fail("List is empty!");
         }
 
         listOfMenuElement.get(downMenuElement.getPageIndex()).click();

@@ -3,8 +3,6 @@ package koval.myfit.mobile.gui.pages.common.loginPages;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-import java.util.List;
-
 
 public abstract class WelcomePageBase extends AbstractPage {
 

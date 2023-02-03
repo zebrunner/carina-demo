@@ -9,10 +9,6 @@ import koval.myfit.mobile.gui.pages.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.pages.common.loginPages.WelcomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = WelcomePageBase.class)

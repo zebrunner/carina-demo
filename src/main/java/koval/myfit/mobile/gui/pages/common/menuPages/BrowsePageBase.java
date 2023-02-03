@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 
 public abstract class BrowsePageBase extends AbstractPage {
+
     public BrowsePageBase(WebDriver driver) {
         super(driver);
     }

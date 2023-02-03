@@ -6,7 +6,6 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.myfit.mobile.gui.pages.android.menu.DownMenuModal;
-import koval.myfit.mobile.gui.pages.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.pages.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.pages.common.menuPages.HomePageBase;
 import koval.myfit.mobile.gui.pages.service.enums.DownMenuElement;
@@ -16,7 +15,6 @@ import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase implements IMobileUtils {
-
 
     @FindBy(id = "com.google.android.apps.fitness:id/bottom_navigation")
     private DownMenuModal downMenuModal;
