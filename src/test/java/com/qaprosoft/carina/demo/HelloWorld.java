@@ -17,7 +17,6 @@ package com.qaprosoft.carina.demo;
 
 import java.lang.invoke.MethodHandles;
 
-import koval.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
