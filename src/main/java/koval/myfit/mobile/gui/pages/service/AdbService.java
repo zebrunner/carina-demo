@@ -1,24 +1,46 @@
 package koval.myfit.mobile.gui.pages.service;
 
-import java.io.IOException;
+import com.zebrunner.carina.utils.android.AndroidService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 
-import static koval.myfit.mobile.gui.pages.service.interfaces.IConstantUtils.ADB_PATH;
+import static com.zebrunner.carina.utils.common.CommonUtils.pause;
+import static koval.myfit.mobile.gui.pages.service.interfaces.IConstantUtils.TIMEOUT_FIVE;
 
-public class AdbService {
+public class AdbService extends AndroidService {
 
-    static public void openApp() throws IOException, InterruptedException {
-        String cmd = ADB_PATH + " shell monkey -p com.google.android.apps.fitness -c android.intent.category.LAUNCHER 1";
+    public enum AppPackage{
+        GOOGLE_FIT("com.google.android.apps.fitness"),
+        CARINA_DEMO("com.solvd.carinademoapplication");
 
-        Process process = Runtime.getRuntime().exec(cmd);
-        process.waitFor();
+        public final String appPackage;
+        AppPackage(String appPackage) {
+            this.appPackage = appPackage;
+        }
+
+        public String getPackageName() {
+            return appPackage;
+        }
     }
 
-    static public void clearCash() throws IOException, InterruptedException {
-        String cmd = ADB_PATH + " shell pm clear com.google.android.apps.fitness";
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-        Process process = Runtime.getRuntime().exec(cmd);
-        process.waitFor();
+    private static final AndroidService executor = AndroidService.getInstance();
+
+    public void clearAppCache(AppPackage packageName) {
+        LOGGER.info("Clear ['{}'] cache via ADB", packageName);
+        String[] command = { "adb", "-s", getDevice(getDriver()).getUdid(), "shell", "pm", "clear", packageName.getPackageName() };
+        getDevice(getDriver()).execute(command);
+    }
+
+    public void startApp(AppPackage packName) {
+        LOGGER.info("Starting " + packName.toString());
+        String cmd = String.format("shell monkey -p %s -c android.intent.category.LAUNCHER 1", packName.getPackageName());
+        executor.executeAdbCommand(cmd);
+        pause(TIMEOUT_FIVE);
     }
 
 }

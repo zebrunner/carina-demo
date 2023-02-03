@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = JournalPageBase.class)
-public class JournalPage extends JournalPageBase implements IMobileUtils {
+public class JournalPage extends JournalPageBase {
     public JournalPage(WebDriver driver) {
         super(driver);
     }

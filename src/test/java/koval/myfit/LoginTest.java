@@ -13,17 +13,17 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 public class LoginTest implements IAbstractTest, IMobileUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    AdbService adbService = new AdbService();
 
     @BeforeMethod
-    public void login() throws IOException, InterruptedException {
+    public void login() {
 
-        AdbService.openApp();
+        adbService.startApp(AdbService.AppPackage.GOOGLE_FIT);
         try {
             WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
             Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
@@ -39,11 +39,12 @@ public class LoginTest implements IAbstractTest, IMobileUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @AfterMethod
-    public void logout() throws IOException, InterruptedException {
-        AdbService.clearCash();
+    public void logout() {
+        adbService.clearAppCache(AdbService.AppPackage.GOOGLE_FIT);
     }
 
 }

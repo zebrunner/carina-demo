@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = TrackActivitiesPageBase.class)
-public class TrackActivitiesPage extends TrackActivitiesPageBase implements IMobileUtils, IConstantUtils {
+public class TrackActivitiesPage extends TrackActivitiesPageBase {
 
     public TrackActivitiesPage(WebDriver driver) {
         super(driver);

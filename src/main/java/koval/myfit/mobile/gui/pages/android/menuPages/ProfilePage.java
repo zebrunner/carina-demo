@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ProfilePageBase.class)
-public class ProfilePage extends ProfilePageBase implements IMobileUtils {
+public class ProfilePage extends ProfilePageBase {
 
     public ProfilePage(WebDriver driver) {
         super(driver);

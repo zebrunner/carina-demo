@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = WelcomePageBase.class)
-public class WelcomePage extends WelcomePageBase implements IMobileUtils, IConstantUtils {
+public class WelcomePage extends WelcomePageBase {
     public WelcomePage(WebDriver driver) {
         super(driver);
     }

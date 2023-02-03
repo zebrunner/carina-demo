@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = WelcomePageBase.class)
-public class WelcomePage extends WelcomePageBase implements IMobileUtils, IConstantUtils {
+public class WelcomePage extends WelcomePageBase {
 
 
     @FindBy(id = "com.google.android.apps.fitness:id/fit_app_icon")

@@ -14,7 +14,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AboutMePageBase.class)
-public class AboutMePage extends AboutMePageBase implements IMobileUtils, IConstantUtils {
+public class AboutMePage extends AboutMePageBase {
 
 
     @FindBy(id = "android:id/button1")
@@ -23,7 +23,7 @@ public class AboutMePage extends AboutMePageBase implements IMobileUtils, IConst
     @FindBy(id = "com.google.android.apps.fitness:id/%s_field")
     private ExtendedWebElement itemByID;
 
-    @FindBy(xpath = "//*[@class = 'android.widget.TextView'][1]")
+    @FindBy(xpath = "//*[@resource-id='com.google.android.apps.fitness:id/heart_logo_animation']//following-sibling::*[@class = 'android.widget.TextView'][1]")
     private ExtendedWebElement title;
 
     @FindBy(id = "com.google.android.apps.fitness:id/next_button")

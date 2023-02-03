@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = AboutMePageBase.class)
-public class AboutMePage extends AboutMePageBase implements IMobileUtils, IConstantUtils {
+public class AboutMePage extends AboutMePageBase {
 
     public AboutMePage(WebDriver driver) {
         super(driver);

@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HomePageBase.class)
-public class HomePage extends HomePageBase implements IMobileUtils {
+public class HomePage extends HomePageBase {
 
     public HomePage(WebDriver driver) {
         super(driver);

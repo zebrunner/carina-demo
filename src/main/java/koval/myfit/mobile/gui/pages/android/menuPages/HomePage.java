@@ -14,7 +14,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
-public class HomePage extends HomePageBase implements IMobileUtils {
+public class HomePage extends HomePageBase {
 
     @FindBy(id = "com.google.android.apps.fitness:id/bottom_navigation")
     private DownMenuModal downMenuModal;

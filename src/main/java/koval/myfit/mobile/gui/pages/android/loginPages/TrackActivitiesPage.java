@@ -14,7 +14,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = TrackActivitiesPageBase.class)
-public class TrackActivitiesPage extends TrackActivitiesPageBase implements IMobileUtils, IConstantUtils {
+public class TrackActivitiesPage extends TrackActivitiesPageBase {
 
     @FindBy(xpath = "//*[@class = 'android.widget.TextView'][1]")
     private ExtendedWebElement title;

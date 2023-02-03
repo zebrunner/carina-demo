@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = BrowsePageBase.class)
-public class BrowsePage extends BrowsePageBase implements IMobileUtils {
+public class BrowsePage extends BrowsePageBase {
 
     public BrowsePage(WebDriver driver) {
         super(driver);
