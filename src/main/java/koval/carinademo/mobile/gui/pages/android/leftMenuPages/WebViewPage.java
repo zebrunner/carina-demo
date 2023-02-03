@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WebViewPageBase.class)
+
 public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConstantUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -95,6 +96,7 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
         return emailTextElement.getText();
     }
 
+
     @Override
     public AbstractPage openPageByIndex(int index) {
 
@@ -104,12 +106,12 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
 
         listOfMenuElement.get(index).click();
 
-        return initPage(getDriver(), WebViewPageBase.class);
+        return initPage(getDriver(), AbstractPage.class);
+
     }
 
     @Override
     public AbstractPage openMenu() {
-
         rightMenuButton.click();
         return initPage(getDriver(), WebViewPageBase.class);
     }
@@ -117,6 +119,7 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
     @Override
     public boolean isWebViewElementPresent(long timeOut) {
         return webViewContent.isElementPresent(timeOut);
+
     }
 
     @Override

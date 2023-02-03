@@ -10,4 +10,5 @@ public abstract class UIElementsPageBase extends AbstractPage {
     }
 
     public abstract boolean isProfileImagePresent(long timeOut);
+
 }

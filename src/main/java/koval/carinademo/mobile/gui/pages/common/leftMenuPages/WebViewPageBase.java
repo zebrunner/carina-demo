@@ -17,10 +17,10 @@ public abstract class WebViewPageBase extends AbstractPage {
 
     public abstract String getEmail();
 
+
     public abstract AbstractPage openPageByIndex(int pageIndex);
 
     public abstract AbstractPage openMenu();
-
 
     public abstract boolean isWebViewElementPresent(long timeOut);
 

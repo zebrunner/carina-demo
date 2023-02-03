@@ -9,4 +9,5 @@ public abstract class ChartsPageBase extends AbstractPage {
     }
 
     public abstract boolean isVennDiagramPresent(long timeOut);
+
 }

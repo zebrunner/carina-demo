@@ -10,4 +10,5 @@ public abstract class MapPageBase extends AbstractPage {
     }
 
     public abstract boolean isMapImagePresent(long timeOut);
+
 }

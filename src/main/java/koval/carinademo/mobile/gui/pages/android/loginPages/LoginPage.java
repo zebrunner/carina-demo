@@ -8,10 +8,16 @@ import koval.carinademo.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
 import koval.carinademo.mobile.gui.pages.service.enums.Gender;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(id = "com.solvd.carinademoapplication:id/name")
     private ExtendedWebElement nameInputField;
@@ -66,7 +72,19 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
     @Override
     public LoginPageBase checkPrivacyPolicyCheckbox() {
-        privacyPolicyCheckbox.click();
+        return checkPrivacyPolicyCheckbox(true);
+    }
+
+    @Override
+    public LoginPageBase checkPrivacyPolicyCheckbox(boolean status) {
+
+        LOGGER.info("[ Privacy Police Checkbox status ] Expected: {} . Actual: {}", status, privacyPolicyCheckbox.isChecked());
+
+        if (status) {
+            privacyPolicyCheckbox.check();
+        } else {
+            privacyPolicyCheckbox.uncheck();
+        }
         return initPage(getDriver(), LoginPageBase.class);
     }
 
