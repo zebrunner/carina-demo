@@ -15,9 +15,7 @@ public abstract class HomePageBase extends MyAbstractPage {
 
     public abstract boolean isPageOpened();
 
-    public abstract HomePageBase clickProfileImage();
-
-    public abstract WelcomePageBase clickSignOutBtn();
+    public abstract WelcomePageBase signOut();
 
     public abstract AbstractPage open(DownMenuElement downMenuElement);
 }

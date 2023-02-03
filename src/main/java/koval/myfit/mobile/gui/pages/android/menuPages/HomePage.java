@@ -33,18 +33,12 @@ public class HomePage extends HomePageBase {
 
     @Override
     public boolean isPageOpened() {
-        return activityChartView.isElementPresent(5);
+        return activityChartView.isElementPresent(TIMEOUT_FIVE);
     }
 
     @Override
-    public HomePageBase clickProfileImage() {
+    public WelcomePageBase signOut() {
         profileImage.click();
-        return initPage(getDriver(), HomePageBase.class);
-    }
-
-    @Override
-    public WelcomePageBase clickSignOutBtn() {
-        clickProfileImage();
         signOutButton.click();
         return initPage(getDriver(), WelcomePageBase.class);
     }
