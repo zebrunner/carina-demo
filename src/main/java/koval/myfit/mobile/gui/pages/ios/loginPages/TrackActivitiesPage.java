@@ -3,8 +3,6 @@ package koval.myfit.mobile.gui.pages.ios.loginPages;
 
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.carinademo.mobile.gui.pages.service.interfaces.IConstantUtils;
 import koval.myfit.mobile.gui.pages.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.gui.pages.common.menuPages.HomePageBase;
 import koval.myfit.mobile.gui.pages.service.enums.TrackYourActivitiesAnswer;
@@ -19,8 +17,9 @@ public class TrackActivitiesPage extends TrackActivitiesPageBase {
     }
 
     @Override
-    public HomePageBase clickBtn(TrackYourActivitiesAnswer trackYourActivitiesAnswer) {
+    public HomePageBase clickOnAnswerBtn(TrackYourActivitiesAnswer trackYourActivitiesAnswer) {
         throw new NotImplementedException();
     }
+
 
 }

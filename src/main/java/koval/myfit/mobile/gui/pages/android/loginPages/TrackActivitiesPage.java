@@ -3,8 +3,6 @@ package koval.myfit.mobile.gui.pages.android.loginPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.carinademo.mobile.gui.pages.service.interfaces.IConstantUtils;
 import koval.myfit.mobile.gui.pages.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.gui.pages.common.menuPages.HomePageBase;
 import koval.myfit.mobile.gui.pages.service.enums.LoginPagesTitles;
@@ -33,7 +31,7 @@ public class TrackActivitiesPage extends TrackActivitiesPageBase {
     }
 
     @Override
-    public HomePageBase clickBtn(TrackYourActivitiesAnswer trackYourActivitiesAnswer) {
+    public HomePageBase clickOnAnswerBtn(TrackYourActivitiesAnswer trackYourActivitiesAnswer) {
         itemByText.format(trackYourActivitiesAnswer.getAnswer()).click();
         return initPage(getDriver(), HomePageBase.class);
     }

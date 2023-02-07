@@ -24,7 +24,8 @@ public class AboutMePage extends AboutMePageBase {
     }
 
     @Override
-    public AboutMePageBase clickOnBtn(PersonCharacteristics personCharacteristics) {
+    public AboutMePageBase clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics) {
         throw new NotImplementedException();
     }
+
 }

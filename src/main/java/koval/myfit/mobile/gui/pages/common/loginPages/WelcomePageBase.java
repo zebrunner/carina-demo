@@ -1,6 +1,5 @@
 package koval.myfit.mobile.gui.pages.common.loginPages;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.pages.service.MyAbstractPage;
 import org.openqa.selenium.WebDriver;
 

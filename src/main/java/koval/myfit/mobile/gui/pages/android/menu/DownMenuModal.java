@@ -22,7 +22,7 @@ public class DownMenuModal extends DownMenuModalBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "com.google.android.apps.fitness:id/bottom_navigation")
-    private List<ExtendedWebElement> listOfMenuElement;
+    private List<ExtendedWebElement> listOfDownMenuElement;
 
     public DownMenuModal(WebDriver driver) {
         super(driver);
@@ -36,11 +36,11 @@ public class DownMenuModal extends DownMenuModalBase {
     @Override
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
 
-        if (listOfMenuElement.isEmpty()) {
-            Assert.fail("List is empty!");
+        if (listOfDownMenuElement.isEmpty()) {
+            Assert.fail("List of Down-Menu Element is empty!");
         }
 
-        listOfMenuElement.get(downMenuElement.getPageIndex()).click();
+        listOfDownMenuElement.get(downMenuElement.getPageIndex()).click();
 
         return initPage(getDriver(), downMenuElement.getClassName());
     }

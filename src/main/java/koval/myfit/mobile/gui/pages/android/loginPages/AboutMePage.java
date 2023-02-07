@@ -3,8 +3,6 @@ package koval.myfit.mobile.gui.pages.android.loginPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.carinademo.mobile.gui.pages.service.interfaces.IConstantUtils;
 import koval.myfit.mobile.gui.pages.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.pages.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.gui.pages.service.enums.LoginPagesTitles;
@@ -15,7 +13,6 @@ import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AboutMePageBase.class)
 public class AboutMePage extends AboutMePageBase {
-
 
     @FindBy(id = "android:id/button1")
     private ExtendedWebElement okayButton;
@@ -49,7 +46,7 @@ public class AboutMePage extends AboutMePageBase {
 
 
     @Override
-    public AboutMePageBase clickOnBtn(PersonCharacteristics personCharacteristics) {
+    public AboutMePageBase clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics) {
         itemByID.format(personCharacteristics.getCharacteristic()).click();
         okayButton.click();
         return initPage(getDriver(), AboutMePageBase.class);

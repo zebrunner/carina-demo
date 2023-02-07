@@ -1,6 +1,5 @@
 package koval.myfit.mobile.gui.pages.common.loginPages;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.pages.common.menuPages.HomePageBase;
 import koval.myfit.mobile.gui.pages.service.MyAbstractPage;
 import koval.myfit.mobile.gui.pages.service.enums.TrackYourActivitiesAnswer;
@@ -12,5 +11,5 @@ public abstract class TrackActivitiesPageBase extends MyAbstractPage {
         super(driver);
     }
 
-    public abstract HomePageBase clickBtn(TrackYourActivitiesAnswer trackYourActivitiesAnswer);
+    public abstract HomePageBase clickOnAnswerBtn(TrackYourActivitiesAnswer trackYourActivitiesAnswer);
 }

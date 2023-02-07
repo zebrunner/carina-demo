@@ -14,5 +14,5 @@ public abstract class AboutMePageBase extends MyAbstractPage {
 
     public abstract TrackActivitiesPageBase clickNextBtn();
 
-    public abstract AboutMePageBase clickOnBtn(PersonCharacteristics personCharacteristics);
+    public abstract AboutMePageBase clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics);
 }

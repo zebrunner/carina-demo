@@ -6,6 +6,8 @@ import koval.myfit.mobile.gui.pages.service.MyAbstractPage;
 import koval.myfit.mobile.gui.pages.service.enums.DownMenuElement;
 import org.openqa.selenium.WebDriver;
 
+import java.util.List;
+
 
 public abstract class HomePageBase extends MyAbstractPage {
 
@@ -18,4 +20,19 @@ public abstract class HomePageBase extends MyAbstractPage {
     public abstract WelcomePageBase signOut();
 
     public abstract AbstractPage open(DownMenuElement downMenuElement);
+
+
+    public abstract List<String> getPlusButtonMenuElementsToList();
+
+
+    public abstract boolean isPlusButtonOverOtherElements();
+
+    public abstract boolean isPlusBtnStatic();
+
+
+    public abstract int getContainerHeight();
+
+    public abstract List<String> getMaterialCardTopicsToList();
+
+    public abstract List<String> getPlaylistTitlesToList();
 }
