@@ -25,8 +25,6 @@ public abstract class HomePageBase extends MyAbstractPage {
     public abstract List<String> getPlusButtonMenuElementsToList();
 
 
-    public abstract boolean isPlusButtonOverOtherElements();
-
     public abstract boolean isPlusBtnStatic();
 
 

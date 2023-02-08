@@ -95,14 +95,6 @@ public class HomePage extends HomePageBase {
         return listOfPlusButtonElement.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
     }
 
-
-    @Override
-    public boolean isPlusButtonOverOtherElements() {
-
-        plusButton.click();
-        return plusButtonMenuContainer.isElementPresent(TIMEOUT_FIVE);
-    }
-
     @Override
     public boolean isPlusBtnStatic() {
 
@@ -119,7 +111,8 @@ public class HomePage extends HomePageBase {
                 return false;
             }
 
-            Assert.assertTrue(isPlusButtonOverOtherElements(), "[ HOME PAGE ] Plus-Button is under other element!");
+            plusButton.click();
+            Assert.assertTrue(plusButtonMenuContainer.isElementPresent(TIMEOUT_FIVE), "[ HOME PAGE ] Plus-Button is under element!");
             plusButton.click();
         }
         return true;

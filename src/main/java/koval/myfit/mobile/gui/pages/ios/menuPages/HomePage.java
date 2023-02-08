@@ -40,12 +40,6 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public boolean isPlusButtonOverOtherElements() {
-        throw new NotImplementedException();
-    }
-
-
-    @Override
     public boolean isPlusBtnStatic() {
         throw new NotImplementedException();
     }

@@ -35,7 +35,7 @@ public class GoogleFitTest extends LoginTest {
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "3. Compare playlist titles and block card topics Lists with expected lists\n", value = {"mobile"})
+    @TestLabel(name = "3. Compare playlist titles and block card topics Lists with expected lists", value = {"mobile"})
     public void CompareListOfTopics() {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
@@ -44,6 +44,7 @@ public class GoogleFitTest extends LoginTest {
         List<String> actualMaterialCardTopicsList = homePageBase.getMaterialCardTopicsToList();
         Assert.assertEquals(actualMaterialCardTopicsList, EXPECTED_LIST_OF_MATERIAL_CARD_TOPICS,
                 "[ HOME PAGE / actualMaterialCardTopicsList ] Actual list of Material Card topics is not equals to expected list!");
+        
 
         List<String> actualPlaylistTitlesList = homePageBase.getPlaylistTitlesToList();
         Assert.assertEquals(actualPlaylistTitlesList, EXPECTED_LIST_OF_PLAYLIST_TITLES,
