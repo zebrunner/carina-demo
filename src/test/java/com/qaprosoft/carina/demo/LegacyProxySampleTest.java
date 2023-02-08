@@ -41,7 +41,7 @@ import com.browserup.bup.proxy.CaptureType;
  *
  * @author qpsdemo
  */
-public class ProxySampleTest implements IAbstractTest {
+public class LegacyProxySampleTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     BrowserUpProxy proxy;
