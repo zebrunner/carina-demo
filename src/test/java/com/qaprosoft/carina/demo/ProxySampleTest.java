@@ -20,6 +20,8 @@ import com.browserup.bup.proxy.CaptureType;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.proxy.CustomProxy;
+import com.qaprosoft.carina.demo.proxy.CustomProxyRule;
 import com.zebrunner.agent.core.registrar.Artifact;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.proxy.ProxyPool;
@@ -59,7 +61,6 @@ public class ProxySampleTest implements IAbstractTest {
     @Test(description = "Test proxy, setted manually (from configuration proxy_host, proxy_port etc)")
     @MethodOwner(owner = "qpsdemo")
     public void manualProxyTest() {
-        R.CONFIG.put("proxy_set_to_system", "false", true);
         R.CONFIG.put("proxy_type", "MANUAL", true);
         R.CONFIG.put("proxy_protocols", "http,https", true);
 
@@ -82,7 +83,6 @@ public class ProxySampleTest implements IAbstractTest {
     @Test(description = "Test direct proxy mode (without proxy)")
     @MethodOwner(owner = "qpsdemo")
     public void directProxyTest() {
-        R.CONFIG.put("proxy_set_to_system", "false", true);
         R.CONFIG.put("proxy_type", "DIRECT", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
@@ -101,7 +101,6 @@ public class ProxySampleTest implements IAbstractTest {
     @Test(description = "Test pac proxy. Pac file created from manually setted proxy_host, proxy_port configuration.")
     @MethodOwner(owner = "qpsdemo")
     public void pacProxyTest() throws FileNotFoundException {
-        R.CONFIG.put("proxy_set_to_system", "false", true);
         R.CONFIG.put("proxy_type", "PAC", true);
         R.CONFIG.put("proxy_pac_local", "true", true);
 
@@ -135,7 +134,6 @@ public class ProxySampleTest implements IAbstractTest {
     @Test(description = "Test autodetect proxy mode.")
     @MethodOwner(owner = "qpsdemo")
     public void autodetectProxyTest() {
-        R.CONFIG.put("proxy_set_to_system", "false", true);
         R.CONFIG.put("proxy_type", "AUTODETECT", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
@@ -154,7 +152,6 @@ public class ProxySampleTest implements IAbstractTest {
     @Test(description = "Test system proxy mode.")
     @MethodOwner(owner = "qpsdemo")
     public void systemProxyTest() {
-        R.CONFIG.put("proxy_set_to_system", "false", true);
         R.CONFIG.put("proxy_type", "SYSTEM", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
@@ -173,7 +170,6 @@ public class ProxySampleTest implements IAbstractTest {
     @Test(description = "Test unspecified proxy mode.")
     @MethodOwner(owner = "qpsdemo")
     public void unspecifiedProxyTest() {
-        R.CONFIG.put("proxy_set_to_system", "false", true);
         R.CONFIG.put("proxy_type", "UNSPECIFIED", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
@@ -195,8 +191,6 @@ public class ProxySampleTest implements IAbstractTest {
         R.CONFIG.put("proxy_type", "DYNAMIC", true);
         R.CONFIG.put("proxy_port", "0", true);
         getDriver();
-        R.CONFIG.getTestProperties()
-                .clear();
         BrowserUpProxy browserUpProxy = ProxyPool.getOriginal(CarinaBrowserUpProxy.class)
                 .orElseThrow()
                 .getProxy();
@@ -215,6 +209,54 @@ public class ProxySampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
 
         BrowserUpProxy proxy = ProxyPool.getOriginal(CarinaBrowserUpProxy.class)
+                .orElseThrow()
+                .getProxy();
+        // Saving har to a file...
+        String name = "ProxyReport.har";
+        File file = new File(ReportContext.getArtifactsFolder() + "/" + name);
+        Assert.assertNotNull(proxy.getHar(), "Har is NULL!");
+
+        try {
+            proxy.getHar().writeTo(file);
+            Artifact.attachToTest(name, file);
+        } catch (IOException e) {
+            LOGGER.error("Unable to generate har archive!", e);
+        }
+    }
+
+    @Test(description = "Test custom dynamic proxy with chained proxy (CustomProxy)")
+    @MethodOwner(owner = "qpsdemo")
+    public void customDynamicProxyTest() {
+        R.CONFIG.put("browserup_proxy", "true", true);
+        R.CONFIG.put("proxy_type", "DYNAMIC", true);
+        R.CONFIG.put("proxy_port", "0", true);
+
+        Assert.assertFalse(R.CONFIG.get("proxy_chain_host").isEmpty(),
+                "proxy_chain_host should be set in configuration to check custom dynamic proxy.");
+        Assert.assertFalse(Configuration.get(Configuration.Parameter.PROXY_PORT).isEmpty(),
+                "proxy_chain_port should be set in configuration to check custom dynamic proxy.");
+
+        ProxyPool.setRule(new CustomProxyRule(), true);
+
+        getDriver();
+        BrowserUpProxy browserUpProxy = ProxyPool.getOriginal(CustomProxy.class)
+                .orElseThrow()
+                .getProxy();
+        browserUpProxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+        browserUpProxy.newHar();
+
+        Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
+        Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.MANUAL,
+                "Proxy type in capabilities should be DIRECT.");
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+
+        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
+        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
+
+        BrowserUpProxy proxy = ProxyPool.getOriginal(CustomProxy.class)
                 .orElseThrow()
                 .getProxy();
         // Saving har to a file...
