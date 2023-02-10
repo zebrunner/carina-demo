@@ -49,11 +49,6 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
-        throw new NotImplementedException();
-    }
-
-    @Override
     public HomePageBase closePlusButtonMenu() {
         throw new NotImplementedException();
     }
