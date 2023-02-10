@@ -22,6 +22,7 @@ import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.qaprosoft.carina.demo.proxy.CustomProxy;
 import com.qaprosoft.carina.demo.proxy.CustomProxyRule;
+import com.qaprosoft.carina.demo.proxy.DemoResponseFilter;
 import com.zebrunner.agent.core.registrar.Artifact;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.proxy.ProxyPool;
@@ -46,7 +47,7 @@ import java.io.PrintWriter;
 import java.lang.invoke.MethodHandles;
 
 /**
- * This sample shows how generate har file with proxied Web test content.
+ * Test proxy in different modes
  *
  * @author qpsdemo
  */
@@ -55,40 +56,44 @@ public class ProxySampleTest implements IAbstractTest {
 
     @BeforeClass
     public void beforeClass() {
+        // disable setting proxy to the system params
         R.CONFIG.put("proxy_set_to_system", "false");
     }
 
-    @Test(description = "Test proxy, setted manually (from configuration proxy_host, proxy_port etc)")
+    @Test(description = "Test 'MANUAL' proxy mode")
     @MethodOwner(owner = "qpsdemo")
-    public void manualProxyTest() {
+    public void manualModeTest() {
         R.CONFIG.put("proxy_type", "MANUAL", true);
-        R.CONFIG.put("proxy_protocols", "http,https", true);
 
         Assert.assertFalse(Configuration.get(Configuration.Parameter.PROXY_HOST).isEmpty(),
-                "Proxy host should be set in configuration to check manual proxy.");
+                "'proxy_host' configuration parameter should be set.");
         Assert.assertFalse(Configuration.get(Configuration.Parameter.PROXY_PORT).isEmpty(),
-                "Proxy port should be set in configuration to check manual proxy.");
+                "'proxy_port' configuration parameter should be set.");
+
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.MANUAL,
-                "Proxy type in capabilities should be MANUAL.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.MANUAL,
+                "Type of the Selenium Proxy should be 'MANUAL'.");
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
 
-        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
+        NewsPage newsPage = homePage.getFooterMenu()
+                .openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
     }
 
-    @Test(description = "Test direct proxy mode (without proxy)")
+    @Test(description = "Test 'DIRECT' proxy mode")
     @MethodOwner(owner = "qpsdemo")
-    public void directProxyTest() {
+    public void directModeTest() {
         R.CONFIG.put("proxy_type", "DIRECT", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.DIRECT,
-                "Proxy type in capabilities should be DIRECT.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.DIRECT,
+                "Type of the Selenium Proxy should be 'DIRECT'.");
 
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -98,30 +103,37 @@ public class ProxySampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
     }
 
-    @Test(description = "Test pac proxy. Pac file created from manually setted proxy_host, proxy_port configuration.")
+    @Test(description = "Test 'PAC' proxy mode (send local pac file)")
     @MethodOwner(owner = "qpsdemo")
-    public void pacProxyTest() throws FileNotFoundException {
+    public void pacModeTest() throws FileNotFoundException {
         R.CONFIG.put("proxy_type", "PAC", true);
         R.CONFIG.put("proxy_pac_local", "true", true);
 
         Assert.assertFalse(Configuration.get(Configuration.Parameter.PROXY_HOST).isEmpty(),
-                "Proxy host should be set in configuration to check pac proxy.");
+                "'proxy_host' configuration parameter should be set.");
         Assert.assertFalse(Configuration.get(Configuration.Parameter.PROXY_PORT).isEmpty(),
-                "Proxy port should be set in configuration to check pac proxy.");
+                "'proxy_port' configuration parameter should be set.");
 
+        // We create local pac file from manual proxy parameters
         String pacContent = String.format("function FindProxyForURL(url, host) {\n"
-                + "return \"PROXY %s:%s\";\n"
-                + "}", Configuration.get(Configuration.Parameter.PROXY_HOST), Configuration.get(Configuration.Parameter.PROXY_PORT));
+                        + "return \"PROXY %s:%s\";\n"
+                        + "}",
+                Configuration.get(Configuration.Parameter.PROXY_HOST),
+                Configuration.get(Configuration.Parameter.PROXY_PORT));
+
         File file = new File(ReportContext.getArtifactsFolder() + "/test.pac");
-        PrintWriter out = new PrintWriter(file);
-        out.write(pacContent);
-        out.close();
+
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.write(pacContent);
+        }
+
         R.CONFIG.put("proxy_autoconfig_url", file.getAbsolutePath(), true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.PAC,
-                "Proxy type in capabilities should be PAC.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.PAC,
+                "Type of the Selenium Proxy should be 'PAC'.");
 
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -131,15 +143,16 @@ public class ProxySampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
     }
 
-    @Test(description = "Test autodetect proxy mode.")
+    @Test(description = "Test 'AUTODETECT' proxy mode.")
     @MethodOwner(owner = "qpsdemo")
-    public void autodetectProxyTest() {
+    public void autodetectModeTest() {
         R.CONFIG.put("proxy_type", "AUTODETECT", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.AUTODETECT,
-                "Proxy type in capabilities should be AUTODETECT.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.AUTODETECT,
+                "Type of the Selenium Proxy should be 'AUTODETECT'.");
 
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -149,15 +162,16 @@ public class ProxySampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
     }
 
-    @Test(description = "Test system proxy mode.")
+    @Test(description = "Test 'SYSTEM' proxy mode.")
     @MethodOwner(owner = "qpsdemo")
-    public void systemProxyTest() {
+    public void systemModeTest() {
         R.CONFIG.put("proxy_type", "SYSTEM", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.SYSTEM,
-                "Proxy type in capabilities should be SYSTEM.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.SYSTEM,
+                "Type of the Selenium Proxy should be 'SYSTEM'.");
 
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -167,15 +181,17 @@ public class ProxySampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
     }
 
-    @Test(description = "Test unspecified proxy mode.")
+    @Test(description = "Test 'UNSPECIFIED' proxy mode.")
     @MethodOwner(owner = "qpsdemo")
-    public void unspecifiedProxyTest() {
+    public void unspecifiedModeTest() {
         R.CONFIG.put("proxy_type", "UNSPECIFIED", true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.UNSPECIFIED,
-                "Proxy type in capabilities should be UNSPECIFIED.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.UNSPECIFIED,
+                "Type of the Selenium Proxy should be 'UNSPECIFIED'.");
+
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
@@ -184,13 +200,15 @@ public class ProxySampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
     }
 
-    @Test(description = "Test default dynamic proxy (CarinaBrowserUpProxy)")
+    @Test(description = "Test 'DYNAMIC' proxy mode (default CarinaBrowserUpProxy implementation)")
     @MethodOwner(owner = "qpsdemo")
-    public void dynamicProxyTest() {
+    public void defaultDynamicModeTest() {
         R.CONFIG.put("browserup_proxy", "true", true);
         R.CONFIG.put("proxy_type", "DYNAMIC", true);
         R.CONFIG.put("proxy_port", "0", true);
+
         getDriver();
+
         BrowserUpProxy browserUpProxy = ProxyPool.getOriginal(CarinaBrowserUpProxy.class)
                 .orElseThrow()
                 .getProxy();
@@ -199,8 +217,10 @@ public class ProxySampleTest implements IAbstractTest {
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.MANUAL,
-                "Proxy type in capabilities should be DIRECT.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.MANUAL,
+                "Type of the Selenium Proxy should be 'MANUAL'.");
+
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
@@ -211,6 +231,7 @@ public class ProxySampleTest implements IAbstractTest {
         BrowserUpProxy proxy = ProxyPool.getOriginal(CarinaBrowserUpProxy.class)
                 .orElseThrow()
                 .getProxy();
+
         // Saving har to a file...
         String name = "ProxyReport.har";
         File file = new File(ReportContext.getArtifactsFolder() + "/" + name);
@@ -224,31 +245,35 @@ public class ProxySampleTest implements IAbstractTest {
         }
     }
 
-    @Test(description = "Test custom dynamic proxy with chained proxy (CustomProxy)")
+    @Test(description = "Test 'DYNAMIC' proxy mode (CustomProxy implementation with chained proxy)")
     @MethodOwner(owner = "qpsdemo")
-    public void customDynamicProxyTest() {
+    public void customDynamicModeTest() {
         R.CONFIG.put("browserup_proxy", "true", true);
         R.CONFIG.put("proxy_type", "DYNAMIC", true);
         R.CONFIG.put("proxy_port", "0", true);
 
         Assert.assertFalse(R.CONFIG.get("proxy_chain_host").isEmpty(),
-                "proxy_chain_host should be set in configuration to check custom dynamic proxy.");
-        Assert.assertFalse(Configuration.get(Configuration.Parameter.PROXY_PORT).isEmpty(),
-                "proxy_chain_port should be set in configuration to check custom dynamic proxy.");
+                "'proxy_chain_host' configuration parameter should be set.");
+        Assert.assertFalse(R.CONFIG.get("proxy_chain_port").isEmpty(),
+                "'proxy_chain_port' configuration parameter should be set.");
 
+        // setting custom proxy rule
         ProxyPool.setRule(new CustomProxyRule(), true);
 
         getDriver();
+
+        Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
+        Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
+        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
+                Proxy.ProxyType.MANUAL,
+                "Type of the Selenium Proxy should be 'MANUAL'.");
+
         BrowserUpProxy browserUpProxy = ProxyPool.getOriginal(CustomProxy.class)
                 .orElseThrow()
                 .getProxy();
         browserUpProxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
         browserUpProxy.newHar();
 
-        Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
-        Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(), Proxy.ProxyType.MANUAL,
-                "Proxy type in capabilities should be DIRECT.");
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
@@ -271,4 +296,31 @@ public class ProxySampleTest implements IAbstractTest {
             LOGGER.error("Unable to generate har archive!", e);
         }
     }
+
+    @Test(description = "Test 'DYNAMIC' proxy mode with response filtering")
+    @MethodOwner(owner = "qpsdemo")
+    public void dynamicModeWithResponseFilterTest() {
+        R.CONFIG.put("browserup_proxy", "true", true);
+        R.CONFIG.put("proxy_type", "DYNAMIC", true);
+        R.CONFIG.put("proxy_port", "0", true);
+
+        getDriver();
+        BrowserUpProxy proxy = ProxyPool.getOriginal(CarinaBrowserUpProxy.class)
+                .orElseThrow()
+                .getProxy();
+        proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+        proxy.newHar();
+
+        // replace original page title by custom in response
+        proxy.addResponseFilter(new DemoResponseFilter(
+                "GSMArena.com - mobile phone reviews, news, specifications and more...",
+                "Modified title"));
+
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+
+        Assert.assertEquals(getDriver().getTitle(), "Modified title");
+    }
+
 }

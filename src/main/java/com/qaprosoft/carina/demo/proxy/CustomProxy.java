@@ -15,6 +15,9 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 import java.net.InetSocketAddress;
 
+/**
+ * Custom proxy implementation based on BrowserUp proxy
+ */
 public class CustomProxy implements IProxy {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -37,7 +40,7 @@ public class CustomProxy implements IProxy {
         LOGGER.info("Starting BrowserUp proxy...");
         proxy.start(port);
 
-        CommonUtils.pause(1); // todo set pause or not?
+        CommonUtils.pause(1);
         proxyInfo = new ProxyInfo(NetworkUtil.getIpAddress(), proxy.getPort());
         return proxyInfo;
     }
@@ -84,6 +87,6 @@ public class CustomProxy implements IProxy {
 
     @Override
     public String toString() {
-        return "CustomBrowserUpProxy";
+        return "CustomProxy";
     }
 }
