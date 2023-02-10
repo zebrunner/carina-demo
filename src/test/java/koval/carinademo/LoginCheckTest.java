@@ -4,15 +4,15 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.carinademo.mobile.gui.pages.common.loginPages.LoginPageBase;
-import koval.carinademo.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
-import koval.carinademo.mobile.gui.pages.common.loginPages.WelcomePageBase;
-import koval.carinademo.mobile.gui.pages.service.interfaces.IConstantUtils;
+import koval.carinademo.mobile.gui.common.loginPages.LoginPageBase;
+import koval.carinademo.mobile.gui.common.leftMenuPages.WebViewPageBase;
+import koval.carinademo.mobile.gui.common.loginPages.WelcomePageBase;
+import koval.carinademo.mobile.service.interfaces.IConstantUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import koval.carinademo.mobile.gui.pages.service.enums.Gender;
+import koval.carinademo.mobile.service.enums.Gender;
 
 
 public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUtils {

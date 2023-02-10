@@ -1,16 +1,13 @@
 package koval.myfit;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.myfit.mobile.gui.pages.service.AdbService;
-import koval.myfit.mobile.gui.pages.common.loginPages.AboutMePageBase;
-import koval.myfit.mobile.gui.pages.common.loginPages.TrackActivitiesPageBase;
-import koval.myfit.mobile.gui.pages.common.loginPages.WelcomePageBase;
-import koval.myfit.mobile.gui.pages.service.MyAbstractPage;
-import koval.myfit.mobile.gui.pages.service.enums.PersonCharacteristics;
-import koval.myfit.mobile.gui.pages.service.enums.TrackYourActivitiesAnswer;
-import koval.myfit.mobile.gui.pages.service.interfaces.IConstantUtils;
-import org.openqa.selenium.WebDriver;
+
+import koval.myfit.mobile.gui.IMyInterface;
+import koval.myfit.mobile.service.AdbService;
+import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
+import koval.myfit.mobile.gui.common.loginPages.TrackActivitiesPageBase;
+import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
+import koval.myfit.mobile.service.enums.PersonCharacteristics;
+import koval.myfit.mobile.service.enums.TrackYourActivitiesAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -18,7 +15,7 @@ import org.testng.annotations.*;
 
 import java.lang.invoke.MethodHandles;
 
-public class LoginTest implements IAbstractTest, IMobileUtils, IConstantUtils {
+public class LoginTest implements IMyInterface {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     AdbService adbService = new AdbService();
@@ -35,11 +32,11 @@ public class LoginTest implements IAbstractTest, IMobileUtils, IConstantUtils {
 
             AboutMePageBase aboutMePageBase = welcomePageBase.clickLoginBtn();
             Assert.assertTrue(aboutMePageBase.isPageOpened(), "[ ABOUT YOU PAGE ] About You page is not opened!");
-            aboutMePageBase.clickOnBtn(PersonCharacteristics.WEIGHT);
+            aboutMePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
 
             TrackActivitiesPageBase trackActivitiesPageBase = aboutMePageBase.clickNextBtn();
             Assert.assertTrue(trackActivitiesPageBase.isPageOpened(), "[ TRACK ACTIVITIES PAGE ] Track Activities page is not opened!");
-            trackActivitiesPageBase.clickBtn(TrackYourActivitiesAnswer.NO);
+            trackActivitiesPageBase.clickOnAnswerBtn(TrackYourActivitiesAnswer.NO);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
