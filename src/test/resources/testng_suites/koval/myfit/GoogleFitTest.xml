@@ -5,7 +5,7 @@
     <parameter name="Environments" value="DEMO"/>
 
 
-    <test name="Open Home Page">
+    <test name="Google Fit">
         <classes>
             <class name="koval.myfit.GoogleFitTest">
             </class>

@@ -3,9 +3,9 @@ package koval.carinademo;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.carinademo.mobile.gui.pages.common.loginPages.LoginPageBase;
-import koval.carinademo.mobile.gui.pages.common.loginPages.WelcomePageBase;
-import koval.carinademo.mobile.gui.pages.service.interfaces.IConstantUtils;
+import koval.carinademo.mobile.gui.common.loginPages.LoginPageBase;
+import koval.carinademo.mobile.gui.common.loginPages.WelcomePageBase;
+import koval.carinademo.mobile.service.interfaces.IConstantUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 

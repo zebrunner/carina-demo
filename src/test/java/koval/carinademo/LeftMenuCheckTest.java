@@ -1,16 +1,16 @@
 package koval.carinademo;
 
-import koval.carinademo.mobile.gui.pages.common.leftMenuPages.ChartsPageBase;
-import koval.carinademo.mobile.gui.pages.common.leftMenuPages.MapPageBase;
-import koval.carinademo.mobile.gui.pages.common.leftMenuPages.UIElementsPageBase;
-import koval.carinademo.mobile.gui.pages.common.leftMenuPages.WebViewPageBase;
+import koval.carinademo.mobile.gui.common.leftMenuPages.ChartsPageBase;
+import koval.carinademo.mobile.gui.common.leftMenuPages.MapPageBase;
+import koval.carinademo.mobile.gui.common.leftMenuPages.UIElementsPageBase;
+import koval.carinademo.mobile.gui.common.leftMenuPages.WebViewPageBase;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import koval.carinademo.mobile.gui.pages.common.menu.LeftMenuModalBase;
-import koval.carinademo.mobile.gui.pages.service.enums.LeftMenu;
-import koval.carinademo.mobile.gui.pages.service.interfaces.IConstantUtils;
+import koval.carinademo.mobile.gui.common.menu.LeftMenuModalBase;
+import koval.carinademo.mobile.service.enums.LeftMenu;
+import koval.carinademo.mobile.service.interfaces.IConstantUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
