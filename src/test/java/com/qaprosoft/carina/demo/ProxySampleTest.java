@@ -18,6 +18,8 @@ package com.qaprosoft.carina.demo;
 import com.browserup.bup.BrowserUpProxy;
 import com.browserup.bup.proxy.CaptureType;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
+import com.qaprosoft.carina.core.foundation.webdriver.ScreenshotType;
 import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 import com.qaprosoft.carina.demo.proxy.CustomProxy;
@@ -299,7 +301,7 @@ public class ProxySampleTest implements IAbstractTest {
 
     @Test(description = "Test 'DYNAMIC' proxy mode with response filtering")
     @MethodOwner(owner = "qpsdemo")
-    public void dynamicModeWithResponseFilterTest() {
+    public void dynamicModeWithResponseFilterTest() throws FileNotFoundException {
         R.CONFIG.put("browserup_proxy", "true", true);
         R.CONFIG.put("proxy_type", "DYNAMIC", true);
         R.CONFIG.put("proxy_port", "0", true);
@@ -311,16 +313,40 @@ public class ProxySampleTest implements IAbstractTest {
         proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
         proxy.newHar();
 
+        String modifiedTitleText = "Modified title";
+        String modifiedPhoneFinderLinkText = "MODIFIED PHONE FINDER";
+
         // replace original page title by custom in response
         proxy.addResponseFilter(new DemoResponseFilter(
                 "GSMArena.com - mobile phone reviews, news, specifications and more...",
-                "Modified title"));
+                modifiedTitleText));
+
+        // replace phone finder link content by custom in response
+        proxy.addResponseFilter(new DemoResponseFilter(
+                "Phone finder",
+                modifiedPhoneFinderLinkText));
 
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
 
-        Assert.assertEquals(getDriver().getTitle(), "Modified title");
+        Assert.assertEquals(getDriver().getTitle(), modifiedTitleText, "Page title should be modified in response.");
+        Assert.assertEquals(homePage.getPhoneFinderButton().getText(), modifiedPhoneFinderLinkText,
+                "'Phone Finder' link text should be modified in response.");
+
+        String pageSourceFileName = "ModifiedPageSource.txt";
+        LOGGER.info(
+                "Page title and 'Phone finder' element's text modified in response to '{}' and '{}' respectively. Review changes in attached '{}' artifact.",
+                modifiedTitleText, modifiedPhoneFinderLinkText, pageSourceFileName);
+        Screenshot.capture(getDriver(), ScreenshotType.EXPLICIT_VISIBLE);
+        Screenshot.capture(homePage.getPhoneFinderButton().getElement(), ScreenshotType.EXPLICIT_VISIBLE,
+                "The modified representation of the 'Phone Finder' element on the page");
+
+        File file = new File(ReportContext.getArtifactsFolder() + "/" + pageSourceFileName);
+        try (PrintWriter pw = new PrintWriter(file)) {
+            pw.write(getDriver().getPageSource());
+        }
+        Artifact.attachToTest(pageSourceFileName, file);
     }
 
 }
