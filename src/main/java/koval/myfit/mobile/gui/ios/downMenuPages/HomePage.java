@@ -1,6 +1,7 @@
 package koval.myfit.mobile.gui.ios.downMenuPages;
 
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -8,6 +9,7 @@ import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public AbstractPage openPageByName(DownMenuElement downMenuElement) {
-        throw new NotImplementedException();
+    public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
+        return null;
     }
 
 
@@ -47,8 +49,18 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
+    public AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement) {
+        return null;
+    }
+
+    @Override
     public HomePageBase closePlusButtonMenu() {
         throw new NotImplementedException();
+    }
+
+    @Override
+    public ExtendedWebElement openPlusButtonMenu() {
+        return null;
     }
 
     @Override

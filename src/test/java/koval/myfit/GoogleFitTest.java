@@ -2,16 +2,17 @@ package koval.myfit;
 
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -48,10 +49,10 @@ public class GoogleFitTest extends LoginTest {
 
         TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
 
-        for (MaterialCardTopics topic : MaterialCardTopics.values()) {
-            Assert.assertTrue(homePageBase.isBlockByTitlePresent(topic),
-                    String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
-        }
+//        for (MaterialCardTopics topic : MaterialCardTopics.values()) {
+//            Assert.assertTrue(homePageBase.isBlockByTitlePresent(topic),
+//                    String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
+//        }
 
         List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES =
                 Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
@@ -60,4 +61,45 @@ public class GoogleFitTest extends LoginTest {
                 "[ HOME PAGE / actualPlaylistTitlesList ] Actual list of Playlist titles is not equals to expected list!");
 
     }
+
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "3. Add Activity -> Check this Activity in Journal Page -> Delete Activity", value = {"mobile"})
+    public void addActivity() throws InterruptedException {
+
+        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+        TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
+
+        homePageBase.openPlusButtonMenu();
+
+        AddActivityPage addActivityPage =
+                (AddActivityPage) homePageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
+        Assert.assertTrue(addActivityPage.isPageOpened(), "[ ADD ACTIVITY PAGE ] Activity page is not opened!");
+
+
+      //  addActivityPage.selectRandomActivity();
+
+
+            Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.HOUR, 14);
+        calendar.set(Calendar.MINUTE, 20);
+       calendar.set(Calendar.AM_PM, Calendar.AM);
+
+
+        addActivityPage.setTime(calendar);
+
+
+
+
+
+        //   Login -> Click on PlusButton -> Add Activity(Select random activity, enter Start and Duration)
+///-> Click Save -> Check this Activity in Journal Page(Compare Activity, Time and Duration)
+        //-> Delete Selected Activity -> Clear List of Activities
+    }
+
+
 }

@@ -1,10 +1,10 @@
-package koval.myfit.mobile.gui.android.menu;
+package koval.myfit.mobile.gui.android.modal;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import koval.myfit.mobile.gui.common.menu.DownMenuModalBase;
+import koval.myfit.mobile.gui.common.modal.DownMenuModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
