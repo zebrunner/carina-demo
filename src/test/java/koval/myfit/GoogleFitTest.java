@@ -3,9 +3,13 @@ package koval.myfit;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
+import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
-import koval.myfit.mobile.service.enums.MaterialCardTopics;
+import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
+import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -73,28 +77,61 @@ public class GoogleFitTest extends LoginTest {
 
         TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
 
-        homePageBase.openPlusButtonMenu();
 
-        AddActivityPage addActivityPage =
-                (AddActivityPage) homePageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
-        Assert.assertTrue(addActivityPage.isPageOpened(), "[ ADD ACTIVITY PAGE ] Activity page is not opened!");
-
-
-      //  addActivityPage.selectRandomActivity();
+//        homePageBase.openPlusButtonMenu();
+//
+//        AddActivityPage addActivityPage =
+//                (AddActivityPage) homePageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
+//        Assert.assertTrue(addActivityPage.isPageOpened(), "[ ADD ACTIVITY PAGE ] Activity page is not opened!");
 
 
-            Calendar calendar = Calendar.getInstance();
+        Random rand = new Random();
+        int randomDayOfMonth = rand.nextInt(28) + 1;
+        int randomMonth = rand.nextInt(12) + 1;
+
+
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.DAY_OF_MONTH, randomDayOfMonth);
+        calendar.set(Calendar.MONTH, randomMonth);
+        calendar.set(Calendar.YEAR, 23);
 
         calendar.set(Calendar.HOUR, 14);
         calendar.set(Calendar.MINUTE, 20);
-       calendar.set(Calendar.AM_PM, Calendar.AM);
+        calendar.set(Calendar.AM_PM, Calendar.AM);
 
 
-        addActivityPage.setTime(calendar);
+        Calendar calendarTest = new GregorianCalendar();
+       calendarTest.set(Calendar.HOUR, 0);
+        calendarTest.set(Calendar.MINUTE, 35);
 
 
+ //     String activityName =  addActivityPage.selectRandomActivity();
+//        addActivityPage.setTime(calendar);
+//        addActivityPage.setDate(calendar);
+ //        addActivityPage.setDuration(calendarTest);
+
+//        addActivityPage.saveActivity();
+//
+//
+//
+//
+//
+        JournalPageBase journalPageBase = (JournalPageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.JOURNAL);
+        Assert.assertTrue(journalPageBase.isPageOpened(), "[ JOURNAL PAGE ] Journal page is not opened!");
+
+        Assert.assertTrue(journalPageBase.isActivityPresent("fencing")); //activityName
 
 
+//        while (journalPageBase.getActivityListSize() != 0) {
+//
+//            String activityName = journalPageBase.getActivityName();
+//
+//            ActivityPageBase activityPageBase = journalPageBase.openActivity();
+//
+//            Assert.assertTrue(activityPageBase.isPageOpened(activityName), String.format("[ ACTIVITY PAGE ] Activity page  '%s' is not opened!", activityName));
+//
+//            activityPageBase.deleteActivity();
+//        }
 
         //   Login -> Click on PlusButton -> Add Activity(Select random activity, enter Start and Duration)
 ///-> Click Save -> Check this Activity in Journal Page(Compare Activity, Time and Duration)

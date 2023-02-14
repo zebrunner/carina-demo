@@ -21,29 +21,20 @@ public class TimePickerModal extends TimePickerModalBase {
     @FindBy(id = "com.google.android.apps.fitness:id/header_title")
     private ExtendedWebElement title;
 
-
     @FindBy(xpath = "//*[contains(@resource-id,'material_hour_text_input')]/child::*//*[@class='android.widget.EditText']")
     private ExtendedWebElement hourField;
 
-
-//    @FindBy(xpath = "//*[contains(@resource-id,'material_minute_text_input')]/child::*//*[@class='android.widget.EditText']")
-//    private ExtendedWebElement minuteField;
-
     @FindBy(xpath = "//*[contains(@resource-id,'material_minute_text_input')]")
     private ExtendedWebElement minuteField;
-
 
     @FindBy(id = "com.google.android.apps.fitness:id/material_timepicker_ok_button")
     private ExtendedWebElement okayButton;
 
     @FindBy(id = "com.google.android.apps.fitness:id/material_timepicker_mode_button")
-    private ExtendedWebElement timepickerModeButton;
+    private ExtendedWebElement timePickerModeButton;
 
-
-    //*[contains(@resource-id,'material_clock_period_toggle')]/child::*[contains(@resource-id,'material_clock_period_am_button')]
     @FindBy(xpath = "//*[contains(@resource-id,'material_clock_period_toggle')]")
     private ExtendedWebElement clockPeriodToggleButton;
-
 
     @FindBy(id = "com.google.android.apps.fitness:id/material_clock_hand")
     private ExtendedWebElement clockImage;
@@ -71,7 +62,7 @@ public class TimePickerModal extends TimePickerModalBase {
     public TimePickerModalBase setTime(Calendar calendar) {
 
         if (clockImage.isElementPresent(TIMEOUT_FIVE)) {
-            timepickerModeButton.click();
+            timePickerModeButton.click();
         }
 
 

@@ -15,4 +15,5 @@ public abstract class MyAbstractPage extends AbstractPage implements IMyInterfac
 
         return title.isElementPresent(TIMEOUT_FIVE) && title.getText().equals(textTitle);
     }
+
 }

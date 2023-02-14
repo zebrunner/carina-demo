@@ -1,6 +1,8 @@
 package koval.myfit.mobile.gui.common.plusButtonPages;
 
 import koval.myfit.mobile.gui.MyAbstractPage;
+import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
+import koval.myfit.mobile.gui.common.modal.DatePickerModalBase;
 import koval.myfit.mobile.gui.common.modal.TimePickerModalBase;
 import org.openqa.selenium.WebDriver;
 
@@ -15,7 +17,13 @@ public abstract class AddActivityPageBase extends MyAbstractPage {
 
     public abstract TimePickerModalBase setTime(Calendar calendar);
 
-    public abstract AddActivityPageBase selectActivity(String activity);
+    public abstract AddActivityPageBase setDuration(Calendar calendar);
 
-    public abstract AddActivityPageBase selectRandomActivity();
+    public abstract DatePickerModalBase setDate(Calendar calendar);
+
+    public abstract String selectActivity(String activity);
+
+    public abstract String selectRandomActivity();
+
+    public abstract HomePageBase saveActivity();
 }

@@ -21,7 +21,7 @@ public class DownMenuModal extends DownMenuModalBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(xpath = "com.google.android.apps.fitness:id/bottom_navigation")
+    @FindBy(id = "com.google.android.apps.fitness:id/navigation_bar_item_icon_container")
     private List<ExtendedWebElement> listOfDownMenuElement;
 
     public DownMenuModal(WebDriver driver) {
