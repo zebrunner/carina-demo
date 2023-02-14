@@ -7,6 +7,7 @@ public enum MaterialCardTopics {
     WEIGHT("Weight", 3),
     ENERGY_EXPENDED("Energy expended", 4),
     A_SIMPLE_WAY_TO_STAY_HEALTHY("A simple way to stay healthy", 4),
+    HOW_MUCH_SLEEP_YOU_NEED("How much sleep you need", 4),
     SET_A_PACE_FOR_YOUR_WALKS("Set a pace for your walks", 4),
     YOUR_SLEEP_IN_FIT("Your sleep in Fit", 4);
 

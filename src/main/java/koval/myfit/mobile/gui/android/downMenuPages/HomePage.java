@@ -50,7 +50,7 @@ public class HomePage extends HomePageBase {
     @FindBy(id = "com.google.android.apps.fitness:id/title")
     private List<ExtendedWebElement> listOfPlaylistTitles;
 
-    @FindBy(xpath = "//*[contains(@resource-id, 'material_card')]")
+    @FindBy(xpath = "//*[contains(@resource-id, 'material_card')]/child::*//*[@resource-id='com.google.android.apps.fitness:id/card_title']")
     private List<ExtendedWebElement> materialCardBlock;
 
 
@@ -102,14 +102,26 @@ public class HomePage extends HomePageBase {
         return plusButtonModal.isPlusButtonBelowBlockContainer();
     }
 
-
     @Override
     public boolean isBlockByTitlePresent(MaterialCardTopics topic) {
 
-        swipe(itemByText.format(topic.getTopicName()), THREE_COUNT, MEDIUM_SPEED);
 
-        return materialCardBlock.get(topic.getTopicIndex()).findExtendedWebElement(
-                By.id("com.google.android.apps.fitness:id/card_title")).getText().equals(topic.getTopicName());
+        swipe(itemByText.format(topic.getTopicName()));
+
+        boolean answer = materialCardBlock.get(0).getText().equals(topic.getTopicName());
+
+        while (itemByText.format(topic.getTopicName()).isElementPresent(TIMEOUT_FIVE) && !itemByText.format(MaterialCardTopics.YOUR_SLEEP_IN_FIT).isElementPresent(TIMEOUT_FIVE)) {
+            swipeUp(MEDIUM_SPEED);
+            LOGGER.info("+");
+        }
+
+        if(itemByText.format(MaterialCardTopics.YOUR_SLEEP_IN_FIT).isElementPresent(TIMEOUT_FIVE))
+        {
+            LOGGER.info(materialCardBlock.get(0).getText());
+            LOGGER.info(materialCardBlock.get(1).getText());
+        }
+
+        return answer;
     }
 
 
