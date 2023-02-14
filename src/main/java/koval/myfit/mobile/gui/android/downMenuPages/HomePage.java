@@ -10,7 +10,6 @@ import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
