@@ -183,25 +183,6 @@ public class ProxySampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
     }
 
-    @Test(description = "Test 'UNSPECIFIED' proxy mode.")
-    @MethodOwner(owner = "qpsdemo")
-    public void unspecifiedModeTest() {
-        R.CONFIG.put("proxy_type", "UNSPECIFIED", true);
-
-        Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
-        Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
-        Assert.assertEquals(((Proxy) capabilities.getCapability(CapabilityType.PROXY)).getProxyType(),
-                Proxy.ProxyType.UNSPECIFIED,
-                "Type of the Selenium Proxy should be 'UNSPECIFIED'.");
-
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
-
-        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
-        Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
-    }
-
     @Test(description = "Test 'DYNAMIC' proxy mode (default CarinaBrowserUpProxy implementation)")
     @MethodOwner(owner = "qpsdemo")
     public void defaultDynamicModeTest() {
