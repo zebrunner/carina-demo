@@ -254,9 +254,12 @@ public class ProxySampleTest implements IAbstractTest {
         R.CONFIG.put("proxy_type", "DYNAMIC", true);
         R.CONFIG.put("proxy_port", "0", true);
 
-        Assert.assertFalse(R.CONFIG.get("proxy_chain_host").isEmpty(),
+        String proxyChainHost = R.CONFIG.get("proxy_chain_host");
+        String proxyChainPort = R.CONFIG.get("proxy_chain_port");
+
+        Assert.assertFalse(proxyChainHost.isEmpty() || proxyChainHost.equalsIgnoreCase("NULL"),
                 "'proxy_chain_host' configuration parameter should be set.");
-        Assert.assertFalse(R.CONFIG.get("proxy_chain_port").isEmpty(),
+        Assert.assertFalse(proxyChainPort.isEmpty() || proxyChainPort.equalsIgnoreCase("NULL"),
                 "'proxy_chain_port' configuration parameter should be set.");
 
         // setting custom proxy rule
