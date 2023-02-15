@@ -4,6 +4,10 @@ import koval.myfit.mobile.gui.MyAbstractPage;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import org.openqa.selenium.WebDriver;
 
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public abstract class ActivityPageBase extends MyAbstractPage {
 
@@ -15,4 +19,6 @@ public abstract class ActivityPageBase extends MyAbstractPage {
     public abstract boolean isPageOpened(String activityName);
 
     public abstract JournalPageBase deleteActivity();
+
+    public abstract Date getDateTime(Calendar calendar, Calendar calendarTest) throws ParseException;
 }

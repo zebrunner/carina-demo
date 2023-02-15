@@ -8,6 +8,8 @@ import koval.myfit.mobile.gui.android.modal.DownMenuModal;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +17,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -65,31 +71,76 @@ public class JournalPage extends JournalPageBase {
         return activityList.get(0).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).getText();
     }
 
+
+    @Override
+    public int getActivityIndex(String activityTitle) {
+
+        for (int i = 0; i < activityList.size(); i++) {
+            if (activityList.get(i).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public Calendar getStartTime(int activityIndex) throws ParseException {
+
+        String startTime = activityList.get(activityIndex).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_start_time")).getText();
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        cal.setTime(sdf.parse(startTime));
+
+        return cal;
+    }
+
+    @Override
+    public Calendar getDuration(int activityIndex) throws ParseException {
+
+       String duration = activityList.get(activityIndex).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_duration")).getText();
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("mm");
+        cal.setTime(sdf.parse(duration));
+
+        return cal;
+    }
+
+
     @Override
     public boolean isActivityPresent(String activityTitle) {
 
-
-        boolean isActivityPresent = false;
         for (ExtendedWebElement extendedWebElement : activityList) {
-            isActivityPresent = extendedWebElement.findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle.toLowerCase());
+
+            if(extendedWebElement.findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle))
+            {
+                return true;
+            }
+
         }
 
 
-        return isActivityPresent;
+        return false;
 
     }
 
     @Override
-    public ActivityPageBase openActivity() {
+    public ActivityPageBase openActivityByIndex(int activityIndex) {
 
         if (!activityList.isEmpty()) {
 
-            activityList.get(0).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).click();
+            activityList.get(activityIndex).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).click();
 
 
         }
 
         return initPage(getDriver(), ActivityPageBase.class);
+    }
+
+    @Override
+    public ActivityPageBase openActivity() {
+        return openActivityByIndex(0);
     }
 
     @Override

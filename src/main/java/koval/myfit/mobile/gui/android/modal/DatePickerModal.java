@@ -59,7 +59,7 @@ public class DatePickerModal extends DatePickerModalBase {
         }
 
 
-        inputDateField.type(calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR));
+        inputDateField.type((calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR));
 
         okayButton.click();
 

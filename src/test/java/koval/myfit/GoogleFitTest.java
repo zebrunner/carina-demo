@@ -7,15 +7,16 @@ import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
+import koval.myfit.mobile.service.enums.MaterialCardTopics;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -53,10 +54,10 @@ public class GoogleFitTest extends LoginTest {
 
         TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
 
-//        for (MaterialCardTopics topic : MaterialCardTopics.values()) {
-//            Assert.assertTrue(homePageBase.isBlockByTitlePresent(topic),
-//                    String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
-//        }
+        for (MaterialCardTopics topic : MaterialCardTopics.values()) {
+            Assert.assertTrue(homePageBase.isBlockByTitlePresent(topic),
+                    String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
+        }
 
         List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES =
                 Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
@@ -70,73 +71,92 @@ public class GoogleFitTest extends LoginTest {
     @Test()
     @MethodOwner(owner = "koval")
     @TestLabel(name = "3. Add Activity -> Check this Activity in Journal Page -> Delete Activity", value = {"mobile"})
-    public void addActivity() throws InterruptedException {
+    public void addActivity() throws InterruptedException, ParseException {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
 
         TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
 
-
-//        homePageBase.openPlusButtonMenu();
-//
-//        AddActivityPage addActivityPage =
-//                (AddActivityPage) homePageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
-//        Assert.assertTrue(addActivityPage.isPageOpened(), "[ ADD ACTIVITY PAGE ] Activity page is not opened!");
-
-
-        Random rand = new Random();
-        int randomDayOfMonth = rand.nextInt(28) + 1;
-        int randomMonth = rand.nextInt(12) + 1;
-
-
-        Calendar calendar = new GregorianCalendar();
-        calendar.set(Calendar.DAY_OF_MONTH, randomDayOfMonth);
-        calendar.set(Calendar.MONTH, randomMonth);
-        calendar.set(Calendar.YEAR, 23);
-
-        calendar.set(Calendar.HOUR, 14);
-        calendar.set(Calendar.MINUTE, 20);
-        calendar.set(Calendar.AM_PM, Calendar.AM);
-
-
-        Calendar calendarTest = new GregorianCalendar();
-       calendarTest.set(Calendar.HOUR, 0);
-        calendarTest.set(Calendar.MINUTE, 35);
-
-
- //     String activityName =  addActivityPage.selectRandomActivity();
-//        addActivityPage.setTime(calendar);
-//        addActivityPage.setDate(calendar);
- //        addActivityPage.setDuration(calendarTest);
-
-//        addActivityPage.saveActivity();
-//
-//
-//
-//
-//
         JournalPageBase journalPageBase = (JournalPageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.JOURNAL);
         Assert.assertTrue(journalPageBase.isPageOpened(), "[ JOURNAL PAGE ] Journal page is not opened!");
 
-        Assert.assertTrue(journalPageBase.isActivityPresent("fencing")); //activityName
+        while (journalPageBase.getActivityListSize() != 0) {
+
+            String firstActivityName = journalPageBase.getActivityName();
+
+           ActivityPageBase activityPageBase = journalPageBase.openActivity();
+
+            Assert.assertTrue(activityPageBase.isPageOpened(firstActivityName),
+                    String.format("[ ACTIVITY PAGE ] Activity page  '%s' is not opened!", firstActivityName));
+
+            activityPageBase.deleteActivity();
+
+            homePageBase.openPlusButtonMenu();
 
 
-//        while (journalPageBase.getActivityListSize() != 0) {
-//
-//            String activityName = journalPageBase.getActivityName();
-//
-//            ActivityPageBase activityPageBase = journalPageBase.openActivity();
-//
-//            Assert.assertTrue(activityPageBase.isPageOpened(activityName), String.format("[ ACTIVITY PAGE ] Activity page  '%s' is not opened!", activityName));
-//
-//            activityPageBase.deleteActivity();
-//        }
+            AddActivityPage addActivityPage =
+                    (AddActivityPage) homePageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
+            Assert.assertTrue(addActivityPage.isPageOpened(), "[ ADD ACTIVITY PAGE ] Activity page is not opened!");
 
-        //   Login -> Click on PlusButton -> Add Activity(Select random activity, enter Start and Duration)
-///-> Click Save -> Check this Activity in Journal Page(Compare Activity, Time and Duration)
-        //-> Delete Selected Activity -> Clear List of Activities
-    }
+
+            int todayDay = LocalDate.now().getDayOfMonth();
+            Random rand = new Random();
+            int randomDayOfMonth = rand.nextInt(todayDay) + 1;
+            int randomMinute = rand.nextInt(59) + 1;
+
+            Calendar expectedActivityDateTime = new GregorianCalendar();
+            expectedActivityDateTime.set(23, Calendar.JANUARY, randomDayOfMonth, 11, randomMinute, Calendar.AM);
+
+            Calendar expectedActivityDuration = new GregorianCalendar();
+            expectedActivityDuration.set(Calendar.HOUR, 0);
+            expectedActivityDuration.set(Calendar.MINUTE, 35);
+
+
+            String activityName = addActivityPage.selectRandomActivity().toLowerCase();
+            addActivityPage.setTime(expectedActivityDateTime);
+            addActivityPage.setDate(expectedActivityDateTime);
+            addActivityPage.setDuration(expectedActivityDuration);
+
+            addActivityPage.saveActivity();
+
+            TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
+
+            journalPageBase = (JournalPageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.JOURNAL);
+            Assert.assertTrue(journalPageBase.isPageOpened(), "[ JOURNAL PAGE ] Journal page is not opened!");
+
+            TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
+
+            Assert.assertTrue(journalPageBase.isActivityPresent(activityName));
+            int activityIndex = journalPageBase.getActivityIndex(activityName);
+
+            int actualDuration = journalPageBase.getDuration(activityIndex).get(Calendar.MINUTE);
+            int actualTimeHour = journalPageBase.getStartTime(activityIndex).get(Calendar.HOUR);
+            int actualTimeMinute = journalPageBase.getStartTime(activityIndex).get(Calendar.MINUTE);
+
+            Assert.assertEquals(actualDuration, expectedActivityDuration.get(Calendar.MINUTE));
+            Assert.assertEquals(actualTimeHour, expectedActivityDateTime.get(Calendar.HOUR));
+            Assert.assertEquals(actualTimeMinute, expectedActivityDateTime.get(Calendar.MINUTE));
+
+
+            activityPageBase = journalPageBase.openActivityByIndex(activityIndex);
+            activityPageBase.getDateTime(expectedActivityDateTime, expectedActivityDuration);
+
+
+            while (journalPageBase.getActivityListSize() != 0) {
+
+                firstActivityName = journalPageBase.getActivityName();
+
+                activityPageBase = journalPageBase.openActivity();
+
+                Assert.assertTrue(activityPageBase.isPageOpened(firstActivityName),
+                        String.format("[ ACTIVITY PAGE ] Activity page  '%s' is not opened!", firstActivityName));
+
+                activityPageBase.deleteActivity();
+            }
+
+
+        }}
 
 
 }
