@@ -84,7 +84,6 @@ public class ActivityPage extends ActivityPageBase {
 
         Date expectedEndTime = DateUtils.addMinutes(startTime.getTime(), expectedActivityDuration.get(Calendar.MINUTE));
 
-        //Assert.assertEquals(, );
 
         Assert.assertEquals(startTime.get(Calendar.MONTH), expectedActivityDateTime.get(Calendar.MONTH),
                 "[ ACTIVITY PAGE ] Actual month is not what expected!");
