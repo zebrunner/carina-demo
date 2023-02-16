@@ -22,8 +22,7 @@ public class GoogleFitTest extends LoginTest {
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "1. Check if Home page is open and Plus button is present while swiping " +
-            "/1.2. Check if Plus-Button is static while swiping->check if Plus-Button is below container at the end", value = {"mobile"})
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testPlusButton() {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
@@ -40,7 +39,7 @@ public class GoogleFitTest extends LoginTest {
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "2. Compare playlist titles and block card topics Lists with expected lists", value = {"mobile"})
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void compareListOfTopics() throws InterruptedException {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
