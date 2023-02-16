@@ -8,8 +8,6 @@ import koval.myfit.mobile.gui.android.modal.DownMenuModal;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +18,6 @@ import java.lang.invoke.MethodHandles;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -36,18 +33,6 @@ public class JournalPage extends JournalPageBase {
     @FindBy(xpath = "//*[contains(@resource-id, 'journal_recycler_view')]/child::*[@class='android.view.ViewGroup']")
     private List<ExtendedWebElement> activityList;
 
-
-    @FindBy(id = "com.google.android.apps.fitness:id/session_duration")
-    private ExtendedWebElement durationLabel;
-
-
-    @FindBy(id = "com.google.android.apps.fitness:id/session_start_time")
-    private ExtendedWebElement startTimeLabel;
-
-    @FindBy(id = "com.google.android.apps.fitness:id/header_title")
-    private ExtendedWebElement startDateLabel;
-
-
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public JournalPage(WebDriver driver) {
@@ -62,13 +47,15 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
+
         return downMenuModal.openPageByName(downMenuElement);
     }
 
     @Override
     public String getActivityName() {
 
-        return activityList.get(0).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).getText();
+        return activityList.get(0).findExtendedWebElement(
+                By.id("com.google.android.apps.fitness:id/session_title")).getText();
     }
 
 
@@ -76,7 +63,8 @@ public class JournalPage extends JournalPageBase {
     public int getActivityIndex(String activityTitle) {
 
         for (int i = 0; i < activityList.size(); i++) {
-            if (activityList.get(i).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle)) {
+            if (activityList.get(i).findExtendedWebElement(
+                    By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle)) {
                 return i;
             }
         }
@@ -86,7 +74,8 @@ public class JournalPage extends JournalPageBase {
     @Override
     public Calendar getStartTime(int activityIndex) throws ParseException {
 
-        String startTime = activityList.get(activityIndex).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_start_time")).getText();
+        String startTime = activityList.get(activityIndex).findExtendedWebElement(
+                By.id("com.google.android.apps.fitness:id/session_start_time")).getText();
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
@@ -98,7 +87,8 @@ public class JournalPage extends JournalPageBase {
     @Override
     public Calendar getDuration(int activityIndex) throws ParseException {
 
-       String duration = activityList.get(activityIndex).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_duration")).getText();
+        String duration = activityList.get(activityIndex).findExtendedWebElement(
+                By.id("com.google.android.apps.fitness:id/session_duration")).getText();
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("mm");
@@ -113,16 +103,13 @@ public class JournalPage extends JournalPageBase {
 
         for (ExtendedWebElement extendedWebElement : activityList) {
 
-            if(extendedWebElement.findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle))
-            {
+            if (extendedWebElement.findExtendedWebElement(
+                    By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle)) {
                 return true;
             }
-
         }
 
-
         return false;
-
     }
 
     @Override
@@ -130,9 +117,8 @@ public class JournalPage extends JournalPageBase {
 
         if (!activityList.isEmpty()) {
 
-            activityList.get(activityIndex).findExtendedWebElement(By.id("com.google.android.apps.fitness:id/session_title")).click();
-
-
+            activityList.get(activityIndex).findExtendedWebElement(
+                    By.id("com.google.android.apps.fitness:id/session_title")).click();
         }
 
         return initPage(getDriver(), ActivityPageBase.class);

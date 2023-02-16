@@ -5,7 +5,6 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.myfit.mobile.gui.common.modal.DatePickerModalBase;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +32,7 @@ public class DatePickerModal extends DatePickerModalBase {
 
     @FindBy(xpath = "//*[contains(@resource-id, 'mtrl_picker_text_input_date')]/child::*//*[@class='android.widget.EditText']")
     private ExtendedWebElement inputDateField;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public DatePickerModal(WebDriver driver) {
@@ -58,13 +58,11 @@ public class DatePickerModal extends DatePickerModalBase {
             datePickerModeButton.click();
         }
 
-
         inputDateField.type((calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR));
 
         okayButton.click();
 
         return initPage(getDriver(), DatePickerModalBase.class);
     }
-
 
 }

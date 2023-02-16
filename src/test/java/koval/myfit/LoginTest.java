@@ -6,7 +6,6 @@ import koval.myfit.mobile.service.AdbService;
 import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
-import koval.myfit.mobile.service.enums.PersonCharacteristics;
 import koval.myfit.mobile.service.enums.TrackYourActivitiesAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -35,7 +35,6 @@ public class AddActivityPage extends AddActivityPageBase {
     @FindBy(id = "com.google.android.apps.fitness:id/activity_spinner")
     private ExtendedWebElement activityButton;
 
-
     @FindBy(id = "com.google.android.apps.fitness:id/container_action_button")
     private ExtendedWebElement saveActivityButton;
 
@@ -44,6 +43,7 @@ public class AddActivityPage extends AddActivityPageBase {
 
     @FindBy(xpath = "//*[contains(@resource-id, 'duration_field')]/child::*[contains(@resource-id, 'time_button')]")
     private ExtendedWebElement durationButton;
+
     @FindBy(id = "com.google.android.apps.fitness:id/date_button")
     private ExtendedWebElement dateButton;
 
@@ -93,8 +93,6 @@ public class AddActivityPage extends AddActivityPageBase {
     public AddActivityPageBase setDuration(Calendar calendarTest) {
 
         durationButton.click();
-
-
 
         durationPickerHourField.type(String.valueOf(calendarTest.get(Calendar.HOUR)));
 
@@ -156,7 +154,6 @@ public class AddActivityPage extends AddActivityPageBase {
     public HomePageBase saveActivity() {
 
        saveActivityButton.click();
-
 
         return initPage(getDriver(), HomePageBase.class);
     }

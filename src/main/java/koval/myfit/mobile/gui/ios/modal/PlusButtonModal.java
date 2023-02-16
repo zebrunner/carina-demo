@@ -27,7 +27,7 @@ public class PlusButtonModal extends PlusButtonModalBase {
 
     @Override
     public AbstractPage openPageByName(PlusButtonMenuElement plusButtonMenuElement) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -37,7 +37,6 @@ public class PlusButtonModal extends PlusButtonModalBase {
 
     @Override
     public boolean isPlusBtnStatic() {
-
         throw new NotImplementedException();
     }
 

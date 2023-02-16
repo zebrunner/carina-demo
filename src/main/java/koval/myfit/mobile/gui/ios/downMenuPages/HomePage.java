@@ -34,7 +34,7 @@ public class HomePage extends HomePageBase {
 
     @Override
     public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
-        return null;
+        throw new NotImplementedException();
     }
 
 
@@ -50,7 +50,7 @@ public class HomePage extends HomePageBase {
 
     @Override
     public AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class HomePage extends HomePageBase {
 
     @Override
     public ExtendedWebElement openPlusButtonMenu() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override

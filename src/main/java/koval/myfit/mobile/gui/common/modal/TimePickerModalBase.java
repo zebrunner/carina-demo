@@ -1,8 +1,6 @@
 package koval.myfit.mobile.gui.common.modal;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.MyAbstractPage;
-import koval.myfit.mobile.service.enums.DownMenuElement;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 

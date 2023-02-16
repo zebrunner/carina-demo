@@ -68,7 +68,6 @@ public class TimePickerModal extends TimePickerModalBase {
 
         hourField.type(String.valueOf(calendar.get(Calendar.HOUR)));
 
-
         minuteField.click();
         minuteField.findExtendedWebElement(By.className("android.widget.EditText")).
                 type(String.valueOf(calendar.get(Calendar.MINUTE)));
@@ -77,9 +76,7 @@ public class TimePickerModal extends TimePickerModalBase {
         String timePeriodButtonId = "com.google.android.apps.fitness:id/material_clock_period_am_button";
 
         if (calendar.get(Calendar.AM_PM) == Calendar.PM) {
-
             timePeriodButtonId = "com.google.android.apps.fitness:id/material_clock_period_pm_button";
-
         }
 
         clockPeriodToggleButton.findExtendedWebElement(By.id(timePeriodButtonId)).check();

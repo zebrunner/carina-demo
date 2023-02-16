@@ -26,6 +26,7 @@ public class ActivityPage extends ActivityPageBase {
 
     @FindBy(id = "com.google.android.apps.fitness:id/subtitle")
     private ExtendedWebElement dateTimeDurationLabel;
+
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
@@ -65,56 +66,36 @@ public class ActivityPage extends ActivityPageBase {
     }
 
     @Override
-    public Date getDateTime(Calendar calendar, Calendar calendarTest) throws ParseException {
+    public Date getDateTime(Calendar expectedActivityDateTime, Calendar expectedActivityDuration) throws ParseException {
 
-        String dateTime = dateTimeDurationLabel.getText();
+        String dateTimeString = dateTimeDurationLabel.getText();
 
-        String startTime = StringUtils.split(dateTime, "–")[0];
-        String endTime = StringUtils.split(dateTime, "–")[1];
+        String startTimeString = StringUtils.split(dateTimeString, "–")[0];
+        String endTimeString = StringUtils.split(dateTimeString, "–")[1];
 
-
-
-        Calendar cal = Calendar.getInstance();
+        Calendar startTime = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, hh:mm");
-        cal.setTime(sdf.parse(startTime));
+        startTime.setTime(sdf.parse(startTimeString));
 
 
-//        Calendar calendar = new GregorianCalendar();
-//        calendar.set(23, Calendar.JANUARY, 7, 11, 10, Calendar.AM);
-//
-//        Calendar calendarTest = new GregorianCalendar();
-//        calendarTest.set(Calendar.HOUR, 0);
-//        calendarTest.set(Calendar.MINUTE, 30);
-
-
-        Calendar calSec = Calendar.getInstance();
+        Calendar endTime = Calendar.getInstance();
         SimpleDateFormat sd = new SimpleDateFormat("hh:mm a");
-        calSec.setTime(sd.parse(endTime));
+        endTime.setTime(sd.parse(endTimeString));
 
-        Date newYearsDay = DateUtils.addMinutes(cal.getTime(), calendarTest.get(Calendar.MINUTE));
+        Date expectedEndTime = DateUtils.addMinutes(startTime.getTime(), expectedActivityDuration.get(Calendar.MINUTE));
 
+        Assert.assertEquals(sd.format(endTime.getTime()), sd.format(expectedEndTime));
 
-        Assert.assertEquals(sd.format(newYearsDay), sd.format(calSec.getTime()));
-//        Assert.assertEquals(cal.get(Calendar.MINUTE) + calendarTest.get(Calendar.MINUTE), calSec.get(Calendar.MINUTE));
+        Assert.assertEquals(startTime.get(Calendar.MONTH), expectedActivityDateTime.get(Calendar.MONTH),
+                "[ ACTIVITY PAGE ] Actual month is not what expected!");
+        Assert.assertEquals(startTime.get(Calendar.DAY_OF_MONTH), expectedActivityDateTime.get(Calendar.DAY_OF_MONTH),
+                "[ ACTIVITY PAGE ] Actual day of month is not what expected!");
+        Assert.assertEquals(startTime.get(Calendar.HOUR), expectedActivityDateTime.get(Calendar.HOUR),
+                "[ ACTIVITY PAGE ] Actual hour is not what expected!");
+        Assert.assertEquals(startTime.get(Calendar.MINUTE), expectedActivityDateTime.get(Calendar.MINUTE),
+                "[ ACTIVITY PAGE ] Actual minute is not what expected!");
 
-
-
-        Assert.assertEquals(cal.get(Calendar.MONTH), calendar.get(Calendar.MONTH), "month");
-        Assert.assertEquals(cal.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.DAY_OF_MONTH), "DAY_OF_MONTH");
-        Assert.assertEquals(cal.get(Calendar.HOUR), calendar.get(Calendar.HOUR), "HOUR");
-        Assert.assertEquals(cal.get(Calendar.MINUTE), calendar.get(Calendar.MINUTE), "MINUTE");
-
-//        if(cal.get(Calendar.MONTH) == calendar.get(Calendar.MONTH) && cal.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)
-//        && cal.get(Calendar.HOUR) == calendar.get(Calendar.HOUR) && cal.get(Calendar.MINUTE) == calendar.get(Calendar.MINUTE))
-//        {
-//
-//            LOGGER.info("equal");
-//        } else {
-//            LOGGER.info("no");
-//        }
-
-
-        return cal.getTime();
+        return startTime.getTime();
     }
 
 }

@@ -4,12 +4,10 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.MyAbstractPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
-import org.joda.time.DateTime;
 import org.openqa.selenium.WebDriver;
 
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public abstract class JournalPageBase extends MyAbstractPage {
