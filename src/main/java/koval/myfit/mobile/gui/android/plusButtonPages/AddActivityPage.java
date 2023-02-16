@@ -100,6 +100,9 @@ public class AddActivityPage extends AddActivityPageBase {
         durationPickerMinuteField.findExtendedWebElement(By.className("android.widget.EditText")).
                 type(String.valueOf(calendarTest.get(Calendar.MINUTE)));
 
+
+        getDriver().navigate().back();
+
         durationPickerOkayButton.click();
 
         return initPage(getDriver(), AddActivityPageBase.class);

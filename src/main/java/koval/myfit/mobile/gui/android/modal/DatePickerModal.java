@@ -60,6 +60,8 @@ public class DatePickerModal extends DatePickerModalBase {
 
         inputDateField.type((calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR));
 
+        getDriver().navigate().back();
+
         okayButton.click();
 
         return initPage(getDriver(), DatePickerModalBase.class);

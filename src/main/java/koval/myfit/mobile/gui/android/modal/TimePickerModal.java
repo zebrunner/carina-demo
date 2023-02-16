@@ -81,6 +81,8 @@ public class TimePickerModal extends TimePickerModalBase {
 
         clockPeriodToggleButton.findExtendedWebElement(By.id(timePeriodButtonId)).check();
 
+        getDriver().navigate().back();
+
         okayButton.click();
 
         return initPage(getDriver(), TimePickerModalBase.class);

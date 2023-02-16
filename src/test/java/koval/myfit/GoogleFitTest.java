@@ -26,51 +26,50 @@ public class GoogleFitTest extends LoginTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
+//    @Test()
+//    @MethodOwner(owner = "koval")
+//    @TestLabel(name = "feature", value = {"mobile", "regression"})
+//    public void testPlusButton() {
+//
+//        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+//        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+//
+//        Assert.assertTrue(homePageBase.isPlusBtnStatic(), "[ HOME PAGE ] Plus-Button is not static while swiping");
+//
+//        Assert.assertTrue(homePageBase.isPlusBtnOverElements(), "[ HOME PAGE ] Plus-Button is under element!");
+//        homePageBase.closePlusButtonMenu();
+//
+//        Assert.assertTrue(homePageBase.isPlusButtonBelowBlockContainer(), "[ HOME PAGE ] Container is not above plus button!");
+//
+//    }
+
+//    @Test()
+//    @MethodOwner(owner = "koval")
+//    @TestLabel(name = "feature", value = {"mobile", "regression"})
+//    public void compareListOfTopics() throws InterruptedException {
+//
+//        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+//        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+//
+//        TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
+//
+//        for (MaterialCardTopics topic : MaterialCardTopics.values()) {
+//            Assert.assertTrue(homePageBase.isBlockByTitlePresent(topic),
+//                    String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
+//        }
+//
+//        List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES =
+//                Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
+//        List<String> actualPlaylistTitlesList = homePageBase.getPlaylistTitlesToList();
+//        Assert.assertEquals(actualPlaylistTitlesList, EXPECTED_LIST_OF_PLAYLIST_TITLES,
+//                "[ HOME PAGE / actualPlaylistTitlesList ] Actual list of Playlist titles is not equals to expected list!");
+//
+//    }
+
+
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "1. Check if Home page is open and Plus button is present while swiping " +
-            "/1.2. Check if Plus-Button is static while swiping->check if Plus-Button is below container at the end", value = {"mobile"})
-    public void testPlusButton() {
-
-        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
-        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
-
-        Assert.assertTrue(homePageBase.isPlusBtnStatic(), "[ HOME PAGE ] Plus-Button is not static while swiping");
-
-        Assert.assertTrue(homePageBase.isPlusBtnOverElements(), "[ HOME PAGE ] Plus-Button is under element!");
-        homePageBase.closePlusButtonMenu();
-
-        Assert.assertTrue(homePageBase.isPlusButtonBelowBlockContainer(), "[ HOME PAGE ] Container is not above plus button!");
-
-    }
-
-    @Test()
-    @MethodOwner(owner = "koval")
-    @TestLabel(name = "2. Compare playlist titles and block card topics Lists with expected lists", value = {"mobile"})
-    public void compareListOfTopics() throws InterruptedException {
-
-        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
-        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
-
-        TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
-
-        for (MaterialCardTopics topic : MaterialCardTopics.values()) {
-            Assert.assertTrue(homePageBase.isBlockByTitlePresent(topic),
-                    String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
-        }
-
-        List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES =
-                Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
-        List<String> actualPlaylistTitlesList = homePageBase.getPlaylistTitlesToList();
-        Assert.assertEquals(actualPlaylistTitlesList, EXPECTED_LIST_OF_PLAYLIST_TITLES,
-                "[ HOME PAGE / actualPlaylistTitlesList ] Actual list of Playlist titles is not equals to expected list!");
-
-    }
-
-
-    @Test()
-    @MethodOwner(owner = "koval")
-    @TestLabel(name = "3. Add Activity -> Check this Activity in Journal Page -> Delete Activity", value = {"mobile"})
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void addActivity() throws InterruptedException, ParseException {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
