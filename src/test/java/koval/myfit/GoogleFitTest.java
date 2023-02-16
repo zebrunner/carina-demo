@@ -92,11 +92,11 @@ public class GoogleFitTest extends LoginTest {
             activityPageBase.deleteActivity();
         }
 
-        homePageBase.openPlusButtonMenu();
+        journalPageBase.openPlusButtonMenu();
 
 
         AddActivityPage addActivityPage =
-                (AddActivityPage) homePageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
+                (AddActivityPage) journalPageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
         Assert.assertTrue(addActivityPage.isPageOpened(), "[ ADD ACTIVITY PAGE ] Activity page is not opened!");
 
 
@@ -122,11 +122,6 @@ public class GoogleFitTest extends LoginTest {
 
         TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
 
-        journalPageBase = (JournalPageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.JOURNAL);
-        Assert.assertTrue(journalPageBase.isPageOpened(), "[ JOURNAL PAGE ] Journal page is not opened!");
-
-        TimeUnit.SECONDS.sleep(TIMEOUT_FIVE);
-
         Assert.assertTrue(journalPageBase.isActivityPresent(activityName));
         int activityIndex = journalPageBase.getActivityIndex(activityName);
 
@@ -140,9 +135,10 @@ public class GoogleFitTest extends LoginTest {
 
 
         ActivityPageBase activityPageBase = journalPageBase.openActivityByIndex(activityIndex);
-        activityPageBase.getDateTime(expectedActivityDateTime, expectedActivityDuration);
+        Assert.assertTrue(activityPageBase.getDateTime(expectedActivityDateTime, expectedActivityDuration),
+                "Actual time is not what expected ");
+
 
     }
-
 
 }

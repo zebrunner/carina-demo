@@ -66,7 +66,7 @@ public class ActivityPage extends ActivityPageBase {
     }
 
     @Override
-    public Date getDateTime(Calendar expectedActivityDateTime, Calendar expectedActivityDuration) throws ParseException {
+    public boolean getDateTime(Calendar expectedActivityDateTime, Calendar expectedActivityDuration) throws ParseException {
 
         String dateTimeString = dateTimeDurationLabel.getText();
 
@@ -84,7 +84,7 @@ public class ActivityPage extends ActivityPageBase {
 
         Date expectedEndTime = DateUtils.addMinutes(startTime.getTime(), expectedActivityDuration.get(Calendar.MINUTE));
 
-        Assert.assertEquals(sd.format(endTime.getTime()), sd.format(expectedEndTime));
+        //Assert.assertEquals(, );
 
         Assert.assertEquals(startTime.get(Calendar.MONTH), expectedActivityDateTime.get(Calendar.MONTH),
                 "[ ACTIVITY PAGE ] Actual month is not what expected!");
@@ -95,7 +95,7 @@ public class ActivityPage extends ActivityPageBase {
         Assert.assertEquals(startTime.get(Calendar.MINUTE), expectedActivityDateTime.get(Calendar.MINUTE),
                 "[ ACTIVITY PAGE ] Actual minute is not what expected!");
 
-        return startTime.getTime();
+        return sd.format(endTime.getTime()).equals(sd.format(expectedEndTime));
     }
 
 }

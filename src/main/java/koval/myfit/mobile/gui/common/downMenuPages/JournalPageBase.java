@@ -1,9 +1,11 @@
 package koval.myfit.mobile.gui.common.downMenuPages;
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.MyAbstractPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
 import java.text.ParseException;
@@ -35,4 +37,8 @@ public abstract class JournalPageBase extends MyAbstractPage {
     public abstract ActivityPageBase openActivity();
 
     public abstract int getActivityListSize();
+
+    public abstract ExtendedWebElement openPlusButtonMenu();
+
+    public abstract AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement);
 }

@@ -5,9 +5,11 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.android.modal.DownMenuModal;
+import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +31,9 @@ public class JournalPage extends JournalPageBase {
 
     @FindBy(id = "com.google.android.apps.fitness:id/bottom_navigation")
     private DownMenuModal downMenuModal;
+
+    @FindBy(id = "om.google.android.apps.fitness:id/add_entry_fab")
+    private PlusButtonModal plusButtonModal;
 
     @FindBy(xpath = "//*[contains(@resource-id, 'journal_recycler_view')]/child::*[@class='android.view.ViewGroup']")
     private List<ExtendedWebElement> activityList;
@@ -133,6 +138,18 @@ public class JournalPage extends JournalPageBase {
     public int getActivityListSize() {
 
         return activityList.size();
+    }
+
+    @Override
+    public ExtendedWebElement openPlusButtonMenu() {
+
+        return plusButtonModal.openPlusButtonMenu();
+    }
+
+    @Override
+    public AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement) {
+
+        return plusButtonModal.openPageByName(plusButtonMenuElement);
     }
 
 }

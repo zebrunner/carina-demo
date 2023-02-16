@@ -1,12 +1,14 @@
 package koval.myfit.mobile.gui.ios.downMenuPages;
 
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Calendar;
@@ -61,6 +63,16 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public int getActivityListSize() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public ExtendedWebElement openPlusButtonMenu() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement) {
         throw new NotImplementedException();
     }
 
