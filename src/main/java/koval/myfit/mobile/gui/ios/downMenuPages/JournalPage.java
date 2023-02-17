@@ -76,5 +76,10 @@ public class JournalPage extends JournalPageBase {
         throw new NotImplementedException();
     }
 
+    @Override
+    public JournalPageBase clearActivityList() {
+        throw new NotImplementedException();
+    }
+
 
 }

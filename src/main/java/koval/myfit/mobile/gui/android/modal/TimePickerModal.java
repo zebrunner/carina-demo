@@ -75,13 +75,15 @@ public class TimePickerModal extends TimePickerModalBase {
 
         String timePeriodButtonId = "com.google.android.apps.fitness:id/material_clock_period_am_button";
 
+        LOGGER.info(String.valueOf(calendar.get(Calendar.AM_PM)));
+
         if (calendar.get(Calendar.AM_PM) == Calendar.PM) {
             timePeriodButtonId = "com.google.android.apps.fitness:id/material_clock_period_pm_button";
         }
 
         clockPeriodToggleButton.findExtendedWebElement(By.id(timePeriodButtonId)).check();
 
-        getDriver().navigate().back();
+        hideKeyboard();
 
         okayButton.click();
 

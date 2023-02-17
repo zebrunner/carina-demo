@@ -20,5 +20,6 @@ public abstract class ActivityPageBase extends MyAbstractPage {
 
     public abstract JournalPageBase deleteActivity();
 
-    public abstract boolean getDateTime(Calendar calendar, Calendar calendarTest) throws ParseException;
+
+    public abstract String getDateTime();
 }

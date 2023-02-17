@@ -41,4 +41,6 @@ public abstract class JournalPageBase extends MyAbstractPage {
     public abstract ExtendedWebElement openPlusButtonMenu();
 
     public abstract AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement);
+
+    public abstract JournalPageBase clearActivityList();
 }

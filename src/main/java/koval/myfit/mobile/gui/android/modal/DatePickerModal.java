@@ -58,9 +58,9 @@ public class DatePickerModal extends DatePickerModalBase {
             datePickerModeButton.click();
         }
 
-        inputDateField.type((calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR));
+        inputDateField.type(calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR));
 
-        getDriver().navigate().back();
+        hideKeyboard();
 
         okayButton.click();
 

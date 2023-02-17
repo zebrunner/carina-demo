@@ -6,6 +6,7 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.android.modal.DatePickerModal;
 import koval.myfit.mobile.gui.android.modal.TimePickerModal;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
+import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.modal.DatePickerModalBase;
 import koval.myfit.mobile.gui.common.modal.TimePickerModalBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
@@ -100,8 +101,7 @@ public class AddActivityPage extends AddActivityPageBase {
         durationPickerMinuteField.findExtendedWebElement(By.className("android.widget.EditText")).
                 type(String.valueOf(calendarTest.get(Calendar.MINUTE)));
 
-
-        getDriver().navigate().back();
+        hideKeyboard();
 
         durationPickerOkayButton.click();
 
@@ -145,7 +145,7 @@ public class AddActivityPage extends AddActivityPageBase {
 
         Random rand = new Random();
 
-        List<String> listOfActivities = Arrays.asList("Badminton", "Golf", "Fencing", "Hockey", "Polo", "Skiing", "Yoga");
+        List<String> listOfActivities = Arrays.asList("Rowing", "Flossing", "Skiing", "Kettlebell", "Squash");
 
         int randomIndex = rand.nextInt(listOfActivities.size());
 
@@ -154,10 +154,10 @@ public class AddActivityPage extends AddActivityPageBase {
 
 
     @Override
-    public HomePageBase saveActivity() {
+    public JournalPageBase saveActivity() {
 
        saveActivityButton.click();
 
-        return initPage(getDriver(), HomePageBase.class);
+        return initPage(getDriver(), JournalPageBase.class);
     }
 }

@@ -30,7 +30,7 @@ public class ActivityPage extends ActivityPageBase {
     }
 
     @Override
-    public boolean getDateTime(Calendar calendar, Calendar calendarTest) {
+    public String getDateTime() {
         throw new NotImplementedException();
     }
 }

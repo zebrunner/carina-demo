@@ -13,8 +13,10 @@ import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
 import java.lang.invoke.MethodHandles;
 import java.text.ParseException;
@@ -59,6 +61,10 @@ public class JournalPage extends JournalPageBase {
     @Override
     public String getActivityName() {
 
+        if (activityList.isEmpty()) {
+            Assert.fail("[ JOURNAL PAGE ] List of Activities is empty!");
+        }
+
         return activityList.get(0).findExtendedWebElement(
                 By.id("com.google.android.apps.fitness:id/session_title")).getText();
     }
@@ -83,7 +89,7 @@ public class JournalPage extends JournalPageBase {
                 By.id("com.google.android.apps.fitness:id/session_start_time")).getText();
 
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat(START_TIME_FORMAT);
         cal.setTime(sdf.parse(startTime));
 
         return cal;
@@ -96,7 +102,7 @@ public class JournalPage extends JournalPageBase {
                 By.id("com.google.android.apps.fitness:id/session_duration")).getText();
 
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("mm");
+        SimpleDateFormat sdf = new SimpleDateFormat(DURATION_FORMAT);
         cal.setTime(sdf.parse(duration));
 
         return cal;
@@ -105,6 +111,8 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public boolean isActivityPresent(String activityTitle) {
+
+        waitUntil(ExpectedConditions.invisibilityOfElementLocated(By.id("com.google.android.apps.fitness:id/session_title")), FIVE);
 
         for (ExtendedWebElement extendedWebElement : activityList) {
 
@@ -131,7 +139,7 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public ActivityPageBase openActivity() {
-        return openActivityByIndex(0);
+        return openActivityByIndex(NULL);
     }
 
     @Override
@@ -152,4 +160,22 @@ public class JournalPage extends JournalPageBase {
         return plusButtonModal.openPageByName(plusButtonMenuElement);
     }
 
+    @Override
+    public JournalPageBase clearActivityList() {
+
+        while (getActivityListSize() != 0) {
+
+            String firstActivityName = getActivityName();
+
+            ActivityPageBase activityPageBase = openActivity();
+
+            Assert.assertTrue(activityPageBase.isPageOpened(firstActivityName),
+                    String.format("[ ACTIVITY PAGE ] Activity page  '%s' is not opened!", firstActivityName));
+
+            activityPageBase.deleteActivity();
+        }
+
+        return initPage(getDriver(), JournalPageBase.class);
+
+    }
 }
