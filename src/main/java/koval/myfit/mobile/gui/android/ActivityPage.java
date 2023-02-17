@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 
 
-
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ActivityPageBase.class)
 public class ActivityPage extends ActivityPageBase {
 
@@ -57,9 +56,8 @@ public class ActivityPage extends ActivityPageBase {
     }
 
 
-
     @Override
-    public String getDateTime()  {
+    public String getDateTime() {
 
         return dateTimeDurationLabel.getText();
     }

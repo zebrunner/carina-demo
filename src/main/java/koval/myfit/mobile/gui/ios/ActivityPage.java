@@ -7,8 +7,6 @@ import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Calendar;
-import java.util.Date;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ActivityPageBase.class)

@@ -5,7 +5,6 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.android.modal.DatePickerModal;
 import koval.myfit.mobile.gui.android.modal.TimePickerModal;
-import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.modal.DatePickerModalBase;
 import koval.myfit.mobile.gui.common.modal.TimePickerModalBase;
@@ -107,6 +106,7 @@ public class AddActivityPage extends AddActivityPageBase {
 
         return initPage(getDriver(), AddActivityPageBase.class);
     }
+
     @Override
     public DatePickerModalBase setDate(Calendar calendar) {
 
@@ -156,7 +156,7 @@ public class AddActivityPage extends AddActivityPageBase {
     @Override
     public JournalPageBase saveActivity() {
 
-       saveActivityButton.click();
+        saveActivityButton.click();
 
         return initPage(getDriver(), JournalPageBase.class);
     }

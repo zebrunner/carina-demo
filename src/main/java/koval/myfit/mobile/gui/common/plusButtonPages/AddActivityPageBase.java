@@ -1,7 +1,6 @@
 package koval.myfit.mobile.gui.common.plusButtonPages;
 
 import koval.myfit.mobile.gui.MyAbstractPage;
-import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.modal.DatePickerModalBase;
 import koval.myfit.mobile.gui.common.modal.TimePickerModalBase;
