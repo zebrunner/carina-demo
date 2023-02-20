@@ -9,7 +9,6 @@ import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.modal.DatePickerModalBase;
 import koval.myfit.mobile.gui.common.modal.TimePickerModalBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -56,14 +55,18 @@ public class AddActivityPage extends AddActivityPageBase {
     @FindBy(id = "android:id/content")
     private DatePickerModal datePickerModal;
 
-    @FindBy(id = "com.google.android.apps.fitness:id/select_dialog_listview")
-    private ExtendedWebElement activityContainer;
+    @FindBy(xpath = "//*[@resource-id='com.google.android.apps.fitness:id/select_dialog_listview']/child::*[@class='android.widget.TextView']")
+    private List <ExtendedWebElement> activityNameList;
 
     @FindBy(xpath = "//*[contains(@resource-id,'material_hour_text_input')]/child::*//*[@class='android.widget.EditText']")
     private ExtendedWebElement durationPickerHourField;
 
     @FindBy(xpath = "//*[contains(@resource-id,'material_minute_text_input')]")
     private ExtendedWebElement durationPickerMinuteField;
+
+    @FindBy(xpath = "//*[contains(@resource-id,'material_minute_text_input')]/child::*//*[@class='android.widget.EditText']")
+    private ExtendedWebElement activeDurationPickerMinuteField;
+
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -99,8 +102,7 @@ public class AddActivityPage extends AddActivityPageBase {
         durationPickerHourField.type(String.valueOf(calendarTest.get(Calendar.HOUR)));
 
         durationPickerMinuteField.click();
-        durationPickerMinuteField.findExtendedWebElement(By.className("android.widget.EditText")).
-                type(String.valueOf(calendarTest.get(Calendar.MINUTE)));
+        activeDurationPickerMinuteField.type(String.valueOf(calendarTest.get(Calendar.MINUTE)));
 
         hideKeyboard();
 
@@ -128,7 +130,7 @@ public class AddActivityPage extends AddActivityPageBase {
 
         activityButton.click();
 
-        String firstActivityTitle = activityContainer.findExtendedWebElement(By.className("android.widget.TextView")).getText();
+        String firstActivityTitle = activityNameList.get(0).getText();
 
         int compareResult = firstActivityTitle.compareTo(activityTitle);
 
