@@ -3,7 +3,6 @@ package koval.myfit.mobile.service.enums;
 public enum MaterialCardTopics {
     YOUR_DAILY_GOALS("Your daily goals"),
     YOUR_WEEKLY_TARGET("Your weekly target"),
-    ACTIVITY_TRACKING_IS_OFF("Activity tracking is off"),
     WEIGHT("Weight"),
     ENERGY_EXPENDED("Energy expended"),
     A_SIMPLE_WAY_TO_STAY_HEALTHY("A simple way to stay healthy"),
