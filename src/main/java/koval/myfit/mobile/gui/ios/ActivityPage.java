@@ -7,6 +7,8 @@ import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import org.openqa.selenium.WebDriver;
 
+import java.text.ParseException;
+import java.util.Calendar;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ActivityPageBase.class)
@@ -28,7 +30,13 @@ public class ActivityPage extends ActivityPageBase {
     }
 
     @Override
-    public String getDateTime() {
+    public Calendar getStartDateTime()   {
         throw new NotImplementedException();
     }
+
+    @Override
+    public Calendar getEndTime()   {
+        throw new NotImplementedException();
+    }
+
 }

@@ -21,5 +21,7 @@ public abstract class ActivityPageBase extends MyAbstractPage {
     public abstract JournalPageBase deleteActivity();
 
 
-    public abstract String getDateTime();
+    public abstract Calendar getStartDateTime() throws ParseException;
+
+    public abstract Calendar getEndTime() throws ParseException;
 }

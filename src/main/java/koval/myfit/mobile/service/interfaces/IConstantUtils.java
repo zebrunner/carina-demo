@@ -19,7 +19,7 @@ public interface IConstantUtils {
 
     String START_TIME_DATE_FORMAT = "MMM dd, hh:mm";
 
-    String END_TIME_DATE_FORMAT = "hh:mm a";
+    String END_TIME_FORMAT = "hh:mm a";
 
     String START_TIME_FORMAT = "hh:mm";
 

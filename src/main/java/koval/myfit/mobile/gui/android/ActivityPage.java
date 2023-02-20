@@ -5,12 +5,16 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ActivityPageBase.class)
@@ -53,10 +57,34 @@ public class ActivityPage extends ActivityPageBase {
     }
 
 
-    @Override
-    public String getDateTime() {
 
-        return dateTimeDurationLabel.getText();
+    @Override
+    public Calendar getStartDateTime() throws ParseException {
+
+
+        String dateTimeString = dateTimeDurationLabel.getText();
+        String startTimeString = StringUtils.split(dateTimeString, "–")[0];
+
+        Calendar startTime = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat(START_TIME_DATE_FORMAT);
+        startTime.setTime(sdf.parse(startTimeString));
+
+return startTime;
+    }
+
+
+    @Override
+    public Calendar getEndTime() throws ParseException {
+
+
+        String dateTimeString = dateTimeDurationLabel.getText();
+        String endTimeString = StringUtils.split(dateTimeString, "–")[1];
+
+        Calendar endTime = Calendar.getInstance();
+        SimpleDateFormat sd = new SimpleDateFormat(END_TIME_FORMAT);
+        endTime.setTime(sd.parse(endTimeString));
+
+return endTime;
     }
 
 

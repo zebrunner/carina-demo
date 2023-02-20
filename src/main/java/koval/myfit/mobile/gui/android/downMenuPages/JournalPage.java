@@ -105,8 +105,6 @@ public class JournalPage extends JournalPageBase {
     @Override
     public boolean isActivityPresent(String activityTitle) {
 
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(titleList.get(0).getBy()), FIVE);
-
         return titleList.get(0).getText().contains(activityTitle);
     }
 

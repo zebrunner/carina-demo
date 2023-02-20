@@ -140,20 +140,11 @@ public class GoogleFitTest extends LoginTest {
                 String.format("[ ACTIVITY PAGE ] Activity page '%s' is not opened!", activityName));
 
 
-        String dateTimeString = activityPageBase.getDateTime();
-        String startTimeString = StringUtils.split(dateTimeString, "–")[0];
-        String endTimeString = StringUtils.split(dateTimeString, "–")[1];
-
-        Calendar startTime = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat(START_TIME_DATE_FORMAT);
-        startTime.setTime(sdf.parse(startTimeString));
-
-
-        Calendar endTime = Calendar.getInstance();
-        SimpleDateFormat sd = new SimpleDateFormat(END_TIME_DATE_FORMAT);
-        endTime.setTime(sd.parse(endTimeString));
-
+        Calendar startTime = activityPageBase.getStartDateTime();
+        Calendar endTime = activityPageBase.getEndTime();
         Date expectedEndTime = DateUtils.addMinutes(startTime.getTime(), expectedActivityDuration.get(Calendar.MINUTE));
+        SimpleDateFormat sd = new SimpleDateFormat(END_TIME_FORMAT);
+
 
         Assert.assertEquals(startTime.get(Calendar.MONTH) + 1, expectedActivityDateTime.get(Calendar.MONTH),
                 "[ ACTIVITY PAGE ] Actual month is not what expected!");
