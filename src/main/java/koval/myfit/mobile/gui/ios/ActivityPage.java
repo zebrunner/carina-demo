@@ -7,7 +7,6 @@ import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import org.openqa.selenium.WebDriver;
 
-import java.text.ParseException;
 import java.util.Calendar;
 
 

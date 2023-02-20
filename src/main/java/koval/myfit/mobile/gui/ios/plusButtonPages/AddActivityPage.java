@@ -3,7 +3,6 @@ package koval.myfit.mobile.gui.ios.plusButtonPages;
 
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.modal.DatePickerModalBase;
 import koval.myfit.mobile.gui.common.modal.TimePickerModalBase;

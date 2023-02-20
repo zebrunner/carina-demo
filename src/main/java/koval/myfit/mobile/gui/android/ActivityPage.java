@@ -57,10 +57,8 @@ public class ActivityPage extends ActivityPageBase {
     }
 
 
-
     @Override
     public Calendar getStartDateTime() throws ParseException {
-
 
         String dateTimeString = dateTimeDurationLabel.getText();
         String startTimeString = StringUtils.split(dateTimeString, "–")[0];
@@ -69,13 +67,12 @@ public class ActivityPage extends ActivityPageBase {
         SimpleDateFormat sdf = new SimpleDateFormat(START_TIME_DATE_FORMAT);
         startTime.setTime(sdf.parse(startTimeString));
 
-return startTime;
+        return startTime;
     }
 
 
     @Override
     public Calendar getEndTime() throws ParseException {
-
 
         String dateTimeString = dateTimeDurationLabel.getText();
         String endTimeString = StringUtils.split(dateTimeString, "–")[1];
@@ -84,8 +81,7 @@ return startTime;
         SimpleDateFormat sd = new SimpleDateFormat(END_TIME_FORMAT);
         endTime.setTime(sd.parse(endTimeString));
 
-return endTime;
+        return endTime;
     }
-
 
 }
