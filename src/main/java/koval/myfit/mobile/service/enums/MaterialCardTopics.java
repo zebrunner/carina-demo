@@ -20,5 +20,4 @@ public enum MaterialCardTopics {
         return topicName;
     }
 
-
 }
