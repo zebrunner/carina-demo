@@ -71,18 +71,6 @@ public class JournalPage extends JournalPageBase {
     }
 
 
-//    @Override
-//    public int getActivityIndex(String activityTitle) {
-//
-//        for (int i = 0; i < activityList.size(); i++) {
-//            if (activityList.get(i).findExtendedWebElement(
-//                    By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle)) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
-
     @Override
     public Calendar getStartTime() throws ParseException {
 
