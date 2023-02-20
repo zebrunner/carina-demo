@@ -138,7 +138,6 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement) {
-
         return plusButtonModal.openPageByName(plusButtonMenuElement);
     }
 
