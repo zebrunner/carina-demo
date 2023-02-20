@@ -8,6 +8,7 @@ import koval.myfit.mobile.gui.android.modal.DownMenuModal;
 import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
@@ -104,7 +105,7 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
+    public PlusButtonModalBase openPlusButtonMenu() {
 
         return plusButtonModal.openPlusButtonMenu();
     }

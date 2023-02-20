@@ -82,7 +82,9 @@ public class AddActivityPage extends AddActivityPageBase {
 
         timeButton.click();
 
-        Assert.assertTrue(timePickerModal.isPageOpened(), "[ TIMEPICKER PAGE ] TimePicker is not opened!");
+        if (!timePickerModal.isPageOpened()) {
+            Assert.fail("[ TIMEPICKER PAGE ] TimePicker is not opened!");
+        }
 
         timePickerModal.setTime(calendar);
 
@@ -112,7 +114,9 @@ public class AddActivityPage extends AddActivityPageBase {
 
         dateButton.click();
 
-        Assert.assertTrue(datePickerModal.isPageOpened(), "[ DATE PICKER PAGE ] Date Picker is not opened!");
+        if (!datePickerModal.isPageOpened()) {
+            Assert.fail("[ DATE PICKER PAGE ] Date Picker is not opened!");
+        }
 
         datePickerModal.setDate(calendar);
 
@@ -134,8 +138,9 @@ public class AddActivityPage extends AddActivityPageBase {
             direction = Direction.DOWN;
         }
 
-        swipe(itemByText.format(activityTitle), direction);
-        itemByText.format(activityTitle).click();
+        ExtendedWebElement activityTitleElement = itemByText.format(activityTitle);
+        swipe(activityTitleElement, direction, FORTY_COUNT, MEDIUM_SPEED);
+        activityTitleElement.click();
 
         return activityTitle;
     }

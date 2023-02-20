@@ -13,6 +13,8 @@ public interface IConstantUtils {
 
     int THREE_COUNT = 3;
 
+    int FORTY_COUNT = 40;
+
     int NULL = 0;
 
     String START_TIME_DATE_FORMAT = "MMM dd, hh:mm";

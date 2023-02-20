@@ -8,6 +8,7 @@ import koval.myfit.mobile.gui.android.modal.DownMenuModal;
 import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.By;
@@ -70,22 +71,22 @@ public class JournalPage extends JournalPageBase {
     }
 
 
+//    @Override
+//    public int getActivityIndex(String activityTitle) {
+//
+//        for (int i = 0; i < activityList.size(); i++) {
+//            if (activityList.get(i).findExtendedWebElement(
+//                    By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle)) {
+//                return i;
+//            }
+//        }
+//        return -1;
+//    }
+
     @Override
-    public int getActivityIndex(String activityTitle) {
+    public Calendar getStartTime() throws ParseException {
 
-        for (int i = 0; i < activityList.size(); i++) {
-            if (activityList.get(i).findExtendedWebElement(
-                    By.id("com.google.android.apps.fitness:id/session_title")).getText().contains(activityTitle)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public Calendar getStartTime(int activityIndex) throws ParseException {
-
-        String startTime = activityList.get(activityIndex).findExtendedWebElement(
+        String startTime = activityList.get(0).findExtendedWebElement(
                 By.id("com.google.android.apps.fitness:id/session_start_time")).getText();
 
         Calendar cal = Calendar.getInstance();
@@ -96,9 +97,9 @@ public class JournalPage extends JournalPageBase {
     }
 
     @Override
-    public Calendar getDuration(int activityIndex) throws ParseException {
+    public Calendar getDuration() throws ParseException {
 
-        String duration = activityList.get(activityIndex).findExtendedWebElement(
+        String duration = activityList.get(0).findExtendedWebElement(
                 By.id("com.google.android.apps.fitness:id/session_duration")).getText();
 
         Calendar cal = Calendar.getInstance();
@@ -139,7 +140,7 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public ActivityPageBase openActivity() {
-        return openActivityByIndex(NULL);
+        return openActivityByIndex(0);
     }
 
     @Override
@@ -149,7 +150,7 @@ public class JournalPage extends JournalPageBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
+    public PlusButtonModalBase openPlusButtonMenu() {
 
         return plusButtonModal.openPlusButtonMenu();
     }
@@ -169,8 +170,9 @@ public class JournalPage extends JournalPageBase {
 
             ActivityPageBase activityPageBase = openActivity();
 
-            Assert.assertTrue(activityPageBase.isPageOpened(firstActivityName),
-                    String.format("[ ACTIVITY PAGE ] Activity page  '%s' is not opened!", firstActivityName));
+            if (!activityPageBase.isPageOpened(firstActivityName)) {
+                Assert.fail(String.format("[ ACTIVITY PAGE ] Activity page  '%s' is not opened!", firstActivityName));
+            }
 
             activityPageBase.deleteActivity();
         }

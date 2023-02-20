@@ -7,6 +7,7 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
@@ -32,17 +33,12 @@ public class JournalPage extends JournalPageBase {
     }
 
     @Override
-    public int getActivityIndex(String activityTitle) {
+    public Calendar getDuration() {
         throw new NotImplementedException();
     }
 
     @Override
-    public Calendar getDuration(int activityIndex) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Calendar getStartTime(int activityIndex) {
+    public Calendar getStartTime() {
         throw new NotImplementedException();
     }
 
@@ -67,7 +63,7 @@ public class JournalPage extends JournalPageBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
+    public PlusButtonModalBase openPlusButtonMenu() {
         throw new NotImplementedException();
     }
 

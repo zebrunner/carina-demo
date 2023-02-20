@@ -96,10 +96,10 @@ public class PlusButtonModal extends PlusButtonModalBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
+    public PlusButtonModalBase openPlusButtonMenu() {
 
         plusButton.click();
-        return plusButtonMenuContainer;
+        return initPage(getDriver(), PlusButtonModalBase.class);
 
     }
 

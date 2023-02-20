@@ -28,7 +28,7 @@ public abstract class PlusButtonModalBase extends MyAbstractPage {
 
     public abstract boolean isPlusBtnOverElements();
 
-    public abstract ExtendedWebElement openPlusButtonMenu();
+    public abstract PlusButtonModalBase openPlusButtonMenu();
 
     public abstract HomePageBase closePlusButtonMenu();
 

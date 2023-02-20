@@ -1,11 +1,14 @@
 package koval.myfit;
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
@@ -34,7 +37,7 @@ public class GoogleFitTest extends LoginTest {
     @Test()
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void testPlusButton() {
+    public void testPlusButtonTest() {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
@@ -52,7 +55,7 @@ public class GoogleFitTest extends LoginTest {
     @Test()
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void compareListOfTopics() throws InterruptedException {
+    public void compareListOfTopicsTest() throws InterruptedException {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
@@ -75,7 +78,7 @@ public class GoogleFitTest extends LoginTest {
     @Test()
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void addActivity() throws ParseException {
+    public void addActivityTest() throws ParseException {
 
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
@@ -86,9 +89,9 @@ public class GoogleFitTest extends LoginTest {
 
         journalPageBase.clearActivityList();
 
-        journalPageBase.openPlusButtonMenu();
+        PlusButtonModalBase plusButtonModal = journalPageBase.openPlusButtonMenu();
 
-        AddActivityPageBase addActivityPageBase = (AddActivityPage) journalPageBase.openPageFromPlusButtonMenuByName(PlusButtonMenuElement.ADD_ACTIVITY);
+        AddActivityPageBase addActivityPageBase = (AddActivityPage) plusButtonModal.openPageByName(PlusButtonMenuElement.ADD_ACTIVITY);
         Assert.assertTrue(addActivityPageBase.isPageOpened(), "[ ADD ACTIVITY PAGE ] Add Activity page is not opened!");
 
 
@@ -118,12 +121,11 @@ public class GoogleFitTest extends LoginTest {
 
         Assert.assertTrue(journalPageBase.isActivityPresent(activityName),
                 String.format("[ JOURNAL PAGE ] Activity '%s' is not present!", activityName));
-        int activityIndex = journalPageBase.getActivityIndex(activityName);
 
 
-        int actualDuration = journalPageBase.getDuration(activityIndex).get(Calendar.MINUTE);
-        int actualTimeHour = journalPageBase.getStartTime(activityIndex).get(Calendar.HOUR);
-        int actualTimeMinute = journalPageBase.getStartTime(activityIndex).get(Calendar.MINUTE);
+        int actualDuration = journalPageBase.getDuration().get(Calendar.MINUTE);
+        int actualTimeHour = journalPageBase.getStartTime().get(Calendar.HOUR);
+        int actualTimeMinute = journalPageBase.getStartTime().get(Calendar.MINUTE);
 
         Assert.assertEquals(actualDuration, expectedActivityDuration.get(Calendar.MINUTE),
                 "[ JOURNAL PAGE ] Actual duration is not what expected!");
@@ -133,13 +135,12 @@ public class GoogleFitTest extends LoginTest {
                 "[ JOURNAL PAGE ] Actual start time(minute) is not what expected!");
 
 
-        ActivityPageBase activityPageBase = journalPageBase.openActivityByIndex(0);
+        ActivityPageBase activityPageBase = journalPageBase.openActivity();
         Assert.assertTrue(activityPageBase.isPageOpened(activityName),
                 String.format("[ ACTIVITY PAGE ] Activity page '%s' is not opened!", activityName));
 
 
         String dateTimeString = activityPageBase.getDateTime();
-
         String startTimeString = StringUtils.split(dateTimeString, "–")[0];
         String endTimeString = StringUtils.split(dateTimeString, "–")[1];
 
@@ -168,8 +169,7 @@ public class GoogleFitTest extends LoginTest {
 
         activityPageBase.deleteActivity();
 
-        journalPageBase.clearActivityList();
-        Assert.assertEquals(journalPageBase.getActivityListSize(), NULL,
+        Assert.assertEquals(journalPageBase.getActivityListSize(), 0,
                 "[ JOURNAL PAGE ] Activity list is not empty!");
     }
 }

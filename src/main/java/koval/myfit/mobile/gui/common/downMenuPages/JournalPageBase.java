@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.MyAbstractPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
@@ -23,12 +24,9 @@ public abstract class JournalPageBase extends MyAbstractPage {
 
     public abstract String getActivityName();
 
-    public abstract int getActivityIndex(String activityTitle);
+    public abstract Calendar getStartTime() throws ParseException;
 
-    public abstract Calendar getDuration(int activityIndex) throws ParseException;
-
-    public abstract Calendar getStartTime(int activityIndex) throws ParseException;
-
+    public abstract Calendar getDuration() throws ParseException;
 
     public abstract boolean isActivityPresent(String activityTitle);
 
@@ -38,7 +36,7 @@ public abstract class JournalPageBase extends MyAbstractPage {
 
     public abstract int getActivityListSize();
 
-    public abstract ExtendedWebElement openPlusButtonMenu();
+    public abstract PlusButtonModalBase openPlusButtonMenu();
 
     public abstract AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement);
 

@@ -47,7 +47,7 @@ public class PlusButtonModal extends PlusButtonModalBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
+    public PlusButtonModalBase openPlusButtonMenu() {
         throw new NotImplementedException();
     }
 

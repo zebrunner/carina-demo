@@ -26,9 +26,6 @@ public class ActivityPage extends ActivityPageBase {
     @FindBy(id = "com.google.android.apps.fitness:id/title")
     private ExtendedWebElement title;
 
-    @FindBy(id = "android:id/button1")
-    private ExtendedWebElement deleteButton;
-
     @FindBy(xpath = "//android.widget.ImageView[@content-desc='More options']")
     private ExtendedWebElement moreActionButton;
 
@@ -50,7 +47,7 @@ public class ActivityPage extends ActivityPageBase {
 
         moreActionButton.click();
         itemByText.format("Delete").click();
-        deleteButton.click();
+        itemByText.format("Delete").click();
 
         return initPage(getDriver(), JournalPageBase.class);
     }
