@@ -23,4 +23,6 @@ public abstract class AboutMeModalBase extends MyAbstractPage {
     }
 
     public abstract AbstractPage clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics);
+
+    public abstract String getCurrentCharacteristicValue(PersonCharacteristics personCharacteristics);
 }

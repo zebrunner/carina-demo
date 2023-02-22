@@ -13,4 +13,6 @@ public abstract class GenderPageBase extends MyAbstractPage {
     }
 
     public abstract GenderPageBase checkGenderByName(Gender gender);
+
+    public abstract GenderPageBase checkGenderByName(String gender);
 }

@@ -36,20 +36,6 @@ public class LoginTest implements IMyInterface {
             AboutMePageBase aboutMePageBase = welcomePageBase.clickLoginBtn();
             Assert.assertTrue(aboutMePageBase.isPageOpened(), "[ ABOUT YOU PAGE ] About You page is not opened!");
 
-
-
-
-            GenderPageBase genderPageBase = (GenderPageBase) aboutMePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.GENDER);
-            genderPageBase.checkGenderByName(Gender.MALE);
-
-            BirthdayPageBase birthdayPageBase = (BirthdayPageBase) aboutMePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.BIRTHDAY);
-            birthdayPageBase.setDate();
-            birthdayPageBase.saveChanges();
-            birthdayPageBase.returnBack();
-
-
-
-
             TrackActivitiesPageBase trackActivitiesPageBase = aboutMePageBase.clickNextBtn();
             Assert.assertTrue(trackActivitiesPageBase.isPageOpened(), "[ TRACK ACTIVITIES PAGE ] Track Activities page is not opened!");
             trackActivitiesPageBase.clickOnAnswerBtn(TrackYourActivitiesAnswer.NO);

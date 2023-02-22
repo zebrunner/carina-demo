@@ -3,6 +3,8 @@ package koval.myfit.mobile.gui.common.aboutMePages;
 import koval.myfit.mobile.gui.MyAbstractPage;
 import org.openqa.selenium.WebDriver;
 
+import java.util.Calendar;
+
 
 public abstract class BirthdayPageBase extends MyAbstractPage {
 
@@ -10,7 +12,7 @@ public abstract class BirthdayPageBase extends MyAbstractPage {
         super(driver);
     }
 
-    public abstract BirthdayPageBase setDate();
+    public abstract BirthdayPageBase setDate(Calendar calendar);
 
     public abstract BirthdayPageBase saveChanges();
 

@@ -19,11 +19,17 @@ public interface IConstantUtils {
 
     String START_TIME_DATE_FORMAT = "MMM dd, hh:mm";
 
-    String END_TIME_FORMAT = "hh:mm a";
+    String BIRTHDAY_DATE_FORMAT = "MMM dd, yyyy";
+
+    String END_TIME_FORMAT = "hh:mm";
 
     String START_TIME_FORMAT = "hh:mm";
 
     String DURATION_FORMAT = "mm";
+
+    String MONTH_DATE_FORMAT = "MMMM";
+
+    String NUMBERS_ONLY = "[^0-9]";
 
 
 

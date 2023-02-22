@@ -7,6 +7,10 @@ import koval.myfit.mobile.gui.common.aboutMePages.BirthdayPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = BirthdayPageBase.class)
 public class BirthdayPage extends BirthdayPageBase {
@@ -20,6 +24,15 @@ public class BirthdayPage extends BirthdayPageBase {
     @FindBy(xpath = "//*[@class='android.widget.Spinner']")
     private ExtendedWebElement monthSpinner;
 
+
+    @FindBy(xpath = "//*[@class='android.widget.Spinner']//following-sibling::*//*[@text='Menu for selecting month of birth']")
+    private ExtendedWebElement monthSpinnerContainer;
+
+
+    @FindBy(xpath = "//*[@class='android.widget.Spinner']//following-sibling::*//*[@class='android.widget.ListView']/child::*[@class='android.view.View']")
+    private List<ExtendedWebElement> monthList;
+
+
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
@@ -30,12 +43,23 @@ public class BirthdayPage extends BirthdayPageBase {
 
 
     @Override
-    public BirthdayPageBase setDate() {
+    public BirthdayPageBase setDate(Calendar calendar) {
 
 
-        dateFieldByText.format("Day").type("12");
+        monthSpinner.click();
 
-        dateFieldByText.format("Year").type("1999");
+
+        String birthdaySt = new SimpleDateFormat(MONTH_DATE_FORMAT).format(calendar.getTime());
+
+        ExtendedWebElement expectedMonth = itemByText.format(birthdaySt);
+        swipe(expectedMonth, monthSpinnerContainer, Direction.UP, FORTY_COUNT, HIGH_SPEED);
+
+        monthList.get(calendar.get(Calendar.MONTH)).click();
+
+
+        dateFieldByText.format("Day").type(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
+
+        dateFieldByText.format("Year").type(String.valueOf(calendar.get(Calendar.YEAR)));
 
 
         return initPage(getDriver(), BirthdayPageBase.class);

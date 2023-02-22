@@ -4,7 +4,6 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.common.modal.AboutMeModalBase;
 import koval.myfit.mobile.service.enums.PersonCharacteristics;
 import org.openqa.selenium.SearchContext;
@@ -38,14 +37,18 @@ public class AboutMeModal extends AboutMeModalBase {
     }
 
 
-
     @Override
     public AbstractPage clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics) {
         characteristicByID.format(personCharacteristics.getCharacteristic()).click();
-       // itemByText.format("OK").click();
+        // itemByText.format("OK").click();
         return initPage(getDriver(), personCharacteristics.getClassName());
     }
 
+    @Override
+    public String getCurrentCharacteristicValue(PersonCharacteristics personCharacteristics) {
 
+        return characteristicByID.format(personCharacteristics.getCharacteristic()).getText();
+
+    }
 
 }
