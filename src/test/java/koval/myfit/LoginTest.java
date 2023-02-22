@@ -6,7 +6,6 @@ import koval.myfit.mobile.service.AdbService;
 import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
-import koval.myfit.mobile.service.enums.PersonCharacteristics;
 import koval.myfit.mobile.service.enums.TrackYourActivitiesAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +31,6 @@ public class LoginTest implements IMyInterface {
 
             AboutMePageBase aboutMePageBase = welcomePageBase.clickLoginBtn();
             Assert.assertTrue(aboutMePageBase.isPageOpened(), "[ ABOUT YOU PAGE ] About You page is not opened!");
-            aboutMePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
 
             TrackActivitiesPageBase trackActivitiesPageBase = aboutMePageBase.clickNextBtn();
             Assert.assertTrue(trackActivitiesPageBase.isPageOpened(), "[ TRACK ACTIVITIES PAGE ] Track Activities page is not opened!");

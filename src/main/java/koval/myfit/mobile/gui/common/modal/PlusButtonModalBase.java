@@ -1,8 +1,10 @@
-package koval.myfit.mobile.gui.common.menu;
+package koval.myfit.mobile.gui.common.modal;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.MyAbstractPage;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
@@ -18,13 +20,15 @@ public abstract class PlusButtonModalBase extends MyAbstractPage {
         super(driver);
     }
 
+    public abstract AbstractPage openPageByName(PlusButtonMenuElement plusButtonMenuElement);
+
     public abstract List<String> getPlusButtonMenuElementsToList();
 
     public abstract boolean isPlusBtnStatic();
 
     public abstract boolean isPlusBtnOverElements();
 
-    public abstract ExtendedWebElement openPlusButtonMenu();
+    public abstract PlusButtonModalBase openPlusButtonMenu();
 
     public abstract HomePageBase closePlusButtonMenu();
 

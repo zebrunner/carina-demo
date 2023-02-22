@@ -1,11 +1,12 @@
 package koval.myfit.mobile.gui.common.downMenuPages;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.MyAbstractPage;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -22,13 +23,17 @@ public abstract class HomePageBase extends MyAbstractPage {
     public abstract WelcomePageBase signOut();
 
 
-    public abstract AbstractPage openPageByName(DownMenuElement downMenuElement);
+    public abstract AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement);
 
     public abstract boolean isPlusBtnStatic();
 
     public abstract boolean isPlusBtnOverElements();
 
+    public abstract AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement);
+
     public abstract HomePageBase closePlusButtonMenu();
+
+    public abstract PlusButtonModalBase openPlusButtonMenu();
 
     public abstract boolean isPlusButtonBelowBlockContainer();
 

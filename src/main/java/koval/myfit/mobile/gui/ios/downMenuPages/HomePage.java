@@ -6,8 +6,10 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public AbstractPage openPageByName(DownMenuElement downMenuElement) {
+    public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
         throw new NotImplementedException();
     }
 
@@ -47,7 +49,17 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
+    public AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public HomePageBase closePlusButtonMenu() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public PlusButtonModalBase openPlusButtonMenu() {
         throw new NotImplementedException();
     }
 

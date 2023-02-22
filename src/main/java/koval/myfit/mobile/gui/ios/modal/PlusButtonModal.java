@@ -1,11 +1,12 @@
-package koval.myfit.mobile.gui.ios.menu;
+package koval.myfit.mobile.gui.ios.modal;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
-import koval.myfit.mobile.gui.common.menu.PlusButtonModalBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
@@ -24,13 +25,17 @@ public class PlusButtonModal extends PlusButtonModalBase {
     }
 
     @Override
+    public AbstractPage openPageByName(PlusButtonMenuElement plusButtonMenuElement) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public List<String> getPlusButtonMenuElementsToList() {
         throw new NotImplementedException();
     }
 
     @Override
     public boolean isPlusBtnStatic() {
-
         throw new NotImplementedException();
     }
 
@@ -41,7 +46,7 @@ public class PlusButtonModal extends PlusButtonModalBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
+    public PlusButtonModalBase openPlusButtonMenu() {
         throw new NotImplementedException();
     }
 

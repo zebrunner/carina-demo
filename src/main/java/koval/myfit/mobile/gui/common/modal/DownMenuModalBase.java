@@ -1,4 +1,4 @@
-package koval.myfit.mobile.gui.common.menu;
+package koval.myfit.mobile.gui.common.modal;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.MyAbstractPage;

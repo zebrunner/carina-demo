@@ -4,12 +4,15 @@ package koval.myfit.mobile.gui.android.downMenuPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.myfit.mobile.gui.android.menu.DownMenuModal;
-import koval.myfit.mobile.gui.android.menu.PlusButtonModal;
+import koval.myfit.mobile.gui.android.modal.DownMenuModal;
+import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -73,7 +76,7 @@ public class HomePage extends HomePageBase {
 
 
     @Override
-    public AbstractPage openPageByName(DownMenuElement downMenuElement) {
+    public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
         return downMenuModal.openPageByName(downMenuElement);
     }
 
@@ -90,11 +93,22 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
+    public AbstractPage openPageFromPlusButtonMenuByName(PlusButtonMenuElement plusButtonMenuElement) {
+
+        return plusButtonModal.openPageByName(plusButtonMenuElement);
+    }
+
+    @Override
     public HomePageBase closePlusButtonMenu() {
 
         return plusButtonModal.closePlusButtonMenu();
     }
 
+    @Override
+    public PlusButtonModalBase openPlusButtonMenu() {
+
+        return plusButtonModal.openPlusButtonMenu();
+    }
 
     @Override
     public boolean isPlusButtonBelowBlockContainer() {

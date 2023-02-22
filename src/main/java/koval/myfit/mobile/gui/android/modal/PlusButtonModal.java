@@ -1,12 +1,14 @@
-package koval.myfit.mobile.gui.android.menu;
+package koval.myfit.mobile.gui.android.modal;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
-import koval.myfit.mobile.gui.common.menu.PlusButtonModalBase;
+import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.BlocksTitles;
+import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.SearchContext;
@@ -48,6 +50,20 @@ public class PlusButtonModal extends PlusButtonModalBase {
         super(driver, searchContext);
     }
 
+
+    @Override
+    public AbstractPage openPageByName(PlusButtonMenuElement plusButtonMenuElement) {
+
+        int index = plusButtonMenuElement.getPageIndex();
+        if (listOfPlusButtonElement.isEmpty() || index > listOfPlusButtonElement.size()) {
+            Assert.fail(String.format("[ HOME PAGE, PLUS BUTTON MENU LIST] There is no element by index '%s'.", index));
+        }
+
+        listOfPlusButtonElement.get(index).click();
+
+        return initPage(getDriver(), plusButtonMenuElement.getClassName());
+
+    }
     @Override
     public List<String> getPlusButtonMenuElementsToList() {
 
@@ -80,10 +96,10 @@ public class PlusButtonModal extends PlusButtonModalBase {
     }
 
     @Override
-    public ExtendedWebElement openPlusButtonMenu() {
+    public PlusButtonModalBase openPlusButtonMenu() {
 
         plusButton.click();
-        return plusButtonMenuContainer;
+        return initPage(getDriver(), PlusButtonModalBase.class);
 
     }
 
