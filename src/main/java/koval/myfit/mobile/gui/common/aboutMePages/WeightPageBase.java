@@ -10,4 +10,5 @@ public abstract class WeightPageBase extends MyAbstractPage {
         super(driver);
     }
 
+    public abstract WeightPageBase setWeight();
 }
