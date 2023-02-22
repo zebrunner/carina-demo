@@ -8,10 +8,12 @@ import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
+import koval.myfit.mobile.gui.common.downMenuPages.ProfilePageBase;
 import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
+import koval.myfit.mobile.service.enums.PersonCharacteristics;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -167,5 +169,21 @@ public class GoogleFitTest extends LoginTest {
 
         Assert.assertEquals(journalPageBase.getActivityListSize(), 0,
                 "[ JOURNAL PAGE ] Activity list is not empty!");
+    }
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void changeProfileDataTest() {
+
+//        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+//        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+//
+//
+//       ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
+//
+//        profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
+
+
     }
 }
