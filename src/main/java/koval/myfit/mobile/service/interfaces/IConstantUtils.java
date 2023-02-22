@@ -9,6 +9,8 @@ public interface IConstantUtils {
 
     int MEDIUM_SPEED = 600;
 
+    int HIGH_SPEED_200 = 200;
+
     int HIGH_SPEED = 400;
 
     int THREE_COUNT = 3;
@@ -19,7 +21,7 @@ public interface IConstantUtils {
 
     String START_TIME_DATE_FORMAT = "MMM dd, hh:mm";
 
-    String END_TIME_FORMAT = "hh:mm a";
+    String END_TIME_FORMAT = "hh:mm";
 
     String START_TIME_FORMAT = "hh:mm";
 

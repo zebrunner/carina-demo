@@ -60,7 +60,6 @@ public class HomePage extends HomePageBase {
         super(driver);
     }
 
-
     @Override
     public boolean isPageOpened() {
         return activityChartView.isElementPresent(TIMEOUT_FIVE);
