@@ -110,7 +110,11 @@ public class GoogleFitTest extends LoginTest {
         expectedActivityDuration.set(Calendar.HOUR, NULL);
         expectedActivityDuration.set(Calendar.MINUTE, 35);
 
-        String activityName = addActivityPageBase.selectRandomActivity().toLowerCase();
+        Random rand = new Random();
+        List<String> listOfActivities = Arrays.asList("Rowing", "Flossing", "Skiing", "Kettlebell", "Squash");
+        int randomIndex = rand.nextInt(listOfActivities.size());
+
+        String activityName = addActivityPageBase.selectActivity(listOfActivities.get(randomIndex)).toLowerCase();
         addActivityPageBase.setTime(expectedActivityDateTime);
         addActivityPageBase.setDate(expectedActivityDateTime);
         addActivityPageBase.setDuration(expectedActivityDuration);

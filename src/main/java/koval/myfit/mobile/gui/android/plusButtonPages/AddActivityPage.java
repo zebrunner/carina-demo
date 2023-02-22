@@ -49,10 +49,10 @@ public class AddActivityPage extends AddActivityPageBase {
     @FindBy(id = "com.google.android.apps.fitness:id/material_timepicker_ok_button")
     private ExtendedWebElement durationPickerOkayButton;
 
-    @FindBy(id = "android:id/content")
+    @FindBy(id = "com.google.android.apps.fitness:id/material_timepicker_view")
     private TimePickerModal timePickerModal;
 
-    @FindBy(id = "android:id/content")
+    @FindBy(id = "com.google.android.apps.fitness:id/mtrl_picker_header")
     private DatePickerModal datePickerModal;
 
     @FindBy(xpath = "//*[@resource-id='com.google.android.apps.fitness:id/select_dialog_listview']/child::*[@class='android.widget.TextView']")
@@ -145,18 +145,6 @@ public class AddActivityPage extends AddActivityPageBase {
         activityTitleElement.click();
 
         return activityTitle;
-    }
-
-    @Override
-    public String selectRandomActivity() {
-
-        Random rand = new Random();
-
-        List<String> listOfActivities = Arrays.asList("Rowing", "Flossing", "Skiing", "Kettlebell", "Squash");
-
-        int randomIndex = rand.nextInt(listOfActivities.size());
-
-        return selectActivity(listOfActivities.get(randomIndex));
     }
 
 

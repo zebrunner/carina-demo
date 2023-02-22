@@ -23,7 +23,5 @@ public abstract class AddActivityPageBase extends MyAbstractPage {
 
     public abstract String selectActivity(String activity);
 
-    public abstract String selectRandomActivity();
-
     public abstract JournalPageBase saveActivity();
 }
