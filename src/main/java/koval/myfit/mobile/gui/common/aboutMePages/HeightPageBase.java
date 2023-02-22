@@ -10,4 +10,8 @@ public abstract class HeightPageBase extends MyAbstractPage {
         super(driver);
     }
 
+
+    public abstract WeightPageBase setHeight(int centimeters);
+
+    public abstract WeightPageBase setHeight(float centimeters);
 }

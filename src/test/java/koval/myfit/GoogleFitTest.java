@@ -188,10 +188,8 @@ public class GoogleFitTest extends LoginTest {
 
         Calendar actualBirthday = profilePageBase.getCurrentBirthday();
         String actualGender = profilePageBase.getCurrentGender();
-        String actualHeight = profilePageBase.getCurrentWeightOrHeight(PersonCharacteristics.HEIGHT);
+        int actualHeight = Integer.parseInt(profilePageBase.getCurrentWeightOrHeight(PersonCharacteristics.HEIGHT));
         String actualWeight = profilePageBase.getCurrentWeightOrHeight(PersonCharacteristics.WEIGHT);
-
-
 
 
         Calendar expectedBirthday = new GregorianCalendar();
@@ -202,57 +200,62 @@ public class GoogleFitTest extends LoginTest {
         LOGGER.info(String.valueOf(actualBirthday.get(Calendar.YEAR)));
 
 
-
         LOGGER.info(String.valueOf(expectedBirthday.get(Calendar.DAY_OF_MONTH)));
         LOGGER.info(String.valueOf(expectedBirthday.get(Calendar.MONTH)));
         LOGGER.info(String.valueOf(expectedBirthday.get(Calendar.YEAR)));
 
 
-
         String expectedGender = Gender.MALE.getGender();
-        String expectedHeight = "170";
+        int expectedHeightCentimeters = 170;
+        float expectedHeightFeet = 3.5F;
         String expectedWeight = "170";
 
-
-        if (!actualGender.equals(expectedGender)) {
-
-            GenderPageBase genderPageBase = (GenderPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.GENDER);
-            genderPageBase.checkGenderByName(expectedGender);
-
-        }
-
-
-        boolean isBirthdayEquals = expectedBirthday.get(Calendar.YEAR) == actualBirthday.get(Calendar.YEAR) &&
-                expectedBirthday.get(Calendar.MONTH) == actualBirthday.get(Calendar.MONTH) &&
-                expectedBirthday.get(Calendar.DAY_OF_MONTH) == actualBirthday.get(Calendar.DAY_OF_MONTH);
-
-        if (!isBirthdayEquals) {
-
-            BirthdayPageBase birthdayPageBase = (BirthdayPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.BIRTHDAY);
-            birthdayPageBase.setDate(expectedBirthday);
-            birthdayPageBase.saveChanges();
-            birthdayPageBase.returnBack();
-
-        }
-
-
-        if (!actualWeight.equals(expectedWeight)) {
+//
+//        if (!actualGender.equals(expectedGender)) {
+//
+//            GenderPageBase genderPageBase = (GenderPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.GENDER);
+//            genderPageBase.checkGenderByName(expectedGender);
+//
+//        }
+//
+//
+//        boolean isBirthdayEquals = expectedBirthday.get(Calendar.YEAR) == actualBirthday.get(Calendar.YEAR) &&
+//                expectedBirthday.get(Calendar.MONTH) == actualBirthday.get(Calendar.MONTH) &&
+//                expectedBirthday.get(Calendar.DAY_OF_MONTH) == actualBirthday.get(Calendar.DAY_OF_MONTH);
+//
+//        if (!isBirthdayEquals) {
+//
+//            BirthdayPageBase birthdayPageBase = (BirthdayPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.BIRTHDAY);
+//            birthdayPageBase.setDate(expectedBirthday);
+//            birthdayPageBase.saveChanges();
+//            birthdayPageBase.returnBack();
+//
+//        }
 
 
+//        if (!actualWeight.equals(expectedWeight)) {
+//
+//
+//
+//            WeightPageBase weightPageBase = (WeightPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
+//
+//
+//        }
 
-            WeightPageBase weightPageBase = (WeightPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
+//        if (actualHeight != expectedHeightCentimeters) {
+//
+//            HeightPageBase heightPageBase = (HeightPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.HEIGHT);
+//
+//            heightPageBase.setHeight(expectedHeightCentimeters);
+//        }
 
 
-        }
-
-        if (!actualHeight.equals(expectedHeight)) {
+        if (actualHeight != expectedHeightFeet) {
 
             HeightPageBase heightPageBase = (HeightPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.HEIGHT);
 
-
+            heightPageBase.setHeight(expectedHeightFeet);
         }
-
-
 
 
     }

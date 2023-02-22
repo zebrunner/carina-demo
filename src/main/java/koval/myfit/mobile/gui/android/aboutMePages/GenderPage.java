@@ -18,6 +18,7 @@ public class GenderPage extends GenderPageBase {
 
     @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
     private ExtendedWebElement navigateBackButton;
+
     public GenderPage(WebDriver driver) {
         super(driver);
     }
