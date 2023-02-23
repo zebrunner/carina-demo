@@ -17,7 +17,7 @@ package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.demo.mobile.gui.pages.ios.PreferencesPage;
+import com.qaprosoft.carina.demo.mobile.gui.app.pages.ios.PreferencesPage;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import io.appium.java_client.InteractsWithApps;
 import org.openqa.selenium.WebDriver;

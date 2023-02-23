@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.demo.mobile.gui.pages.ios.SaucePage;
+import com.qaprosoft.carina.demo.mobile.gui.app.pages.ios.SaucePage;
 
 public class IOSSafariTest implements IAbstractTest, IMobileUtils {
     @Test
