@@ -24,7 +24,7 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.Configuration;
 
-@Endpoint(url = "${base_url}/create", methodType = HttpMethodType.POST)
+@Endpoint(url = "${base_url}/products/add", methodType = HttpMethodType.POST)
 @RequestTemplatePath(path = "api/restapiexample/_post/rq.json")
 @ResponseTemplatePath(path = "api/restapiexample/_post/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)

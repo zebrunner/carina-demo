@@ -23,7 +23,7 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.Configuration;
 
-@Endpoint(url = "${base_url}/employees", methodType = HttpMethodType.GET)
+@Endpoint(url = "${base_url}/products", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/restapiexample/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetUserMethods extends AbstractApiMethodV2 {
