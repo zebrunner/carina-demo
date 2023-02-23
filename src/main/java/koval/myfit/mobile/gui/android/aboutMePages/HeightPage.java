@@ -29,6 +29,12 @@ public class HeightPage extends HeightPageBase {
     private ExtendedWebElement heightContainer;
 
 
+@FindBy(className = "//*[contains(@resource-id, 'imperial_picker')]/child::*[@class='android.widget.NumberPicker'][1]/child::*[@class='android.widget.EditText']")
+private ExtendedWebElement actualFeetValue;
+
+
+    @FindBy(className = "//*[contains(@resource-id, 'imperial_picker')]/child::*[@class='android.widget.NumberPicker'][2]/child::*[@class='android.widget.EditText']")
+    private ExtendedWebElement actualInchValue;
 
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
@@ -69,7 +75,7 @@ public class HeightPage extends HeightPageBase {
         return initPage(getDriver(), WeightPageBase.class);
     }
     @Override
-    public WeightPageBase setHeight(float centimeters){
+    public WeightPageBase setHeight(float feetInch){
 
         if(!heightMeasurement.getText().equals("Feet & inches"))
         {
@@ -83,14 +89,14 @@ public class HeightPage extends HeightPageBase {
 
         Direction direction = Direction.UP;
 
-        int actualFeet = Integer.parseInt(actualCentimeterValue.getText());
+        int actualFeet = Integer.parseInt(actualFeetValue.getText());
 
 
-        if (centimeters < actualFeet) {
+        if (feetInch < actualFeet) {
             direction = Direction.DOWN;
         }
 
-        ExtendedWebElement expectedCentimetersHeight = heightByText.format(centimeters);
+        ExtendedWebElement expectedCentimetersHeight = heightByText.format(feetInch);
         swipe(expectedCentimetersHeight, heightContainer, direction, FORTY_COUNT, HIGH_SPEED);
 
 
