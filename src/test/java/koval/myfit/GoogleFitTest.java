@@ -1,9 +1,7 @@
 package koval.myfit;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
@@ -13,7 +11,6 @@ import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +18,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
+
 
 
 public class GoogleFitTest extends LoginTest {
