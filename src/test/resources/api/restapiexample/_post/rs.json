@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "data": {
+    "name": "skip",
+    "salary": "skip",
+    "age": "skip",
+    "id": "type:Integer"
+  },
+  "message": "Successfully! Record has been added."
+}
