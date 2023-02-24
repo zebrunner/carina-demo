@@ -41,11 +41,6 @@ public class AddActivityPage extends AddActivityPageBase {
     }
 
     @Override
-    public String selectRandomActivity() {
-        throw new NotImplementedException();
-    }
-
-    @Override
     public JournalPageBase saveActivity() {
         throw new NotImplementedException();
     }

@@ -12,7 +12,6 @@ import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.MaterialCardTopics;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -52,8 +51,8 @@ public class HomePage extends HomePageBase {
     @FindBy(id = "com.google.android.apps.fitness:id/title")
     private List<ExtendedWebElement> listOfPlaylistTitles;
 
-    @FindBy(xpath = "//*[contains(@resource-id, 'material_card')]")
-    private List<ExtendedWebElement> materialCardBlock;
+    @FindBy(xpath = "//*[contains(@resource-id, 'material_card')]/child::*//*[@text='%s']")
+    private ExtendedWebElement materialCardBlock;
 
 
     public HomePage(WebDriver driver) {
@@ -118,12 +117,10 @@ public class HomePage extends HomePageBase {
     @Override
     public boolean isBlockByTitlePresent(MaterialCardTopics topic) {
 
-        swipe(itemByText.format(topic.getTopicName()), THREE_COUNT, MEDIUM_SPEED);
+        swipe(materialCardBlock.format(topic.getTopicName()));
 
-        return materialCardBlock.get(topic.getTopicIndex()).findExtendedWebElement(
-                By.id("com.google.android.apps.fitness:id/card_title")).getText().equals(topic.getTopicName());
+        return materialCardBlock.format(topic.getTopicName()).isElementPresent(TIMEOUT_FIVE);
     }
-
 
     @Override
     public List<String> getPlaylistTitlesToList() {
