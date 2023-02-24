@@ -1,6 +1,5 @@
 package koval.myfit.mobile.gui.common.downMenuPages;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.myfit.mobile.gui.MyAbstractPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;

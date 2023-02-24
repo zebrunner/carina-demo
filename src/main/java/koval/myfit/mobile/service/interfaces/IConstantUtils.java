@@ -9,9 +9,9 @@ public interface IConstantUtils {
 
     int MEDIUM_SPEED = 600;
 
-    int HIGH_SPEED = 400;
+    int HIGH_SPEED_200 = 200;
 
-    int THREE_COUNT = 3;
+    int HIGH_SPEED = 400;
 
     int FORTY_COUNT = 40;
 
@@ -19,13 +19,48 @@ public interface IConstantUtils {
 
     String START_TIME_DATE_FORMAT = "MMM dd, hh:mm";
 
-    String END_TIME_FORMAT = "hh:mm a";
+    String BIRTHDAY_DATE_FORMAT = "MMM dd, yyyy";
+
+    String END_TIME_FORMAT = "hh:mm";
 
     String START_TIME_FORMAT = "hh:mm";
 
     String DURATION_FORMAT = "mm";
 
+    String MONTH_DATE_FORMAT = "MMMM";
 
+    String NUMBERS_AND_DOT_ONLY = "[^.,0-9]+";
 
+    String NUMBERS_ONLY = "[^0-9]";
+
+    String STRING_ONLY = "[^A-Za-z]+";
+
+    String FOOT_MEASURE = " ft";
+
+    String INCH_MEASURE = " in";
+
+    String CENTIMETERS_MEASURE = " cm";
+
+    String STONES_MEASURE = "st";
+
+    String STLB_MEASURE = "stlb";
+
+    String EMPTY_FIELD = "";
+
+    String SLASH_DOT_VALUE = "\\.";
+
+    String DOT_VALUE = ".";
+
+    String APOSTROPHE_VALUE = "′";
+
+    String QUOTES_VALUE = "″";
+
+    String DAY_VALUE = "Day";
+
+    String YEAR_VALUE = "Year";
+
+    String SAVE_VALUE = "Save";
+
+    String CONFIRM_VALUE = "Confirm";
 
 }

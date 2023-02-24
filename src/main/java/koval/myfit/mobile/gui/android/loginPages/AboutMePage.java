@@ -2,7 +2,9 @@ package koval.myfit.mobile.gui.android.loginPages;
 
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import koval.myfit.mobile.gui.android.modal.AboutMeModal;
 import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.service.enums.LoginPagesTitles;
@@ -14,11 +16,9 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AboutMePageBase.class)
 public class AboutMePage extends AboutMePageBase {
 
-    @FindBy(id = "android:id/button1")
-    private ExtendedWebElement okayButton;
+    @FindBy(id = "com.google.android.apps.fitness:id/about_you_placeholder")
+    private AboutMeModal aboutMeModal;
 
-    @FindBy(id = "com.google.android.apps.fitness:id/%s_field")
-    private ExtendedWebElement itemByID;
 
     @FindBy(xpath = "//*[@resource-id='com.google.android.apps.fitness:id/heart_logo_animation']//following-sibling::*[@class = 'android.widget.TextView'][1]")
     private ExtendedWebElement title;
@@ -44,11 +44,10 @@ public class AboutMePage extends AboutMePageBase {
         return initPage(getDriver(), TrackActivitiesPageBase.class);
     }
 
+
     @Override
-    public AboutMePageBase clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics) {
-        itemByID.format(personCharacteristics.getCharacteristic()).click();
-        okayButton.click();
-        return initPage(getDriver(), AboutMePageBase.class);
+    public AbstractPage clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics) {
+        return aboutMeModal.clickOnCharacteristicsBtn(personCharacteristics);
     }
 
 }

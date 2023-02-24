@@ -73,9 +73,9 @@ public class TimePickerModal extends TimePickerModalBase {
                 type(String.valueOf(calendar.get(Calendar.MINUTE)));
 
 
-        String timePeriodButtonId = "com.google.android.apps.fitness:id/material_clock_period_am_button";
-
         LOGGER.info(String.valueOf(calendar.get(Calendar.AM_PM)));
+
+        String timePeriodButtonId = "com.google.android.apps.fitness:id/material_clock_period_am_button";
 
         if (calendar.get(Calendar.AM_PM) == Calendar.PM) {
             timePeriodButtonId = "com.google.android.apps.fitness:id/material_clock_period_pm_button";
