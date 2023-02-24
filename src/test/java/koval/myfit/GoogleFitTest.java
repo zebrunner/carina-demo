@@ -62,9 +62,9 @@ public class GoogleFitTest extends LoginTest {
                     String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
         }
 
-        List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES = Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
+        List<String> expectedListOfPlaylistTitles = Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
         List<String> actualPlaylistTitlesList = homePageBase.getPlaylistTitlesToList();
-        Assert.assertEquals(actualPlaylistTitlesList, EXPECTED_LIST_OF_PLAYLIST_TITLES,
+        Assert.assertEquals(actualPlaylistTitlesList, expectedListOfPlaylistTitles,
                 "[ HOME PAGE / actualPlaylistTitlesList ] Actual list of Playlist titles is not equals to expected list!");
 
 
