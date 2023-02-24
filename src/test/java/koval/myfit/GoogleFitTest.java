@@ -15,6 +15,7 @@ import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.ProfilePageBase;
 import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
+import koval.myfit.mobile.gui.common.plusButtonPages.AddBloodPressurePageBase;
 import koval.myfit.mobile.service.enums.*;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
@@ -32,14 +33,6 @@ import java.util.*;
 public class GoogleFitTest extends LoginTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    Calendar calendar = Calendar.getInstance();
-    int currentHour = calendar.get(Calendar.HOUR);
-    int currentMinutes = calendar.get(Calendar.MINUTE);
-    int currentAmPm = calendar.get(Calendar.AM_PM);
-    int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-    int currentMonth = calendar.get(Calendar.MONTH);
-    int currentYear = calendar.get(Calendar.YEAR);
-
     Calendar calendar = Calendar.getInstance();
     int currentHour = calendar.get(Calendar.HOUR);
     int currentMinutes = calendar.get(Calendar.MINUTE);
@@ -231,9 +224,7 @@ public class GoogleFitTest extends LoginTest {
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
 
-
         ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
-
 
         Calendar actualBirthday = profilePageBase.getCurrentBirthday();
         String actualGender = profilePageBase.getCurrentGender();
