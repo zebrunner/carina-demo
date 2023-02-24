@@ -1,10 +1,11 @@
 package koval.myfit;
 
-
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
+import koval.myfit.mobile.gui.common.browsePages.VitalsPageBase;
+import koval.myfit.mobile.gui.common.downMenuPages.BrowsePageBase;
 import koval.myfit.mobile.gui.common.aboutMePages.BirthdayPageBase;
 import koval.myfit.mobile.gui.common.aboutMePages.GenderPageBase;
 import koval.myfit.mobile.gui.common.aboutMePages.HeightPageBase;
@@ -27,9 +28,17 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
+
 public class GoogleFitTest extends LoginTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    Calendar calendar = Calendar.getInstance();
+    int currentHour = calendar.get(Calendar.HOUR);
+    int currentMinutes = calendar.get(Calendar.MINUTE);
+    int currentAmPm = calendar.get(Calendar.AM_PM);
+    int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+    int currentMonth = calendar.get(Calendar.MONTH);
+    int currentYear = calendar.get(Calendar.YEAR);
 
     Calendar calendar = Calendar.getInstance();
     int currentHour = calendar.get(Calendar.HOUR);
@@ -119,9 +128,7 @@ public class GoogleFitTest extends LoginTest {
         addActivityPageBase.setDate(expectedActivityDateTime);
         addActivityPageBase.setDuration(expectedActivityDuration);
 
-
         journalPageBase = addActivityPageBase.saveActivity();
-
 
         Assert.assertTrue(journalPageBase.isActivityPresent(activityName),
                 String.format("[ JOURNAL PAGE ] Activity '%s' is not present!", activityName));
@@ -168,14 +175,62 @@ public class GoogleFitTest extends LoginTest {
                 "[ JOURNAL PAGE ] Activity list is not empty!");
     }
 
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void addBloodPressureTest() {
+
+        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+
+        PlusButtonModalBase plusButtonModal = homePageBase.openPlusButtonMenu();
+
+        AddBloodPressurePageBase addBloodPressurePageBase = (AddBloodPressurePageBase)
+                plusButtonModal.openPageByName(PlusButtonMenuElement.ADD_BLOOD_PRESSURE);
+        Assert.assertTrue(addBloodPressurePageBase.isPageOpened(),
+                "[ ADD BLOOD PRESSURE PAGE ] Add Blood Pressure page is not opened!");
+
+
+        Calendar expectedBloodPressureTime = new GregorianCalendar();
+        expectedBloodPressureTime.set(currentYear, currentMonth, currentDay, currentHour, currentMinutes);
+        expectedBloodPressureTime.set(Calendar.AM_PM, currentAmPm);
+
+
+        int expectedTopNumberBloodPressure = 129;
+        int expectedBottomNumberBloodPressure = 78;
+
+        addBloodPressurePageBase.setTime(expectedBloodPressureTime);
+        addBloodPressurePageBase.setBloodPressure(expectedTopNumberBloodPressure, expectedBottomNumberBloodPressure);
+
+        homePageBase = addBloodPressurePageBase.saveBloodPressure();
+
+
+        BrowsePageBase browsePageBase = (BrowsePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.BROWSE);
+        VitalsPageBase vitalsPageBase = (VitalsPageBase) browsePageBase.openCategoryByName(BrowseMenuElement.VITALS);
+
+        int actualTopNumberBloodPressure = vitalsPageBase.getTopNumberBloodPressure();
+        int actualBottomNumberBloodPressure = vitalsPageBase.getBottomNumberBloodPressure();
+
+        Assert.assertEquals(actualTopNumberBloodPressure, expectedTopNumberBloodPressure,
+                String.format("[ VITALS PAGE ] Expected top number blood pressure  '%s', Actual: '%s'!",
+                        expectedTopNumberBloodPressure, actualTopNumberBloodPressure));
+        Assert.assertEquals(actualBottomNumberBloodPressure, expectedBottomNumberBloodPressure,
+                String.format("[ VITALS PAGE ] Expected bottom number blood pressure  '%s', Actual: '%s'!",
+                        expectedBottomNumberBloodPressure, actualBottomNumberBloodPressure));
+
+    }
+
+
     @Test()
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void changeProfileDataTest() throws ParseException {
 
-
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
 
         ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
 
@@ -263,4 +318,5 @@ public class GoogleFitTest extends LoginTest {
                 "[ PROFILE PAGE ] Actual weight measure is not what expected!");
 
     }
+
 }

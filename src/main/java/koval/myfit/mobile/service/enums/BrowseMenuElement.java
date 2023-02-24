@@ -1,21 +1,22 @@
 package koval.myfit.mobile.service.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
-import koval.myfit.mobile.gui.common.plusButtonPages.AddBloodPressurePageBase;
+import koval.myfit.mobile.gui.common.browsePages.VitalsPageBase;
 
-public enum PlusButtonMenuElement {
-    ADD_BLOOD_PRESSURE("Add blood pressure", 0, AddBloodPressurePageBase.class),
-    ADD_WEIGHT("Add weight", 1, AbstractPage.class),
-    ADD_ACTIVITY("Add activity", 2, AddActivityPageBase.class),
-    TRACK_WORKOUT("Track workout", 3, AbstractPage.class);
+public enum BrowseMenuElement {
+    ACTIVITY("Activity", 0, AbstractPage.class),
+    BODY_MEASUREMENTS("Body measurements", 1, AbstractPage.class),
+    VITALS("Vitals", 2, VitalsPageBase.class),
+    NUTRITION("Nutrition", 3, AbstractPage.class),
+    SLEEP("Sleep", 4, AbstractPage.class),
+    CYCLE_TRACKING("Cycle tracking", 5, AbstractPage.class);
 
 
     public final String pageName;
     public final int pageIndex;
     private final Class<? extends AbstractPage> className;
 
-    PlusButtonMenuElement(String pageName, int pageIndex, Class<? extends AbstractPage> className) {
+    BrowseMenuElement(String pageName, int pageIndex, Class<? extends AbstractPage> className) {
         this.pageName = pageName;
         this.pageIndex = pageIndex;
         this.className = className;

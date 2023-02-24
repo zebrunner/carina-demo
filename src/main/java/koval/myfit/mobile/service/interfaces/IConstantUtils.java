@@ -9,6 +9,8 @@ public interface IConstantUtils {
 
     int MEDIUM_SPEED = 600;
 
+    int HIGH_SPEED_200 = 200;
+
     int HIGH_SPEED = 400;
 
     int FORTY_COUNT = 40;
