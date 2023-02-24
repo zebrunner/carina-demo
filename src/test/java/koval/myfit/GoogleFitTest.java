@@ -1,9 +1,8 @@
 package koval.myfit;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.aboutMePages.BirthdayPageBase;
@@ -13,11 +12,9 @@ import koval.myfit.mobile.gui.common.aboutMePages.WeightPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.ProfilePageBase;
-import koval.myfit.mobile.gui.common.modal.AboutMeModalBase;
 import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
 import koval.myfit.mobile.service.enums.*;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +22,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 
 public class GoogleFitTest extends LoginTest {
@@ -179,84 +173,94 @@ public class GoogleFitTest extends LoginTest {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void changeProfileDataTest() throws ParseException {
 
+
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
-
 
         ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
 
 
         Calendar actualBirthday = profilePageBase.getCurrentBirthday();
         String actualGender = profilePageBase.getCurrentGender();
-        int actualHeight = Integer.parseInt(profilePageBase.getCurrentWeightOrHeight(PersonCharacteristics.HEIGHT));
-        String actualWeight = profilePageBase.getCurrentWeightOrHeight(PersonCharacteristics.WEIGHT);
+        float actualHeight = profilePageBase.getCurrentHeight(PersonCharacteristics.HEIGHT);
+        float actualWeight = profilePageBase.getCurrentWeight(PersonCharacteristics.WEIGHT);
+        String actualWeightMeasure = profilePageBase.getCurrentWeightMeasure(PersonCharacteristics.WEIGHT);
 
 
         Calendar expectedBirthday = new GregorianCalendar();
+
         expectedBirthday.set(currentYear - 25, currentMonth, currentDay + 3);
-
-        LOGGER.info(String.valueOf(actualBirthday.get(Calendar.DAY_OF_MONTH)));
-        LOGGER.info(String.valueOf(actualBirthday.get(Calendar.MONTH)));
-        LOGGER.info(String.valueOf(actualBirthday.get(Calendar.YEAR)));
-
-
-        LOGGER.info(String.valueOf(expectedBirthday.get(Calendar.DAY_OF_MONTH)));
-        LOGGER.info(String.valueOf(expectedBirthday.get(Calendar.MONTH)));
-        LOGGER.info(String.valueOf(expectedBirthday.get(Calendar.YEAR)));
-
-
         String expectedGender = Gender.MALE.getGender();
-        int expectedHeightCentimeters = 170;
-        float expectedHeightFeet = 3.5F;
-        String expectedWeight = "170";
 
-//
-//        if (!actualGender.equals(expectedGender)) {
-//
-//            GenderPageBase genderPageBase = (GenderPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.GENDER);
-//            genderPageBase.checkGenderByName(expectedGender);
-//
-//        }
-//
-//
-//        boolean isBirthdayEquals = expectedBirthday.get(Calendar.YEAR) == actualBirthday.get(Calendar.YEAR) &&
-//                expectedBirthday.get(Calendar.MONTH) == actualBirthday.get(Calendar.MONTH) &&
-//                expectedBirthday.get(Calendar.DAY_OF_MONTH) == actualBirthday.get(Calendar.DAY_OF_MONTH);
-//
-//        if (!isBirthdayEquals) {
-//
-//            BirthdayPageBase birthdayPageBase = (BirthdayPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.BIRTHDAY);
-//            birthdayPageBase.setDate(expectedBirthday);
-//            birthdayPageBase.saveChanges();
-//            birthdayPageBase.returnBack();
-//
-//        }
+        int expectedHeightCentimeters = 173;
+        float expectedHeightFeet = 4.6F;
+
+        float expectedWeightKilograms = 69.5F;
+        float expectedWeightPounds = 156.4F;
+        float expectedWeightStones = 13.5F;
+        WeightMeasures expectedWeightMeasure = WeightMeasures.STONES;
 
 
-//        if (!actualWeight.equals(expectedWeight)) {
-//
-//
-//
-//            WeightPageBase weightPageBase = (WeightPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
-//
-//
-//        }
+        SimpleDateFormat birthFormat = new SimpleDateFormat(BIRTHDAY_DATE_FORMAT);
 
-//        if (actualHeight != expectedHeightCentimeters) {
-//
-//            HeightPageBase heightPageBase = (HeightPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.HEIGHT);
-//
-//            heightPageBase.setHeight(expectedHeightCentimeters);
-//        }
+        if (!birthFormat.format(expectedBirthday.getTime()).equals(birthFormat.format(actualBirthday.getTime()))) {
 
+            BirthdayPageBase birthdayPageBase = (BirthdayPageBase)
+                    profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.BIRTHDAY);
+            Assert.assertTrue(birthdayPageBase.isPageOpened(), "[ BIRTHDAY PAGE ] Birthday page is not opened!");
 
-        if (actualHeight != expectedHeightFeet) {
-
-            HeightPageBase heightPageBase = (HeightPageBase) profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.HEIGHT);
-
-            heightPageBase.setHeight(expectedHeightFeet);
+            birthdayPageBase.setDate(expectedBirthday);
+            birthdayPageBase.saveChanges();
+            birthdayPageBase.returnBack();
         }
 
+        actualBirthday = profilePageBase.getCurrentBirthday();
+        Assert.assertEquals(birthFormat.format(actualBirthday.getTime()), birthFormat.format(expectedBirthday.getTime()),
+                "[ PROFILE PAGE ] Actual birthday is not what expected!");
+
+
+        if (!actualGender.equals(expectedGender)) {
+
+            GenderPageBase genderPageBase = (GenderPageBase)
+                    profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.GENDER);
+            Assert.assertTrue(genderPageBase.isPageOpened(), "[ GENDER PAGE ] Gender page is not opened!");
+
+            genderPageBase.checkGenderByName(expectedGender);
+        }
+
+        actualGender = profilePageBase.getCurrentGender();
+        Assert.assertEquals(actualGender, expectedGender, "[ PROFILE PAGE ] Actual gender is not what expected!");
+
+
+        if (actualHeight != expectedHeightCentimeters) {
+
+            HeightPageBase heightPageBase = (HeightPageBase)
+                    profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.HEIGHT);
+            Assert.assertTrue(heightPageBase.isPageOpened(), "[ HEIGHT PAGE ] Height page is not opened!");
+
+            heightPageBase.setHeight(expectedHeightCentimeters);
+        }
+
+        actualHeight = profilePageBase.getCurrentHeight(PersonCharacteristics.HEIGHT);
+        Assert.assertEquals(actualHeight, expectedHeightCentimeters,
+                "[ PROFILE PAGE ] Actual height is not what expected!");
+
+
+        if (actualWeight != expectedWeightStones || !actualWeightMeasure.equals(expectedWeightMeasure.getShortMeasure())) {
+
+            WeightPageBase weightPageBase = (WeightPageBase)
+                    profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
+            Assert.assertTrue(weightPageBase.isPageOpened(), "[ WEIGHT PAGE ] Weight page is not opened!");
+
+            weightPageBase.setWeight(expectedWeightStones, expectedWeightMeasure);
+        }
+
+        actualWeight = profilePageBase.getCurrentWeight(PersonCharacteristics.WEIGHT);
+        actualWeightMeasure = profilePageBase.getCurrentWeightMeasure(PersonCharacteristics.WEIGHT);
+        Assert.assertEquals(actualWeight, expectedWeightStones,
+                "[ PROFILE PAGE ] Actual weight is not what expected!");
+        Assert.assertEquals(actualWeightMeasure, actualWeightMeasure,
+                "[ PROFILE PAGE ] Actual weight measure is not what expected!");
 
     }
 }

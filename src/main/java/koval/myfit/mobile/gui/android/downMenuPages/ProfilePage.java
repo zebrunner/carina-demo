@@ -42,14 +42,36 @@ public class ProfilePage extends ProfilePageBase {
 
         return actualBirthday;
     }
+
     @Override
-    public String getCurrentGender()  {
+    public String getCurrentGender() {
         return aboutMeModal.getCurrentCharacteristicValue(PersonCharacteristics.GENDER);
     }
 
     @Override
-    public String getCurrentWeightOrHeight(PersonCharacteristics personCharacteristics)   {
-        return aboutMeModal.getCurrentCharacteristicValue(personCharacteristics).replaceAll(NUMBERS_ONLY, "");
+    public float getCurrentWeight(PersonCharacteristics personCharacteristics) {
+        return Float.parseFloat(aboutMeModal.getCurrentCharacteristicValue(personCharacteristics).
+                replaceAll(STONES_MEASURE, DOT_VALUE).replaceAll(NUMBERS_AND_DOT_ONLY, EMPTY_FIELD));
+    }
+
+    @Override
+    public String getCurrentWeightMeasure(PersonCharacteristics personCharacteristics) {
+        return aboutMeModal.getCurrentCharacteristicValue(personCharacteristics).replaceAll(STRING_ONLY, EMPTY_FIELD).
+                replaceAll(STLB_MEASURE, STONES_MEASURE);
+    }
+
+    @Override
+    public float getCurrentHeight(PersonCharacteristics personCharacteristics) {
+
+        float currentHeight = Float.parseFloat(aboutMeModal.getCurrentCharacteristicValue(personCharacteristics).
+                replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
+
+        if (aboutMeModal.getCurrentCharacteristicValue(personCharacteristics).contains(APOSTROPHE_VALUE)) {
+            currentHeight = Float.parseFloat(aboutMeModal.getCurrentCharacteristicValue(personCharacteristics).
+                    replaceAll(APOSTROPHE_VALUE, DOT_VALUE).replaceAll(QUOTES_VALUE, EMPTY_FIELD));
+        }
+
+        return currentHeight;
     }
 
 }

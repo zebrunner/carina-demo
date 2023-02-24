@@ -1,12 +1,12 @@
 package koval.myfit.mobile.gui.ios.downMenuPages;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.common.downMenuPages.ProfilePageBase;
 import koval.myfit.mobile.service.enums.PersonCharacteristics;
 import org.openqa.selenium.WebDriver;
 
-import java.text.ParseException;
 import java.util.Calendar;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProfilePageBase.class)
@@ -17,22 +17,32 @@ public class ProfilePage extends ProfilePageBase {
 
     @Override
     public AbstractPage clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
-    public Calendar getCurrentBirthday() throws ParseException {
-        return null;
+    public Calendar getCurrentBirthday() {
+        throw new NotImplementedException();
     }
 
     @Override
-    public String getCurrentGender() throws ParseException {
-        return null;
+    public String getCurrentGender() {
+        throw new NotImplementedException();
     }
 
     @Override
-    public String getCurrentWeightOrHeight(PersonCharacteristics personCharacteristics) {
-        return null;
+    public float getCurrentWeight(PersonCharacteristics personCharacteristics) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public String getCurrentWeightMeasure(PersonCharacteristics personCharacteristics) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public float getCurrentHeight(PersonCharacteristics personCharacteristics) {
+        throw new NotImplementedException();
     }
 
 

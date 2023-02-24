@@ -14,7 +14,6 @@ import org.openqa.selenium.WebDriver;
 import java.util.Calendar;
 
 
-
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = JournalPageBase.class)
 public class JournalPage extends JournalPageBase {
     public JournalPage(WebDriver driver) {

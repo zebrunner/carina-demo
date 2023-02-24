@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public abstract class ActivityPageBase extends MyAbstractPage {

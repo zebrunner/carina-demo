@@ -5,10 +5,6 @@ import koval.myfit.mobile.gui.common.aboutMePages.BirthdayPageBase;
 import koval.myfit.mobile.gui.common.aboutMePages.GenderPageBase;
 import koval.myfit.mobile.gui.common.aboutMePages.HeightPageBase;
 import koval.myfit.mobile.gui.common.aboutMePages.WeightPageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.BrowsePageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.ProfilePageBase;
 
 public enum PersonCharacteristics {
     GENDER("gender", 0, GenderPageBase.class),

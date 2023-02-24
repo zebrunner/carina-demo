@@ -16,10 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AddActivityPageBase.class)

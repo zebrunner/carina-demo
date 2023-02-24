@@ -19,18 +19,20 @@ public class GenderPage extends GenderPageBase {
     @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
     private ExtendedWebElement navigateBackButton;
 
+    @FindBy(xpath = "//*[@text='%s']")
+    private ExtendedWebElement itemByText;
+
     public GenderPage(WebDriver driver) {
         super(driver);
     }
 
+
     @Override
-    public GenderPageBase checkGenderByName(Gender gender) {
+    public boolean isPageOpened() {
 
-        radioButtonByText.format(gender.getGender()).check();
-        navigateBackButton.click();
-
-        return initPage(getDriver(), GenderPageBase.class);
+        return itemByText.format("Gender").isElementPresent(TIMEOUT_FIVE);
     }
+
     @Override
     public GenderPageBase checkGenderByName(String gender) {
 
@@ -39,6 +41,5 @@ public class GenderPage extends GenderPageBase {
 
         return initPage(getDriver(), GenderPageBase.class);
     }
-
 
 }

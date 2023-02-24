@@ -49,9 +49,9 @@ public class JournalPage extends JournalPageBase {
     @FindBy(id = "com.google.android.apps.fitness:id/session_title")
     private List<ExtendedWebElement> titleList;
 
-
     @FindBy(id = "com.google.android.apps.fitness:id/session_title")
     private ExtendedWebElement activityTitleElement;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public JournalPage(WebDriver driver) {

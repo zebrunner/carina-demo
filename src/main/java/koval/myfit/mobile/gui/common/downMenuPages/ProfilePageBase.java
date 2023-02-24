@@ -22,7 +22,9 @@ public abstract class ProfilePageBase extends MyAbstractPage {
 
     public abstract String getCurrentGender() throws ParseException;
 
+    public abstract float getCurrentWeight(PersonCharacteristics personCharacteristics);
 
-    public abstract String getCurrentWeightOrHeight(PersonCharacteristics personCharacteristics);
+    public abstract String getCurrentWeightMeasure(PersonCharacteristics personCharacteristics);
 
+    public abstract float getCurrentHeight(PersonCharacteristics personCharacteristics);
 }
