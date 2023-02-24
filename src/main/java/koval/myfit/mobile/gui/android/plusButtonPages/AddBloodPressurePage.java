@@ -51,7 +51,6 @@ public class AddBloodPressurePage extends AddBloodPressurePageBase {
     @FindBy(id = "android:id/content")
     private TimePickerModal timePickerModal;
 
-
     @FindBy(id = "com.google.android.apps.fitness:id/action_bar_root")
     private ExtendedWebElement saveVitalsAllowPopUp;
 

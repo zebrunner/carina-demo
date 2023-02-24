@@ -196,8 +196,12 @@ public class GoogleFitTest extends LoginTest {
         int actualTopNumberBloodPressure = vitalsPageBase.getTopNumberBloodPressure();
         int actualBottomNumberBloodPressure = vitalsPageBase.getBottomNumberBloodPressure();
 
-        Assert.assertEquals(actualTopNumberBloodPressure, expectedTopNumberBloodPressure, String.format("[ VITALS PAGE ] Expected top number blood pressure  '%s', Actual: '%s'!", expectedTopNumberBloodPressure, actualTopNumberBloodPressure));
-        Assert.assertEquals(actualBottomNumberBloodPressure, expectedBottomNumberBloodPressure, String.format("[ VITALS PAGE ] Expected bottom number blood pressure  '%s', Actual: '%s'!", expectedBottomNumberBloodPressure, actualBottomNumberBloodPressure));
+        Assert.assertEquals(actualTopNumberBloodPressure, expectedTopNumberBloodPressure,
+                String.format("[ VITALS PAGE ] Expected top number blood pressure  '%s', Actual: '%s'!",
+                        expectedTopNumberBloodPressure, actualTopNumberBloodPressure));
+        Assert.assertEquals(actualBottomNumberBloodPressure, expectedBottomNumberBloodPressure,
+                String.format("[ VITALS PAGE ] Expected bottom number blood pressure  '%s', Actual: '%s'!",
+                        expectedBottomNumberBloodPressure, actualBottomNumberBloodPressure));
 
     }
 
