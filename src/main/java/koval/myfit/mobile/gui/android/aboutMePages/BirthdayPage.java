@@ -62,22 +62,36 @@ public class BirthdayPage extends BirthdayPageBase {
         String birthdaySt = new SimpleDateFormat(MONTH_DATE_FORMAT).format(calendar.getTime());
 
         if (!monthSpinner.getText().contains(birthdaySt)) {
+
             monthSpinner.click();
 
+            int currentMonthIndex = 0;
+
+            for (int i = 0; i < monthList.size(); i++) {
+                if (monthList.get(i).getAttribute("selected").equals("true"))
+                    currentMonthIndex = i;
+            }
+
+            Direction direction = Direction.UP;
+
+            if (calendar.get(Calendar.MONTH) > currentMonthIndex ) {
+                direction = Direction.DOWN;
+            }
+
             ExtendedWebElement expectedMonth = itemByText.format(birthdaySt);
-            swipe(expectedMonth, monthSpinnerContainer, Direction.UP, FORTY_COUNT, HIGH_SPEED);
+            swipe(expectedMonth, monthSpinnerContainer, direction, FORTY_COUNT, HIGH_SPEED);
 
             monthList.get(calendar.get(Calendar.MONTH)).click();
         }
 
 
-        if (!dateFieldByText.format("Day").getText().equals(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))) {
-            dateFieldByText.format("Day").type(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
+        if (!dateFieldByText.format(DAY_VALUE).getText().equals(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))) {
+            dateFieldByText.format(DAY_VALUE).type(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
         }
 
 
-        if (!dateFieldByText.format("Year").getText().equals(String.valueOf(calendar.get(Calendar.YEAR)))) {
-            dateFieldByText.format("Year").type(String.valueOf(calendar.get(Calendar.YEAR)));
+        if (!dateFieldByText.format(YEAR_VALUE).getText().equals(String.valueOf(calendar.get(Calendar.YEAR)))) {
+            dateFieldByText.format(YEAR_VALUE).type(String.valueOf(calendar.get(Calendar.YEAR)));
         }
 
 
@@ -87,9 +101,9 @@ public class BirthdayPage extends BirthdayPageBase {
     @Override
     public BirthdayPageBase saveChanges() {
 
-        itemByText.format("Save").click();
+        itemByText.format(SAVE_VALUE).click();
 
-        itemByText.format("Confirm").click();
+        itemByText.format(CONFIRM_VALUE).click();
 
         return initPage(getDriver(), BirthdayPageBase.class);
     }

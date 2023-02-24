@@ -53,5 +53,12 @@ public interface IConstantUtils {
 
     String QUOTES_VALUE = "″";
 
+    String DAY_VALUE = "Day";
+
+    String YEAR_VALUE = "Year";
+
+    String SAVE_VALUE = "Save";
+
+    String CONFIRM_VALUE = "Confirm";
 
 }
