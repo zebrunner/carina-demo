@@ -172,8 +172,10 @@ public class GoogleFitTest extends LoginTest {
 
         PlusButtonModalBase plusButtonModal = homePageBase.openPlusButtonMenu();
 
-        AddBloodPressurePageBase addBloodPressurePageBase = (AddBloodPressurePageBase) plusButtonModal.openPageByName(PlusButtonMenuElement.ADD_BLOOD_PRESSURE);
-        Assert.assertTrue(addBloodPressurePageBase.isPageOpened(), "[ ADD BLOOD PRESSURE PAGE ] Add Blood Pressure page is not opened!");
+        AddBloodPressurePageBase addBloodPressurePageBase = (AddBloodPressurePageBase)
+                plusButtonModal.openPageByName(PlusButtonMenuElement.ADD_BLOOD_PRESSURE);
+        Assert.assertTrue(addBloodPressurePageBase.isPageOpened(),
+                "[ ADD BLOOD PRESSURE PAGE ] Add Blood Pressure page is not opened!");
 
 
         Calendar expectedBloodPressureTime = new GregorianCalendar();
