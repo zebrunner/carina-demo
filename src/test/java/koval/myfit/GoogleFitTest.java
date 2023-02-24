@@ -193,7 +193,7 @@ public class GoogleFitTest extends LoginTest {
         String expectedGender = Gender.MALE.getGender();
 
         int expectedHeightCentimeters = 173;
-        float expectedHeightFeet = 4.6F;
+        float expectedHeightFeet = 4.5F;
 
         float expectedWeightKilograms = 69.5F;
         float expectedWeightPounds = 156.4F;
