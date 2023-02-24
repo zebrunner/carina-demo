@@ -2,10 +2,14 @@ package koval.myfit;
 
 
 import koval.myfit.mobile.gui.IMyInterface;
+import koval.myfit.mobile.gui.common.aboutMePages.BirthdayPageBase;
+import koval.myfit.mobile.gui.common.aboutMePages.GenderPageBase;
 import koval.myfit.mobile.service.AdbService;
 import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
+import koval.myfit.mobile.service.enums.Gender;
+import koval.myfit.mobile.service.enums.PersonCharacteristics;
 import koval.myfit.mobile.service.enums.TrackYourActivitiesAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
