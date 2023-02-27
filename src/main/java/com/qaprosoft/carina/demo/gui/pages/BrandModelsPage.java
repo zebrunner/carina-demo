@@ -39,4 +39,8 @@ public class BrandModelsPage extends AbstractPage {
         }
         throw new RuntimeException("Unable to open model: " + modelName);
     }
+
+    public List<ModelItem> getModels() {
+        return models;
+    }
 }

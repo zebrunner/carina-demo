@@ -17,6 +17,8 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
+import com.qaprosoft.carina.demo.gui.components.ModelItem;
+import com.qaprosoft.carina.demo.gui.pages.*;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -32,11 +34,6 @@ import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
-import com.qaprosoft.carina.demo.gui.pages.BrandModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.ModelInfoPage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
 
 /**
  * This sample shows how create Web test.
@@ -118,4 +115,27 @@ public class WebSampleTest implements IAbstractTest {
         softAssert.assertAll();
     }
 
+    @Test()
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestLabel(name = "feature", value = {"web", "regression"})
+    public void testBrandGroup() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+
+        AllBrandsPage allBrandsPage = homePage.openAllBrandsPage();
+        Assert.assertTrue(allBrandsPage.isPageOpened(), "All mobile phone brands page is not opened!");
+
+        final String brandName = "Lava";
+        BrandModelsPage brandModelsPage = allBrandsPage.selectBrand(brandName);
+        List<ModelItem> models = brandModelsPage.getModels();
+        SoftAssert softAssert = new SoftAssert();
+        for (ModelItem modelItem : models) {
+            softAssert.assertFalse(modelItem.readModel().contains(brandName),
+                    "Model " + modelItem.readModel() + " should not include brand " + brandName + " in title");
+        }
+
+        softAssert.assertAll();
+    }
 }
