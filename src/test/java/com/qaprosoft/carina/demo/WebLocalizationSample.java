@@ -42,6 +42,7 @@ public class WebLocalizationSample implements IAbstractTest {
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
+        wikipediaLocalePage.clickMoreButton();
         wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.clickDiscussionBtn();
 
@@ -57,12 +58,13 @@ public class WebLocalizationSample implements IAbstractTest {
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
-        wikipediaLocalePage.hoverWelcomeText();
-        wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.hoverCreateAccountElem();
+        wikipediaLocalePage.hoverWelcomeText();
 
         wikipediaLocalePage.hoverHeaders();
 
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.clickDiscussionBtn();
 
         L10N.flush();
