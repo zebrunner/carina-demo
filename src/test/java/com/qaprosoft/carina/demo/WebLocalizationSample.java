@@ -18,12 +18,17 @@ package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.demo.gui.pages.desktop.WikipediaHomePage;
 import com.qaprosoft.carina.demo.gui.pages.desktop.WikipediaLocalePage;
+import com.zebrunner.carina.utils.Configuration;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.resources.L10N;
 import com.zebrunner.agent.core.annotation.TestLabel;
+
+import java.util.Locale;
 
 /**
  * This sample shows how create Web Localization test with Resource Bundle.
@@ -32,6 +37,14 @@ import com.zebrunner.agent.core.annotation.TestLabel;
  */
 
 public class WebLocalizationSample implements IAbstractTest {
+
+    @BeforeClass
+    public void testLocaleLoad() {
+        Locale locale = L10N.getLocale();
+        String loadedLocale = locale.getLanguage() + "_" + locale.getCountry();
+        String configLocale = Configuration.get(Configuration.Parameter.LOCALE);
+        Assert.assertEquals(loadedLocale, configLocale);
+    }
 
     @Test
     @MethodOwner(owner = "qpsdemo")

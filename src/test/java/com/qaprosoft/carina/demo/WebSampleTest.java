@@ -16,6 +16,11 @@
 package com.qaprosoft.carina.demo;
 
 import java.util.List;
+
+import com.qaprosoft.carina.demo.gui.components.ModelItem;
+import com.qaprosoft.carina.demo.gui.pages.desktop.AllBrandsPage;
+import com.qaprosoft.carina.demo.gui.pages.desktop.BrandModelsPage;
+import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -113,6 +118,30 @@ public class WebSampleTest implements IAbstractTest {
             softAssert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ),
                     "Invalid search results for " + n.readTitle());
         }
+        softAssert.assertAll();
+    }
+
+    @Test()
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestLabel(name = "feature", value = {"web", "regression"})
+    public void testBrandGroup() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+
+        AllBrandsPage allBrandsPage = homePage.openAllBrandsPage();
+        Assert.assertTrue(allBrandsPage.isPageOpened(), "All mobile phone brands page is not opened!");
+
+        final String brandName = "Lava";
+        BrandModelsPage brandModelsPage = allBrandsPage.selectBrand(brandName);
+        List<ModelItem> models = brandModelsPage.getModels();
+        SoftAssert softAssert = new SoftAssert();
+        for (ModelItem modelItem : models) {
+            softAssert.assertFalse(modelItem.readModel().contains(brandName),
+                    "Model " + modelItem.readModel() + " should not include brand " + brandName + " in title");
+        }
+
         softAssert.assertAll();
     }
 }

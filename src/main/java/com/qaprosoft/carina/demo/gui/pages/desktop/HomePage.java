@@ -48,6 +48,9 @@ public class HomePage extends HomePageBase {
     @FindBy(className = "news-column-index")
     private ExtendedWebElement newsColumn;
 
+    @FindBy(xpath = "//span[text()='All brands']//parent::a")
+    private ExtendedWebElement allBrandsButton;
+
     public HomePage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(newsColumn);
@@ -80,5 +83,10 @@ public class HomePage extends HomePageBase {
 
     public ExtendedWebElement getPhoneFinderButton() {
         return phoneFinderButton;
+    }
+
+    public AllBrandsPage openAllBrandsPage(){
+        allBrandsButton.click();
+        return new AllBrandsPage(driver);
     }
 }

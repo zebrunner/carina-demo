@@ -42,4 +42,8 @@ public class BrandModelsPage extends BrandModelsPageBase {
         }
         throw new RuntimeException("Unable to open model: " + modelName);
     }
+
+    public List<ModelItem> getModels() {
+        return models;
+    }
 }
