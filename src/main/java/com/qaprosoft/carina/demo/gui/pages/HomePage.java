@@ -45,6 +45,12 @@ public class HomePage extends AbstractPage {
     @FindBy(className = "news-column-index")
     private ExtendedWebElement newsColumn;
 
+    @FindBy(xpath = "//span[text()='All brands']//parent::a")
+    private ExtendedWebElement allBrandsButton;
+
+    @FindBy(xpath = "//button[text()='Agree and proceed']")
+    private ExtendedWebElement acceptCookies;
+
     public HomePage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(newsColumn);
@@ -74,5 +80,16 @@ public class HomePage extends AbstractPage {
 
     public ExtendedWebElement getPhoneFinderButton() {
         return phoneFinderButton;
+    }
+
+    public AllBrandsPage openAllBrandsPage(){
+        allBrandsButton.click();
+        return new AllBrandsPage(driver);
+    }
+
+    @Override
+    public void open(){
+        super.open();
+        acceptCookies.click();
     }
 }
