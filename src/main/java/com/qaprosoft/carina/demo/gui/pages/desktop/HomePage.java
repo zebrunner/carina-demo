@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo.gui.pages.desktop;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.gui.components.footer.FooterMenu;
+import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
@@ -85,8 +86,8 @@ public class HomePage extends HomePageBase {
         return phoneFinderButton;
     }
 
-    public AllBrandsPage openAllBrandsPage(){
+    public AllBrandsPageBase openAllBrandsPage(){
         allBrandsButton.click();
-        return new AllBrandsPage(driver);
+        return initPage(driver, AllBrandsPageBase.class);
     }
 }

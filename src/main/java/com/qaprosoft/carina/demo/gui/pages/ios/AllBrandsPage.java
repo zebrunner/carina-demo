@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages.desktop;
+package com.qaprosoft.carina.demo.gui.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -25,9 +24,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = AllBrandsPageBase.class)
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = AllBrandsPageBase.class)
 public class AllBrandsPage extends AllBrandsPageBase {
-    @FindBy(xpath = "//h1[@class='article-info-name']")
+    @FindBy(xpath = "//div[@id='content']//h2[@class='section']")
     private ExtendedWebElement pageTitle;
 
     public AllBrandsPage(WebDriver driver) {
@@ -38,9 +37,8 @@ public class AllBrandsPage extends AllBrandsPageBase {
 
     @Override
     public BrandModelsPageBase selectBrand(String brandName){
-        brandName = brandName.toUpperCase();
-        for (ExtendedWebElement brand: findExtendedWebElements(By.xpath("//div[@class='st-text']//td/a"))){
-            if (brand.getText().contains(brandName)){
+        for (ExtendedWebElement brand: findExtendedWebElements(By.xpath("//div[@id='list-brands']//li/a"))){
+            if (brand.getText().equalsIgnoreCase(brandName)){
                 brand.click();
                 return initPage(driver, BrandModelsPageBase.class);
             }

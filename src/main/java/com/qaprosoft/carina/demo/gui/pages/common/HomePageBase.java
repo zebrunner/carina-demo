@@ -35,6 +35,8 @@ public abstract class HomePageBase extends AbstractPage {
 
     public abstract CompareModelsPageBase openComparePage();
 
+    public abstract AllBrandsPageBase openAllBrandsPage();
+
     @Override
     public void open() {
         super.open();

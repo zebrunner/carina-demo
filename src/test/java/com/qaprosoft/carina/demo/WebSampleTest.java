@@ -18,9 +18,7 @@ package com.qaprosoft.carina.demo;
 import java.util.List;
 
 import com.qaprosoft.carina.demo.gui.components.ModelItem;
-import com.qaprosoft.carina.demo.gui.pages.desktop.AllBrandsPage;
-import com.qaprosoft.carina.demo.gui.pages.desktop.BrandModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.common.*;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,11 +33,6 @@ import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
-import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
 
 /**
  * This sample shows how create Web test.
@@ -126,15 +119,15 @@ public class WebSampleTest implements IAbstractTest {
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = {"web", "regression"})
     public void testBrandGroup() {
-        HomePage homePage = new HomePage(getDriver());
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
 
-        AllBrandsPage allBrandsPage = homePage.openAllBrandsPage();
+        AllBrandsPageBase allBrandsPage = homePage.openAllBrandsPage();
         Assert.assertTrue(allBrandsPage.isPageOpened(), "All mobile phone brands page is not opened!");
 
         final String brandName = "Lava";
-        BrandModelsPage brandModelsPage = allBrandsPage.selectBrand(brandName);
+        BrandModelsPageBase brandModelsPage = allBrandsPage.selectBrand(brandName);
         List<ModelItem> models = brandModelsPage.getModels();
         SoftAssert softAssert = new SoftAssert();
         for (ModelItem modelItem : models) {

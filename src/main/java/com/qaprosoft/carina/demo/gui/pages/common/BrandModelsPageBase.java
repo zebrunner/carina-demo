@@ -16,11 +16,16 @@
 package com.qaprosoft.carina.demo.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.gui.components.ModelItem;
 import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 public abstract class BrandModelsPageBase extends AbstractPage {
     public BrandModelsPageBase(WebDriver driver) {
         super(driver);
     }
     public abstract ModelInfoPageBase selectModel(String modelName);
+
+    public abstract List<ModelItem> getModels();
 }

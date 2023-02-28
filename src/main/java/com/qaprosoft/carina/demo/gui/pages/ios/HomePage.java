@@ -18,6 +18,7 @@ package com.qaprosoft.carina.demo.gui.pages.ios;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.gui.components.footer.MobileFooterMenu;
+import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
@@ -40,6 +41,9 @@ public class HomePage extends HomePageBase {
 
     @FindBy(xpath = "//a[text()='Compare']")
     private ExtendedWebElement compareButton;
+
+    @FindBy(xpath = "//ul[@class='links right']//a[text()='[...]']")
+    private ExtendedWebElement allBrandsButton;
 
     @FindBy(xpath = "//header//nav//ul//a[text()='News']")
     private ExtendedWebElement newsButton;
@@ -75,5 +79,12 @@ public class HomePage extends HomePageBase {
         headerMenuButton.click();
         compareButton.click();
         return initPage(driver, CompareModelsPageBase.class);
+    }
+
+    @Override
+    public AllBrandsPageBase openAllBrandsPage() {
+        headerMenuButton.click();
+        allBrandsButton.click();
+        return initPage(driver, AllBrandsPageBase.class);
     }
 }
