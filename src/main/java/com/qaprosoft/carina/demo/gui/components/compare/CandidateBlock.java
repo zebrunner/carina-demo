@@ -13,34 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.components;
+package com.qaprosoft.carina.demo.gui.components.compare;
 
-import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
-import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
+import java.util.List;
+
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
-public class ModelItem extends AbstractUIObject implements ICustomTypePageFactory {
-    @FindBy(xpath = ".//strong")
-    private ExtendedWebElement modelLabel;
+public class CandidateBlock extends AbstractUIObject {
+    @FindBy(xpath = ".//input[contains(@id, 'sSearch')]")
+    private ExtendedWebElement inputField;
 
-    @FindBy(xpath = ".//a")
-    private ExtendedWebElement modelLink;
+    @FindBy(xpath = "./div[contains(@class, 'autocomplete-search')]//a[not(@class)]")
+    private List<ExtendedWebElement> autocompleteSearchElements;
 
-    public ModelItem(WebDriver driver, SearchContext searchContext) {
+    public CandidateBlock(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public String readModel() {
-        return modelLabel.getText();
+    public void sendKeysToInputField(String text) {
+        inputField.click();
+        inputField.type(text);
     }
 
-    public ModelInfoPageBase openModelPage() {
-        modelLink.click();
-        return initPage(driver, ModelInfoPageBase.class);
+    public void getFirstPhone() {
+		pause(1);
+		Assert.assertTrue(autocompleteSearchElements.size() > 0, "No phones found!");
+		autocompleteSearchElements.get(0).assertElementPresent();
+        autocompleteSearchElements.get(0).click();
     }
 }

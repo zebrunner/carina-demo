@@ -13,22 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo;
+package com.qaprosoft.carina.demo.gui.pages.common;
 
-import org.testng.annotations.Test;
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.demo.mobile.gui.pages.ios.SaucePage;
-
-public class IOSSafariTest implements IAbstractTest, IMobileUtils {
-    @Test
-    public void safariTest() {
-        SaucePage saucePage = new SaucePage(getDriver());
-        saucePage.openURL("http://saucelabs.com/test/guinea-pig");
-        
-        saucePage.verifyElementText();
-        saucePage.sendComment();
+public abstract class BrandModelsPageBase extends AbstractPage {
+    public BrandModelsPageBase(WebDriver driver) {
+        super(driver);
     }
-
+    public abstract ModelInfoPageBase selectModel(String modelName);
 }

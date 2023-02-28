@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo;
+package com.qaprosoft.carina.demo.gui.components.footer;
 
-import org.testng.annotations.Test;
+import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.demo.mobile.gui.pages.ios.SaucePage;
+public abstract class FooterMenuBase extends AbstractUIObject {
 
-public class IOSSafariTest implements IAbstractTest, IMobileUtils {
-    @Test
-    public void safariTest() {
-        SaucePage saucePage = new SaucePage(getDriver());
-        saucePage.openURL("http://saucelabs.com/test/guinea-pig");
-        
-        saucePage.verifyElementText();
-        saucePage.sendComment();
+    public FooterMenuBase(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
 
+    public abstract NewsPageBase openNewsPage();
+
+    public abstract HomePageBase openHomePage();
 }

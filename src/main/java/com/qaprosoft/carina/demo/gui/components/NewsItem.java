@@ -24,7 +24,7 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class NewsItem extends AbstractUIObject {
 
-    @FindBy(xpath="./a")
+    @FindBy(xpath = ".//a/*[name()='h3' or name()='h2']")
     public ExtendedWebElement titleLink;
     
     public NewsItem(WebDriver driver, SearchContext sc) {
