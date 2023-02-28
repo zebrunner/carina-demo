@@ -13,23 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import java.util.List;
-
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import java.util.List;
 
-public class NewsPage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = NewsPageBase.class)
+public class NewsPage extends NewsPageBase {
     
     @FindBy(className="searchFor")
     private ExtendedWebElement searchTextField;
     
-    @FindBy(xpath="//input[@value='Search']")
+    @FindBy(xpath="//input[@value='Search']/parent::label")
     private ExtendedWebElement searchButton;
     
     @FindBy(xpath="//div[@class='news-item']")
@@ -39,7 +40,8 @@ public class NewsPage extends AbstractPage {
         super(driver);
         setPageURL("/news.php3");
     }
-    
+
+    @Override
     public List<NewsItem> searchNews(String q) {
         searchTextField.type(q);
         searchButton.click();

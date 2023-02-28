@@ -13,34 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.components;
+package com.qaprosoft.carina.demo.gui.components.footer;
 
-import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
 import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractUIObject;
+public class MobileFooterMenu extends FooterMenuBase implements ICustomTypePageFactory {
+    @FindBy(xpath = ".//a[text()='News']")
+    private ExtendedWebElement newsLink;
 
-public class ModelItem extends AbstractUIObject implements ICustomTypePageFactory {
-    @FindBy(xpath = ".//strong")
-    private ExtendedWebElement modelLabel;
+    @FindBy(xpath = ".//a[text()='Home']")
+    private ExtendedWebElement homeLink;
 
-    @FindBy(xpath = ".//a")
-    private ExtendedWebElement modelLink;
-
-    public ModelItem(WebDriver driver, SearchContext searchContext) {
+    public MobileFooterMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public String readModel() {
-        return modelLabel.getText();
+    @Override
+    public NewsPageBase openNewsPage() {
+        newsLink.click();
+        return initPage(driver, NewsPageBase.class);
     }
 
-    public ModelInfoPageBase openModelPage() {
-        modelLink.click();
-        return initPage(driver, ModelInfoPageBase.class);
+    @Override
+    public HomePageBase openHomePage() {
+        homeLink.click();
+        return initPage(driver, HomePageBase.class);
     }
 }

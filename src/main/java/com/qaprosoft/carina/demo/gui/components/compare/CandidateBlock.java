@@ -25,14 +25,14 @@ import org.testng.Assert;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
-public class CondidateBlock extends AbstractUIObject {
+public class CandidateBlock extends AbstractUIObject {
     @FindBy(xpath = ".//input[contains(@id, 'sSearch')]")
     private ExtendedWebElement inputField;
 
     @FindBy(xpath = "./div[contains(@class, 'autocomplete-search')]//a[not(@class)]")
     private List<ExtendedWebElement> autocompleteSearchElements;
 
-    public CondidateBlock(WebDriver driver, SearchContext searchContext) {
+    public CandidateBlock(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 

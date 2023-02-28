@@ -13,25 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.components;
+package com.qaprosoft.carina.demo.gui.components.footer;
 
+import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractUIObject;
+public abstract class FooterMenuBase extends AbstractUIObject {
 
-public class NewsItem extends AbstractUIObject {
-
-    @FindBy(xpath = ".//a/*[name()='h3' or name()='h2']")
-    public ExtendedWebElement titleLink;
-    
-    public NewsItem(WebDriver driver, SearchContext sc) {
-        super(driver, sc);
+    public FooterMenuBase(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
-    
-    public String readTitle() {
-        return titleLink.getElement().getText();
-    }
+
+    public abstract NewsPageBase openNewsPage();
+
+    public abstract HomePageBase openHomePage();
 }

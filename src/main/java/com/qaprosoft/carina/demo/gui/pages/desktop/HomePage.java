@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.pages.desktop;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.FooterMenu;
-import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
+import com.qaprosoft.carina.demo.gui.components.footer.FooterMenu;
+import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.R;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -30,7 +33,8 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-public class HomePage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
+public class HomePage extends HomePageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(id = "footmenu")
@@ -48,48 +52,42 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//span[text()='All brands']//parent::a")
     private ExtendedWebElement allBrandsButton;
 
-    @FindBy(xpath = "//button[text()='Agree and proceed']")
-    private ExtendedWebElement acceptCookies;
-
     public HomePage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(newsColumn);
         setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
     }
 
+    @Override
     public FooterMenu getFooterMenu() {
         return footerMenu;
     }
 
-    public BrandModelsPage selectBrand(String brand) {
+    @Override
+    public CompareModelsPageBase openComparePage() {
+        return getFooterMenu().openComparePage();
+    }
+
+    @Override
+    public BrandModelsPageBase selectBrand(String brand) {
         LOGGER.info("selecting '" + brand + "' brand...");
         for (ExtendedWebElement brandLink : brandLinks) {
             String currentBrand = brandLink.getText();
             LOGGER.info("currentBrand: " + currentBrand);
             if (brand.equalsIgnoreCase(currentBrand)) {
                 brandLink.click();
-                return new BrandModelsPage(driver);
+                return initPage(driver, BrandModelsPageBase.class);
             }
         }
         throw new RuntimeException("Unable to open brand: " + brand);
-    }
-
-    public WeValuePrivacyAd getWeValuePrivacyAd() {
-        return new WeValuePrivacyAd(driver);
     }
 
     public ExtendedWebElement getPhoneFinderButton() {
         return phoneFinderButton;
     }
 
-    public AllBrandsPage openAllBrandsPage(){
+    public AllBrandsPageBase openAllBrandsPage(){
         allBrandsButton.click();
-        return new AllBrandsPage(driver);
-    }
-
-    @Override
-    public void open(){
-        super.open();
-        acceptCookies.click();
+        return initPage(driver, AllBrandsPageBase.class);
     }
 }

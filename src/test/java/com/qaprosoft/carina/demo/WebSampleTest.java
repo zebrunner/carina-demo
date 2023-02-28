@@ -18,7 +18,7 @@ package com.qaprosoft.carina.demo;
 import java.util.List;
 
 import com.qaprosoft.carina.demo.gui.components.ModelItem;
-import com.qaprosoft.carina.demo.gui.pages.*;
+import com.qaprosoft.carina.demo.gui.pages.common.*;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,7 +30,6 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.qaprosoft.carina.demo.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
@@ -41,66 +40,66 @@ import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
  * @author qpsdemo
  */
 public class WebSampleTest implements IAbstractTest {
-    @Test()
+    @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = {"web", "regression"})
     public void testModelSpecs() {
         // Open GSM Arena home page and verify page is opened
-        HomePage homePage = new HomePage(getDriver());
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
-        
-        //Closing advertising if it's displayed
-        homePage.getWeValuePrivacyAd().closeAdIfPresent();
-        
+
         // Select phone brand
-        homePage = new HomePage(getDriver());
-        BrandModelsPage productsPage = homePage.selectBrand("Samsung");
+        BrandModelsPageBase productsPage = homePage.selectBrand("Samsung");
         // Select phone model
-        ModelInfoPage productInfoPage = productsPage.selectModel("Galaxy A52 5G");
+        ModelInfoPageBase productInfoPage = productsPage.selectModel("Galaxy A04");
         // Verify phone specifications
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(productInfoPage.readDisplay(), "6.5\"", "Invalid display info!");
-        softAssert.assertEquals(productInfoPage.readCamera(), "64MP", "Invalid camera info!");
-        softAssert.assertEquals(productInfoPage.readRam(), "6/8GB RAM", "Invalid ram info!");
-        softAssert.assertEquals(productInfoPage.readBattery(), "4500mAh", "Invalid battery info!");
+        softAssert.assertEquals(productInfoPage.readCamera(), "50MP", "Invalid camera info!");
+        softAssert.assertEquals(productInfoPage.readRam(), "3-8GB RAM", "Invalid ram info!");
+        softAssert.assertEquals(productInfoPage.readBattery(), "5000mAh", "Invalid battery info!");
         softAssert.assertAll();
     }
 
 
-    @Test()
+    @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
     @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
-        HomePage homePage = new HomePage(getDriver());
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         // Open model compare page
-        FooterMenu footerMenu = homePage.getFooterMenu();
-        Assert.assertTrue(footerMenu.isUIObjectPresent(2), "Footer menu wasn't found!");
-        CompareModelsPage comparePage = footerMenu.openComparePage();
-        // Compare 3 models
-        List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy J5", "Samsung Galaxy J7 Pro");
+        CompareModelsPageBase comparePage = homePage.openComparePage();
+        // Compare 2 (for mobile testing) or 3 (for desktop testing) models
+        List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy S23 Ultra", "Samsung Galaxy J7 Pro");
         // Verify model announced dates
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2016, March 31");
-        softAssert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2015, June 19");
-        softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
+        softAssert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2016, March 31. Released 2016, May 06");
+        softAssert.assertEquals(specs.get(0).readSpec(SpecType.TECHNOLOGY), "GSM / HSPA / LTE");
+        softAssert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2023, February 29");
+        softAssert.assertEquals(specs.get(1).readSpec(SpecType.TECHNOLOGY), "GSM / CDMA / HSPA / EVDO / LTE / 5G");
+        if (specs.size() > 2) {
+            softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
+            softAssert.assertEquals(specs.get(2).readSpec(SpecType.TECHNOLOGY), "GSM / HSPA / LTE");
+        }
+
         softAssert.assertAll();
     }
     
-    @Test()
+    @Test
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testNewsSearch() {
-        HomePage homePage = new HomePage(getDriver());
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
         
-        NewsPage newsPage = homePage.getFooterMenu().openNewsPage();
+        NewsPageBase newsPage = homePage.getFooterMenu().openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
         
         final String searchQ = "iphone";
@@ -120,15 +119,15 @@ public class WebSampleTest implements IAbstractTest {
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = {"web", "regression"})
     public void testBrandGroup() {
-        HomePage homePage = new HomePage(getDriver());
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
 
-        AllBrandsPage allBrandsPage = homePage.openAllBrandsPage();
+        AllBrandsPageBase allBrandsPage = homePage.openAllBrandsPage();
         Assert.assertTrue(allBrandsPage.isPageOpened(), "All mobile phone brands page is not opened!");
 
         final String brandName = "Lava";
-        BrandModelsPage brandModelsPage = allBrandsPage.selectBrand(brandName);
+        BrandModelsPageBase brandModelsPage = allBrandsPage.selectBrand(brandName);
         List<ModelItem> models = brandModelsPage.getModels();
         SoftAssert softAssert = new SoftAssert();
         for (ModelItem modelItem : models) {
