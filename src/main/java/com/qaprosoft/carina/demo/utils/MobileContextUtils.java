@@ -45,13 +45,17 @@ public class MobileContextUtils implements IDriverPool {
         if (!isContextPresent) {
             throw new NotFoundException("Desired context is not present");
         }
-        LOGGER.info("Switching to context : " + context.getView());
+        LOGGER.info("Switching to context : " + desiredContext);
         ((SupportsContextSwitching) driver).context(desiredContext);
     }
 
     public enum View {
         NATIVE("NATIVE_APP"),
-        WEB("WEBVIEW_");
+        WEB_CARINA("WEBVIEW_com.solvd.carinademoapplication"),
+
+        CHROME("WEBVIEW_chrome"),
+
+        SAMSUNG("WEBVIEW_Terrace");
 
         String viewName;
 

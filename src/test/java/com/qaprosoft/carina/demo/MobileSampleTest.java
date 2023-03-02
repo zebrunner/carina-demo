@@ -15,10 +15,13 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
 import com.qaprosoft.carina.demo.mobile.gui.pages.android.DragAndDropPage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.utils.R;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.ContextAware;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -34,6 +37,8 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
+
+import java.util.Set;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
@@ -65,16 +70,17 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         loginPage.login();
         WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
         MobileContextUtils contextHelper = new MobileContextUtils();
-        contextHelper.switchMobileContext(View.WEB);
+
+        contextHelper.switchMobileContext(View.WEB_CARINA);
         ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
+        //if using other default browser then chrome, add and use it in MobileContextUtils
+        contextHelper.switchMobileContext(View.CHROME);
+
         contactUsPage.typeName("John Doe");
-        contactUsPage.typeEmail("some@email.com");
+        contactUsPage.typeEmail("somsda@email.com");
         contactUsPage.typeQuestion("This is a message");
-        //TODO: [VD] move page driver related action outside from test class!
-        hideKeyboard();
         contactUsPage.submit();
-        Assert.assertTrue(contactUsPage.isErrorMessagePresent() || contactUsPage.isRecaptchaPresent(),
-                "Error message or captcha was not displayed");
+        Assert.assertTrue(contactUsPage.isSuccessMessagePresent());
     }
 
     @Test()
