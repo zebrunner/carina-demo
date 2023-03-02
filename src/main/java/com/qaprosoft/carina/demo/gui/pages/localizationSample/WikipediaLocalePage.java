@@ -25,9 +25,10 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Loca
 import com.qaprosoft.carina.core.gui.AbstractPage;
 
 public class WikipediaLocalePage extends AbstractPage {
-
     @Localized
-    @FindBy(xpath = "//*[@class='mw-headline' or @class='welcome-title' or @id='welcome']")
+    @FindBy(xpath = "//*[@id='{L10N:WikipediaLocalePage.welcomeTextId}' " +
+            "or contains(text(),'{L10N:WikipediaLocalePage.welcomeText}') " +
+            "or @class='welcome-title']")
     private ExtendedWebElement welcomeText;
 
     @Localized
@@ -52,8 +53,19 @@ public class WikipediaLocalePage extends AbstractPage {
     @FindBy(id = "mw-sidebar-button")
     private ExtendedWebElement navButton;
 
+    @FindBy(xpath = "//*[contains(text(),'{L10N:WikipediaLocalePage.discussionElem}')]")
+    private ExtendedWebElement discussionBtn;
+
     public WikipediaLocalePage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getDiscussionText(){
+        moreButton.clickIfPresent();
+        if (discussionBtn.isPresent()) {
+            return discussionBtn.getText();
+        }
+        return "";
     }
 
     public String getWelcomeText(){
@@ -61,6 +73,10 @@ public class WikipediaLocalePage extends AbstractPage {
             return welcomeText.getText();
         }
         return "";
+    }
+
+    public boolean isWelcomeTextPresent(){
+        return welcomeText.isPresent();
     }
 
     public void hoverWelcomeText(){

@@ -24,6 +24,7 @@ import com.zebrunner.carina.utils.resources.L10N;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaHomePage;
 import com.qaprosoft.carina.demo.gui.pages.localizationSample.WikipediaLocalePage;
 import com.zebrunner.agent.core.annotation.TestLabel;
+import org.testng.asserts.SoftAssert;
 
 /**
  * This sample shows how create Web Localization test with Resource Bundle.
@@ -69,5 +70,22 @@ public class WebLocalizationSample implements IAbstractTest {
 
         L10N.flush();
         L10N.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testElementsSearchWithL10n() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(wikipediaLocalePage.isWelcomeTextPresent());
+        String actual = wikipediaLocalePage.getDiscussionText();
+        String expected = L10N.getText("WikipediaLocalePage.discussionElem");
+        softAssert.assertEquals(actual, expected);
+        softAssert.assertAll();
     }
 }
