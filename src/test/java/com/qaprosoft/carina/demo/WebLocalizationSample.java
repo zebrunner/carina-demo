@@ -27,6 +27,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.resources.L10N;
 import com.zebrunner.agent.core.annotation.TestLabel;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Locale;
 
@@ -55,6 +56,7 @@ public class WebLocalizationSample implements IAbstractTest {
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
+        wikipediaLocalePage.clickMoreButton();
         wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.clickDiscussionBtn();
 
@@ -70,15 +72,33 @@ public class WebLocalizationSample implements IAbstractTest {
 
         WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
 
-        wikipediaLocalePage.hoverWelcomeText();
-        wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.hoverCreateAccountElem();
+        wikipediaLocalePage.hoverWelcomeText();
 
         wikipediaLocalePage.hoverHeaders();
 
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
         wikipediaLocalePage.clickDiscussionBtn();
 
         L10N.flush();
         L10N.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testElementsSearchWithL10n() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(wikipediaLocalePage.isWelcomeTextPresent());
+        String actual = wikipediaLocalePage.getDiscussionText();
+        String expected = L10N.getText("WikipediaLocalePage.discussionElem");
+        softAssert.assertEquals(actual, expected);
+        softAssert.assertAll();
     }
 }
