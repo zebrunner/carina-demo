@@ -1,5 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -8,8 +10,6 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {

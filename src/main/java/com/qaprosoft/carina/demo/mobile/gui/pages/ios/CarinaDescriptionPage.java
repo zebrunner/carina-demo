@@ -1,10 +1,10 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

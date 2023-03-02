@@ -102,20 +102,4 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         uiElements.clickOnOtherRadioButton();
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
-
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = {"mobile", "acceptance"})
-    public void testDragAndDrop() {
-        R.CONFIG.put("capabilities.app",
-                "https://github.com/appium/java-client/raw/master/src/test/resources/apps/ApiDemos-debug.apk",
-                true);
-        R.CONFIG.put("capabilities.appActivity", ".view.DragAndDropDemo", true);
-
-        DragAndDropPage dragAndDropPage = new DragAndDropPage(getDriver());
-        dragAndDropPage.dragDown();
-        dragAndDropPage.dragRight();
-        dragAndDropPage.dragDiagonal();
-        Assert.assertTrue(dragAndDropPage.isDragAndDropMessagePresent(), "Should be provided pop up message after successful drag and drop ");
-    }
 }

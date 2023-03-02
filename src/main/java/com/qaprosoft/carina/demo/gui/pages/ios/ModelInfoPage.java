@@ -13,46 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.pages.ios;
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-
-public class ModelInfoPage extends AbstractPage {
-    @FindBy(css = ".help-display strong")
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ModelInfoPageBase.class)
+public class ModelInfoPage extends ModelInfoPageBase {
+    @FindBy(xpath = "//li[@class='head-icon icon-touch-0']//strong")
     private ExtendedWebElement displayInfoLabel;
 
-    @FindBy(css = ".help-camera strong")
+    @FindBy(xpath = "//li[@class='head-icon icon-camera-1']//strong")
     private ExtendedWebElement cameraInfoLabel;
 
-    @FindBy(css = ".help-expansion strong")
+    @FindBy(xpath = "//li[@class='head-icon icon-cpu']//strong")
     private ExtendedWebElement displayRamLabel;
 
-    @FindBy(css = ".help-battery strong")
+    @FindBy(xpath = "//li[@class='head-icon icon-battery-1']//strong")
     private ExtendedWebElement batteryInfoLabel;
 
     public ModelInfoPage(WebDriver driver) {
         super(driver);
     }
 
+    @Override
     public String readDisplay() {
         assertElementPresent(displayInfoLabel);
         return displayInfoLabel.getText();
     }
 
+    @Override
     public String readCamera() {
         assertElementPresent(cameraInfoLabel);
         return cameraInfoLabel.getText();
     }
 
+    @Override
     public String readRam() {
         assertElementPresent(displayRamLabel);
         return displayRamLabel.getText();
     }
 
+    @Override
     public String readBattery() {
         assertElementPresent(displayInfoLabel);
         return batteryInfoLabel.getText();

@@ -29,8 +29,8 @@ import com.zebrunner.carina.proxy.browserup.ProxyPool;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.desktop.NewsPage;
 import com.zebrunner.agent.core.registrar.Artifact;
 
 import com.browserup.bup.BrowserUpProxy;

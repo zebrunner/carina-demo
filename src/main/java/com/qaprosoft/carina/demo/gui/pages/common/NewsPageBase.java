@@ -13,25 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.components;
+package com.qaprosoft.carina.demo.gui.pages.common;
 
-import org.openqa.selenium.SearchContext;
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import java.util.List;
 
-public class NewsItem extends AbstractUIObject {
-
-    @FindBy(xpath = ".//a/*[name()='h3' or name()='h2']")
-    public ExtendedWebElement titleLink;
-    
-    public NewsItem(WebDriver driver, SearchContext sc) {
-        super(driver, sc);
+public abstract class NewsPageBase extends AbstractPage {
+    public NewsPageBase(WebDriver driver) {
+        super(driver);
     }
-    
-    public String readTitle() {
-        return titleLink.getElement().getText();
-    }
+
+    public abstract List<NewsItem> searchNews(String searchInput);
 }

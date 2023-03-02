@@ -13,30 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.pages.android;
 
-import java.util.List;
-
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.gui.components.ModelItem;
+import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.ModelItem;
+import java.util.List;
 
-public class BrandModelsPage extends AbstractPage {
-    @FindBy(xpath = "//div[@id='review-body']//li")
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = BrandModelsPageBase.class)
+public class BrandModelsPage extends BrandModelsPageBase {
+
+    @FindBy(xpath = "//div[@class='general-menu']//li")
     private List<ModelItem> models;
+
+    @FindBy(xpath = "//div[@class='cls-btn']")
+    private ExtendedWebElement adCloseButton;
 
     public BrandModelsPage(WebDriver driver) {
         super(driver);
     }
 
-    public ModelInfoPage selectModel(String modelName) {
+    @Override
+    public ModelInfoPageBase selectModel(String modelName) {
+        adCloseButton.clickIfPresent();
         for (ModelItem model : models) {
-            if (model.readModel().equalsIgnoreCase(modelName)) {
+            if (modelName.equalsIgnoreCase(model.readModel())) {
                 return model.openModelPage();
             }
         }
         throw new RuntimeException("Unable to open model: " + modelName);
+
+    }
+
+    @Override
+    public List<ModelItem> getModels() {
+        return models;
     }
 }
