@@ -77,7 +77,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         contextHelper.switchMobileContext(View.WEB_BROWSER, View.WEB_CARINA);
 
         contactUsPage.typeName("John Doe");
-        contactUsPage.typeEmail("somsda@email.com");
+        contactUsPage.typeEmail("some@email.com");
         contactUsPage.typeQuestion("This is a message");
         contactUsPage.submit();
         Assert.assertTrue(contactUsPage.isSuccessMessagePresent());
