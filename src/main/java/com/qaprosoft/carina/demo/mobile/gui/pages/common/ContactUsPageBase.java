@@ -1,9 +1,10 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import org.openqa.selenium.WebDriver;
 
-public abstract class ContactUsPageBase extends AbstractPage {
+public abstract class ContactUsPageBase extends AbstractPage implements IMobileUtils {
 
     public ContactUsPageBase(WebDriver driver) {
         super(driver);
@@ -20,5 +21,7 @@ public abstract class ContactUsPageBase extends AbstractPage {
     public abstract boolean isErrorMessagePresent();
 
     public abstract boolean isRecaptchaPresent();
+
+    public abstract boolean isSuccessMessagePresent();
 
 }

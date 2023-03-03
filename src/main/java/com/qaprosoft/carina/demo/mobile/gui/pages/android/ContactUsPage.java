@@ -5,11 +5,11 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ContactUsPageBase.class)
 public class ContactUsPage extends ContactUsPageBase {
-
     @FindBy(xpath = "//input[@name='Email']")
     private ExtendedWebElement emailField;
 
@@ -27,6 +27,9 @@ public class ContactUsPage extends ContactUsPageBase {
 
     @FindBy(id = "g-recaptcha-response")
     private ExtendedWebElement recaptcha;
+
+    @FindBy(xpath = "//div[text()='Thank you for subscribing!']")
+    private ExtendedWebElement successMessage;
 
     public ContactUsPage(WebDriver driver) {
         super(driver);
@@ -49,7 +52,8 @@ public class ContactUsPage extends ContactUsPageBase {
 
     @Override
     public void submit() {
-        submitButton.click();
+        hideKeyboard();
+        submitButton.clickIfPresent();
     }
 
     @Override
@@ -60,6 +64,10 @@ public class ContactUsPage extends ContactUsPageBase {
     @Override
     public boolean isRecaptchaPresent() {
         return recaptcha.isElementPresent();
+    }
+
+    public boolean isSuccessMessagePresent() {
+        return successMessage.isPresent();
     }
 
 }

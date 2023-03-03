@@ -28,7 +28,11 @@ public class MobileContextUtils implements IDriverPool {
         return driver;
     }
 
-    public void switchMobileContext(View context) {
+    public void switchMobileContext(View context){
+        switchMobileContext(context, null);
+    }
+
+    public void switchMobileContext(View context, View exclude) {
         WebDriver driver = getDriver();
         DriverHelper help = new DriverHelper();
         Set<String> contextHandles = help.performIgnoreException(((ContextAware) driver)::getContextHandles);
@@ -37,6 +41,9 @@ public class MobileContextUtils implements IDriverPool {
         LOGGER.info("Existing contexts: ");
         for (String cont : contextHandles) {
             if (cont.contains(context.getView())) {
+                if (exclude != null && cont.contains(exclude.getView())){
+                    continue;
+                }
                 desiredContext = cont;
                 isContextPresent = true;
             }
@@ -45,13 +52,15 @@ public class MobileContextUtils implements IDriverPool {
         if (!isContextPresent) {
             throw new NotFoundException("Desired context is not present");
         }
-        LOGGER.info("Switching to context : " + context.getView());
+        LOGGER.info("Switching to context : " + desiredContext);
         ((SupportsContextSwitching) driver).context(desiredContext);
     }
 
     public enum View {
         NATIVE("NATIVE_APP"),
-        WEB("WEBVIEW_");
+        WEB_CARINA("WEBVIEW_com.solvd.carinademoapplication"),
+
+        WEB_BROWSER("WEBVIEW_");
 
         String viewName;
 
