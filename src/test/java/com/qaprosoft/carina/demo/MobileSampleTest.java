@@ -73,8 +73,8 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 
         contextHelper.switchMobileContext(View.WEB_CARINA);
         ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
-        //if using other default browser then chrome, add and use it in MobileContextUtils
-        contextHelper.switchMobileContext(View.CHROME);
+
+        contextHelper.switchMobileContext(View.WEB_BROWSER, View.WEB_CARINA);
 
         contactUsPage.typeName("John Doe");
         contactUsPage.typeEmail("somsda@email.com");

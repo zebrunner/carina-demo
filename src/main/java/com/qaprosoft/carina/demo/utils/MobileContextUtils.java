@@ -28,7 +28,11 @@ public class MobileContextUtils implements IDriverPool {
         return driver;
     }
 
-    public void switchMobileContext(View context) {
+    public void switchMobileContext(View context){
+        switchMobileContext(context, null);
+    }
+
+    public void switchMobileContext(View context, View exclude) {
         WebDriver driver = getDriver();
         DriverHelper help = new DriverHelper();
         Set<String> contextHandles = help.performIgnoreException(((ContextAware) driver)::getContextHandles);
@@ -37,6 +41,9 @@ public class MobileContextUtils implements IDriverPool {
         LOGGER.info("Existing contexts: ");
         for (String cont : contextHandles) {
             if (cont.contains(context.getView())) {
+                if (exclude != null && cont.contains(exclude.getView())){
+                    continue;
+                }
                 desiredContext = cont;
                 isContextPresent = true;
             }
@@ -53,9 +60,7 @@ public class MobileContextUtils implements IDriverPool {
         NATIVE("NATIVE_APP"),
         WEB_CARINA("WEBVIEW_com.solvd.carinademoapplication"),
 
-        CHROME("WEBVIEW_chrome"),
-
-        SAMSUNG("WEBVIEW_Terrace");
+        WEB_BROWSER("WEBVIEW_");
 
         String viewName;
 
