@@ -1,11 +1,18 @@
 package koval.myfit.mobile.service.interfaces;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface IConstantUtils {
 
     int FIVE = 5;
 
     int TIMEOUT_FIVE = 5;
+
+    int TIMEOUT_TEN = 10;
+
+    int TIMEOUT_TWO = 2;
 
     int MEDIUM_SPEED = 600;
 
@@ -15,7 +22,9 @@ public interface IConstantUtils {
 
     int FORTY_COUNT = 40;
 
-    int NULL = 0;
+    int FIFTEEN_COUNT = 15;
+
+    int THREE_COUNT = 3;
 
     String START_TIME_DATE_FORMAT = "MMM dd, hh:mm";
 
@@ -45,9 +54,13 @@ public interface IConstantUtils {
 
     String STLB_MEASURE = "stlb";
 
+    String MMHG_MEASURE =" mmHg";
+
     String EMPTY_FIELD = "";
 
-    String SLASH_DOT_VALUE = "\\.";
+    String BACKSLASH_DOT_VALUE = "\\.";
+
+    String SLASH_VALUE = "/";
 
     String DOT_VALUE = ".";
 
@@ -62,5 +75,26 @@ public interface IConstantUtils {
     String SAVE_VALUE = "Save";
 
     String CONFIRM_VALUE = "Confirm";
+
+    String BLUE_COLOR = "blue";
+
+    String RED_COLOR = "red";
+
+    String GREEN_COLOR = "green";
+
+    String WHITE_COLOR = "white";
+
+    String YES_ANSWER = "yes";
+
+    String NO_ANSWER= "no";
+
+    String TRUE_ANSWER = "true";
+
+    String FALSE_ANSWER = "false";
+
+    String OKAY_ANSWER = "OK";
+
+    List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES = Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
+
 
 }

@@ -11,6 +11,7 @@ import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.util.Calendar;
 
 
@@ -18,6 +19,11 @@ import java.util.Calendar;
 public class JournalPage extends JournalPageBase {
     public JournalPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public int getAccountImageColor() throws IOException {
+        throw new NotImplementedException();
     }
 
     @Override

@@ -13,6 +13,7 @@ import koval.myfit.mobile.gui.common.aboutMePages.WeightPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.ProfilePageBase;
+import koval.myfit.mobile.gui.common.modal.DownMenuModalBase;
 import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
 import koval.myfit.mobile.gui.common.plusButtonPages.AddBloodPressurePageBase;
@@ -23,11 +24,13 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+import java.util.List;
 
 
 public class GoogleFitTest extends LoginTest {
@@ -75,7 +78,7 @@ public class GoogleFitTest extends LoginTest {
                     String.format("[ HOME PAGE  ] '%s' block with this topic is not present!", topic));
         }
 
-        List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES = Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
+
         List<String> actualPlaylistTitlesList = homePageBase.getPlaylistTitlesToList();
         Assert.assertEquals(actualPlaylistTitlesList, EXPECTED_LIST_OF_PLAYLIST_TITLES,
                 "[ HOME PAGE / actualPlaylistTitlesList ] Actual list of Playlist titles is not equals to expected list!");
@@ -109,7 +112,7 @@ public class GoogleFitTest extends LoginTest {
         expectedActivityDateTime.set(Calendar.AM_PM, currentAmPm);
 
         Calendar expectedActivityDuration = new GregorianCalendar();
-        expectedActivityDuration.set(Calendar.HOUR, NULL);
+        expectedActivityDuration.set(Calendar.HOUR, 0);
         expectedActivityDuration.set(Calendar.MINUTE, 35);
 
         Random rand = new Random();
@@ -225,6 +228,7 @@ public class GoogleFitTest extends LoginTest {
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
 
         ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
+        Assert.assertTrue(profilePageBase.isPageOpened(), "[ PROFILE PAGE ] Profile page is not opened!");
 
         Calendar actualBirthday = profilePageBase.getCurrentBirthday();
         String actualGender = profilePageBase.getCurrentGender();
@@ -233,18 +237,20 @@ public class GoogleFitTest extends LoginTest {
         String actualWeightMeasure = profilePageBase.getCurrentWeightMeasure(PersonCharacteristics.WEIGHT);
 
 
-        Calendar expectedBirthday = new GregorianCalendar();
+        Calendar expectedBirthday = Calendar.getInstance();
+        expectedBirthday.set(Calendar.DAY_OF_MONTH, currentDay + 3);
+        expectedBirthday.set(Calendar.MONTH, currentMonth + 3);
+        expectedBirthday.set(Calendar.YEAR, currentYear - 25);
 
-        expectedBirthday.set(currentYear - 25, currentMonth, currentDay + 3);
-        String expectedGender = Gender.MALE.getGender();
+        String expectedGender = Gender.FEMALE.getGender();
 
-        int expectedHeightCentimeters = 173;
+        int expectedHeightCentimeters = 174;
         float expectedHeightFeet = 4.5F;
 
         float expectedWeightKilograms = 69.5F;
-        float expectedWeightPounds = 156.4F;
+        float expectedWeightPounds = 177.4F;
         float expectedWeightStones = 13.5F;
-        WeightMeasures expectedWeightMeasure = WeightMeasures.STONES;
+        WeightMeasures expectedWeightMeasure = WeightMeasures.POUNDS;
 
 
         SimpleDateFormat birthFormat = new SimpleDateFormat(BIRTHDAY_DATE_FORMAT);
@@ -254,6 +260,7 @@ public class GoogleFitTest extends LoginTest {
             BirthdayPageBase birthdayPageBase = (BirthdayPageBase)
                     profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.BIRTHDAY);
             Assert.assertTrue(birthdayPageBase.isPageOpened(), "[ BIRTHDAY PAGE ] Birthday page is not opened!");
+
 
             birthdayPageBase.setDate(expectedBirthday);
             birthdayPageBase.saveChanges();
@@ -292,22 +299,157 @@ public class GoogleFitTest extends LoginTest {
                 "[ PROFILE PAGE ] Actual height is not what expected!");
 
 
-        if (actualWeight != expectedWeightStones || !actualWeightMeasure.equals(expectedWeightMeasure.getShortMeasure())) {
+        if (actualWeight != expectedWeightPounds || !actualWeightMeasure.equals(expectedWeightMeasure.getShortMeasure())) {
 
             WeightPageBase weightPageBase = (WeightPageBase)
                     profilePageBase.clickOnCharacteristicsBtn(PersonCharacteristics.WEIGHT);
             Assert.assertTrue(weightPageBase.isPageOpened(), "[ WEIGHT PAGE ] Weight page is not opened!");
 
-            weightPageBase.setWeight(expectedWeightStones, expectedWeightMeasure);
+            weightPageBase.setWeight(expectedWeightPounds, expectedWeightMeasure);
         }
 
         actualWeight = profilePageBase.getCurrentWeight(PersonCharacteristics.WEIGHT);
         actualWeightMeasure = profilePageBase.getCurrentWeightMeasure(PersonCharacteristics.WEIGHT);
-        Assert.assertEquals(actualWeight, expectedWeightStones,
+        Assert.assertEquals(actualWeight, expectedWeightPounds,
                 "[ PROFILE PAGE ] Actual weight is not what expected!");
         Assert.assertEquals(actualWeightMeasure, actualWeightMeasure,
                 "[ PROFILE PAGE ] Actual weight measure is not what expected!");
 
     }
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void checkElementsColorTest() throws IOException {
+
+
+        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+        Assert.assertEquals(homePageBase.getChartTitleColor(), BLUE_COLOR,
+                "[ HOME PAGE ] Chart title element color is not blue!");
+
+        Assert.assertEquals(homePageBase.getHeartPointsTitleColor(), GREEN_COLOR,
+                "[ HOME PAGE ] Heart Points Title element color is not green!");
+
+        for (int i = 0; i < homePageBase.getMetricValueListSize(); i++) {
+            Assert.assertEquals(homePageBase.getMetricValueColor(i), BLUE_COLOR,
+                    "[ HOME PAGE ] Metric Value element color is not blue!");
+        }
+
+        Assert.assertEquals(homePageBase.getHeartPtsLabelColor(), GREEN_COLOR,
+                "[ HOME PAGE ] Heart Pts Label element color is not green!");
+
+        Assert.assertEquals(homePageBase.getHeartCardImage(), RED_COLOR,
+                "[ HOME PAGE ] Heart card element color is not red!");
+
+    }
+
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void isSelectedMenuBlueTest() throws IOException {
+
+        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+        DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
+
+        Assert.assertEquals(downMenuModal.getIconColor(DownMenuElement.HOME), BLUE_COLOR,
+                "[ HOME PAGE ] Home page Menu Icon is not blue!");
+        Assert.assertEquals(downMenuModal.getLabelColor(DownMenuElement.HOME), BLUE_COLOR,
+                "[ HOME PAGE ] Home page Menu Label is not blue!");
+
+
+        downMenuModal.openPageByName(DownMenuElement.PROFILE);
+        Assert.assertEquals(downMenuModal.getIconColor(DownMenuElement.PROFILE), BLUE_COLOR,
+                "[ PROFILE PAGE ] Profile page Menu Icon is not blue!");
+        Assert.assertEquals(downMenuModal.getLabelColor(DownMenuElement.PROFILE), BLUE_COLOR,
+                "[ PROFILE PAGE ] Profile page Menu Label is not blue!");
+
+    }
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void checkSwitchButtonColorTest() throws IOException {
+
+
+        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+        ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
+        Assert.assertTrue(profilePageBase.isPageOpened(), "[ PROFILE PAGE ] Profile page is not opened!");
+
+        profilePageBase.checkSleepSwitch();
+        Assert.assertEquals(profilePageBase.getSleepSwitchColor(), BLUE_COLOR,
+                "[ PROFILE PAGE ] Sleep Switch is not blue!");
+
+        profilePageBase.uncheckSleepSwitch();
+        Assert.assertEquals(profilePageBase.getSleepSwitchColor(), WHITE_COLOR,
+                "[ PROFILE PAGE ] Sleep Switch is not white!");
+
+    }
+
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void checkSettingsTitleColorTest() throws IOException {
+
+
+        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+        ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
+        Assert.assertTrue(profilePageBase.isPageOpened(), "[ PROFILE PAGE ] Profile page is not opened!");
+
+        profilePageBase.openSettingsButton();
+
+        List<String> listOfSettingsTitles = Arrays.asList("Units", "Google Fit data and personalization",
+                "Tracking preferences", "Notifications", "Diagnostics", "Display");
+
+        for (String listOfSettingsTitle : listOfSettingsTitles) {
+            Assert.assertEquals(profilePageBase.getSettingsTitlesColor(listOfSettingsTitle), BLUE_COLOR,
+                    "[ PROFILE PAGE ] Setting Title element color is not blue!");
+        }
+
+    }
+
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void checkProfilePictureTest() throws IOException {
+
+
+        HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+        int currentAccountImageColor = homePageBase.getAccountImageColor();
+
+
+        ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
+        Assert.assertTrue(profilePageBase.isPageOpened(), "[ PROFILE PAGE ] Profile page is not opened!");
+
+        Assert.assertEquals(currentAccountImageColor, profilePageBase.getAccountImageColor(),
+                "[ PROFILE PAGE ] Account Image Color is not what expected!");
+
+
+        JournalPageBase journalPageBase = (JournalPageBase) profilePageBase.openPageFromDownMenuByName(DownMenuElement.JOURNAL);
+        Assert.assertTrue(journalPageBase.isPageOpened(), "[ JOURNAL PAGE ] Journal page is not opened!");
+
+        Assert.assertEquals(currentAccountImageColor, journalPageBase.getAccountImageColor(),
+                "[ JOURNAL PAGE ] Account Image Color is not what expected!");
+
+
+        homePageBase = (HomePageBase) journalPageBase.openPageFromDownMenuByName(DownMenuElement.HOME);
+        Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
+
+        Assert.assertEquals(currentAccountImageColor, homePageBase.getAccountImageColor(),
+                "[ HOME PAGE ] Account Image Color is not what expected!");
+    }
+
 
 }

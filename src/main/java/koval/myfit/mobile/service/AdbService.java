@@ -43,4 +43,12 @@ public class AdbService extends AndroidService {
         pause(TIMEOUT_FIVE);
     }
 
+
+    public void setDarkMode(String yesNo) {
+        LOGGER.info("Set Dark Mode: " + yesNo);
+
+        String cmd = String.format("shell cmd uimode night %s", yesNo);
+        executor.executeAdbCommand(cmd);
+        pause(TIMEOUT_FIVE);
+    }
 }

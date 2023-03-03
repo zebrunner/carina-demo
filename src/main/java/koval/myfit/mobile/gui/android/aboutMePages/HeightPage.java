@@ -72,7 +72,7 @@ public class HeightPage extends HeightPageBase {
 
         setHeight(centimeters, actualCentimeters, CENTIMETERS_MEASURE, heightCentimeterContainer);
 
-        itemByText.format("OK").click();
+        itemByText.format(OKAY_ANSWER).click();
 
         return initPage(getDriver(), HeightPageBase.class);
     }
@@ -82,8 +82,8 @@ public class HeightPage extends HeightPageBase {
 
         setHeightMeasure("Feet & inches");
 
-        int feetValue = Integer.parseInt(String.valueOf(feetInch).split(SLASH_DOT_VALUE)[0]);
-        int inchValue = Integer.parseInt(String.valueOf(feetInch).split(SLASH_DOT_VALUE)[1]);
+        int feetValue = Integer.parseInt(String.valueOf(feetInch).split(BACKSLASH_DOT_VALUE)[0]);
+        int inchValue = Integer.parseInt(String.valueOf(feetInch).split(BACKSLASH_DOT_VALUE)[1]);
 
         int actualFeet = Integer.parseInt(actualFeetValue.getText().replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
         int actualInch = Integer.parseInt(actualInchValue.getText().replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
@@ -92,7 +92,7 @@ public class HeightPage extends HeightPageBase {
         setHeight(feetValue, actualFeet, FOOT_MEASURE, heightFeetContainer);
         setHeight(inchValue, actualInch, INCH_MEASURE, heightInchContainer);
 
-        itemByText.format("OK").click();
+        itemByText.format(OKAY_ANSWER).click();
 
         return initPage(getDriver(), HeightPageBase.class);
     }
