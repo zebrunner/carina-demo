@@ -45,6 +45,7 @@ public class FooterMenu extends FooterMenuBase {
     }
 
     public CompareModelsPage openComparePage() {
+        compareLink.hover();
         compareLink.click();
         return new CompareModelsPage(driver);
     }
