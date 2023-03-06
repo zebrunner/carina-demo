@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.myfit.mobile.gui.android.modal.DownMenuModal;
+import koval.myfit.mobile.gui.android.modal.ManageAccountModal;
 import koval.myfit.mobile.gui.android.modal.PlusButtonModal;
 import koval.myfit.mobile.gui.common.ActivityPageBase;
 import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
@@ -18,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,14 +30,18 @@ import java.util.List;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = JournalPageBase.class)
 public class JournalPage extends JournalPageBase {
 
-    @FindBy(id = "com.google.android.apps.fitness:id/collapsing_toolbar")
-    private ExtendedWebElement title;
+
+    @FindBy(id = "com.google.android.apps.fitness:id/og_apd_internal_image_view")
+    private ManageAccountModal accountImageModal;
 
     @FindBy(id = "com.google.android.apps.fitness:id/bottom_navigation")
     private DownMenuModal downMenuModal;
 
     @FindBy(id = "om.google.android.apps.fitness:id/add_entry_fab")
     private PlusButtonModal plusButtonModal;
+
+    @FindBy(id = "com.google.android.apps.fitness:id/collapsing_toolbar")
+    private ExtendedWebElement title;
 
     @FindBy(xpath = "//*[contains(@resource-id, 'journal_recycler_view')]/child::*[@class='android.view.ViewGroup']")
     private List<ExtendedWebElement> activityList;
@@ -52,6 +58,7 @@ public class JournalPage extends JournalPageBase {
     @FindBy(id = "com.google.android.apps.fitness:id/session_title")
     private ExtendedWebElement activityTitleElement;
 
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public JournalPage(WebDriver driver) {
@@ -63,6 +70,14 @@ public class JournalPage extends JournalPageBase {
 
         return title.isElementPresent(TIMEOUT_FIVE) && title.getAttribute("content-desc").equals("Journal");
     }
+
+
+    @Override
+    public int getAccountImageColor() throws IOException {
+
+        return accountImageModal.getAccountImageColor();
+    }
+
 
     @Override
     public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
@@ -107,7 +122,7 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public boolean isActivityPresent(String activityTitle) {
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(activityTitleElement.getBy()), FIVE);
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(activityTitleElement.getBy()), TIMEOUT_TEN);
 
         return titleList.get(0).getText().contains(activityTitle);
     }

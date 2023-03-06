@@ -1,11 +1,19 @@
 package koval.myfit.mobile.gui;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import org.openqa.selenium.WebDriver;
+import koval.myfit.mobile.utils.ColorUtils;
+import org.openqa.selenium.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-public abstract class MyAbstractPage extends AbstractPage implements IMyInterface {
+import java.lang.invoke.MethodHandles;
+
+
+
+public abstract class MyAbstractPage extends ColorUtils implements IMyInterface {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public MyAbstractPage(WebDriver driver) {
         super(driver);
@@ -19,6 +27,5 @@ public abstract class MyAbstractPage extends AbstractPage implements IMyInterfac
     public void hideKeyboard() {
         getDriver().navigate().back();
     }
-
 
 }

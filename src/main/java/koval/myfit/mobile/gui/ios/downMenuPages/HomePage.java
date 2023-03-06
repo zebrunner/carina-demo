@@ -12,6 +12,7 @@ import koval.myfit.mobile.service.enums.MaterialCardTopics;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -69,6 +70,42 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
+    public int getAccountImageColor() throws IOException {
+        throw new NotImplementedException();
+    }
+
+
+    @Override
+    public String getChartTitleColor(){
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public String getHeartCardImage() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public int getMetricValueListSize() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public String getMetricValueColor(int i){
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public String getHeartPtsLabelColor() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public String getHeartPointsTitleColor()   {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public boolean isBlockByTitlePresent(MaterialCardTopics topic) {
         throw new NotImplementedException();
     }
@@ -77,5 +114,6 @@ public class HomePage extends HomePageBase {
     public List<String> getPlaylistTitlesToList() {
         throw new NotImplementedException();
     }
+
 
 }

@@ -59,8 +59,8 @@ public class WeightPage extends WeightPageBase {
 
         setWeightMeasure(measure.getMeasure());
 
-        int firstWeightValue = Integer.parseInt(String.valueOf(weight).split(SLASH_DOT_VALUE)[0]);
-        int secondWeightValue = Integer.parseInt(String.valueOf(weight).split(SLASH_DOT_VALUE)[1]);
+        int firstWeightValue = Integer.parseInt(String.valueOf(weight).split(BACKSLASH_DOT_VALUE)[0]);
+        int secondWeightValue = Integer.parseInt(String.valueOf(weight).split(BACKSLASH_DOT_VALUE)[1]);
 
         int actualFirstWeight = Integer.parseInt(actualFirstWeightValue.getText().replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
         int actualSecondWeight = Integer.parseInt(actualSecondWeightValue.getText().replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
@@ -69,7 +69,7 @@ public class WeightPage extends WeightPageBase {
         setWeight(firstWeightValue, actualFirstWeight, measure.getFirstMeasure(), weightFirstValueContainer);
         setWeight(secondWeightValue, actualSecondWeight, measure.getSecondMeasure(), weightSecondValueContainer);
 
-        itemByText.format("OK").click();
+        itemByText.format(OKAY_ANSWER).click();
 
         return initPage(getDriver(), WeightPageBase.class);
     }

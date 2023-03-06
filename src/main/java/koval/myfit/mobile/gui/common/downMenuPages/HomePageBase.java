@@ -9,6 +9,7 @@ import koval.myfit.mobile.service.enums.MaterialCardTopics;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -37,7 +38,23 @@ public abstract class HomePageBase extends MyAbstractPage {
 
     public abstract boolean isPlusButtonBelowBlockContainer();
 
+    public abstract int getAccountImageColor() throws IOException;
+
+    public abstract String getChartTitleColor() throws IOException;
+
+    public abstract String getHeartCardImage() throws IOException;
+
+    public abstract int getMetricValueListSize() throws IOException;
+
+    public abstract String getMetricValueColor(int i) throws IOException;
+
+    public abstract String getHeartPtsLabelColor() throws IOException;
+
+    public abstract String getHeartPointsTitleColor() throws IOException;
+
     public abstract boolean isBlockByTitlePresent(MaterialCardTopics topic) throws InterruptedException;
 
     public abstract List<String> getPlaylistTitlesToList();
+
+
 }

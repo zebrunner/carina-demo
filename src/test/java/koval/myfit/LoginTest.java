@@ -2,14 +2,10 @@ package koval.myfit;
 
 
 import koval.myfit.mobile.gui.IMyInterface;
-import koval.myfit.mobile.gui.common.aboutMePages.BirthdayPageBase;
-import koval.myfit.mobile.gui.common.aboutMePages.GenderPageBase;
 import koval.myfit.mobile.service.AdbService;
 import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
 import koval.myfit.mobile.gui.common.loginPages.TrackActivitiesPageBase;
 import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
-import koval.myfit.mobile.service.enums.Gender;
-import koval.myfit.mobile.service.enums.PersonCharacteristics;
 import koval.myfit.mobile.service.enums.TrackYourActivitiesAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,23 +22,21 @@ public class LoginTest implements IMyInterface {
     @BeforeMethod
     public void login() {
 
+        adbService.setDarkMode(YES_ANSWER);
+
         adbService.clearAppCache(AdbService.AppPackage.GOOGLE_FIT);
 
         adbService.startApp(AdbService.AppPackage.GOOGLE_FIT);
-        try {
-            WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
-            Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
-            AboutMePageBase aboutMePageBase = welcomePageBase.clickLoginBtn();
-            Assert.assertTrue(aboutMePageBase.isPageOpened(), "[ ABOUT YOU PAGE ] About You page is not opened!");
+        WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
+        Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
-            TrackActivitiesPageBase trackActivitiesPageBase = aboutMePageBase.clickNextBtn();
-            Assert.assertTrue(trackActivitiesPageBase.isPageOpened(), "[ TRACK ACTIVITIES PAGE ] Track Activities page is not opened!");
-            trackActivitiesPageBase.clickOnAnswerBtn(TrackYourActivitiesAnswer.NO);
+        AboutMePageBase aboutMePageBase = welcomePageBase.clickLoginBtn();
+        Assert.assertTrue(aboutMePageBase.isPageOpened(), "[ ABOUT YOU PAGE ] About You page is not opened!");
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        TrackActivitiesPageBase trackActivitiesPageBase = aboutMePageBase.clickNextBtn();
+        Assert.assertTrue(trackActivitiesPageBase.isPageOpened(), "[ TRACK ACTIVITIES PAGE ] Track Activities page is not opened!");
+        trackActivitiesPageBase.clickOnAnswerBtn(TrackYourActivitiesAnswer.NO);
 
     }
 

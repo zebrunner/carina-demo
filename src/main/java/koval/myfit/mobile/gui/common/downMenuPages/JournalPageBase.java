@@ -8,6 +8,7 @@ import koval.myfit.mobile.service.enums.DownMenuElement;
 import koval.myfit.mobile.service.enums.PlusButtonMenuElement;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Calendar;
 
@@ -17,6 +18,8 @@ public abstract class JournalPageBase extends MyAbstractPage {
     public JournalPageBase(WebDriver driver) {
         super(driver);
     }
+
+    public abstract int getAccountImageColor() throws IOException;
 
     public abstract AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement);
 

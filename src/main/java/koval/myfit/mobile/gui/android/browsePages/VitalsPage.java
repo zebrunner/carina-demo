@@ -23,14 +23,14 @@ public class VitalsPage extends VitalsPageBase {
     @Override
     public int getTopNumberBloodPressure() {
 
-        return Integer.parseInt(StringUtils.split(bloodPressureNumber, "/")[0]);
+        return Integer.parseInt(StringUtils.split(bloodPressureNumber, SLASH_VALUE)[0]);
     }
 
     @Override
     public int getBottomNumberBloodPressure() {
 
-        return Integer.parseInt(StringUtils.split(bloodPressureNumber, "/")[1].
-                replaceAll(" mmHg", ""));
+        return Integer.parseInt(StringUtils.split(bloodPressureNumber, SLASH_VALUE)[1].
+                replaceAll(MMHG_MEASURE, EMPTY_FIELD));
     }
 
 }

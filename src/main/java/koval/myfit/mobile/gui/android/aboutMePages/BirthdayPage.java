@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import java.lang.invoke.MethodHandles;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,8 +25,7 @@ public class BirthdayPage extends BirthdayPageBase {
     @FindBy(xpath = "//*[@class='android.widget.Spinner']")
     private ExtendedWebElement monthSpinner;
 
-    @FindBy(xpath = "//*[@class='android.widget.Spinner']//following-sibling::*//*" +
-            "[@text='Menu for selecting month of birth']")
+    @FindBy(xpath = "//*[@class='android.widget.Spinner']//following-sibling::*[@class='android.view.View']")
     private ExtendedWebElement monthSpinnerContainer;
 
     @FindBy(xpath = "//*[@class='android.widget.Spinner']//following-sibling::*//*[@class='android.widget.ListView']" +
@@ -35,13 +35,8 @@ public class BirthdayPage extends BirthdayPageBase {
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
-    @FindBy(xpath = "//android.view.View[@text='%s']//following-sibling::*[@class='android.widget.EditText']")
+    @FindBy(xpath = "//*[@text='%s']//following-sibling::*[@class='android.widget.EditText']")
     private ExtendedWebElement dateFieldByText;
-
-    @FindBy(xpath = "//*[@resource-id='com.google.android.gms:id/octarine_webview_container']/child::*//*" +
-            "[@resource-id='yDmH0d']/child::*//*[@class='android.view.View'][1]/child::*//android.view.View[@text='%s']")
-    private ExtendedWebElement title;
-
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -53,13 +48,14 @@ public class BirthdayPage extends BirthdayPageBase {
     @Override
     public boolean isPageOpened() {
 
-        return title.format("Birthday").isElementPresent(TIMEOUT_FIVE);
+        return itemByText.format("Birthday").isElementPresent(TIMEOUT_TEN);
     }
 
-    @Override
-    public BirthdayPageBase setDate(Calendar calendar) {
 
-        String birthdaySt = new SimpleDateFormat(MONTH_DATE_FORMAT).format(calendar.getTime());
+    @Override
+    public BirthdayPageBase setDate(Calendar expectedBirthday) {
+
+        String birthdaySt = new SimpleDateFormat(MONTH_DATE_FORMAT).format(expectedBirthday.getTime());
 
         if (!monthSpinner.getText().contains(birthdaySt)) {
 
@@ -68,30 +64,33 @@ public class BirthdayPage extends BirthdayPageBase {
             int currentMonthIndex = 0;
 
             for (int i = 0; i < monthList.size(); i++) {
-                if (monthList.get(i).getAttribute("selected").equals("true"))
+                if (monthList.get(i).getAttribute("selected").equals(TRUE_ANSWER))
                     currentMonthIndex = i;
             }
 
-            Direction direction = Direction.UP;
+            ExtendedWebElement expectedMonth = itemByText.format(birthdaySt);
+            if (expectedBirthday.get(Calendar.MONTH) < currentMonthIndex) {
 
-            if (calendar.get(Calendar.MONTH) > currentMonthIndex ) {
-                direction = Direction.DOWN;
+                if (!expectedMonth.isChecked()) {
+                    swipeInContainer(monthSpinnerContainer, Direction.DOWN, THREE_COUNT, HIGH_SPEED);
+
+                }
+
+            } else {
+                swipe(expectedMonth, monthSpinnerContainer, Direction.UP, THREE_COUNT, HIGH_SPEED);
             }
 
-            ExtendedWebElement expectedMonth = itemByText.format(birthdaySt);
-            swipe(expectedMonth, monthSpinnerContainer, direction, FORTY_COUNT, HIGH_SPEED);
-
-            monthList.get(calendar.get(Calendar.MONTH)).click();
+            monthList.get(expectedBirthday.get(Calendar.MONTH)).click();
         }
 
 
-        if (!dateFieldByText.format(DAY_VALUE).getText().equals(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))) {
-            dateFieldByText.format(DAY_VALUE).type(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
+        if (!dateFieldByText.format(DAY_VALUE).getText().equals(String.valueOf(expectedBirthday.get(Calendar.DAY_OF_MONTH)))) {
+            dateFieldByText.format(DAY_VALUE).type(String.valueOf(expectedBirthday.get(Calendar.DAY_OF_MONTH)));
         }
 
 
-        if (!dateFieldByText.format(YEAR_VALUE).getText().equals(String.valueOf(calendar.get(Calendar.YEAR)))) {
-            dateFieldByText.format(YEAR_VALUE).type(String.valueOf(calendar.get(Calendar.YEAR)));
+        if (!dateFieldByText.format(YEAR_VALUE).getText().equals(String.valueOf(expectedBirthday.get(Calendar.YEAR)))) {
+            dateFieldByText.format(YEAR_VALUE).type(String.valueOf(expectedBirthday.get(Calendar.YEAR)));
         }
 
 
