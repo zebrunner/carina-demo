@@ -170,8 +170,8 @@ public class HomePage extends HomePageBase {
     @Override
     public String getMetricValueColor(int i) throws IOException {
 
-        if (!listOfMetricValue.get(i).isElementPresent(TIMEOUT_FIVE)) {
-            Assert.fail(String.format("Element is not present! Index:  '%s'", i));
+        if (listOfMetricValue.isEmpty() || i > listOfMetricValue.size()) {
+            Assert.fail(String.format("[ HOME PAGE ] There is no element by index '%s'.", i));
         }
 
         return getColorByName(listOfMetricValue.get(i));

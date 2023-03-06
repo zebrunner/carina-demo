@@ -79,8 +79,9 @@ public class GoogleFitTest extends LoginTest {
         }
 
 
+        List<String> expectedListOfPlaylistTitles = Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
         List<String> actualPlaylistTitlesList = homePageBase.getPlaylistTitlesToList();
-        Assert.assertEquals(actualPlaylistTitlesList, EXPECTED_LIST_OF_PLAYLIST_TITLES,
+        Assert.assertEquals(actualPlaylistTitlesList, expectedListOfPlaylistTitles,
                 "[ HOME PAGE / actualPlaylistTitlesList ] Actual list of Playlist titles is not equals to expected list!");
 
 
@@ -238,17 +239,17 @@ public class GoogleFitTest extends LoginTest {
 
 
         Calendar expectedBirthday = Calendar.getInstance();
-        expectedBirthday.set(Calendar.DAY_OF_MONTH, currentDay + 3);
+        expectedBirthday.set(Calendar.DAY_OF_MONTH, currentDay + 4);
         expectedBirthday.set(Calendar.MONTH, currentMonth + 3);
         expectedBirthday.set(Calendar.YEAR, currentYear - 25);
 
         String expectedGender = Gender.FEMALE.getGender();
 
-        int expectedHeightCentimeters = 174;
+        int expectedHeightCentimeters = 170;
         float expectedHeightFeet = 4.5F;
 
         float expectedWeightKilograms = 69.5F;
-        float expectedWeightPounds = 177.4F;
+        float expectedWeightPounds = 170.4F;
         float expectedWeightStones = 13.5F;
         WeightMeasures expectedWeightMeasure = WeightMeasures.POUNDS;
 
@@ -382,11 +383,11 @@ public class GoogleFitTest extends LoginTest {
         ProfilePageBase profilePageBase = (ProfilePageBase) homePageBase.openPageFromDownMenuByName(DownMenuElement.PROFILE);
         Assert.assertTrue(profilePageBase.isPageOpened(), "[ PROFILE PAGE ] Profile page is not opened!");
 
-        profilePageBase.checkSleepSwitch();
+        profilePageBase.checkSleepSwitch(TRUE_BOOLEAN);
         Assert.assertEquals(profilePageBase.getSleepSwitchColor(), BLUE_COLOR,
                 "[ PROFILE PAGE ] Sleep Switch is not blue!");
 
-        profilePageBase.uncheckSleepSwitch();
+        profilePageBase.checkSleepSwitch(FALSE_BOOLEAN);
         Assert.assertEquals(profilePageBase.getSleepSwitchColor(), WHITE_COLOR,
                 "[ PROFILE PAGE ] Sleep Switch is not white!");
 

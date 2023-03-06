@@ -1,4 +1,4 @@
-package koval.myfit.mobile.service;
+package koval.myfit.mobile.utils;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;

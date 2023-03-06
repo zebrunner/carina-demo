@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface IConstantUtils {
 
+    boolean TRUE_BOOLEAN = true;
+
+    boolean FALSE_BOOLEAN = false;
+
     int FIVE = 5;
 
     int TIMEOUT_FIVE = 5;
@@ -93,8 +97,5 @@ public interface IConstantUtils {
     String FALSE_ANSWER = "false";
 
     String OKAY_ANSWER = "OK";
-
-    List<String> EXPECTED_LIST_OF_PLAYLIST_TITLES = Arrays.asList("Workout", "Yoga", "Dance", "Meditate", "Mental Health", "Sleep");
-
 
 }

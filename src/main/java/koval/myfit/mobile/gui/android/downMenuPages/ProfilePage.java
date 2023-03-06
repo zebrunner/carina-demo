@@ -3,6 +3,7 @@ package koval.myfit.mobile.gui.android.downMenuPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import koval.carinademo.mobile.gui.common.loginPages.LoginPageBase;
 import koval.myfit.mobile.gui.android.modal.AboutMeModal;
 import koval.myfit.mobile.gui.android.modal.DownMenuModal;
 import koval.myfit.mobile.gui.android.modal.ManageAccountModal;
@@ -97,20 +98,19 @@ public class ProfilePage extends ProfilePageBase {
         return getColorByName(settingsTitle);
     }
 
-    @Override
-    public void checkSleepSwitch() {
 
-        if (sleepSwitch.getAttribute("checked").equals(FALSE_ANSWER)) {
+    @Override
+    public ProfilePageBase checkSleepSwitch(boolean status) {
+
+        if (status) {
             sleepSwitch.check();
-        }
-    }
-
-    @Override
-    public void uncheckSleepSwitch() {
-        if (sleepSwitch.getAttribute("checked").equals(TRUE_ANSWER)) {
+        } else {
             sleepSwitch.uncheck();
         }
+
+        return initPage(getDriver(), ProfilePageBase.class);
     }
+
 
     @Override
     public AbstractPage clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics) {

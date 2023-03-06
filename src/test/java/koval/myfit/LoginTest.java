@@ -22,7 +22,7 @@ public class LoginTest implements IMyInterface {
     @BeforeMethod
     public void login() {
 
-        adbService.setDarkMode(NO_ANSWER);
+        adbService.setDarkMode(YES_ANSWER);
 
         adbService.clearAppCache(AdbService.AppPackage.GOOGLE_FIT);
 

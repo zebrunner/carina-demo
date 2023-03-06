@@ -29,9 +29,7 @@ public abstract class ProfilePageBase extends MyAbstractPage {
 
     public abstract String getSettingsTitlesColor(String settingsTitleName) throws IOException;
 
-    public abstract void checkSleepSwitch();
-
-    public abstract void uncheckSleepSwitch();
+    public abstract ProfilePageBase checkSleepSwitch(boolean status);
 
     public abstract AbstractPage clickOnCharacteristicsBtn(PersonCharacteristics personCharacteristics);
 

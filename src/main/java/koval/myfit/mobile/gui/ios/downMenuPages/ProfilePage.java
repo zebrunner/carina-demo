@@ -46,12 +46,7 @@ public class ProfilePage extends ProfilePageBase {
     }
 
     @Override
-    public void checkSleepSwitch() {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public void uncheckSleepSwitch() {
+    public ProfilePageBase checkSleepSwitch(boolean status) {
         throw new NotImplementedException();
     }
 

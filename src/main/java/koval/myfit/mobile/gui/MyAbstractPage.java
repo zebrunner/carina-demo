@@ -1,7 +1,7 @@
 package koval.myfit.mobile.gui;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import koval.myfit.mobile.service.ColorUtils;
+import koval.myfit.mobile.utils.ColorUtils;
 import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
