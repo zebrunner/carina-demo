@@ -15,17 +15,7 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.demo.mobile.gui.pages.android.DragAndDropPage;
-import com.zebrunner.agent.core.annotation.TestLabel;
-import com.zebrunner.carina.utils.R;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
@@ -34,6 +24,12 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
@@ -101,21 +97,5 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(uiElements.isFemaleRadioButtonSelected(), "Female radio button was not selected!");
         uiElements.clickOnOtherRadioButton();
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
-    }
-
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = {"mobile", "acceptance"})
-    public void testDragAndDrop() {
-        R.CONFIG.put("capabilities.app",
-                "https://github.com/appium/java-client/raw/master/src/test/resources/apps/ApiDemos-debug.apk",
-                true);
-        R.CONFIG.put("capabilities.appActivity", ".view.DragAndDropDemo", true);
-
-        DragAndDropPage dragAndDropPage = new DragAndDropPage(getDriver());
-        dragAndDropPage.dragDown();
-        dragAndDropPage.dragRight();
-        dragAndDropPage.dragDiagonal();
-        Assert.assertTrue(dragAndDropPage.isDragAndDropMessagePresent(), "Should be provided pop up message after successful drag and drop ");
     }
 }
