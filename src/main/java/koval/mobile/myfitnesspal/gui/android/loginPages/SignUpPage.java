@@ -121,7 +121,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setMail(String mail) {
 
-        loginParameterTextBox.format("email").type(mail);
+        loginParameterTextBox.format(EMAIL).type(mail);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -129,7 +129,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setPassword(String password) {
 
-        loginParameterTextBox.format("password").type(password);
+        loginParameterTextBox.format(PASSWORD.toLowerCase()).type(password);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -139,10 +139,10 @@ public class SignUpPage extends SignUpPageBase {
     public SignUpPageBase setWeight(float weight, WeightMeasure weightMeasureValue) {
 
         String weightSpinnerID;
-        if (topToolbarModal.getTitleText().equals("Weekly Goal")) {
-            weightSpinnerID = "inputGoalWeight";
+        if (topToolbarModal.getTitleText().equals(WEEKLY_GOAL)) {
+            weightSpinnerID = INPUT_GOAL_WEIGHT;
         } else {
-            weightSpinnerID = "current_weight";
+            weightSpinnerID = CURRENT_WEIGHT;
         }
 
         measurementParametersSpinner.format(weightSpinnerID).click();
@@ -184,7 +184,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setHeight(float height, HeightMeasure heightMeasureValue) {
 
-        measurementParametersSpinner.format("height").click();
+        measurementParametersSpinner.format(AGE).click();
 
         if (!itemByText.format(heightMeasureValue.getHeightMeasure()).isElementPresent(TIMEOUT_FIVE)) {
             measureSpinner.click();
@@ -223,7 +223,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setAge(int age) {
 
-        itemByText.format("Age").type(String.valueOf(age));
+        itemByText.format(AGE).type(String.valueOf(age));
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -266,7 +266,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public boolean isItemFromGoalListSelectedByIndex(int index) {
 
-        return isItemFromListSelectedByIndex(index, goalsList, "goals");
+        return isItemFromListSelectedByIndex(index, goalsList, GOALS);
     }
 
 
@@ -299,7 +299,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase selectItemFromGoalsListByIndex(int index) {
 
-        return selectItemFromListByIndex(index, goalsList, "goals");
+        return selectItemFromListByIndex(index, goalsList, GOALS);
     }
 
     @Override
@@ -307,7 +307,7 @@ public class SignUpPage extends SignUpPageBase {
 
         waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format("How did you hear about us?").getBy()), TIMEOUT_FIFTEEN);
 
-        return selectItemFromListByIndex(index, sourceList, "source");
+        return selectItemFromListByIndex(index, sourceList, SOURCE);
     }
 
     @Override

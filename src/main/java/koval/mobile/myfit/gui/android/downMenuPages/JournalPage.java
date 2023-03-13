@@ -122,6 +122,7 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public boolean isActivityPresent(String activityTitle) {
+
         waitUntil(ExpectedConditions.visibilityOfElementLocated(activityTitleElement.getBy()), TIMEOUT_FIFTEEN);
 
         return titleList.get(0).getText().contains(activityTitle);

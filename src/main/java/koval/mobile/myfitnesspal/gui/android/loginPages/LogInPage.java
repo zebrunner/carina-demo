@@ -36,14 +36,14 @@ public class LogInPage extends LogInPageBase {
 
     @Override
     public LogInPageBase typeMail(String password) {
-        itemByText.format("Email Address").type(password);
+        itemByText.format(EMAIL_ADDRESS).type(password);
         return initPage(getDriver(), LogInPageBase.class);
     }
 
 
     @Override
     public LogInPageBase typePassword(String password) {
-        itemByText.format("Password").type(password);
+        itemByText.format(PASSWORD).type(password);
         return initPage(getDriver(), LogInPageBase.class);
     }
 

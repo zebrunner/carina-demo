@@ -31,9 +31,9 @@ public class LoginTest implements IMyInterface {
         Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
 
+
         LogInPageBase loginPageBase = welcomePageBase.logIn();
         Assert.assertTrue(loginPageBase.isPageOpened(), "[ LOGIN PAGE ] Login page is not opened!");
-
 
         loginPageBase.typeMail(R.TESTDATA.get("fitnessPal_mail"));
         loginPageBase.typePassword(R.TESTDATA.get("fitnessPal_password"));

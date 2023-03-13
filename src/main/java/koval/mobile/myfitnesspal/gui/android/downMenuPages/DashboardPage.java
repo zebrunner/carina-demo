@@ -43,7 +43,7 @@ public class DashboardPage extends DashboardPageBase {
     @Override
     public boolean isPageOpened() {
 
-        return itemByContentDesc.format("Calories card").isElementPresent(TIMEOUT_FIVE);
+        return itemByContentDesc.format(CALORIES_CARD).isElementPresent(TIMEOUT_FIVE);
     }
 
     @Override
@@ -56,15 +56,15 @@ public class DashboardPage extends DashboardPageBase {
     @Override
     public boolean isUserPremium() {
 
-        return !itemByText.format("Go Premium").isElementPresent(TIMEOUT_FIVE);
+        return !itemByText.format(GO_PREMIUM).isElementPresent(TIMEOUT_FIVE);
     }
 
 
     @Override
     public SignUpPageBase lastMealPopUpSkip() {
 
-        if (itemByText.format("Select a meal.").isElementPresent(TIMEOUT_FIVE)) {
-            itemByText.format("Skip").click();
+        if (itemByText.format(SELECT_A_MEAL).isElementPresent(TIMEOUT_FIVE)) {
+            itemByText.format(SKIP).click();
         }
 
         return initPage(getDriver(), SignUpPageBase.class);
@@ -74,7 +74,7 @@ public class DashboardPage extends DashboardPageBase {
     public DashboardPageBase closeNoSubscriptionsPopUp() {
 
         if (popUpNoSubscriptionsMessage.isElementPresent(TIMEOUT_FIVE)) {
-            itemByText.format("Cancel").click();
+            itemByText.format(CANCEL).click();
         }
         return initPage(getDriver(), DashboardPageBase.class);
     }

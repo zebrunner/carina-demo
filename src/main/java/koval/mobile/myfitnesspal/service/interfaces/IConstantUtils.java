@@ -32,4 +32,32 @@ public interface IConstantUtils {
     String SIGNUP = "Sign Up";
 
     String SET = "Set";
+
+    String SKIP = "Skip";
+
+    String CANCEL = "Cancel";
+
+    String SELECT_A_MEAL = "Select a meal.";
+
+    String GO_PREMIUM = "Go Premium";
+
+   String CALORIES_CARD = "Calories card";
+
+   String EMAIL_ADDRESS = "Email Address";
+
+   String PASSWORD = "Password";
+
+   String EMAIL = "email";
+
+   String SOURCE = "source";
+
+   String GOALS = "goals";
+
+   String AGE = "Age";
+
+   String WEEKLY_GOAL = "Weekly Goal";
+
+   String CURRENT_WEIGHT = "current_weight";
+
+   String INPUT_GOAL_WEIGHT = "inputGoalWeight";
 }
