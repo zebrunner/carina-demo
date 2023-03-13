@@ -1,0 +1,94 @@
+{
+  "total": "type:Integer",
+  "total_pages":  "type:Integer",
+  "results": [
+    {
+      "id": "regex:[a-zA-Z\\d]+",
+      "created_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "promoted_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "width": "type:Integer",
+      "height": "type:Integer",
+      "color": "regex:[a-zA-Z\\d]+",
+      "blur_hash": "regex:[a-zA-Z\\d]+",
+      "description": "type:String",
+      "alt_description": "type:String",
+      "urls": {
+        "raw": "skip",
+        "full": "skip",
+        "regular": "skip",
+        "small": "skip",
+        "thumb": "skip",
+        "small_s3": "skip"
+      },
+      "links": {
+        "self": "type:String",
+        "html": "type:String",
+        "download": "skip",
+        "download_location": "skip"
+      },
+      "likes": "type:Integer",
+      "liked_by_user": "type:Boolean",
+      "current_user_collections": [],
+      "sponsorship": "skip",
+      "topic_submissions": {
+        "film": {
+          "status": "type:String",
+          "approved_on": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z"
+        }
+      },
+      "user": {
+        "id": "regex:[a-zA-Z\\d]+",
+        "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+        "username": "regex:[a-zA-Z\\d]+",
+        "name": "regex:[a-zA-Z]+",
+        "first_name": "regex:[a-zA-Z]+",
+        "last_name": "regex:[a-zA-Z]+",
+        "twitter_username": "regex:[a-zA-Z\\d]+",
+        "portfolio_url": "type:String",
+        "bio": "type:String",
+        "location": "type:String",
+        "links": {
+          "self": "type:String",
+          "html": "type:String",
+          "photos": "type:String",
+          "likes": "type:String",
+          "portfolio": "type:String",
+          "following": "type:String",
+          "followers": "type:String"
+        },
+        "profile_image": {
+          "small": "type:String",
+          "medium": "type:String",
+          "large": "type:String"
+        },
+        "instagram_username": "regex:[a-zA-Z\\d]+",
+        "total_collections": "type:Integer",
+        "total_likes": "type:Integer",
+        "total_photos": "type:Integer",
+        "accepted_tos": "type:Boolean",
+        "for_hire": "type:Boolean",
+        "social": {
+          "instagram_username": "regex:[a-zA-Z\\d]+",
+          "portfolio_url": "type:String",
+          "twitter_username": "regex:[a-zA-Z\\d]+",
+          "paypal_email": "skip"
+        }
+      },
+      "tags": [
+        {
+          "type": "search",
+          "title": "type:String"
+        },
+        {
+          "type": "search",
+          "title": "type:String"
+        },
+        {
+          "type": "search",
+          "title": "type:String"
+        }
+      ]
+    }
+  ]
+}
