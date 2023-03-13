@@ -9,23 +9,23 @@
       "promoted_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
       "width": "type:Integer",
       "height": "type:Integer",
-      "color": "regex:[a-zA-Z\\d]+",
-      "blur_hash": "regex:[a-zA-Z\\d]+",
+      "color": "type:String",
+      "blur_hash": "type:String",
       "description": "type:String",
       "alt_description": "type:String",
       "urls": {
-        "raw": "skip",
-        "full": "skip",
-        "regular": "skip",
-        "small": "skip",
-        "thumb": "skip",
-        "small_s3": "skip"
+        "raw": "type:String",
+        "full": "type:String",
+        "regular": "type:String",
+        "small": "type:String",
+        "thumb": "type:String",
+        "small_s3": "type:String"
       },
       "links": {
         "self": "type:String",
         "html": "type:String",
-        "download": "skip",
-        "download_location": "skip"
+        "download": "type:String",
+        "download_location": "type:String"
       },
       "likes": "type:Integer",
       "liked_by_user": "type:Boolean",
@@ -38,13 +38,13 @@
         }
       },
       "user": {
-        "id": "regex:[a-zA-Z\\d]+",
+        "id": "type:String",
         "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
-        "username": "regex:[a-zA-Z\\d]+",
+        "username": "type:String",
         "name": "regex:[a-zA-Z]+",
         "first_name": "regex:[a-zA-Z]+",
         "last_name": "regex:[a-zA-Z]+",
-        "twitter_username": "regex:[a-zA-Z\\d]+",
+        "twitter_username": "type:String",
         "portfolio_url": "type:String",
         "bio": "type:String",
         "location": "type:String",
@@ -62,16 +62,16 @@
           "medium": "type:String",
           "large": "type:String"
         },
-        "instagram_username": "regex:[a-zA-Z\\d]+",
+        "instagram_username": "type:String",
         "total_collections": "type:Integer",
         "total_likes": "type:Integer",
         "total_photos": "type:Integer",
         "accepted_tos": "type:Boolean",
         "for_hire": "type:Boolean",
         "social": {
-          "instagram_username": "regex:[a-zA-Z\\d]+",
+          "instagram_username": "type:String",
           "portfolio_url": "type:String",
-          "twitter_username": "regex:[a-zA-Z\\d]+",
+          "twitter_username": "type:String",
           "paypal_email": "skip"
         }
       },

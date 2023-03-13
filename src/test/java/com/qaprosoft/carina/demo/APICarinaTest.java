@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.api.GetCollectionsMethod;
 import com.qaprosoft.carina.demo.api.GetPhotosUnauthorizedMethod;
 import com.qaprosoft.carina.demo.api.GetPhotosMethod;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
@@ -26,6 +27,14 @@ public class APICarinaTest implements IAbstractTest {
         getPhotosUnauthorizedMethod.callAPIExpectSuccess();
         getPhotosUnauthorizedMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getPhotosUnauthorizedMethod.validateResponseAgainstSchema("api/photos/_get/rs_unauthorized.schema");
+    }
+    @Test()
+    @MethodOwner(owner = "yana-glt")
+    public void testGetCollectionsMethod(){
+        GetCollectionsMethod getCollectionsMethod = new GetCollectionsMethod();
+        getCollectionsMethod.callAPIExpectSuccess();
+        getCollectionsMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
+        getCollectionsMethod.validateResponseAgainstSchema("api/collections/_get/rs.schema");
     }
 
 }
