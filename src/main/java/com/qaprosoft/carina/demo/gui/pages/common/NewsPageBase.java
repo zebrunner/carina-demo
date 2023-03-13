@@ -15,7 +15,7 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.common;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import org.openqa.selenium.WebDriver;
 

@@ -15,8 +15,8 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import com.zebrunner.carina.utils.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;

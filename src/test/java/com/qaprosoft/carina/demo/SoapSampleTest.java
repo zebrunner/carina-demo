@@ -1,6 +1,6 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.apitools.validation.XmlCompareMode;
+import com.zebrunner.carina.api.apitools.validation.XmlCompareMode;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.soap.AddIntegerMethod;
 import com.qaprosoft.carina.demo.soap.LookupCityMethod;

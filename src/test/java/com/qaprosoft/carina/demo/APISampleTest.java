@@ -15,9 +15,9 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.apitools.validation.JsonCompareKeywords;
+import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.api.APIMethodPoller;
+import com.zebrunner.carina.api.APIMethodPoller;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
