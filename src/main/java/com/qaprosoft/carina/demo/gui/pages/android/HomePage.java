@@ -15,8 +15,8 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.android;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.gui.components.footer.MobileFooterMenu;
 import com.qaprosoft.carina.demo.gui.pages.common.*;
 import com.zebrunner.carina.utils.factory.DeviceType;

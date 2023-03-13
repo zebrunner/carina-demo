@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.utils;
 
-import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
-import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
+import com.zebrunner.carina.webdriver.DriverHelper;
+import com.zebrunner.carina.webdriver.IDriverPool;
 import io.appium.java_client.remote.SupportsContextSwitching;
 import org.openqa.selenium.ContextAware;
 import org.openqa.selenium.NotFoundException;

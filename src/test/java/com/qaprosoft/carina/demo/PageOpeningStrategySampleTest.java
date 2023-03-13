@@ -17,7 +17,7 @@ package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.gui.pages.desktop.CompareModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
 import org.testng.annotations.Test;

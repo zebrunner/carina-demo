@@ -15,7 +15,7 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.webdriver.DriverHelper;
+import com.zebrunner.carina.webdriver.DriverHelper;
 import com.qaprosoft.carina.demo.mobile.gui.pages.android.DragAndDropPage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.utils.R;

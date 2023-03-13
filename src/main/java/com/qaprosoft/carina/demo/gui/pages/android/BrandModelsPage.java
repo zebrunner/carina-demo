@@ -15,7 +15,7 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.android;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.gui.components.ModelItem;
 import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;

@@ -15,7 +15,7 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.gui.components.footer.FooterMenu;
 import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;

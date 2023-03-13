@@ -15,7 +15,7 @@
  */
 package com.qaprosoft.carina.demo.gui.components.footer;
 
-import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
 import org.openqa.selenium.SearchContext;
