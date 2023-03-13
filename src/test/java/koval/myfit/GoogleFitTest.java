@@ -2,22 +2,22 @@ package koval.myfit;
 
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import koval.myfit.mobile.gui.android.plusButtonPages.AddActivityPage;
-import koval.myfit.mobile.gui.common.ActivityPageBase;
-import koval.myfit.mobile.gui.common.browsePages.VitalsPageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.BrowsePageBase;
-import koval.myfit.mobile.gui.common.aboutMePages.BirthdayPageBase;
-import koval.myfit.mobile.gui.common.aboutMePages.GenderPageBase;
-import koval.myfit.mobile.gui.common.aboutMePages.HeightPageBase;
-import koval.myfit.mobile.gui.common.aboutMePages.WeightPageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.HomePageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.JournalPageBase;
-import koval.myfit.mobile.gui.common.downMenuPages.ProfilePageBase;
-import koval.myfit.mobile.gui.common.modal.DownMenuModalBase;
-import koval.myfit.mobile.gui.common.modal.PlusButtonModalBase;
-import koval.myfit.mobile.gui.common.plusButtonPages.AddActivityPageBase;
-import koval.myfit.mobile.gui.common.plusButtonPages.AddBloodPressurePageBase;
-import koval.myfit.mobile.service.enums.*;
+import koval.mobile.myfit.gui.android.plusButtonPages.AddActivityPage;
+import koval.mobile.myfit.gui.common.ActivityPageBase;
+import koval.mobile.myfit.gui.common.browsePages.VitalsPageBase;
+import koval.mobile.myfit.gui.common.downMenuPages.BrowsePageBase;
+import koval.mobile.myfit.gui.common.aboutMePages.BirthdayPageBase;
+import koval.mobile.myfit.gui.common.aboutMePages.GenderPageBase;
+import koval.mobile.myfit.gui.common.aboutMePages.HeightPageBase;
+import koval.mobile.myfit.gui.common.aboutMePages.WeightPageBase;
+import koval.mobile.myfit.gui.common.downMenuPages.HomePageBase;
+import koval.mobile.myfit.gui.common.downMenuPages.JournalPageBase;
+import koval.mobile.myfit.gui.common.downMenuPages.ProfilePageBase;
+import koval.mobile.myfit.gui.common.modal.DownMenuModalBase;
+import koval.mobile.myfit.gui.common.modal.PlusButtonModalBase;
+import koval.mobile.myfit.gui.common.plusButtonPages.AddActivityPageBase;
+import koval.mobile.myfit.gui.common.plusButtonPages.AddBloodPressurePageBase;
+import koval.mobile.myfit.service.enums.*;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -239,17 +239,17 @@ public class GoogleFitTest extends LoginTest {
 
 
         Calendar expectedBirthday = Calendar.getInstance();
-        expectedBirthday.set(Calendar.DAY_OF_MONTH, currentDay + 4);
+        expectedBirthday.set(Calendar.DAY_OF_MONTH, currentDay + 3);
         expectedBirthday.set(Calendar.MONTH, currentMonth + 3);
         expectedBirthday.set(Calendar.YEAR, currentYear - 25);
 
         String expectedGender = Gender.FEMALE.getGender();
 
-        int expectedHeightCentimeters = 170;
+        int expectedHeightCentimeters = 176;
         float expectedHeightFeet = 4.5F;
 
         float expectedWeightKilograms = 69.5F;
-        float expectedWeightPounds = 170.4F;
+        float expectedWeightPounds = 175.4F;
         float expectedWeightStones = 13.5F;
         WeightMeasures expectedWeightMeasure = WeightMeasures.POUNDS;
 

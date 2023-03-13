@@ -1,12 +1,12 @@
 package koval.myfit;
 
 
-import koval.myfit.mobile.gui.IMyInterface;
-import koval.myfit.mobile.service.AdbService;
-import koval.myfit.mobile.gui.common.loginPages.AboutMePageBase;
-import koval.myfit.mobile.gui.common.loginPages.TrackActivitiesPageBase;
-import koval.myfit.mobile.gui.common.loginPages.WelcomePageBase;
-import koval.myfit.mobile.service.enums.TrackYourActivitiesAnswer;
+import koval.mobile.myfit.gui.IMyInterface;
+import koval.mobile.myfit.service.AdbService;
+import koval.mobile.myfit.gui.common.loginPages.AboutMePageBase;
+import koval.mobile.myfit.gui.common.loginPages.TrackActivitiesPageBase;
+import koval.mobile.myfit.gui.common.loginPages.WelcomePageBase;
+import koval.mobile.myfit.service.enums.TrackYourActivitiesAnswer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -22,7 +22,7 @@ public class LoginTest implements IMyInterface {
     @BeforeMethod
     public void login() {
 
-        adbService.setDarkMode(YES_ANSWER);
+        adbService.setDarkMode(NO_ANSWER);
 
         adbService.clearAppCache(AdbService.AppPackage.GOOGLE_FIT);
 
