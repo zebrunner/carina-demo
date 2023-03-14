@@ -5,6 +5,8 @@ public interface IConstantUtils {
 
     int TIMEOUT_FIVE = 5;
 
+    int TIMEOUT_TWO = 2;
+
     int TIMEOUT_FIFTEEN = 15;
 
     int TIMEOUT_TEN = 10;
@@ -60,4 +62,8 @@ public interface IConstantUtils {
    String CURRENT_WEIGHT = "current_weight";
 
    String INPUT_GOAL_WEIGHT = "inputGoalWeight";
+
+   String DIARY_TEXT = "Diary";
+
+   String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
 }

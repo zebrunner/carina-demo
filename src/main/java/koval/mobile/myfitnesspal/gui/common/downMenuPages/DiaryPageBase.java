@@ -3,7 +3,9 @@ package koval.mobile.myfitnesspal.gui.common.downMenuPages;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.MyAbstractPage;
 
+import koval.mobile.myfitnesspal.gui.common.AddFoodPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
+import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 
 
@@ -17,4 +19,12 @@ public abstract class DiaryPageBase extends MyAbstractPage {
 
 
     public abstract AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement);
+
+
+    public abstract AddFoodPageBase clickAddFoodButton(Meals meals);
+
+    public abstract boolean isFoodAddedToMealByName(Meals meals, String food);
+
+    public abstract DiaryPageBase deleteAllFood();
+
 }

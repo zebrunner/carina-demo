@@ -11,6 +11,7 @@ import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DashboardPageBase.class)
@@ -32,7 +33,8 @@ public class DashboardPage extends DashboardPageBase {
     @FindBy(xpath = "//android.view.View[1]/android.widget.Button")
     private ExtendedWebElement exitTutorialButton;
 
-    @FindBy(xpath = "//android.widget.FrameLayout/android.view.ViewGroup/android.view.View/android.view.View/android.view.View")
+    ///android.widget.FrameLayout/android.view.ViewGroup/android.view.View/android.view.View/android.view.View
+    @FindBy(xpath = "//*[@resource-id='layoutExistingUserTutorialScope']")
     private ExtendedWebElement userTutorialBox;
 
     public DashboardPage(WebDriver driver) {
@@ -82,7 +84,7 @@ public class DashboardPage extends DashboardPageBase {
     @Override
     public DashboardPageBase closeUserTutorialBox() {
 
-        if (userTutorialBox.isElementPresent(TIMEOUT_FIVE)) {
+        if (exitTutorialButton.isElementPresent(TIMEOUT_FIVE)) { //userTutorialBox
             exitTutorialButton.click();
         }
         return initPage(getDriver(), DashboardPageBase.class);

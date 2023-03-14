@@ -68,7 +68,7 @@ public class ColorUtils extends AbstractPage {
         names.put(blue, BLUE_COLOR);
 
 
-        if (Math.abs(red - green ) < 5 && Math.abs(green - blue) < 5) {
+        if (Math.abs(red - green ) < 1 && Math.abs(green - blue) < 1) {
             colorResult = WHITE_COLOR;
         }
 
@@ -110,7 +110,7 @@ public class ColorUtils extends AbstractPage {
         names.put(blue, BLUE_COLOR);
 
 
-        if (Math.abs(red - green ) < 5 && Math.abs(green - blue) < 5) {
+        if (Math.abs(red - green ) < 1 && Math.abs(green - blue) < 1) {
             colorResult = WHITE_COLOR;
         }
 

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
 import java.lang.invoke.MethodHandles;
 
@@ -40,6 +41,10 @@ public class DownMenuModal extends DownMenuModalBase {
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
 
         waitUntil(ExpectedConditions.visibilityOfElementLocated(downMenuIconElement.format(downMenuElement.getPageName().toLowerCase()).getBy()), TIMEOUT_FIVE);
+
+        if (downMenuIconElement.isElementPresent(TIMEOUT_FIVE)) {
+            Assert.fail("Down Menu Element is not present!");
+        }
 
         downMenuIconElement.format(downMenuElement.getPageName().toLowerCase()).click();
 
