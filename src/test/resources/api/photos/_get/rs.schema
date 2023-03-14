@@ -45,58 +45,10 @@
               "type": "string"
             },
             "urls": {
-              "type": "object",
-              "properties": {
-                "raw": {
-                  "type": "string"
-                },
-                "full": {
-                  "type": "string"
-                },
-                "regular": {
-                  "type": "string"
-                },
-                "small": {
-                  "type": "string"
-                },
-                "thumb": {
-                  "type": "string"
-                },
-                "small_s3": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "raw",
-                "full",
-                "regular",
-                "small",
-                "thumb",
-                "small_s3"
-              ]
+              "type": "object"
             },
             "links": {
-              "type": "object",
-              "properties": {
-                "self": {
-                  "type": "string"
-                },
-                "html": {
-                  "type": "string"
-                },
-                "download": {
-                  "type": "string"
-                },
-                "download_location": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "self",
-                "html",
-                "download",
-                "download_location"
-              ]
+              "type": "object"
             },
             "likes": {
               "type": "integer"
@@ -112,27 +64,7 @@
               "type": "null"
             },
             "topic_submissions": {
-              "type": "object",
-              "properties": {
-                "film": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "approved_on": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "approved_on"
-                  ]
-                }
-              },
-              "required": [
-                "film"
-              ]
+              "type": "object"
             },
             "user": {
               "type": "object",
@@ -168,58 +100,10 @@
                   "type": "string"
                 },
                 "links": {
-                  "type": "object",
-                  "properties": {
-                    "self": {
-                      "type": "string"
-                    },
-                    "html": {
-                      "type": "string"
-                    },
-                    "photos": {
-                      "type": "string"
-                    },
-                    "likes": {
-                      "type": "string"
-                    },
-                    "portfolio": {
-                      "type": "string"
-                    },
-                    "following": {
-                      "type": "string"
-                    },
-                    "followers": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "self",
-                    "html",
-                    "photos",
-                    "likes",
-                    "portfolio",
-                    "following",
-                    "followers"
-                  ]
+                  "type": "object"
                 },
                 "profile_image": {
-                  "type": "object",
-                  "properties": {
-                    "small": {
-                      "type": "string"
-                    },
-                    "medium": {
-                      "type": "string"
-                    },
-                    "large": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "small",
-                    "medium",
-                    "large"
-                  ]
+                  "type": "object"
                 },
                 "instagram_username": {
                   "type": "string"
@@ -240,27 +124,7 @@
                   "type": "boolean"
                 },
                 "social": {
-                  "type": "object",
-                  "properties": {
-                    "instagram_username": {
-                      "type": "string"
-                    },
-                    "portfolio_url": {
-                      "type": "string"
-                    },
-                    "twitter_username": {
-                      "type": "string"
-                    },
-                    "paypal_email": {
-                      "type": "null"
-                    }
-                  },
-                  "required": [
-                    "instagram_username",
-                    "portfolio_url",
-                    "twitter_username",
-                    "paypal_email"
-                  ]
+                  "type": "object"
                 }
               },
               "required": [
@@ -287,53 +151,7 @@
             },
             "tags": {
               "type": "array",
-              "items": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "title"
-                  ]
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "title"
-                  ]
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "title"
-                  ]
-                }
-              ]
+              "items": {}
             }
           },
           "required": [

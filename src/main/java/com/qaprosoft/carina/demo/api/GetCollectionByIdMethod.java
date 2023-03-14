@@ -8,17 +8,15 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.Configuration;
 
-@Endpoint(url = "${base_url}/search/photos",
-        methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/photos_unauthorized/_get/rs.json")
-@SuccessfulHttpStatus(status = HttpResponseStatusType.UNAUTHORIZED_401)
-public class GetPhotosUnauthorizedMethod extends AbstractApiMethodV2 {
+@Endpoint(url = "${base_url}/collections/${id}", methodType = HttpMethodType.GET)
+@ResponseTemplatePath(path = "api/collection_by_id/_get/rs.json")
+@SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
+public class GetCollectionByIdMethod extends AbstractApiMethodV2 {
 
-    public GetPhotosUnauthorizedMethod() {
-        addParameter("query", "krakow");
-        addParameter("page", "1");
-        addParameter("per_page", "1");
+    public GetCollectionByIdMethod(){
+        replaceUrlPlaceholder("id", "9242294");
+        addParameter("client_id", "oZqNRI9G64U6XQonRp5aZduKHySCnEB55zH_Xuko-ZI");
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url_unsplash"));
-
     }
+
 }
