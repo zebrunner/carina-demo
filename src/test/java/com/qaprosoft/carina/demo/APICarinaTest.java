@@ -1,14 +1,20 @@
 package com.qaprosoft.carina.demo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.api.*;
+import com.qaprosoft.carina.demo.model.Collection;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class APICarinaTest implements IAbstractTest {
 
@@ -82,5 +88,16 @@ public class APICarinaTest implements IAbstractTest {
         getCollectionsPhotosByIdMethod.callAPIExpectSuccess();
         getCollectionsPhotosByIdMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getCollectionsPhotosByIdMethod.validateResponseAgainstSchema("api/collection_photos/_get/rs.schema");
+    }
+
+    @Test
+    @MethodOwner(owner = "yana-glt")
+    public void testGetCheckDefaultPaginationMethod() throws JsonProcessingException {
+        GetCheckDefaultPaginationMethod getCheckDefaultPaginationMethod = new GetCheckDefaultPaginationMethod();
+        Response response = getCheckDefaultPaginationMethod.callAPIExpectSuccess();
+        String json = response.body().asString();
+        ObjectMapper om = new ObjectMapper();
+        List<Collection> list = om.readValue(json, new TypeReference<>(){});
+        Assert.assertEquals(list.size(), 10,"The default pagination (10 items per page) is not respected.");
     }
 }
