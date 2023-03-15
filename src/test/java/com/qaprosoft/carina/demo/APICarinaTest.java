@@ -19,7 +19,7 @@ import java.util.List;
 public class APICarinaTest implements IAbstractTest {
 
     @Test()
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetPhotos() {
         GetPhotosMethod getPhotosMethod = new GetPhotosMethod();
         Response response = getPhotosMethod.callAPIExpectSuccess();
@@ -28,11 +28,11 @@ public class APICarinaTest implements IAbstractTest {
         JsonPath json = response.body().jsonPath();
         Integer total = Integer.valueOf(json.getString("total"));
         Integer totalPages = Integer.valueOf(json.getString("total_pages"));
-        Assert.assertEquals(total,totalPages);
+        Assert.assertEquals(total, totalPages);
     }
 
     @Test()
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetPhotosUnauthorized() {
         GetPhotosUnauthorizedMethod getPhotosUnauthorizedMethod = new GetPhotosUnauthorizedMethod();
         getPhotosUnauthorizedMethod.callAPIExpectSuccess();
@@ -41,7 +41,7 @@ public class APICarinaTest implements IAbstractTest {
     }
 
     @Test
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetThreePhotosOnPage() {
         GetThreePhotosOnPageMethod getThreePhotosOnPageMethod = new GetThreePhotosOnPageMethod();
         getThreePhotosOnPageMethod.callAPIExpectSuccess();
@@ -51,7 +51,7 @@ public class APICarinaTest implements IAbstractTest {
 
 
     @Test()
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetCollectionsMethod(){
         GetCollectionsMethod getCollectionsMethod = new GetCollectionsMethod();
         Response response = getCollectionsMethod.callAPIExpectSuccess();
@@ -60,11 +60,11 @@ public class APICarinaTest implements IAbstractTest {
         JsonPath json = response.body().jsonPath();
         Integer total = Integer.valueOf(json.getString("total"));
         Integer totalPages = Integer.valueOf(json.getString("total_pages"));
-        Assert.assertEquals(total,totalPages);
+        Assert.assertEquals(total, totalPages);
     }
 
     @Test
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetFiveCollectionsOnPage(){
         GetFiveCollectionsOnPageMethod getFiveCollectionsOnPageMethod = new GetFiveCollectionsOnPageMethod();
         getFiveCollectionsOnPageMethod.callAPIExpectSuccess();
@@ -73,7 +73,7 @@ public class APICarinaTest implements IAbstractTest {
     }
 
     @Test
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetCollectionById(){
         GetCollectionByIdMethod getCollectionByIdMethod =  new GetCollectionByIdMethod();
         getCollectionByIdMethod.callAPIExpectSuccess();
@@ -82,7 +82,7 @@ public class APICarinaTest implements IAbstractTest {
     }
 
     @Test
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetCollectionsPhotosById(){
         GetCollectionsPhotosByIdMethod getCollectionsPhotosByIdMethod = new GetCollectionsPhotosByIdMethod();
         getCollectionsPhotosByIdMethod.callAPIExpectSuccess();
@@ -91,13 +91,13 @@ public class APICarinaTest implements IAbstractTest {
     }
 
     @Test
-    @MethodOwner(owner = "yana-glt")
+    @MethodOwner(owner = "ygalitsyna")
     public void testGetCheckDefaultPaginationMethod() throws JsonProcessingException {
         GetCheckDefaultPaginationMethod getCheckDefaultPaginationMethod = new GetCheckDefaultPaginationMethod();
         Response response = getCheckDefaultPaginationMethod.callAPIExpectSuccess();
         String json = response.body().asString();
         ObjectMapper om = new ObjectMapper();
         List<Collection> list = om.readValue(json, new TypeReference<>(){});
-        Assert.assertEquals(list.size(), 10,"The default pagination (10 items per page) is not respected.");
+        Assert.assertEquals(list.size(), 10, "The default pagination (10 items per page) is not respected.");
     }
 }

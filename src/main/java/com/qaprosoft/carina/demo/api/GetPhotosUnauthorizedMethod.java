@@ -19,6 +19,5 @@ public class GetPhotosUnauthorizedMethod extends AbstractApiMethodV2 {
         addParameter("page", "1");
         addParameter("per_page", "1");
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url_unsplash"));
-
     }
 }
