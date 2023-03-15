@@ -134,6 +134,7 @@ public class JournalPage extends JournalPageBase {
 
         waitUntil(ExpectedConditions.visibilityOfElementLocated(activityTitleElement.getBy()), TIMEOUT_FIFTEEN);
 
+        LOGGER.info(String.valueOf(activityTitleElement.getText()));
         LOGGER.info(String.valueOf(titleList.size()));
 
         if (titleList.isEmpty()) {

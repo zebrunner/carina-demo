@@ -9,8 +9,6 @@ import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 
 
-
-
 public abstract class DiaryPageBase extends MyAbstractPage {
 
     public DiaryPageBase(WebDriver driver) {
@@ -21,9 +19,21 @@ public abstract class DiaryPageBase extends MyAbstractPage {
     public abstract AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement);
 
 
+    public abstract boolean isFoodAddedToMeal(String food, Meals meals);
+
+    public abstract boolean isAllFoodDeleted(Meals meals);
+
+    public abstract AddFoodPageBase closePromoMessages();
+
     public abstract AddFoodPageBase clickAddFoodButton(Meals meals);
 
-    public abstract boolean isFoodAddedToMealByName(Meals meals, String food);
+
+
+    public abstract int getMealLocationByDownY(Meals meals);
+
+    public abstract int getAddFoodButtonLocationByUpperY(Meals meals);
+
+    public abstract int getFoodLocationByUpperY(String text);
 
     public abstract DiaryPageBase deleteAllFood();
 

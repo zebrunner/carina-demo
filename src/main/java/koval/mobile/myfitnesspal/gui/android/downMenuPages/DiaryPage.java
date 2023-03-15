@@ -4,7 +4,6 @@ package koval.mobile.myfitnesspal.gui.android.downMenuPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import koval.mobile.myfitnesspal.gui.android.modal.DownMenuModal;
 import koval.mobile.myfitnesspal.gui.common.AddFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
@@ -31,12 +30,12 @@ public class DiaryPage extends DiaryPageBase {
     private ExtendedWebElement title;
 
 
+//    @FindBy(id = "com.myfitnesspal.android:id/txtSectionHeader")
+//    private List<ExtendedWebElement> mealTitleList;
+
+
     @FindBy(id = "com.myfitnesspal.android:id/txtSectionHeader")
-    private List<ExtendedWebElement> mealTitle;
-
-
-    @FindBy(id = "com.myfitnesspal.android:id/add_food")
-    private List<ExtendedWebElement> addFoodButton;
+    private ExtendedWebElement mealTitle;
 
 
     @FindBy(id = "com.myfitnesspal.android:id/edit_action_item")
@@ -61,12 +60,30 @@ public class DiaryPage extends DiaryPageBase {
     private ExtendedWebElement deletePopUpMessage;
 
 
-    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/foodSearchViewFoodItem']/child::*//*[@resource-id='com.myfitnesspal.android:id/txtItemDescription']")
+    @FindBy(id = "com.myfitnesspal.android:id/txtItemDescription")
     private ExtendedWebElement foodViewItemTitle;
 
 
-    @FindBy(id = "com.myfitnesspal.android:id/content_pager")
-    private ExtendedWebElement test;
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/content_container']")
+    private List<ExtendedWebElement> mealContainer;
+
+    @FindBy(id = "com.myfitnesspal.android:id/imagePromoClose")
+    private ExtendedWebElement closePromoImageButton;
+
+
+    @FindBy(id = "com.myfitnesspal.android:id/promo_dismiss")
+    private ExtendedWebElement promoDismissButton;
+
+    @FindBy(id = "com.myfitnesspal.android:id/add_food")
+    private List<ExtendedWebElement> addFoodButtonList;
+
+
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/foodSearchViewFoodItem']")
+    private ExtendedWebElement foodViewContainer;
+
+
+    @FindBy(id = "com.myfitnesspal.android:id/footer_container")
+    private List<ExtendedWebElement> addFoodButtonContainer;
 
     public DiaryPage(WebDriver driver) {
         super(driver);
@@ -86,60 +103,97 @@ public class DiaryPage extends DiaryPageBase {
         return isPageOpened(title, DIARY_TEXT);
     }
 
+
     @Override
-    public AddFoodPageBase clickAddFoodButton(Meals meals) {
+    public boolean isFoodAddedToMeal(String food, Meals meals) {
+        return getFoodLocationByUpperY(food) == getMealLocationByDownY(meals);
+    }
 
-        //swipe
+    @Override
+    public boolean isAllFoodDeleted(Meals meals) {
+        return getAddFoodButtonLocationByUpperY(meals) == getMealLocationByDownY(meals);
+    }
 
-        for (int i = 0; i < mealTitle.size(); i++) {
-            if (mealTitle.get(i).getText().equals(meals.getMeal())) {
-                addFoodButton.get(i).click();
+    @Override
+    public AddFoodPageBase closePromoMessages() {
 
-            }
+        if (promoDismissButton.isElementPresent(TIMEOUT_FIVE)) {
+            promoDismissButton.click();
+        }
+
+        if (closePromoImageButton.isElementPresent(TIMEOUT_FIVE)) {
+            closePromoImageButton.click();
         }
 
 
         return initPage(getDriver(), AddFoodPageBase.class);
     }
 
+
     @Override
-    public boolean isFoodAddedToMealByName(Meals meals, String food) {
+    public AddFoodPageBase clickAddFoodButton(Meals meals) {
 
-        //swipe
-        // swipe(itemByText.format(meals.getMeal()), Direction.DOWN);
+        LOGGER.info(meals.getMeal());
 
-        Direction direction = Direction.UP;
-        int desiredMealIndex = meals.getMealIndex();
+        swipe(itemByText.format(meals.getMeal()));
 
-        for (Meals currentMeal : Meals.values()) {
-
-            if (itemByText.format(currentMeal.getMeal()).isElementPresent(TIMEOUT_FIVE)) {
-                int currentMealIndex = currentMeal.getMealIndex();
+        getMealLocationByDownY(meals);
+        getAddFoodButtonLocationByUpperY(meals);
 
 
-                LOGGER.info("current " + currentMealIndex);
-                LOGGER.info("desire " + desiredMealIndex);
+        return initPage(getDriver(), AddFoodPageBase.class);
+    }
 
 
-                if (desiredMealIndex < currentMealIndex) {
-                    direction = Direction.DOWN;
-                }
+    @Override
+    public int getAddFoodButtonLocationByUpperY(Meals meals) {
+
+        int locationY = -1;
+        for (int i = 0; i < addFoodButtonList.size(); i++) {
+            LOGGER.info(String.valueOf(addFoodButtonContainer.get(i).getLocation().getY()));
+            if (addFoodButtonContainer.get(i).getLocation().getY() == getMealLocationByDownY(meals)) {
+                addFoodButtonList.get(i).click();
+
+
+                break;
             }
         }
 
 
-        swipe(itemByText.format(meals.getMeal()), test, direction);
+        return locationY;
+    }
+
+    @Override
+    public int getFoodLocationByUpperY(String text) {
+
+        int locationY = -1;
+        if (foodViewContainer.findExtendedWebElement(foodViewItemTitle.getBy()).getText().toLowerCase().equals(text)) {
+            locationY = foodViewContainer.getLocation().getY();
 
 
-        boolean result = false;
-        for (ExtendedWebElement extendedWebElement : mealTitle) {
-            if (extendedWebElement.getText().equals(meals.getMeal())) {
-                result = foodViewItemTitle.getText().toLowerCase().equals(food);
-            }
         }
 
 
-        return result;
+        return locationY;
+
+    }
+
+
+    @Override
+    public int getMealLocationByDownY(Meals meals) {
+        int locationDownY = -1;
+
+
+        for (ExtendedWebElement extendedWebElement : mealContainer) {
+            if (extendedWebElement.findExtendedWebElement(mealTitle.getBy()).getText().equals(meals.getMeal())) {
+                locationDownY = extendedWebElement.getSize().getHeight() + extendedWebElement.getLocation().getY();
+                break;
+            }
+
+        }
+
+
+        return locationDownY;
     }
 
 
