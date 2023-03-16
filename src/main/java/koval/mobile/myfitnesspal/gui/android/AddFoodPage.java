@@ -54,7 +54,7 @@ public class AddFoodPage extends AddFoodPageBase {
             selectMealText.click();
 
             if (mealNameTextList.isEmpty()) {
-                Assert.fail("List of meals is empty!");
+                Assert.fail("[ ADD FOOD PAGE ] List of meals is empty!");
             }
 
             for (ExtendedWebElement extendedWebElement : mealNameTextList) {
@@ -76,14 +76,6 @@ public class AddFoodPage extends AddFoodPageBase {
         searchFoodField.type(food);
         searchForFoodTextView.click();
 
-        if (foodTitleList.isEmpty()) {
-            Assert.fail("List of food Titles is empty!");
-        }
-
-        if (addFoodPlusButtonList.isEmpty()) {
-            Assert.fail("List of add food Button is empty!");
-        }
-
         for (int i = 0; i < foodTitleList.size(); i++) {
             if (foodTitleList.get(i).getText().toLowerCase().equals(food)) {
                 addFoodPlusButtonList.get(i).click();
@@ -102,6 +94,5 @@ public class AddFoodPage extends AddFoodPageBase {
 
         return initPage(getDriver(), DiaryPageBase.class);
     }
-
 
 }

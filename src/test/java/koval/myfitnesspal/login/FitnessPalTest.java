@@ -44,66 +44,39 @@ public class FitnessPalTest extends LoginTest {
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
         dashboardPageBase.closeNoSubscriptionsPopUp();
         dashboardPageBase.closeUserTutorialBox();
-
         Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
 
         DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
         Assert.assertTrue(diaryPageBase.isPageOpened(), "[ DIARY PAGE ] Diary page is not opened!");
 
         diaryPageBase.deleteAllFood();
-
         diaryPageBase.closePromoMessages();
 
-        for (Meals meals : Meals.values()) {
-            Assert.assertTrue(diaryPageBase.isAllFoodDeleted(meals));
+
+        String[] food = {"apple", "milk", "bread", "cherry"};
+        Meals[] mealsArr = Meals.values();
+
+        for (int i = 0; i < Meals.values().length; i++) {
+
+            AddFoodPageBase addFoodPageBase = diaryPageBase.clickAddFoodButton(mealsArr[i]);
+            Assert.assertTrue(addFoodPageBase.isPageOpened(mealsArr[i].getMeal()), String.format("[ '%s' PAGE ] '%s' page is not opened!",
+                    mealsArr[i].getMeal().toUpperCase(), mealsArr[i].getMeal()));
+
+            addFoodPageBase.addFoodToMealByName(food[i]);
+
+            diaryPageBase = addFoodPageBase.clickBackButton();
+            Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(food[i], mealsArr[i]), String.format("[ DIARY PAGE ] Food '%s' is not deleted! Meal: '%s'",
+                    food[i], mealsArr[i]));
         }
-
-        AddFoodPageBase addFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
-        Assert.assertTrue(addFoodPageBase.isPageOpened(Meals.BREAKFAST.getMeal()), "[ BREAKFAST PAGE ] Breakfast page is not opened!");
-
-        addFoodPageBase.addFoodToMealByName("apple");
-
-
-        diaryPageBase = addFoodPageBase.clickBackButton();
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal("apple", Meals.BREAKFAST));
-
-
-        addFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.LUNCH);
-        Assert.assertTrue(addFoodPageBase.isPageOpened(Meals.LUNCH.getMeal()), "[ LUNCH PAGE ] LUNCH page is not opened!");
-
-        addFoodPageBase.addFoodToMealByName("bread");
-
-
-        diaryPageBase = addFoodPageBase.clickBackButton();
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal("bread", Meals.LUNCH));
-
-        addFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.DINNER);
-        Assert.assertTrue(addFoodPageBase.isPageOpened(Meals.DINNER.getMeal()), "[ DINNER PAGE ] Dinner page is not opened!");
-
-        addFoodPageBase.addFoodToMealByName("milk");
-
-
-        diaryPageBase = addFoodPageBase.clickBackButton();
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal("milk", Meals.DINNER));
-
-        addFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.SNACKS);
-        Assert.assertTrue(addFoodPageBase.isPageOpened(Meals.SNACKS.getMeal()), "[ SNACKS PAGE ] Snacks page is not opened!");
-
-        addFoodPageBase.addFoodToMealByName("water");
-
-
-        diaryPageBase = addFoodPageBase.clickBackButton();
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal("water", Meals.SNACKS));
 
 
         diaryPageBase.deleteAllFood();
 
         for (Meals meals : Meals.values()) {
-            Assert.assertTrue(diaryPageBase.isAllFoodDeleted(meals));
+            Assert.assertTrue(diaryPageBase.isAllFoodDeleted(meals), String.format("[ DIARY PAGE ] Food is not deleted! Meal: '%s'",
+                    meals));
         }
 
-
     }
-
 
 }

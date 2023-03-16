@@ -14,6 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
@@ -31,6 +32,8 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/txtSectionHeader")
     private ExtendedWebElement mealTitle;
 
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/content_container']/child::*[@text='%s']")
+    private ExtendedWebElement mealTitleByText;
     @FindBy(id = "com.myfitnesspal.android:id/edit_action_item")
     private ExtendedWebElement editActionPenButton;
 
@@ -49,7 +52,7 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/parentPanel")
     private ExtendedWebElement deletePopUpMessage;
 
-    @FindBy(id = "com.myfitnesspal.android:id/txtItemDescription")
+    @FindBy(xpath = "//android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[1]")
     private ExtendedWebElement foodViewItemTitle;
 
     @FindBy(id = "com.myfitnesspal.android:id/imagePromoClose")
@@ -110,7 +113,6 @@ public class DiaryPage extends DiaryPageBase {
             closePromoImageButton.click();
         }
 
-
         return initPage(getDriver(), AddFoodPageBase.class);
     }
 
@@ -118,9 +120,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public AddFoodPageBase clickAddFoodButton(Meals meals) {
 
-        LOGGER.info(meals.getMeal());
-
-        swipe(itemByText.format(meals.getMeal()));
+        swipe(itemByText.format(meals.getMeal()), Direction.UP, LOW_SPEED, TWENTY_COUNT);
 
         clickAddButtonByMeal(meals);
 
@@ -146,7 +146,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public int getAddFoodButtonLocationByUpperY(Meals meals) {
 
-        int locationY = -1;
+        int locationY = 0;
 
         for (int i = 0; i < addFoodButtonList.size(); i++) {
 
@@ -157,7 +157,10 @@ public class DiaryPage extends DiaryPageBase {
             }
         }
 
-        LOGGER.info(String.valueOf(locationY));
+        if(addFoodButtonList.size() != 4)
+        {
+            swipe(mealTitleByText.format(EXERCISE_STRING), Direction.UP, LOW_SPEED, TWENTY_COUNT);
+        }
 
         return locationY;
     }
@@ -165,9 +168,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public int getFoodLocationByUpperY(String text) {
 
-        LOGGER.info(text);
-
-        int locationY = -1;
+        int locationY = 0;
 
         for (ExtendedWebElement extendedWebElement : foodViewContainerList) {
 
@@ -179,7 +180,6 @@ public class DiaryPage extends DiaryPageBase {
             }
         }
 
-
         return locationY;
     }
 
@@ -187,7 +187,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public int getMealLocationByDownY(Meals meals) {
 
-        int locationDownY = -1;
+        int locationDownY = 0;
 
         for (ExtendedWebElement extendedWebElement : mealContainerList) {
 

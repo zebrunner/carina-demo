@@ -15,6 +15,8 @@ public interface IConstantUtils {
 
     int MEDIUM_SPEED = 600;
 
+    int LOW_SPEED = 300;
+
     String ONE_VALUE = "one";
 
     String TWO_VALUE = "two";
@@ -66,4 +68,6 @@ public interface IConstantUtils {
    String DIARY_TEXT = "Diary";
 
    String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
+
+   String EXERCISE_STRING = "Exercise";
 }

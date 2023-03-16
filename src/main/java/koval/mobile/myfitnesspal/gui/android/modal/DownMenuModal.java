@@ -39,8 +39,6 @@ public class DownMenuModal extends DownMenuModalBase {
     @Override
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
 
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(downMenuIconElement.format(downMenuElement.getPageName().toLowerCase()).getBy()), TIMEOUT_FIVE);
-
         if (downMenuIconElement.isElementPresent(TIMEOUT_FIVE)) {
             Assert.fail("Down Menu Element is not present!");
         }
