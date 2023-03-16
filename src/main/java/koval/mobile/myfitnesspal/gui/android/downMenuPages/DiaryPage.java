@@ -25,26 +25,17 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/bottomNavigationBar")
     private DownMenuModal downMenuModal;
 
-
     @FindBy(xpath = "//android.widget.ScrollView[@content-desc='MainActivity']/android.widget.LinearLayout//android.widget.TextView")
     private ExtendedWebElement title;
-
-
-//    @FindBy(id = "com.myfitnesspal.android:id/txtSectionHeader")
-//    private List<ExtendedWebElement> mealTitleList;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/txtSectionHeader")
     private ExtendedWebElement mealTitle;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/edit_action_item")
     private ExtendedWebElement editActionPenButton;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/select_all")
     private ExtendedWebElement selectAllCheckBox;
-
 
     @FindBy(xpath = "//android.widget.Button[@content-desc='Delete']")
     private ExtendedWebElement deleteFoodButton;
@@ -52,24 +43,17 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
-
     @FindBy(xpath = "//android.widget.Button[@text='Delete']")
     private ExtendedWebElement deleteTextButton;
 
     @FindBy(id = "com.myfitnesspal.android:id/parentPanel")
     private ExtendedWebElement deletePopUpMessage;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/txtItemDescription")
     private ExtendedWebElement foodViewItemTitle;
 
-
-    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/content_container']")
-    private List<ExtendedWebElement> mealContainer;
-
     @FindBy(id = "com.myfitnesspal.android:id/imagePromoClose")
     private ExtendedWebElement closePromoImageButton;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/promo_dismiss")
     private ExtendedWebElement promoDismissButton;
@@ -77,13 +61,14 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/add_food")
     private List<ExtendedWebElement> addFoodButtonList;
 
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/content_container']")
+    private List<ExtendedWebElement> mealContainerList;
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/foodSearchViewFoodItem']")
-    private ExtendedWebElement foodViewContainer;
-
+    private List<ExtendedWebElement> foodViewContainerList;
 
     @FindBy(id = "com.myfitnesspal.android:id/footer_container")
-    private List<ExtendedWebElement> addFoodButtonContainer;
+    private List<ExtendedWebElement> addFoodButtonContainerList;
 
     public DiaryPage(WebDriver driver) {
         super(driver);
@@ -137,9 +122,22 @@ public class DiaryPage extends DiaryPageBase {
 
         swipe(itemByText.format(meals.getMeal()));
 
-        getMealLocationByDownY(meals);
-        getAddFoodButtonLocationByUpperY(meals);
+        clickAddButtonByMeal(meals);
 
+        return initPage(getDriver(), AddFoodPageBase.class);
+    }
+
+    @Override
+    public AddFoodPageBase clickAddButtonByMeal(Meals meals) {
+
+        for (int i = 0; i < addFoodButtonList.size(); i++) {
+
+            if (addFoodButtonContainerList.get(i).getLocation().getY() == getMealLocationByDownY(meals)) {
+
+                addFoodButtonList.get(i).click();
+                break;
+            }
+        }
 
         return initPage(getDriver(), AddFoodPageBase.class);
     }
@@ -149,16 +147,17 @@ public class DiaryPage extends DiaryPageBase {
     public int getAddFoodButtonLocationByUpperY(Meals meals) {
 
         int locationY = -1;
+
         for (int i = 0; i < addFoodButtonList.size(); i++) {
-            LOGGER.info(String.valueOf(addFoodButtonContainer.get(i).getLocation().getY()));
-            if (addFoodButtonContainer.get(i).getLocation().getY() == getMealLocationByDownY(meals)) {
-                addFoodButtonList.get(i).click();
 
+            if (addFoodButtonContainerList.get(i).getLocation().getY() == getMealLocationByDownY(meals)) {
 
+                locationY = addFoodButtonContainerList.get(i).getLocation().getY();
                 break;
             }
         }
 
+        LOGGER.info(String.valueOf(locationY));
 
         return locationY;
     }
@@ -166,32 +165,39 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public int getFoodLocationByUpperY(String text) {
 
+        LOGGER.info(text);
+
         int locationY = -1;
-        if (foodViewContainer.findExtendedWebElement(foodViewItemTitle.getBy()).getText().toLowerCase().equals(text)) {
-            locationY = foodViewContainer.getLocation().getY();
 
+        for (ExtendedWebElement extendedWebElement : foodViewContainerList) {
 
+            if (extendedWebElement.findExtendedWebElement(foodViewItemTitle.getBy()).getText().toLowerCase().equals(text)) {
+
+                locationY = extendedWebElement.getLocation().getY();
+                break;
+
+            }
         }
 
 
         return locationY;
-
     }
 
 
     @Override
     public int getMealLocationByDownY(Meals meals) {
+
         int locationDownY = -1;
 
+        for (ExtendedWebElement extendedWebElement : mealContainerList) {
 
-        for (ExtendedWebElement extendedWebElement : mealContainer) {
             if (extendedWebElement.findExtendedWebElement(mealTitle.getBy()).getText().equals(meals.getMeal())) {
+
                 locationDownY = extendedWebElement.getSize().getHeight() + extendedWebElement.getLocation().getY();
                 break;
             }
 
         }
-
 
         return locationDownY;
     }
@@ -200,8 +206,8 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public DiaryPageBase deleteAllFood() {
 
-
         if (editActionPenButton.isElementPresent(TIMEOUT_FIVE)) {
+
             editActionPenButton.click();
             selectAllCheckBox.click();
             deleteFoodButton.click();
@@ -210,7 +216,6 @@ public class DiaryPage extends DiaryPageBase {
                 itemByText.format(DO_NOT_ASK_ME_AGAIN).check();
                 deleteTextButton.click();
             }
-
         }
 
         return initPage(getDriver(), DiaryPageBase.class);

@@ -26,46 +26,50 @@ public class DiaryPage extends DiaryPageBase {
 
     @Override
     public boolean isFoodAddedToMeal(String food, Meals meals) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public boolean isAllFoodDeleted(Meals meals) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public AddFoodPageBase closePromoMessages() {
-        return null;
+        throw new NotImplementedException();
     }
 
 
     @Override
     public AddFoodPageBase clickAddFoodButton(Meals meals) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public int getMealLocationByDownY(Meals meals) {
-        return 0;
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public AddFoodPageBase clickAddButtonByMeal(Meals meals) {
+        throw new NotImplementedException();
     }
 
     @Override
     public int getAddFoodButtonLocationByUpperY(Meals meals) {
-        return 0;
+        throw new NotImplementedException();
     }
 
     @Override
     public int getFoodLocationByUpperY(String text) {
-        return 0;
+        throw new NotImplementedException();
     }
 
 
     @Override
     public DiaryPageBase deleteAllFood() {
-        return null;
+        throw new NotImplementedException();
     }
-
 
 
 }

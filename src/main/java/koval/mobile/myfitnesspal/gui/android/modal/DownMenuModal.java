@@ -17,7 +17,6 @@ import org.testng.Assert;
 import java.lang.invoke.MethodHandles;
 
 
-
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = DownMenuModalBase.class)
 public class DownMenuModal extends DownMenuModalBase {
 
@@ -50,8 +49,6 @@ public class DownMenuModal extends DownMenuModalBase {
 
         return initPage(getDriver(), downMenuElement.getClassName());
     }
-
-
 
 
 }

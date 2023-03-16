@@ -28,8 +28,9 @@ public abstract class DiaryPageBase extends MyAbstractPage {
     public abstract AddFoodPageBase clickAddFoodButton(Meals meals);
 
 
-
     public abstract int getMealLocationByDownY(Meals meals);
+
+    public abstract AddFoodPageBase clickAddButtonByMeal(Meals meals);
 
     public abstract int getAddFoodButtonLocationByUpperY(Meals meals);
 

@@ -8,6 +8,7 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -18,14 +19,8 @@ public class AddFoodPage extends AddFoodPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/selectMealText")
     private ExtendedWebElement selectMealText;
 
-
-    @FindBy(id = "com.myfitnesspal.android:id/mealName")
-    private List<ExtendedWebElement> mealNameText;
-
-
     @FindBy(id = "com.myfitnesspal.android:id/searchEditText")
     private ExtendedWebElement searchFoodField;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/searchForTextView")
     private ExtendedWebElement searchForFoodTextView;
@@ -34,12 +29,13 @@ public class AddFoodPage extends AddFoodPageBase {
     private ExtendedWebElement backButton;
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/listItemViewContainer']/child::*//*[@resource-id='com.myfitnesspal.android:id/text_primary']")
-    private List<ExtendedWebElement> foodTitle;
-
+    private List<ExtendedWebElement> foodTitleList;
 
     @FindBy(id = "com.myfitnesspal.android:id/quickLogAddRemoveIcon")
-    private List<ExtendedWebElement> addFoodPlusButton;
+    private List<ExtendedWebElement> addFoodPlusButtonList;
 
+    @FindBy(id = "com.myfitnesspal.android:id/mealName")
+    private List<ExtendedWebElement> mealNameTextList;
 
     public AddFoodPage(WebDriver driver) {
         super(driver);
@@ -57,9 +53,11 @@ public class AddFoodPage extends AddFoodPageBase {
         if (!selectMealText.getText().equals(meals.getMeal())) {
             selectMealText.click();
 
-            //assert.fail empty list
+            if (mealNameTextList.isEmpty()) {
+                Assert.fail("List of meals is empty!");
+            }
 
-            for (ExtendedWebElement extendedWebElement : mealNameText) {
+            for (ExtendedWebElement extendedWebElement : mealNameTextList) {
                 if (extendedWebElement.getText().equals(meals.getMeal())) {
                     extendedWebElement.click();
                     break;
@@ -75,15 +73,20 @@ public class AddFoodPage extends AddFoodPageBase {
     @Override
     public AddFoodPageBase addFoodToMealByName(String food) {
 
-        // searchFoodField.click();
         searchFoodField.type(food);
         searchForFoodTextView.click();
 
-        //assert.fail empty list food and add list
+        if (foodTitleList.isEmpty()) {
+            Assert.fail("List of food Titles is empty!");
+        }
 
-        for (int i = 0; i < foodTitle.size(); i++) {
-            if (foodTitle.get(i).getText().toLowerCase().equals(food)) {
-                addFoodPlusButton.get(i).click();
+        if (addFoodPlusButtonList.isEmpty()) {
+            Assert.fail("List of add food Button is empty!");
+        }
+
+        for (int i = 0; i < foodTitleList.size(); i++) {
+            if (foodTitleList.get(i).getText().toLowerCase().equals(food)) {
+                addFoodPlusButtonList.get(i).click();
                 break;
 
             }
@@ -94,7 +97,6 @@ public class AddFoodPage extends AddFoodPageBase {
 
     @Override
     public DiaryPageBase clickBackButton() {
-
 
         backButton.click();
 

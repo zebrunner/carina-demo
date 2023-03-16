@@ -24,6 +24,10 @@ import java.util.List;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = SignUpPageBase.class)
 public class SignUpPage extends SignUpPageBase {
 
+    @FindBy(id = "com.myfitnesspal.android:id/toolbar")
+    private TopToolbarModal topToolbarModal;
+
+
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
@@ -31,30 +35,20 @@ public class SignUpPage extends SignUpPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/layout%s")
     private ExtendedWebElement activityLevelBlock;
 
-
-    @FindBy(id = "com.myfitnesspal.android:id/toolbar")
-    private TopToolbarModal topToolbarModal;
-
-
     @FindBy(id = "com.myfitnesspal.android:id/textCountry")
     private ExtendedWebElement countryButton;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/entry_%s")
     private ExtendedWebElement measurementParametersTextBox;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/%s")
     private ExtendedWebElement measurementParametersSpinner;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/%sEdit")
     private ExtendedWebElement loginParameterTextBox;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/units")
     private ExtendedWebElement measureSpinner;
-
 
     @FindBy(className = "android.widget.CheckBox")
     private ExtendedWebElement privacyPolicyTermsCheckBox;
@@ -204,13 +198,11 @@ public class SignUpPage extends SignUpPageBase {
                 measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(inchesValue));
             }
 
-
         } else {
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(height))) {
                 measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) height));
             }
-
 
         }
 
@@ -328,6 +320,7 @@ public class SignUpPage extends SignUpPageBase {
         if (listOfElements.isEmpty() || listOfElements.size() < index) {
             Assert.fail(String.format("[ SIGN UP PAGE ] List of '%s' is empty or index is out of the bounds!", message));
         }
+
         return Boolean.parseBoolean(listOfElements.get(index).getAttribute(CHECKED));
     }
 

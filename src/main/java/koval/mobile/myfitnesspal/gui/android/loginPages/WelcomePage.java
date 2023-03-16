@@ -29,8 +29,7 @@ public class WelcomePage extends WelcomePageBase {
     @Override
     public WelcomePageBase notificationSendPopUp(String answer) {
 
-        if(itemByText.format(answer).isElementPresent(TIMEOUT_FIVE))
-        {
+        if (itemByText.format(answer).isElementPresent(TIMEOUT_FIVE)) {
             itemByText.format(answer).click();
         }
 
@@ -48,9 +47,6 @@ public class WelcomePage extends WelcomePageBase {
         itemByText.format(LOGIN).click();
         return initPage(getDriver(), LogInPageBase.class);
     }
-
-
-
 
 
 }

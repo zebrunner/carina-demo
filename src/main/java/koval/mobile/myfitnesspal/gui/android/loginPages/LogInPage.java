@@ -12,16 +12,15 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LogInPageBase.class)
 public class LogInPage extends LogInPageBase {
 
+    @FindBy(id = "com.myfitnesspal.android:id/toolbar")
+    private TopToolbarModal topToolbarModal;
+
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
 
     @FindBy(xpath = "//android.widget.Button[@text='Log In']")
     private ExtendedWebElement loginButton;
-
-
-    @FindBy(id = "com.myfitnesspal.android:id/toolbar")
-    private TopToolbarModal topToolbarModal;
 
 
     public LogInPage(WebDriver driver) {
