@@ -6,22 +6,29 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class SearchItem extends AbstractUIObject{
-    @FindBy(xpath="//header//label[@class='md-search__icon md-icon']")
-    private ExtendedWebElement searchLogo;
-    @FindBy(xpath="//header//input[@class='md-search__input']")
-    private ExtendedWebElement searchInput;
+public class SearchItem extends AbstractUIObject {
+
+    @FindBy(xpath = "//header//label[@class='md-search__icon md-icon']")
+    private static ExtendedWebElement searchLogo;
+
+    @FindBy(xpath = "//header//input")
+    private static ExtendedWebElement searchInput;
 
     public SearchItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public ExtendedWebElement getSearchLogo() {
-        return searchLogo;
+    public boolean isSearchLogoPresent() {
+        return searchLogo.isElementPresent();
     }
 
-    public ExtendedWebElement getSearchInput() {
-        return searchInput;
+    public boolean isSearchInputPresent() {
+        return searchInput.isElementPresent();
     }
 
+    public String getSearchInputPlaceholder() {
+        String searchPlaceholder = "";
+        searchPlaceholder = searchInput.getAttribute("ariaLabel");
+        return searchPlaceholder;
+    }
 }

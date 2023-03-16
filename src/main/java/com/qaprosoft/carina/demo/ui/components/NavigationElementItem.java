@@ -7,8 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class NavigationElementItem extends AbstractUIObject {
+
     @FindBy(xpath = "//label[contains(text(),'Automation')]")
     private ExtendedWebElement automation;
+
     @FindBy(xpath = "//a[contains(text(),'Web')]")
     private ExtendedWebElement web;
 
@@ -16,12 +18,15 @@ public class NavigationElementItem extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public ExtendedWebElement getAutomation() {
-        return automation;
+    public boolean isAutomationPresent() {
+        return automation.isElementPresent();
     }
 
-    public ExtendedWebElement getWeb() {
-        return web;
+    public boolean isWebPresent() {
+        return web.isElementPresent(5);
     }
 
+    public void clickOnAutomation(){
+        automation.click();
+    }
 }

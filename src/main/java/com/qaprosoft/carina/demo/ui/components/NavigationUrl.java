@@ -1,6 +1,6 @@
 package com.qaprosoft.carina.demo.ui.components;
 
-public enum Url {
+public enum NavigationUrl {
     OVERVIEW("http://zebrunner.github.io/carina/"),
     GETTING_STARTED("http://zebrunner.github.io/carina/getting_started/"),
     PROJECT_STRUCTURE("http://zebrunner.github.io/carina/project_structure/"),
@@ -11,7 +11,7 @@ public enum Url {
     API("http://zebrunner.github.io/carina/automation/api/"),
     WINDOWS("http://zebrunner.github.io/carina/automation/windows/"),
     DATABASE("http://zebrunner.github.io/carina/advanced/database/"),
-    DATA_PROVAIDER("http://zebrunner.github.io/carina/advanced/dataprovider/"),
+    DATAPROVIDER("http://zebrunner.github.io/carina/advanced/dataprovider/"),
     DRIVER("http://zebrunner.github.io/carina/advanced/driver/"),
     MOBILE_IN_ADVANCED("http://zebrunner.github.io/carina/advanced/mobile/"),
     LOCALIZATION("http://zebrunner.github.io/carina/advanced/localization/"),
@@ -25,7 +25,7 @@ public enum Url {
 
     private final String url;
 
-    Url(String url) {
+    NavigationUrl(String url) {
         this.url = url;
     }
 
