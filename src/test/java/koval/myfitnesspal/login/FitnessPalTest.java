@@ -42,9 +42,12 @@ public class FitnessPalTest extends LoginTest {
     public void addFoodTest() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
         dashboardPageBase.closeNoSubscriptionsPopUp();
         dashboardPageBase.closeUserTutorialBox();
+
         Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+
 
         DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
         Assert.assertTrue(diaryPageBase.isPageOpened(), "[ DIARY PAGE ] Diary page is not opened!");

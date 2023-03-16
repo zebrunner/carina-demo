@@ -15,7 +15,7 @@ public interface IConstantUtils {
 
     int MEDIUM_SPEED = 600;
 
-    int LOW_SPEED = 300;
+    int LOW_SPEED = 100;
 
     String ONE_VALUE = "one";
 

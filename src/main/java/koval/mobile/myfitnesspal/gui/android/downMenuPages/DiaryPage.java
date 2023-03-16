@@ -120,7 +120,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public AddFoodPageBase clickAddFoodButton(Meals meals) {
 
-        swipe(itemByText.format(meals.getMeal()), Direction.UP, LOW_SPEED, TWENTY_COUNT);
+        swipe(itemByText.format(meals.getMeal()), Direction.UP, TWENTY_COUNT, LOW_SPEED);
 
         clickAddButtonByMeal(meals);
 
@@ -159,7 +159,7 @@ public class DiaryPage extends DiaryPageBase {
 
         if(addFoodButtonList.size() != 4)
         {
-            swipe(mealTitleByText.format(EXERCISE_STRING), Direction.UP, LOW_SPEED, TWENTY_COUNT);
+            swipe(mealTitleByText.format(EXERCISE_STRING), Direction.UP,  TWENTY_COUNT, LOW_SPEED);
         }
 
         return locationY;
