@@ -128,7 +128,7 @@
 				<version>3.0.0</version>
 				<configuration>
 					<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar</argLine>
-					<useSystemClassLoader>false</useSystemClassLoader>
+					<useSystemClassLoader>true</useSystemClassLoader>
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
 					</suiteXmlFiles>
