@@ -55,10 +55,6 @@ public class DiaryPage extends DiaryPageBase {
         throw new NotImplementedException();
     }
 
-    @Override
-    public int getAddFoodButtonLocationByUpperY(Meals meals) {
-        throw new NotImplementedException();
-    }
 
     @Override
     public int getFoodLocationByUpperY(String text) {

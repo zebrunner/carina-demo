@@ -70,6 +70,7 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/foodSearchViewFoodItem']")
     private List<ExtendedWebElement> foodViewContainerList;
 
+
     @FindBy(id = "com.myfitnesspal.android:id/footer_container")
     private List<ExtendedWebElement> addFoodButtonContainerList;
 
@@ -97,10 +98,6 @@ public class DiaryPage extends DiaryPageBase {
         return getFoodLocationByUpperY(food) == getMealLocationByDownY(meals);
     }
 
-    @Override
-    public boolean isAllFoodDeleted(Meals meals) {
-        return getAddFoodButtonLocationByUpperY(meals) == getMealLocationByDownY(meals);
-    }
 
     @Override
     public AddFoodPageBase closePromoMessages() {
@@ -144,25 +141,23 @@ public class DiaryPage extends DiaryPageBase {
 
 
     @Override
-    public int getAddFoodButtonLocationByUpperY(Meals meals) {
+    public boolean isAllFoodDeleted(Meals meals) {
 
-        int locationY = 0;
+        boolean isAllFoodDeleted = false;
+
+        if (meals.getMealIndex() == 3) {
+            swipe(mealTitleByText.format(EXERCISE_STRING));
+        }
 
         for (int i = 0; i < addFoodButtonList.size(); i++) {
 
             if (addFoodButtonContainerList.get(i).getLocation().getY() == getMealLocationByDownY(meals)) {
-
-                locationY = addFoodButtonContainerList.get(i).getLocation().getY();
+                isAllFoodDeleted = true;
                 break;
             }
         }
 
-        if(addFoodButtonList.size() != 4)
-        {
-            swipe(mealTitleByText.format(EXERCISE_STRING), Direction.UP,  TWENTY_COUNT, LOW_SPEED);
-        }
-
-        return locationY;
+        return isAllFoodDeleted;
     }
 
     @Override

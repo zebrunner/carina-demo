@@ -32,7 +32,6 @@ public abstract class DiaryPageBase extends MyAbstractPage {
 
     public abstract AddFoodPageBase clickAddButtonByMeal(Meals meals);
 
-    public abstract int getAddFoodButtonLocationByUpperY(Meals meals);
 
     public abstract int getFoodLocationByUpperY(String text);
 

@@ -73,13 +73,35 @@ public class FitnessPalTest extends LoginTest {
         }
 
 
+    }
+
+
+    @Test()
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void deleteFoodTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
+        dashboardPageBase.closeNoSubscriptionsPopUp();
+        dashboardPageBase.closeUserTutorialBox();
+
+        Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+
+
+        DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
+        Assert.assertTrue(diaryPageBase.isPageOpened(), "[ DIARY PAGE ] Diary page is not opened!");
+
+
         diaryPageBase.deleteAllFood();
+        diaryPageBase.closePromoMessages();
 
         for (Meals meals : Meals.values()) {
             Assert.assertTrue(diaryPageBase.isAllFoodDeleted(meals), String.format("[ DIARY PAGE ] Food is not deleted! Meal: '%s'",
                     meals));
-        }
 
     }
 
+
+    }
 }

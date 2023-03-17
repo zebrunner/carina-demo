@@ -29,7 +29,7 @@ public class DashboardPage extends DashboardPageBase {
     @FindBy(xpath = "//android.view.View[@content-desc='%s']")
     private ExtendedWebElement itemByContentDesc;
 
-    @FindBy(xpath = "//android.view.View[1]/android.widget.Button")
+    @FindBy(xpath = "//android.view.View/android.view.View[1]/android.widget.Button")
     private ExtendedWebElement exitTutorialButton;
 
 

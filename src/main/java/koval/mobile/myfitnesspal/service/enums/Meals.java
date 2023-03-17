@@ -4,6 +4,7 @@ public enum Meals {
     BREAKFAST("Breakfast", 0),
     LUNCH("Lunch", 1),
     DINNER("Dinner", 2),
+
     SNACKS("Snacks", 3);
 
 
