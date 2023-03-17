@@ -8,16 +8,10 @@ import com.qaprosoft.carina.demo.ui.components.SearchItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends AbstractPage {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "//header")
     private ExtendedWebElement header;
@@ -34,11 +28,11 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//nav[@class='md-nav md-nav--primary']")
     private NavigationElementItem navigationElementItem;
 
-    @FindBy(xpath = "//h1[@id='overview']")
-    private ExtendedWebElement overviewLabel;
-
     @FindBy(xpath = "//header//div[@class='md-header-nav__source']//a")
     private ExtendedWebElement githubLink;
+
+    @FindBy(xpath = "//li[contains(@class, 'md-nav__item') and .//a[contains(text(),%s)]]")
+    private ExtendedWebElement  navElement;
 
     @FindBy(xpath = "//li//a")
     private List<ExtendedWebElement> navigationList;
@@ -104,13 +98,8 @@ public class HomePage extends AbstractPage {
         return (navigationElementItem.findExtendedWebElements(By.xpath("//li[contains(@class,'md-nav__item')]"))).size();
     }
 
-    public String getOverviewLabelText() {
-        return overviewLabel.getText();
-    }
-
-    public String getOverviewNavigationElementText() {
-        return navigationElementItem.findExtendedWebElement(By.xpath("//li[@class='md-nav__item md-nav__item--active']"))
-                .getAttribute("innerText");
+    public boolean isCurrentPageLinkHighlighted() {
+        return navElement.format("Overview").getAttribute("class").contains("md-nav__item--active");
     }
 
     public boolean isWebSectionPresentOnPage() {
@@ -125,35 +114,29 @@ public class HomePage extends AbstractPage {
         navigationElementItem.expandAutomationSection();
     }
 
-    public List<String> getAttributeHrefFromNavigationList(ExtendedWebElement element) {
-        List<String> listOfNameAndHref = new ArrayList<>();
+    public boolean getAttributeHrefFromNavigationList(ExtendedWebElement element) {
+        String name;
+        String href;
         if (element.isElementPresent()) {
-            String name = element.getText().toUpperCase().replace(' ', '_').trim();
-            listOfNameAndHref.add(name);
-            String href = element.getAttribute("href");
-            listOfNameAndHref.add(href);
-            return listOfNameAndHref;
+            name = element.getText().toUpperCase().replace(' ', '_').trim();
+            href = element.getAttribute("href");
         } else {
-            String name = element.getAttribute("title").toUpperCase().replace(' ', '_').trim();
+            name = element.getAttribute("title").toUpperCase().replace(' ', '_').trim();
             if (name.equals("MOBILE")) {
-                String href = element.getAttribute("href");
+                href = element.getAttribute("href");
                 if (href.contains("automation")) {
                     name = "MOBILE_IN_AUTOMATION";
                 } else {
                     name = "MOBILE_IN_ADVANCED";
                 }
-                listOfNameAndHref.add(name);
-                listOfNameAndHref.add(href);
             } else {
-                String href = element.getAttribute("href");
-                listOfNameAndHref.add(name);
-                listOfNameAndHref.add(href);
+                href = element.getAttribute("href");
             }
-            return listOfNameAndHref;
         }
+        return isAttributeHrefCorrect(name, href);
     }
 
-    public boolean isAttributeHrefCorrect(List<String> listOfNameAndHref) {
-        return listOfNameAndHref.get(1).equalsIgnoreCase(NavigationUrl.valueOf(listOfNameAndHref.get(0)).getUrl());
+    public static boolean isAttributeHrefCorrect(String name, String href) {
+        return href.equalsIgnoreCase(NavigationUrl.valueOf(name).getUrl());
     }
 }

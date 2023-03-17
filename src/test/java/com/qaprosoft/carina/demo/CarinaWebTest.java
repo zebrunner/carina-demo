@@ -12,6 +12,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class CarinaWebTest implements IAbstractTest {
 
@@ -53,11 +54,13 @@ public class CarinaWebTest implements IAbstractTest {
     public void testSearchInHeader() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertTrue(homePage.isSearchItemPresent());
-        Assert.assertTrue(homePage.isSearchLogoPresentOnPage(), "Search logo component isn't present on header");
-        Assert.assertTrue(homePage.isSearchInputPresentOnPage(), "Search input component isn't present on header");
-        Assert.assertTrue(homePage.getSearchInputPlaceholderOnPage().equalsIgnoreCase("Search"),
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(homePage.isSearchItemPresent());
+        softAssert.assertTrue(homePage.isSearchLogoPresentOnPage(), "Search logo component isn't present on header");
+        softAssert.assertTrue(homePage.isSearchInputPresentOnPage(), "Search input component isn't present on header");
+        softAssert.assertTrue(homePage.getSearchInputPlaceholderOnPage().equalsIgnoreCase("Search"),
                 "Search placeholder isn't present on header");
+        softAssert.assertAll();
     }
 
     @Test
@@ -97,7 +100,7 @@ public class CarinaWebTest implements IAbstractTest {
         Assert.assertTrue(homePage.isNavigationElementItemPresent(),
                 "Navigation element isn't present on header");
         Assert.assertTrue(homePage.getAllElementsOfNavigationElementItem() > 0, "List of navigation links is empty");
-        Assert.assertTrue(homePage.getOverviewLabelText().equalsIgnoreCase(homePage.getOverviewNavigationElementText()),
+        Assert.assertTrue(homePage.isCurrentPageLinkHighlighted(),
                 "Link to current page isn't highlighted");
     }
 
@@ -122,7 +125,7 @@ public class CarinaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         for (ExtendedWebElement el : homePage.getNavigationList()) {
-            Assert.assertTrue(homePage.isAttributeHrefCorrect(homePage.getAttributeHrefFromNavigationList(el)),
+            Assert.assertTrue(homePage.getAttributeHrefFromNavigationList(el),
                         "The element contains an invalid page link");
         }
     }
