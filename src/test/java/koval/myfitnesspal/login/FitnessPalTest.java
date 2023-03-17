@@ -68,7 +68,7 @@ public class FitnessPalTest extends LoginTest {
             addFoodPageBase.addFoodToMealByName(food[i]);
 
             diaryPageBase = addFoodPageBase.clickBackButton();
-            Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(food[i], mealsArr[i]), String.format("[ DIARY PAGE ] Food '%s' is not deleted! Meal: '%s'",
+            Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(food[i], mealsArr[i]), String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: '%s'",
                     food[i], mealsArr[i]));
         }
 
