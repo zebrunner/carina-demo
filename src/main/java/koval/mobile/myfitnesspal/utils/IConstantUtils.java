@@ -1,4 +1,4 @@
-package koval.mobile.myfitnesspal.service.interfaces;
+package koval.mobile.myfitnesspal.utils;
 
 
 public interface IConstantUtils {
@@ -15,7 +15,7 @@ public interface IConstantUtils {
 
     int MEDIUM_SPEED = 600;
 
-    int LOW_SPEED = 100;
+    int LOW_SPEED = 2000;
 
     String ONE_VALUE = "one";
 
@@ -58,6 +58,8 @@ public interface IConstantUtils {
    String GOALS = "goals";
 
    String AGE = "Age";
+
+    String HEIGHT = "height";
 
    String WEEKLY_GOAL = "Weekly Goal";
 

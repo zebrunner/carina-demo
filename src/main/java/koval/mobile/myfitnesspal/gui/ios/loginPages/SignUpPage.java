@@ -6,6 +6,7 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
+import koval.mobile.myfitnesspal.service.accountFactory.Account;
 import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;
 import koval.mobile.myfitnesspal.service.enums.HeightMeasure;
@@ -109,6 +110,11 @@ public class SignUpPage extends SignUpPageBase {
     }
 
     @Override
+    public SignUpPageBase savePasswordToGoogleAgreement(boolean result) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public SignUpPageBase selectItemFromSourceListByIndex(int index) {
         throw new NotImplementedException();
     }
@@ -120,6 +126,11 @@ public class SignUpPage extends SignUpPageBase {
 
     @Override
     public boolean isItemFromListSelectedByIndex(int index, List<ExtendedWebElement> listOfElements, String message) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public SignUpPageBase createRandomAccount(Account account) {
         throw new NotImplementedException();
     }
 

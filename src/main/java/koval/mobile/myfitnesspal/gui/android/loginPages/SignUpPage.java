@@ -4,8 +4,10 @@ package koval.mobile.myfitnesspal.gui.android.loginPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.TopToolbarModal;
+import koval.mobile.myfitnesspal.gui.common.loginPages.CreateAccountPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
+import koval.mobile.myfitnesspal.service.accountFactory.Account;
 import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;
 import koval.mobile.myfitnesspal.service.enums.HeightMeasure;
@@ -178,7 +180,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setHeight(float height, HeightMeasure heightMeasureValue) {
 
-        measurementParametersSpinner.format(AGE).click();
+        measurementParametersSpinner.format(HEIGHT).click();
 
         if (!itemByText.format(heightMeasureValue.getHeightMeasure()).isElementPresent(TIMEOUT_FIVE)) {
             measureSpinner.click();
@@ -250,7 +252,12 @@ public class SignUpPage extends SignUpPageBase {
 
     @Override
     public SignUpPageBase clickButtonByText(String buttonText) {
-        itemByText.format(buttonText).click();
+        if (itemByText.format(buttonText).isElementPresent(TIMEOUT_FIVE)) {
+            itemByText.format(buttonText).click();
+        } else {
+            itemByText.format(CONTINUE).click();
+
+        }
         return initPage(getDriver(), SignUpPageBase.class);
     }
 
@@ -295,6 +302,19 @@ public class SignUpPage extends SignUpPageBase {
     }
 
     @Override
+    public SignUpPageBase savePasswordToGoogleAgreement(boolean result) {
+
+        if (itemByText.format("Save password to Google?").isElementPresent(TIMEOUT_FIVE)) {
+            if (result) {
+                itemByText.format("Save");
+            } else {
+                itemByText.format("No thanks");
+            }
+        }
+        return initPage(getDriver(), SignUpPageBase.class);
+    }
+
+    @Override
     public SignUpPageBase selectItemFromSourceListByIndex(int index) {
 
         waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format("How did you hear about us?").getBy()), TIMEOUT_FIFTEEN);
@@ -322,6 +342,11 @@ public class SignUpPage extends SignUpPageBase {
         }
 
         return Boolean.parseBoolean(listOfElements.get(index).getAttribute(CHECKED));
+    }
+
+    @Override
+    public SignUpPageBase createRandomAccount(Account account){
+        return initPage(getDriver(), CreateAccountPageBase.class).createRandomAccount(account);
     }
 
 }
