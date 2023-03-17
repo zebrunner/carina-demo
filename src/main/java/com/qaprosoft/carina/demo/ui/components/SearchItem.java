@@ -8,10 +8,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class SearchItem extends AbstractUIObject {
 
-    @FindBy(xpath = "//header//label[@class='md-search__icon md-icon']")
+    @FindBy(xpath = ".//form//label")
     private static ExtendedWebElement searchLogo;
 
-    @FindBy(xpath = "//header//input")
+    @FindBy(xpath = ".//input")
     private static ExtendedWebElement searchInput;
 
     public SearchItem(WebDriver driver, SearchContext searchContext) {
@@ -27,8 +27,6 @@ public class SearchItem extends AbstractUIObject {
     }
 
     public String getSearchInputPlaceholder() {
-        String searchPlaceholder = "";
-        searchPlaceholder = searchInput.getAttribute("ariaLabel");
-        return searchPlaceholder;
+        return searchInput.getAttribute("ariaLabel");
     }
 }

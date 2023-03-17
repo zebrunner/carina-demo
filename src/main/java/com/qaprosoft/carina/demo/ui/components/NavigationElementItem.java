@@ -8,25 +8,25 @@ import org.openqa.selenium.support.FindBy;
 
 public class NavigationElementItem extends AbstractUIObject {
 
-    @FindBy(xpath = "//label[contains(text(),'Automation')]")
+    @FindBy(xpath = ".//label[contains(text(),'Automation')]")
     private ExtendedWebElement automation;
 
-    @FindBy(xpath = "//a[contains(text(),'Web')]")
+    @FindBy(xpath = ".//a[contains(text(),'Web')]")
     private ExtendedWebElement web;
 
     public NavigationElementItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public boolean isAutomationPresent() {
+    public boolean isAutomationSectionPresent() {
         return automation.isElementPresent();
     }
 
-    public boolean isWebPresent() {
+    public boolean isWebSectionPresent() {
         return web.isElementPresent(5);
     }
 
-    public void clickOnAutomation(){
+    public void expandAutomationSection(){
         automation.click();
     }
 }

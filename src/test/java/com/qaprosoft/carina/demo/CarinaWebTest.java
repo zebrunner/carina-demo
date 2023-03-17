@@ -2,7 +2,7 @@ package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.ui.components.NavigationUrl;
+import com.qaprosoft.carina.demo.ui.constants.NavigationUrl;
 import com.qaprosoft.carina.demo.ui.pages.HomePage;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
@@ -54,7 +54,9 @@ public class CarinaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isSearchItemPresent());
-        Assert.assertTrue(homePage.getSearchPlaceholder().equalsIgnoreCase("Search"),
+        Assert.assertTrue(homePage.isSearchLogoPresentOnPage(), "Search logo component isn't present on header");
+        Assert.assertTrue(homePage.isSearchInputPresentOnPage(), "Search input component isn't present on header");
+        Assert.assertTrue(homePage.getSearchInputPlaceholderOnPage().equalsIgnoreCase("Search"),
                 "Search placeholder isn't present on header");
     }
 
@@ -105,12 +107,12 @@ public class CarinaWebTest implements IAbstractTest {
     public void testNavigationHiddenComponent() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertFalse(homePage.isWebPresentOnPage(),
+        Assert.assertFalse(homePage.isWebSectionPresentOnPage(),
                 "The element is present on the page");
-        Assert.assertTrue(homePage.isAutomationPresentOnPage(),
+        Assert.assertTrue(homePage.isAutomationSectionPresentOnPage(),
                 "The element isn't present on the page");
-        homePage.clickOnAutomationOnPage();
-        Assert.assertTrue(homePage.isWebPresentOnPage(), "The element isn't present on the page");
+        homePage.expandAutomationSectionOnPage();
+        Assert.assertTrue(homePage.isWebSectionPresentOnPage(), "The element isn't present on the page");
     }
 
     @Test

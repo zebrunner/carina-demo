@@ -3,7 +3,7 @@ package com.qaprosoft.carina.demo.ui.pages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.ui.components.NavigationElementItem;
-import com.qaprosoft.carina.demo.ui.components.NavigationUrl;
+import com.qaprosoft.carina.demo.ui.constants.NavigationUrl;
 import com.qaprosoft.carina.demo.ui.components.SearchItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -43,8 +43,6 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//li//a")
     private List<ExtendedWebElement> navigationList;
 
-    String searchPlaceholder = "";
-
     public HomePage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("http://zebrunner.github.io/carina/");
@@ -63,30 +61,19 @@ public class HomePage extends AbstractPage {
     }
 
     public boolean isSearchItemPresent() {
-        boolean isSearchItemPresent = false;
-        boolean isSearchLogoPresent = false;
-        boolean isSearchInputPresent = false;
-        isSearchItemPresent = searchItem.isUIObjectPresent();
-        if (isSearchItemPresent) {
-            isSearchLogoPresent = searchItem.isSearchLogoPresent();
-            if (isSearchLogoPresent) {
-                isSearchInputPresent = searchItem.isSearchInputPresent();
-                if (isSearchInputPresent) {
-                    searchPlaceholder = searchItem.getSearchInputPlaceholder();
-                } else {
-                    LOGGER.error("Search input component isn't present on header");
-                }
-            } else {
-                LOGGER.error("Search logo component isn't present on header");
-            }
-        } else {
-            LOGGER.error("Search component isn't present on header");
-        }
-        return isSearchItemPresent && isSearchLogoPresent && isSearchInputPresent;
+        return searchItem.isUIObjectPresent();
     }
 
-    public String getSearchPlaceholder() {
-        return searchPlaceholder;
+    public boolean isSearchLogoPresentOnPage() {
+        return searchItem.isSearchLogoPresent();
+    }
+
+    public boolean isSearchInputPresentOnPage() {
+        return searchItem.isSearchInputPresent();
+    }
+
+    public String getSearchInputPlaceholderOnPage() {
+        return searchItem.getSearchInputPlaceholder();
     }
 
     public boolean isGithubLinkPresent() {
@@ -94,8 +81,7 @@ public class HomePage extends AbstractPage {
     }
 
     public String getGithubLinkHrefAttribute() {
-        String githubLinkHrefAttribute = githubLink.getAttribute("href");
-        return githubLinkHrefAttribute;
+        return githubLink.getAttribute("href");
     }
 
     public boolean isHeaderVisible() {
@@ -103,13 +89,11 @@ public class HomePage extends AbstractPage {
     }
 
     public String getCssValueHeaderPosition() {
-        String cssValuePosition = header.getElement().getCssValue("position");
-        return cssValuePosition;
+        return header.getElement().getCssValue("position");
     }
 
     public String getCssValueHeaderTop() {
-        String cssValueTop = header.getElement().getCssValue("top");
-        return cssValueTop;
+        return header.getElement().getCssValue("top");
     }
 
     public boolean isNavigationElementItemPresent() {
@@ -117,34 +101,28 @@ public class HomePage extends AbstractPage {
     }
 
     public int getAllElementsOfNavigationElementItem() {
-        List<ExtendedWebElement> elements = navigationElementItem
-                .findExtendedWebElements(By.xpath("//li[contains(@class,'md-nav__item')]"));
-        System.out.println(elements.size());
-        return elements.size();
+        return (navigationElementItem.findExtendedWebElements(By.xpath("//li[contains(@class,'md-nav__item')]"))).size();
     }
 
     public String getOverviewLabelText() {
-        String overviewLabelText = overviewLabel.getText();
-        return overviewLabelText;
+        return overviewLabel.getText();
     }
 
     public String getOverviewNavigationElementText() {
-        String overviewNavigationElementText = navigationElementItem
-                .findExtendedWebElement(By.xpath("//li[@class='md-nav__item md-nav__item--active']"))
+        return navigationElementItem.findExtendedWebElement(By.xpath("//li[@class='md-nav__item md-nav__item--active']"))
                 .getAttribute("innerText");
-        return overviewNavigationElementText;
     }
 
-    public boolean isWebPresentOnPage() {
-        return navigationElementItem.isWebPresent();
+    public boolean isWebSectionPresentOnPage() {
+        return navigationElementItem.isWebSectionPresent();
     }
 
-    public boolean isAutomationPresentOnPage() {
-        return navigationElementItem.isAutomationPresent();
+    public boolean isAutomationSectionPresentOnPage() {
+        return navigationElementItem.isAutomationSectionPresent();
     }
 
-    public void clickOnAutomationOnPage() {
-        navigationElementItem.clickOnAutomation();
+    public void expandAutomationSectionOnPage() {
+        navigationElementItem.expandAutomationSection();
     }
 
     public List<String> getAttributeHrefFromNavigationList(ExtendedWebElement element) {
@@ -176,7 +154,6 @@ public class HomePage extends AbstractPage {
     }
 
     public boolean isAttributeHrefCorrect(List<String> listOfNameAndHref) {
-        boolean result = listOfNameAndHref.get(1).equalsIgnoreCase(NavigationUrl.valueOf(listOfNameAndHref.get(0)).getUrl());
-        return result;
+        return listOfNameAndHref.get(1).equalsIgnoreCase(NavigationUrl.valueOf(listOfNameAndHref.get(0)).getUrl());
     }
 }

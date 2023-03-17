@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.ui.components;
+package com.qaprosoft.carina.demo.ui.constants;
 
 public enum NavigationUrl {
     OVERVIEW("http://zebrunner.github.io/carina/"),
