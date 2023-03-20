@@ -11,6 +11,7 @@ import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -164,6 +165,9 @@ public class DiaryPage extends DiaryPageBase {
     public int getFoodLocationByUpperY(String text) {
 
         int locationY = 0;
+
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(foodViewItemTitle.getBy()), TIMEOUT_FIVE);
+
 
         for (ExtendedWebElement extendedWebElement : foodViewContainerList) {
 

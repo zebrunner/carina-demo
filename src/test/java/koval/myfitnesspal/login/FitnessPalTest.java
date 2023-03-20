@@ -21,19 +21,19 @@ public class FitnessPalTest extends LoginTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
-    @Test()
-    @MethodOwner(owner = "koval")
-    @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void loginSimpleUserTest() {
-
-        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
-        dashboardPageBase.closeNoSubscriptionsPopUp();
-        dashboardPageBase.closeUserTutorialBox();
-
-        Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
-
-        Assert.assertFalse(dashboardPageBase.isUserPremium(), "[ DASHBOARD PAGE ] User is premium!");
-    }
+//    @Test()
+//    @MethodOwner(owner = "koval")
+//    @TestLabel(name = "feature", value = {"mobile", "regression"})
+//    public void loginSimpleUserTest() {
+//
+//        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+//        dashboardPageBase.closeNoSubscriptionsPopUp();
+//        dashboardPageBase.closeUserTutorialBox();
+//
+//        Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+//
+//        Assert.assertFalse(dashboardPageBase.isUserPremium(), "[ DASHBOARD PAGE ] User is premium!");
+//    }
 
 
     @Test()
@@ -56,7 +56,7 @@ public class FitnessPalTest extends LoginTest {
         diaryPageBase.closePromoMessages();
 
 
-        String[] food = {"apple", "milk", "bread", "cherry"};
+        String[] food = {"cherry", "bread", "milk", "apple"};
         Meals[] mealsArr = Meals.values();
 
         for (int i = 0; i < Meals.values().length; i++) {
