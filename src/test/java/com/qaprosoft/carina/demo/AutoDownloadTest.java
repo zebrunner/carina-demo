@@ -1,9 +1,11 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.report.ReportContext;
-import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.webdriver.DriverHelper;
+import java.io.File;
+import java.lang.invoke.MethodHandles;
+import java.time.Duration;
+import java.util.List;
+import java.util.UUID;
+
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -14,11 +16,10 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.io.File;
-import java.lang.invoke.MethodHandles;
-import java.time.Duration;
-import java.util.List;
-import java.util.UUID;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.zebrunner.carina.utils.R;
+import com.zebrunner.carina.utils.report.ReportContext;
+import com.zebrunner.carina.webdriver.DriverHelper;
 
 public class AutoDownloadTest implements IAbstractTest {
 

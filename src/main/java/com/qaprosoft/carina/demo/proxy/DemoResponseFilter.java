@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.proxy;
 import com.browserup.bup.filters.ResponseFilter;
 import com.browserup.bup.util.HttpMessageContents;
 import com.browserup.bup.util.HttpMessageInfo;
+
 import io.netty.handler.codec.http.HttpResponse;
 
 public class DemoResponseFilter implements ResponseFilter {

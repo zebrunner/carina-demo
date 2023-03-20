@@ -15,18 +15,23 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.android;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.demo.gui.components.footer.MobileFooterMenu;
-import com.qaprosoft.carina.demo.gui.pages.common.*;
-import com.zebrunner.carina.utils.factory.DeviceType;
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import com.qaprosoft.carina.demo.gui.components.footer.MobileFooterMenu;
+import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
+
     @FindBy(xpath = "//div[contains(@class, 'general-menu material-card')]//a")
     private List<ExtendedWebElement> brandLinks;
 

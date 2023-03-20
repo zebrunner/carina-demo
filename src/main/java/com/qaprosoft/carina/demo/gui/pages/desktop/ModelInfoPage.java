@@ -15,14 +15,16 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
-import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = ModelInfoPageBase.class)
 public class ModelInfoPage extends ModelInfoPageBase {
+
     @FindBy(css = ".help-display strong")
     private ExtendedWebElement displayInfoLabel;
 

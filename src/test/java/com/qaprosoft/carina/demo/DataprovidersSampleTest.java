@@ -143,5 +143,4 @@ public class DataprovidersSampleTest implements IAbstractTest {
         int expected = Integer.valueOf(c);
         Assert.assertEquals(actual, expected, "Invalid substract result!");
     }
-
 }

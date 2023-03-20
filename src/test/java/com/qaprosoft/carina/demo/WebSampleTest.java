@@ -17,9 +17,6 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
-import com.qaprosoft.carina.demo.gui.components.ModelItem;
-import com.qaprosoft.carina.demo.gui.pages.common.*;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
@@ -27,12 +24,20 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.core.registrar.tag.Priority;
+import com.qaprosoft.carina.demo.gui.components.ModelItem;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
+import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.core.registrar.tag.Priority;
+import com.zebrunner.carina.core.registrar.tag.TestPriority;
 
 /**
  * This sample shows how create Web test.
@@ -40,6 +45,7 @@ import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
  * @author qpsdemo
  */
 public class WebSampleTest implements IAbstractTest {
+
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)

@@ -15,20 +15,22 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.ios;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.gui.components.compare.CandidateBlock;
-import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
-import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
-import com.zebrunner.carina.utils.factory.DeviceType;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.qaprosoft.carina.demo.gui.components.compare.CandidateBlock;
+import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
+import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CompareModelsPageBase.class)
 public class CompareModelsPage extends CompareModelsPageBase {
+
     @FindBy(xpath = "//div[contains(@class, 'candidate-search')]")
     private List<CandidateBlock> candidateBlocks;
 

@@ -1,11 +1,16 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.ChartsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MapsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {

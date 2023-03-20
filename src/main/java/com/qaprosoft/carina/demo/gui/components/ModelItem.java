@@ -15,16 +15,17 @@
  */
 package com.qaprosoft.carina.demo.gui.components;
 
-import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
-import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
+import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 
 public class ModelItem extends AbstractUIObject implements ICustomTypePageFactory {
+
     @FindBy(xpath = ".//strong")
     private ExtendedWebElement modelLabel;
 

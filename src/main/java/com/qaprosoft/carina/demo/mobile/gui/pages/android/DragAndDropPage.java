@@ -1,12 +1,13 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.time.Duration;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public class DragAndDropPage extends AbstractPage implements IMobileUtils {
 

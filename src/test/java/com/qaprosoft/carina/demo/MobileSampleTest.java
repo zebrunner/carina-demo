@@ -15,20 +15,11 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.zebrunner.carina.webdriver.DriverHelper;
-import com.qaprosoft.carina.demo.mobile.gui.pages.android.DragAndDropPage;
-import com.zebrunner.agent.core.annotation.TestLabel;
-import com.zebrunner.carina.utils.R;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.ContextAware;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
@@ -37,8 +28,9 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
-
-import java.util.Set;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {

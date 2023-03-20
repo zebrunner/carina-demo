@@ -21,16 +21,16 @@ import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.gui.components.footer.FooterMenu;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
+import com.qaprosoft.carina.demo.gui.components.footer.FooterMenu;
 import com.qaprosoft.carina.demo.gui.pages.desktop.CompareModelsPage;
 import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
-import org.testng.asserts.SoftAssert;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
 /**
  * This sample shows how create Web test with dependent methods which shares existing driver between methods.
@@ -38,6 +38,7 @@ import org.testng.asserts.SoftAssert;
  * @author qpsdemo
  */
 public class WebSampleSingleDriver implements IAbstractTest {
+
     HomePage homePage = null;
     CompareModelsPage comparePage = null;
     List<ModelSpecs> specs = new ArrayList<>();
@@ -86,6 +87,5 @@ public class WebSampleSingleDriver implements IAbstractTest {
         softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
         softAssert.assertAll();
     }
-
 
 }

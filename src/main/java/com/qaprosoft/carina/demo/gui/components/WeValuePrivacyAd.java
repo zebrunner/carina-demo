@@ -23,6 +23,7 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 
 public class WeValuePrivacyAd extends AbstractUIObject {
+
 	@FindBy(xpath = "//button[contains(@onclick, 'setAndSaveAllConsent')]")
 	private ExtendedWebElement okBtn;
 

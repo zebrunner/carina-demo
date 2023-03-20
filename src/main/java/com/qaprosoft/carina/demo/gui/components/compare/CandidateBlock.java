@@ -26,6 +26,7 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 
 public class CandidateBlock extends AbstractUIObject {
+
     @FindBy(xpath = ".//input[contains(@id, 'sSearch')]")
     private ExtendedWebElement inputField;
 

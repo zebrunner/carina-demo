@@ -15,18 +15,19 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
-import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
+
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = AllBrandsPageBase.class)
 public class AllBrandsPage extends AllBrandsPageBase {
+
     @FindBy(xpath = "//h1[@class='article-info-name']")
     private ExtendedWebElement pageTitle;
 

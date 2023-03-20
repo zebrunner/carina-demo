@@ -15,13 +15,15 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.common;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.footer.FooterMenuBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.demo.gui.components.footer.FooterMenuBase;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
+
 public abstract class HomePageBase extends AbstractPage {
+
     @FindBy(xpath = "//button[text()='Agree and proceed']")
     private ExtendedWebElement acceptCookies;
 

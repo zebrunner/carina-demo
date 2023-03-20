@@ -15,15 +15,17 @@
  */
 package com.qaprosoft.carina.demo.gui.components.footer;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
-import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+
 public class MobileFooterMenu extends FooterMenuBase implements ICustomTypePageFactory {
+
     @FindBy(xpath = ".//a[text()='News']")
     private ExtendedWebElement newsLink;
 

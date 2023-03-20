@@ -15,15 +15,17 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public class WikipediaLocalePage extends AbstractPage {
+
     @Localized
     @FindBy(xpath = "//*[@id='{L10N:WikipediaLocalePage.welcomeTextId}' " +
             "or contains(text(),'{L10N:WikipediaLocalePage.welcomeText}') " +

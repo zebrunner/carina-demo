@@ -15,7 +15,15 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import java.lang.invoke.MethodHandles;
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.qaprosoft.carina.demo.gui.components.footer.FooterMenu;
 import com.qaprosoft.carina.demo.gui.pages.common.AllBrandsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
@@ -24,17 +32,11 @@ import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
-import java.util.List;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(id = "footmenu")

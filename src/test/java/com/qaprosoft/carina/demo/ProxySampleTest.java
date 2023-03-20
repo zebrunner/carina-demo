@@ -15,11 +15,25 @@
  */
 package com.qaprosoft.carina.demo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.invoke.MethodHandles;
+
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.HasCapabilities;
+import org.openqa.selenium.Proxy;
+import org.openqa.selenium.remote.CapabilityType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import com.browserup.bup.BrowserUpProxy;
 import com.browserup.bup.proxy.CaptureType;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.webdriver.Screenshot;
-import com.zebrunner.carina.webdriver.ScreenshotType;
 import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.desktop.NewsPage;
 import com.qaprosoft.carina.demo.proxy.CustomProxy;
@@ -32,21 +46,8 @@ import com.zebrunner.carina.proxy.browserup.CarinaBrowserUpProxy;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.report.ReportContext;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.HasCapabilities;
-import org.openqa.selenium.Proxy;
-import org.openqa.selenium.remote.CapabilityType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.invoke.MethodHandles;
+import com.zebrunner.carina.webdriver.Screenshot;
+import com.zebrunner.carina.webdriver.ScreenshotType;
 
 /**
  * Test proxy in different modes
@@ -54,6 +55,7 @@ import java.lang.invoke.MethodHandles;
  * @author qpsdemo
  */
 public class ProxySampleTest implements IAbstractTest {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @BeforeClass

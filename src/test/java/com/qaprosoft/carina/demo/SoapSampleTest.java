@@ -1,13 +1,15 @@
 package com.qaprosoft.carina.demo;
 
-import com.zebrunner.carina.api.apitools.validation.XmlCompareMode;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.soap.AddIntegerMethod;
 import com.qaprosoft.carina.demo.soap.LookupCityMethod;
+import com.zebrunner.carina.api.apitools.validation.XmlCompareMode;
+
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class SoapSampleTest implements IAbstractTest {
 

@@ -15,12 +15,13 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import java.nio.file.Path;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.nio.file.Path;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public class AttachFilePage extends AbstractPage {
 

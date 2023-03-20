@@ -1,12 +1,13 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomePage extends WelcomePageBase {

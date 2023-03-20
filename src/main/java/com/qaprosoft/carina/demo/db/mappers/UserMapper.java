@@ -28,5 +28,4 @@ public interface UserMapper {
 	void update(User user);
 
 	void delete(User user);
-
 }

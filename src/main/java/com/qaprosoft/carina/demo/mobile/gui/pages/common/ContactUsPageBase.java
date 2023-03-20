@@ -1,8 +1,9 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import org.openqa.selenium.WebDriver;
+
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public abstract class ContactUsPageBase extends AbstractPage implements IMobileUtils {
 

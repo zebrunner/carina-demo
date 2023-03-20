@@ -15,18 +15,20 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.android;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.demo.gui.components.NewsItem;
-import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
-import com.zebrunner.carina.utils.factory.DeviceType;
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = NewsPageBase.class)
 public class NewsPage extends NewsPageBase {
+
     @FindBy(xpath = "//div[@class='search-field']//input[@type='search']")
     private ExtendedWebElement searchField;
 

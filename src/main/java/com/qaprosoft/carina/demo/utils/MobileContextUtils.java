@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo.utils;
 
-import com.zebrunner.carina.webdriver.DriverHelper;
-import com.zebrunner.carina.webdriver.IDriverPool;
-import io.appium.java_client.remote.SupportsContextSwitching;
+import java.lang.invoke.MethodHandles;
+import java.util.Set;
+
 import org.openqa.selenium.ContextAware;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +10,10 @@ import org.openqa.selenium.support.decorators.Decorated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.invoke.MethodHandles;
-import java.util.Set;
+import com.zebrunner.carina.webdriver.DriverHelper;
+import com.zebrunner.carina.webdriver.IDriverPool;
+
+import io.appium.java_client.remote.SupportsContextSwitching;
 
 
 public class MobileContextUtils implements IDriverPool {

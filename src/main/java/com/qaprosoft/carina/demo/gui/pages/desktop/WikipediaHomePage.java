@@ -15,14 +15,15 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import com.zebrunner.carina.utils.Configuration;
+import java.util.List;
+import java.util.Locale;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-import java.util.Locale;
+import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public class WikipediaHomePage extends AbstractPage {
 

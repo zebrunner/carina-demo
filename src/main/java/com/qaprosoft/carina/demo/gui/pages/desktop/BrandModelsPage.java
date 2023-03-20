@@ -15,17 +15,19 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.desktop;
 
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
 import com.qaprosoft.carina.demo.gui.components.ModelItem;
 import com.qaprosoft.carina.demo.gui.pages.common.BrandModelsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = BrandModelsPageBase.class)
 public class BrandModelsPage extends BrandModelsPageBase {
+
     @FindBy(xpath = "//div[@id='review-body']//li")
     private List<ModelItem> models;
 

@@ -15,14 +15,16 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.android;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
-import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.demo.gui.pages.common.ModelInfoPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ModelInfoPageBase.class)
 public class ModelInfoPage extends ModelInfoPageBase {
+
     @FindBy(xpath = "//li[@class='head-icon icon-touch-0']//strong")
     private ExtendedWebElement displayInfoLabel;
 
