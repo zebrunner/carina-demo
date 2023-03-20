@@ -23,13 +23,10 @@ public class DashboardPage extends DashboardPageBase {
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
-    @FindBy(id = "com.myfitnesspal.android:id/action_bar_root")
-    private ExtendedWebElement popUpNoSubscriptionsMessage;
-
     @FindBy(xpath = "//android.view.View[@content-desc='%s']")
     private ExtendedWebElement itemByContentDesc;
 
-    @FindBy(xpath = "//android.view.View/android.view.View[1]/android.widget.Button")
+    @FindBy(xpath = "//*[@resource-id='buttonExistingUserTutorial']/child::*[@class='android.widget.Button']")
     private ExtendedWebElement exitTutorialButton;
 
 
@@ -69,20 +66,20 @@ public class DashboardPage extends DashboardPageBase {
     }
 
     @Override
-    public DashboardPageBase closeNoSubscriptionsPopUp() {
+    public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
 
-        if (popUpNoSubscriptionsMessage.isElementPresent(TIMEOUT_FIVE)) {
-            itemByText.format(CANCEL).click();
-        }
+        itemByText.format(CANCEL).clickIfPresent();
+
         return initPage(getDriver(), DashboardPageBase.class);
     }
 
     @Override
-    public DashboardPageBase closeUserTutorialBox() {
+    public DashboardPageBase closeUserTutorialBoxIfPresent() {
 
-        if (exitTutorialButton.isElementPresent(TIMEOUT_FIVE)) {
-            exitTutorialButton.click();
+        while (exitTutorialButton.isElementPresent(TIMEOUT_FIVE)) {
+            exitTutorialButton.clickIfPresent(TIMEOUT_FIVE);
         }
+
         return initPage(getDriver(), DashboardPageBase.class);
     }
 

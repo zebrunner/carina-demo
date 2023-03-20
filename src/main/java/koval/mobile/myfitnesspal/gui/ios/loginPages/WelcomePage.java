@@ -23,7 +23,7 @@ public class WelcomePage extends WelcomePageBase {
     }
 
     @Override
-    public WelcomePageBase notificationSendPopUp(String answer) {
+    public WelcomePageBase notificationSendPopUpIfPresent(String answer) {
         throw new NotImplementedException();
     }
 

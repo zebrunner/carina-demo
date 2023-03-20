@@ -34,12 +34,12 @@ public class DashboardPage extends DashboardPageBase {
     }
 
     @Override
-    public DashboardPageBase closeNoSubscriptionsPopUp() {
+    public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
         throw new NotImplementedException();
     }
 
     @Override
-    public DashboardPageBase closeUserTutorialBox() {
+    public DashboardPageBase closeUserTutorialBoxIfPresent() {
         throw new NotImplementedException();
     }
 

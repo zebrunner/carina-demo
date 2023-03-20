@@ -12,6 +12,7 @@ import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;
 import koval.mobile.myfitnesspal.service.enums.HeightMeasure;
 import koval.mobile.myfitnesspal.service.enums.WeightMeasure;
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -30,7 +31,7 @@ public class SignUpPage extends SignUpPageBase {
     private TopToolbarModal topToolbarModal;
 
 
-    @FindBy(xpath = "//*[@text='%s']")
+    @FindBy(xpath = "//*[@text='%s']|//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
 
@@ -117,7 +118,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setMail(String mail) {
 
-        loginParameterTextBox.format(EMAIL).type(mail);
+        loginParameterTextBox.format(EMAIL).type(mail, TIMEOUT_FIVE);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -125,7 +126,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setPassword(String password) {
 
-        loginParameterTextBox.format(PASSWORD.toLowerCase()).type(password);
+        loginParameterTextBox.format(PASSWORD.toLowerCase()).type(password, TIMEOUT_FIVE);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -154,18 +155,18 @@ public class SignUpPage extends SignUpPageBase {
             int lbsValue = Integer.parseInt(weightValue[1]);
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(stoneValue))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(stoneValue));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(stoneValue), TIMEOUT_FIVE);
             }
 
             if (!measurementParametersTextBox.format(TWO_VALUE).getText().equals(String.valueOf(lbsValue))) {
-                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(lbsValue));
+                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(lbsValue), TIMEOUT_FIVE);
             }
 
 
         } else {
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(weight))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) weight));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) weight), TIMEOUT_FIVE);
             }
 
 
@@ -193,17 +194,17 @@ public class SignUpPage extends SignUpPageBase {
             int inchesValue = Integer.parseInt(heightValue[1]);
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(feetValue))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(feetValue));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(feetValue), TIMEOUT_FIVE);
             }
 
             if (!measurementParametersTextBox.format(TWO_VALUE).getText().equals(String.valueOf(inchesValue))) {
-                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(inchesValue));
+                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(inchesValue), TIMEOUT_FIVE);
             }
 
         } else {
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(height))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) height));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) height), TIMEOUT_FIVE);
             }
 
         }
@@ -217,7 +218,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setAge(int age) {
 
-        itemByText.format(AGE).type(String.valueOf(age));
+        itemByText.format(AGE).type(String.valueOf(age), TIMEOUT_FIVE);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -252,12 +253,14 @@ public class SignUpPage extends SignUpPageBase {
 
     @Override
     public SignUpPageBase clickButtonByText(String buttonText) {
-        if (itemByText.format(buttonText).isElementPresent(TIMEOUT_FIVE)) {
-            itemByText.format(buttonText).click();
-        } else {
-            itemByText.format(CONTINUE).click();
+//        if (itemByText.format(buttonText).isElementPresent(TIMEOUT_FIVE)) {
+//            itemByText.format(buttonText).click();
+//        } else {
+//            itemByText.format(CONTINUE).click();
 
-        }
+        //      }
+        itemByText.format(CONTINUE, NEXT);
+
         return initPage(getDriver(), SignUpPageBase.class);
     }
 
@@ -306,9 +309,9 @@ public class SignUpPage extends SignUpPageBase {
 
         if (itemByText.format("Save password to Google?").isElementPresent(TIMEOUT_FIVE)) {
             if (result) {
-                itemByText.format("Save");
+                itemByText.format("Save").clickIfPresent();
             } else {
-                itemByText.format("No thanks");
+                itemByText.format("No thanks").clickIfPresent();
             }
         }
         return initPage(getDriver(), SignUpPageBase.class);
@@ -345,7 +348,7 @@ public class SignUpPage extends SignUpPageBase {
     }
 
     @Override
-    public SignUpPageBase createRandomAccount(Account account){
+    public SignUpPageBase createRandomAccount(Account account) {
         return initPage(getDriver(), CreateAccountPageBase.class).createRandomAccount(account);
     }
 

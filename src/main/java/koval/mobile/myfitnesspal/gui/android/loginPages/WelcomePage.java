@@ -27,11 +27,10 @@ public class WelcomePage extends WelcomePageBase {
 
 
     @Override
-    public WelcomePageBase notificationSendPopUp(String answer) {
+    public WelcomePageBase notificationSendPopUpIfPresent(String answer) {
 
-        if (itemByText.format(answer).isElementPresent(TIMEOUT_FIVE)) {
-            itemByText.format(answer).click();
-        }
+            itemByText.format(answer).clickIfPresent();
+
 
         return initPage(getDriver(), WelcomePageBase.class);
     }

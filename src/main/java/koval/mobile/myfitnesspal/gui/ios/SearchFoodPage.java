@@ -3,17 +3,17 @@ package koval.mobile.myfitnesspal.gui.ios;
 
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.AddFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = AddFoodPageBase.class)
-public class AddFoodPage extends AddFoodPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = SearchFoodPageBase.class)
+public class SearchFoodPage extends SearchFoodPageBase {
 
 
-    public AddFoodPage(WebDriver driver) {
+    public SearchFoodPage(WebDriver driver) {
         super(driver);
     }
 
@@ -23,12 +23,12 @@ public class AddFoodPage extends AddFoodPageBase {
     }
 
     @Override
-    public AddFoodPageBase changeMealByName(Meals meals) {
+    public SearchFoodPageBase changeMealByName(Meals meals) {
         throw new NotImplementedException();
     }
 
     @Override
-    public AddFoodPageBase addFoodToMealByName(String food) {
+    public SearchFoodPageBase addFoodToMealByName(String food) {
         throw new NotImplementedException();
     }
 

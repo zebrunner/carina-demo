@@ -3,7 +3,7 @@ package koval.mobile.myfitnesspal.gui.android;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.AddFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
@@ -13,8 +13,11 @@ import org.testng.Assert;
 import java.util.List;
 
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AddFoodPageBase.class)
-public class AddFoodPage extends AddFoodPageBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = SearchFoodPageBase.class)
+public class SearchFoodPage extends SearchFoodPageBase {
+
+    @FindBy(xpath = "//*[@text='%s']")
+    private ExtendedWebElement itemByText;
 
     @FindBy(id = "com.myfitnesspal.android:id/selectMealText")
     private ExtendedWebElement selectMealText;
@@ -29,6 +32,9 @@ public class AddFoodPage extends AddFoodPageBase {
     private ExtendedWebElement backButton;
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/listItemViewContainer']/child::*//*[@resource-id='com.myfitnesspal.android:id/text_primary']")
+    private ExtendedWebElement foodTitle;
+
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/listItemViewContainer']/child::*//*[@resource-id='com.myfitnesspal.android:id/text_primary']")
     private List<ExtendedWebElement> foodTitleList;
 
     @FindBy(id = "com.myfitnesspal.android:id/quickLogAddRemoveIcon")
@@ -37,7 +43,7 @@ public class AddFoodPage extends AddFoodPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/mealName")
     private List<ExtendedWebElement> mealNameTextList;
 
-    public AddFoodPage(WebDriver driver) {
+    public SearchFoodPage(WebDriver driver) {
         super(driver);
     }
 
@@ -48,7 +54,7 @@ public class AddFoodPage extends AddFoodPageBase {
 
 
     @Override
-    public AddFoodPageBase changeMealByName(Meals meals) {
+    public SearchFoodPageBase changeMealByName(Meals meals) {
 
         if (!selectMealText.getText().equals(meals.getMeal())) {
             selectMealText.click();
@@ -66,25 +72,25 @@ public class AddFoodPage extends AddFoodPageBase {
 
         }
 
-        return initPage(getDriver(), AddFoodPageBase.class);
+        return initPage(getDriver(), SearchFoodPageBase.class);
     }
 
 
     @Override
-    public AddFoodPageBase addFoodToMealByName(String food) {
+    public SearchFoodPageBase addFoodToMealByName(String food) {
 
-        searchFoodField.type(food);
+        searchFoodField.type(food, TIMEOUT_FIVE);
         searchForFoodTextView.click();
 
         for (int i = 0; i < foodTitleList.size(); i++) {
-            if (foodTitleList.get(i).getText().toLowerCase().equals(food)) {
+            if (foodTitleList.get(i).getText().equals(food)) {
                 addFoodPlusButtonList.get(i).click();
                 break;
 
             }
         }
 
-        return initPage(getDriver(), AddFoodPageBase.class);
+        return initPage(getDriver(), SearchFoodPageBase.class);
     }
 
     @Override

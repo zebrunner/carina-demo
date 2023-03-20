@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.TopToolbarModal;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -35,14 +36,14 @@ public class LogInPage extends LogInPageBase {
 
     @Override
     public LogInPageBase typeMail(String password) {
-        itemByText.format(EMAIL_ADDRESS).type(password);
+        itemByText.format(EMAIL_ADDRESS).type(password, TIMEOUT_FIVE);
         return initPage(getDriver(), LogInPageBase.class);
     }
 
 
     @Override
     public LogInPageBase typePassword(String password) {
-        itemByText.format(PASSWORD).type(password);
+        itemByText.format(PASSWORD).type(password, TIMEOUT_FIVE);
         return initPage(getDriver(), LogInPageBase.class);
     }
 

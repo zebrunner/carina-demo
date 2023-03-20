@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.DownMenuModal;
-import koval.mobile.myfitnesspal.gui.common.AddFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import koval.mobile.myfitnesspal.service.enums.Meals;
@@ -27,7 +27,7 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/bottomNavigationBar")
     private DownMenuModal downMenuModal;
 
-    @FindBy(xpath = "//android.widget.ScrollView[@content-desc='MainActivity']/android.widget.LinearLayout//android.widget.TextView")
+    @FindBy(xpath = "//*[@content-desc='MainActivity']/android.widget.LinearLayout//android.widget.TextView")
     private ExtendedWebElement title;
 
     @FindBy(id = "com.myfitnesspal.android:id/txtSectionHeader")
@@ -41,12 +41,14 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/select_all")
     private ExtendedWebElement selectAllCheckBox;
 
+    /*main delete button*/
     @FindBy(xpath = "//android.widget.Button[@content-desc='Delete']")
     private ExtendedWebElement deleteFoodButton;
 
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
+    /*deletePopUpMessage - confirm deleting*/
     @FindBy(xpath = "//android.widget.Button[@text='Delete']")
     private ExtendedWebElement deleteTextButton;
 
@@ -101,32 +103,31 @@ public class DiaryPage extends DiaryPageBase {
 
 
     @Override
-    public AddFoodPageBase closePromoMessages() {
+    public SearchFoodPageBase closePromoMessagesIfPresent() {
 
-        if (promoDismissButton.isElementPresent(TIMEOUT_FIVE)) {
-            promoDismissButton.click();
-        }
 
-        if (closePromoImageButton.isElementPresent(TIMEOUT_FIVE)) {
-            closePromoImageButton.click();
-        }
+        promoDismissButton.clickIfPresent();
 
-        return initPage(getDriver(), AddFoodPageBase.class);
+        closePromoImageButton.clickIfPresent();
+
+
+        return initPage(getDriver(), SearchFoodPageBase.class);
     }
 
 
     @Override
-    public AddFoodPageBase clickAddFoodButton(Meals meals) {
+    public SearchFoodPageBase clickAddFoodButton(Meals meals) {
 
-        swipe(itemByText.format(meals.getMeal()), Direction.UP, TWENTY_COUNT, LOW_SPEED);
+        ExtendedWebElement mealItemByName = itemByText.format(meals.getMeal());
+        swipe(mealItemByName, Direction.UP, TWENTY_COUNT, LOW_SPEED);
 
         clickAddButtonByMeal(meals);
 
-        return initPage(getDriver(), AddFoodPageBase.class);
+        return initPage(getDriver(), SearchFoodPageBase.class);
     }
 
     @Override
-    public AddFoodPageBase clickAddButtonByMeal(Meals meals) {
+    public SearchFoodPageBase clickAddButtonByMeal(Meals meals) {
 
         for (int i = 0; i < addFoodButtonList.size(); i++) {
 
@@ -137,17 +138,18 @@ public class DiaryPage extends DiaryPageBase {
             }
         }
 
-        return initPage(getDriver(), AddFoodPageBase.class);
+        return initPage(getDriver(), SearchFoodPageBase.class);
     }
 
 
     @Override
-    public boolean isAllFoodDeleted(Meals meals) {
+    public boolean isAllFoodDeletedForMeal(Meals meals) {
 
         boolean isAllFoodDeleted = false;
 
         if (meals.getMealIndex() == 3) {
-            swipe(mealTitleByText.format(EXERCISE_STRING));
+            ExtendedWebElement mealByText = mealTitleByText.format(EXERCISE_STRING);
+            swipe(mealByText, Direction.UP, TWENTY_COUNT, LOW_SPEED);
         }
 
         for (int i = 0; i < addFoodButtonList.size(); i++) {
@@ -171,7 +173,7 @@ public class DiaryPage extends DiaryPageBase {
 
         for (ExtendedWebElement extendedWebElement : foodViewContainerList) {
 
-            if (extendedWebElement.findExtendedWebElement(foodViewItemTitle.getBy()).getText().toLowerCase().equals(text)) {
+            if (extendedWebElement.findExtendedWebElement(foodViewItemTitle.getBy()).getText().equals(text)) {
 
                 locationY = extendedWebElement.getLocation().getY();
                 break;
