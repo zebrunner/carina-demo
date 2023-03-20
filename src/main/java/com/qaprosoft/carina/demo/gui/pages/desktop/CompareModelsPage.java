@@ -68,4 +68,5 @@ public class CompareModelsPage extends CompareModelsPageBase {
         }
         return modelSpecs;
     }
+
 }

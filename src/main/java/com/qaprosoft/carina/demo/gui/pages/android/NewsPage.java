@@ -51,4 +51,5 @@ public class NewsPage extends NewsPageBase {
 
         return news;
     }
+
 }

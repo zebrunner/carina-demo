@@ -43,6 +43,4 @@ public class DataproviderRetryTest1 implements IAbstractTest {
         Assert.assertEquals(actual, expected, "Invalid sum result!");
     }
 
-
-
 }

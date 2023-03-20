@@ -31,4 +31,5 @@ public abstract class BrandModelsPageBase extends AbstractPage {
     public abstract ModelInfoPageBase selectModel(String modelName);
 
     public abstract List<ModelItem> getModels();
+
 }

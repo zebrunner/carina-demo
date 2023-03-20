@@ -67,4 +67,5 @@ public class WikipediaHomePage extends AbstractPage {
 
         return new Locale(lang, country);
     }
+
 }

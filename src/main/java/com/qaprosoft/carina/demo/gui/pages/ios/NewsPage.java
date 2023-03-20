@@ -50,4 +50,5 @@ public class NewsPage extends NewsPageBase {
         searchButton.click();
         return news;
     }
+
 }

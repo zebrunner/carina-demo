@@ -35,6 +35,7 @@ import com.zebrunner.carina.core.registrar.tag.TestPriority;
  * @author qpsdemo
  */
 public class DataprovidersSampleTest implements IAbstractTest {
+
     /**
      * Parametrization using external XLS/XLSX: every row in spreadsheet provides tests arguments set for 1 test.
      * <p>
@@ -143,4 +144,5 @@ public class DataprovidersSampleTest implements IAbstractTest {
         int expected = Integer.valueOf(c);
         Assert.assertEquals(actual, expected, "Invalid substract result!");
     }
+
 }

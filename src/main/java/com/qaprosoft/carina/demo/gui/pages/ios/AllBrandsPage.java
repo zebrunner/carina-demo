@@ -47,4 +47,5 @@ public class AllBrandsPage extends AllBrandsPageBase {
         }
         throw new RuntimeException("Unable to open brand page: " + brandName);
     }
+
 }

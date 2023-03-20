@@ -36,7 +36,6 @@ import com.zebrunner.carina.utils.resources.L10N;
  *
  * @author qpsdemo
  */
-
 public class WebLocalizationSample implements IAbstractTest {
 
     @BeforeClass
@@ -101,4 +100,5 @@ public class WebLocalizationSample implements IAbstractTest {
         softAssert.assertEquals(actual, expected);
         softAssert.assertAll();
     }
+
 }
