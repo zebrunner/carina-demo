@@ -22,7 +22,7 @@ public class FitnessPalSignUpTest extends SignUpTest {
     public void signUpSimpleUserTest() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
-        dashboardPageBase.closeNoSubscriptionsPopUp();
+        dashboardPageBase.closeNoSubscriptionsPopUpIfPresent();
         dashboardPageBase.lastMealPopUpSkip();
 
         Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");

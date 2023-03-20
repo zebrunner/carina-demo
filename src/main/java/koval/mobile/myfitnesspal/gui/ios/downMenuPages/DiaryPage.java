@@ -4,8 +4,10 @@ package koval.mobile.myfitnesspal.gui.ios.downMenuPages;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import koval.mobile.myfitnesspal.gui.common.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
+import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 
 
@@ -21,5 +23,49 @@ public class DiaryPage extends DiaryPageBase {
     public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
         throw new NotImplementedException();
     }
+
+    @Override
+    public boolean isFoodAddedToMeal(String food, Meals meals) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean isAllFoodDeletedForMeal(Meals meals) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public SearchFoodPageBase closePromoMessagesIfPresent() {
+        throw new NotImplementedException();
+    }
+
+
+    @Override
+    public SearchFoodPageBase clickAddFoodButton(Meals meals) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public int getMealLocationByDownY(Meals meals) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public SearchFoodPageBase clickAddButtonByMeal(Meals meals) {
+        throw new NotImplementedException();
+    }
+
+
+    @Override
+    public int getFoodLocationByUpperY(String text) {
+        throw new NotImplementedException();
+    }
+
+
+    @Override
+    public DiaryPageBase deleteAllFood() {
+        throw new NotImplementedException();
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package koval.mobile.myfitnesspal.service.enums;
 
+import java.util.Random;
+
 public enum Gender {
     FEMALE("Female"),
     MALE("Male");
@@ -15,4 +17,5 @@ public enum Gender {
     public String getGender() {
         return gender;
     }
+
 }

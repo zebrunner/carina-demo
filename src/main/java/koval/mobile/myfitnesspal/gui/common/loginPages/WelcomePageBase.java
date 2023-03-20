@@ -13,7 +13,7 @@ public abstract class WelcomePageBase extends MyAbstractPage {
     public abstract boolean isPageOpened();
 
 
-    public abstract WelcomePageBase notificationSendPopUp(String answer);
+    public abstract WelcomePageBase notificationSendPopUpIfPresent(String answer);
 
     public abstract SignUpPageBase signUp();
 

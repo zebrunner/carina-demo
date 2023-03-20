@@ -20,9 +20,9 @@ public abstract class DashboardPageBase extends MyAbstractPage {
 
     public abstract SignUpPageBase lastMealPopUpSkip();
 
-    public abstract DashboardPageBase closeNoSubscriptionsPopUp();
+    public abstract DashboardPageBase closeNoSubscriptionsPopUpIfPresent();
 
-    public abstract DashboardPageBase closeUserTutorialBox();
+    public abstract DashboardPageBase closeUserTutorialBoxIfPresent();
 
 
 }

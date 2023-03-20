@@ -99,6 +99,10 @@ public class JournalPage extends JournalPageBase {
     @Override
     public Calendar getStartTime() throws ParseException {
 
+        if (startTimeList.isEmpty()) {
+            Assert.fail("[ JOURNAL PAGE ] Start Time list is empty!");
+        }
+
         String startTime = startTimeList.get(0).getText();
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat(START_TIME_FORMAT);
@@ -109,6 +113,10 @@ public class JournalPage extends JournalPageBase {
 
     @Override
     public Calendar getDuration() throws ParseException {
+
+        if (durationList.isEmpty()) {
+            Assert.fail("[ JOURNAL PAGE ] Duration list is empty!");
+        }
 
         String duration = durationList.get(0).getText();
 
@@ -123,7 +131,15 @@ public class JournalPage extends JournalPageBase {
     @Override
     public boolean isActivityPresent(String activityTitle) {
 
+
         waitUntil(ExpectedConditions.visibilityOfElementLocated(activityTitleElement.getBy()), TIMEOUT_FIFTEEN);
+
+        LOGGER.info(String.valueOf(activityTitleElement.getText()));
+        LOGGER.info(String.valueOf(titleList.size()));
+
+        if (titleList.isEmpty()) {
+            Assert.fail("[ JOURNAL PAGE ] List of titles is empty!");
+        }
 
         return titleList.get(0).getText().contains(activityTitle);
     }

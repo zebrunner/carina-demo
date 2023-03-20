@@ -12,10 +12,12 @@ import org.slf4j.LoggerFactory;
 
 
 import java.lang.invoke.MethodHandles;
-
+import java.util.Random;
 
 
 public abstract class MyAbstractPage extends AbstractPage implements IMyInterface {
+
+    private static final Random random = new Random();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 

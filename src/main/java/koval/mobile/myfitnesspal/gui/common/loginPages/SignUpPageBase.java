@@ -2,6 +2,7 @@ package koval.mobile.myfitnesspal.gui.common.loginPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import koval.mobile.myfitnesspal.gui.MyAbstractPage;
+import koval.mobile.myfitnesspal.service.accountFactory.Account;
 import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;
 import koval.mobile.myfitnesspal.service.enums.HeightMeasure;
@@ -56,9 +57,13 @@ public abstract class SignUpPageBase extends MyAbstractPage {
 
     public abstract SignUpPageBase selectItemFromGoalsListByIndex(int index);
 
+    public abstract SignUpPageBase savePasswordToGoogleAgreement(boolean result);
+
     public abstract SignUpPageBase selectItemFromSourceListByIndex(int index);
 
     public abstract SignUpPageBase selectItemFromListByIndex(int index, List<ExtendedWebElement> listOfElements, String message);
 
     public abstract boolean isItemFromListSelectedByIndex(int index, List<ExtendedWebElement> listOfElements, String message);
+
+    public abstract SignUpPageBase createRandomAccount(Account account);
 }

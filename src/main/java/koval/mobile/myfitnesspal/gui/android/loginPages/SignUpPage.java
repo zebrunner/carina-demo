@@ -4,12 +4,15 @@ package koval.mobile.myfitnesspal.gui.android.loginPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.TopToolbarModal;
+import koval.mobile.myfitnesspal.gui.common.loginPages.CreateAccountPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
+import koval.mobile.myfitnesspal.service.accountFactory.Account;
 import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;
 import koval.mobile.myfitnesspal.service.enums.HeightMeasure;
 import koval.mobile.myfitnesspal.service.enums.WeightMeasure;
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,37 +27,31 @@ import java.util.List;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = SignUpPageBase.class)
 public class SignUpPage extends SignUpPageBase {
 
-    @FindBy(xpath = "//*[@text='%s']")
+    @FindBy(id = "com.myfitnesspal.android:id/toolbar")
+    private TopToolbarModal topToolbarModal;
+
+
+    @FindBy(xpath = "//*[@text='%s']|//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
 
     @FindBy(id = "com.myfitnesspal.android:id/layout%s")
     private ExtendedWebElement activityLevelBlock;
 
-
-    @FindBy(id = "com.myfitnesspal.android:id/toolbar")
-    private TopToolbarModal topToolbarModal;
-
-
     @FindBy(id = "com.myfitnesspal.android:id/textCountry")
     private ExtendedWebElement countryButton;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/entry_%s")
     private ExtendedWebElement measurementParametersTextBox;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/%s")
     private ExtendedWebElement measurementParametersSpinner;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/%sEdit")
     private ExtendedWebElement loginParameterTextBox;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/units")
     private ExtendedWebElement measureSpinner;
-
 
     @FindBy(className = "android.widget.CheckBox")
     private ExtendedWebElement privacyPolicyTermsCheckBox;
@@ -121,7 +118,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setMail(String mail) {
 
-        loginParameterTextBox.format(EMAIL).type(mail);
+        loginParameterTextBox.format(EMAIL).type(mail, TIMEOUT_FIVE);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -129,7 +126,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setPassword(String password) {
 
-        loginParameterTextBox.format(PASSWORD.toLowerCase()).type(password);
+        loginParameterTextBox.format(PASSWORD.toLowerCase()).type(password, TIMEOUT_FIVE);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -158,18 +155,18 @@ public class SignUpPage extends SignUpPageBase {
             int lbsValue = Integer.parseInt(weightValue[1]);
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(stoneValue))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(stoneValue));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(stoneValue), TIMEOUT_FIVE);
             }
 
             if (!measurementParametersTextBox.format(TWO_VALUE).getText().equals(String.valueOf(lbsValue))) {
-                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(lbsValue));
+                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(lbsValue), TIMEOUT_FIVE);
             }
 
 
         } else {
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(weight))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) weight));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) weight), TIMEOUT_FIVE);
             }
 
 
@@ -184,7 +181,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setHeight(float height, HeightMeasure heightMeasureValue) {
 
-        measurementParametersSpinner.format(AGE).click();
+        measurementParametersSpinner.format(HEIGHT).click();
 
         if (!itemByText.format(heightMeasureValue.getHeightMeasure()).isElementPresent(TIMEOUT_FIVE)) {
             measureSpinner.click();
@@ -197,20 +194,18 @@ public class SignUpPage extends SignUpPageBase {
             int inchesValue = Integer.parseInt(heightValue[1]);
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(feetValue))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(feetValue));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf(feetValue), TIMEOUT_FIVE);
             }
 
             if (!measurementParametersTextBox.format(TWO_VALUE).getText().equals(String.valueOf(inchesValue))) {
-                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(inchesValue));
+                measurementParametersTextBox.format(TWO_VALUE).type(String.valueOf(inchesValue), TIMEOUT_FIVE);
             }
-
 
         } else {
 
             if (!measurementParametersTextBox.format(ONE_VALUE).getText().equals(String.valueOf(height))) {
-                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) height));
+                measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) height), TIMEOUT_FIVE);
             }
-
 
         }
 
@@ -223,7 +218,7 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setAge(int age) {
 
-        itemByText.format(AGE).type(String.valueOf(age));
+        itemByText.format(AGE).type(String.valueOf(age), TIMEOUT_FIVE);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -258,7 +253,14 @@ public class SignUpPage extends SignUpPageBase {
 
     @Override
     public SignUpPageBase clickButtonByText(String buttonText) {
-        itemByText.format(buttonText).click();
+//        if (itemByText.format(buttonText).isElementPresent(TIMEOUT_FIVE)) {
+//            itemByText.format(buttonText).click();
+//        } else {
+//            itemByText.format(CONTINUE).click();
+
+        //      }
+        itemByText.format(CONTINUE, NEXT);
+
         return initPage(getDriver(), SignUpPageBase.class);
     }
 
@@ -303,6 +305,19 @@ public class SignUpPage extends SignUpPageBase {
     }
 
     @Override
+    public SignUpPageBase savePasswordToGoogleAgreement(boolean result) {
+
+        if (itemByText.format("Save password to Google?").isElementPresent(TIMEOUT_FIVE)) {
+            if (result) {
+                itemByText.format("Save").clickIfPresent();
+            } else {
+                itemByText.format("No thanks").clickIfPresent();
+            }
+        }
+        return initPage(getDriver(), SignUpPageBase.class);
+    }
+
+    @Override
     public SignUpPageBase selectItemFromSourceListByIndex(int index) {
 
         waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format("How did you hear about us?").getBy()), TIMEOUT_FIFTEEN);
@@ -328,7 +343,13 @@ public class SignUpPage extends SignUpPageBase {
         if (listOfElements.isEmpty() || listOfElements.size() < index) {
             Assert.fail(String.format("[ SIGN UP PAGE ] List of '%s' is empty or index is out of the bounds!", message));
         }
+
         return Boolean.parseBoolean(listOfElements.get(index).getAttribute(CHECKED));
+    }
+
+    @Override
+    public SignUpPageBase createRandomAccount(Account account) {
+        return initPage(getDriver(), CreateAccountPageBase.class).createRandomAccount(account);
     }
 
 }
