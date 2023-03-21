@@ -15,13 +15,14 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.demo.gui.pages.CompareModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.gui.pages.desktop.CompareModelsPage;
+import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 
 /**
  * This sample shows how works page opening strategy

@@ -13,37 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.pages.ios;
 
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 
-public class NewsPage extends AbstractPage {
-    
-    @FindBy(className="searchFor")
-    private ExtendedWebElement searchTextField;
-    
-    @FindBy(xpath="//input[@value='Search']")
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = NewsPageBase.class)
+public class NewsPage extends NewsPageBase {
+
+    @FindBy(xpath = "//div[@class='search-field']//input[@type='search']")
+    private ExtendedWebElement searchField;
+
+    @FindBy(xpath = "//div[@class='search-field']//button")
     private ExtendedWebElement searchButton;
-    
-    @FindBy(xpath="//div[@class='news-item']")
+
+    @FindBy(xpath = "//div[@class='news-item']")
     private List<NewsItem> news;
-    
+
     public NewsPage(WebDriver driver) {
         super(driver);
-        setPageURL("/news.php3");
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(searchField);
     }
-    
-    public List<NewsItem> searchNews(String q) {
-        searchTextField.type(q);
+
+    @Override
+    public List<NewsItem> searchNews(String searchInput) {
+        searchField.type(searchInput);
         searchButton.click();
         return news;
     }
-    
 }

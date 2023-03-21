@@ -1,13 +1,14 @@
 package com.qaprosoft.carina.demo.regression.attachfile;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.demo.gui.pages.AttachFilePage;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import java.net.URL;
+import java.nio.file.Path;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.net.URL;
-import java.nio.file.Path;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.gui.pages.desktop.AttachFilePage;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
 public class AttachFileTest implements IAbstractTest {
 

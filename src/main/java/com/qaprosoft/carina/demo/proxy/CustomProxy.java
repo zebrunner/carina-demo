@@ -1,5 +1,11 @@
 package com.qaprosoft.carina.demo.proxy;
 
+import java.lang.invoke.MethodHandles;
+import java.net.InetSocketAddress;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.browserup.bup.BrowserUpProxy;
 import com.browserup.bup.BrowserUpProxyServer;
 import com.zebrunner.carina.proxy.IProxy;
@@ -9,11 +15,6 @@ import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.NetworkUtil;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.common.CommonUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
-import java.net.InetSocketAddress;
 
 /**
  * Custom proxy implementation based on BrowserUp proxy

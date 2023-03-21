@@ -15,23 +15,12 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.browserup.bup.BrowserUpProxy;
-import com.browserup.bup.proxy.CaptureType;
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
-import com.qaprosoft.carina.core.foundation.webdriver.ScreenshotType;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
-import com.qaprosoft.carina.demo.proxy.CustomProxy;
-import com.qaprosoft.carina.demo.proxy.CustomProxyRule;
-import com.qaprosoft.carina.demo.proxy.DemoResponseFilter;
-import com.zebrunner.agent.core.registrar.Artifact;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.proxy.ProxyPool;
-import com.zebrunner.carina.proxy.browserup.CarinaBrowserUpProxy;
-import com.zebrunner.carina.utils.Configuration;
-import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.utils.report.ReportContext;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.invoke.MethodHandles;
+
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Proxy;
@@ -42,11 +31,23 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.invoke.MethodHandles;
+import com.browserup.bup.BrowserUpProxy;
+import com.browserup.bup.proxy.CaptureType;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.desktop.NewsPage;
+import com.qaprosoft.carina.demo.proxy.CustomProxy;
+import com.qaprosoft.carina.demo.proxy.CustomProxyRule;
+import com.qaprosoft.carina.demo.proxy.DemoResponseFilter;
+import com.zebrunner.agent.core.registrar.Artifact;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.proxy.ProxyPool;
+import com.zebrunner.carina.proxy.browserup.CarinaBrowserUpProxy;
+import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.R;
+import com.zebrunner.carina.utils.report.ReportContext;
+import com.zebrunner.carina.webdriver.Screenshot;
+import com.zebrunner.carina.webdriver.ScreenshotType;
 
 /**
  * Test proxy in different modes
@@ -54,6 +55,7 @@ import java.lang.invoke.MethodHandles;
  * @author qpsdemo
  */
 public class ProxySampleTest implements IAbstractTest {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @BeforeClass
