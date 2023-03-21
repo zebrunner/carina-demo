@@ -3,9 +3,9 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.ClassChain;
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.annotations.ClassChain;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public class PreferencesPage extends AbstractPage {
 

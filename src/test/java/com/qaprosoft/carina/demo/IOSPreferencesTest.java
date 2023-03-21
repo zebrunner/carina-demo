@@ -15,13 +15,15 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.demo.mobile.gui.pages.ios.PreferencesPage;
-import com.qaprosoft.carina.demo.utils.MobileContextUtils;
-import io.appium.java_client.InteractsWithApps;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
+
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.mobile.gui.pages.ios.PreferencesPage;
+import com.qaprosoft.carina.demo.utils.MobileContextUtils;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
+
+import io.appium.java_client.InteractsWithApps;
 
 public class IOSPreferencesTest implements IAbstractTest, IMobileUtils {
     

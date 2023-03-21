@@ -15,6 +15,10 @@
  */
 package com.qaprosoft.carina.demo;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
@@ -27,9 +31,6 @@ import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
@@ -61,16 +62,17 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         loginPage.login();
         WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
         MobileContextUtils contextHelper = new MobileContextUtils();
-        contextHelper.switchMobileContext(View.WEB);
+
+        contextHelper.switchMobileContext(View.WEB_CARINA);
         ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
+
+        contextHelper.switchMobileContext(View.WEB_BROWSER, View.WEB_CARINA);
+
         contactUsPage.typeName("John Doe");
         contactUsPage.typeEmail("some@email.com");
         contactUsPage.typeQuestion("This is a message");
-        //TODO: [VD] move page driver related action outside from test class!
-        hideKeyboard();
         contactUsPage.submit();
-        Assert.assertTrue(contactUsPage.isErrorMessagePresent() || contactUsPage.isRecaptchaPresent(),
-                "Error message or captcha was not displayed");
+        Assert.assertTrue(contactUsPage.isSuccessMessagePresent());
     }
 
     @Test()

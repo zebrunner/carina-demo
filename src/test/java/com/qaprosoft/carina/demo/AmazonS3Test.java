@@ -1,15 +1,16 @@
 package com.qaprosoft.carina.demo;
 
+import java.io.File;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 import com.amazonaws.regions.Regions;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.amazon.AmazonS3Manager;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.report.ReportContext;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import java.io.File;
 
 public class AmazonS3Test implements IAbstractTest {
     private static final String FILE_NAME = "carinademoexample.apk";

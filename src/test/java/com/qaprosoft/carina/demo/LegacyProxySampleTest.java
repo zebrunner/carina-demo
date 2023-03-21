@@ -25,16 +25,15 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.zebrunner.carina.proxy.browserup.ProxyPool;
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
-import com.zebrunner.agent.core.registrar.Artifact;
-
 import com.browserup.bup.BrowserUpProxy;
 import com.browserup.bup.proxy.CaptureType;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
+import com.qaprosoft.carina.demo.gui.pages.desktop.NewsPage;
+import com.zebrunner.agent.core.registrar.Artifact;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.proxy.browserup.ProxyPool;
+import com.zebrunner.carina.utils.R;
 
 /**
  * This sample shows how generate har file with proxied Web test content.

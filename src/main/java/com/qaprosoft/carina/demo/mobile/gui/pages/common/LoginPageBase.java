@@ -2,7 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public abstract class LoginPageBase extends AbstractPage {
 

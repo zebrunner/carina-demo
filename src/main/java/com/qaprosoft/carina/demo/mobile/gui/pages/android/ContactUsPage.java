@@ -1,10 +1,11 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.zebrunner.carina.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ContactUsPageBase.class)
@@ -28,6 +29,9 @@ public class ContactUsPage extends ContactUsPageBase {
     @FindBy(id = "g-recaptcha-response")
     private ExtendedWebElement recaptcha;
 
+    @FindBy(xpath = "//div[text()='Thank you for subscribing!']")
+    private ExtendedWebElement successMessage;
+
     public ContactUsPage(WebDriver driver) {
         super(driver);
     }
@@ -49,7 +53,8 @@ public class ContactUsPage extends ContactUsPageBase {
 
     @Override
     public void submit() {
-        submitButton.click();
+        hideKeyboard();
+        submitButton.clickIfPresent();
     }
 
     @Override
@@ -60,6 +65,10 @@ public class ContactUsPage extends ContactUsPageBase {
     @Override
     public boolean isRecaptchaPresent() {
         return recaptcha.isElementPresent();
+    }
+
+    public boolean isSuccessMessagePresent() {
+        return successMessage.isPresent();
     }
 
 }
