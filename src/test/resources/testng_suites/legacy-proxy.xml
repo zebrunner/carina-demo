@@ -1,23 +1,22 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - Web Single Driver Sample" parallel="tests">
+<suite verbose="1" name="Carina Demo Tests - Legacy Proxy Sample" parallel="methods">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
-	<parameter name="jenkinsJobName" value="Web-Demo-Single-Driver-Test"/>
+	<parameter name="jenkinsJobName" value="Legacy-Proxy-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
-
+  
 	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
 
-	<parameter name="jenkinsRegressionMatrix_full_regression" value="browser:chrome;browser:firefox"/>
-	<parameter name="jenkinsJobExecutionOrder" value="2"/>
+	<parameter name="jenkinsJobExecutionOrder" value="1"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 	<parameter name="jenkinsAutoScreenshot" value="true"/>
 
-	<test name="GSM arena web tests using single driver between tests">
+	<test name="GSM arena legacy proxy web test">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.WebSampleSingleDriver" />
+			<class name="com.qaprosoft.carina.demo.LegacyProxySampleTest" />
 		</classes>
 	</test>
-	
+
 </suite>
