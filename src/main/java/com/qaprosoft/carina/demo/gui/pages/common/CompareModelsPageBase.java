@@ -29,4 +29,5 @@ public abstract class CompareModelsPageBase extends AbstractPage {
     }
 
     public abstract List<ModelSpecs> compareModels(String... models);
+
 }

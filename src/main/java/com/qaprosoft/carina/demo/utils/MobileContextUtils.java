@@ -15,7 +15,6 @@ import com.zebrunner.carina.webdriver.IDriverPool;
 
 import io.appium.java_client.remote.SupportsContextSwitching;
 
-
 public class MobileContextUtils implements IDriverPool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -74,4 +73,5 @@ public class MobileContextUtils implements IDriverPool {
             return this.viewName;
         }
     }
+
 }

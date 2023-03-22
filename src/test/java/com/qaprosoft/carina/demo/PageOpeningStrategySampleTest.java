@@ -88,4 +88,5 @@ public class PageOpeningStrategySampleTest implements IAbstractTest {
 
         softAssert.assertAll();
     }
+
 }

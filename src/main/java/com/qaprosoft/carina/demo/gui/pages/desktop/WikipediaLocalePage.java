@@ -106,4 +106,5 @@ public class WikipediaLocalePage extends AbstractPage {
             pageLink.hover();
         }
     }
+
 }

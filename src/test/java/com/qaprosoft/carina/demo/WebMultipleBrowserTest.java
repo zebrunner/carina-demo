@@ -61,6 +61,6 @@ public class WebMultipleBrowserTest implements IAbstractTest {
             System.out.println(n.readTitle());
             Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
         }
-
     }
+
 }

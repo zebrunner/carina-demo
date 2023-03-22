@@ -44,4 +44,5 @@ public abstract class HomePageBase extends AbstractPage {
         super.open();
         acceptCookies.clickIfPresent();
     }
+
 }

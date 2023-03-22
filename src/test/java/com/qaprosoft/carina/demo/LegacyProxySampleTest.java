@@ -41,6 +41,7 @@ import com.zebrunner.carina.utils.R;
  * @author qpsdemo
  */
 public class LegacyProxySampleTest implements IAbstractTest {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     BrowserUpProxy proxy;
@@ -77,6 +78,5 @@ public class LegacyProxySampleTest implements IAbstractTest {
             LOGGER.error("Unable to generate har archive!", e);
         }
     }
-
 
 }

@@ -111,4 +111,5 @@ public class DBSampleTest implements IAbstractTest {
 		assertEquals(userPreference.getValue(), USER_PREFERENCE.getValue(), "Preference value must match");
 		assertEquals(userPreference.getUserId(), USER_PREFERENCE.getUserId(), "Preference user id must match");
 	}
+
 }

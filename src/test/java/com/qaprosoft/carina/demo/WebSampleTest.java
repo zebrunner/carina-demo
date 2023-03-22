@@ -69,7 +69,6 @@ public class WebSampleTest implements IAbstractTest {
         softAssert.assertAll();
     }
 
-
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
@@ -143,4 +142,5 @@ public class WebSampleTest implements IAbstractTest {
 
         softAssert.assertAll();
     }
+
 }

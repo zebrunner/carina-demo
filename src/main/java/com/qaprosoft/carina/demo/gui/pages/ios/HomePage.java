@@ -89,4 +89,5 @@ public class HomePage extends HomePageBase {
         allBrandsButton.click();
         return initPage(driver, AllBrandsPageBase.class);
     }
+
 }

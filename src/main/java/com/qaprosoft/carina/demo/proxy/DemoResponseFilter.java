@@ -27,4 +27,5 @@ public class DemoResponseFilter implements ResponseFilter {
                     .replace(textToReplace, replacementText));
         }
     }
+
 }
