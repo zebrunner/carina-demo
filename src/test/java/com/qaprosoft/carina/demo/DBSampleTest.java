@@ -21,7 +21,7 @@ import static org.testng.Assert.assertNull;
 import org.apache.ibatis.session.SqlSession;
 import org.testng.annotations.Test;
 
-import com.zebrunner.carina.core.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.db.mappers.UserMapper;
 import com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper;
 import com.qaprosoft.carina.demo.db.models.User;
