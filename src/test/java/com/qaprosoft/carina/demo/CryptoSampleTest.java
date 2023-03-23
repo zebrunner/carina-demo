@@ -18,7 +18,7 @@ package com.qaprosoft.carina.demo;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.utils.R;
 
 /**
