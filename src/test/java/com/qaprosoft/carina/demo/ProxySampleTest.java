@@ -33,7 +33,7 @@ import org.testng.annotations.Test;
 
 import com.browserup.bup.BrowserUpProxy;
 import com.browserup.bup.proxy.CaptureType;
-import com.zebrunner.carina.core.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
 import com.qaprosoft.carina.demo.gui.pages.desktop.NewsPage;
 import com.qaprosoft.carina.demo.proxy.CustomProxy;

@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import com.zebrunner.carina.core.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.api.DeleteUserMethod;
 import com.qaprosoft.carina.demo.api.GetUserMethods;
 import com.qaprosoft.carina.demo.api.PostUserMethod;

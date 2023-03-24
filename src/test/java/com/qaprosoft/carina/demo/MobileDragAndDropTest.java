@@ -3,7 +3,7 @@ package com.qaprosoft.carina.demo;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.zebrunner.carina.core.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.mobile.gui.pages.android.DragAndDropPage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
