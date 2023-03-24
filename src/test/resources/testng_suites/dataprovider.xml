@@ -19,41 +19,51 @@
 	<parameter name="hiddenParam::hiddenArg::custom hidden desc" value="hidden value" />
 	<parameter name="choiceParam::choiceArg::custom choice desc" value="1, 2, 3" />
 
-
-	<test name="Sum operation test">
-		<parameter name="{ds_custom_provider}" value="true" />
-		<classes>
-			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
-				<methods>
-					<include name="testSumOperation"/>
-					<include name="testSumOperationEx"/>
-				</methods>
-			</class>
-		</classes>
-	</test>
-
-	<test name="Multiply operation test">
-		<parameter name="{ds_custom_provider}" value="true" />
-		<classes>
-			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
-				<methods>
-					<include name="testMuliplyOperation"/>
-				</methods>
-			</class>
-		</classes>
-	</test>
-
-	<test name="Substract operation test">
+	<test name="TestNG data providers test">
 		<parameter name="a" value="12"/>
 		<parameter name="b" value="3"/>
 		<parameter name="c" value="9"/>
 		<classes>
-			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
+			<class name="com.qaprosoft.carina.demo.DataProvidersSampleTest">
 				<methods>
-					<include name="testSubstractOperation"/>
+					<include name="testSubtractOperation"/>
+					<include name="testMultiplyOperation"/>
 				</methods>
 			</class>
 		</classes>
+	</test>
+
+	<test name="Sum operation test">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.CustomDataProvidersSampleTest">
+				<methods>
+					<include name="testXlsSumOperation"/>
+					<include name="testCsvSumOperation"/>
+					<include name="testSumOperationFromMap"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Group by country operation test">
+		<classes>
+			<class name="com.qaprosoft.carina.demo.CustomDataProvidersSampleTest">
+				<methods>
+					<include name="testDataSourceGroup"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Data provider static parameter test">
+		<parameter name="expectedValue" value="arg"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.CustomDataProvidersSampleTest">
+                <methods>
+                    <include name="staticParamTest"/>
+                </methods>
+            </class>
+        </classes>
 	</test>
 
 </suite>
