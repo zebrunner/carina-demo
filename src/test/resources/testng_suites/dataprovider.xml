@@ -24,7 +24,7 @@
 		<parameter name="b" value="3"/>
 		<parameter name="c" value="9"/>
 		<classes>
-			<class name="com.qaprosoft.carina.demo.DataProvidersSampleTest">
+			<class name="com.qaprosoft.carina.demo.DataprovidersSampleTest">
 				<methods>
 					<include name="testSubtractOperation"/>
 					<include name="testMultiplyOperation"/>

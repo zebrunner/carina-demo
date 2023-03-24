@@ -31,7 +31,7 @@ import com.zebrunner.carina.core.registrar.tag.TestPriority;
  *
  * @author qpsdemo
  */
-public class DataProvidersSampleTest implements IAbstractTest {
+public class DataprovidersSampleTest implements IAbstractTest {
     /**
      * Parametrization using TestNG dataproviders:
      * <ol>
