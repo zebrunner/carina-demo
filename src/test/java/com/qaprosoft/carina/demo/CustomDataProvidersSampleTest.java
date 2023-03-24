@@ -158,7 +158,9 @@ public class CustomDataProvidersSampleTest implements IAbstractTest, IAbstractDa
         Assert.assertTrue(actualRegionProfit >= expectedRegionProfit,
                 "Actual profit for " + region + " is lower than expected\n" +
                         "Expected: " + expectedRegionProfit + "%\n" +
-                        "Actual: " + actualRegionProfit + "%\n");
+                        "Actual: " + actualRegionProfit + "%\n" +
+                        "Expected to fail only for IT region\n"
+                );
     }
 
     /**
