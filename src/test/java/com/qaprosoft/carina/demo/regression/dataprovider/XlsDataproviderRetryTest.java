@@ -34,7 +34,7 @@ public class XlsDataproviderRetryTest implements IAbstractTest, IAbstractDataPro
     
     @Test(dataProvider = "DataProvider")
     @MethodOwner(owner = "qpsdemo")
-    @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Data", dsUid = "TestTitle", dsArgs = "Args")
+    @XlsDataSourceParameters(path = "data_source/demo.xlsx", sheet = "Data", dsUid = "TestTitle", dsArgs = "Args")
     public void testMethod(String arg) {
         LOGGER.info("arg: " + arg);
         boolean isPassed = (new Random().nextInt(3) == 1) ? true : false;
