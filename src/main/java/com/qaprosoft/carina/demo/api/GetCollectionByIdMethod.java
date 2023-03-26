@@ -13,8 +13,8 @@ import com.zebrunner.carina.utils.Configuration;
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetCollectionByIdMethod extends AbstractApiMethodV2 {
 
-    public GetCollectionByIdMethod(){
-        replaceUrlPlaceholder("id", "9242294");
+    public GetCollectionByIdMethod(int id){
+        replaceUrlPlaceholder("id", String.valueOf(id));
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url_unsplash"));
         replaceUrlPlaceholder("token", Configuration.getEnvArg("access_token"));
     }

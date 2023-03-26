@@ -75,7 +75,7 @@ public class APICarinaTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "ygalitsyna")
     public void testGetCollectionById(){
-        GetCollectionByIdMethod getCollectionByIdMethod =  new GetCollectionByIdMethod();
+        GetCollectionByIdMethod getCollectionByIdMethod =  new GetCollectionByIdMethod(9242294);
         getCollectionByIdMethod.callAPIExpectSuccess();
         getCollectionByIdMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getCollectionByIdMethod.validateResponseAgainstSchema("api/collection_by_id/_get/rs.schema");
@@ -84,7 +84,7 @@ public class APICarinaTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "ygalitsyna")
     public void testGetCollectionsPhotosById(){
-        GetCollectionsPhotosByIdMethod getCollectionsPhotosByIdMethod = new GetCollectionsPhotosByIdMethod();
+        GetCollectionsPhotosByIdMethod getCollectionsPhotosByIdMethod = new GetCollectionsPhotosByIdMethod(9242294);
         getCollectionsPhotosByIdMethod.callAPIExpectSuccess();
         getCollectionsPhotosByIdMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getCollectionsPhotosByIdMethod.validateResponseAgainstSchema("api/collection_photos/_get/rs.schema");
@@ -93,7 +93,7 @@ public class APICarinaTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "ygalitsyna")
     public void testGetCheckDefaultPaginationMethod() throws JsonProcessingException {
-        GetCheckDefaultPaginationMethod getCheckDefaultPaginationMethod = new GetCheckDefaultPaginationMethod();
+        GetCheckDefaultPaginationMethod getCheckDefaultPaginationMethod = new GetCheckDefaultPaginationMethod(9242294);
         Response response = getCheckDefaultPaginationMethod.callAPIExpectSuccess();
         String json = response.body().asString();
         ObjectMapper om = new ObjectMapper();
