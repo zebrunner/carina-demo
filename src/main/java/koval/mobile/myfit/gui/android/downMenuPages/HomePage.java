@@ -82,7 +82,7 @@ public class HomePage extends HomePageBase {
 
     @Override
     public boolean isPageOpened() {
-        return activityChartView.isElementPresent(TIMEOUT_FIVE);
+        return activityChartView.isElementPresent(TIMEOUT_TEN);
     }
 
 

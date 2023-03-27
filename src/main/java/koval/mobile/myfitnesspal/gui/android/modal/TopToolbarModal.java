@@ -20,7 +20,6 @@ public class TopToolbarModal extends TopToolbarModalBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-
     @FindBy(xpath = "//android.view.ViewGroup/android.widget.ImageButton")
     private ExtendedWebElement returnBackButton;
 

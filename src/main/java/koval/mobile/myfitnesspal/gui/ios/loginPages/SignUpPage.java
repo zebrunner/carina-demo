@@ -4,6 +4,7 @@ package koval.mobile.myfitnesspal.gui.ios.loginPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import koval.mobile.myfitnesspal.service.accountFactory.Account;
@@ -131,6 +132,11 @@ public class SignUpPage extends SignUpPageBase {
 
     @Override
     public SignUpPageBase createRandomAccount(Account account) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
         throw new NotImplementedException();
     }
 
