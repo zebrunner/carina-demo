@@ -139,7 +139,7 @@ public class FitnessPalTest extends LoginTest {
 
         final List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
         final String UNITS_VALUE = "units";
-        final int randomFoodIndex = random.nextInt(MY_FOOD.size() - 1);
+        final int RANDOM_FOOD_INDEX = random.nextInt(MY_FOOD.size() - 1);
         final String BRAND_NAME = "";
         final int SERVINGS_PER_CONTAINER = 1;
         final int CALORIES = 65;
@@ -152,10 +152,10 @@ public class FitnessPalTest extends LoginTest {
                 "[ CREATE FOOD PAGE ] Create food page is not opened!");
 
 
-        diaryPageBase = createFoodPageBase.createFood(BRAND_NAME, MY_FOOD.get(randomFoodIndex), SERVINGS,
+        diaryPageBase = createFoodPageBase.createFood(BRAND_NAME, MY_FOOD.get(RANDOM_FOOD_INDEX), SERVINGS,
                 UNITS_VALUE, SERVINGS_PER_CONTAINER, CALORIES);
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(MY_FOOD.get(randomFoodIndex), Meals.BREAKFAST),
-                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", MY_FOOD.get(randomFoodIndex)));
+        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(MY_FOOD.get(RANDOM_FOOD_INDEX), Meals.BREAKFAST),
+                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", MY_FOOD.get(RANDOM_FOOD_INDEX)));
 
     }
 
