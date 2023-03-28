@@ -17,19 +17,25 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import com.zebrunner.carina.webdriver.ScreenshotType;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
-import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.desktop.NewsPage;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.webdriver.Screenshot;
 import com.zebrunner.carina.webdriver.core.capability.impl.desktop.ChromeCapabilities;
 import com.zebrunner.carina.webdriver.core.capability.impl.desktop.FirefoxCapabilities;
+import org.testng.asserts.SoftAssert;
 
 /**
  * This sample shows how initialize multiple drivers and run the tests on different browsers.
@@ -37,30 +43,45 @@ import com.zebrunner.carina.webdriver.core.capability.impl.desktop.FirefoxCapabi
  * @author qpsdemo
  */
 public class WebMultipleBrowserTest implements IAbstractTest {
+    private final String chromeDriverName = "chrome";
+    private final String firefoxDriverName = "firefox";
 
     @Test
     @MethodOwner(owner = "qpsdemo")
     public void multipleBrowserTest() {
-        HomePage chromeHomePage = new HomePage(getDriver("chrome", new ChromeCapabilities().getCapability("Chrome Test")));
+        ChromeOptions chromeCaps = new ChromeCapabilities().getCapability("Chrome Test");
+        chromeCaps.setCapability("browserName", "chrome");
+        HomePageBase chromeHomePage = initPage(getDriver(chromeDriverName, chromeCaps), HomePageBase.class);
         chromeHomePage.open();
         Assert.assertTrue(chromeHomePage.isPageOpened(), "Chrome home page is not opened!");
 
-        HomePage firefoxHomePage = new HomePage(getDriver("firefox", new FirefoxCapabilities().getCapability("Firefox Test")));
+        FirefoxOptions firefoxCaps = new FirefoxCapabilities().getCapability("Firefox Test");
+        firefoxCaps.setCapability("browserName", "firefox");
+        HomePageBase firefoxHomePage = initPage(getDriver(firefoxDriverName, firefoxCaps), HomePageBase.class);
         firefoxHomePage.open();
         Assert.assertTrue(firefoxHomePage.isPageOpened(), "Firefox home page is not opened!");
-        Assert.assertEquals(firefoxHomePage.getDriver().getTitle(), "GSMArena.com - mobile phone reviews, news, specifications and more...");
-        Screenshot.capture(firefoxHomePage.getDriver(), "Firefox capture!");
 
-        NewsPage newsPage = chromeHomePage.getFooterMenu().openNewsPage();
         final String searchQ = "iphone";
-        List<NewsItem> news = newsPage.searchNews(searchQ);
-        Screenshot.capture(chromeHomePage.getDriver(), "Chrome capture!");
-        Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
+        SoftAssert softAssert = new SoftAssert();
 
-        for(NewsItem n : news) {
+        NewsPageBase chromeNewsPage = chromeHomePage.getFooterMenu().openNewsPage();
+        List<NewsItem> chromeNews = chromeNewsPage.searchNews(searchQ);
+        Screenshot.capture(getDriver(chromeDriverName), ScreenshotType.EXPLICIT_VISIBLE, "Chrome capture!");
+        softAssert.assertFalse(CollectionUtils.isEmpty(chromeNews), "News not found!");
+        for (NewsItem n : chromeNews) {
             System.out.println(n.readTitle());
-            Assert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results!");
+            softAssert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results for chrome!");
         }
-    }
 
+        NewsPageBase firefoxNewsPage = firefoxHomePage.getFooterMenu().openNewsPage();
+        List<NewsItem> firefoxNews = firefoxNewsPage.searchNews(searchQ);
+        Screenshot.capture(getDriver(firefoxDriverName), ScreenshotType.EXPLICIT_VISIBLE, "Firefox capture!");
+        softAssert.assertFalse(CollectionUtils.isEmpty(firefoxNews), "News not found!");
+        for (NewsItem n : firefoxNews) {
+            System.out.println(n.readTitle());
+            softAssert.assertTrue(StringUtils.containsIgnoreCase(n.readTitle(), searchQ), "Invalid search results for firefox!");
+        }
+
+        softAssert.assertAll();
+    }
 }
