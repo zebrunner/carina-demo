@@ -16,20 +16,15 @@
 package com.qaprosoft.carina.demo;
 
 import java.util.List;
-import java.util.Properties;
 
 import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
-import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.ScreenshotType;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
