@@ -17,6 +17,8 @@ package com.qaprosoft.carina.demo.gui.pages.ios;
 
 import java.util.List;
 
+import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.R;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -55,7 +57,6 @@ public class HomePage extends HomePageBase {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(newsColumn);
     }
 
