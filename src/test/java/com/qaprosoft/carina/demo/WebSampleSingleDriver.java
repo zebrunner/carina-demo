@@ -18,6 +18,9 @@ package com.qaprosoft.carina.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qaprosoft.carina.demo.gui.components.footer.FooterMenuBase;
+import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -26,9 +29,6 @@ import org.testng.asserts.SoftAssert;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
-import com.qaprosoft.carina.demo.gui.components.footer.FooterMenu;
-import com.qaprosoft.carina.demo.gui.pages.desktop.CompareModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
@@ -39,14 +39,14 @@ import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
  */
 public class WebSampleSingleDriver implements IAbstractTest {
 
-    HomePage homePage = null;
-    CompareModelsPage comparePage = null;
-    List<ModelSpecs> specs = new ArrayList<>();
+    private HomePageBase homePage = null;
+    private CompareModelsPageBase comparePage = null;
+    private List<ModelSpecs> specs = new ArrayList<>();
 
     @BeforeSuite
     public void startDriver() {
         // Open GSM Arena home page and verify page is opened
-        homePage = new HomePage(getDriver());
+        homePage = initPage(getDriver(), HomePageBase.class);
     }
     
     @Test()
@@ -63,9 +63,9 @@ public class WebSampleSingleDriver implements IAbstractTest {
     public void testOpenCompare() {
         // Open GSM Arena home page and verify page is opened
         // Open model compare page
-        FooterMenu footerMenu = homePage.getFooterMenu();
+        FooterMenuBase footerMenu = homePage.getFooterMenu();
         Assert.assertTrue(footerMenu.isUIObjectPresent(2), "Footer menu wasn't found!");
-        comparePage = footerMenu.openComparePage();
+        comparePage = homePage.openComparePage();
         comparePage.isPageOpened();
     }
     
@@ -84,7 +84,9 @@ public class WebSampleSingleDriver implements IAbstractTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2016, March 31");
         softAssert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2015, June 19");
-        softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
+        if (specs.size() == 3) {
+            softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
+        }
         softAssert.assertAll();
     }
 

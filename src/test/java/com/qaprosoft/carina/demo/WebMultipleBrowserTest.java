@@ -47,13 +47,13 @@ public class WebMultipleBrowserTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     public void multipleBrowserTest() {
-        ChromeOptions chromeCaps = new ChromeCapabilities().getCapability("Chrome Test");
-        HomePageBase chromeHomePage = initPage(getDriver(CHROME_DRIVER_NAME, chromeCaps), HomePageBase.class);
+        HomePageBase chromeHomePage = initPage(getDriver(CHROME_DRIVER_NAME,
+                new ChromeCapabilities().getCapability("Chrome Test")), HomePageBase.class);
         chromeHomePage.open();
         Assert.assertTrue(chromeHomePage.isPageOpened(), "Chrome home page is not opened!");
 
-        FirefoxOptions firefoxCaps = new FirefoxCapabilities().getCapability("Firefox Test");
-        HomePageBase firefoxHomePage = initPage(getDriver(FIREFOX_DRIVER_NAME, firefoxCaps), HomePageBase.class);
+        HomePageBase firefoxHomePage = initPage(getDriver(FIREFOX_DRIVER_NAME,
+                new FirefoxCapabilities().getCapability("Firefox Test")), HomePageBase.class);
         firefoxHomePage.open();
         Assert.assertTrue(firefoxHomePage.isPageOpened(), "Firefox home page is not opened!");
 
