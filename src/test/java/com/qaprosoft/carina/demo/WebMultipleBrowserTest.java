@@ -16,9 +16,11 @@
 package com.qaprosoft.carina.demo;
 
 import java.util.List;
+import java.util.Properties;
 
 import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
+import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.ScreenshotType;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -27,6 +29,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
@@ -43,21 +46,19 @@ import org.testng.asserts.SoftAssert;
  * @author qpsdemo
  */
 public class WebMultipleBrowserTest implements IAbstractTest {
-    private final String chromeDriverName = "chrome";
-    private final String firefoxDriverName = "firefox";
+    private static final String CHROME_DRIVER_NAME = "chrome";
+    private static final String FIREFOX_DRIVER_NAME = "firefox";
 
     @Test
     @MethodOwner(owner = "qpsdemo")
     public void multipleBrowserTest() {
         ChromeOptions chromeCaps = new ChromeCapabilities().getCapability("Chrome Test");
-        chromeCaps.setCapability("browserName", "chrome");
-        HomePageBase chromeHomePage = initPage(getDriver(chromeDriverName, chromeCaps), HomePageBase.class);
+        HomePageBase chromeHomePage = initPage(getDriver(CHROME_DRIVER_NAME, chromeCaps), HomePageBase.class);
         chromeHomePage.open();
         Assert.assertTrue(chromeHomePage.isPageOpened(), "Chrome home page is not opened!");
 
         FirefoxOptions firefoxCaps = new FirefoxCapabilities().getCapability("Firefox Test");
-        firefoxCaps.setCapability("browserName", "firefox");
-        HomePageBase firefoxHomePage = initPage(getDriver(firefoxDriverName, firefoxCaps), HomePageBase.class);
+        HomePageBase firefoxHomePage = initPage(getDriver(FIREFOX_DRIVER_NAME, firefoxCaps), HomePageBase.class);
         firefoxHomePage.open();
         Assert.assertTrue(firefoxHomePage.isPageOpened(), "Firefox home page is not opened!");
 
@@ -66,7 +67,7 @@ public class WebMultipleBrowserTest implements IAbstractTest {
 
         NewsPageBase chromeNewsPage = chromeHomePage.getFooterMenu().openNewsPage();
         List<NewsItem> chromeNews = chromeNewsPage.searchNews(searchQ);
-        Screenshot.capture(getDriver(chromeDriverName), ScreenshotType.EXPLICIT_VISIBLE, "Chrome capture!");
+        Screenshot.capture(getDriver(CHROME_DRIVER_NAME), ScreenshotType.EXPLICIT_VISIBLE, "Chrome capture!");
         softAssert.assertFalse(CollectionUtils.isEmpty(chromeNews), "News not found!");
         for (NewsItem n : chromeNews) {
             System.out.println(n.readTitle());
@@ -75,7 +76,7 @@ public class WebMultipleBrowserTest implements IAbstractTest {
 
         NewsPageBase firefoxNewsPage = firefoxHomePage.getFooterMenu().openNewsPage();
         List<NewsItem> firefoxNews = firefoxNewsPage.searchNews(searchQ);
-        Screenshot.capture(getDriver(firefoxDriverName), ScreenshotType.EXPLICIT_VISIBLE, "Firefox capture!");
+        Screenshot.capture(getDriver(FIREFOX_DRIVER_NAME), ScreenshotType.EXPLICIT_VISIBLE, "Firefox capture!");
         softAssert.assertFalse(CollectionUtils.isEmpty(firefoxNews), "News not found!");
         for (NewsItem n : firefoxNews) {
             System.out.println(n.readTitle());
