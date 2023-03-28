@@ -88,6 +88,7 @@ public class WebSampleTest implements IAbstractTest {
         softAssert.assertEquals(specs.get(0).readSpec(SpecType.TECHNOLOGY), "GSM / HSPA / LTE");
         softAssert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2023, February 29");
         softAssert.assertEquals(specs.get(1).readSpec(SpecType.TECHNOLOGY), "GSM / CDMA / HSPA / EVDO / LTE / 5G");
+        //for desktop could be compared 3 devices, when for mobile only 2
         if (specs.size() > 2) {
             softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
             softAssert.assertEquals(specs.get(2).readSpec(SpecType.TECHNOLOGY), "GSM / HSPA / LTE");

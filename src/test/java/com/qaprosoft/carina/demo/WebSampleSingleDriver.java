@@ -84,7 +84,8 @@ public class WebSampleSingleDriver implements IAbstractTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2016, March 31");
         softAssert.assertEquals(specs.get(1).readSpec(SpecType.ANNOUNCED), "2015, June 19");
-        if (specs.size() == 3) {
+        //for desktop could be compared 3 devices, when for mobile only 2
+        if (specs.size() > 2) {
             softAssert.assertEquals(specs.get(2).readSpec(SpecType.ANNOUNCED), "2017, June");
         }
         softAssert.assertAll();
