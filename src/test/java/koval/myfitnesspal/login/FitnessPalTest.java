@@ -11,10 +11,16 @@ import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods.C
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CopyMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CreateMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
+import koval.mobile.myfitnesspal.service.accountFactory.Account;
+import koval.mobile.myfitnesspal.service.accountFactory.AccountFactory;
 import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import koval.mobile.myfitnesspal.service.enums.Meals;
 import koval.mobile.myfitnesspal.service.enums.TabsFromSearchFoodPage;
+import koval.mobile.myfitnesspal.service.foodFactory.Food;
+import koval.mobile.myfitnesspal.service.foodFactory.FoodFactory;
+import koval.mobile.myfitnesspal.service.recipeFactory.Recipe;
+import koval.mobile.myfitnesspal.service.recipeFactory.RecipeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -32,29 +38,11 @@ public class FitnessPalTest extends LoginTest {
 
     private static final Random random = new Random();
 
-    private static final List<String> RECIPE_INGREDIENTS = Arrays.asList("Milk", "Honey", "Butter");
-
-    private static final String RECIPE_NAME = "Sweet milk";
-
-    private static final int SERVINGS = 2;
-
     private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Milk", "Cherry");
-
-    private static final List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
-
-    private static final String UNITS_VALUE = "units";
-
-    private static final int RANDOM_FOOD_INDEX = random.nextInt(MY_FOOD.size() - 1);
-
-    private static final String BRAND_NAME = "";
-
-    private static final int SERVINGS_PER_CONTAINER = 1;
-
-    private static final int CALORIES = 65;
 
     final String FOOD_MEAL = "Apple";
 
-    final String MEAL_NAME = "My";
+    final String MEAL_NAME = "MyMeal " + random.nextInt(100) + 1;
 
 
     @Test()
@@ -155,9 +143,11 @@ public class FitnessPalTest extends LoginTest {
         Assert.assertTrue(createRecipePageBase.isPageOpened(),
                 "[ CREATE RECIPE PAGE ] Create recipe page is not opened!");
 
-        diaryPageBase = createRecipePageBase.createRecipeByEnteringIngredientsPerLine(RECIPE_NAME, SERVINGS, RECIPE_INGREDIENTS);
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(RECIPE_NAME, Meals.BREAKFAST),
-                String.format("[ DIARY PAGE ] Recipe '%s' is not added! Meal: Breakfast", RECIPE_NAME));
+
+        Recipe recipe = RecipeFactory.generateRecipe();
+        diaryPageBase = createRecipePageBase.createRecipeByEnteringIngredientsPerLine(recipe);
+        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(recipe.getRecipeName(), Meals.BREAKFAST),
+                String.format("[ DIARY PAGE ] Recipe '%s' is not added! Meal: Breakfast", recipe.getRecipeName()));
 
 
         searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
@@ -169,10 +159,12 @@ public class FitnessPalTest extends LoginTest {
         Assert.assertTrue(createFoodPageBase.isPageOpened(),
                 "[ CREATE FOOD PAGE ] Create food page is not opened!");
 
-        diaryPageBase = createFoodPageBase.createFood(BRAND_NAME, MY_FOOD.get(RANDOM_FOOD_INDEX), SERVINGS,
-                UNITS_VALUE, SERVINGS_PER_CONTAINER, CALORIES);
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(MY_FOOD.get(RANDOM_FOOD_INDEX), Meals.BREAKFAST),
-                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", MY_FOOD.get(RANDOM_FOOD_INDEX)));
+
+        Food food = FoodFactory.generateFood();
+
+        diaryPageBase = createFoodPageBase.createFood(food);
+        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(food.getDescription(), Meals.BREAKFAST),
+                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", food.getDescription()));
 
     }
 

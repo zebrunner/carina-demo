@@ -6,6 +6,7 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods.CreateFoodPageBase;
+import koval.mobile.myfitnesspal.service.foodFactory.Food;
 import org.openqa.selenium.WebDriver;
 
 
@@ -23,8 +24,9 @@ public class CreateFoodPage extends CreateFoodPageBase {
     }
 
     @Override
-    public DiaryPageBase createFood(String brandName, String description, int servingsSize, String servingsSizeQuantity, int servingsPerContainer, int calories) {
+    public DiaryPageBase createFood(Food food) {
         throw new NotImplementedException();
     }
+
 
 }

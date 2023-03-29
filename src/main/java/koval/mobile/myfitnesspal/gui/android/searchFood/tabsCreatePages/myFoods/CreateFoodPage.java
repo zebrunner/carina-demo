@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods.CreateFoodPageBase;
+import koval.mobile.myfitnesspal.service.foodFactory.Food;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -44,18 +45,20 @@ public class CreateFoodPage extends CreateFoodPageBase {
         return itemByText.format(CREATE_FOOD_TITLE).isElementPresent(TIMEOUT_FIVE);
     }
 
-    @Override
-    public DiaryPageBase createFood(String brandName, String description, int servingsSize, String servingsSizeQuantity, int servingsPerContainer, int calories) {
 
-        brandNameTextBox.type(brandName, TIMEOUT_FIVE);
-        descriptionTextBox.type(description, TIMEOUT_FIVE);
-        servingSizeTextBox.type(String.valueOf(servingsSize), TIMEOUT_FIVE);
-        servingSizeQuantityTextBox.type(servingsSizeQuantity, TIMEOUT_FIVE);
-        servingsPerContainerTextBox.type(String.valueOf(servingsPerContainer), TIMEOUT_FIVE);
+
+    @Override
+    public DiaryPageBase createFood(Food food) {
+
+        brandNameTextBox.type(food.getBrandName(), TIMEOUT_FIVE);
+        descriptionTextBox.type(food.getDescription(), TIMEOUT_FIVE);
+        servingSizeTextBox.type(String.valueOf(food.getServingsSize()), TIMEOUT_FIVE);
+        servingSizeQuantityTextBox.type(food.getServingsSizeQuantity(), TIMEOUT_FIVE);
+        servingsPerContainerTextBox.type(String.valueOf(food.getServingsPerContainer()), TIMEOUT_FIVE);
 
         itemByText.format(NEXT).click();
 
-        caloriesTextBox.type(String.valueOf(calories), TIMEOUT_TEN);
+        caloriesTextBox.type(String.valueOf(food.getCalories()), TIMEOUT_TEN);
 
         int attemp = 3;
         while (itemByText.format(SAVE).isElementPresent(TIMEOUT_FIVE) && attemp > 0) {

@@ -1,6 +1,9 @@
 package koval.mobile.myfitnesspal.utils;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface IConstantUtils {
 
     int MAX_AGE = 40;
@@ -108,4 +111,9 @@ public interface IConstantUtils {
     String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
 
     String EXERCISE_STRING = "Exercise";
+
+    String UNITS_VALUE = "units";
+
+    List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
+
 }

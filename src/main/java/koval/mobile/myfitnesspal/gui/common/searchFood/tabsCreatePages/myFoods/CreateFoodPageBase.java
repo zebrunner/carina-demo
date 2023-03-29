@@ -2,6 +2,7 @@ package koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods;
 
 import koval.mobile.myfitnesspal.gui.MyAbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
+import koval.mobile.myfitnesspal.service.foodFactory.Food;
 import org.openqa.selenium.WebDriver;
 
 
@@ -13,5 +14,5 @@ public abstract class CreateFoodPageBase extends MyAbstractPage {
 
     public abstract boolean isPageOpened();
 
-    public abstract DiaryPageBase createFood(String brandName, String description, int servingsSize, String servingsSizeQuantity, int servingsPerContainer, int calories);
+    public abstract DiaryPageBase createFood(Food food);
 }

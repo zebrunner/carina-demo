@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
+import koval.mobile.myfitnesspal.service.recipeFactory.Recipe;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -53,11 +54,11 @@ public class CreateRecipePage extends CreateRecipePageBase {
 
 
     @Override
-    public DiaryPageBase createRecipeByEnteringIngredientsPerLine(String recipeName, int servings, List<String> recipeIngredients) {
+    public DiaryPageBase createRecipeByEnteringIngredientsPerLine(Recipe recipe) {
 
-        recipeNameTextBox.type(recipeName, TIMEOUT_FIVE);
+        recipeNameTextBox.type(recipe.getRecipeName(), TIMEOUT_FIVE);
 
-        servingsNumberTextBox.type(String.valueOf(servings), TIMEOUT_FIVE);
+        servingsNumberTextBox.type(String.valueOf(recipe.getServings()), TIMEOUT_FIVE);
 
         if (!bulkImportSwitch.isChecked()) {
             bulkImportSwitch.check();
@@ -65,8 +66,8 @@ public class CreateRecipePage extends CreateRecipePageBase {
 
         StringBuilder sb = new StringBuilder();
         int i = 0;
-        while (i < recipeIngredients.size()) {
-            sb.append(recipeIngredients.get(i));
+        while (i < recipe.getRecipeIngredients().size()) {
+            sb.append(recipe.getRecipeIngredients().get(i));
             sb.append(SPACE_FIELD);
             i++;
         }

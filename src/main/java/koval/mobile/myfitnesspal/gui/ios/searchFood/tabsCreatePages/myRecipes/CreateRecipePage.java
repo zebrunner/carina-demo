@@ -5,6 +5,7 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
+import koval.mobile.myfitnesspal.service.recipeFactory.Recipe;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -22,9 +23,8 @@ public class CreateRecipePage extends CreateRecipePageBase {
         throw new NotImplementedException();
     }
 
-
     @Override
-    public DiaryPageBase createRecipeByEnteringIngredientsPerLine(String recipeName, int servings, List<String> recipeIngredients) {
+    public DiaryPageBase createRecipeByEnteringIngredientsPerLine(Recipe recipe) {
         throw new NotImplementedException();
     }
 

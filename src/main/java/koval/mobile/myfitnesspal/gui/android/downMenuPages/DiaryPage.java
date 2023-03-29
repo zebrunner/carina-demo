@@ -11,6 +11,7 @@ import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -106,8 +107,10 @@ public class DiaryPage extends DiaryPageBase {
         LOGGER.info("Next meal location by down Y: " + getNextMealLocationByDownY(meals));
         LOGGER.info("Actual meal location by down Y: " + getMealLocationByDownY(meals.getMeal()));
 
-        return getNextMealLocationByDownY(meals) >=  getFoodLocationByUpperY(food)&&
-                getMealLocationByDownY(meals.getMeal())  <= getFoodLocationByUpperY(food);
+        boolean x = getNextMealLocationByDownY(meals) >= getFoodLocationByUpperY(food);
+        boolean y = getMealLocationByDownY(meals.getMeal()) <= getFoodLocationByUpperY(food);
+
+        return x && y;
     }
 
 
@@ -120,7 +123,6 @@ public class DiaryPage extends DiaryPageBase {
 
         return initPage(getDriver(), SearchFoodPageBase.class);
     }
-
 
 
     @Override
@@ -174,8 +176,7 @@ public class DiaryPage extends DiaryPageBase {
         if (meals.getMeal().equals(Meals.SNACKS.getMeal())) {
             mealTitle = EXERCISE_STRING;
 
-        }
-        else {
+        } else {
             mealTitle = meals.getNext();
         }
 
@@ -204,6 +205,7 @@ public class DiaryPage extends DiaryPageBase {
     private int getFoodLocationByUpperY(String text) {
 
         int locationY = 0;
+
 
         if (foodViewContainerList.isEmpty()) {
             Assert.fail("[ DIARY PAGE ] List of food is empty!");
