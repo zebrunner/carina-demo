@@ -53,6 +53,8 @@ public class FooterMenu extends FooterMenuBase {
     }
     
     public NewsPage openNewsPage() {
+        newsLink.scrollTo();
+        newsLink.hover();
         newsLink.click();
         return new NewsPage(driver);
     }
