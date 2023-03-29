@@ -11,8 +11,9 @@ public abstract class CreateMealPageBase extends MyAbstractPage {
         super(driver);
     }
 
-    public abstract boolean isPageOpened(String mealText);
+    public abstract boolean isPageOpened();
 
     public abstract SearchFoodPageBase createMeal(String mealName);
 
+    public abstract SearchFoodPageBase clickSaveButton();
 }

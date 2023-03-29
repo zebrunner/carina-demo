@@ -3,11 +3,13 @@ package koval.myfitnesspal.login;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
+import koval.mobile.myfitnesspal.gui.android.searchFood.tabsCreatePages.myMeals.CreateMealPage;
 import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods.CreateFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CopyMealPageBase;
+import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CreateMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
 import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
@@ -27,7 +29,32 @@ import java.util.Random;
 public class FitnessPalTest extends LoginTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
     private static final Random random = new Random();
+
+    private static final List<String> RECIPE_INGREDIENTS = Arrays.asList("Milk", "Honey", "Butter");
+
+    private static final String RECIPE_NAME = "Sweet milk";
+
+    private static final int SERVINGS = 2;
+
+    private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Milk", "Cherry");
+
+    private static final List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
+
+    private static final String UNITS_VALUE = "units";
+
+    private static final int RANDOM_FOOD_INDEX = random.nextInt(MY_FOOD.size() - 1);
+
+    private static final String BRAND_NAME = "";
+
+    private static final int SERVINGS_PER_CONTAINER = 1;
+
+    private static final int CALORIES = 65;
+
+    final String FOOD_MEAL = "Apple";
+
+    final String MEAL_NAME = "My";
 
 
     @Test()
@@ -54,8 +81,6 @@ public class FitnessPalTest extends LoginTest {
         diaryPageBase.deleteAllFood();
         diaryPageBase.closePromoMessagesIfPresent();
 
-
-        List<String> FOOD = Arrays.asList("Apple", "Bread", "Milk", "Cherry");
         Meals[] mealsArr = Meals.values();
 
         for (int i = 0; i < Meals.values().length; i++) {
@@ -78,9 +103,7 @@ public class FitnessPalTest extends LoginTest {
                     meals));
 
         }
-
     }
-
 
     @Test()
     @MethodOwner(owner = "koval")
@@ -93,33 +116,37 @@ public class FitnessPalTest extends LoginTest {
         diaryPageBase.deleteAllFood();
 
 
-
         SearchFoodPageBase searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
         Assert.assertTrue(searchFoodPageBase.isPageOpened(Meals.BREAKFAST.getMeal()),
                 "[ BREAKFAST PAGE ] Breakfast page is not opened!");
 
 
         searchFoodPageBase.openTabByName(TabsFromSearchFoodPage.MY_MEALS);
-        CopyMealPageBase copyMealPageBase = (CopyMealPageBase)
-                searchFoodPageBase.openActionPageByName(ActionsFromTabsSearchFood.COPY_A_MEAL);
+        CreateMealPageBase createMealPageBase = (CreateMealPageBase)
+                searchFoodPageBase.openActionPageByName(ActionsFromTabsSearchFood.CREATE_A_MEAL);
 
-        copyMealPageBase.closeTimestampsPopUpIfPresent();
-             Assert.assertTrue(copyMealPageBase.isPageOpened(),
-                     "[ COPY MEAL PAGE ] Copy meal page is not opened!");
+        createMealPageBase.closeTimestampsPopUpIfPresent();
+        Assert.assertTrue(createMealPageBase.isPageOpened(),
+                "[ COPY MEAL PAGE ] Copy meal page is not opened!");
 
-        final String COPY_MEAL ="Apple";
-        diaryPageBase = copyMealPageBase.copyMeal();
 
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(COPY_MEAL, Meals.BREAKFAST),
-                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", COPY_MEAL));
+        searchFoodPageBase = createMealPageBase.createMeal(MEAL_NAME);
+        searchFoodPageBase.searchFood(FOOD_MEAL);
+        searchFoodPageBase.addFoodToMealByName(FOOD_MEAL);
+        searchFoodPageBase.clickBackButton();
+        createMealPageBase.clickSaveButton();
 
+        searchFoodPageBase.addFoodToMealByName(MEAL_NAME);
+
+
+        diaryPageBase = searchFoodPageBase.clickBackButton();
+
+
+        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD_MEAL, Meals.BREAKFAST),
+                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", FOOD_MEAL));
 
 
         searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
-
-        final List<String> RECIPE_INGREDIENTS = Arrays.asList("Milk", "Honey", "Butter");
-        final String RECIPE_NAME = "Sweet milk";
-        final int SERVINGS = 2;
 
         searchFoodPageBase.openTabByName(TabsFromSearchFoodPage.MY_RECIPES);
         CreateRecipePageBase createRecipePageBase = (CreateRecipePageBase)
@@ -128,21 +155,12 @@ public class FitnessPalTest extends LoginTest {
         Assert.assertTrue(createRecipePageBase.isPageOpened(),
                 "[ CREATE RECIPE PAGE ] Create recipe page is not opened!");
 
-        diaryPageBase = createRecipePageBase.createRecipe(RECIPE_NAME, SERVINGS, RECIPE_INGREDIENTS);
+        diaryPageBase = createRecipePageBase.createRecipeByEnteringIngredientsPerLine(RECIPE_NAME, SERVINGS, RECIPE_INGREDIENTS);
         Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(RECIPE_NAME, Meals.BREAKFAST),
                 String.format("[ DIARY PAGE ] Recipe '%s' is not added! Meal: Breakfast", RECIPE_NAME));
 
 
-
-
         searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
-
-        final List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
-        final String UNITS_VALUE = "units";
-        final int RANDOM_FOOD_INDEX = random.nextInt(MY_FOOD.size() - 1);
-        final String BRAND_NAME = "";
-        final int SERVINGS_PER_CONTAINER = 1;
-        final int CALORIES = 65;
 
         searchFoodPageBase.openTabByName(TabsFromSearchFoodPage.MY_FOODS);
         CreateFoodPageBase createFoodPageBase = (CreateFoodPageBase)
@@ -150,7 +168,6 @@ public class FitnessPalTest extends LoginTest {
 
         Assert.assertTrue(createFoodPageBase.isPageOpened(),
                 "[ CREATE FOOD PAGE ] Create food page is not opened!");
-
 
         diaryPageBase = createFoodPageBase.createFood(BRAND_NAME, MY_FOOD.get(RANDOM_FOOD_INDEX), SERVINGS,
                 UNITS_VALUE, SERVINGS_PER_CONTAINER, CALORIES);

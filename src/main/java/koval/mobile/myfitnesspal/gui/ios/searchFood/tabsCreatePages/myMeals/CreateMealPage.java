@@ -17,13 +17,18 @@ public class CreateMealPage extends CreateMealPageBase {
     }
 
     @Override
-    public boolean isPageOpened(String mealText) {
+    public boolean isPageOpened() {
         throw new NotImplementedException();
     }
 
 
     @Override
     public SearchFoodPageBase createMeal(String mealName) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public SearchFoodPageBase clickSaveButton() {
         throw new NotImplementedException();
     }
 

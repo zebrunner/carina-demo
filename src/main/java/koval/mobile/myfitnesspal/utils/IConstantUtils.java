@@ -51,7 +51,7 @@ public interface IConstantUtils {
 
     String CONTINUE = "Continue";
 
-    String CREATE_MEAL = "Create meal";
+    String CREATE_MEAL = "Create a Meal";
 
     String CREATE_FOOD_TITLE = "Create Food";
 

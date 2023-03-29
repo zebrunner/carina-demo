@@ -167,8 +167,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
 
-    @Override
-    public int getNextMealLocationByDownY(Meals meals) {
+    private int getNextMealLocationByDownY(Meals meals) {
 
         String mealTitle;
 
@@ -183,8 +182,7 @@ public class DiaryPage extends DiaryPageBase {
         return getMealLocationByDownY(mealTitle);
     }
 
-    @Override
-    public int getMealLocationByDownY(String meals) {
+    private int getMealLocationByDownY(String meals) {
 
         int locationDownY = 0;
 
@@ -203,8 +201,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
 
-    @Override
-    public int getFoodLocationByUpperY(String text) {
+    private int getFoodLocationByUpperY(String text) {
 
         int locationY = 0;
 

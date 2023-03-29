@@ -57,8 +57,10 @@ public class CreateFoodPage extends CreateFoodPageBase {
 
         caloriesTextBox.type(String.valueOf(calories), TIMEOUT_TEN);
 
-        while (itemByText.format(SAVE).isElementPresent(TIMEOUT_FIVE)) {
+        int attemp = 3;
+        while (itemByText.format(SAVE).isElementPresent(TIMEOUT_FIVE) && attemp > 0) {
             itemByText.format(SAVE).click();
+            attemp--;
         }
 
         itemByText.format(NO_THANKS_ANSWER).clickIfPresent(TIMEOUT_FIVE);

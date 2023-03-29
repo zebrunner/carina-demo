@@ -72,8 +72,10 @@ public class LogInPage extends LogInPageBase {
     @Override
     public DashboardPageBase closeUserTutorialBoxIfPresent() {
 
-        while (exitTutorialButton.isElementPresent(TIMEOUT_TEN)) {
+        int attemp = 3;
+        while (exitTutorialButton.isElementPresent(TIMEOUT_TEN) && attemp > 0) {
             exitTutorialButton.clickIfPresent(TIMEOUT_TEN);
+            attemp--;
         }
 
         return initPage(getDriver(), DashboardPageBase.class);

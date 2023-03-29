@@ -11,6 +11,7 @@ import koval.mobile.myfitnesspal.service.enums.Meals;
 import koval.mobile.myfitnesspal.service.enums.TabsFromSearchFoodPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.List;
@@ -38,6 +39,12 @@ public class SearchFoodPage extends SearchFoodPageBase {
     private ExtendedWebElement backButton;
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/listItemViewContainer']/child::*//*[@resource-id='com.myfitnesspal.android:id/text_primary']")
+    private ExtendedWebElement foodTitle;
+
+    @FindBy(id = "com.myfitnesspal.android:id/quickLogAddRemoveIcon")
+    private ExtendedWebElement addFoodPlusButton;
+
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/listItemViewContainer']/child::*//*[@resource-id='com.myfitnesspal.android:id/text_primary']")
     private List<ExtendedWebElement> foodTitleList;
 
     @FindBy(id = "com.myfitnesspal.android:id/quickLogAddRemoveIcon")
@@ -45,7 +52,6 @@ public class SearchFoodPage extends SearchFoodPageBase {
 
     @FindBy(id = "com.myfitnesspal.android:id/mealName")
     private List<ExtendedWebElement> mealNameTextList;
-
 
 
     public SearchFoodPage(WebDriver driver) {
@@ -80,23 +86,64 @@ public class SearchFoodPage extends SearchFoodPageBase {
         return initPage(getDriver(), SearchFoodPageBase.class);
     }
 
+    @Override
+    public String getFoodTitleText() {
+
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(foodTitle.getBy()), TIMEOUT_FIVE);
+
+        if (foodTitleList.isEmpty()) {
+            Assert.fail("[ SEARCH FOOD PAGE ] List of food is empty!");
+        }
+        return foodTitleList.get(0).getText();
+    }
 
     @Override
-    public SearchFoodPageBase addFoodToMealByName(String food) {
+    public DiaryPageBase addFoodToMealByName(String food) {
 
-        searchFoodField.type(food, TIMEOUT_FIVE);
-        searchForFoodTextView.click();
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(addFoodPlusButton.getBy()), TIMEOUT_FIVE);
 
-        for (int i = 0; i < foodTitleList.size(); i++) {
-            if (foodTitleList.get(i).getText().equals(food)) {
-                addFoodPlusButtonList.get(i).click();
-                break;
-
-            }
+        if (addFoodPlusButtonList.isEmpty()) {
+            Assert.fail("[ SEARCH FOOD PAGE ] List of food is empty!");
         }
 
-        return initPage(getDriver(), SearchFoodPageBase.class);
+        if (getFoodTitleText().contains(food)) {
+            addFoodPlusButtonList.get(0).click();
+        }
+
+        return initPage(getDriver(), DiaryPageBase.class);
     }
+
+
+//    @Override
+//    public DiaryPageBase addFoodToMealByName(String food) {
+//
+//        for (int i = 0; i < foodTitleList.size(); i++) {
+//            if (foodTitleList.get(i).getText().equals(food)) {
+//                addFoodPlusButtonList.get(i).click();
+//                break;
+//
+//            }
+//        }
+//
+//        return initPage(getDriver(), DiaryPageBase.class);
+//    }
+
+//    @Override
+//    public SearchFoodPageBase addFoodToMealByName(String food) {
+//
+//        searchFoodField.type(food, TIMEOUT_FIVE);
+//        searchForFoodTextView.click();
+//
+//        for (int i = 0; i < foodTitleList.size(); i++) {
+//            if (foodTitleList.get(i).getText().equals(food)) {
+//                addFoodPlusButtonList.get(i).click();
+//                break;
+//
+//            }
+//        }
+//
+//        return initPage(getDriver(), SearchFoodPageBase.class);
+//    }
 
     @Override
     public DiaryPageBase clickBackButton() {
@@ -106,20 +153,20 @@ public class SearchFoodPage extends SearchFoodPageBase {
         return initPage(getDriver(), DiaryPageBase.class);
     }
 
+
     @Override
     public SearchFoodPageBase searchFood(String food) {
 
         searchFoodField.type(food, TIMEOUT_FIVE);
-        searchForFoodTextView.clickIfPresent(TIMEOUT_FIVE);
+        searchForFoodTextView.click(TIMEOUT_FIVE);
 
+        return initPage(getDriver(), SearchFoodPageBase.class);
+    }
 
-        for (int i = 0; i < foodTitleList.size(); i++) {
-            if (foodTitleList.get(i).getText().equals(food)) {
-                addFoodPlusButtonList.get(i).click();
-                break;
+    @Override
+    public SearchFoodPageBase searchForFoodTitle() {
 
-            }
-        }
+        searchForFoodTextView.click(TIMEOUT_FIVE);
 
         return initPage(getDriver(), SearchFoodPageBase.class);
     }
@@ -131,7 +178,6 @@ public class SearchFoodPage extends SearchFoodPageBase {
 
         return initPage(getDriver(), SearchFoodPageBase.class);
     }
-
 
 
     @Override

@@ -32,7 +32,7 @@ public class CreateRecipePage extends CreateRecipePageBase {
     @FindBy(id = "com.myfitnesspal.android:id/switchBulkImport")
     private ExtendedWebElement bulkImportSwitch;
 
-    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/inputIngredients']/child::*[@class='android.widget.EditText'][1]")
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/inputIngredients']/child::*[@class='android.widget.EditText'][2]")
     private ExtendedWebElement inputIngredientsTextBox;
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/toolbar']/child::*[@class='android.widget.ImageButton']")

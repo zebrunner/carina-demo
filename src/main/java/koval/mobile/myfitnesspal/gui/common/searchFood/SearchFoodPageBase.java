@@ -20,11 +20,15 @@ public abstract class SearchFoodPageBase extends MyAbstractPage {
 
     public abstract SearchFoodPageBase changeMealByName(Meals meals);
 
-    public abstract SearchFoodPageBase addFoodToMealByName(String food);
+    public abstract String getFoodTitleText();
+
+    public abstract DiaryPageBase addFoodToMealByName(String food);
 
     public abstract DiaryPageBase clickBackButton();
 
     public abstract SearchFoodPageBase searchFood(String food);
+
+    public abstract SearchFoodPageBase searchForFoodTitle();
 
     public abstract SearchFoodPageBase openTabByName(TabsFromSearchFoodPage tabsFromSearchFoodPage);
 

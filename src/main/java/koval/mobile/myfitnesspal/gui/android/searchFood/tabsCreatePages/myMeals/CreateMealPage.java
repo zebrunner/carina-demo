@@ -3,6 +3,7 @@ package koval.mobile.myfitnesspal.gui.android.searchFood.tabsCreatePages.myMeals
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CreateMealPageBase;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +27,7 @@ public class CreateMealPage extends CreateMealPageBase {
     }
 
     @Override
-    public boolean isPageOpened(String mealText) {
+    public boolean isPageOpened() {
         return itemByText.format(CREATE_MEAL).isElementPresent(TIMEOUT_FIVE);
     }
 
@@ -42,5 +43,15 @@ public class CreateMealPage extends CreateMealPageBase {
 
         return initPage(getDriver(), SearchFoodPageBase.class);
     }
+
+
+    @Override
+    public SearchFoodPageBase clickSaveButton() {
+
+        itemByText.format("Save").click();
+
+        return initPage(getDriver(), SearchFoodPageBase.class);
+    }
+
 
 }

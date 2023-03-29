@@ -2,7 +2,6 @@ package koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals;
 
 import koval.mobile.myfitnesspal.gui.MyAbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
 import org.openqa.selenium.WebDriver;
 
 

@@ -47,22 +47,6 @@ public class DiaryPage extends DiaryPageBase {
 
 
     @Override
-    public int getFoodLocationByUpperY(String text) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public int getNextMealLocationByDownY(Meals meals) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public int getMealLocationByDownY(String meals) {
-        throw new NotImplementedException();
-    }
-
-
-    @Override
     public DiaryPageBase deleteAllFood() {
         throw new NotImplementedException();
     }

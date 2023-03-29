@@ -31,7 +31,12 @@ public class SearchFoodPage extends SearchFoodPageBase {
     }
 
     @Override
-    public SearchFoodPageBase addFoodToMealByName(String food) {
+    public String getFoodTitleText() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public DiaryPageBase addFoodToMealByName(String food) {
         throw new NotImplementedException();
     }
 
@@ -42,6 +47,11 @@ public class SearchFoodPage extends SearchFoodPageBase {
 
     @Override
     public SearchFoodPageBase searchFood(String food) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public SearchFoodPageBase searchForFoodTitle() {
         throw new NotImplementedException();
     }
 
