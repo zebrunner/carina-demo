@@ -17,23 +17,22 @@ package com.qaprosoft.carina.demo;
 
 import java.util.List;
 
-import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
-import com.zebrunner.carina.webdriver.ScreenshotType;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.NewsPageBase;
 import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.webdriver.Screenshot;
+import com.zebrunner.carina.webdriver.ScreenshotType;
 import com.zebrunner.carina.webdriver.core.capability.impl.desktop.ChromeCapabilities;
 import com.zebrunner.carina.webdriver.core.capability.impl.desktop.FirefoxCapabilities;
-import org.testng.asserts.SoftAssert;
 
 /**
  * This sample shows how initialize multiple drivers and run the tests on different browsers.

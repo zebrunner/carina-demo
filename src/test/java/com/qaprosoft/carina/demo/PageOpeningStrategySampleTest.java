@@ -15,14 +15,12 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.demo.gui.pages.desktop.CompareModelsPage;
-import com.qaprosoft.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 

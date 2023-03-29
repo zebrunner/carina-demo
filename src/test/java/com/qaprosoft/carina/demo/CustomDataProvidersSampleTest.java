@@ -15,19 +15,21 @@
  */
 package com.qaprosoft.carina.demo;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import org.apache.commons.math3.util.Precision;
+
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.dataprovider.IAbstractDataProvider;
 import com.zebrunner.carina.dataprovider.annotations.CsvDataSourceParameters;
 import com.zebrunner.carina.dataprovider.annotations.XlsDataSourceParameters;
-import org.apache.commons.math3.util.Precision;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * <p>This sample shows how to use carina's custom data-providers.</p>

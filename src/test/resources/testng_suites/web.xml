@@ -20,10 +20,4 @@
 		</classes>
 	</test>
 
-	<test name="Gsm arena page open strategy test">
-		<classes>
-			<class name="com.qaprosoft.carina.demo.PageOpeningStrategySampleTest"/>
-		</classes>
-	</test>
-
 </suite>

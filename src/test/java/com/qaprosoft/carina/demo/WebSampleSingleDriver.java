@@ -18,17 +18,17 @@ package com.qaprosoft.carina.demo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qaprosoft.carina.demo.gui.components.footer.FooterMenuBase;
-import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
-import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.demo.gui.components.footer.FooterMenuBase;
+import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs;
 import com.qaprosoft.carina.demo.gui.components.compare.ModelSpecs.SpecType;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
