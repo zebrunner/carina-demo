@@ -17,6 +17,7 @@
 		<carina-dataprovider.version>1.0.0.P4-SNAPSHOT</carina-dataprovider.version>
 		<carina-api.version>1.0.0</carina-api.version>
 		<carina-aws-s3.version>1.0.1</carina-aws-s3.version>
+		<carina-azure.version>1.0.1</carina-azure.version>
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.9.3</zebrunner-agent.version>
 		<suite>helloWorld</suite>
@@ -56,6 +57,11 @@
 			<groupId>com.zebrunner</groupId>
 			<artifactId>carina-aws-s3</artifactId>
 			<version>${carina-aws-s3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>carina-azure</artifactId>
+			<version>${carina-azure.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
