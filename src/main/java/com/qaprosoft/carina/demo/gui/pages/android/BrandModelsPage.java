@@ -55,4 +55,5 @@ public class BrandModelsPage extends BrandModelsPageBase {
     public List<ModelItem> getModels() {
         return models;
     }
+
 }

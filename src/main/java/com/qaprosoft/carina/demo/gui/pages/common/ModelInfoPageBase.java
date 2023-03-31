@@ -32,4 +32,5 @@ public abstract class ModelInfoPageBase extends AbstractPage {
     public abstract String readRam();
 
     public abstract String readBattery();
+
 }

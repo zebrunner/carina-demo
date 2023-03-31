@@ -11,6 +11,7 @@ import com.zebrunner.carina.proxy.IProxyRule;
 import com.zebrunner.carina.utils.Configuration;
 
 public class CustomProxyRule implements IProxyRule {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Override
@@ -23,4 +24,5 @@ public class CustomProxyRule implements IProxyRule {
         }
         return Optional.ofNullable(proxy);
     }
+
 }

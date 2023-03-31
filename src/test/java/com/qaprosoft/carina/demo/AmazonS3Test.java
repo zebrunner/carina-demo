@@ -13,6 +13,7 @@ import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.report.ReportContext;
 
 public class AmazonS3Test implements IAbstractTest {
+
     private static final String FILE_NAME = "carinademoexample.apk";
     private static final String BUCKET_NAME = "qaprosoft";
 
@@ -24,4 +25,5 @@ public class AmazonS3Test implements IAbstractTest {
         amazonS3Manager.download(BUCKET_NAME, FILE_NAME, artifact);
         Assert.assertTrue(artifact.exists(), "Artifact should exists");
     }
+
 }

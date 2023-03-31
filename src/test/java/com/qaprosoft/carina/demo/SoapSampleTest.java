@@ -33,4 +33,5 @@ public class SoapSampleTest implements IAbstractTest {
         soap.callAPIExpectSuccess();
         soap.validateXmlResponse(XmlCompareMode.STRICT);
     }
+
 }

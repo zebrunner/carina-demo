@@ -26,4 +26,5 @@ public abstract class AllBrandsPageBase extends AbstractPage {
     }
 
     public abstract BrandModelsPageBase selectBrand(String brandName);
+
 }

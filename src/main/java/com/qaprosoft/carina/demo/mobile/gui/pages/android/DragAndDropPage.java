@@ -45,4 +45,5 @@ public class DragAndDropPage extends AbstractPage implements IMobileUtils {
     public boolean isDragAndDropMessagePresent(){
         return !dragAndDropMessage.getText().isBlank();
     }
+
 }

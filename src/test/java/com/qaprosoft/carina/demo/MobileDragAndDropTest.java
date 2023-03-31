@@ -26,4 +26,5 @@ public class MobileDragAndDropTest implements IAbstractTest {
         dragAndDropPage.dragDiagonal();
         Assert.assertTrue(dragAndDropPage.isDragAndDropMessagePresent(), "Should be provided pop up message after successful drag and drop");
     }
+
 }

@@ -26,7 +26,9 @@ public abstract class CompareModelsPageBase extends AbstractPage {
 
     public CompareModelsPageBase(WebDriver driver) {
         super(driver);
+        this.setPageURL("/compare.php3");
     }
 
     public abstract List<ModelSpecs> compareModels(String... models);
+
 }

@@ -15,6 +15,7 @@
  */
 package com.qaprosoft.carina.demo.gui.pages.common;
 
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,6 +30,7 @@ public abstract class HomePageBase extends AbstractPage {
 
     public HomePageBase(WebDriver driver) {
         super(driver);
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
     }
 
     public abstract BrandModelsPageBase selectBrand(String brandName);
@@ -44,4 +46,5 @@ public abstract class HomePageBase extends AbstractPage {
         super.open();
         acceptCookies.clickIfPresent();
     }
+
 }
