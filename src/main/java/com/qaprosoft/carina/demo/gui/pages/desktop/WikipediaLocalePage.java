@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo.gui.pages.desktop;
 
 import java.util.List;
 
+import com.zebrunner.carina.webdriver.decorator.annotations.CaseInsensitiveXPath;
 import com.zebrunner.carina.webdriver.locator.FindAny;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -27,6 +28,7 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
 public class WikipediaLocalePage extends AbstractPage {
 
+    @CaseInsensitiveXPath
     @Localized
     @FindAny({
             @FindBy(xpath = "//*[@id='{L10N:WikipediaLocalePage.welcomeTextId}']"),
@@ -44,7 +46,8 @@ public class WikipediaLocalePage extends AbstractPage {
     private ExtendedWebElement contribElem;
 
     @Localized
-    @FindAny({ @FindBy(xpath = "//li[@id='pt-createaccount']"), @FindBy(xpath = "//li[@id='pt-createaccount-2']") })
+    @CaseInsensitiveXPath(id = true)
+    @FindAny({ @FindBy(id = "%s"), @FindBy(id = "%s") })
     private ExtendedWebElement createAccountElem;
 
     @Localized
@@ -57,6 +60,7 @@ public class WikipediaLocalePage extends AbstractPage {
     @FindBy(id = "mw-sidebar-button")
     private ExtendedWebElement navButton;
 
+    @CaseInsensitiveXPath
     @FindBy(xpath = "//*[contains(text(),'{L10N:WikipediaLocalePage.discussionElem}')]")
     private ExtendedWebElement discussionBtn;
 
@@ -92,7 +96,7 @@ public class WikipediaLocalePage extends AbstractPage {
     }
 
     public void hoverCreateAccountElem(){
-        createAccountElem.hover();
+        createAccountElem.format("pt-createaccount", "pt-createaccount-2").hover();
     }
 
     public void clickDiscussionBtn() {

@@ -22,7 +22,6 @@ public class WebViewPage extends WebViewPageBase {
     public ContactUsPageBase goToContactUsPage() {
         swipe(contactUsLink);
         contactUsLink.click();
-        pause(7);
         return initPage(getDriver(), ContactUsPageBase.class);
     }
 

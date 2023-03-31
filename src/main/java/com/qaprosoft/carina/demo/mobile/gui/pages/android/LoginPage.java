@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,22 +15,22 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
-    @FindBy(id = "name")
+    @AndroidFindBy(id = "name")
     private ExtendedWebElement nameInputField;
 
-    @FindBy(id = "password")
+    @AndroidFindBy(id = "password")
     private ExtendedWebElement passwordInputField;
 
-    @FindBy(id = "radio_male")
+    @AndroidFindBy(id = "radio_male")
     private ExtendedWebElement maleRadioBtn;
 
-    @FindBy(id = "radio_female")
+    @AndroidFindBy(id = "radio_female")
     private ExtendedWebElement femaleRadioBtn;
 
-    @FindBy(id = "checkbox")
+    @AndroidFindBy(id = "checkbox")
     private ExtendedWebElement privacyPolicyCheckbox;
 
-    @FindBy(id = "login_button")
+    @AndroidFindBy(id = "login_button")
     private ExtendedWebElement loginBtn;
 
     public LoginPage(WebDriver driver) {

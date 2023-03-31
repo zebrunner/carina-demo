@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -11,31 +11,22 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
 public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {
 
-    @FindBy(id = "editText")
+    @AndroidFindBy(id = "editText%s")
     private ExtendedWebElement textField;
 
-    @FindBy(id = "editText2")
-    private ExtendedWebElement emailField;
-
-    @FindBy(id = "editText3")
-    private ExtendedWebElement dateField;
-
-    @FindBy(id = "checkBox2")
+    @AndroidFindBy(id = "checkBox2")
     private ExtendedWebElement checkBoxButton;
 
-    @FindBy(id = "radioButton")
+    @AndroidFindBy(id = "radioButton")
     private ExtendedWebElement maleRadioButton;
 
-    @FindBy(id = "radioButton3")
+    @AndroidFindBy(id = "radioButton3")
     private ExtendedWebElement femaleRadioButton;
 
-    @FindBy(id = "radioButton5")
+    @AndroidFindBy(id = "radioButton5")
     private ExtendedWebElement otherRadioButton;
 
-    @FindBy(id = "radioButton5")
-    private ExtendedWebElement seekBarRadioButton;
-
-    @FindBy(className = "android.widget.ScrollView")
+    @AndroidFindBy(className = "android.widget.ScrollView")
     private ExtendedWebElement container;
 
     public UIElementsPage(WebDriver driver) {
@@ -44,32 +35,33 @@ public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {
 
     @Override
     public void typeText(String text) {
-        textField.type(text);
-    }
-
-    @Override
-    public void typeEmail(String email) {
-        emailField.type(email);
-    }
-
-    @Override
-    public String getEmail(){
-        return emailField.getText();
+        textField.format("").type(text);
     }
 
     @Override
     public String getText(){
-        return textField.getText();
+        return textField.format("").getText();
+    }
+
+
+    @Override
+    public void typeEmail(String email) {
+        textField.format("2").type(email);
+    }
+
+    @Override
+    public String getEmail(){
+        return textField.format("2").getText();
     }
 
     @Override
     public String getDate(){
-        return dateField.getText();
+        return textField.format("3").getText();
     }
 
     @Override
     public void typeDate(String date) {
-        dateField.type(date);
+        textField.format("3").type(date);
     }
 
     @Override

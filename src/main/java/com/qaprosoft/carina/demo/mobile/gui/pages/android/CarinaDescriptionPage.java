@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ChartsPageBase;
@@ -15,25 +15,25 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
-    @FindBy(id = "content_frame")
+    @AndroidFindBy(id = "content_frame")
     private ExtendedWebElement webViewContent;
 
-    @FindBy(xpath = "//android.view.View[@text = 'CARINA facts']")
+    @AndroidFindBy(xpath = "//android.view.View[@text = 'CARINA facts']")
     private ExtendedWebElement carinaFactsSubTitle;
 
-    @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Web View']")
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text = 'Web View']")
     private ExtendedWebElement webViewLink;
 
-    @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'ChartsPage']")
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text = 'ChartsPage']")
     private ExtendedWebElement chartsLink;
 
-    @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'Map']")
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text = 'Map']")
     private ExtendedWebElement mapLink;
 
-    @FindBy(xpath = "//android.widget.CheckedTextView[@text = 'UI elements']")
+    @AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text = 'UI elements']")
     private ExtendedWebElement uiElementsLink;
 
-    @FindBy(className = "android.widget.ImageButton")
+    @AndroidFindBy(className = "android.widget.ImageButton")
     private ExtendedWebElement leftMenuButton;
 
     public CarinaDescriptionPage(WebDriver driver) {

@@ -61,11 +61,10 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         loginPage.login();
         WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
         MobileContextUtils contextHelper = new MobileContextUtils();
+        contextHelper.switchMobileContext(View.WEB_CARINA, webViewPageBase.getDriver());
 
-        contextHelper.switchMobileContext(View.WEB_CARINA);
         ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
-
-        contextHelper.switchMobileContext(View.WEB_BROWSER, View.WEB_CARINA);
+        contextHelper.switchMobileContext(View.WEB_BROWSER, View.WEB_CARINA, contactUsPage.getDriver());
 
         contactUsPage.typeName("John Doe");
         contactUsPage.typeEmail("some@email.com");
