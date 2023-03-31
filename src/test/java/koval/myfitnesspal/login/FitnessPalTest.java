@@ -127,7 +127,6 @@ public class FitnessPalTest extends LoginTest {
 
         searchFoodPageBase.addFoodToMealByName(MEAL_NAME);
 
-
         diaryPageBase = searchFoodPageBase.clickBackButton();
 
 
