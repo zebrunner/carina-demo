@@ -114,37 +114,6 @@ public class SearchFoodPage extends SearchFoodPageBase {
     }
 
 
-//    @Override
-//    public DiaryPageBase addFoodToMealByName(String food) {
-//
-//        for (int i = 0; i < foodTitleList.size(); i++) {
-//            if (foodTitleList.get(i).getText().equals(food)) {
-//                addFoodPlusButtonList.get(i).click();
-//                break;
-//
-//            }
-//        }
-//
-//        return initPage(getDriver(), DiaryPageBase.class);
-//    }
-
-//    @Override
-//    public SearchFoodPageBase addFoodToMealByName(String food) {
-//
-//        searchFoodField.type(food, TIMEOUT_FIVE);
-//        searchForFoodTextView.click();
-//
-//        for (int i = 0; i < foodTitleList.size(); i++) {
-//            if (foodTitleList.get(i).getText().equals(food)) {
-//                addFoodPlusButtonList.get(i).click();
-//                break;
-//
-//            }
-//        }
-//
-//        return initPage(getDriver(), SearchFoodPageBase.class);
-//    }
-
     @Override
     public DiaryPageBase clickBackButton() {
 
@@ -158,6 +127,9 @@ public class SearchFoodPage extends SearchFoodPageBase {
     public SearchFoodPageBase searchFood(String food) {
 
         searchFoodField.type(food, TIMEOUT_FIVE);
+
+        swipe(searchForFoodTextView, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
+        swipeUp(ONE_TIME, MEDIUM_SPEED);
         searchForFoodTextView.click(TIMEOUT_FIVE);
 
         return initPage(getDriver(), SearchFoodPageBase.class);

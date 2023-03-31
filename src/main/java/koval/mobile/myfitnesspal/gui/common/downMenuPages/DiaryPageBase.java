@@ -19,14 +19,17 @@ public abstract class DiaryPageBase extends MyAbstractPage {
     public abstract AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement);
 
 
-    public abstract boolean isFoodAddedToMeal(String food, Meals meals);
+    public abstract SearchFoodPageBase clickAddFoodButtonByLocation(Meals meals);
 
     public abstract boolean isAllFoodDeletedForMeal(Meals meals);
 
-    public abstract SearchFoodPageBase closePromoMessagesIfPresent();
-
     public abstract SearchFoodPageBase clickAddFoodButton(Meals meals);
 
+    public abstract boolean isFoodAddedToMeal(String food, Meals meals);
+
+    public abstract boolean isFoodAddedToMealByLocation(String food, Meals meals);
+
+    public abstract SearchFoodPageBase closePromoMessagesIfPresent();
 
     public abstract DiaryPageBase deleteAllFood();
 

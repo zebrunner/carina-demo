@@ -38,7 +38,7 @@ public class FitnessPalTest extends LoginTest {
 
     private static final Random random = new Random();
 
-    private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Milk", "Cherry");
+    private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Water", "Cherries");
 
     final String FOOD_MEAL = "Apple";
 
@@ -77,6 +77,7 @@ public class FitnessPalTest extends LoginTest {
             Assert.assertTrue(searchFoodPageBase.isPageOpened(mealsArr[i].getMeal()), String.format("[ '%s' PAGE ] '%s' page is not opened!",
                     mealsArr[i].getMeal().toUpperCase(), mealsArr[i].getMeal()));
 
+            searchFoodPageBase.searchFood(FOOD.get(i));
             searchFoodPageBase.addFoodToMealByName(FOOD.get(i));
 
             diaryPageBase = searchFoodPageBase.clickBackButton();
@@ -167,5 +168,6 @@ public class FitnessPalTest extends LoginTest {
                 String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", food.getDescription()));
 
     }
+
 
 }

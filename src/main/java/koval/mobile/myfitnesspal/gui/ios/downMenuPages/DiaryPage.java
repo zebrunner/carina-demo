@@ -25,7 +25,17 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
+    public SearchFoodPageBase clickAddFoodButtonByLocation(Meals meals) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public boolean isFoodAddedToMeal(String food, Meals meals) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean isFoodAddedToMealByLocation(String food, Meals meals) {
         throw new NotImplementedException();
     }
 

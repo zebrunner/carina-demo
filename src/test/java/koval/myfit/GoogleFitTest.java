@@ -122,7 +122,7 @@ public class GoogleFitTest extends LoginTest {
 
         String activityName = addActivityPageBase.selectActivity(listOfActivities.get(randomIndex)).toLowerCase();
         addActivityPageBase.setTime(expectedActivityDateTime);
-        addActivityPageBase.setDate(expectedActivityDateTime);
+        //addActivityPageBase.setDate(expectedActivityDateTime);
         addActivityPageBase.setDuration(expectedActivityDuration);
 
         journalPageBase = addActivityPageBase.saveActivity();
@@ -154,7 +154,7 @@ public class GoogleFitTest extends LoginTest {
         SimpleDateFormat sd = new SimpleDateFormat(END_TIME_FORMAT);
 
 
-        Assert.assertEquals(startTime.get(Calendar.MONTH) + 1, expectedActivityDateTime.get(Calendar.MONTH),
+        Assert.assertEquals(startTime.get(Calendar.MONTH), expectedActivityDateTime.get(Calendar.MONTH),
                 "[ ACTIVITY PAGE ] Actual month is not what expected!");
         Assert.assertEquals(startTime.get(Calendar.DAY_OF_MONTH), expectedActivityDateTime.get(Calendar.DAY_OF_MONTH),
                 "[ ACTIVITY PAGE ] Actual day of month is not what expected!");

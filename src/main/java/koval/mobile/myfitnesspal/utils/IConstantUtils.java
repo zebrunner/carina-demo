@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IConstantUtils {
 
+    int ONE_TIME = 1;
+
     int MAX_AGE = 40;
 
     int MIN_AGE = 18;

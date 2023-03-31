@@ -11,7 +11,6 @@ import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import koval.mobile.myfitnesspal.service.enums.Meals;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -81,6 +80,14 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/footer_container")
     private List<ExtendedWebElement> addFoodButtonContainerList;
 
+
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/txtSectionHeader' and @text='%s']/parent::*/parent::*/following-sibling::*//*[@resource-id='com.myfitnesspal.android:id/footer_container']//*[@resource-id='com.myfitnesspal.android:id/add_food']")
+    private ExtendedWebElement addFoodButton;
+
+
+    @FindBy(xpath = "//*[@resource-id=\"com.myfitnesspal.android:id/txtSectionHeader\" and @text='%s']/parent::*/parent::*/following-sibling::*//*[@resource-id=\"com.myfitnesspal.android:id/txtItemDescription\" and contains(@text,'%s')]")
+    private ExtendedWebElement foodTitle;
+
     public DiaryPage(WebDriver driver) {
         super(driver);
     }
@@ -99,9 +106,34 @@ public class DiaryPage extends DiaryPageBase {
         return isPageOpened(title, DIARY_TEXT);
     }
 
+    @Override
+    public SearchFoodPageBase clickAddFoodButton(Meals meals) {
+
+        ExtendedWebElement testEl = addFoodButton.format(meals.getMeal());
+        swipe(testEl, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
+        addFoodButton.format(meals.getMeal()).click();
+
+        return initPage(getDriver(), SearchFoodPageBase.class);
+    }
+
 
     @Override
     public boolean isFoodAddedToMeal(String food, Meals meals) {
+
+        ExtendedWebElement mealByText = mealTitleByText.format(meals.getMeal());
+        swipe(mealByText, diaryRecyclerViewContainer, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
+
+        if (meals.getMeal().equals("Snacks")) {
+            ExtendedWebElement snackTitleByText = itemByText.format(EXERCISE_STRING);
+            swipe(snackTitleByText, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
+        }
+
+        return foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
+    }
+
+
+    @Override
+    public boolean isFoodAddedToMealByLocation(String food, Meals meals) {
 
         LOGGER.info("Food location by upper Y: " + getFoodLocationByUpperY(food));
         LOGGER.info("Next meal location by down Y: " + getNextMealLocationByDownY(meals));
@@ -126,7 +158,7 @@ public class DiaryPage extends DiaryPageBase {
 
 
     @Override
-    public SearchFoodPageBase clickAddFoodButton(Meals meals) {
+    public SearchFoodPageBase clickAddFoodButtonByLocation(Meals meals) {
 
         int minIndex = 0;
 
@@ -213,7 +245,7 @@ public class DiaryPage extends DiaryPageBase {
 
         for (ExtendedWebElement extendedWebElement : foodViewContainerList) {
 
-            if (extendedWebElement.findExtendedWebElement(foodViewItemTitle.getBy()).getText().equals(text)) {
+            if (extendedWebElement.findExtendedWebElement(foodViewItemTitle.getBy()).getText().contains(text)) {
                 locationY = extendedWebElement.getLocation().getY();
                 break;
             }
