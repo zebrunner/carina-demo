@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo.gui.pages.desktop;
 
 import java.util.List;
 
+import com.zebrunner.carina.webdriver.locator.FindAny;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,9 +28,11 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 public class WikipediaLocalePage extends AbstractPage {
 
     @Localized
-    @FindBy(xpath = "//*[@id='{L10N:WikipediaLocalePage.welcomeTextId}' " +
-            "or contains(text(),'{L10N:WikipediaLocalePage.welcomeText}') " +
-            "or @class='welcome-title']")
+    @FindAny({
+            @FindBy(xpath = "//*[@id='{L10N:WikipediaLocalePage.welcomeTextId}']"),
+            @FindBy(xpath = "//*[contains(text(),'{L10N:WikipediaLocalePage.welcomeText}')]"),
+            @FindBy(xpath = "//*[@class='welcome-title']")
+    })
     private ExtendedWebElement welcomeText;
 
     @Localized
@@ -41,7 +44,7 @@ public class WikipediaLocalePage extends AbstractPage {
     private ExtendedWebElement contribElem;
 
     @Localized
-    @FindBy(xpath = "//li[@id='pt-createaccount' or @id='pt-createaccount-2']")
+    @FindAny({ @FindBy(xpath = "//li[@id='pt-createaccount']"), @FindBy(xpath = "//li[@id='pt-createaccount-2']") })
     private ExtendedWebElement createAccountElem;
 
     @Localized
