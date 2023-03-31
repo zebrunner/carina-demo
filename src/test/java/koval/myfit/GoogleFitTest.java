@@ -122,7 +122,6 @@ public class GoogleFitTest extends LoginTest {
 
         String activityName = addActivityPageBase.selectActivity(listOfActivities.get(randomIndex)).toLowerCase();
         addActivityPageBase.setTime(expectedActivityDateTime);
-        //addActivityPageBase.setDate(expectedActivityDateTime);
         addActivityPageBase.setDuration(expectedActivityDuration);
 
         journalPageBase = addActivityPageBase.saveActivity();
