@@ -1,7 +1,12 @@
 package koval.mobile.myfitnesspal.utils;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface IConstantUtils {
+
+    int ONE_TIME = 1;
 
     int MAX_AGE = 40;
 
@@ -23,21 +28,45 @@ public interface IConstantUtils {
 
     int TIMEOUT_TEN = 10;
 
+    int TIMEOUT_TWENTY = 20;
+
     int TWENTY_COUNT = 20;
 
     int MEDIUM_SPEED = 600;
 
     int LOW_SPEED = 4500;
 
+    String SPACE_FIELD = " ";
+
     String ONE_VALUE = "one";
 
     String TWO_VALUE = "two";
 
+    String ADD_STRING = "Add";
+
     String ALLOW_ANSWER = "Allow";
+
+    String ADD_TO_DIARY_STRING = "Add to Diary";
+
+    String ADD_INGREDIENTS = "Add Ingredients";
+
+    String ADD_INGREDIENT = "Add Ingredient";
+
+    String ADD_MEAL = "Add Meal";
 
     String CONTINUE = "Continue";
 
+    String CREATE_MEAL = "Create a Meal";
+
+    String CREATE_FOOD_TITLE = "Create Food";
+
     String NEXT = "Next";
+
+    String NEW_RECIPE = "New Recipe";
+
+    String NO_THANKS_ANSWER = "No Thanks";
+
+    String SAVE = "Save";
 
     String ACCEPT = "Accept";
 
@@ -84,4 +113,9 @@ public interface IConstantUtils {
     String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
 
     String EXERCISE_STRING = "Exercise";
+
+    String UNITS_VALUE = "units";
+
+    List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
+
 }

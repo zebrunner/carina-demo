@@ -26,9 +26,6 @@ public class DashboardPage extends DashboardPageBase {
     @FindBy(xpath = "//android.view.View[@content-desc='%s']")
     private ExtendedWebElement itemByContentDesc;
 
-    @FindBy(xpath = "//*[@resource-id='buttonExistingUserTutorial']/child::*[@class='android.widget.Button']")
-    private ExtendedWebElement exitTutorialButton;
-
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -63,24 +60,6 @@ public class DashboardPage extends DashboardPageBase {
         }
 
         return initPage(getDriver(), SignUpPageBase.class);
-    }
-
-    @Override
-    public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
-
-        itemByText.format(CANCEL).clickIfPresent();
-
-        return initPage(getDriver(), DashboardPageBase.class);
-    }
-
-    @Override
-    public DashboardPageBase closeUserTutorialBoxIfPresent() {
-
-        while (exitTutorialButton.isElementPresent(TIMEOUT_FIVE)) {
-            exitTutorialButton.clickIfPresent(TIMEOUT_FIVE);
-        }
-
-        return initPage(getDriver(), DashboardPageBase.class);
     }
 
 

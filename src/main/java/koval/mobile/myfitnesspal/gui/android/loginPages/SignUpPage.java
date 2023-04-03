@@ -4,6 +4,7 @@ package koval.mobile.myfitnesspal.gui.android.loginPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.TopToolbarModal;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.CreateAccountPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
@@ -12,7 +13,6 @@ import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;
 import koval.mobile.myfitnesspal.service.enums.HeightMeasure;
 import koval.mobile.myfitnesspal.service.enums.WeightMeasure;
-import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -169,7 +169,6 @@ public class SignUpPage extends SignUpPageBase {
                 measurementParametersTextBox.format(ONE_VALUE).type(String.valueOf((int) weight), TIMEOUT_FIVE);
             }
 
-
         }
 
         itemByText.format(SET).click();
@@ -253,12 +252,7 @@ public class SignUpPage extends SignUpPageBase {
 
     @Override
     public SignUpPageBase clickButtonByText(String buttonText) {
-//        if (itemByText.format(buttonText).isElementPresent(TIMEOUT_FIVE)) {
-//            itemByText.format(buttonText).click();
-//        } else {
-//            itemByText.format(CONTINUE).click();
 
-        //      }
         itemByText.format(CONTINUE, NEXT);
 
         return initPage(getDriver(), SignUpPageBase.class);
@@ -309,9 +303,9 @@ public class SignUpPage extends SignUpPageBase {
 
         if (itemByText.format("Save password to Google?").isElementPresent(TIMEOUT_FIVE)) {
             if (result) {
-                itemByText.format("Save").clickIfPresent();
+                itemByText.format("Save").clickIfPresent(TIMEOUT_FIVE);
             } else {
-                itemByText.format("No thanks").clickIfPresent();
+                itemByText.format(NO_THANKS_ANSWER).clickIfPresent(TIMEOUT_FIVE);
             }
         }
         return initPage(getDriver(), SignUpPageBase.class);
@@ -351,5 +345,18 @@ public class SignUpPage extends SignUpPageBase {
     public SignUpPageBase createRandomAccount(Account account) {
         return initPage(getDriver(), CreateAccountPageBase.class).createRandomAccount(account);
     }
+
+
+    @Override
+    public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
+
+
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_TWENTY);
+
+        itemByText.format(CANCEL).click();
+
+        return initPage(getDriver(), DashboardPageBase.class);
+    }
+
 
 }

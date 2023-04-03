@@ -2,11 +2,13 @@ package koval.myfitnesspal.login;
 
 
 import com.zebrunner.carina.utils.R;
+import koval.mobile.myfitnesspal.gui.MyAbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import koval.mobile.myfitnesspal.service.AdbService;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -17,8 +19,11 @@ import java.lang.invoke.MethodHandles;
 
 public class LoginTest implements IMyInterface {
 
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     AdbService adbService = new AdbService();
+
+
 
     @BeforeMethod
     public void login() {
@@ -39,10 +44,12 @@ public class LoginTest implements IMyInterface {
         loginPageBase.typePassword(R.TESTDATA.get("fitnessPal_password"));
         loginPageBase.clickLoginButton();
 
-        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
-        dashboardPageBase.closeNoSubscriptionsPopUpIfPresent();
-        dashboardPageBase.closeUserTutorialBoxIfPresent();
+        loginPageBase.closeNoSubscriptionsPopUpIfPresent();
+        loginPageBase.closeUserTutorialBoxIfPresent();
+
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
         Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
 

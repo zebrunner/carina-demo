@@ -93,6 +93,7 @@ public class CreateAccountPage extends CreateAccountPageBase {
         Assert.assertTrue(signUpPageBase.isPageOpened("Account Created"), "[ SIGN UP / ACCOUNT CREATED PAGE ] Account Created page is not opened!");
         signUpPageBase.clickButtonByText(NEXT);
 
+        signUpPageBase.closeNoSubscriptionsPopUpIfPresent();
         return initPage(getDriver(), SignUpPageBase.class);
     }
 

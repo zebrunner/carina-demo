@@ -24,6 +24,8 @@ import java.lang.invoke.MethodHandles;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static koval.mobile.myfitnesspal.utils.IConstantUtils.TIMEOUT_TWENTY;
+
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -82,8 +84,15 @@ public class HomePage extends HomePageBase {
 
     @Override
     public boolean isPageOpened() {
-        return activityChartView.isElementPresent(TIMEOUT_FIVE);
+        return isPageOpened(TIMEOUT_TWENTY);
     }
+
+
+    @Override
+    public boolean isPageOpened(Long timeout) {
+        return activityChartView.isElementPresent(timeout);
+    }
+
 
 
     @Override
