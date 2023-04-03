@@ -19,22 +19,26 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//div[contains(text(),'Invalid email or password.')]")
     private ExtendedWebElement errorMessage;
 
+    @FindBy(xpath = "//a[text()='Join Unsplash']")
+    private ExtendedWebElement signUpButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("https://unsplash.com/login");
     }
 
-    public ExtendedWebElement getUserEmailInput() {
-        return userEmailInput;
+    public HomePage login(String email, String password){
+        userEmailInput.type(email);
+        userPasswordInput.type(password);
+        loginButton.click();
+        return new HomePage(getDriver());
     }
 
-    public ExtendedWebElement getUserPasswordInput() {
-        return userPasswordInput;
+    public RegistrationPage goToRegistrationPage() {
+        signUpButton.click();
+        return new RegistrationPage(getDriver());
     }
 
-    public ExtendedWebElement getLoginButton() {
-        return loginButton;
-    }
 
     public boolean isErrorMessagePresent() {
         return errorMessage.isElementPresent();

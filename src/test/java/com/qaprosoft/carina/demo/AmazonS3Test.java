@@ -24,3 +24,4 @@ public class AmazonS3Test implements IAbstractTest {
         Assert.assertTrue(artifact.exists(), "Artifact should exists");
     }
 }
+

@@ -25,32 +25,30 @@ public class RegistrationPage extends AbstractPage {
     @FindBy(xpath = "//input[@value='Join']")
     private ExtendedWebElement joinButton;
 
+    @FindBy(xpath = "//div//h3[@class='epsilon']")
+    private ExtendedWebElement errorMessage;
+
     public RegistrationPage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("https://unsplash.com/join");
     }
 
-    public ExtendedWebElement getUserFirstNameInput() {
-        return userFirstNameInput;
+    public HomePage signUp(String firstName, String lastName, String email, String userName, String password){
+        userFirstNameInput.type(firstName);
+        userLastNameInput.type(lastName);
+        userEmailInput.type(email);
+        userNameInput.type(userName);
+        userPasswordInput.type(password);
+        joinButton.click();
+        return new HomePage(getDriver());
     }
 
-    public ExtendedWebElement getUserLastNameInput() {
-        return userLastNameInput;
+    public boolean isErrorMessagePresent() {
+        return errorMessage.isElementPresent();
     }
 
-    public ExtendedWebElement getUserEmailInput() {
-        return userEmailInput;
+    public String getErrorMessageText() {
+        return errorMessage.getText();
     }
 
-    public ExtendedWebElement getUserNameInput() {
-        return userNameInput;
-    }
-
-    public ExtendedWebElement getUserPasswordInput() {
-        return userPasswordInput;
-    }
-
-    public ExtendedWebElement getJoinButton() {
-        return joinButton;
-    }
 }

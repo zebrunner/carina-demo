@@ -10,20 +10,12 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//a[text()='Log in']")
     private ExtendedWebElement logInButton;
 
-    @FindBy(xpath = "//a[text()='Sign up']")
-    private ExtendedWebElement signUpButton;
-
     @FindBy(xpath = "//img[@class='D1hjc ihzXr']")
     private ExtendedWebElement personalMenuButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("https://unsplash.com/");
-    }
-
-    public RegistrationPage goToRegistrationPage() {
-        signUpButton.click();
-        return new RegistrationPage(getDriver());
     }
 
     public LoginPage goToLoginPage() {

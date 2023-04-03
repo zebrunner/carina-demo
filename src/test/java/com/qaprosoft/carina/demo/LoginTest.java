@@ -19,10 +19,8 @@ public class LoginTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
-        loginPage.getUserEmailInput().type(email);
-        loginPage.getUserPasswordInput().type(password);
-        loginPage.getLoginButton().click();
-        Assert.assertTrue(homePage.isPersonalMenuButtonPresent(), "Logging failed");
+        HomePage homePageAfterLogin = loginPage.login(email, password);
+        Assert.assertTrue(homePageAfterLogin.isPersonalMenuButtonPresent(), "Logging failed");
     }
 
     @Test(dataProvider = "unsuccessful_login")
@@ -32,9 +30,7 @@ public class LoginTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
-        loginPage.getUserEmailInput().type(email);
-        loginPage.getUserPasswordInput().type(password);
-        loginPage.getLoginButton().click();
+        loginPage.login(email, password);
         Assert.assertTrue(loginPage.isErrorMessagePresent(), "No error message appeared. User logged in with wrong email or password");
         Assert.assertTrue(loginPage.getErrorMessageText().equalsIgnoreCase("Invalid email or password."), "Invalid error message");
     }
