@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "total_pages": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "promoted_at": {
+              "type": "string"
+            },
+            "width": {
+              "type": "integer"
+            },
+            "height": {
+              "type": "integer"
+            },
+            "color": {
+              "type": "string"
+            },
+            "blur_hash": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "alt_description": {
+              "type": "string"
+            },
+            "urls": {
+              "type": "object"
+            },
+            "links": {
+              "type": "object"
+            },
+            "likes": {
+              "type": "integer"
+            },
+            "liked_by_user": {
+              "type": "boolean"
+            },
+            "current_user_collections": {
+              "type": "array",
+              "items": {}
+            },
+            "sponsorship": {
+              "type": "null"
+            },
+            "topic_submissions": {
+              "type": "object"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "twitter_username": {
+                  "type": "string"
+                },
+                "portfolio_url": {
+                  "type": "string"
+                },
+                "bio": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "links": {
+                  "type": "object"
+                },
+                "profile_image": {
+                  "type": "object"
+                },
+                "instagram_username": {
+                  "type": "string"
+                },
+                "total_collections": {
+                  "type": "integer"
+                },
+                "total_likes": {
+                  "type": "integer"
+                },
+                "total_photos": {
+                  "type": "integer"
+                },
+                "accepted_tos": {
+                  "type": "boolean"
+                },
+                "for_hire": {
+                  "type": "boolean"
+                },
+                "social": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "updated_at",
+                "username",
+                "name",
+                "first_name",
+                "last_name",
+                "twitter_username",
+                "portfolio_url",
+                "bio",
+                "location",
+                "links",
+                "profile_image",
+                "instagram_username",
+                "total_collections",
+                "total_likes",
+                "total_photos",
+                "accepted_tos",
+                "for_hire",
+                "social"
+              ]
+            },
+            "tags": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "id",
+            "created_at",
+            "updated_at",
+            "promoted_at",
+            "width",
+            "height",
+            "color",
+            "blur_hash",
+            "description",
+            "alt_description",
+            "urls",
+            "links",
+            "likes",
+            "liked_by_user",
+            "current_user_collections",
+            "sponsorship",
+            "topic_submissions",
+            "user",
+            "tags"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "total",
+    "total_pages",
+    "results"
+  ]
+}

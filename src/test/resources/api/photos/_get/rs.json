@@ -1,0 +1,47 @@
+{
+  "total": "type:Integer",
+  "total_pages": "type:Integer",
+  "results": [
+    {
+      "id": "7rCdqEuQ1rg",
+      "created_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "promoted_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "width": "type:Integer",
+      "height": "type:Integer",
+      "color": "#262626",
+      "blur_hash": "LNGl6LXl9Zoz~pS#IUj[_4%MMxoL",
+      "description": "Krakow is an amazing city for street photography. Minolta Maxxum 7000 + Kodak Ektar film.",
+      "alt_description": "people walking near beige building",
+      "urls": "skip",
+      "links": "skip",
+      "likes": "type:Integer",
+      "liked_by_user": "type:Boolean",
+      "current_user_collections": "skip",
+      "sponsorship": "skip",
+      "topic_submissions": "skip",
+      "user": {
+        "id": "SGiKwJqCwyk",
+        "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+        "username": "kintecus",
+        "name": "Ostap Senyuk",
+        "first_name": "Ostap",
+        "last_name": "Senyuk",
+        "twitter_username": "kintecus",
+        "portfolio_url": "https://linktr.ee/ostaps",
+        "bio": "𝚄𝚔𝚛𝚖𝚊𝚗 𝚒𝚗 𝙺𝚛𝚊𝚔𝚘𝚠.",
+        "location": "Krakow, Poland",
+        "links": "skip",
+        "profile_image": "skip",
+        "instagram_username": "kintecus",
+        "total_collections": "type:Integer",
+        "total_likes": "type:Integer",
+        "total_photos": "type:Integer",
+        "accepted_tos": "type:Boolean",
+        "for_hire": "type:Boolean",
+        "social": "skip"
+      },
+      "tags": "skip"
+    }
+  ]
+}

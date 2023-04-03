@@ -1,0 +1,43 @@
+{
+  "id": "type:String",
+  "title": "type:String",
+  "description": "skip",
+  "published_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+  "last_collected_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+  "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+  "curated": "type:Boolean",
+  "featured": "type:Boolean",
+  "total_photos": "type:Integer",
+  "private": "type:Boolean",
+  "share_key": "type:String",
+  "tags": "skip",
+  "links": "skip",
+  "user": {
+    "id": "type:String",
+    "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+    "username": "type:String",
+    "name": "type:String",
+    "first_name": "type:String",
+    "last_name": "type:String",
+    "twitter_username": "skip",
+    "portfolio_url": "skip",
+    "bio": "skip",
+    "location": "skip",
+    "links": "skip",
+    "profile_image": "skip",
+    "instagram_username": "skip",
+    "total_collections": "type:Integer",
+    "total_likes": "type:Integer",
+    "total_photos": "type:Integer",
+    "accepted_tos": "type:Boolean",
+    "for_hire": "type:Boolean",
+    "social": "skip"
+  },
+  "cover_photo": "skip",
+  "preview_photos": "skip",
+  "meta": {
+    "title": "skip",
+    "description": "skip",
+    "index": "type:Boolean"
+  }
+}
