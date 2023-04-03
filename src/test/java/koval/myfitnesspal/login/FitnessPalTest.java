@@ -3,16 +3,12 @@ package koval.myfitnesspal.login;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
-import koval.mobile.myfitnesspal.gui.android.searchFood.tabsCreatePages.myMeals.CreateMealPage;
 import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods.CreateFoodPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CopyMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CreateMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
-import koval.mobile.myfitnesspal.service.accountFactory.Account;
-import koval.mobile.myfitnesspal.service.accountFactory.AccountFactory;
 import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import koval.mobile.myfitnesspal.service.enums.Meals;
@@ -36,14 +32,11 @@ public class FitnessPalTest extends LoginTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private static final Random random = new Random();
-
     private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Water", "Cherries");
 
-    final String FOOD_MEAL = "Apple";
+    final static int FOOD_MEAL_INDEX = new Random().nextInt(FOOD.size());
 
-    final String MEAL_NAME = "MyMeal " + random.nextInt(100) + 1;
-
+    final static String MEAL_NAME = "meal_" + new Random().nextInt(100) + 1;
 
     @Test()
     @MethodOwner(owner = "koval")
@@ -120,8 +113,8 @@ public class FitnessPalTest extends LoginTest {
 
 
         searchFoodPageBase = createMealPageBase.createMeal(MEAL_NAME);
-        searchFoodPageBase.searchFood(FOOD_MEAL);
-        searchFoodPageBase.addFoodToMealByName(FOOD_MEAL);
+        searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
+        searchFoodPageBase.addFoodToMealByName(FOOD.get(FOOD_MEAL_INDEX));
         searchFoodPageBase.clickBackButton();
         createMealPageBase.clickSaveButton();
 
@@ -130,8 +123,8 @@ public class FitnessPalTest extends LoginTest {
         diaryPageBase = searchFoodPageBase.clickBackButton();
 
 
-        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD_MEAL, Meals.BREAKFAST),
-                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", FOOD_MEAL));
+        Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(FOOD_MEAL_INDEX), Meals.BREAKFAST),
+                String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", FOOD.get(FOOD_MEAL_INDEX)));
 
 
         searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);

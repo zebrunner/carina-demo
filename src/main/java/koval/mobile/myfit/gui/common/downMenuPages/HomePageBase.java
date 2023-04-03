@@ -21,6 +21,8 @@ public abstract class HomePageBase extends MyAbstractPage {
 
     public abstract boolean isPageOpened();
 
+    public abstract boolean isPageOpened(Long timeout);
+
     public abstract WelcomePageBase signOut();
 
 

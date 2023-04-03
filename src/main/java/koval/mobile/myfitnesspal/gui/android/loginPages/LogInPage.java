@@ -9,6 +9,10 @@ import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LogInPageBase.class)
@@ -25,6 +29,8 @@ public class LogInPage extends LogInPageBase {
 
     @FindBy(xpath = "//*[@resource-id='buttonExistingUserTutorial']/child::*[@class='android.widget.Button']")
     private ExtendedWebElement exitTutorialButton;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
     public LogInPage(WebDriver driver) {
@@ -74,7 +80,9 @@ public class LogInPage extends LogInPageBase {
 
         int attemp = 3;
         while (exitTutorialButton.isElementPresent(TIMEOUT_TEN) && attemp > 0) {
-            exitTutorialButton.clickIfPresent(TIMEOUT_TEN);
+            exitTutorialButton.click(TIMEOUT_TEN);
+
+            LOGGER.info("[ LOGIN PAGE ] Attempt: {} for clicking on exit tutorial button", attemp);
             attemp--;
         }
 
