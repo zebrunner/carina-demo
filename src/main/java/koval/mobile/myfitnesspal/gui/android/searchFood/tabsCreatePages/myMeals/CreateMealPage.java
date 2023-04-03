@@ -48,7 +48,7 @@ public class CreateMealPage extends CreateMealPageBase {
     @Override
     public SearchFoodPageBase clickSaveButton() {
 
-        itemByText.format("Save").click();
+        itemByText.format(SAVE).click();
 
         return initPage(getDriver(), SearchFoodPageBase.class);
     }
