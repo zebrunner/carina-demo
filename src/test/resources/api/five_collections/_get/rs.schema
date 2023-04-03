@@ -1,0 +1,787 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "total_pages": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "null"
+            },
+            "published_at": {
+              "type": "string"
+            },
+            "last_collected_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "curated": {
+              "type": "boolean"
+            },
+            "featured": {
+              "type": "boolean"
+            },
+            "total_photos": {
+              "type": "integer"
+            },
+            "private": {
+              "type": "boolean"
+            },
+            "share_key": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {}
+            },
+            "links": {
+              "type": "object"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "twitter_username": {
+                  "type": "null"
+                },
+                "portfolio_url": {
+                  "type": "null"
+                },
+                "bio": {
+                  "type": "null"
+                },
+                "location": {
+                  "type": "null"
+                },
+                "links": {
+                  "type": "object"
+                },
+                "profile_image": {
+                  "type": "object"
+                },
+                "instagram_username": {
+                  "type": "null"
+                },
+                "total_collections": {
+                  "type": "integer"
+                },
+                "total_likes": {
+                  "type": "integer"
+                },
+                "total_photos": {
+                  "type": "integer"
+                },
+                "accepted_tos": {
+                  "type": "boolean"
+                },
+                "for_hire": {
+                  "type": "boolean"
+                },
+                "social": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "updated_at",
+                "username",
+                "name",
+                "first_name",
+                "last_name",
+                "twitter_username",
+                "portfolio_url",
+                "bio",
+                "location",
+                "links",
+                "profile_image",
+                "instagram_username",
+                "total_collections",
+                "total_likes",
+                "total_photos",
+                "accepted_tos",
+                "for_hire",
+                "social"
+              ]
+            },
+            "cover_photo": {
+              "type": "object"
+            },
+            "preview_photos": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "description",
+            "published_at",
+            "last_collected_at",
+            "updated_at",
+            "curated",
+            "featured",
+            "total_photos",
+            "private",
+            "share_key",
+            "tags",
+            "links",
+            "user",
+            "cover_photo",
+            "preview_photos"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "null"
+            },
+            "published_at": {
+              "type": "string"
+            },
+            "last_collected_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "curated": {
+              "type": "boolean"
+            },
+            "featured": {
+              "type": "boolean"
+            },
+            "total_photos": {
+              "type": "integer"
+            },
+            "private": {
+              "type": "boolean"
+            },
+            "share_key": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {}
+            },
+            "links": {
+              "type": "object"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "twitter_username": {
+                  "type": "string"
+                },
+                "portfolio_url": {
+                  "type": "string"
+                },
+                "bio": {
+                  "type": "null"
+                },
+                "location": {
+                  "type": "null"
+                },
+                "links": {
+                  "type": "object"
+                },
+                "profile_image": {
+                  "type": "object"
+                },
+                "instagram_username": {
+                  "type": "string"
+                },
+                "total_collections": {
+                  "type": "integer"
+                },
+                "total_likes": {
+                  "type": "integer"
+                },
+                "total_photos": {
+                  "type": "integer"
+                },
+                "accepted_tos": {
+                  "type": "boolean"
+                },
+                "for_hire": {
+                  "type": "boolean"
+                },
+                "social": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "updated_at",
+                "username",
+                "name",
+                "first_name",
+                "last_name",
+                "twitter_username",
+                "portfolio_url",
+                "bio",
+                "location",
+                "links",
+                "profile_image",
+                "instagram_username",
+                "total_collections",
+                "total_likes",
+                "total_photos",
+                "accepted_tos",
+                "for_hire",
+                "social"
+              ]
+            },
+            "cover_photo": {
+              "type": "object"
+            },
+            "preview_photos": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "description",
+            "published_at",
+            "last_collected_at",
+            "updated_at",
+            "curated",
+            "featured",
+            "total_photos",
+            "private",
+            "share_key",
+            "tags",
+            "links",
+            "user",
+            "cover_photo",
+            "preview_photos"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "null"
+            },
+            "published_at": {
+              "type": "string"
+            },
+            "last_collected_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "curated": {
+              "type": "boolean"
+            },
+            "featured": {
+              "type": "boolean"
+            },
+            "total_photos": {
+              "type": "integer"
+            },
+            "private": {
+              "type": "boolean"
+            },
+            "share_key": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {}
+            },
+            "links": {
+              "type": "object"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "twitter_username": {
+                  "type": "null"
+                },
+                "portfolio_url": {
+                  "type": "string"
+                },
+                "bio": {
+                  "type": "null"
+                },
+                "location": {
+                  "type": "null"
+                },
+                "links": {
+                  "type": "object"
+                },
+                "profile_image": {
+                  "type": "object"
+                },
+                "instagram_username": {
+                  "type": "string"
+                },
+                "total_collections": {
+                  "type": "integer"
+                },
+                "total_likes": {
+                  "type": "integer"
+                },
+                "total_photos": {
+                  "type": "integer"
+                },
+                "accepted_tos": {
+                  "type": "boolean"
+                },
+                "for_hire": {
+                  "type": "boolean"
+                },
+                "social": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "updated_at",
+                "username",
+                "name",
+                "first_name",
+                "last_name",
+                "twitter_username",
+                "portfolio_url",
+                "bio",
+                "location",
+                "links",
+                "profile_image",
+                "instagram_username",
+                "total_collections",
+                "total_likes",
+                "total_photos",
+                "accepted_tos",
+                "for_hire",
+                "social"
+              ]
+            },
+            "cover_photo": {
+              "type": "object"
+            },
+            "preview_photos": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "description",
+            "published_at",
+            "last_collected_at",
+            "updated_at",
+            "curated",
+            "featured",
+            "total_photos",
+            "private",
+            "share_key",
+            "tags",
+            "links",
+            "user",
+            "cover_photo",
+            "preview_photos"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "null"
+            },
+            "published_at": {
+              "type": "string"
+            },
+            "last_collected_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "curated": {
+              "type": "boolean"
+            },
+            "featured": {
+              "type": "boolean"
+            },
+            "total_photos": {
+              "type": "integer"
+            },
+            "private": {
+              "type": "boolean"
+            },
+            "share_key": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {}
+            },
+            "links": {
+              "type": "object"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "twitter_username": {
+                  "type": "null"
+                },
+                "portfolio_url": {
+                  "type": "null"
+                },
+                "bio": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "links": {
+                  "type": "object"
+                },
+                "profile_image": {
+                  "type": "object"
+                },
+                "instagram_username": {
+                  "type": "string"
+                },
+                "total_collections": {
+                  "type": "integer"
+                },
+                "total_likes": {
+                  "type": "integer"
+                },
+                "total_photos": {
+                  "type": "integer"
+                },
+                "accepted_tos": {
+                  "type": "boolean"
+                },
+                "for_hire": {
+                  "type": "boolean"
+                },
+                "social": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "updated_at",
+                "username",
+                "name",
+                "first_name",
+                "last_name",
+                "twitter_username",
+                "portfolio_url",
+                "bio",
+                "location",
+                "links",
+                "profile_image",
+                "instagram_username",
+                "total_collections",
+                "total_likes",
+                "total_photos",
+                "accepted_tos",
+                "for_hire",
+                "social"
+              ]
+            },
+            "cover_photo": {
+              "type": "object"
+            },
+            "preview_photos": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "description",
+            "published_at",
+            "last_collected_at",
+            "updated_at",
+            "curated",
+            "featured",
+            "total_photos",
+            "private",
+            "share_key",
+            "tags",
+            "links",
+            "user",
+            "cover_photo",
+            "preview_photos"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "null"
+            },
+            "published_at": {
+              "type": "string"
+            },
+            "last_collected_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "curated": {
+              "type": "boolean"
+            },
+            "featured": {
+              "type": "boolean"
+            },
+            "total_photos": {
+              "type": "integer"
+            },
+            "private": {
+              "type": "boolean"
+            },
+            "share_key": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {}
+            },
+            "links": {
+              "type": "object"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "twitter_username": {
+                  "type": "null"
+                },
+                "portfolio_url": {
+                  "type": "null"
+                },
+                "bio": {
+                  "type": "null"
+                },
+                "location": {
+                  "type": "null"
+                },
+                "links": {
+                  "type": "object"
+                },
+                "profile_image": {
+                  "type": "object"
+                },
+                "instagram_username": {
+                  "type": "null"
+                },
+                "total_collections": {
+                  "type": "integer"
+                },
+                "total_likes": {
+                  "type": "integer"
+                },
+                "total_photos": {
+                  "type": "integer"
+                },
+                "accepted_tos": {
+                  "type": "boolean"
+                },
+                "for_hire": {
+                  "type": "boolean"
+                },
+                "social": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id",
+                "updated_at",
+                "username",
+                "name",
+                "first_name",
+                "last_name",
+                "twitter_username",
+                "portfolio_url",
+                "bio",
+                "location",
+                "links",
+                "profile_image",
+                "instagram_username",
+                "total_collections",
+                "total_likes",
+                "total_photos",
+                "accepted_tos",
+                "for_hire",
+                "social"
+              ]
+            },
+            "cover_photo": {
+              "type": "object"
+            },
+            "preview_photos": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "description",
+            "published_at",
+            "last_collected_at",
+            "updated_at",
+            "curated",
+            "featured",
+            "total_photos",
+            "private",
+            "share_key",
+            "tags",
+            "links",
+            "user",
+            "cover_photo",
+            "preview_photos"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "total",
+    "total_pages",
+    "results"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "total": "type:Integer",
+  "total_pages": "type:Integer",
+  "results": [
+    {
+      "id": "10577724",
+      "title": "Krakow ",
+      "description": "skip",
+      "published_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "last_collected_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+      "curated": "type:Boolean",
+      "featured": "type:Boolean",
+      "total_photos": "type:Integer",
+      "private": "type:Boolean",
+      "share_key": "d9863cd7cc3df7aede3fea95d51aba93",
+      "tags": "skip",
+      "links": {
+        "self": "https://api.unsplash.com/collections/10577724",
+        "html": "https://unsplash.com/collections/10577724/krakow",
+        "photos": "https://api.unsplash.com/collections/10577724/photos",
+        "related": "https://api.unsplash.com/collections/10577724/related"
+      },
+      "user": {
+        "id": "hIvEF1t48yU",
+        "updated_at": "regex:[\\d]{4}+-[\\d]{2}+-[\\d]{2}+T[\\d]{2}+:[\\d]{2}+:[\\d]{2}+Z",
+        "username": "g_d_m_",
+        "name": "Valeriia Kurlova",
+        "first_name": "Valeriia",
+        "last_name": "Kurlova",
+        "twitter_username": "skip",
+        "portfolio_url": "skip",
+        "bio": "skip",
+        "location": "skip",
+        "links": "skip",
+        "profile_image": "skip",
+        "instagram_username": "skip",
+        "total_collections": "type:Integer",
+        "total_likes": "type:Integer",
+        "total_photos": "type:Integer",
+        "accepted_tos": "type:Boolean",
+        "for_hire": "type:Boolean",
+        "social": "skip"
+      },
+      "cover_photo": "skip",
+      "preview_photos": "skip"
+    }
+  ]
+}
