@@ -24,11 +24,9 @@ public class Header extends AbstractHeader {
         super(driver, searchContext);
     }
 
-    public String getPromoText() {
-        return promoText.getText();
-    }
-
-    public List<String> getTitles() {
-        return headerTitles.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
+    @Override
+    public void interactWithLocalizedElements() {
+        promoText.hover();
+        headerTitles.forEach(ExtendedWebElement::hover);
     }
 }

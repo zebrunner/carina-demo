@@ -12,7 +12,5 @@ public abstract class AbstractHeader extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public abstract String getPromoText();
-
-    public abstract List<String> getTitles();
+    public abstract void interactWithLocalizedElements();
 }

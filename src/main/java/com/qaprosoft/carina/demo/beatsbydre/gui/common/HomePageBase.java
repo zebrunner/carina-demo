@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
-import java.util.List;
-
 public abstract class HomePageBase extends AbstractPage {
     public HomePageBase(WebDriver driver) {
         super(driver);
@@ -17,15 +15,7 @@ public abstract class HomePageBase extends AbstractPage {
 
     public abstract AbstractFooter getFooter();
 
-    public abstract List<String> getPopularCardsNames();
-
-    public abstract List<String> getPopularCardsPrices();
-
-    public abstract List<String> getFeatureTitleList();
-
-    public abstract List<String> getFeatureDescriptionList();
-
-    public abstract String getHeadphonesRegisterButtonText();
+    public abstract void interactWithLocalizedElements();
 
     public abstract RegisterBeatsPageBase toRegisterBeatsPage();
 }

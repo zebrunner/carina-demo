@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Footer extends AbstractFooter {
     @Localized
@@ -80,67 +79,27 @@ public class Footer extends AbstractFooter {
         super(driver, searchContext);
     }
 
-    public String getCopyright() {
-        return copyright.getText();
+    public void interactWithLocalizedElements() {
+        copyright.hover();
+        productsTitle.hover();
+        supportTitle.hover();
+        companyTitle.hover();
+        licenseTitle.hover();
+        mediaTitle.hover();
+        locationTitle.hover();
+        locationCountry.hover();
+        changeLocationButton.hover();
+        emailTitle.hover();
+        signUpButton.hover();
+
+        hoverListElements(productsList);
+        hoverListElements(supportList);
+        hoverListElements(companyList);
+        hoverListElements(licenseList);
     }
 
-    public String getProductsTitle() {
-        return productsTitle.getText();
-    }
 
-    public List<String> getProductsList() {
-        return elementsListToString(productsList);
-    }
-
-    public String getSupportTitle() {
-        return supportTitle.getText();
-    }
-
-    public List<String> getSupportList() {
-        return elementsListToString(supportList);
-    }
-
-    public String getCompanyTitle() {
-        return companyTitle.getText();
-    }
-
-    public List<String> getCompanyList() {
-        return elementsListToString(companyList);
-    }
-
-    public String getLicenseTitle() {
-        return licenseTitle.getText();
-    }
-
-    public List<String> getLicenseList() {
-        return elementsListToString(licenseList);
-    }
-
-    public String getMediaTitle() {
-        return mediaTitle.getText();
-    }
-
-    public String getLocationTitle() {
-        return locationTitle.getText();
-    }
-
-    public String getLocationCountry() {
-        return locationCountry.getText();
-    }
-
-    public String getChangeLocationButton() {
-        return changeLocationButton.getText();
-    }
-
-    public String getEmailTitle() {
-        return emailTitle.getText();
-    }
-
-    public String getSignUpButton() {
-        return signUpButton.getText();
-    }
-
-    private List<String> elementsListToString(List<ExtendedWebElement> elementList) {
-        return elementList.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
+    private void hoverListElements(List<ExtendedWebElement> elementList) {
+        elementList.forEach(ExtendedWebElement::hover);
     }
 }

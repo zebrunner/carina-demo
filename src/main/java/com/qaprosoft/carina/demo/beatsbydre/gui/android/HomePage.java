@@ -1,25 +1,25 @@
-package com.qaprosoft.carina.demo.beatsbydre.gui.desktop;
+package com.qaprosoft.carina.demo.beatsbydre.gui.android;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.desktop.Footer;
+import java.util.List;
+
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import com.qaprosoft.carina.demo.beatsbydre.component.android.Footer;
+import com.qaprosoft.carina.demo.beatsbydre.component.android.Header;
+import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.desktop.Header;
-import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
-import com.zebrunner.carina.utils.factory.DeviceType;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
-public class HomePage extends HomePageBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
+public class HomePage extends HomePageBase implements IMobileUtils {
 
     @FindBy(className = "pdp-header-section")
     private Header header;
@@ -66,29 +66,30 @@ public class HomePage extends HomePageBase {
 
     @Override
     public Footer getFooter() {
-        footer.getRootExtendedElement().scrollTo();
         return footer;
     }
 
-    @Override
     public void interactWithLocalizedElements() {
         hoverListElements(popularCardsNameList);
         hoverListElements(popularCardsPriceList);
         hoverListElements(featureTitleList);
         hoverListElements(featureDescriptionList);
 
-        headphonesRegisterButton.scrollTo();
+        swipe(headphonesRegisterButton);
         waitUntil(ExpectedConditions.visibilityOf(headphonesRegisterButton.getElement()),
                 Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT));
         headphonesRegisterButton.hover();
     }
 
     private void hoverListElements(List<ExtendedWebElement> elementList) {
-        elementList.forEach(ExtendedWebElement::hover);
+        for (ExtendedWebElement element : elementList) {
+            swipe(element);
+            element.hover();
+        }
     }
 
     public RegisterBeatsPageBase toRegisterBeatsPage() {
-        registerBeatsContext.scrollTo();
+        swipe(headphonesRegisterButton);
         waitUntil(ExpectedConditions.visibilityOf(headphonesRegisterButton.getElement()),
                 Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT));
         headphonesRegisterButton.click();

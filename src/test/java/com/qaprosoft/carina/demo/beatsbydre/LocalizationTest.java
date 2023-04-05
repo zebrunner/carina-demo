@@ -25,26 +25,7 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
         homePage.assertPageOpened();
 
         AbstractFooter footer = homePage.getFooter();
-        footer.getRootExtendedElement().hover();
-
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse(footer.getCopyright().isBlank(), "Footer's copyright text is not visible!");
-        softAssert.assertFalse(footer.getProductsTitle().isBlank(), "Footer's product title text is not visible!");
-        softAssert.assertFalse(footer.getSupportTitle().isBlank(), "Footer's support title text is not visible!");
-        softAssert.assertFalse(footer.getCompanyTitle().isBlank(), "Footer's company title text is not visible!");
-        softAssert.assertFalse(footer.getLicenseTitle().isBlank(), "Footer's license title text is not visible!");
-        softAssert.assertFalse(footer.getMediaTitle().isBlank(), "Footer's media title text is not visible!");
-        softAssert.assertFalse(footer.getLocationTitle().isBlank(), "Footer's location title text is not visible!");
-        softAssert.assertFalse(footer.getLocationCountry().isBlank(), "Footer's country location text is not visible!");
-        softAssert.assertFalse(footer.getChangeLocationButton().isBlank(), "Footer's change location button text is not visible!");
-        softAssert.assertFalse(footer.getEmailTitle().isBlank(), "Footer's email title text is not visible!");
-        softAssert.assertFalse(footer.getSignUpButton().isBlank(), "Footer's sign up button text is not visible!");
-        softAssert.assertFalse(footer.getProductsList().isEmpty(), "Footer should contain product refs");
-        softAssert.assertFalse(footer.getSupportList().isEmpty(), "Footer should contain support refs");
-        softAssert.assertFalse(footer.getCompanyList().isEmpty(), "Footer should contain company info refs");
-        softAssert.assertFalse(footer.getLicenseList().isEmpty(), "Footer should contain license info refs");
-        softAssert.assertAll();
-
+        footer.interactWithLocalizedElements();
         L10N.assertAll();
     }
 
@@ -55,11 +36,7 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
         homePage.assertPageOpened();
 
         AbstractHeader header = homePage.getHeader();
-        header.getRootExtendedElement().hover();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse(header.getPromoText().isBlank(), "Header's promo text is not visible!");
-        softAssert.assertTrue(header.getTitles().size() == 3, "Header should contain 3 nav buttons");
-        softAssert.assertAll();
+        header.interactWithLocalizedElements();
         L10N.assertAll();
     }
 
@@ -68,19 +45,7 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         homePage.assertPageOpened();
-
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse(homePage.getHeadphonesRegisterButtonText().isBlank(),
-                "Headphones register button text is not visible!");
-        softAssert.assertTrue(homePage.getPopularCardsNames().size() == 3,
-                "Page should contain 3 popular cards with names");
-        softAssert.assertTrue(homePage.getPopularCardsPrices().size() == 3,
-                "Page should contain 3 popular cards with prices");
-        softAssert.assertTrue(homePage.getFeatureTitleList().size() == 4,
-                "Page should contain 4 feature cards with Titles");
-        softAssert.assertTrue(homePage.getFeatureDescriptionList().size() == 4,
-                "Page should contain 4 feature cards with description");
-        softAssert.assertAll();
+        homePage.interactWithLocalizedElements();
         L10N.assertAll();
     }
 
