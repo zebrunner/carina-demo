@@ -13,10 +13,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>8.0.10</carina-core_version>
-		<carina-dataprovider.version>1.0.0</carina-dataprovider.version>
-		<carina-api.version>1.0.0</carina-api.version>
-		<carina-aws-s3.version>1.0.1</carina-aws-s3.version>
+		<carina-core_version>8.0.11</carina-core_version>
+		<carina-dataprovider.version>1.0.1</carina-dataprovider.version>
+		<carina-api.version>1.0.1</carina-api.version>
+		<carina-aws-s3.version>1.0.2</carina-aws-s3.version>
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.9.3</zebrunner-agent.version>
 		<suite>helloWorld</suite>
@@ -46,6 +46,12 @@
 			<groupId>com.zebrunner</groupId>
 			<artifactId>carina-dataprovider</artifactId>
 			<version>${carina-dataprovider.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.testng</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.zebrunner</groupId>
