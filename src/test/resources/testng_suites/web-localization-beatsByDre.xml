@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Carina Demo Tests - Web Salesforce Based Localization Sample">
+
+    <parameter name="suiteOwner" value="qpsdemo"/>
+    <parameter name="jenkinsJobName" value="Web-Salesforce-Based-Localization-Demo-Test"/>
+    <parameter name="jenkinsJobType" value="web"/>
+    <parameter name="jenkinsEnvironments" value="DEMO"/>
+    <parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+
+    <parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
+
+    <parameter name="jenkinsRegressionMatrix_full_regression" value="browser:chrome, locale:en_US; browser:chrome, locale:es_ES; browser:chrome, locale:de_DE; browser:chrome, locale:ja_JP"/>
+    <parameter name="jenkinsJobExecutionOrder" value="1"/>
+    <parameter name="jenkinsJobExecutionMode" value="continue"/>
+
+    <parameter name="choiceParam::locale::supported locales in example"
+               value="en_US,es_ES,de_DE,ja_JP"/>
+    <parameter name="jenkinsAutoScreenshot" value="true"/>
+
+    <test name="Beats by dre Localization Test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.beatsbydre.LocalizationTest">
+                <methods>
+                    <include name="testFooterLocale"/>
+                    <include name="testHeaderLocale"/>
+                    <include name="testDiscoverPage"/>
+                    <include name="testRegisterPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

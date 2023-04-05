@@ -6,8 +6,6 @@ import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.resources.L10N;
 import org.testng.annotations.BeforeSuite;
 
-
-// us, mx, fr, tw, kr
 public class AbstractBeatsByDreTest implements IAbstractTest {
     private static final String SITE_URL = "https://www.beatsbydre.com/";
 

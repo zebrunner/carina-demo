@@ -1,6 +1,6 @@
-package com.qaprosoft.carina.demo.beatsbydre.locale.generate.component.desktop;
+package com.qaprosoft.carina.demo.beatsbydre.component.desktop;
 
-import com.qaprosoft.carina.demo.beatsbydre.locale.generate.component.common.AbstractFooterGen;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooter;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
@@ -9,8 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class FooterGen extends AbstractFooterGen {
+public class Footer extends AbstractFooter {
     @Localized
     @FindBy(xpath = ".//div[@class='copyright']/p")
     private ExtendedWebElement copyright;
@@ -75,34 +76,71 @@ public class FooterGen extends AbstractFooterGen {
     @FindBy(xpath = ".//li[@class='newsletter-cta']")
     private ExtendedWebElement signUpButton;
 
-    public FooterGen(WebDriver driver, SearchContext searchContext) {
+    public Footer(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    @Override
-    public void hoverFooterItems() {
-        productsTitle.hover();
-        supportTitle.hover();
-        companyTitle.hover();
-        licenseTitle.hover();
-        mediaTitle.hover();
-        locationTitle.hover();
-        emailTitle.hover();
-
-        locationCountry.hover();
-        changeLocationButton.hover();
-        signUpButton.hover();
-        copyright.hover();
-
-        hoverList(productsList);
-        hoverList(supportList);
-        hoverList(companyList);
-        hoverList(licenseList);
+    public String getCopyright() {
+        return copyright.getText();
     }
 
-    private void hoverList(List<ExtendedWebElement> elementList) {
-        for (ExtendedWebElement element : elementList) {
-            element.hover();
-        }
+    public String getProductsTitle() {
+        return productsTitle.getText();
+    }
+
+    public List<String> getProductsList() {
+        return elementsListToString(productsList);
+    }
+
+    public String getSupportTitle() {
+        return supportTitle.getText();
+    }
+
+    public List<String> getSupportList() {
+        return elementsListToString(supportList);
+    }
+
+    public String getCompanyTitle() {
+        return companyTitle.getText();
+    }
+
+    public List<String> getCompanyList() {
+        return elementsListToString(companyList);
+    }
+
+    public String getLicenseTitle() {
+        return licenseTitle.getText();
+    }
+
+    public List<String> getLicenseList() {
+        return elementsListToString(licenseList);
+    }
+
+    public String getMediaTitle() {
+        return mediaTitle.getText();
+    }
+
+    public String getLocationTitle() {
+        return locationTitle.getText();
+    }
+
+    public String getLocationCountry() {
+        return locationCountry.getText();
+    }
+
+    public String getChangeLocationButton() {
+        return changeLocationButton.getText();
+    }
+
+    public String getEmailTitle() {
+        return emailTitle.getText();
+    }
+
+    public String getSignUpButton() {
+        return signUpButton.getText();
+    }
+
+    private List<String> elementsListToString(List<ExtendedWebElement> elementList) {
+        return elementList.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
     }
 }
