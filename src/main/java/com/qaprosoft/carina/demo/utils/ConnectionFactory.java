@@ -27,6 +27,7 @@ import com.qaprosoft.carina.demo.db.mappers.UserMapper;
 import com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper;
 
 public class ConnectionFactory {
+
 	private static SqlSessionFactory factory;
 
 	static {
@@ -54,4 +55,5 @@ public class ConnectionFactory {
 			return sqlSession.getMapper(UserPreferenceMapper.class);
 		}
 	}
+
 }

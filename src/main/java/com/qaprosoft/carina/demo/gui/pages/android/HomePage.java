@@ -17,6 +17,8 @@ package com.qaprosoft.carina.demo.gui.pages.android;
 
 import java.util.List;
 
+import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.R;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,7 +29,6 @@ import com.qaprosoft.carina.demo.gui.pages.common.CompareModelsPageBase;
 import com.qaprosoft.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -55,7 +56,6 @@ public class HomePage extends HomePageBase {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(newsColumn);
     }
 
@@ -89,4 +89,5 @@ public class HomePage extends HomePageBase {
         allBrandsButton.click();
         return initPage(driver, AllBrandsPageBase.class);
     }
+
 }

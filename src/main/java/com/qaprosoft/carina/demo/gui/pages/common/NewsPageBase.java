@@ -29,4 +29,5 @@ public abstract class NewsPageBase extends AbstractPage {
     }
 
     public abstract List<NewsItem> searchNews(String searchInput);
+
 }

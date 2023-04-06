@@ -31,4 +31,5 @@ public class IOSSafariTest implements IAbstractTest, IMobileUtils {
         saucePage.verifyElementText();
         saucePage.sendComment();
     }
+
 }

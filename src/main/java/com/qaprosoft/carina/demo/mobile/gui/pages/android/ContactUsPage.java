@@ -7,7 +7,6 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ContactUsPageBase.class)
 public class ContactUsPage extends ContactUsPageBase {
 

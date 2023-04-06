@@ -64,4 +64,5 @@ public class ModelInfoPage extends ModelInfoPageBase {
         assertElementPresent(displayInfoLabel);
         return batteryInfoLabel.getText();
     }
+
 }

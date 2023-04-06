@@ -51,4 +51,5 @@ public class AttachFilePage extends AbstractPage {
     public boolean isFileUploaded() {
         return this.content.isElementWithTextPresent("File Uploaded!");
     }
+
 }

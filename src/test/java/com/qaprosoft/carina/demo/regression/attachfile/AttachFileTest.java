@@ -24,4 +24,5 @@ public class AttachFileTest implements IAbstractTest {
         attachFilePage.submit();
         Assert.assertTrue(attachFilePage.isFileUploaded(), "File has not been uploaded.");
     }
+
 }

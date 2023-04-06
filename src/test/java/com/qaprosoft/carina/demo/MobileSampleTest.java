@@ -32,7 +32,6 @@ import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
-
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 
     @Test()
@@ -100,4 +99,5 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         uiElements.clickOnOtherRadioButton();
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
+
 }
