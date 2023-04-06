@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.beatsbydre.gui.desktop;
 import com.qaprosoft.carina.demo.beatsbydre.component.desktop.Footer;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.resources.L10N;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
@@ -16,7 +17,6 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -49,7 +49,6 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//div[@class='bbd-1X-image-text-block']")
     private ExtendedWebElement registerBeatsContext;
 
-    @Localized
     @Context(dependsOn = "registerBeatsContext")
     @FindBy(xpath = ".//div[@class='beats-button']//span[@tabindex]")
     private ExtendedWebElement headphonesRegisterButton;
@@ -80,7 +79,7 @@ public class HomePage extends HomePageBase {
         headphonesRegisterButton.scrollTo();
         waitUntil(ExpectedConditions.visibilityOf(headphonesRegisterButton.getElement()),
                 Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT));
-        headphonesRegisterButton.hover();
+        L10N.verify(headphonesRegisterButton);
     }
 
     private void hoverListElements(List<ExtendedWebElement> elementList) {
@@ -88,9 +87,11 @@ public class HomePage extends HomePageBase {
     }
 
     public RegisterBeatsPageBase toRegisterBeatsPage() {
-        registerBeatsContext.scrollTo();
+        headphonesRegisterButton.scrollTo();
+        headphonesRegisterButton.scrollTo();
         waitUntil(ExpectedConditions.visibilityOf(headphonesRegisterButton.getElement()),
                 Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT));
+        L10N.verify(headphonesRegisterButton);
         headphonesRegisterButton.click();
         return initPage(driver, RegisterBeatsPageBase.class);
     }
@@ -98,6 +99,5 @@ public class HomePage extends HomePageBase {
     @Override
     public void open() {
         super.open();
-        newsSubCloseButton.clickIfPresent();
     }
 }

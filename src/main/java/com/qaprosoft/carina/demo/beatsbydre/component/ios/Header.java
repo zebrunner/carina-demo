@@ -1,13 +1,13 @@
-package com.qaprosoft.carina.demo.beatsbydre.component.android;
+package com.qaprosoft.carina.demo.beatsbydre.component.ios;
 
 import java.util.List;
 
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractHeader;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 
@@ -33,12 +33,12 @@ public class Header extends AbstractHeader implements IMobileUtils {
 
     @Override
     public void interactWithLocalizedElements() {
-        promoText.hover();
+        promoText.getText();
         navMenuButton.click();
         expandAllNavButton.click();
         for (ExtendedWebElement title: mobileHeaderTitles) {
             swipe(title);
-            title.hover();
+            title.getText();
         }
         navMenuButton.click();
     }

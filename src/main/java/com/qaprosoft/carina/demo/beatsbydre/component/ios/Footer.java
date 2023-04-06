@@ -1,11 +1,11 @@
-package com.qaprosoft.carina.demo.beatsbydre.component.android;
+package com.qaprosoft.carina.demo.beatsbydre.component.ios;
 
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooter;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
@@ -28,6 +28,7 @@ public class Footer extends AbstractFooter implements IMobileUtils {
     @Context(dependsOn = "countryRow")
     private ExtendedWebElement locationCountry;
 
+
     @FindBy(xpath = ".//div[@class='mobile-newsletter']")
     private ExtendedWebElement emailRaw;
 
@@ -47,11 +48,12 @@ public class Footer extends AbstractFooter implements IMobileUtils {
 
     @Override
     public void interactWithLocalizedElements() {
-        swipe(copyright);
-        copyright.hover();
-        mobileLocation.hover();
-        locationCountry.hover();
-        emailTitle.hover();
-        signUpButton.hover();
+        copyright.scrollTo();
+        copyright.getText();
+        mobileLocation.getText();
+        locationCountry.getText();
+        emailTitle.getText();
+        signUpButton.getText();
     }
+
 }

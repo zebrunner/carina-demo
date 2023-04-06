@@ -16,6 +16,7 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
     @AfterClass
     public void addLocales() {
         L10N.flush();
+        L10N.assertAll();
     }
 
     @Test()
@@ -26,7 +27,6 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
 
         AbstractFooter footer = homePage.getFooter();
         footer.interactWithLocalizedElements();
-        L10N.assertAll();
     }
 
     @Test()
@@ -37,7 +37,6 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
 
         AbstractHeader header = homePage.getHeader();
         header.interactWithLocalizedElements();
-        L10N.assertAll();
     }
 
     @Test
@@ -45,8 +44,8 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         homePage.assertPageOpened();
+
         homePage.interactWithLocalizedElements();
-        L10N.assertAll();
     }
 
     @Test
@@ -92,7 +91,6 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
                 "Registration error modal should error info");
         registrationError.closeModal();
         softAssert.assertAll();
-        L10N.assertAll();
     }
 
 }
