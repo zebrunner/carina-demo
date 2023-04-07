@@ -72,7 +72,6 @@ public class PhoneHomePage extends PhoneHomePageBase {
     @Override
     public PhoneHomePageBase holdWidget(ExtendedWebElement widget) {
 
-        //itemByContent.format(widgetName)
         return (PhoneHomePageBase) holdElement(widget, PhoneHomePageBase.class);
     }
 

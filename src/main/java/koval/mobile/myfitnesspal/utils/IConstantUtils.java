@@ -136,6 +136,8 @@ public interface IConstantUtils {
 
     String CALORIES_WIDGET = "Calories";
 
+    String CONNECT_A_STEP_TRACKER = "Connect a step tracker";
+
     List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
 
     int SCREEN_PHYSICAL_DENSITY = adbService.getScreenPhysicalDensity();
