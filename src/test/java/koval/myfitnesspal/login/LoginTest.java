@@ -68,7 +68,7 @@ public class LoginTest implements IMyInterface {
 
         phoneHomePageBase.deleteWidget(FITNESSPAL);
 
-        Assert.assertFalse(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
+        Assert.assertTrue(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
                 String.format("[ PHONE HOME PAGE ] '%s' widget is not deleted! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
 
     }

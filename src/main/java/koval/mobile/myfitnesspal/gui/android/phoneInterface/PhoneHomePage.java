@@ -111,34 +111,38 @@ public class PhoneHomePage extends PhoneHomePageBase {
 
         holdWidget(itemByContent.format(widgetName));
 
-        while (resizeWidgetFrame.isElementPresent(TIMEOUT_FIFTEEN)) {
-            int centerX = getCenterX(resizeWidgetFrame);
-            int centerY = getCenterY(resizeWidgetFrame);
 
-            int desiredY = centerY - SCREEN_PHYSICAL_DENSITY;
+        int attemp = 3;
+            while (resizeWidgetFrame.isElementPresent(TIMEOUT_FIFTEEN)  && attemp > 0 ) {
+                int centerX = getCenterX(resizeWidgetFrame);
+                int centerY = getCenterY(resizeWidgetFrame);
 
-            swipe(centerX, centerY, centerX, desiredY, LOW_SPEED);
+                int desiredY = centerY - SCREEN_PHYSICAL_DENSITY;
+
+                swipe(centerX, centerY, centerX, desiredY, LOW_SPEED);
+
+                attemp--;
+            }
+
+            return initPage(getDriver(), PhoneHomePageBase.class);
         }
 
-        return initPage(getDriver(), PhoneHomePageBase.class);
+        @Override
+        public PhoneHomePageBase resizeWidgetByX ( int sizeValue){
+
+            holdWidget(fitnessPalWidgetItem);
+            int centerX = getCenterX(rightResizeHandle);
+            int centerY = getCenterY(rightResizeHandle);
+
+            LOGGER.info("Screen Physical Density is: {}", SCREEN_PHYSICAL_DENSITY);
+
+            int desiredX = sizeValue * SCREEN_PHYSICAL_DENSITY;
+
+            swipe(centerX, centerY, desiredX, centerY, MEDIUM_SPEED);
+
+            pressKey(BACK);
+
+            return initPage(getDriver(), PhoneHomePageBase.class);
+        }
+
     }
-
-    @Override
-    public PhoneHomePageBase resizeWidgetByX(int sizeValue) {
-
-        holdWidget(fitnessPalWidgetItem);
-        int centerX = getCenterX(rightResizeHandle);
-        int centerY = getCenterY(rightResizeHandle);
-
-        LOGGER.info("Screen Physical Density is: {}", SCREEN_PHYSICAL_DENSITY);
-
-        int desiredX = sizeValue * SCREEN_PHYSICAL_DENSITY;
-
-        swipe(centerX, centerY, desiredX, centerY, MEDIUM_SPEED);
-
-        pressKey(BACK);
-
-        return initPage(getDriver(), PhoneHomePageBase.class);
-    }
-
-}
