@@ -126,6 +126,8 @@ public interface IConstantUtils {
 
     String DIARY_TEXT = "Diary";
 
+    String SNACKS = "Snacks";
+
     String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
 
     String EXERCISE_STRING = "Exercise";
