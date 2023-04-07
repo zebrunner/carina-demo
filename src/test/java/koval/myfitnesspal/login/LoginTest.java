@@ -2,14 +2,12 @@ package koval.myfitnesspal.login;
 
 
 import com.zebrunner.carina.utils.R;
-import koval.mobile.myfitnesspal.gui.MyAbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.service.AdbService;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
