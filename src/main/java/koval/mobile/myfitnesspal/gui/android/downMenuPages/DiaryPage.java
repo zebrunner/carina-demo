@@ -113,7 +113,7 @@ public class DiaryPage extends DiaryPageBase {
         swipe(testEl, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
 
         if (meals.getMeal().equals("Snacks")) {
-            ExtendedWebElement snackTitleByText = itemByText.format("Connect a step tracker");
+            ExtendedWebElement snackTitleByText = itemByText.format(CONNECT_A_STEP_TRACKER);
             swipe(snackTitleByText, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
         }
 
@@ -129,7 +129,7 @@ public class DiaryPage extends DiaryPageBase {
         boolean isFoodAddedToMeal;
 
         if (meals.getMeal().equals("Snacks")) {
-            ExtendedWebElement snackTitleByText = itemByText.format("Connect a step tracker");
+            ExtendedWebElement snackTitleByText = itemByText.format(CONNECT_A_STEP_TRACKER);
             swipe(snackTitleByText, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
             isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
         }
