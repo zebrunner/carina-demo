@@ -1,6 +1,7 @@
 package koval.mobile.myfitnesspal.service;
 
 import com.zebrunner.carina.utils.android.AndroidService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,16 +9,18 @@ import java.lang.invoke.MethodHandles;
 
 
 import static com.zebrunner.carina.utils.common.CommonUtils.pause;
-import static koval.mobile.myfit.service.interfaces.IConstantUtils.TIMEOUT_FIVE;
+import static koval.mobile.myfitnesspal.utils.IConstantUtils.*;
+
 
 public class AdbService extends AndroidService {
 
-    public enum AppPackage{
+    public enum AppPackage {
         MY_FITNESS_PAL("com.myfitnesspal.android"),
         GOOGLE_FIT("com.google.android.apps.fitness"),
         CARINA_DEMO("com.solvd.carinademoapplication");
 
         public final String appPackage;
+
         AppPackage(String appPackage) {
             this.appPackage = appPackage;
         }
@@ -33,7 +36,7 @@ public class AdbService extends AndroidService {
 
     public void clearAppCache(AppPackage packageName) {
         LOGGER.info("Clear ['{}'] cache via ADB", packageName);
-        String[] command = { "adb", "-s", getDevice(getDriver()).getUdid(), "shell", "pm", "clear", packageName.getPackageName() };
+        String[] command = {"adb", "-s", getDevice(getDriver()).getUdid(), "shell", "pm", "clear", packageName.getPackageName()};
         getDevice(getDriver()).execute(command);
     }
 
@@ -44,10 +47,42 @@ public class AdbService extends AndroidService {
         pause(TIMEOUT_FIVE);
     }
 
+    public void closeApp(AppPackage packageName) {
+        LOGGER.info("Closing app ['{}'] via ADB", packageName);
+        String cmd = String.format("shell am force-stop %s", packageName.getPackageName());
+        executor.executeAdbCommand(cmd);
+        pause(TIMEOUT_FIVE);
+    }
+
+    public void holdElementByCoordinates(int centerX, int centerY) {
+        LOGGER.info("Hold element via ADB.(long press) Center y: ['{}'] Center y: ['{}']", centerX, centerY);
+        String cmd = String.format("shell input touchscreen swipe %s %s %s %s 700", centerX, centerY, centerX, centerY);
+        executor.executeAdbCommand(cmd);
+        pause(TIMEOUT_FIVE);
+    }
+
+
+    public int getScreenPhysicalDensity() {
+        LOGGER.info("Get screen physical density via ADB");
+        String cmd = "shell wm density";
+        int physicalDensity = Integer.parseInt(executor.executeAdbCommand(cmd).replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
+        pause(TIMEOUT_FIVE);
+        return physicalDensity;
+    }
+
+
+    public boolean isKeyBoardOpen() {
+        LOGGER.info("Check if keyboard is open via ADB");
+        String cmd = "shell dumpsys input_method | grep mInputShown";
+        boolean isKeyBoardOpenValue = Boolean.parseBoolean(String.valueOf(executor.executeAdbCommand(cmd).contains("true")));
+        LOGGER.info("KeyBoard is open: {}", isKeyBoardOpenValue);
+        pause(TIMEOUT_FIVE);
+        return isKeyBoardOpenValue;
+    }
+
 
     public void setDarkMode(String yesNo) {
         LOGGER.info("Set Dark Mode: " + yesNo);
-
         String cmd = String.format("shell cmd uimode night %s", yesNo);
         executor.executeAdbCommand(cmd);
         pause(TIMEOUT_FIVE);

@@ -13,7 +13,6 @@ public abstract class DashboardPageBase extends MyAbstractPage {
         super(driver);
     }
 
-
     public abstract AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement);
 
     public abstract boolean isUserPremium();

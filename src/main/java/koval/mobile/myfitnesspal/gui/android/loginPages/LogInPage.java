@@ -82,7 +82,7 @@ public class LogInPage extends LogInPageBase {
         while (exitTutorialButton.isElementPresent(TIMEOUT_TEN) && attemp > 0) {
             exitTutorialButton.click(TIMEOUT_TEN);
 
-            LOGGER.info("[ LOGIN PAGE ] Attempt: {} for clicking on exit tutorial button", attemp);
+            LOGGER.info("[ DASHBOARD PAGE ] Attempt left: {} for clicking on exit tutorial button", attemp);
             attemp--;
         }
 

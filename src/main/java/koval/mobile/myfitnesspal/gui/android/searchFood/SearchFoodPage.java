@@ -65,6 +65,11 @@ public class SearchFoodPage extends SearchFoodPageBase {
 
 
     @Override
+    public boolean isPageOpened() {
+        return searchFoodField.isElementPresent(TIMEOUT_TEN);
+    }
+
+    @Override
     public SearchFoodPageBase changeMealByName(Meals meals) {
 
         if (!selectMealText.getText().equals(meals.getMeal())) {

@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 
 import java.lang.invoke.MethodHandles;
-import java.util.Random;
 
 
 public abstract class MyAbstractPage extends AbstractPage implements IMyInterface {
@@ -30,13 +29,32 @@ public abstract class MyAbstractPage extends AbstractPage implements IMyInterfac
     }
 
     public void hideKeyboard() {
-        getDriver().navigate().back();
+        pressKey(BACK);
     }
 
+    public void pressKey(int keyCodeValue) {
+        getDevice(getDriver()).pressKey(keyCodeValue);
+    }
 
     public void closeTimestampsPopUpIfPresent() {
         itemByContent.format(NO_THANKS_ANSWER.toUpperCase()).clickIfPresent(TIMEOUT_FIVE);
     }
 
+
+    public int getCenterX(ExtendedWebElement extendedWebElement) {
+
+        int leftX = extendedWebElement.getLocation().getX();
+        int rightX = extendedWebElement.getSize().getWidth();
+
+        return (leftX + (leftX + rightX)) / 2;
+    }
+
+    public int getCenterY(ExtendedWebElement extendedWebElement) {
+
+        int upperY = extendedWebElement.getLocation().getY();
+        int lowerY = extendedWebElement.getSize().getHeight();
+
+        return (upperY + (upperY + lowerY)) / 2;
+    }
 
 }

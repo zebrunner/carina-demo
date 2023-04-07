@@ -111,6 +111,12 @@ public class DiaryPage extends DiaryPageBase {
 
         ExtendedWebElement testEl = addFoodButton.format(meals.getMeal());
         swipe(testEl, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
+
+        if (meals.getMeal().equals("Snacks")) {
+            ExtendedWebElement snackTitleByText = itemByText.format("Connect a step tracker");
+            swipe(snackTitleByText, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
+        }
+
         addFoodButton.format(meals.getMeal()).click();
 
         return initPage(getDriver(), SearchFoodPageBase.class);
@@ -120,15 +126,21 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public boolean isFoodAddedToMeal(String food, Meals meals) {
 
-        ExtendedWebElement mealByText = mealTitleByText.format(meals.getMeal());
-        swipe(mealByText, diaryRecyclerViewContainer, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
+        boolean isFoodAddedToMeal;
 
         if (meals.getMeal().equals("Snacks")) {
-            ExtendedWebElement snackTitleByText = itemByText.format(EXERCISE_STRING);
-            swipe(snackTitleByText, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
+            ExtendedWebElement snackTitleByText = itemByText.format("Connect a step tracker");
+            swipe(snackTitleByText, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
+            isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
+        }
+        else {
+            ExtendedWebElement mealByText = mealTitleByText.format(meals.getMeal());
+            swipe(mealByText, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
+            isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
         }
 
-        return foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
+
+        return isFoodAddedToMeal;
     }
 
 
