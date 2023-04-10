@@ -16,14 +16,14 @@ public class Header extends AbstractHeader implements IMobileUtils {
     @FindBy(xpath = ".//button[@aria-controls='secondary-nav-sm']")
     private ExtendedWebElement navMenuButton;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = ".//nav[@id='secondary-nav-sm']//li[@role='presentation']/a[not(@target='_blank')]")
     private List<ExtendedWebElement> mobileHeaderTitles;
 
     @FindBy(xpath = ".//nav[@id='secondary-nav-sm']//a[@class='has-subNavItems']")
     private ExtendedWebElement expandAllNavButton;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(className = "show-mobile")
     private ExtendedWebElement promoText;
 

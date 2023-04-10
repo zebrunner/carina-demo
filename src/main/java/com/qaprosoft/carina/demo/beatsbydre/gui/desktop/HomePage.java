@@ -1,6 +1,10 @@
 package com.qaprosoft.carina.demo.beatsbydre.gui.desktop;
 
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractCustomCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractLargeCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.desktop.CustomCard;
 import com.qaprosoft.carina.demo.beatsbydre.component.desktop.Footer;
+import com.qaprosoft.carina.demo.beatsbydre.component.desktop.LargeCard;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.resources.L10N;
@@ -30,21 +34,11 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//div[@class='newsletter__section section--collapsed ']//a")
     private ExtendedWebElement newsSubCloseButton;
 
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--large')]//div[@class='card__content-top']//h2")
-    private List<ExtendedWebElement> popularCardsNameList;
+    @FindBy(xpath = "//a[contains(@class,'card--large')]")
+    private List<LargeCard> popularCardList;
 
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--large')]//div[@class='card__content-top']//div//span")
-    private List<ExtendedWebElement> popularCardsPriceList;
-
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--custom')]//div[@class='card__content-top']//div//h2")
-    private List<ExtendedWebElement> featureTitleList;
-
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--custom')]//div[@class='card__content-top']//div//p")
-    private List<ExtendedWebElement> featureDescriptionList;
+    @FindBy(xpath = "//a[contains(@class,'card--custom')]")
+    private List<CustomCard> featureCardList;
 
     @FindBy(xpath = "//div[@class='bbd-1X-image-text-block']")
     private ExtendedWebElement registerBeatsContext;
@@ -70,21 +64,13 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public void interactWithLocalizedElements() {
-        hoverListElements(popularCardsNameList);
-        hoverListElements(popularCardsPriceList);
-        hoverListElements(featureTitleList);
-        hoverListElements(featureDescriptionList);
-
+    public void interactWithHeadphoneRegBtn() {
         headphonesRegisterButton.scrollTo();
         waitUntil(ExpectedConditions.visibilityOf(headphonesRegisterButton.getElement()),
                 Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT));
         L10N.verify(headphonesRegisterButton);
     }
 
-    private void hoverListElements(List<ExtendedWebElement> elementList) {
-        elementList.forEach(ExtendedWebElement::hover);
-    }
 
     public RegisterBeatsPageBase toRegisterBeatsPage() {
         headphonesRegisterButton.scrollTo();
@@ -94,6 +80,15 @@ public class HomePage extends HomePageBase {
         L10N.verify(headphonesRegisterButton);
         headphonesRegisterButton.click();
         return initPage(driver, RegisterBeatsPageBase.class);
+    }
+
+    @Override
+    public List<? extends AbstractLargeCard> getPopularCardsList() {
+        return popularCardList;
+    }
+
+    public List<? extends AbstractCustomCard> getFeatureCardList() {
+        return featureCardList;
     }
 
     @Override

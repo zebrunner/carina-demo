@@ -14,11 +14,11 @@ import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Header extends AbstractHeader {
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = ".//div[@class='header-container']//li[@role='presentation']/a")
     private List<ExtendedWebElement> headerTitles;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(className = "show-desktop")
     private ExtendedWebElement promoText;
 

@@ -14,11 +14,11 @@ public class RegistrationError extends AbstractRegistrationError implements IMob
     @FindBy(xpath = ".//button[@class='modal-close']")
     private ExtendedWebElement closeButton;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = ".//h2//div")
     private ExtendedWebElement errorTitle;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = ".//p[contains(@class,'serial-number-error')]")
     private ExtendedWebElement serNumberError;
 

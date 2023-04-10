@@ -1,8 +1,6 @@
 package com.qaprosoft.carina.demo.beatsbydre;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooter;
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractHeader;
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractRegistrationError;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.*;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.resources.L10N;
@@ -45,7 +43,9 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
         homePage.open();
         homePage.assertPageOpened();
 
-        homePage.interactWithLocalizedElements();
+        homePage.getPopularCardsList().forEach(AbstractLargeCard::interactWithElements);
+        homePage.getFeatureCardList().forEach(AbstractCustomCard::interactWithElements);
+        homePage.interactWithHeadphoneRegBtn();
     }
 
     @Test

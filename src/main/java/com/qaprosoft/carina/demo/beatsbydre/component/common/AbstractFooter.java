@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.beatsbydre.component.common;
 
+import com.qaprosoft.carina.demo.beatsbydre.component.desktop.FooterItem;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -12,4 +13,6 @@ public abstract class AbstractFooter extends AbstractUIObject {
     }
 
     public abstract void interactWithLocalizedElements();
+
+    public abstract List<? extends AbstractFooterItem> getFooterItems();
 }

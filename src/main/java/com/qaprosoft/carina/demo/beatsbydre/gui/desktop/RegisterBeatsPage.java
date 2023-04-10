@@ -13,31 +13,31 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = RegisterBeatsPageBase.class)
 public class RegisterBeatsPage extends RegisterBeatsPageBase {
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(tagName = "h1")
     private ExtendedWebElement pageTitle;
 
     @FindBy(id = "serialnum")
     private ExtendedWebElement serNumberField;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @Context(dependsOn = "serNumberField")
     @FindBy(xpath = ".//following-sibling::a")
     private ExtendedWebElement howToFindSerNumberLink;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = "//button[@class='beats-btn beats-btn--button validate-serial-num']")
     private ExtendedWebElement verifySerNumberButton;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = "//*[contains(@class,'serial-number-invalid-length registration-invalid-input-field')]")
     private ExtendedWebElement lengthErrMsg;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = "//*[contains(@class,'serial-number-invalid-chars registration-invalid-input-field')]")
     private ExtendedWebElement invalidCharsErrMsg;
 
-    @Localized
+    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @FindBy(xpath = "//*[contains(@class,'serial-number-empty-input registration-invalid-input-field')]")
     private ExtendedWebElement emptyInputErrMsg;
 

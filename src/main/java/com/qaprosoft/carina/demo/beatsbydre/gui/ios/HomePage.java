@@ -2,21 +2,22 @@ package com.qaprosoft.carina.demo.beatsbydre.gui.ios;
 
 import java.util.List;
 
+import com.qaprosoft.carina.demo.beatsbydre.component.ios.CustomCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.ios.LargeCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractCustomCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractLargeCard;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.qaprosoft.carina.demo.beatsbydre.component.ios.Footer;
 import com.qaprosoft.carina.demo.beatsbydre.component.ios.Header;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
-import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.utils.resources.L10N;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HomePageBase.class)
@@ -30,21 +31,11 @@ public class HomePage extends HomePageBase implements IMobileUtils {
     @FindBy(xpath = "//div[@class='newsletter__section section--collapsed ']//a")
     private ExtendedWebElement newsSubCloseButton;
 
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--large')]//div[@class='card__content-top']//h2")
-    private List<ExtendedWebElement> popularCardsNameList;
+    @FindBy(xpath = "//a[contains(@class,'card--large')]")
+    private List<LargeCard> popularCardList;
 
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--large')]//div[@class='card__content-top']//div//span")
-    private List<ExtendedWebElement> popularCardsPriceList;
-
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--custom')]//div[@class='card__content-top']//div//h2")
-    private List<ExtendedWebElement> featureTitleList;
-
-    @Localized
-    @FindBy(xpath = "//a[contains(@class,'card--custom')]//div[@class='card__content-top']//div//p")
-    private List<ExtendedWebElement> featureDescriptionList;
+    @FindBy(xpath = "//a[contains(@class,'card--custom')]")
+    private List<CustomCard> featureCardList;
 
     @FindBy(xpath = "//div[@class='bbd-1X-image-text-block']")
     private ExtendedWebElement registerBeatsContext;
@@ -71,19 +62,11 @@ public class HomePage extends HomePageBase implements IMobileUtils {
         return footer;
     }
 
-    public void interactWithLocalizedElements() {
-        interactListElements(popularCardsNameList);
-        interactListElements(popularCardsPriceList);
-        interactListElements(featureTitleList);
-        interactListElements(featureDescriptionList);
-
+    public void interactWithHeadphoneRegBtn() {
         while (headphonesRegisterButton.getText().isBlank()) {
             swipeUp(DEFAULT_TOUCH_ACTION_DURATION);
         }
         L10N.verify(headphonesRegisterButton);
-        waitUntil(ExpectedConditions.visibilityOf(headphonesRegisterButton.getElement()),
-                Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT));
-        headphonesRegisterButton.getText();
     }
 
     private void interactListElements(List<ExtendedWebElement> elementList) {
@@ -100,6 +83,16 @@ public class HomePage extends HomePageBase implements IMobileUtils {
         L10N.verify(headphonesRegisterButton);
         headphonesRegisterButton.click();
         return initPage(driver, RegisterBeatsPageBase.class);
+    }
+
+    @Override
+    public List<? extends AbstractLargeCard> getPopularCardsList() {
+        return popularCardList;
+    }
+
+    @Override
+    public List<? extends AbstractCustomCard> getFeatureCardList() {
+        return featureCardList;
     }
 
     @Override
