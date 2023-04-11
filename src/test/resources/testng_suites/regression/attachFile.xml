@@ -9,7 +9,7 @@
 
     <test name="Attach File Test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.regression.attachfile.AttachFileTest"/>
+            <class name="com.zebrunner.carina.demo.regression.attachfile.AttachFileTest"/>
         </classes>
     </test>
 

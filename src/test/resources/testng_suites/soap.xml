@@ -11,7 +11,7 @@
 
 	<test name="Soap API tests">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.SoapSampleTest" />
+			<class name="com.zebrunner.carina.demo.SoapSampleTest" />
 		</classes>
 	</test>
 
