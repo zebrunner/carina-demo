@@ -5,7 +5,7 @@
 	<parameter name="jenkinsJobName" value="Proxy-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
   
 	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
 
@@ -15,7 +15,7 @@
 
 	<test name="GSM arena proxy web test">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.ProxySampleTest" />
+			<class name="com.zebrunner.carina.demo.ProxySampleTest" />
 		</classes>
 	</test>
 

@@ -5,7 +5,7 @@
 	<parameter name="jenkinsJobName" value="Web-Demo-Single-Driver-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
 
@@ -16,7 +16,7 @@
 
 	<test name="GSM arena web tests using single driver between tests">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.WebSampleSingleDriver" />
+			<class name="com.zebrunner.carina.demo.WebSampleSingleDriver" />
 		</classes>
 	</test>
 	
