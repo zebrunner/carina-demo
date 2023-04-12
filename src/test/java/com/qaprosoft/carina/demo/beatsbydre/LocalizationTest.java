@@ -20,17 +20,6 @@ public class LocalizationTest extends AbstractBeatsByDreTest {
 
     @Test()
     public void testFooterLocale() {
-        InternetExplorerOptions ieOptions = new InternetExplorerOptions();
-        ieOptions.attachToEdgeChrome();
-        ieOptions.withEdgeExecutablePath("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe");
-
-        WebDriver driver = new InternetExplorerDriver(ieOptions);
-
-        driver.get("http://www.bing.com");
-        WebElement elem = driver.findElement(By.id("sb_form_q"));
-        elem.sendKeys("WebDriver", Keys.RETURN);
-
-        driver.close();
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         homePage.assertPageOpened();
