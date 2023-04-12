@@ -1,13 +1,14 @@
 package com.qaprosoft.carina.demo.beatsbydre.component.desktop;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooterItem;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
+import java.util.List;
+
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooterItem;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 
 public class FooterItem extends AbstractFooterItem {
     @Localized(focus = Localized.NameFocus.CLASS_DECLARE)

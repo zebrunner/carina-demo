@@ -1,8 +1,9 @@
 package com.qaprosoft.carina.demo.beatsbydre.component.common;
 
-import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+
+import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 
 public abstract class AbstractCustomCard extends AbstractUIObject {
     public AbstractCustomCard(WebDriver driver, SearchContext searchContext) {

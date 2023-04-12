@@ -1,14 +1,15 @@
 package com.qaprosoft.carina.demo.beatsbydre.component.android;
 
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractRegistrationError;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RegistrationError extends AbstractRegistrationError implements IMobileUtils {
     @FindBy(xpath = ".//button[@class='modal-close']")

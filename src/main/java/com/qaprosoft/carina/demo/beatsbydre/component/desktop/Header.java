@@ -1,17 +1,16 @@
 package com.qaprosoft.carina.demo.beatsbydre.component.desktop;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractHeader;
-import com.zebrunner.carina.utils.Configuration;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractHeader;
+import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Header extends AbstractHeader {
     @Localized(focus = Localized.NameFocus.CLASS_DECLARE)

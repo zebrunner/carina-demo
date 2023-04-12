@@ -2,25 +2,24 @@ package com.qaprosoft.carina.demo.beatsbydre.gui.android;
 
 import java.util.List;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.android.CustomCard;
-import com.qaprosoft.carina.demo.beatsbydre.component.android.LargeCard;
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractCustomCard;
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractLargeCard;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.zebrunner.carina.utils.resources.L10N;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.qaprosoft.carina.demo.beatsbydre.component.android.CustomCard;
 import com.qaprosoft.carina.demo.beatsbydre.component.android.Footer;
 import com.qaprosoft.carina.demo.beatsbydre.component.android.Header;
+import com.qaprosoft.carina.demo.beatsbydre.component.android.LargeCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractCustomCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractLargeCard;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import com.zebrunner.carina.utils.resources.L10N;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)

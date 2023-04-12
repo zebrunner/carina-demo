@@ -1,26 +1,25 @@
 package com.qaprosoft.carina.demo.beatsbydre.gui.desktop;
 
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractCustomCard;
 import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractLargeCard;
 import com.qaprosoft.carina.demo.beatsbydre.component.desktop.CustomCard;
 import com.qaprosoft.carina.demo.beatsbydre.component.desktop.Footer;
+import com.qaprosoft.carina.demo.beatsbydre.component.desktop.Header;
 import com.qaprosoft.carina.demo.beatsbydre.component.desktop.LargeCard;
+import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.resources.L10N;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
-import com.qaprosoft.carina.demo.beatsbydre.component.desktop.Header;
-import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
-import com.zebrunner.carina.utils.factory.DeviceType;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.List;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -47,6 +46,10 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = ".//div[@class='beats-button']//span[@tabindex]")
     private ExtendedWebElement headphonesRegisterButton;
 
+    @FindBy(xpath = "//div[@id='cookie-bar']//button")
+    private ExtendedWebElement cookieAcceptButton;
+
+
     public HomePage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
@@ -60,6 +63,7 @@ public class HomePage extends HomePageBase {
     @Override
     public Footer getFooter() {
         footer.getRootExtendedElement().scrollTo();
+        newsSubCloseButton.clickIfPresent();
         return footer;
     }
 
@@ -94,5 +98,6 @@ public class HomePage extends HomePageBase {
     @Override
     public void open() {
         super.open();
+        cookieAcceptButton.clickIfPresent(4);
     }
 }

@@ -1,17 +1,17 @@
 package com.qaprosoft.carina.demo.beatsbydre.component.ios;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.desktop.FooterItem;
+import java.util.List;
+
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooter;
+import com.qaprosoft.carina.demo.beatsbydre.component.desktop.FooterItem;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
-
-import java.util.List;
 
 public class Footer extends AbstractFooter implements IMobileUtils {
     @Localized(focus = Localized.NameFocus.CLASS_DECLARE)

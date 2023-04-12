@@ -2,15 +2,15 @@ package com.qaprosoft.carina.demo.beatsbydre.gui.ios;
 
 import java.util.List;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.ios.CustomCard;
-import com.qaprosoft.carina.demo.beatsbydre.component.ios.LargeCard;
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractCustomCard;
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractLargeCard;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractCustomCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractLargeCard;
+import com.qaprosoft.carina.demo.beatsbydre.component.ios.CustomCard;
 import com.qaprosoft.carina.demo.beatsbydre.component.ios.Footer;
 import com.qaprosoft.carina.demo.beatsbydre.component.ios.Header;
+import com.qaprosoft.carina.demo.beatsbydre.component.ios.LargeCard;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;

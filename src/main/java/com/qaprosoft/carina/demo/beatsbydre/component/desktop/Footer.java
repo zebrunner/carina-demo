@@ -1,13 +1,15 @@
 package com.qaprosoft.carina.demo.beatsbydre.component.desktop;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooter;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
+import java.util.List;
+
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.List;
+import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractFooter;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 
 public class Footer extends AbstractFooter {
     @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
@@ -47,6 +49,7 @@ public class Footer extends AbstractFooter {
 
     public void interactWithLocalizedElements() {
         copyright.scrollTo();
+        waitUntil(ExpectedConditions.visibilityOf(copyright.getElement()), 5);
         copyright.hover();
         mediaTitle.hover();
         locationTitle.hover();

@@ -1,5 +1,8 @@
 package com.qaprosoft.carina.demo.beatsbydre.gui.desktop;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
 import com.qaprosoft.carina.demo.beatsbydre.component.desktop.RegistrationError;
 import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -7,8 +10,6 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 import com.zebrunner.carina.webdriver.locator.Context;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = RegisterBeatsPageBase.class)
 public class RegisterBeatsPage extends RegisterBeatsPageBase {

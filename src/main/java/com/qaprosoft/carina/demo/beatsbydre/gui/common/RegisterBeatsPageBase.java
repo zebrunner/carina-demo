@@ -1,8 +1,9 @@
 package com.qaprosoft.carina.demo.beatsbydre.gui.common;
 
+import org.openqa.selenium.WebDriver;
+
 import com.qaprosoft.carina.demo.beatsbydre.component.common.AbstractRegistrationError;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import org.openqa.selenium.WebDriver;
 
 public abstract class RegisterBeatsPageBase extends AbstractPage {
 

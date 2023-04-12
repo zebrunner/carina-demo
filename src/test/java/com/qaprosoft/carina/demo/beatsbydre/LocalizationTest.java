@@ -1,13 +1,14 @@
 package com.qaprosoft.carina.demo.beatsbydre;
 
-import com.qaprosoft.carina.demo.beatsbydre.component.common.*;
-import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
-import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
-import com.zebrunner.carina.utils.resources.L10N;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import com.qaprosoft.carina.demo.beatsbydre.component.common.*;
+import com.qaprosoft.carina.demo.beatsbydre.gui.common.HomePageBase;
+import com.qaprosoft.carina.demo.beatsbydre.gui.common.RegisterBeatsPageBase;
+import com.zebrunner.carina.utils.resources.L10N;
 
 public class LocalizationTest extends AbstractBeatsByDreTest {
 
