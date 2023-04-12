@@ -11,11 +11,11 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.annotations.Localized;
 
 public class FooterItem extends AbstractFooterItem {
-    @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
+    @Localized(focus = Localized.NameFocus.FULL_PATH)
     @FindBy(tagName = "h2")
     private ExtendedWebElement itemTitle;
 
-    @Localized(focus = Localized.NameFocus.CLASS_DECLARE, localeName = "desktopRef")
+    @Localized(focus = Localized.NameFocus.FULL_PATH, localeName = "desktopRef")
     @FindBy(xpath = ".//nav//li")
     private List<ExtendedWebElement> subTitles;
 

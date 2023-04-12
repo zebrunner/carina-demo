@@ -22,7 +22,7 @@ public class CustomCard extends AbstractCustomCard {
     }
 
     public void interactWithElements() {
-        featureDescription.hover();
-        featureTitle.hover();
+        featureDescription.getText();
+        featureTitle.getText();
     }
 }

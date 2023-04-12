@@ -36,8 +36,8 @@ public class Footer extends AbstractFooter implements IMobileUtils {
 
     @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @Context(dependsOn = "emailRaw")
-    @FindBy(tagName = "span")
-    private ExtendedWebElement emailTitle;
+    @FindBy(tagName= "p")
+    private ExtendedWebElement mobileEmailTitle;
 
     @Localized(focus = Localized.NameFocus.CLASS_DECLARE)
     @Context(dependsOn = "emailRaw")
@@ -54,7 +54,7 @@ public class Footer extends AbstractFooter implements IMobileUtils {
         copyright.getText();
         mobileLocation.getText();
         locationCountry.getText();
-        emailTitle.getText();
+        mobileEmailTitle.hover();
         signUpButton.getText();
     }
 

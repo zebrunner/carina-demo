@@ -21,7 +21,7 @@ public class LargeCard extends AbstractLargeCard {
     }
 
     public void interactWithElements() {
-        popularCardTitle.hover();
-        popularCardPrice.hover();
+        popularCardTitle.getText();
+        popularCardPrice.getText();
     }
 }
