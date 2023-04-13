@@ -5,7 +5,7 @@
 	<parameter name="provider" value="mcloud"/>
 	<parameter name="jenkinsJobName" value="Mobile-iOS-Simulator-Demo-Test" />
 	<parameter name="jenkinsJobType" value="ios"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
+	<parameter name="jenkinsEmail" value="demo@zebrunner.com" />
 	<parameter name="jenkinsEnvironments" value="DEMO" />
 
 	<parameter name="stringParam::capabilities.app::path to carina demo mobile application" value="https://qaprosoft.s3-us-west-2.amazonaws.com/carinademoexample.zip" />
@@ -19,7 +19,7 @@
 
 	<test name="Mobile test">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.MobileSampleTest" />
+			<class name="com.zebrunner.carina.demo.MobileSampleTest" />
 		</classes>
 	</test>
 

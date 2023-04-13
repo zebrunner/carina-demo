@@ -4,16 +4,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.qaprosoft</groupId>
+	<groupId>com.zebrunner</groupId>
 	<artifactId>carina-demo</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	<name>Carina Demo</name>
-	<url>http://www.qaprosoft.com/</url>
+	<url>http://www.zebrunner.com/</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>8.0.11</carina-core_version>
+		<carina-core_version>1.0.0</carina-core_version>
 		<carina-dataprovider.version>1.0.1</carina-dataprovider.version>
 		<carina-api.version>1.0.1</carina-api.version>
 		<carina-aws-s3.version>1.0.2</carina-aws-s3.version>
@@ -38,7 +38,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.qaprosoft</groupId>
+			<groupId>com.zebrunner</groupId>
 			<artifactId>carina-core</artifactId>
 			<version>${carina-core_version}</version>
 		</dependency>

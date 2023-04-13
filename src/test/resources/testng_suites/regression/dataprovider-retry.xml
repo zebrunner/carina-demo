@@ -5,7 +5,7 @@
 	<parameter name="jenkinsJobName" value="API-DataProvider-Retry"/>
 	<parameter name="jenkinsJobType" value="api"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="full_regression"/>
 	<parameter name="jenkinsRegressionMatrix_full_regression" value="retry_count:0; retry_count:1; retry_count:3; retry_count:5"/>
@@ -18,7 +18,7 @@
 
 	<test name="DataProvider with Retry">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.regression.dataprovider.DataproviderRetryTest">
+			<class name="com.zebrunner.carina.demo.regression.dataprovider.DataproviderRetryTest">
 				<methods>
 					<include name="testDataproviderRetry"/>
 				</methods>
