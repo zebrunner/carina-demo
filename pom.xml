@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>1.0.0.P1-SNAPSHOT</carina-core_version>
+		<carina-core_version>1.0.0</carina-core_version>
 		<carina-dataprovider.version>1.0.1</carina-dataprovider.version>
 		<carina-api.version>1.0.1</carina-api.version>
 		<carina-aws-s3.version>1.0.2</carina-aws-s3.version>
