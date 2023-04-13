@@ -47,9 +47,9 @@ public abstract class HomePageBase extends AbstractPage {
 
     public boolean isPageOpened() {
         boolean isPageOpened = super.isPageOpened();
-        if (isPageOpened) {
-            acceptCookies.clickIfPresent();
-        }
+//        if (isPageOpened) {
+//            acceptCookies.clickIfPresent();
+//        }
         return isPageOpened;
     }
 
