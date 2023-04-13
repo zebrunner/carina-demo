@@ -15,13 +15,12 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo.gui.pages.common;
 
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
 import com.zebrunner.carina.demo.gui.components.footer.FooterMenuBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
 public abstract class HomePageBase extends AbstractPage {
 
@@ -44,7 +43,14 @@ public abstract class HomePageBase extends AbstractPage {
     @Override
     public void open() {
         super.open();
-        acceptCookies.clickIfPresent();
+    }
+
+    public boolean isPageOpened() {
+        boolean isPageOpened = super.isPageOpened();
+        if (isPageOpened) {
+            acceptCookies.clickIfPresent();
+        }
+        return isPageOpened;
     }
 
 }
