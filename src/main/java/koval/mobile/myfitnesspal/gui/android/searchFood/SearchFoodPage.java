@@ -113,6 +113,7 @@ public class SearchFoodPage extends SearchFoodPageBase {
 
         if (getFoodTitleText().contains(food)) {
             addFoodPlusButtonList.get(0).click();
+            itemByText.format("Breakfast").clickIfPresent(TIMEOUT_FIVE);
         }
 
         return initPage(getDriver(), DiaryPageBase.class);

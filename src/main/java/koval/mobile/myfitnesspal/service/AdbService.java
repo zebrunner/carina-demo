@@ -61,6 +61,22 @@ public class AdbService extends AndroidService {
         pause(TIMEOUT_FIVE);
     }
 
+    public void swipeElementByCoordinates(int centerX, int centerY, int dX, int dY) {
+        LOGGER.info("Swipe element via ADB.");
+        String cmd = String.format("shell input touchscreen swipe %s %s %s %s 20000", centerX, centerY, dX, dY);
+        executor.executeAdbCommand(cmd);
+        pause(TIMEOUT_FIVE);
+    }
+
+
+    public String getDeviceDisplaySize() {
+        LOGGER.info("Get device display size via ADB");
+        String cmd = "shell wm size";
+        String deviceDisplaySize = executor.executeAdbCommand(cmd);
+        pause(TIMEOUT_FIVE);
+        return deviceDisplaySize;
+    }
+
 
     public int getScreenPhysicalDensity() {
         LOGGER.info("Get screen physical density via ADB");

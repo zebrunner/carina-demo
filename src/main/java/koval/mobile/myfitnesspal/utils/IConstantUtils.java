@@ -36,7 +36,7 @@ public interface IConstantUtils {
 
     int MEDIUM_SPEED = 1000;
 
-    int LOW_SPEED = 7000;
+    int LOW_SPEED = 8000;
 
     int HOME_PAGE = 3;
 
@@ -45,6 +45,10 @@ public interface IConstantUtils {
     String SPACE_FIELD = " ";
 
     String EMPTY_FIELD = "";
+
+    String DOT_VALUE = ".";
+
+    String COMMA_VALUE = ",";
 
     String ONE_VALUE = "one";
 
@@ -76,6 +80,8 @@ public interface IConstantUtils {
 
     String NUMBERS_ONLY = "[^0-9]";
 
+    String NUMBERS_AND_CROSS_CHARACTER_ONLY = "[^0-9]";
+
     String SAVE = "Save";
 
     String ACCEPT = "Accept";
@@ -91,6 +97,8 @@ public interface IConstantUtils {
     String SET = "Set";
 
     String SKIP = "Skip";
+
+    String SEARCH_FOR_FOOD = "Search for a food";
 
     String CANCEL = "Cancel";
 
@@ -134,7 +142,7 @@ public interface IConstantUtils {
 
     String UNITS_VALUE = "units";
 
-    String FITNESSPAL= "MyFitnessPal";
+    String FITNESSPAL = "MyFitnessPal";
 
     String CALORIES_WIDGET = "Calories";
 

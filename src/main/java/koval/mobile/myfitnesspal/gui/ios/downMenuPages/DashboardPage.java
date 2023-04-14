@@ -6,6 +6,7 @@ import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
+import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import org.openqa.selenium.WebDriver;
 
@@ -21,6 +22,11 @@ public class DashboardPage extends DashboardPageBase {
 
     @Override
     public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public SearchFoodPageBase clickSearchForFoodContainer() {
         throw new NotImplementedException();
     }
 

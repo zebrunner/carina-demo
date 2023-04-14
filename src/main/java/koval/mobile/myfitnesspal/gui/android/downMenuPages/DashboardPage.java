@@ -8,6 +8,7 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.DownMenuModal;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
+import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +43,14 @@ public class DashboardPage extends DashboardPageBase {
         return downMenuModal.openPageByName(downMenuElement);
     }
 
+
+    @Override
+    public SearchFoodPageBase clickSearchForFoodContainer() {
+
+        itemByText.format(SEARCH_FOR_FOOD).click();
+        return initPage(getDriver(), SearchFoodPageBase.class);
+
+    }
 
     @Override
     public boolean isUserPremium() {

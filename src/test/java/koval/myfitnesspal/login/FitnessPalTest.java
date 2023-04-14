@@ -3,6 +3,7 @@ package koval.myfitnesspal.login;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
+import com.zebrunner.carina.utils.android.AndroidService;
 import koval.mobile.myfitnesspal.gui.MyAbstractPage;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
@@ -12,10 +13,7 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods.CreateFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CreateMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
-import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
-import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
-import koval.mobile.myfitnesspal.service.enums.Meals;
-import koval.mobile.myfitnesspal.service.enums.TabsFromSearchFoodPage;
+import koval.mobile.myfitnesspal.service.enums.*;
 import koval.mobile.myfitnesspal.service.foodFactory.Food;
 import koval.mobile.myfitnesspal.service.foodFactory.FoodFactory;
 import koval.mobile.myfitnesspal.service.recipeFactory.Recipe;
@@ -24,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
@@ -41,8 +40,8 @@ public class FitnessPalTest extends LoginTest {
 
     private static final String MEAL_NAME = "meal_" + new Random().nextInt(100) + 1;
 
-    private static final int SIZE_VALUE_BY_X = 2;
-
+    private static final String APP_NAME = AppAndWidgets.FITNESSPAL.getAppName();
+    private static final String WIDGET_NAME = AppAndWidgets.FITNESSPAL.getFirstWidget();
 
     MyAbstractPage abstractPage;
 
@@ -171,27 +170,25 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test(groups = {"logoutWithoutCashClear"})
+    @Test(groups = {"logoutWithCashClear"})
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void searchButtonFromWidgetTest() {
+    public void searchButtonFromWidget2x2Test() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
         dashboardPageBase.pressKey(HOME_PAGE);
 
-
         PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
         phoneHomePageBase.holdPhoneDesktop();
 
+        phoneHomePageBase.tapWidgetButton();
 
-        PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton();
-        Assert.assertTrue(phoneWidgetPageBase.isPageOpened(), "[ WIDGET PAGE ] Widget page is not opened!");
-
-        phoneWidgetPageBase.addWidgetToDesktop(FITNESSPAL, CALORIES_WIDGET);
+        phoneHomePageBase.searchForApp(FITNESSPAL);
+        phoneHomePageBase.addWidgetToDesktop(CALORIES_WIDGET);
         Assert.assertTrue(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
                 String.format("[ PHONE HOME PAGE ] '%s' widget is not added! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
 
-        phoneHomePageBase.resizeWidgetByX(SIZE_VALUE_BY_X);
+        phoneHomePageBase.resizeWidgetByX(WidgetSize.SIZE_2X2);
 
         Assert.assertTrue(phoneHomePageBase.isSearchButtonPresent(TIMEOUT_FIFTEEN),
                 "[ PHONE HOME PAGE ] Search Button is not present in the widget!");
@@ -199,7 +196,38 @@ public class FitnessPalTest extends LoginTest {
 
         SearchFoodPageBase searchFoodPageBase = phoneHomePageBase.pressSearchButton();
         Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
-        Assert.assertTrue(adbService.isKeyBoardOpen(), "[ SEARCH FOOD PAGE ] KeyBoard is not opened!");
+        Assert.assertTrue(searchFoodPageBase.isKeyboardShown(), "[ SEARCH FOOD PAGE ] KeyBoard is not opened!");
 
     }
+
+
+    @Test(groups = {"logoutWithoutCashClear"})
+    @MethodOwner(owner = "dkoval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void logFoodFromWidget2x1Test() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+        dashboardPageBase.pressKey(HOME_PAGE);
+
+        PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
+        phoneHomePageBase.holdPhoneDesktop();
+
+        PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton().searchForApp(APP_NAME);
+        phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(WIDGET_NAME);
+        phoneHomePageBase.resizeWidgetByX(WidgetSize.SIZE_2X1);
+
+        double wasCaloriesCount = phoneHomePageBase.getCaloriesCountValueFromWidget();
+        dashboardPageBase = phoneHomePageBase.openAppFromWidget();
+
+        SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
+        searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
+        searchFoodPageBase.addFoodToMealByName(FOOD.get(FOOD_MEAL_INDEX));
+        dashboardPageBase.pressKey(HOME_PAGE);
+
+        double isCaloriesCount = phoneHomePageBase.getCaloriesCountValueFromWidget();
+
+        Assert.assertTrue(isCaloriesCount <= wasCaloriesCount,
+                "[ PHONE HOME PAGE ] Cals Remaining is not updated after logging food in the main app!");
+    }
+
 }

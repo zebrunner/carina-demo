@@ -60,7 +60,7 @@ public class LoginTest implements IMyInterface {
     }
 
 
-    @AfterMethod(onlyForGroups = {"logoutWithoutCashClear"})
+    @AfterMethod(onlyForGroups = {"adb shell clear"})
     public void logout() {
         adbService.closeApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
@@ -68,7 +68,7 @@ public class LoginTest implements IMyInterface {
 
         phoneHomePageBase.deleteWidget(FITNESSPAL);
 
-        Assert.assertTrue(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
+        Assert.assertFalse(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
                 String.format("[ PHONE HOME PAGE ] '%s' widget is not deleted! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
 
     }
