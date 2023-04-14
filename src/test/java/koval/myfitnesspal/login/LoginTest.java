@@ -60,7 +60,7 @@ public class LoginTest implements IMyInterface {
     }
 
 
-    @AfterMethod(onlyForGroups = {"adb shell clear"})
+    @AfterMethod(onlyForGroups = {"logoutWithoutCashClear"})
     public void logout() {
         adbService.closeApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
