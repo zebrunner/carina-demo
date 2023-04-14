@@ -18,6 +18,7 @@ public class DashboardPage extends DashboardPageBase {
         super(driver);
     }
 
+
     @Override
     public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
         throw new NotImplementedException();

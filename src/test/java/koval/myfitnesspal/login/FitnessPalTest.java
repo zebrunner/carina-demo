@@ -3,6 +3,9 @@ package koval.myfitnesspal.login;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
+import koval.mobile.myfitnesspal.gui.MyAbstractPage;
+import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
+import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
@@ -34,11 +37,16 @@ public class FitnessPalTest extends LoginTest {
 
     private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Water", "Cherries");
 
-    final static int FOOD_MEAL_INDEX = new Random().nextInt(FOOD.size());
+    private static final int FOOD_MEAL_INDEX = new Random().nextInt(FOOD.size());
 
-    final static String MEAL_NAME = "meal_" + new Random().nextInt(100) + 1;
+    private static final String MEAL_NAME = "meal_" + new Random().nextInt(100) + 1;
 
-    @Test()
+    private static final int SIZE_VALUE_BY_X = 2;
+
+
+    MyAbstractPage abstractPage;
+
+    @Test(groups = {"logoutWithCashClear"})
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void loginSimpleUserTest() {
@@ -49,7 +57,7 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test()
+    @Test(groups = {"logoutWithCashClear"})
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void addFoodTest() {
@@ -63,6 +71,7 @@ public class FitnessPalTest extends LoginTest {
         diaryPageBase.closePromoMessagesIfPresent();
 
         Meals[] mealsArr = Meals.values();
+
 
         for (int i = 0; i < Meals.values().length; i++) {
 
@@ -87,7 +96,7 @@ public class FitnessPalTest extends LoginTest {
         }
     }
 
-    @Test()
+    @Test(groups = {"logoutWithCashClear"})
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void addCreatedOwnFoodToBreakfastTest() {
@@ -162,4 +171,35 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
+    @Test(groups = {"logoutWithoutCashClear"})
+    @MethodOwner(owner = "dkoval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void searchButtonFromWidgetTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+        dashboardPageBase.pressKey(HOME_PAGE);
+
+
+        PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
+        phoneHomePageBase.holdPhoneDesktop();
+
+
+        PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton();
+        Assert.assertTrue(phoneWidgetPageBase.isPageOpened(), "[ WIDGET PAGE ] Widget page is not opened!");
+
+        phoneWidgetPageBase.addWidgetToDesktop(FITNESSPAL, CALORIES_WIDGET);
+        Assert.assertTrue(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
+                String.format("[ PHONE HOME PAGE ] '%s' widget is not added! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
+
+        phoneHomePageBase.resizeWidgetByX(SIZE_VALUE_BY_X);
+
+        Assert.assertTrue(phoneHomePageBase.isSearchButtonPresent(TIMEOUT_FIFTEEN),
+                "[ PHONE HOME PAGE ] Search Button is not present in the widget!");
+
+
+        SearchFoodPageBase searchFoodPageBase = phoneHomePageBase.pressSearchButton();
+        Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
+        Assert.assertTrue(adbService.isKeyBoardOpen(), "[ SEARCH FOOD PAGE ] KeyBoard is not opened!");
+
+    }
 }

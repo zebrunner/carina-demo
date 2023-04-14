@@ -29,6 +29,11 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
+    public boolean isPageOpened(Long timeout) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public WelcomePageBase signOut() {
         throw new NotImplementedException();
     }

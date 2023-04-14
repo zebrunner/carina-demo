@@ -4,6 +4,8 @@ package koval.mobile.myfitnesspal.utils;
 import java.util.Arrays;
 import java.util.List;
 
+import static koval.mobile.myfitnesspal.gui.IMyInterface.adbService;
+
 public interface IConstantUtils {
 
     int ONE_TIME = 1;
@@ -32,11 +34,17 @@ public interface IConstantUtils {
 
     int TWENTY_COUNT = 20;
 
-    int MEDIUM_SPEED = 600;
+    int MEDIUM_SPEED = 1000;
 
-    int LOW_SPEED = 4500;
+    int LOW_SPEED = 7000;
+
+    int HOME_PAGE = 3;
+
+    int BACK = 4;
 
     String SPACE_FIELD = " ";
+
+    String EMPTY_FIELD = "";
 
     String ONE_VALUE = "one";
 
@@ -66,6 +74,8 @@ public interface IConstantUtils {
 
     String NO_THANKS_ANSWER = "No Thanks";
 
+    String NUMBERS_ONLY = "[^0-9]";
+
     String SAVE = "Save";
 
     String ACCEPT = "Accept";
@@ -73,6 +83,8 @@ public interface IConstantUtils {
     String CHECKED = "checked";
 
     String LOGIN = "Log In";
+
+    String LOADING = "Loading…";
 
     String SIGNUP = "Sign Up";
 
@@ -102,7 +114,11 @@ public interface IConstantUtils {
 
     String HEIGHT = "height";
 
+    String HOME_STRING = "Home";
+
     String WEEKLY_GOAL = "Weekly Goal";
+
+    String WIDGETS_STRING = "Widgets";
 
     String CURRENT_WEIGHT = "current_weight";
 
@@ -110,12 +126,22 @@ public interface IConstantUtils {
 
     String DIARY_TEXT = "Diary";
 
+    String SNACKS = "Snacks";
+
     String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
 
     String EXERCISE_STRING = "Exercise";
 
     String UNITS_VALUE = "units";
 
+    String FITNESSPAL= "MyFitnessPal";
+
+    String CALORIES_WIDGET = "Calories";
+
+    String CONNECT_A_STEP_TRACKER = "Connect a step tracker";
+
     List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
+
+    int SCREEN_PHYSICAL_DENSITY = adbService.getScreenPhysicalDensity();
 
 }

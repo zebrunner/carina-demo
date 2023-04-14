@@ -16,7 +16,6 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DashboardPageBase.class)
 public class DashboardPage extends DashboardPageBase {
 
-
     @FindBy(id = "com.myfitnesspal.android:id/bottomNavigationBar")
     private DownMenuModal downMenuModal;
 
@@ -30,7 +29,6 @@ public class DashboardPage extends DashboardPageBase {
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
-
 
     @Override
     public boolean isPageOpened() {

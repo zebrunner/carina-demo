@@ -2,13 +2,12 @@ package koval.myfitnesspal.login;
 
 
 import com.zebrunner.carina.utils.R;
-import koval.mobile.myfitnesspal.gui.MyAbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
+import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.service.AdbService;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -21,7 +20,6 @@ public class LoginTest implements IMyInterface {
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    AdbService adbService = new AdbService();
 
 
 
@@ -55,9 +53,23 @@ public class LoginTest implements IMyInterface {
 
     }
 
-    @AfterMethod
-    public void logout() {
+    @AfterMethod(onlyForGroups = {"logoutWithCashClear"})
+    public void clearCashAndLogout() {
         adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
+
     }
 
+
+    @AfterMethod(onlyForGroups = {"logoutWithoutCashClear"})
+    public void logout() {
+        adbService.closeApp(AdbService.AppPackage.MY_FITNESS_PAL);
+
+        PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
+
+        phoneHomePageBase.deleteWidget(FITNESSPAL);
+
+        Assert.assertTrue(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
+                String.format("[ PHONE HOME PAGE ] '%s' widget is not deleted! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
+
+    }
 }
