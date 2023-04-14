@@ -1,9 +1,5 @@
 package koval.mobile.myfitnesspal.service.foodFactory;
 
-
-import koval.mobile.myfitnesspal.service.enums.Gender;
-import koval.mobile.myfitnesspal.service.enums.WeightMeasure;
-
 public class Food {
 
     private String brandName;

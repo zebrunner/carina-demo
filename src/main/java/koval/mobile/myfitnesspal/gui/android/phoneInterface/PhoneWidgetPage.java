@@ -46,11 +46,17 @@ public class PhoneWidgetPage extends PhoneWidgetPageBase {
     }
 
     @Override
-    public PhoneHomePageBase addWidgetToDesktop(String appName, String widgetName) {
+    public PhoneWidgetPageBase searchForApp(String appName) {
 
         searchWidgetField.type(appName);
 
         appTitle.format(appName).click();
+
+        return initPage(getDriver(), PhoneWidgetPageBase.class);
+    }
+
+    @Override
+    public PhoneHomePageBase addWidgetToDesktop(String widgetName) {
 
         int centerX = getCenterX(widgetContainer.format(widgetName));
 
