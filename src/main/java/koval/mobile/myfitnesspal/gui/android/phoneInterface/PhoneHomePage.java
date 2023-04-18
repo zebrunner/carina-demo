@@ -8,7 +8,6 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
 import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
-import koval.mobile.myfitnesspal.service.enums.Location;
 import koval.mobile.myfitnesspal.service.enums.WidgetSize;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -164,37 +163,27 @@ public class PhoneHomePage extends PhoneHomePageBase {
         return initPage(getDriver(), PhoneHomePageBase.class);
     }
 
-
     @Override
-    public PhoneHomePageBase resizeWidgetByX(WidgetSize sizeValue) {
+    public PhoneHomePageBase resizeWidget(WidgetSize desiredSizeValue, WidgetSize actualSizeValue) {
 
         if (!resizeWidgetFrame.isElementPresent(TIMEOUT_TEN)) {
             holdWidget(fitnessPalWidgetItem);
         }
 
-        int desiredX = sizeValue.getFirstValue() * SCREEN_PHYSICAL_DENSITY;
-        int desiredY = sizeValue.getSecondValue() * SCREEN_PHYSICAL_DENSITY;
+        int widgetWidth = resizeWidgetFrame.getSize().getWidth();
+        int widgetHeight = resizeWidgetFrame.getSize().getHeight();
 
-        int rightX = getCenterX(resizeHandlePoint.format(Location.RIGHT.getLocation()));
-        int rightY = getCenterY(resizeHandlePoint.format(Location.RIGHT.getLocation()));
+        int x = resizeWidgetFrame.getLocation().getX();
+        int y = resizeWidgetFrame.getLocation().getY();
 
-        int bottomX = getCenterX(resizeHandlePoint.format(Location.BOTTOM.getLocation()));
-        int bottomY = getCenterY(resizeHandlePoint.format(Location.BOTTOM.getLocation()));
+        int startX = x + widgetWidth;
+        int startY = y + widgetHeight;
 
-        switch (sizeValue) {
-            case SIZE_2X2:
-                swipe(rightX, rightY, desiredX, rightY, MEDIUM_SPEED);
+        int endX = x + (desiredSizeValue.getFirstValue() * (widgetWidth / actualSizeValue.getFirstValue()));
+        int endY = y + (desiredSizeValue.getSecondValue() * (widgetHeight / actualSizeValue.getSecondValue()));
 
-                break;
 
-            case SIZE_2X1:
-
-                swipe(rightY , rightY, desiredX, rightY, MEDIUM_SPEED);
-
-                swipe(bottomX, bottomY, bottomX, desiredY, MEDIUM_SPEED);
-
-                break;
-        }
+        swipe(startX, startY, endX, endY, MEDIUM_SPEED);
 
         pressKey(BACK);
 

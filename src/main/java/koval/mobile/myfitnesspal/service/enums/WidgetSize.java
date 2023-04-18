@@ -2,6 +2,8 @@ package koval.mobile.myfitnesspal.service.enums;
 
 public enum WidgetSize {
     SIZE_2X2(2, 2),
+    SIZE_5X1(5, 1),
+    SIZE_4X2(4, 2),
     SIZE_2X1(2, 1);
 
     public final int firstValue;

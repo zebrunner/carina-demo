@@ -188,7 +188,8 @@ public class FitnessPalTest extends LoginTest {
         Assert.assertTrue(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
                 String.format("[ PHONE HOME PAGE ] '%s' widget is not added! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
 
-        phoneHomePageBase.resizeWidgetByX(WidgetSize.SIZE_2X2);
+        phoneHomePageBase.resizeWidget(WidgetSize.SIZE_2X2, WidgetSize.SIZE_4X2);
+        ;
 
         Assert.assertTrue(phoneHomePageBase.isSearchButtonPresent(TIMEOUT_FIFTEEN),
                 "[ PHONE HOME PAGE ] Search Button is not present in the widget!");
@@ -214,7 +215,8 @@ public class FitnessPalTest extends LoginTest {
 
         PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton().searchForApp(APP_NAME);
         phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(WIDGET_NAME);
-        phoneHomePageBase.resizeWidgetByX(WidgetSize.SIZE_2X1);
+        phoneHomePageBase.resizeWidget(WidgetSize.SIZE_2X1, WidgetSize.SIZE_4X2);
+        ;
 
         double wasCaloriesCount = phoneHomePageBase.getCaloriesCountValueFromWidget();
         dashboardPageBase = phoneHomePageBase.openAppFromWidget();
@@ -228,6 +230,38 @@ public class FitnessPalTest extends LoginTest {
 
         Assert.assertTrue(isCaloriesCount <= wasCaloriesCount,
                 "[ PHONE HOME PAGE ] Cals Remaining is not updated after logging food in the main app!");
+    }
+
+
+    @Test(groups = {"logoutWithoutCashClear"})
+    @MethodOwner(owner = "dkoval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void resizeWidgetTo5x1Test() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+        dashboardPageBase.pressKey(HOME_PAGE);
+
+        PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
+        phoneHomePageBase.holdPhoneDesktop();
+
+        PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton().searchForApp(APP_NAME);
+        phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(WIDGET_NAME);
+        phoneHomePageBase.resizeWidget(WidgetSize.SIZE_5X1, WidgetSize.SIZE_4X2);
+
+        double wasCaloriesCount = phoneHomePageBase.getCaloriesCountValueFromWidget();
+        dashboardPageBase = phoneHomePageBase.openAppFromWidget();
+
+        SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
+        searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
+        searchFoodPageBase.addFoodToMealByName(FOOD.get(FOOD_MEAL_INDEX));
+        dashboardPageBase.pressKey(HOME_PAGE);
+
+        double isCaloriesCount = phoneHomePageBase.getCaloriesCountValueFromWidget();
+
+        Assert.assertTrue(isCaloriesCount <= wasCaloriesCount,
+                "[ PHONE HOME PAGE ] Cals Remaining is not updated after logging food in the main app!");
+
+
     }
 
 }

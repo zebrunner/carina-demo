@@ -36,7 +36,8 @@ public abstract class PhoneHomePageBase extends MyAbstractPage {
 
     public abstract PhoneHomePageBase deleteWidget(String widgetName);
 
-    public abstract PhoneHomePageBase resizeWidgetByX(WidgetSize sizeValue);
+
+    public abstract PhoneHomePageBase resizeWidget(WidgetSize desiredSizeValue, WidgetSize actualSizeValue);
 
     public abstract PhoneWidgetPageBase searchForApp(String appName);
 

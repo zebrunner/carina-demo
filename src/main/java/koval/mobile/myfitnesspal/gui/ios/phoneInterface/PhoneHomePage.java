@@ -68,7 +68,7 @@ public class PhoneHomePage extends PhoneHomePageBase {
     }
 
     @Override
-    public PhoneHomePageBase resizeWidgetByX(WidgetSize sizeValue) {
+    public PhoneHomePageBase resizeWidget(WidgetSize desiredSizeValue, WidgetSize actualSizeValue) {
         throw new NotImplementedException();
     }
 
