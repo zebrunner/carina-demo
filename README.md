@@ -20,7 +20,7 @@ Generate Eclipse workspace using command:
 mvn clean eclipse:eclipse
 ```
 
-### Run tests
+### Run tests 008 test2
 ```
 mvn clean test -Dsuite=api
 ```
