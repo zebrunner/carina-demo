@@ -18,7 +18,7 @@
 		<carina-aws-s3.version>1.0.1</carina-aws-s3.version>
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.9.3</zebrunner-agent.version>
-		<suite>web</suite>
+		<suite>api</suite>
 	</properties>
 
 	<repositories>
