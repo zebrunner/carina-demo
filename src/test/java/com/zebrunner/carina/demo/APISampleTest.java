@@ -42,11 +42,12 @@ import com.zebrunner.carina.core.registrar.tag.TestPriority;
 public class APISampleTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    String s = null;
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
-        LOGGER.info("test");
+        LOGGER.info("test: " + s);
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
