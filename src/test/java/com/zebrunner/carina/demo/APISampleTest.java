@@ -48,7 +48,7 @@ public class APISampleTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
         LOGGER.info("test: " + s);
-        LOGGER.info(s.lenght());
+        LOGGER.info(s.length());
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
