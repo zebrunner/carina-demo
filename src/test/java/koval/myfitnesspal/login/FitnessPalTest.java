@@ -3,27 +3,30 @@ package koval.myfitnesspal.login;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
-import com.zebrunner.carina.utils.android.AndroidService;
-import koval.mobile.myfitnesspal.gui.MyAbstractPage;
+import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.CardiovascularPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.NewCardioExercisePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myFoods.CreateFoodPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myMeals.CreateMealPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myFoods.CreateFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
 import koval.mobile.myfitnesspal.service.enums.*;
-import koval.mobile.myfitnesspal.service.foodFactory.Food;
-import koval.mobile.myfitnesspal.service.foodFactory.FoodFactory;
-import koval.mobile.myfitnesspal.service.recipeFactory.Recipe;
-import koval.mobile.myfitnesspal.service.recipeFactory.RecipeFactory;
+import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExercise;
+import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExerciseFactory;
+import koval.mobile.myfitnesspal.service.factories.foodFactory.Food;
+import koval.mobile.myfitnesspal.service.factories.foodFactory.FoodFactory;
+import koval.mobile.myfitnesspal.service.factories.recipeFactory.Recipe;
+import koval.mobile.myfitnesspal.service.factories.recipeFactory.RecipeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
+import java.awt.*;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +46,7 @@ public class FitnessPalTest extends LoginTest {
     private static final String APP_NAME = AppAndWidgets.FITNESSPAL.getAppName();
     private static final String WIDGET_NAME = AppAndWidgets.FITNESSPAL.getFirstWidget();
 
-    MyAbstractPage abstractPage;
+    MyAbstractPageBase abstractPage;
 
     @Test(groups = {"logoutWithCashClear"})
     @MethodOwner(owner = "koval")
@@ -66,7 +69,7 @@ public class FitnessPalTest extends LoginTest {
         DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
         Assert.assertTrue(diaryPageBase.isPageOpened(), "[ DIARY PAGE ] Diary page is not opened!");
 
-        diaryPageBase.deleteAllFood();
+        diaryPageBase.deleteAllItems();
         diaryPageBase.closePromoMessagesIfPresent();
 
         Meals[] mealsArr = Meals.values();
@@ -81,12 +84,12 @@ public class FitnessPalTest extends LoginTest {
             searchFoodPageBase.searchFood(FOOD.get(i));
             searchFoodPageBase.addFoodToMealByName(FOOD.get(i));
 
-            diaryPageBase = searchFoodPageBase.clickBackButton();
+            searchFoodPageBase.clickBackButton();
             Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(i), mealsArr[i]), String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: '%s'",
                     FOOD.get(i), mealsArr[i]));
         }
 
-        diaryPageBase.deleteAllFood();
+        diaryPageBase.deleteAllItems();
 
         for (Meals meals : Meals.values()) {
             Assert.assertTrue(diaryPageBase.isAllFoodDeletedForMeal(meals), String.format("[ DIARY PAGE ] Food is not deleted! Meal: '%s'",
@@ -103,7 +106,7 @@ public class FitnessPalTest extends LoginTest {
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
         DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
-        diaryPageBase.deleteAllFood();
+        diaryPageBase.deleteAllItems();
 
 
         SearchFoodPageBase searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
@@ -127,8 +130,7 @@ public class FitnessPalTest extends LoginTest {
         createMealPageBase.clickSaveButton();
 
         searchFoodPageBase.addFoodToMealByName(MEAL_NAME);
-
-        diaryPageBase = searchFoodPageBase.clickBackButton();
+        searchFoodPageBase.clickBackButton();
 
 
         Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(FOOD_MEAL_INDEX), Meals.BREAKFAST),
@@ -170,7 +172,7 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test(groups = {"logoutWithCashClear"})
+    @Test(groups = {"logoutWithoutCashClear"})
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void searchButtonFromWidget2x2Test() {
@@ -181,14 +183,10 @@ public class FitnessPalTest extends LoginTest {
         PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
         phoneHomePageBase.holdPhoneDesktop();
 
-        phoneHomePageBase.tapWidgetButton();
+        PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton().searchForApp(APP_NAME);
+        phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(WIDGET_NAME);
+        phoneHomePageBase.resizeWidgetFromTo(WidgetSize.SIZE_4X2, WidgetSize.SIZE_2X2);
 
-        phoneHomePageBase.searchForApp(FITNESSPAL);
-        phoneHomePageBase.addWidgetToDesktop(CALORIES_WIDGET);
-        Assert.assertTrue(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
-                String.format("[ PHONE HOME PAGE ] '%s' widget is not added! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
-
-        phoneHomePageBase.resizeWidgetByX(WidgetSize.SIZE_2X2);
 
         Assert.assertTrue(phoneHomePageBase.isSearchButtonPresent(TIMEOUT_FIFTEEN),
                 "[ PHONE HOME PAGE ] Search Button is not present in the widget!");
@@ -214,9 +212,10 @@ public class FitnessPalTest extends LoginTest {
 
         PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton().searchForApp(APP_NAME);
         phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(WIDGET_NAME);
-        phoneHomePageBase.resizeWidgetByX(WidgetSize.SIZE_2X1);
+        phoneHomePageBase.resizeWidgetFromTo(WidgetSize.SIZE_4X2, WidgetSize.SIZE_2X1);
 
-        double wasCaloriesCount = phoneHomePageBase.getCaloriesCountValueFromWidget();
+
+        double wasCaloriesCount = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
         dashboardPageBase = phoneHomePageBase.openAppFromWidget();
 
         SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
@@ -224,10 +223,80 @@ public class FitnessPalTest extends LoginTest {
         searchFoodPageBase.addFoodToMealByName(FOOD.get(FOOD_MEAL_INDEX));
         dashboardPageBase.pressKey(HOME_PAGE);
 
-        double isCaloriesCount = phoneHomePageBase.getCaloriesCountValueFromWidget();
+        double isCaloriesCount = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
 
         Assert.assertTrue(isCaloriesCount <= wasCaloriesCount,
                 "[ PHONE HOME PAGE ] Cals Remaining is not updated after logging food in the main app!");
+    }
+
+
+    @Test(groups = {"logoutWithoutCashClear"})
+    @MethodOwner(owner = "dkoval")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void resizeWidgetTo5x1Test() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
+        DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
+        Assert.assertTrue(diaryPageBase.isPageOpened(), "[ DIARY PAGE ] Diary page is not opened!");
+        diaryPageBase.deleteAllItems();
+
+        dashboardPageBase = (DashboardPageBase) diaryPageBase.openPageFromDownMenuByName(DownMenuElement.DASHBOARD);
+        dashboardPageBase.closeUserTutorialBoxIfPresent();
+        Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+        dashboardPageBase.pressKey(HOME_PAGE);
+
+        PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
+        phoneHomePageBase.holdPhoneDesktop();
+
+        PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton().searchForApp(APP_NAME);
+        phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(WIDGET_NAME);
+        phoneHomePageBase.resizeWidgetFromTo(WidgetSize.SIZE_4X2, WidgetSize.SIZE_5X1);
+
+        int foodCaloriesFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.FOOD);
+        int exerciseCaloriesFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.EXERCISE);
+        int caloriesRemainingFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
+
+        dashboardPageBase = phoneHomePageBase.openAppFromWidget();
+
+        SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
+        Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
+        searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
+        searchFoodPageBase.addFoodToMealByName(FOOD.get(FOOD_MEAL_INDEX));
+        searchFoodPageBase.clickBackButton();
+
+        diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
+        Assert.assertTrue(diaryPageBase.isPageOpened(), "[ DIARY PAGE ] Diary page is not opened!");
+
+        int foodCalories = diaryPageBase.getCaloriesFromCategory(Meals.BREAKFAST.getMeal());
+
+        CardiovascularPageBase cardiovascularPageBase = (CardiovascularPageBase) diaryPageBase.clickAddExerciseButton(ExercisesType.CARDIOVASCULAR);
+        Assert.assertTrue(cardiovascularPageBase.isPageOpened(), "[ CARDIO PAGE ] Cardio page is not opened!");
+
+        NewCardioExercisePageBase newCardioExercisePage = cardiovascularPageBase.clickOnCreateExerciseButton();
+        Assert.assertTrue(newCardioExercisePage.isPageOpened(), "[ CREATE NEW CARDIO EXERCISE PAGE ] Create new cardio exercise page is not opened!");
+
+        CardioExercise cardioExercise = CardioExerciseFactory.generateExercise();
+        diaryPageBase = newCardioExercisePage.createAnExercise(cardioExercise);
+        diaryPageBase.closeAdvertisingPopUpIfPresent();
+
+        int exerciseCalories = diaryPageBase.getCaloriesFromCategory(EXERCISE_STRING);
+
+        diaryPageBase.pressKey(HOME_PAGE);
+
+        int actualFoodCaloriesFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.FOOD);
+        int actualExerciseCaloriesFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.EXERCISE);
+        int actualCaloriesRemainingFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
+
+        int expectedFoodCaloriesFromWidget = foodCaloriesFromWidget + foodCalories;
+        int expectedExerciseCaloriesFromWidget = exerciseCaloriesFromWidget + exerciseCalories;
+        int expectedCaloriesRemainingFromWidget = caloriesRemainingFromWidget - expectedFoodCaloriesFromWidget + expectedExerciseCaloriesFromWidget;
+
+        Assert.assertEquals(actualCaloriesRemainingFromWidget, expectedCaloriesRemainingFromWidget, "[ PHONE HOME PAGE ] Cals Remaining is not updated!");
+        Assert.assertEquals(actualFoodCaloriesFromWidget, expectedFoodCaloriesFromWidget, "[ PHONE HOME PAGE ] Total food logged Value is not updated!");
+        Assert.assertEquals(actualExerciseCaloriesFromWidget, expectedExerciseCaloriesFromWidget, "[ PHONE HOME PAGE ] Total exercise logged Value is not updated!");
+
+
     }
 
 }

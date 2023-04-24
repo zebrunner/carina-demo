@@ -8,7 +8,7 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.CreateAccountPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
-import koval.mobile.myfitnesspal.service.accountFactory.Account;
+import koval.mobile.myfitnesspal.service.factories.accountFactory.Account;
 import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;
 import koval.mobile.myfitnesspal.service.enums.HeightMeasure;

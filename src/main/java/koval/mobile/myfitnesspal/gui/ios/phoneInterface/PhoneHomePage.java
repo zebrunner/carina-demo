@@ -8,8 +8,10 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.service.enums.Calories;
 import koval.mobile.myfitnesspal.service.enums.WidgetSize;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
 
@@ -22,7 +24,7 @@ public class PhoneHomePage extends PhoneHomePageBase {
     }
 
     @Override
-    public double getCaloriesCountValueFromWidget() {
+    public int getCaloriesValueFromWidget(Calories calories) {
         throw new NotImplementedException();
     }
 
@@ -68,17 +70,12 @@ public class PhoneHomePage extends PhoneHomePageBase {
     }
 
     @Override
-    public PhoneHomePageBase resizeWidgetByX(WidgetSize sizeValue) {
+    public PhoneHomePageBase resizeWidgetFromTo (WidgetSize actualSizeValue, WidgetSize desiredSizeValue) {
         throw new NotImplementedException();
     }
 
     @Override
     public PhoneWidgetPageBase searchForApp(String appName) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public PhoneWidgetPageBase addWidgetToDesktop(String widgetName) {
         throw new NotImplementedException();
     }
 

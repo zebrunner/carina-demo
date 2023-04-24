@@ -87,20 +87,4 @@ public class AdbService extends AndroidService {
     }
 
 
-    public boolean isKeyBoardOpen() {
-        LOGGER.info("Check if keyboard is open via ADB");
-        String cmd = "shell dumpsys input_method | grep mInputShown";
-        boolean isKeyBoardOpenValue = Boolean.parseBoolean(String.valueOf(executor.executeAdbCommand(cmd).contains("true")));
-        LOGGER.info("KeyBoard is open: {}", isKeyBoardOpenValue);
-        pause(TIMEOUT_FIVE);
-        return isKeyBoardOpenValue;
-    }
-
-
-    public void setDarkMode(String yesNo) {
-        LOGGER.info("Set Dark Mode: " + yesNo);
-        String cmd = String.format("shell cmd uimode night %s", yesNo);
-        executor.executeAdbCommand(cmd);
-        pause(TIMEOUT_FIVE);
-    }
 }

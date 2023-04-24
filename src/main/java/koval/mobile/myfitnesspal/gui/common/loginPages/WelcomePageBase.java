@@ -1,10 +1,10 @@
 package koval.mobile.myfitnesspal.gui.common.loginPages;
 
-import koval.mobile.myfitnesspal.gui.MyAbstractPage;
+import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
 import org.openqa.selenium.WebDriver;
 
 
-public abstract class WelcomePageBase extends MyAbstractPage {
+public abstract class WelcomePageBase extends MyAbstractPageBase {
 
     public WelcomePageBase(WebDriver driver) {
         super(driver);
