@@ -212,22 +212,4 @@ public class PhoneHomePage extends PhoneHomePageBase {
         return initPage(getDriver(), PhoneWidgetPageBase.class);
     }
 
-//    @Override
-//    public PhoneWidgetPageBase addWidgetToDesktop(String widgetName) {
-//
-//        int centerX = getCenterX(widgetContainer.format(widgetName));
-//
-//        int centerY = getCenterY(widgetContainer.format(widgetName));
-//        int upperY = (centerY - widgetContainer.format(widgetName).getLocation().getY()) / 2;
-//        int desiredY = centerY - upperY;
-//
-//        adbService.holdElementByCoordinates(centerX, desiredY);
-//
-//        if (!isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN)) {
-//            Assert.fail("[ PHONE HOME PAGE ] '%s' widget is not added! App name '%s'\", FITNESSPAL, CALORIES_WIDGET)");
-//        }
-//
-//        return initPage(getDriver(), PhoneWidgetPageBase.class);
-//    }
-
 }
