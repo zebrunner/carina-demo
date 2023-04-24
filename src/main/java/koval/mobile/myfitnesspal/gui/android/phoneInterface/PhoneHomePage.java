@@ -7,8 +7,10 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
-import koval.mobile.myfitnesspal.gui.common.searchFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.service.enums.Calories;
 import koval.mobile.myfitnesspal.service.enums.WidgetSize;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,7 +42,8 @@ public class PhoneHomePage extends PhoneHomePageBase {
     @FindBy(id = "com.myfitnesspal.android:id/imageWidgetCaloriesSearch")
     private ExtendedWebElement widgetCaloriesSearchImage;
 
-    @FindBy(id = "com.myfitnesspal.android:id/textCaloriesCount")
+
+    @FindBy(id = "com.myfitnesspal.android:id/textCalories%sCount")
     private ExtendedWebElement caloriesCount;
 
     @FindBy(id = "com.google.android.apps.nexuslauncher:id/widgets_search_bar_edit_text")
@@ -61,53 +64,45 @@ public class PhoneHomePage extends PhoneHomePageBase {
 
 
     @Override
-    public double getCaloriesCountValueFromWidget() {
+    public int getCaloriesValueFromWidget(Calories calories) {
 
-        if (!caloriesCount.isElementPresent(TIMEOUT_TEN)) {
-            Assert.fail("[ PHONE HOME PAGE] There is no Calories Count element");
+        String caloriesType = calories.getCaloriesType();
+        if (!caloriesCount.format(caloriesType).isElementPresent(TIMEOUT_TEN)) {
+            Assert.fail(String.format("[ PHONE HOME PAGE] There is no %s Calories Count element", caloriesType));
         }
 
-        double caloriesCountValue = Double.parseDouble(caloriesCount.getText().replaceAll(COMMA_VALUE, DOT_VALUE));
-        LOGGER.info("Calories count value: {}", caloriesCountValue);
+        int caloriesCountValue = Integer.parseInt(caloriesCount.format(caloriesType).getText().replaceAll(COMMA_VALUE, ""));
+        LOGGER.info("{} Calories count value: {}", caloriesType, caloriesCountValue);
 
         return caloriesCountValue;
-
     }
 
+
     public AbstractPage holdElement(ExtendedWebElement extendedWebElement, Class<? extends AbstractPage> className) {
-
-        int centerX = getCenterX(extendedWebElement);
-        int centerY = getCenterY(extendedWebElement);
-
-        adbService.holdElementByCoordinates(centerX, centerY);
-
+        longTap(extendedWebElement);
         return initPage(getDriver(), className);
     }
 
     public AbstractPage tapElement(ExtendedWebElement extendedWebElement, Class<? extends AbstractPage> className) {
 
         extendedWebElement.click();
-
         return initPage(getDriver(), className);
     }
 
     @Override
     public PhoneHomePageBase holdPhoneDesktop() {
-
         return (PhoneHomePageBase) holdElement(itemByContent.format(HOME_STRING), PhoneHomePageBase.class);
     }
 
 
     @Override
     public PhoneHomePageBase holdWidget(ExtendedWebElement widget) {
-
         return (PhoneHomePageBase) holdElement(widget, PhoneHomePageBase.class);
     }
 
 
     @Override
     public boolean isSearchButtonPresent(int timeout) {
-
         waitUntil(ExpectedConditions.invisibilityOfElementLocated(itemByText.format(LOADING).getBy()), TIMEOUT_TWENTY);
 
         return widgetCaloriesSearchImage.isElementPresent(timeout);
@@ -124,21 +119,29 @@ public class PhoneHomePage extends PhoneHomePageBase {
     @Override
     public SearchFoodPageBase pressSearchButton() {
 
+        if (!fitnessPalWidgetItem.isElementPresent(TIMEOUT_TEN)) {
+            pressKey(BACK);
+        }
+
         return (SearchFoodPageBase) tapElement(widgetCaloriesSearchImage, SearchFoodPageBase.class);
     }
 
     @Override
     public DashboardPageBase openAppFromWidget() {
 
+        if (!fitnessPalWidgetItem.isElementPresent(TIMEOUT_TEN)) {
+            pressKey(BACK);
+        }
+
         return (DashboardPageBase) tapElement(fitnessPalWidgetItem, DashboardPageBase.class);
     }
+
 
     @Override
     public PhoneWidgetPageBase tapWidgetButton() {
         return (PhoneWidgetPageBase) tapElement(itemByText.format(WIDGETS_STRING), PhoneWidgetPageBase.class);
 
     }
-
 
     @Override
     public PhoneHomePageBase deleteWidget(String widgetName) {
@@ -148,6 +151,7 @@ public class PhoneHomePage extends PhoneHomePageBase {
         }
 
         int attemp = 3;
+        int desiredY = adbService.getScreenPhysicalDensity();
         while (resizeWidgetFrame.isElementPresent(TIMEOUT_FIFTEEN) && attemp > 0) {
             int centerX = getCenterX(resizeWidgetFrame);
             int centerY = getCenterY(resizeWidgetFrame);
@@ -155,16 +159,18 @@ public class PhoneHomePage extends PhoneHomePageBase {
             String deviceDisplaySizeByX = adbService.getDeviceDisplaySize().substring(0, adbService.getDeviceDisplaySize().indexOf('x'));
             int desiredX = Integer.parseInt(deviceDisplaySizeByX.replaceAll(NUMBERS_ONLY, EMPTY_FIELD)) / 2;
 
-            adbService.swipeElementByCoordinates(centerX, centerY, desiredX, SCREEN_PHYSICAL_DENSITY);
+            adbService.swipeElementByCoordinates(centerX, centerY, desiredX, desiredY);
 
+            desiredY -= 100;
             attemp--;
+
         }
 
         return initPage(getDriver(), PhoneHomePageBase.class);
     }
 
     @Override
-    public PhoneHomePageBase resizeWidget(WidgetSize desiredSizeValue, WidgetSize actualSizeValue) {
+    public PhoneHomePageBase resizeWidgetFromTo(WidgetSize actualSizeValue, WidgetSize desiredSizeValue) {
 
         if (!resizeWidgetFrame.isElementPresent(TIMEOUT_TEN)) {
             holdWidget(fitnessPalWidgetItem);
@@ -173,17 +179,17 @@ public class PhoneHomePage extends PhoneHomePageBase {
         int widgetWidth = resizeWidgetFrame.getSize().getWidth();
         int widgetHeight = resizeWidgetFrame.getSize().getHeight();
 
-        int x = resizeWidgetFrame.getLocation().getX();
-        int y = resizeWidgetFrame.getLocation().getY();
+        int topX = resizeWidgetFrame.getLocation().getX();
+        int topY = resizeWidgetFrame.getLocation().getY();
 
-        int startX = x + widgetWidth;
-        int startY = y + widgetHeight;
+        int startBottomX = topX + widgetWidth;
+        int startBottomY = topY + widgetHeight;
 
-        int endX = x + (desiredSizeValue.getFirstValue() * (widgetWidth / actualSizeValue.getFirstValue()));
-        int endY = y + (desiredSizeValue.getSecondValue() * (widgetHeight / actualSizeValue.getSecondValue()));
+        int endX = topX + (desiredSizeValue.getFirstValue() * (widgetWidth / actualSizeValue.getFirstValue()));
+        int endY = topY + (desiredSizeValue.getSecondValue() * (widgetHeight / actualSizeValue.getSecondValue()));
 
 
-        swipe(startX, startY, endX, endY, MEDIUM_SPEED);
+        swipe(startBottomX, startBottomY, endX, endY, MEDIUM_SPEED);
 
         pressKey(BACK);
 
@@ -206,22 +212,22 @@ public class PhoneHomePage extends PhoneHomePageBase {
         return initPage(getDriver(), PhoneWidgetPageBase.class);
     }
 
-    @Override
-    public PhoneWidgetPageBase addWidgetToDesktop(String widgetName) {
-
-        int centerX = getCenterX(widgetContainer.format(widgetName));
-
-        int centerY = getCenterY(widgetContainer.format(widgetName));
-        int upperY = (centerY - widgetContainer.format(widgetName).getLocation().getY()) / 2;
-        int desiredY = centerY - upperY;
-
-        adbService.holdElementByCoordinates(centerX, desiredY);
-
-        if (!isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN)) {
-            Assert.fail("[ PHONE HOME PAGE ] '%s' widget is not added! App name '%s'\", FITNESSPAL, CALORIES_WIDGET)");
-        }
-
-        return initPage(getDriver(), PhoneWidgetPageBase.class);
-    }
+//    @Override
+//    public PhoneWidgetPageBase addWidgetToDesktop(String widgetName) {
+//
+//        int centerX = getCenterX(widgetContainer.format(widgetName));
+//
+//        int centerY = getCenterY(widgetContainer.format(widgetName));
+//        int upperY = (centerY - widgetContainer.format(widgetName).getLocation().getY()) / 2;
+//        int desiredY = centerY - upperY;
+//
+//        adbService.holdElementByCoordinates(centerX, desiredY);
+//
+//        if (!isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN)) {
+//            Assert.fail("[ PHONE HOME PAGE ] '%s' widget is not added! App name '%s'\", FITNESSPAL, CALORIES_WIDGET)");
+//        }
+//
+//        return initPage(getDriver(), PhoneWidgetPageBase.class);
+//    }
 
 }

@@ -2,6 +2,7 @@ package koval.mobile.myfitnesspal.service.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.*;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
 
 public enum DownMenuElement {
     DASHBOARD("Dashboard", 0, DashboardPageBase.class),

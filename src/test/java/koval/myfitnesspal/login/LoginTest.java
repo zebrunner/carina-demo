@@ -8,6 +8,7 @@ import koval.mobile.myfitnesspal.gui.IMyInterface;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.service.AdbService;
+import koval.mobile.myfitnesspal.utils.IConstantUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -68,7 +69,7 @@ public class LoginTest implements IMyInterface {
 
         phoneHomePageBase.deleteWidget(FITNESSPAL);
 
-        Assert.assertFalse(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIFTEEN),
+        Assert.assertFalse(phoneHomePageBase.isFitnessPalWidgetPresent(TIMEOUT_FIVE),
                 String.format("[ PHONE HOME PAGE ] '%s' widget is not deleted! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
 
     }

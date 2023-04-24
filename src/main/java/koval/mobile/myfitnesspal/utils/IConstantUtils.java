@@ -134,6 +134,8 @@ public interface IConstantUtils {
 
     String DIARY_TEXT = "Diary";
 
+    String NEW_EXERCISE_TEXT = "New Exercise";
+
     String SNACKS = "Snacks";
 
     String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
@@ -146,10 +148,15 @@ public interface IConstantUtils {
 
     String CALORIES_WIDGET = "Calories";
 
+    String STRENGTH_TEXT = "Strength";
+
+    String CARDIO_TEXT = "Cardio";
+
+    String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";
     String CONNECT_A_STEP_TRACKER = "Connect a step tracker";
 
     List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
 
-    int SCREEN_PHYSICAL_DENSITY = adbService.getScreenPhysicalDensity();
+    List<String> MY_EXERCISES = Arrays.asList("running", "dancing", "walking", "swimming");
 
 }
