@@ -25,4 +25,4 @@ main
 ```
 mvn clean test -Dsuite=api
 
-
+тест
