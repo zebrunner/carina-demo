@@ -5,7 +5,7 @@
 	<parameter name="jenkinsJobName" value="Web-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
   
 	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
 
@@ -16,7 +16,7 @@
 
 	<test name="GSM arena web tests">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.WebSampleTest" />
+			<class name="com.zebrunner.carina.demo.WebSampleTest" />
 		</classes>
 	</test>
 

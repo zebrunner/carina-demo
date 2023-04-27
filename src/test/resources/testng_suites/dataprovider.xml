@@ -5,7 +5,7 @@
 	<parameter name="jenkinsJobName" value="API-CustomParams-Demo"/>
 	<parameter name="jenkinsJobType" value="api"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="api_regression, full_regression"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
@@ -24,7 +24,7 @@
 		<parameter name="b" value="3"/>
 		<parameter name="c" value="9"/>
 		<classes>
-			<class name="com.qaprosoft.carina.demo.DataProvidersSampleTest">
+			<class name="com.zebrunner.carina.demo.DataProvidersSampleTest">
 				<methods>
 					<include name="testSubtractOperation"/>
 					<include name="testMultiplyOperation"/>
@@ -35,7 +35,7 @@
 
 	<test name="Sum operation test" parallel="methods">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.CustomDataProvidersSampleTest">
+			<class name="com.zebrunner.carina.demo.CustomDataProvidersSampleTest">
 				<methods>
 					<include name="testXlsSumOperation"/>
 					<include name="testCsvSumOperation"/>
@@ -47,7 +47,7 @@
 
 	<test name="Group by country operation test" parallel="methods">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.CustomDataProvidersSampleTest">
+			<class name="com.zebrunner.carina.demo.CustomDataProvidersSampleTest">
 				<methods>
 					<include name="testDataSourceGroup"/>
 				</methods>
@@ -58,7 +58,7 @@
 	<test name="Data provider static parameter test" parallel="methods">
 		<parameter name="expectedValue" value="arg"/>
         <classes>
-            <class name="com.qaprosoft.carina.demo.CustomDataProvidersSampleTest">
+            <class name="com.zebrunner.carina.demo.CustomDataProvidersSampleTest">
                 <methods>
                     <include name="staticParamTest"/>
                 </methods>
@@ -72,7 +72,7 @@
 		<parameter name="{ds_execute_column}" value="To test"/>
 		<parameter name="{ds_execute_value}" value="+"/>
 		<classes>
-			<class name="com.qaprosoft.carina.demo.CustomDataProvidersSampleTest">
+			<class name="com.zebrunner.carina.demo.CustomDataProvidersSampleTest">
 				<methods>
 					<include name="testDataSourceGroup"/>
 				</methods>

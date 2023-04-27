@@ -5,7 +5,7 @@
     <parameter name="jenkinsJobName" value="Auto-Download-Test"/>
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>
-    <parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+    <parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
 
     <parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
 
@@ -13,7 +13,7 @@
 
     <test name="Auto download test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.AutoDownloadTest" />
+            <class name="com.zebrunner.carina.demo.AutoDownloadTest" />
         </classes>
     </test>
 

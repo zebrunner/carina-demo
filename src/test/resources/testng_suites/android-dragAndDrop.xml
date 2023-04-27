@@ -5,7 +5,7 @@
     <parameter name="provider" value="mcloud"/>
     <parameter name="jenkinsJobName" value="Mobile-Android-DragAndDrop-Test" />
     <parameter name="jenkinsJobType" value="android"/>
-    <parameter name="jenkinsEmail" value="demo@qaprosoft.com" />
+    <parameter name="jenkinsEmail" value="demo@zebrunner.com" />
     <parameter name="jenkinsEnvironments" value="DEMO" />
 
     <parameter name="jenkinsMobileDefaultPool" value="ANY" />
@@ -17,7 +17,7 @@
 
     <test name="Mobile drag and drop test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.MobileDragAndDropTest" />
+            <class name="com.zebrunner.carina.demo.MobileDragAndDropTest" />
         </classes>
     </test>
 

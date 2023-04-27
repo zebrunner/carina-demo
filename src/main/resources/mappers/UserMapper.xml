@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.qaprosoft.carina.demo.db.mappers.UserMapper">
+<mapper namespace="com.zebrunner.carina.demo.db.mappers.UserMapper">
 
 	<insert id="create" useGeneratedKeys="true" keyProperty="id">
 		<![CDATA[
@@ -99,7 +99,7 @@
 		]]>
 	</delete>
 
-	<resultMap type="com.qaprosoft.carina.demo.db.models.User"
+	<resultMap type="com.zebrunner.carina.demo.db.models.User"
 		id="UserResultMap" autoMapping="false">
 		<id column="USER_ID" property="id" />
 		<result column="USER_USERNAME" property="username" />
@@ -109,8 +109,8 @@
 		<result column="USER_EMAIL" property="email" />
 		<result column="USER_STATUS" property="status" />
 		<collection property="preferences"
-			ofType="com.qaprosoft.carina.demo.db.models.UserPreference"
-			resultMap="com.qaprosoft.carina.demo.db.mappers.UserPreferenceMapper.UserPreferenceResultMap" />
+			ofType="com.zebrunner.carina.demo.db.models.UserPreference"
+			resultMap="com.zebrunner.carina.demo.db.mappers.UserPreferenceMapper.UserPreferenceResultMap" />
 	</resultMap>
 
 </mapper>

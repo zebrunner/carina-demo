@@ -17,7 +17,7 @@
 
 	<test name="Safari test">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.IOSSafariTest" />
+			<class name="com.zebrunner.carina.demo.IOSSafariTest" />
 		</classes>
 	</test>
 
