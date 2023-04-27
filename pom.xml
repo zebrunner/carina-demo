@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>1.0.0</carina-core_version>
+		<carina-core_version>1.0.1.P3-SNAPSHOT</carina-core_version>
 		<carina-dataprovider.version>1.0.1</carina-dataprovider.version>
 		<carina-api.version>1.0.1</carina-api.version>
 		<carina-aws-s3.version>1.0.2</carina-aws-s3.version>
@@ -57,6 +57,12 @@
 			<groupId>com.zebrunner</groupId>
 			<artifactId>carina-api</artifactId>
 			<version>${carina-api.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.netty</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.zebrunner</groupId>
