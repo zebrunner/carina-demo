@@ -48,7 +48,7 @@ public class CompareModelsPage extends CompareModelsPageBase {
     public List<ModelSpecs> compareModels(String... models) {
         CandidateBlock candidateBlock;
         List<ModelSpecs> modelSpecs = new ArrayList<>();
-        waitUntil(ExpectedConditions.presenceOfElementLocated(compareMenu.getBy()), (Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT)));
+        waitUntil(ExpectedConditions.presenceOfElementLocated(compareMenu.getBy().get()), (Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT)));
         ModelSpecs modelSpec;
         for (int index = 0; index < models.length; index++) {
             modelSpec = new ModelSpecs();

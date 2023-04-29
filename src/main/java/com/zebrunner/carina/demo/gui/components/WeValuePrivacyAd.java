@@ -31,10 +31,6 @@ public class WeValuePrivacyAd extends AbstractUIObject {
 		super(driver, searchContext);
 	}
 
-	public WeValuePrivacyAd(WebDriver driver) {
-		super(driver);
-	}
-
 	public void closeAdIfPresent() {
 		okBtn.clickIfPresent();
 	}

@@ -325,7 +325,7 @@ public class ProxySampleTest implements IAbstractTest {
                 "Page title and 'Phone finder' element's text modified in response to '{}' and '{}' respectively. Review changes in attached '{}' artifact.",
                 modifiedTitleText, modifiedPhoneFinderLinkText, pageSourceFileName);
         Screenshot.capture(getDriver(), ScreenshotType.EXPLICIT_VISIBLE);
-        Screenshot.capture(homePage.getPhoneFinderButton().getElement(), ScreenshotType.EXPLICIT_VISIBLE,
+        Screenshot.capture(homePage.getPhoneFinderButton(), ScreenshotType.EXPLICIT_VISIBLE,
                 "The modified representation of the 'Phone Finder' element on the page");
 
         File file = new File(ReportContext.getArtifactsFolder() + "/" + pageSourceFileName);
