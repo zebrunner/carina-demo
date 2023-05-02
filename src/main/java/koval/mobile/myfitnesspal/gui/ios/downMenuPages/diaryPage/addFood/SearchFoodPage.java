@@ -8,6 +8,7 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPag
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
 import koval.mobile.myfitnesspal.service.enums.Meals;
+import koval.mobile.myfitnesspal.service.enums.ReturnPages;
 import koval.mobile.myfitnesspal.service.enums.TabsFromSearchFoodPage;
 import org.openqa.selenium.WebDriver;
 
@@ -41,7 +42,7 @@ public class SearchFoodPage extends SearchFoodPageBase {
     }
 
     @Override
-    public DiaryPageBase clickBackButton() {
+    public AbstractPage clickBackButton(ReturnPages returnPage) {
         throw new NotImplementedException();
     }
 

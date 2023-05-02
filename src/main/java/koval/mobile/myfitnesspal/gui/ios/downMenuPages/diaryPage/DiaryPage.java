@@ -45,6 +45,7 @@ public class DiaryPage extends DiaryPageBase {
         throw new NotImplementedException();
     }
 
+
     @Override
     public SearchFoodPageBase closePromoMessagesIfPresent() {
         throw new NotImplementedException();

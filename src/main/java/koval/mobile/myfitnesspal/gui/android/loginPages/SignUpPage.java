@@ -303,7 +303,7 @@ public class SignUpPage extends SignUpPageBase {
 
         if (itemByText.format("Save password to Google?").isElementPresent(TIMEOUT_FIVE)) {
             if (result) {
-                itemByText.format("Save").clickIfPresent(TIMEOUT_FIVE);
+                itemByText.format(SAVE).clickIfPresent(TIMEOUT_FIVE);
             } else {
                 itemByText.format(NO_THANKS_ANSWER).clickIfPresent(TIMEOUT_FIVE);
             }
@@ -349,7 +349,6 @@ public class SignUpPage extends SignUpPageBase {
 
     @Override
     public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
-
 
         waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_TWENTY);
 

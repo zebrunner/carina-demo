@@ -1,10 +1,10 @@
 package koval.mobile.myfitnesspal.utils;
 
 
+import com.zebrunner.carina.utils.resources.L10N;
+
 import java.util.Arrays;
 import java.util.List;
-
-import static koval.mobile.myfitnesspal.gui.IMyInterface.adbService;
 
 public interface IConstantUtils {
 
@@ -32,6 +32,8 @@ public interface IConstantUtils {
 
     int TIMEOUT_TWENTY = 20;
 
+    int TIMEOUT_FORTY = 40;
+
     int TWENTY_COUNT = 20;
 
     int MEDIUM_SPEED = 1000;
@@ -46,7 +48,7 @@ public interface IConstantUtils {
 
     String EMPTY_FIELD = "";
 
-    String DOT_VALUE = ".";
+    String DOT_AND_COMMA_VALUE = "[,.]";
 
     String COMMA_VALUE = ",";
 
@@ -54,11 +56,11 @@ public interface IConstantUtils {
 
     String TWO_VALUE = "two";
 
-    String ADD_STRING = "Add";
+    String ADD_STRING = L10N.getText("add");
 
-    String ALLOW_ANSWER = "Allow";
+    String ALLOW_ANSWER = L10N.getText("allow");
 
-    String ADD_TO_DIARY_STRING = "Add to Diary";
+    String ADD_TO_DIARY_STRING = L10N.getText("add_to_diary");
 
     String ADD_INGREDIENTS = "Add Ingredients";
 
@@ -68,49 +70,45 @@ public interface IConstantUtils {
 
     String CONTINUE = "Continue";
 
-    String CREATE_MEAL = "Create a Meal";
+    String NEXT = L10N.getText("next");
 
-    String CREATE_FOOD_TITLE = "Create Food";
+    String NEW_RECIPE = L10N.getText("new_recipe");
 
-    String NEXT = "Next";
-
-    String NEW_RECIPE = "New Recipe";
-
-    String NO_THANKS_ANSWER = "No Thanks";
+    String NO_THANKS_ANSWER = L10N.getText("no_thanks");
 
     String NUMBERS_ONLY = "[^0-9]";
 
     String NUMBERS_AND_CROSS_CHARACTER_ONLY = "[^0-9]";
 
-    String SAVE = "Save";
+    String SAVE = L10N.getText("save");
 
-    String ACCEPT = "Accept";
+    String ACCEPT = L10N.getText("accept");
 
     String CHECKED = "checked";
 
-    String LOGIN = "Log In";
+    String LOGIN = L10N.getText("logIn");
 
     String LOADING = "Loading…";
 
-    String SIGNUP = "Sign Up";
+    String SIGNUP = L10N.getText("signUp");
 
     String SET = "Set";
 
     String SKIP = "Skip";
 
-    String SEARCH_FOR_FOOD = "Search for a food";
+    String SEARCH_FOR_FOOD = L10N.getText("search_for_a_food");
 
-    String CANCEL = "Cancel";
+    String CANCEL = L10N.getText("cancel");
 
     String SELECT_A_MEAL = "Select a meal.";
 
-    String GO_PREMIUM = "Go Premium";
+    String GO_PREMIUM = L10N.getText("go_premium");
 
-    String CALORIES_CARD = "Calories card";
+    String CALORIES_STRING = L10N.getText("calories");
 
-    String EMAIL_ADDRESS = "Email Address";
+    String EMAIL_ADDRESS = L10N.getText("email_address");
 
-    String PASSWORD = "Password";
+    String PASSWORD = L10N.getText("password");
 
     String EMAIL = "email";
 
@@ -122,7 +120,7 @@ public interface IConstantUtils {
 
     String HEIGHT = "height";
 
-    String HOME_STRING = "Home";
+    String HOME_STRING = L10N.getText("home");
 
     String WEEKLY_GOAL = "Weekly Goal";
 
@@ -132,15 +130,11 @@ public interface IConstantUtils {
 
     String INPUT_GOAL_WEIGHT = "inputGoalWeight";
 
-    String DIARY_TEXT = "Diary";
-
     String NEW_EXERCISE_TEXT = "New Exercise";
 
-    String SNACKS = "Snacks";
+    String DO_NOT_ASK_ME_AGAIN = L10N.getText("don't_ask_me_again");
 
-    String DO_NOT_ASK_ME_AGAIN = "Don''t ask me again";
-
-    String EXERCISE_STRING = "Exercise";
+    String EXERCISE_STRING = L10N.getText("exercise");
 
     String UNITS_VALUE = "units";
 
@@ -153,7 +147,7 @@ public interface IConstantUtils {
     String CARDIO_TEXT = "Cardio";
 
     String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";
-    String CONNECT_A_STEP_TRACKER = "Connect a step tracker";
+    String CONNECT_A_STEP_TRACKER = L10N.getText("connect_a_step_tracker");
 
     List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
 

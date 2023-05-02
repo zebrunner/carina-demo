@@ -49,12 +49,6 @@ public class CreateFoodPage extends CreateFoodPageBase {
 
 
     @Override
-    public boolean isPageOpened() {
-        return itemByText.format(CREATE_FOOD_TITLE).isElementPresent(TIMEOUT_FIVE);
-    }
-
-
-    @Override
     public DiaryPageBase createFood(Food food) {
 
         brandNameTextBox.type(food.getBrandName(), TIMEOUT_FIVE);

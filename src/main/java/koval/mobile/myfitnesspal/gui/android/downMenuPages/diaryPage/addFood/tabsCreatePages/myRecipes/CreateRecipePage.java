@@ -8,6 +8,7 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.Recipe;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -80,6 +81,8 @@ public class CreateRecipePage extends CreateRecipePageBase {
         itemByText.format(NEXT).click();
         itemByText.format(NEXT).click();
         itemByText.format(SAVE).click();
+
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(ADD_TO_DIARY_STRING).getBy()), TIMEOUT_FORTY);
 
         itemByText.format(ADD_TO_DIARY_STRING).click();
 

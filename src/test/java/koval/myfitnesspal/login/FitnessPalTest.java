@@ -3,7 +3,6 @@ package koval.myfitnesspal.login;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
-import com.zebrunner.carina.core.registrar.tag.TestTag;
 import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.NewCardioExercisePageBase;
@@ -220,7 +219,6 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-
     @Test(groups = {"logoutWithoutCashClear"})
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
@@ -291,21 +289,6 @@ public class FitnessPalTest extends LoginTest {
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = "l10n")
     public void localizationTest() {
-
-
-        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
-
-        DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
-        Assert.assertTrue(diaryPageBase.isPageOpened(), "[ DIARY PAGE ] Diary page is not opened!");
-
-        L10N.assertAll();
-    }
-
-
-    @Test(groups = {"logoutWithCashClear"})
-    @MethodOwner(owner = "koval")
-    @TestLabel(name = "feature", value = "l10n")
-    public void TESTTest() {
 
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
