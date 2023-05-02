@@ -67,8 +67,6 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
     public void closeAdvertisingPopUpIfPresent() {
         waitUntil(ExpectedConditions.visibilityOfElementLocated(advertisingCloseButton.getBy()), TIMEOUT_FIFTEEN);
 
-       // advertisingCloseButton.clickIfPresent(TIMEOUT_FIVE);
-
         int attemp = 3;
         while (advertisingCloseButton.format(CANCEL).isElementPresent(TIMEOUT_TEN) && attemp > 0) {
             advertisingCloseButton.format(CANCEL).click(TIMEOUT_TEN);
