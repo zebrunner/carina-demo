@@ -1,10 +1,12 @@
 package koval.mobile.myfitnesspal.service.enums;
 
+import com.zebrunner.carina.utils.resources.L10N;
+
 public enum Meals {
-    BREAKFAST("Breakfast", 0),
-    LUNCH("Lunch", 1),
-    DINNER("Dinner", 2),
-    SNACKS("Snacks", 3);
+    BREAKFAST(L10N.getText("breakfast"), 0),
+    LUNCH(L10N.getText("lunch"), 1),
+    DINNER(L10N.getText("dinner"), 2),
+    SNACKS(L10N.getText("snacks"), 3);
 
 
     public final String meal;

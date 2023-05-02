@@ -23,9 +23,6 @@ public class DashboardPage extends DashboardPageBase {
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
-    @FindBy(xpath = "//android.view.View[@content-desc='%s']")
-    private ExtendedWebElement itemByContentDesc;
-
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -34,7 +31,8 @@ public class DashboardPage extends DashboardPageBase {
     @Override
     public boolean isPageOpened() {
 
-        return itemByContentDesc.format(CALORIES_CARD).isElementPresent(TIMEOUT_FIVE);
+        return itemByText.format(CALORIES_STRING).isElementPresent(TIMEOUT_FIVE);
+
     }
 
     @Override

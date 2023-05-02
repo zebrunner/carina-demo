@@ -1,22 +1,27 @@
 package koval.mobile.myfitnesspal.service.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.*;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
 
+
 public enum DownMenuElement {
-    DASHBOARD("Dashboard", 0, DashboardPageBase.class),
-    DIARY("Diary", 1, DiaryPageBase.class),
-    NEWSFEED("Newsfeed", 2, NewsfeedPageBase.class),
-    PLANS("Plans", 3, PlansPageBase.class);
+    DASHBOARD(L10N.getText("dashboard"), "dashboard", 0, DashboardPageBase.class),
+    DIARY(L10N.getText("diary"), "diary", 1, DiaryPageBase.class),
+    NEWSFEED(L10N.getText("newsfeed"), "newsfeed", 2, NewsfeedPageBase.class),
+    PLANS(L10N.getText("plans"), "plans", 3, PlansPageBase.class);
 
 
     public final String pageName;
+
+    public final String pageNameForXpath;
     public final int pageIndex;
     private final Class<? extends AbstractPage> className;
 
-    DownMenuElement(String pageName, int pageIndex, Class<? extends AbstractPage> className) {
+    DownMenuElement(String pageName, String pageNameForXpath, int pageIndex, Class<? extends AbstractPage> className) {
         this.pageName = pageName;
+        this.pageNameForXpath = pageNameForXpath;
         this.pageIndex = pageIndex;
         this.className = className;
     }
@@ -24,6 +29,10 @@ public enum DownMenuElement {
 
     public String getPageName() {
         return pageName;
+    }
+
+    public String getPageNameForXpath() {
+        return pageNameForXpath;
     }
 
     public int getPageIndex() {

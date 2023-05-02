@@ -1,13 +1,14 @@
 package koval.mobile.myfitnesspal.service.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.StrengthPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.WorkoutRoutinesPageBase;
 
 public enum ExercisesType {
-    CARDIOVASCULAR("Cardiovascular", CardiovascularPageBase.class),
-    STRENGTH("Strength", StrengthPageBase.class),
+    CARDIOVASCULAR(L10N.getText("cardiovascular"), CardiovascularPageBase.class),
+    STRENGTH(L10N.getText("strength"), StrengthPageBase.class),
     WORKOUT_ROUTINES("Workout Routines", WorkoutRoutinesPageBase.class);
 
     public final String exerciseType;

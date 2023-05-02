@@ -1,8 +1,10 @@
 package koval.mobile.myfitnesspal.service.enums;
 
 
+import com.zebrunner.carina.utils.resources.L10N;
+
 public enum AppAndWidgets {
-    FITNESSPAL("MyFitnessPal", "Calories", "Macros");
+    FITNESSPAL("MyFitnessPal", L10N.getText("calories"), "Macros");
 
     public final String appName;
     public final String firstWidget;

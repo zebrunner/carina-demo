@@ -2,8 +2,10 @@ package koval.mobile.myfitnesspal.gui.android.downMenuPages.diaryPage;
 
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Localized;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.android.modal.DownMenuModal;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
@@ -17,8 +19,6 @@ import org.slf4j.LoggerFactory;
 
 
 import java.lang.invoke.MethodHandles;
-import java.util.List;
-
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DiaryPageBase.class)
 public class DiaryPage extends DiaryPageBase {
@@ -31,11 +31,9 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/bottomNavigationBar")
     private DownMenuModal downMenuModal;
 
+    @Localized
     @FindBy(xpath = "//*[@content-desc='MainActivity']/android.widget.LinearLayout//android.widget.TextView")
     private ExtendedWebElement title;
-
-    @FindBy(id = "com.myfitnesspal.android:id/txtSectionHeader")
-    private ExtendedWebElement mealTitle;
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/content_container']/child::*[@text='%s']")
     private ExtendedWebElement mealTitleByText;
@@ -47,21 +45,18 @@ public class DiaryPage extends DiaryPageBase {
     private ExtendedWebElement selectAllCheckBox;
 
     /*main delete button*/
-    @FindBy(xpath = "//android.widget.Button[@content-desc='Delete']")
+    @FindBy(xpath = "//android.widget.Button[@content-desc='{L10N:delete}']")
     private ExtendedWebElement deleteFoodButton;
 
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
     /*deletePopUpMessage - confirm deleting*/
-    @FindBy(xpath = "//android.widget.Button[@text='Delete']")
+    @FindBy(xpath = "//android.widget.Button[@text='{L10N:delete}']")
     private ExtendedWebElement deleteTextButton;
 
     @FindBy(id = "com.myfitnesspal.android:id/parentPanel")
     private ExtendedWebElement deletePopUpMessage;
-
-    @FindBy(xpath = "//android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[1]")
-    private ExtendedWebElement foodViewItemTitle;
 
     @FindBy(id = "com.myfitnesspal.android:id/imagePromoClose")
     private ExtendedWebElement closePromoImageButton;
@@ -69,21 +64,8 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/promo_dismiss")
     private ExtendedWebElement promoDismissButton;
 
-    @FindBy(id = "com.myfitnesspal.android:id/add_food")
-    private List<ExtendedWebElement> addFoodButtonList;
-
     @FindBy(id = "com.myfitnesspal.android:id/diary_recycler_view")
     private ExtendedWebElement diaryRecyclerViewContainer;
-
-    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/content_container']")
-    private List<ExtendedWebElement> mealContainerList;
-
-    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/foodSearchViewFoodItem']")
-    private List<ExtendedWebElement> foodViewContainerList;
-
-    @FindBy(id = "com.myfitnesspal.android:id/footer_container")
-    private List<ExtendedWebElement> addFoodButtonContainerList;
-
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/txtSectionHeader' and @text='%s']//following-sibling::*[@resource-id = 'com.myfitnesspal.android:id/txtSectionCalories']")
     private ExtendedWebElement sectionCaloriesField;
@@ -91,8 +73,7 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/txtSectionHeader' and @text='%s']/parent::*/parent::*/following-sibling::*//*[@resource-id='com.myfitnesspal.android:id/footer_container']//*[@resource-id='com.myfitnesspal.android:id/add_food']")
     private ExtendedWebElement addFoodButton;
 
-
-    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/txtSectionHeader' and @text='Exercise']/parent::*/parent::*/following-sibling::*//*[@resource-id='com.myfitnesspal.android:id/footer_container']//*[@resource-id='com.myfitnesspal.android:id/add_food' and @text='ADD EXERCISE']")
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/txtSectionHeader' and @text='{L10N:exercise}']/parent::*/parent::*/following-sibling::*//*[@resource-id='com.myfitnesspal.android:id/footer_container']//*[@resource-id='com.myfitnesspal.android:id/add_food' and @text='{L10N:add_exercise_caps}']")
     private ExtendedWebElement addExerciseButton;
 
     @FindBy(xpath = "//*[@resource-id=\"com.myfitnesspal.android:id/txtSectionHeader\" and @text='%s']/parent::*/parent::*/following-sibling::*//*[@resource-id=\"com.myfitnesspal.android:id/txtItemDescription\" and contains(@text,'%s')]")
@@ -114,7 +95,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public boolean isPageOpened() {
         swipe(upperToolbar, diaryRecyclerViewContainer, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
-        return isPageOpened(title, DIARY_TEXT);
+        return isPageOpened(title, DownMenuElement.DIARY.getPageName());
     }
 
     @Override
@@ -123,7 +104,7 @@ public class DiaryPage extends DiaryPageBase {
         ExtendedWebElement testEl = addFoodButton.format(meals.getMeal());
         swipe(testEl, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
 
-        if (meals.getMeal().equals(SNACKS)) {
+        if (meals.getMeal().equals(Meals.SNACKS.getMeal())) {
             ExtendedWebElement snackTitleByText = itemByText.format(CONNECT_A_STEP_TRACKER);
             swipe(snackTitleByText, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
         }
@@ -139,7 +120,7 @@ public class DiaryPage extends DiaryPageBase {
 
         boolean isFoodAddedToMeal;
 
-        if (meals.getMeal().equals(SNACKS)) {
+        if (meals.getMeal().equals(Meals.SNACKS.getMeal())) {
             ExtendedWebElement snackTitleByText = itemByText.format(CONNECT_A_STEP_TRACKER);
             swipe(snackTitleByText, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
             isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
@@ -180,7 +161,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public AbstractPage clickAddExerciseButton(ExercisesType exercisesType) {
 
-        swipe(addExerciseButton, Direction.UP, TWENTY_COUNT, LOW_SPEED);
+        swipe(mealTitleByText.format(L10N.getText("water")), Direction.UP, TWENTY_COUNT, LOW_SPEED);
 
         addExerciseButton.click();
 
@@ -193,43 +174,8 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public boolean isAllFoodDeletedForMeal(Meals meals) {
 
-        boolean isAllFoodDeleted = false;
-
-        if (meals.getMealIndex() == 3) {
-            ExtendedWebElement mealByText = mealTitleByText.format(EXERCISE_STRING);
-            swipe(mealByText, Direction.UP, TWENTY_COUNT, LOW_SPEED);
-        }
-
-        for (int i = 0; i < addFoodButtonList.size(); i++) {
-
-            if (addFoodButtonContainerList.get(i).getLocation().getY() == getMealLocationByDownY(meals.getMeal())) {
-                isAllFoodDeleted = true;
-                break;
-            }
-        }
-
-        return isAllFoodDeleted;
+        return !editActionPenButton.isElementPresent();
     }
-
-
-    private int getMealLocationByDownY(String meals) {
-
-        int locationDownY = 0;
-
-        ExtendedWebElement mealByText = mealTitleByText.format(meals);
-        swipe(mealByText, diaryRecyclerViewContainer, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
-
-        for (ExtendedWebElement extendedWebElement : mealContainerList) {
-
-            if (extendedWebElement.findExtendedWebElement(mealTitle.getBy()).getText().equals(meals)) {
-                locationDownY = extendedWebElement.getSize().getHeight() + extendedWebElement.getLocation().getY();
-                break;
-            }
-
-        }
-        return locationDownY;
-    }
-
 
     @Override
     public DiaryPageBase deleteAllItems() {

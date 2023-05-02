@@ -21,5 +21,5 @@ public abstract class LogInPageBase extends MyAbstractPageBase {
 
     public abstract DashboardPageBase closeNoSubscriptionsPopUpIfPresent();
 
-    public abstract DashboardPageBase closeUserTutorialBoxIfPresent();
+    public abstract void closeUserTutorialBoxIfPresent();
 }
