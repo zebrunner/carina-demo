@@ -2,6 +2,7 @@ package koval.myfitnesspal.login;
 
 
 import com.zebrunner.carina.utils.R;
+import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
@@ -52,11 +53,12 @@ public class LoginTest implements IMyInterface {
 
         Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
 
+        L10N.assertAll();
     }
 
     @AfterMethod(onlyForGroups = {"logoutWithCashClear"})
     public void clearCashAndLogout() {
-        adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
+       adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
 
     }
 

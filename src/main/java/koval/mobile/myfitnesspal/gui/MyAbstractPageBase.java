@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,11 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
 
     @FindBy(xpath = "//*[@resource-id='buttonExistingUserTutorial']/child::*[@class='android.widget.Button']")
     private ExtendedWebElement exitTutorialButton;
+
+    @FindBy(xpath = "//android.view.View/android.view.View[1]/android.view.View/android.view.View[2]/android.view.View/android.widget.Button |" +
+            "//android.widget.ImageButton[@content-desc='Interstitial close button']")
+    private ExtendedWebElement advertisingCloseButton;
+
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -40,15 +46,12 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
         pressKey(BACK);
     }
 
-    public void pressKey(int keyCodeValue) {
-        getDevice(getDriver()).pressKey(keyCodeValue);
-    }
 
     public void closeTimestampsPopUpIfPresent() {
         itemByContent.format(NO_THANKS_ANSWER.toUpperCase()).clickIfPresent(TIMEOUT_FIVE);
     }
 
-    public DashboardPageBase closeUserTutorialBoxIfPresent() {
+    public void closeUserTutorialBoxIfPresent() {
 
         int attemp = 3;
         while (exitTutorialButton.isElementPresent(TIMEOUT_TEN) && attemp > 0) {
@@ -58,11 +61,22 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
             attemp--;
         }
 
-        return initPage(getDriver(), DashboardPageBase.class);
+        initPage(getDriver(), DashboardPageBase.class);
     }
 
     public void closeAdvertisingPopUpIfPresent() {
-        itemByContent.format(INTERSTITIAL_CLOSE_BUTTON).clickIfPresent(TIMEOUT_FIVE);
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(advertisingCloseButton.getBy()), TIMEOUT_FIFTEEN);
+
+       // advertisingCloseButton.clickIfPresent(TIMEOUT_FIVE);
+
+        int attemp = 3;
+        while (advertisingCloseButton.format(CANCEL).isElementPresent(TIMEOUT_TEN) && attemp > 0) {
+            advertisingCloseButton.format(CANCEL).click(TIMEOUT_TEN);
+
+            LOGGER.info("[ DASHBOARD PAGE ] Attempt left: {} for clicking on exit Advertising PopUp button", attemp);
+            attemp--;
+        }
+
     }
 
     public int getCenterX(ExtendedWebElement extendedWebElement) {

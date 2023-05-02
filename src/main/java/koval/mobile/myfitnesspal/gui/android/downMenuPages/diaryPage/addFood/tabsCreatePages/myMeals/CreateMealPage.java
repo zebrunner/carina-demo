@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
+import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,7 +28,7 @@ public class CreateMealPage extends CreateMealPageBase {
 
     @Override
     public boolean isPageOpened() {
-        return itemByText.format(CREATE_MEAL).isElementPresent(TIMEOUT_FIVE);
+        return itemByText.format(ActionsFromTabsSearchFood.CREATE_A_MEAL.getPageName()).isElementPresent(TIMEOUT_FIVE);
     }
 
 

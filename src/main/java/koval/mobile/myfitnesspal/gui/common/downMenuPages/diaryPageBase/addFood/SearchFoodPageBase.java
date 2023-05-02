@@ -5,6 +5,7 @@ import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
 import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
 import koval.mobile.myfitnesspal.service.enums.Meals;
+import koval.mobile.myfitnesspal.service.enums.ReturnPages;
 import koval.mobile.myfitnesspal.service.enums.TabsFromSearchFoodPage;
 import org.openqa.selenium.WebDriver;
 
@@ -24,7 +25,7 @@ public abstract class SearchFoodPageBase extends MyAbstractPageBase {
 
     public abstract DiaryPageBase addFoodToMealByName(String food);
 
-    public abstract AbstractPage clickBackButton();
+    public abstract AbstractPage clickBackButton(ReturnPages returnPage);
 
     public abstract SearchFoodPageBase searchFood(String food);
 

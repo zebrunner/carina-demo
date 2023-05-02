@@ -2,6 +2,8 @@ package koval.mobile.myfitnesspal.service.factories.recipeFactory;
 
 
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +18,7 @@ public class RecipeFactory {
 
         Recipe recipe = new Recipe();
 
-        String RECIPE_NAME = "recipe_" + new Random().nextInt(100);
+        String RECIPE_NAME = "recipe_" + RandomStringUtils.randomNumeric(5);
         int SERVINGS = new Random().nextInt(5) + 1;
 
         List<String> INGREDIENTS_FOR_RECIPE = Arrays.asList("Milk", "Honey", "Butter", "Apple", "Bread", "Water", "Cherries");

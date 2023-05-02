@@ -24,7 +24,7 @@ public class LogInPage extends LogInPageBase {
     @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement itemByText;
 
-    @FindBy(xpath = "//android.widget.Button[@text='Log In']")
+    @FindBy(xpath = "//android.widget.Button[@text='{L10N:logIn}']")
     private ExtendedWebElement loginButton;
 
     @FindBy(xpath = "//*[@resource-id='buttonExistingUserTutorial']/child::*[@class='android.widget.Button']")
@@ -69,14 +69,20 @@ public class LogInPage extends LogInPageBase {
 
         waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_TWENTY);
 
-        itemByText.format(CANCEL).click();
+        int attemp = 3;
+        while (itemByText.format(CANCEL).isElementPresent(TIMEOUT_TEN) && attemp > 0) {
+            itemByText.format(CANCEL).click(TIMEOUT_TEN);
+
+            LOGGER.info("[ DASHBOARD PAGE ] Attempt left: {} for clicking on exit No Subscriptions PopUp button", attemp);
+            attemp--;
+        }
 
         return initPage(getDriver(), DashboardPageBase.class);
     }
 
 
     @Override
-    public DashboardPageBase closeUserTutorialBoxIfPresent() {
+    public void closeUserTutorialBoxIfPresent() {
 
         int attemp = 3;
         while (exitTutorialButton.isElementPresent(TIMEOUT_TEN) && attemp > 0) {
@@ -86,7 +92,7 @@ public class LogInPage extends LogInPageBase {
             attemp--;
         }
 
-        return initPage(getDriver(), DashboardPageBase.class);
+        initPage(getDriver(), DashboardPageBase.class);
     }
 
 

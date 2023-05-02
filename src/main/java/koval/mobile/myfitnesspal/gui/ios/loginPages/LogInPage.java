@@ -42,7 +42,7 @@ public class LogInPage extends LogInPageBase {
     }
 
     @Override
-    public DashboardPageBase closeUserTutorialBoxIfPresent() {
+    public void closeUserTutorialBoxIfPresent() {
         throw new NotImplementedException();
     }
 

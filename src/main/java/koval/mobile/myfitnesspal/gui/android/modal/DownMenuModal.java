@@ -42,7 +42,7 @@ public class DownMenuModal extends DownMenuModalBase {
             Assert.fail("Down Menu Element is not present!");
         }
 
-        downMenuIconElement.format(downMenuElement.getPageName().toLowerCase()).click();
+        downMenuIconElement.format(downMenuElement.getPageNameForXpath()).click();
 
         return initPage(getDriver(), downMenuElement.getClassName());
     }

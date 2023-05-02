@@ -21,12 +21,7 @@ public class PhoneWidgetPage extends PhoneWidgetPageBase {
     }
 
     @Override
-    public PhoneWidgetPageBase searchForApp(String appName) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public PhoneHomePageBase addWidgetToDesktop(String widgetName) {
+    public PhoneHomePageBase addWidgetToDesktop(String appName, String widgetName) {
         throw new NotImplementedException();
     }
 

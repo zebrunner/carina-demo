@@ -4,11 +4,11 @@ package koval.mobile.myfitnesspal.gui.android.downMenuPages.diaryPage.addFood;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
 import koval.mobile.myfitnesspal.service.enums.ActionsFromTabsSearchFood;
 import koval.mobile.myfitnesspal.service.enums.Meals;
+import koval.mobile.myfitnesspal.service.enums.ReturnPages;
 import koval.mobile.myfitnesspal.service.enums.TabsFromSearchFoodPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -126,11 +126,11 @@ public class SearchFoodPage extends SearchFoodPageBase {
 
 
     @Override
-    public AbstractPage clickBackButton() {
+    public AbstractPage clickBackButton(ReturnPages returnPage) {
 
         backButton.click();
 
-        return initPage(getDriver(), MyAbstractPageBase.class);
+        return initPage(getDriver(), returnPage.getClassName());
     }
 
 

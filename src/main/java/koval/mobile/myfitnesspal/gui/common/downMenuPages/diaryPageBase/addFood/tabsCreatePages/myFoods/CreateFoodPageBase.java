@@ -12,7 +12,5 @@ public abstract class CreateFoodPageBase extends MyAbstractPageBase {
         super(driver);
     }
 
-    public abstract boolean isPageOpened();
-
     public abstract DiaryPageBase createFood(Food food);
 }

@@ -1,6 +1,7 @@
 package koval.myfitnesspal.signUp;
 
 
+import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import koval.mobile.myfitnesspal.service.AdbService;
@@ -28,7 +29,7 @@ public class SignUpTest implements IMyInterface {
 
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
-        welcomePageBase.notificationSendPopUpIfPresent(ALLOW_ANSWER);
+        welcomePageBase.notificationSendPopUpIfPresent(L10N.getText("ALLOW_ANSWER"));
         Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
 
         Account account = AccountFactory.generateAccount();

@@ -71,7 +71,7 @@ public class PhoneHomePage extends PhoneHomePageBase {
             Assert.fail(String.format("[ PHONE HOME PAGE] There is no %s Calories Count element", caloriesType));
         }
 
-        int caloriesCountValue = Integer.parseInt(caloriesCount.format(caloriesType).getText().replaceAll(COMMA_VALUE, ""));
+        int caloriesCountValue = Integer.parseInt(caloriesCount.format(caloriesType).getText().replaceAll(DOT_AND_COMMA_VALUE, ""));
         LOGGER.info("{} Calories count value: {}", caloriesType, caloriesCountValue);
 
         return caloriesCountValue;

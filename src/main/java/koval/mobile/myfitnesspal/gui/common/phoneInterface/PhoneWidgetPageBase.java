@@ -12,7 +12,6 @@ public abstract class PhoneWidgetPageBase extends MyAbstractPageBase {
 
     public abstract boolean isPageOpened(int timeout);
 
-    public abstract PhoneWidgetPageBase searchForApp(String appName);
 
-    public abstract PhoneHomePageBase addWidgetToDesktop(String widgetName);
+    public abstract PhoneHomePageBase addWidgetToDesktop(String appName, String widgetName);
 }
