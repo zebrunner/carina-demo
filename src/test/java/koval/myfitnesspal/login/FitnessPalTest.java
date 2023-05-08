@@ -327,15 +327,15 @@ public class FitnessPalTest extends LoginTest {
         createFoodPageBase.createFood(food);
         expectedListOfMyFoods.add(0, food.getDescription());
         int actualFoodValue = mePageBase.getItemValueByName(Items.FOODS);
-        LOGGER.info("Actual value of foods {}", actualFoodValue);
-        LOGGER.info("Expected value of foods {}", expectedFoodValue);
+        LOGGER.info("[ME PAGE] Actual value of foods {}", actualFoodValue);
+        LOGGER.info("[ME PAGE] Expected value of foods {}", expectedFoodValue);
         Assert.assertEquals(actualFoodValue, expectedFoodValue,
                 "[ ME PAGE ] Actual value of foods is not what expected!");
 
         recipesMealsFoodsPageBase = mePageBase.openItemByName(Items.FOODS);
         List<String> actualListOfMyFoods = recipesMealsFoodsPageBase.getItemElementsToList();
-        LOGGER.info("Actual list of foods {}", actualListOfMyFoods);
-        LOGGER.info("Expected list of foods {}", expectedListOfMyFoods);
+        LOGGER.info("[RECIPES, MEALS & FOODS PAGE] Actual list of foods {}", actualListOfMyFoods);
+        LOGGER.info("[RECIPES, MEALS & FOODS PAGE] Expected list of foods {}", expectedListOfMyFoods);
         Assert.assertEquals(actualListOfMyFoods, expectedListOfMyFoods,
                 "[RECIPES, MEALS & FOODS PAGE] Actual list of foods is not what expected!");
 
@@ -345,8 +345,8 @@ public class FitnessPalTest extends LoginTest {
         SearchFoodPageBase searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
         searchFoodPageBase.openTabByName(TabsFromSearchFoodPage.MY_FOODS);
         actualListOfMyFoods = searchFoodPageBase.getListOfFoodElementsToList(expectedFoodValue);
-        LOGGER.info("Actual list of foods {}", actualListOfMyFoods);
-        LOGGER.info("Expected list of foods {}", expectedListOfMyFoods);
+        LOGGER.info("[SEARCH FOOD PAGE]  Actual list of foods {}", actualListOfMyFoods);
+        LOGGER.info("[SEARCH FOOD PAGE]  Expected list of foods {}", expectedListOfMyFoods);
         Assert.assertEquals(actualListOfMyFoods, expectedListOfMyFoods,
                 "[SEARCH FOOD PAGE] Actual list of foods is not what expected!");
 
