@@ -100,37 +100,6 @@ public class SearchFoodPage extends SearchFoodPageBase {
         return myFoodsList;
     }
 
-
-//    @Override
-//    public List<String> getListOfFoodElementsToList() {
-//
-//        waitUntil(ExpectedConditions.visibilityOfElementLocated(myFoodsTitle.getBy()), TIMEOUT_FIFTEEN);
-//
-//        if (listOfMyFoods.isEmpty()) {
-//            Assert.fail("[SEARCH FOOD PAGE] List is of foods empty!");
-//        }
-//
-//
-//        List<String> myFoodsList = listOfMyFoods.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
-//
-//        LOGGER.info("myFoodsList before swiping {}", myFoodsList);
-//
-//
-//      while(!itemByText.format("Apple with sugar").isElementPresent(TIMEOUT_FIVE))
-//      {
-//        swipeUp(1, LOW_SPEED);
-//
-//           myFoodsList.addAll(listOfMyFoods.stream().map(ExtendedWebElement::getText).collect(Collectors.toList()));
-//
-//          List<String> deduped = myFoodsList.stream().distinct().collect(Collectors.toList());
-//
-//          LOGGER.info("myFoodsList after swiping {}", myFoodsList);
-//          LOGGER.info("deduped {}", deduped);
-//
-//      }
-//        return myFoodsList;
-//    }
-
     @Override
     public SearchFoodPageBase changeMealByName(Meals meals) {
 
