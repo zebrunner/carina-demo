@@ -348,7 +348,7 @@ public class FitnessPalTest extends LoginTest {
         LOGGER.info("Actual list of foods {}", actualListOfMyFoods);
         LOGGER.info("Expected list of foods {}", expectedListOfMyFoods);
         Assert.assertEquals(actualListOfMyFoods, expectedListOfMyFoods,
-                "[RECIPES, MEALS & FOODS PAGE] Actual list of foods is not what expected!");
+                "[SEARCH FOOD PAGE] Actual list of foods is not what expected!");
 
     }
 }
