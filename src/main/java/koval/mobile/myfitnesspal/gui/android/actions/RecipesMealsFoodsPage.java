@@ -85,10 +85,6 @@ public class RecipesMealsFoodsPage extends RecipesMealsFoodsPageBase {
         waitUntil(ExpectedConditions.visibilityOfElementLocated(myFoodsTitle.getBy()), TIMEOUT_FIFTEEN);
 
 
-//        if (listOfMyFoods.isEmpty()) {
-//            Assert.fail("[RECIPES, MEALS & FOODS PAGE] List of foods is empty!");
-//        }
-
         return listOfMyFoods.stream().map(ExtendedWebElement::getText).collect(Collectors.toList());
     }
 
