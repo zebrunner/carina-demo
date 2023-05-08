@@ -22,6 +22,14 @@ public class LoginTest implements IMyInterface {
 
         adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
 
+        simpleLogin();
+
+        return (initPage(getDriver(), DashboardPageBase.class));
+    }
+
+
+    public DashboardPageBase simpleLogin() {
+
         adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);

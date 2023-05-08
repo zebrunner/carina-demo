@@ -6,6 +6,7 @@ import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.TestTag;
 import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.MorePageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.NewCardioExercisePageBase;
@@ -316,30 +317,38 @@ public class FitnessPalTest extends LoginTest {
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
         MePageBase mePageBase = dashboardPageBase.openMePage();
         mePageBase.openTabFromMenuByName(MePageMenuTab.MY_ITEMS);
-        int expectedFoodValue = mePageBase.getItemValueByName(Items.FOODS) + 1;
 
-        RecipesMealsFoodsPageBase recipesMealsFoodsPageBase = mePageBase.openItemByName(Items.FOODS);
+        RecipesMealsFoodsPageBase recipesMealsFoodsPageBase = mePageBase.openItemByName(Items.FOOD);
+        recipesMealsFoodsPageBase.deleteAllItemsByName(RecipeMealsFoods.FOODS);
+
         List<String> expectedListOfMyFoods = recipesMealsFoodsPageBase.getItemElementsToList();
         mePageBase = recipesMealsFoodsPageBase.clickBackButton();
-        CreateFoodPageBase createFoodPageBase = (CreateFoodPageBase) mePageBase.clickCreateButtonByItemName(Items.FOODS);
+
+        int expectedFoodValue = mePageBase.getItemValueByName(Items.FOOD) + 1;
+        CreateFoodPageBase createFoodPageBase = (CreateFoodPageBase) mePageBase.clickCreateButtonByItemName(Items.FOOD);
 
         Food food = FoodFactory.generateFood();
         createFoodPageBase.createFood(food);
         expectedListOfMyFoods.add(0, food.getDescription());
-        int actualFoodValue = mePageBase.getItemValueByName(Items.FOODS);
+
+        int actualFoodValue = mePageBase.getItemValueByName(Items.FOOD);
         LOGGER.info("[ME PAGE] Actual value of foods {}", actualFoodValue);
         LOGGER.info("[ME PAGE] Expected value of foods {}", expectedFoodValue);
         Assert.assertEquals(actualFoodValue, expectedFoodValue,
                 "[ ME PAGE ] Actual value of foods is not what expected!");
 
-        recipesMealsFoodsPageBase = mePageBase.openItemByName(Items.FOODS);
+        recipesMealsFoodsPageBase = mePageBase.openItemByName(Items.FOOD);
         List<String> actualListOfMyFoods = recipesMealsFoodsPageBase.getItemElementsToList();
         LOGGER.info("[RECIPES, MEALS & FOODS PAGE] Actual list of foods {}", actualListOfMyFoods);
         LOGGER.info("[RECIPES, MEALS & FOODS PAGE] Expected list of foods {}", expectedListOfMyFoods);
         Assert.assertEquals(actualListOfMyFoods, expectedListOfMyFoods,
                 "[RECIPES, MEALS & FOODS PAGE] Actual list of foods is not what expected!");
 
-        dashboardPageBase = login();
+        mePageBase = recipesMealsFoodsPageBase.clickBackButton();
+        dashboardPageBase = mePageBase.clickBackButton();
+        MorePageBase morePageBase = (MorePageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.MORE);
+        morePageBase.clickLogout();
+        dashboardPageBase = simpleLogin();
 
         DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
         SearchFoodPageBase searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);

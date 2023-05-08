@@ -6,6 +6,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.MePageMenuModal;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
 import koval.mobile.myfitnesspal.service.enums.Items;
 import koval.mobile.myfitnesspal.service.enums.MePageMenuTab;
@@ -20,9 +21,13 @@ public class MePage extends MePageBase {
     private MePageMenuModal menuModal;
 
 
-    @FindBy(xpath = "//*[contains(@text,'%s')]//following-sibling::*[@resource-id='com.myfitnesspal.android:id/create'] |" +
-            "//*[contains(@text,'%s')]//following-sibling::*[@resource-id='com.myfitnesspal.android:id/create']")
+    @FindBy(xpath = "//*[contains(@text,'%s')]//following-sibling::*[@resource-id='com.myfitnesspal.android:id/create']")
     private ExtendedWebElement createButtonByItemName;
+
+
+    @FindBy(id = "com.myfitnesspal.android:id/profileBackArrow")
+    private ExtendedWebElement backButton;
+
 
     public MePage(WebDriver driver) {
         super(driver);
@@ -35,16 +40,26 @@ public class MePage extends MePageBase {
     }
 
     @Override
+    public DashboardPageBase clickBackButton() {
+        backButton.click(TIMEOUT_TEN);
+        return initPage(getDriver(), DashboardPageBase.class);
+    }
+
+
+    @Override
     public RecipesMealsFoodsPageBase openItemByName(Items items) {
 
-        itemByContainsText.format(items.getItemName(), items.getItemNameSmall()).click(TIMEOUT_FIFTEEN);
+        itemByContainsText.format(items.getItemName()).click(TIMEOUT_FIFTEEN);
+
         return initPage(getDriver(), RecipesMealsFoodsPageBase.class);
 
     }
+
     @Override
     public AbstractPage clickCreateButtonByItemName(Items items) {
 
-        createButtonByItemName.format(items.getItemName(), items.getItemNameSmall()).click(TIMEOUT_FIFTEEN);
+        createButtonByItemName.format(items.getItemName()).click(TIMEOUT_FIFTEEN);
+
         return initPage(getDriver(), items.getClassName());
 
     }
@@ -52,7 +67,8 @@ public class MePage extends MePageBase {
     @Override
     public int getItemValueByName(Items items) {
 
-        int itemValue = Integer.parseInt(itemByContainsText.format(items.getItemName(),items.getItemNameSmall()).getText().replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
+
+        int itemValue = Integer.parseInt(itemByContainsText.format(items.getItemName()).getText().replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
 
         LOGGER.info("[ ME PAGE ] Value of item {} is {}", items.getItemName(), itemValue);
         return itemValue;

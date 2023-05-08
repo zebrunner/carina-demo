@@ -11,15 +11,15 @@ import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myRe
 
 public enum Items {
 
-    MEALS(L10N.getText("meals"), CreateMealPageBase.class),
+    MEALS("meals", CreateMealPageBase.class),
 
-    RECIPES(L10N.getText("recipes"), CreateRecipePageBase.class),
+    RECIPES("recipes", CreateRecipePageBase.class),
 
-    FOODS(L10N.getText("foods"),  CreateFoodPageBase.class),
+    FOOD("food",  CreateFoodPageBase.class),
 
-    CARDIO(L10N.getText("cardio"), NewCardioExercisePageBase.class),
+    CARDIO("cardio", NewCardioExercisePageBase.class),
 
-    STRENGTH(L10N.getText("strength"), NewStrengthExercisePageBase.class),;
+    STRENGTH("strength", NewStrengthExercisePageBase.class),;
 
 
     public final String itemName;
@@ -34,7 +34,7 @@ public enum Items {
 
 
     public String getItemName() {
-        return itemName;
+        return L10N.getText(itemName);
     }
 
     public String getItemNameSmall() {

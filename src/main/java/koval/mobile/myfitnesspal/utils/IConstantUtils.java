@@ -114,6 +114,12 @@ public interface IConstantUtils {
 
     String PASSWORD = L10N.getText("password");
 
+    String DELETE = L10N.getText("delete");
+
+    String EDIT = L10N.getText("edit");
+
+    String MORE_OPTIONS = L10N.getText("more_options");
+
     String EMAIL = "email";
 
     String SOURCE = "source";
@@ -150,9 +156,9 @@ public interface IConstantUtils {
 
     String CARDIO_TEXT = "Cardio";
 
-    String YES_ANSWER = "Yes";
+    String YES_ANSWER =  L10N.getText("yes");
 
-    String LOG_OUT = "Log Out";
+    String LOG_OUT = L10N.getText("log_out");
 
     String USER_AVATAR = "User avatar";
 

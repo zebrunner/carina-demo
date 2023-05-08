@@ -3,10 +3,9 @@ package koval.mobile.myfitnesspal.service.enums;
 import com.zebrunner.carina.utils.resources.L10N;
 
 public enum MePageMenuTab {
-    MY_INFO(L10N.getText("my_info")),
-    MY_ITEMS(L10N.getText("my_items")),
-    MY_POSTS(L10N.getText("my_posts"));
-
+    MY_INFO("my_info"),
+    MY_ITEMS("my_items"),
+    MY_POSTS("my_posts");
 
     public final String tabName;
 
@@ -17,7 +16,7 @@ public enum MePageMenuTab {
 
 
     public String getTabName() {
-        return tabName;
+        return L10N.getText(tabName);
     }
 
 }

@@ -3,6 +3,7 @@ package koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.service.enums.Items;
 import koval.mobile.myfitnesspal.service.enums.MePageMenuTab;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,8 @@ public abstract class MePageBase extends MyAbstractPageBase {
 
 
     public abstract MePageBase openTabFromMenuByName(MePageMenuTab mePageMenuTab);
+
+    public abstract DashboardPageBase clickBackButton();
 
     public abstract RecipesMealsFoodsPageBase openItemByName(Items items);
 

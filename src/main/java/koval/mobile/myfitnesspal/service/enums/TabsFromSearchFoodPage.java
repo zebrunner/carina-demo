@@ -5,10 +5,10 @@ import com.zebrunner.carina.utils.resources.L10N;
 
 public enum TabsFromSearchFoodPage {
 
-    ALL(L10N.getText("all")),
-    MY_MEALS(L10N.getText("my_meals")),
-    MY_RECIPES(L10N.getText("my_recipes")),
-    MY_FOODS(L10N.getText("my_foods"));
+    ALL("all"),
+    MY_MEALS("my_meals"),
+    MY_RECIPES("my_recipes"),
+    MY_FOODS("my_foods");
 
 
     public final String tabName;
@@ -19,7 +19,7 @@ public enum TabsFromSearchFoodPage {
 
 
     public String getTabName() {
-        return tabName;
+        return L10N.getText(tabName);
     }
 
 }

@@ -1,6 +1,7 @@
 package koval.mobile.myfitnesspal.gui;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.CaseInsensitiveXPath;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import org.openqa.selenium.*;
@@ -23,8 +24,10 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
     @FindBy(xpath = "//*[@text='%s']")
     public ExtendedWebElement itemByText;
 
-    @FindBy(xpath = "//*[contains(@text,'%s')] | //*[contains(@text,'%s')]")
+    @CaseInsensitiveXPath
+    @FindBy(xpath = "//*[contains(@text,'%s')]")
     public ExtendedWebElement itemByContainsText;
+
 
     public MyAbstractPageBase(WebDriver driver) {
         super(driver);

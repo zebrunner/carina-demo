@@ -6,6 +6,7 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
 import koval.mobile.myfitnesspal.service.enums.Items;
+import koval.mobile.myfitnesspal.service.enums.RecipeMealsFoods;
 import org.openqa.selenium.WebDriver;
 
 
@@ -23,6 +24,11 @@ public class RecipesMealsFoodsPage extends RecipesMealsFoodsPageBase {
 
     @Override
     public RecipesMealsFoodsPageBase openTabByName(Items items) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public RecipesMealsFoodsPageBase deleteAllItemsByName(RecipeMealsFoods recipeMealsFoods) {
         throw new NotImplementedException();
     }
 

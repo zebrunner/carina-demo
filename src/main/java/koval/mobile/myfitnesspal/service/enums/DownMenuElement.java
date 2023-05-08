@@ -8,15 +8,15 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 
 
 public enum DownMenuElement {
-    DASHBOARD(L10N.getText("dashboard"), "dashboard", 0, DashboardPageBase.class),
+    DASHBOARD("dashboard", "dashboard", 0, DashboardPageBase.class),
 
-    DIARY(L10N.getText("diary"), "diary", 1, DiaryPageBase.class),
+    DIARY("diary", "diary", 1, DiaryPageBase.class),
 
-    NEWSFEED(L10N.getText("newsfeed"), "newsfeed", 2, NewsfeedPageBase.class),
+    NEWSFEED("newsfeed", "newsfeed", 2, NewsfeedPageBase.class),
 
-    PLANS(L10N.getText("plans"), "plans", 3, PlansPageBase.class),
+    PLANS("plans", "plans", 3, PlansPageBase.class),
 
-    MORE(L10N.getText("more"), "more", 4, MorePageBase.class),;
+    MORE("more", "more", 4, MorePageBase.class),;
 
 
     public final String pageName;
@@ -34,7 +34,7 @@ public enum DownMenuElement {
 
 
     public String getPageName() {
-        return pageName;
+        return L10N.getText(pageName);
     }
 
     public String getPageNameForXpath() {

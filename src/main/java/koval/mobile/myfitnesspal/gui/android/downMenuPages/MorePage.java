@@ -38,7 +38,7 @@ public class MorePage extends MorePageBase {
         swipe(logOut, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
 
         logOut.click(TIMEOUT_TEN);
-        itemByText.format(YES_ANSWER);
+        itemByText.format(YES_ANSWER).click(TIMEOUT_TEN);
         return initPage(getDriver(), LoginPageBase.class);
 
     }
