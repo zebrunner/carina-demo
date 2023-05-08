@@ -4,7 +4,7 @@ package koval.mobile.myfitnesspal.gui.android.loginPages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.TopToolbarModal;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.CreateAccountPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
@@ -29,11 +29,6 @@ public class SignUpPage extends SignUpPageBase {
 
     @FindBy(id = "com.myfitnesspal.android:id/toolbar")
     private TopToolbarModal topToolbarModal;
-
-
-    @FindBy(xpath = "//*[@text='%s']|//*[@text='%s']")
-    private ExtendedWebElement itemByText;
-
 
     @FindBy(id = "com.myfitnesspal.android:id/layout%s")
     private ExtendedWebElement activityLevelBlock;
@@ -69,8 +64,6 @@ public class SignUpPage extends SignUpPageBase {
         super(driver);
     }
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
     @Override
     public boolean isPageOpened(String textTitle) {
         return topToolbarModal.isPageOpened(textTitle);
@@ -81,10 +74,10 @@ public class SignUpPage extends SignUpPageBase {
     public SignUpPageBase acceptAllConsents() {
 
         if (privacyPolicyTermsCheckBox.isElementPresent(TIMEOUT_FIVE)) {
-            privacyPolicyTermsCheckBox.click();
+            privacyPolicyTermsCheckBox.click(TIMEOUT_TEN);
         }
 
-        itemByText.format(ACCEPT).click();
+        itemByText.format(ACCEPT).click(TIMEOUT_TEN);
         return initPage(getDriver(), SignUpPageBase.class);
     }
 
@@ -93,7 +86,7 @@ public class SignUpPage extends SignUpPageBase {
     public SignUpPageBase privacyPolicyTermsAgreement() {
 
         if (privacyPolicyTermsCheckBox.isElementPresent(TIMEOUT_FIVE)) {
-            privacyPolicyTermsCheckBox.click();
+            privacyPolicyTermsCheckBox.click(TIMEOUT_TEN);
         }
 
         return initPage(getDriver(), SignUpPageBase.class);
@@ -142,11 +135,11 @@ public class SignUpPage extends SignUpPageBase {
             weightSpinnerID = CURRENT_WEIGHT;
         }
 
-        measurementParametersSpinner.format(weightSpinnerID).click();
+        measurementParametersSpinner.format(weightSpinnerID).click(TIMEOUT_TEN);
 
         if (!itemByText.format(weightMeasureValue.getWeightMeasure()).isElementPresent(TIMEOUT_FIVE)) {
-            measureSpinner.click();
-            itemByText.format(weightMeasureValue.getWeightMeasure()).click();
+            measureSpinner.click(TIMEOUT_TEN);
+            itemByText.format(weightMeasureValue.getWeightMeasure()).click(TIMEOUT_TEN);
         }
 
         if (weightMeasureValue.getWeightMeasure().equals(WeightMeasure.STONE.getWeightMeasure())) {
@@ -171,7 +164,7 @@ public class SignUpPage extends SignUpPageBase {
 
         }
 
-        itemByText.format(SET).click();
+        itemByText.format(SET).click(TIMEOUT_TEN);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }
@@ -180,11 +173,11 @@ public class SignUpPage extends SignUpPageBase {
     @Override
     public SignUpPageBase setHeight(float height, HeightMeasure heightMeasureValue) {
 
-        measurementParametersSpinner.format(HEIGHT).click();
+        measurementParametersSpinner.format(HEIGHT).click(TIMEOUT_TEN);
 
         if (!itemByText.format(heightMeasureValue.getHeightMeasure()).isElementPresent(TIMEOUT_FIVE)) {
-            measureSpinner.click();
-            itemByText.format(heightMeasureValue.getHeightMeasure()).click();
+            measureSpinner.click(TIMEOUT_TEN);
+            itemByText.format(heightMeasureValue.getHeightMeasure()).click(TIMEOUT_TEN);
         }
 
         if (heightMeasureValue.getHeightMeasure().equals(HeightMeasure.FEET_INCHES.getHeightMeasure())) {
@@ -208,7 +201,7 @@ public class SignUpPage extends SignUpPageBase {
 
         }
 
-        itemByText.format(SET).click();
+        itemByText.format(SET).click(TIMEOUT_TEN);
 
         return initPage(getDriver(), SignUpPageBase.class);
     }

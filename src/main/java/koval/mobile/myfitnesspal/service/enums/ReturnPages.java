@@ -1,9 +1,9 @@
 package koval.mobile.myfitnesspal.service.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
 
 public enum ReturnPages {
     DASHBOARD(DashboardPageBase.class),

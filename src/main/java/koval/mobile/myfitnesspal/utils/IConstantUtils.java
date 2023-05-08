@@ -36,6 +36,8 @@ public interface IConstantUtils {
 
     int TWENTY_COUNT = 20;
 
+    int FIVE_COUNT= 5;
+
     int MEDIUM_SPEED = 1000;
 
     int LOW_SPEED = 8000;
@@ -100,6 +102,8 @@ public interface IConstantUtils {
 
     String CANCEL = L10N.getText("cancel");
 
+    String CLOSE = L10N.getText("close");
+
     String SELECT_A_MEAL = "Select a meal.";
 
     String GO_PREMIUM = L10N.getText("go_premium");
@@ -109,6 +113,12 @@ public interface IConstantUtils {
     String EMAIL_ADDRESS = L10N.getText("email_address");
 
     String PASSWORD = L10N.getText("password");
+
+    String DELETE = L10N.getText("delete");
+
+    String EDIT = L10N.getText("edit");
+
+    String MORE_OPTIONS = L10N.getText("more_options");
 
     String EMAIL = "email";
 
@@ -146,10 +156,15 @@ public interface IConstantUtils {
 
     String CARDIO_TEXT = "Cardio";
 
-    String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";
-    String CONNECT_A_STEP_TRACKER = L10N.getText("connect_a_step_tracker");
+    String YES_ANSWER =  L10N.getText("yes");
 
-    List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
+    String LOG_OUT = L10N.getText("log_out");
+
+    String USER_AVATAR = "User avatar";
+
+    String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";
+
+    String CONNECT_A_STEP_TRACKER = L10N.getText("connect_a_step_tracker");
 
     List<String> MY_EXERCISES = Arrays.asList("running", "dancing", "walking", "swimming");
 

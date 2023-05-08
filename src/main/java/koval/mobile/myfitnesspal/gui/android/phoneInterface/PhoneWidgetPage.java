@@ -16,9 +16,6 @@ import java.lang.invoke.MethodHandles;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PhoneWidgetPageBase.class)
 public class PhoneWidgetPage extends PhoneWidgetPageBase {
 
-    @FindBy(xpath = "//*[@text='%s']")
-    private ExtendedWebElement itemByText;
-
     @FindBy(id = "com.google.android.apps.nexuslauncher:id/widgets_search_bar_edit_text")
     private ExtendedWebElement searchWidgetField;
 
@@ -31,8 +28,6 @@ public class PhoneWidgetPage extends PhoneWidgetPageBase {
     public PhoneWidgetPage(WebDriver driver) {
         super(driver);
     }
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
     @Override
@@ -51,7 +46,7 @@ public class PhoneWidgetPage extends PhoneWidgetPageBase {
 
         searchWidgetField.type(appName);
 
-        appTitle.format(appName).click();
+        appTitle.format(appName).click(TIMEOUT_TEN);
 
         int centerX = getCenterX(widgetContainer.format(widgetName));
 

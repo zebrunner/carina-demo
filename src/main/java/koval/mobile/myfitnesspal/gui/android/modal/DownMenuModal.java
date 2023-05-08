@@ -19,9 +19,6 @@ import java.lang.invoke.MethodHandles;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = DownMenuModalBase.class)
 public class DownMenuModal extends DownMenuModalBase {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
-
     @FindBy(id = "com.myfitnesspal.android:id/action_%s")
     private ExtendedWebElement downMenuIconElement;
 
@@ -38,11 +35,7 @@ public class DownMenuModal extends DownMenuModalBase {
     @Override
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
 
-        if (downMenuIconElement.isElementPresent(TIMEOUT_FIVE)) {
-            Assert.fail("Down Menu Element is not present!");
-        }
-
-        downMenuIconElement.format(downMenuElement.getPageNameForXpath()).click();
+        downMenuIconElement.format(downMenuElement.getPageNameForXpath()).click(TIMEOUT_TEN);
 
         return initPage(getDriver(), downMenuElement.getClassName());
     }

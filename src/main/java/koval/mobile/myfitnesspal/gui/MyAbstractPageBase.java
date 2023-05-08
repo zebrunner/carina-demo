@@ -1,22 +1,15 @@
 package koval.mobile.myfitnesspal.gui;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.CaseInsensitiveXPath;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
-import java.lang.invoke.MethodHandles;
 
 
 public abstract class MyAbstractPageBase extends AbstractPage implements IMyInterface {
-
-    @FindBy(xpath = "//*[@content-desc='%s']")
-    private ExtendedWebElement itemByContent;
 
     @FindBy(xpath = "//*[@resource-id='buttonExistingUserTutorial']/child::*[@class='android.widget.Button']")
     private ExtendedWebElement exitTutorialButton;
@@ -25,9 +18,16 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
             "//android.widget.ImageButton[@content-desc='Interstitial close button']")
     private ExtendedWebElement advertisingCloseButton;
 
+    @FindBy(xpath = "//*[@content-desc='%s']")
+    public ExtendedWebElement itemByContent;
 
+    @FindBy(xpath = "//*[@text='%s']")
+    public ExtendedWebElement itemByText;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    @CaseInsensitiveXPath
+    @FindBy(xpath = "//*[contains(@text,'%s')]")
+    public ExtendedWebElement itemByContainsText;
+
 
     public MyAbstractPageBase(WebDriver driver) {
         super(driver);
@@ -64,9 +64,11 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
         initPage(getDriver(), DashboardPageBase.class);
     }
 
+
     public void closeAdvertisingPopUpIfPresent() {
         waitUntil(ExpectedConditions.visibilityOfElementLocated(advertisingCloseButton.getBy()), TIMEOUT_FIFTEEN);
 
+        itemByText.format(CLOSE).clickIfPresent();
         int attemp = 3;
         while (advertisingCloseButton.format(CANCEL).isElementPresent(TIMEOUT_TEN) && attemp > 0) {
             advertisingCloseButton.format(CANCEL).click(TIMEOUT_TEN);

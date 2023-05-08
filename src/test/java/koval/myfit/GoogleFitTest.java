@@ -322,7 +322,6 @@ public class GoogleFitTest extends LoginTest {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void checkElementsColorTest() throws IOException {
 
-
         HomePageBase homePageBase = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePageBase.isPageOpened(), "[ HOME PAGE ] Home page is not opened!");
 

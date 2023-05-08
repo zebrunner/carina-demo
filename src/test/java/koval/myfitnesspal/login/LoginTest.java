@@ -3,32 +3,32 @@ package koval.myfitnesspal.login;
 
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.resources.L10N;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.service.AdbService;
-import koval.mobile.myfitnesspal.utils.IConstantUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.lang.invoke.MethodHandles;
 
 public class LoginTest implements IMyInterface {
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
-
-
     @BeforeMethod
-    public void login() {
+    public DashboardPageBase login() {
 
         adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
+
+        simpleLogin();
+
+        return (initPage(getDriver(), DashboardPageBase.class));
+    }
+
+
+    public DashboardPageBase simpleLogin() {
 
         adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
@@ -44,27 +44,31 @@ public class LoginTest implements IMyInterface {
         loginPageBase.typePassword(R.TESTDATA.get("fitnessPal_password"));
         loginPageBase.clickLoginButton();
 
-
         loginPageBase.closeNoSubscriptionsPopUpIfPresent();
         loginPageBase.closeUserTutorialBoxIfPresent();
-
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
         Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
 
         L10N.assertAll();
-    }
-
-    @AfterMethod(onlyForGroups = {"logoutWithCashClear"})
-    public void clearCashAndLogout() {
-       adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
-
+        return (initPage(getDriver(), DashboardPageBase.class));
     }
 
 
-    @AfterMethod(onlyForGroups = {"logoutWithoutCashClear"})
+    @AfterMethod(onlyForGroups = {"logout"})
     public void logout() {
+        adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
+
+    }
+
+    @AfterMethod(onlyForGroups = {"closeApp"})
+    public void closeApplication() {
+        adbService.closeApp(AdbService.AppPackage.MY_FITNESS_PAL);
+    }
+
+    @AfterMethod(onlyForGroups = {"closeAppAndDeleteWidget"})
+    public void deleteWidgetAndLogout() {
         adbService.closeApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
         PhoneHomePageBase phoneHomePageBase = initPage(getDriver(), PhoneHomePageBase.class);
@@ -75,4 +79,5 @@ public class LoginTest implements IMyInterface {
                 String.format("[ PHONE HOME PAGE ] '%s' widget is not deleted! App name '%s'", FITNESSPAL, CALORIES_WIDGET));
 
     }
+
 }

@@ -2,7 +2,7 @@ package koval.mobile.myfitnesspal.gui.common.loginPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.service.factories.accountFactory.Account;
 import koval.mobile.myfitnesspal.service.enums.ActivityLevel;
 import koval.mobile.myfitnesspal.service.enums.Gender;

@@ -3,17 +3,21 @@ package koval.myfitnesspal.login;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
+import com.zebrunner.carina.core.registrar.tag.TestTag;
 import com.zebrunner.carina.utils.resources.L10N;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.CardiovascularPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.NewCardioExercisePageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.MorePageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addExercise.NewCardioExercisePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myFoods.CreateFoodPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myFoods.CreateFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
 import koval.mobile.myfitnesspal.service.enums.*;
 import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExercise;
 import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExerciseFactory;
@@ -22,12 +26,9 @@ import koval.mobile.myfitnesspal.service.factories.foodFactory.FoodFactory;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.Recipe;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.RecipeFactory;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -35,21 +36,22 @@ import java.util.Random;
 
 public class FitnessPalTest extends LoginTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
     private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Water", "Cherries");
 
     private static final int FOOD_MEAL_INDEX = new Random().nextInt(FOOD.size());
 
-    private static final String MEAL_NAME = "meal_" + RandomStringUtils.randomAlphabetic(5);
+    private static final String MEAL_NAME = "meal_" + RandomStringUtils.randomAlphabetic(FIVE_COUNT);
 
     private static final String APP_NAME = AppAndWidgets.FITNESSPAL.getAppName();
+
     private static final String WIDGET_NAME = AppAndWidgets.FITNESSPAL.getFirstWidget();
 
 
-    @Test(groups = {"logoutWithCashClear"})
+    @Test(groups = {"logout"})
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
     public void loginSimpleUserTest() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
@@ -58,9 +60,11 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test(groups = {"logoutWithCashClear"})
+    @Test(groups = {"logout"})
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
     public void addFoodTest() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
@@ -81,23 +85,20 @@ public class FitnessPalTest extends LoginTest {
             searchFoodPageBase.searchFood(FOOD.get(i));
             searchFoodPageBase.addFoodToMealByName(FOOD.get(i));
 
-           diaryPageBase = (DiaryPageBase) searchFoodPageBase.clickBackButton(ReturnPages.DIARY);
+            diaryPageBase = (DiaryPageBase) searchFoodPageBase.clickBackButton(ReturnPages.DIARY);
             Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(i), mealsArr[i]), String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: '%s'",
                     FOOD.get(i), mealsArr[i]));
         }
 
         diaryPageBase.deleteAllItems();
-
-        for (Meals meals : Meals.values()) {
-            Assert.assertTrue(diaryPageBase.isAllFoodDeletedForMeal(meals), String.format("[ DIARY PAGE ] Food is not deleted! Meal: '%s'",
-                    meals));
-
-        }
+        Assert.assertTrue(diaryPageBase.isAllFoodDeletedForMeal(), "[ DIARY PAGE ] Food is not deleted!");
     }
 
-    @Test(groups = {"logoutWithCashClear"})
+    @Test(groups = {"logout"})
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
     public void addCreatedOwnFoodToBreakfastTest() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
@@ -165,9 +166,11 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test(groups = {"logoutWithoutCashClear"})
+    @Test(groups = {"closeAppAndDeleteWidget"})
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
     public void searchButtonFromWidget2x2Test() {
 
         PhoneHomePageBase phoneHomePageBase = goHome();
@@ -189,12 +192,13 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test(groups = {"logoutWithoutCashClear"})
+    @Test(groups = {"closeAppAndDeleteWidget"})
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
     public void logFoodFromWidget2x1Test() {
 
-        DashboardPageBase dashboardPageBase;
         PhoneHomePageBase phoneHomePageBase = goHome();
 
         phoneHomePageBase.holdPhoneDesktop();
@@ -205,7 +209,7 @@ public class FitnessPalTest extends LoginTest {
 
 
         double wasCaloriesCount = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
-        dashboardPageBase = phoneHomePageBase.openAppFromWidget();
+        DashboardPageBase dashboardPageBase = phoneHomePageBase.openAppFromWidget();
 
         SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
         searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
@@ -219,9 +223,11 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test(groups = {"logoutWithoutCashClear"})
+    @Test(groups = {"closeAppAndDeleteWidget"})
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
     public void resizeWidgetTo5x1Test() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
@@ -285,11 +291,12 @@ public class FitnessPalTest extends LoginTest {
     }
 
 
-    @Test(groups = {"logoutWithCashClear"})
+    @Test(groups = {"logout"})
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = "l10n")
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
     public void localizationTest() {
-
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
@@ -299,4 +306,58 @@ public class FitnessPalTest extends LoginTest {
         L10N.assertAll();
     }
 
+
+    @Test(groups = {"closeApp"})
+    @MethodOwner(owner = "koval")
+    @TestLabel(name = "feature", value = "l10n")
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
+    public void myFoodsListTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+        MePageBase mePageBase = dashboardPageBase.openMePage();
+        mePageBase.openTabFromMenuByName(MePageMenuTab.MY_ITEMS);
+
+        RecipesMealsFoodsPageBase recipesMealsFoodsPageBase = mePageBase.openItemByName(Items.FOOD);
+        recipesMealsFoodsPageBase.deleteAllItemsByName(RecipeMealsFoods.FOODS);
+
+        List<String> expectedListOfMyFoods = recipesMealsFoodsPageBase.getItemElementsToList();
+        mePageBase = recipesMealsFoodsPageBase.clickBackButton();
+
+        int expectedFoodValue = mePageBase.getItemValueByName(Items.FOOD) + 1;
+        CreateFoodPageBase createFoodPageBase = (CreateFoodPageBase) mePageBase.clickCreateButtonByItemName(Items.FOOD);
+
+        Food food = FoodFactory.generateFood();
+        createFoodPageBase.createFood(food);
+        expectedListOfMyFoods.add(0, food.getDescription());
+
+        int actualFoodValue = mePageBase.getItemValueByName(Items.FOOD);
+        LOGGER.info("[ME PAGE] Actual value of foods {}", actualFoodValue);
+        LOGGER.info("[ME PAGE] Expected value of foods {}", expectedFoodValue);
+        Assert.assertEquals(actualFoodValue, expectedFoodValue,
+                "[ ME PAGE ] Actual value of foods is not what expected!");
+
+        recipesMealsFoodsPageBase = mePageBase.openItemByName(Items.FOOD);
+        List<String> actualListOfMyFoods = recipesMealsFoodsPageBase.getItemElementsToList();
+        LOGGER.info("[RECIPES, MEALS & FOODS PAGE] Actual list of foods {}", actualListOfMyFoods);
+        LOGGER.info("[RECIPES, MEALS & FOODS PAGE] Expected list of foods {}", expectedListOfMyFoods);
+        Assert.assertEquals(actualListOfMyFoods, expectedListOfMyFoods,
+                "[RECIPES, MEALS & FOODS PAGE] Actual list of foods is not what expected!");
+
+        mePageBase = recipesMealsFoodsPageBase.clickBackButton();
+        dashboardPageBase = mePageBase.clickBackButton();
+        MorePageBase morePageBase = (MorePageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.MORE);
+        morePageBase.clickLogout();
+        dashboardPageBase = simpleLogin();
+
+        DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
+        SearchFoodPageBase searchFoodPageBase = diaryPageBase.clickAddFoodButton(Meals.BREAKFAST);
+        searchFoodPageBase.openTabByName(TabsFromSearchFoodPage.MY_FOODS);
+        actualListOfMyFoods = searchFoodPageBase.getListOfFoodElementsToList(expectedFoodValue);
+        LOGGER.info("[SEARCH FOOD PAGE]  Actual list of foods {}", actualListOfMyFoods);
+        LOGGER.info("[SEARCH FOOD PAGE]  Expected list of foods {}", expectedListOfMyFoods);
+        Assert.assertEquals(actualListOfMyFoods, expectedListOfMyFoods,
+                "[SEARCH FOOD PAGE] Actual list of foods is not what expected!");
+
+    }
 }

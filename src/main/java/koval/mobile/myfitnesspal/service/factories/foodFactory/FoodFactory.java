@@ -1,6 +1,8 @@
 package koval.mobile.myfitnesspal.service.factories.foodFactory;
 
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.util.Random;
 
 import static koval.mobile.myfitnesspal.utils.IConstantUtils.*;
@@ -14,14 +16,14 @@ public class FoodFactory {
 
         Food food = new Food();
 
-        int RANDOM_FOOD_INDEX = random.nextInt(MY_FOOD.size() - 1);
-        int SERVINGS = random.nextInt(5) + 1;
-        int SERVINGS_PER_CONTAINER = random.nextInt(5) + 1;
+        String RANDOM_FOOD_DESCRIPTION = "food_" + RandomStringUtils.randomNumeric(FIVE_COUNT);
+        int SERVINGS = random.nextInt(FIVE_COUNT) + 1;
+        int SERVINGS_PER_CONTAINER = random.nextInt(FIVE_COUNT) + 1;
         int CALORIES = random.nextInt(100 - 22) + 1;
 
 
         food.setBrandName(SPACE_FIELD);
-        food.setDescription(MY_FOOD.get(RANDOM_FOOD_INDEX));
+        food.setDescription(RANDOM_FOOD_DESCRIPTION);
         food.setServingsSize(SERVINGS);
         food.setServingsSizeQuantity(UNITS_VALUE);
         food.setServingsPerContainer(SERVINGS_PER_CONTAINER);
