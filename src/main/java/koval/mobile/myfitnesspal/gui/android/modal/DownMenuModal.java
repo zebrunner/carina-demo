@@ -35,10 +35,6 @@ public class DownMenuModal extends DownMenuModalBase {
     @Override
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
 
-//        if (downMenuIconElement.isElementPresent(TIMEOUT_FIVE)) {
-//            Assert.fail("Down Menu Element is not present!");
-//        }
-
         downMenuIconElement.format(downMenuElement.getPageNameForXpath()).click(TIMEOUT_TEN);
 
         return initPage(getDriver(), downMenuElement.getClassName());

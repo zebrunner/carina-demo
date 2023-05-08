@@ -150,6 +150,10 @@ public interface IConstantUtils {
 
     String CARDIO_TEXT = "Cardio";
 
+    String YES_ANSWER = "Yes";
+
+    String LOG_OUT = "Log Out";
+
     String USER_AVATAR = "User avatar";
 
     String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";

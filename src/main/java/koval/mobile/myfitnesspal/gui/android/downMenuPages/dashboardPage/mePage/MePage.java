@@ -54,7 +54,7 @@ public class MePage extends MePageBase {
 
         int itemValue = Integer.parseInt(itemByContainsText.format(items.getItemName(),items.getItemNameSmall()).getText().replaceAll(NUMBERS_ONLY, EMPTY_FIELD));
 
-        LOGGER.info("value of item {} is {}", items.getItemName(), itemValue);
+        LOGGER.info("[ ME PAGE ] Value of item {} is {}", items.getItemName(), itemValue);
         return itemValue;
 
     }
