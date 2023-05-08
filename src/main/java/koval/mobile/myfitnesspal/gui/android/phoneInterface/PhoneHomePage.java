@@ -4,40 +4,26 @@ package koval.mobile.myfitnesspal.gui.android.phoneInterface;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.service.enums.Calories;
 import koval.mobile.myfitnesspal.service.enums.WidgetSize;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-
-import java.lang.invoke.MethodHandles;
 
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PhoneHomePageBase.class)
 public class PhoneHomePage extends PhoneHomePageBase {
-
-    @FindBy(xpath = "//*[@text='%s']")
-    private ExtendedWebElement itemByText;
-
-    @FindBy(xpath = "//*[@content-desc='%s']")
-    private ExtendedWebElement itemByContent;
 
     @FindBy(xpath = "//com.android.launcher3.widget.LauncherAppWidgetHostView[@content-desc=\"MyFitnessPal\"]")
     private ExtendedWebElement fitnessPalWidgetItem;
 
     @FindBy(id = "com.google.android.apps.nexuslauncher:id/widget_resize_frame")
     private ExtendedWebElement resizeWidgetFrame;
-
-    @FindBy(id = "com.google.android.apps.nexuslauncher:id/widget_resize_%s_handle")
-    private ExtendedWebElement resizeHandlePoint;
 
     @FindBy(id = "com.myfitnesspal.android:id/imageWidgetCaloriesSearch")
     private ExtendedWebElement widgetCaloriesSearchImage;
@@ -51,11 +37,6 @@ public class PhoneHomePage extends PhoneHomePageBase {
 
     @FindBy(xpath = "//*[@resource-id='com.google.android.apps.nexuslauncher:id/app_title' and @text='%s']")
     private ExtendedWebElement appTitle;
-
-    @FindBy(xpath = "//*[@text='%s']/parent::*/*[@resource-id='com.google.android.apps.nexuslauncher:id/widget_preview_container']")
-    private ExtendedWebElement widgetContainer;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
     public PhoneHomePage(WebDriver driver) {
@@ -85,7 +66,7 @@ public class PhoneHomePage extends PhoneHomePageBase {
 
     public AbstractPage tapElement(ExtendedWebElement extendedWebElement, Class<? extends AbstractPage> className) {
 
-        extendedWebElement.click();
+        extendedWebElement.click(TIMEOUT_TEN);
         return initPage(getDriver(), className);
     }
 
@@ -207,7 +188,7 @@ public class PhoneHomePage extends PhoneHomePageBase {
 
         searchWidgetField.type(appName);
 
-        appTitle.format(appName).click();
+        appTitle.format(appName).click(TIMEOUT_TEN);
 
         return initPage(getDriver(), PhoneWidgetPageBase.class);
     }

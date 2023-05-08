@@ -2,10 +2,10 @@ package koval.mobile.myfitnesspal.service.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.resources.L10N;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myFoods.CreateFoodPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myMeals.CopyMealPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myFoods.CreateFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myMeals.CopyMealPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
 
 public enum ActionsFromTabsSearchFood {
     CREATE_A_MEAL(L10N.getText("create_a_meal"), CreateMealPageBase.class),

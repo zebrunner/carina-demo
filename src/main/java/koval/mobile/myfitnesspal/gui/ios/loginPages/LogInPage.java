@@ -3,7 +3,7 @@ package koval.mobile.myfitnesspal.gui.ios.loginPages;
 
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import org.openqa.selenium.WebDriver;
 

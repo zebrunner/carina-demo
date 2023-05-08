@@ -3,11 +3,10 @@ package koval.mobile.myfitnesspal.gui.common.phoneInterface;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.service.enums.Calories;
 import koval.mobile.myfitnesspal.service.enums.WidgetSize;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
 

@@ -36,6 +36,8 @@ public interface IConstantUtils {
 
     int TWENTY_COUNT = 20;
 
+    int FIVE_COUNT= 5;
+
     int MEDIUM_SPEED = 1000;
 
     int LOW_SPEED = 8000;
@@ -100,6 +102,8 @@ public interface IConstantUtils {
 
     String CANCEL = L10N.getText("cancel");
 
+    String CLOSE = L10N.getText("close");
+
     String SELECT_A_MEAL = "Select a meal.";
 
     String GO_PREMIUM = L10N.getText("go_premium");
@@ -146,10 +150,11 @@ public interface IConstantUtils {
 
     String CARDIO_TEXT = "Cardio";
 
-    String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";
-    String CONNECT_A_STEP_TRACKER = L10N.getText("connect_a_step_tracker");
+    String USER_AVATAR = "User avatar";
 
-    List<String> MY_FOOD = Arrays.asList("Milk with honey", "Apple with sugar", "Bread and Butter", "Water with honey");
+    String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";
+
+    String CONNECT_A_STEP_TRACKER = L10N.getText("connect_a_step_tracker");
 
     List<String> MY_EXERCISES = Arrays.asList("running", "dancing", "walking", "swimming");
 

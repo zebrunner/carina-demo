@@ -2,7 +2,7 @@ package koval.myfitnesspal.signUp;
 
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;

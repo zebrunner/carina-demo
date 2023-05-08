@@ -1,7 +1,7 @@
 package koval.mobile.myfitnesspal.gui.common.loginPages;
 
 import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import org.openqa.selenium.WebDriver;
 
 

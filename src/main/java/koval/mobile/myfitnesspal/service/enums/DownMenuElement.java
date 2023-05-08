@@ -3,14 +3,20 @@ package koval.mobile.myfitnesspal.service.enums;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.*;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.DiaryPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 
 
 public enum DownMenuElement {
     DASHBOARD(L10N.getText("dashboard"), "dashboard", 0, DashboardPageBase.class),
+
     DIARY(L10N.getText("diary"), "diary", 1, DiaryPageBase.class),
+
     NEWSFEED(L10N.getText("newsfeed"), "newsfeed", 2, NewsfeedPageBase.class),
-    PLANS(L10N.getText("plans"), "plans", 3, PlansPageBase.class);
+
+    PLANS(L10N.getText("plans"), "plans", 3, PlansPageBase.class),
+
+    MORE(L10N.getText("more"), "more", 4, MorePageBase.class),;
 
 
     public final String pageName;

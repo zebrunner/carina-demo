@@ -5,13 +5,12 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addFood.SearchFoodPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.service.enums.Calories;
 import koval.mobile.myfitnesspal.service.enums.WidgetSize;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
 

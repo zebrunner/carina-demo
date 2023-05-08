@@ -2,9 +2,9 @@ package koval.mobile.myfitnesspal.service.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.resources.L10N;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.CardiovascularPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.StrengthPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.diaryPageBase.addExercise.WorkoutRoutinesPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addExercise.StrengthPageBase;
+import koval.mobile.myfitnesspal.gui.common.actions.addExercise.WorkoutRoutinesPageBase;
 
 public enum ExercisesType {
     CARDIOVASCULAR(L10N.getText("cardiovascular"), CardiovascularPageBase.class),
