@@ -33,12 +33,12 @@ public class MorePage extends MorePageBase {
     @Override
     public LoginPageBase clickLogout() {
 
-        ExtendedWebElement logOut = itemByText.format("Log Out");
+        ExtendedWebElement logOut = itemByText.format(LOG_OUT);
 
         swipe(logOut, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
 
         logOut.click(TIMEOUT_TEN);
-        itemByText.format("Yes");
+        itemByText.format(YES_ANSWER);
         return initPage(getDriver(), LoginPageBase.class);
 
     }
