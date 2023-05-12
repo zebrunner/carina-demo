@@ -13,6 +13,8 @@ public abstract class CreateMealPageBase extends MyAbstractPageBase {
 
     public abstract boolean isPageOpened();
 
+    public abstract CreateMealPageBase closeGoPremiumPopIfPresent();
+
     public abstract SearchFoodPageBase createMeal(String mealName);
 
     public abstract SearchFoodPageBase clickSaveButton();

@@ -26,4 +26,9 @@ public class DownMenuModal extends DownMenuModalBase {
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
         throw new NotImplementedException();
     }
+
+    @Override
+    public boolean isMenuElementPresent(DownMenuElement downMenuElement) {
+        throw new NotImplementedException();
+    }
 }

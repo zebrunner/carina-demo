@@ -53,21 +53,14 @@ public class RecipesMealsFoodsPage extends RecipesMealsFoodsPageBase {
 
     @Override
     public RecipesMealsFoodsPageBase deleteAllItemsByName(RecipeMealsFoods recipeMealsFoods) {
-
         tabIndicator.format(recipeMealsFoods.getItemName()).click(TIMEOUT_TEN);
 
-        if (!listOfMyFoods.isEmpty()) {
-            itemByContent.format(MORE_OPTIONS).click(TIMEOUT_TEN);
+        while (!listOfMyFoods.isEmpty()) {
+            itemByContent.format(MORE_OPTIONS).clickIfPresent(TIMEOUT_TEN);
             itemByText.format(EDIT).click(TIMEOUT_TEN);
-
             editCheckBox.check();
-
             itemByContent.format(DELETE).click(TIMEOUT_TEN);
         }
-        else {
-            LOGGER.info("[RECIPES, MEALS & FOODS PAGE] List is empty");
-        }
-
 
         return initPage(getDriver(), RecipesMealsFoodsPageBase.class);
     }
