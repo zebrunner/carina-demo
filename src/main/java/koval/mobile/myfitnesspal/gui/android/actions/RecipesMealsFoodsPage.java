@@ -10,9 +10,7 @@ import koval.mobile.myfitnesspal.service.enums.RecipeMealsFoods;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
-import javax.ws.rs.DELETE;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,11 +53,15 @@ public class RecipesMealsFoodsPage extends RecipesMealsFoodsPageBase {
     public RecipesMealsFoodsPageBase deleteAllItemsByName(RecipeMealsFoods recipeMealsFoods) {
         tabIndicator.format(recipeMealsFoods.getItemName()).click(TIMEOUT_TEN);
 
-        while (!listOfMyFoods.isEmpty()) {
+        int attemp = 3;
+        while (!listOfMyFoods.isEmpty() && attemp > 0) {
             itemByContent.format(MORE_OPTIONS).clickIfPresent(TIMEOUT_TEN);
             itemByText.format(EDIT).click(TIMEOUT_TEN);
             editCheckBox.check();
             itemByContent.format(DELETE).click(TIMEOUT_TEN);
+
+            LOGGER.info("[ RECIPES MEALS FOODS PAGE ] Attempt: {} checking if list is empty", attemp);
+            attemp--;
         }
 
         return initPage(getDriver(), RecipesMealsFoodsPageBase.class);
