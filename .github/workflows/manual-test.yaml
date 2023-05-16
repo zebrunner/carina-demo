@@ -1,15 +1,10 @@
-name: Manual Report Generation
+name: Java Test Execution
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      report_type:
-        description: 'Select report type'
-        required: true
-        options: 
-          - daily
-          - weekly
-          - monthly
 
 jobs:
   test:
@@ -19,8 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and Run Java Tests
-        run: |
-          mvn clean test 
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Build and Run Tests
+        run: mvn clean test
 
 
