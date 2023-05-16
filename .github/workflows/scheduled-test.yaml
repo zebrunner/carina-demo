@@ -19,5 +19,4 @@ jobs:
           distribution: 'adopt'
 
       - name: Build and Run Java Tests
-        run: |
-          mvn clean test
+        run: mvn clean test
