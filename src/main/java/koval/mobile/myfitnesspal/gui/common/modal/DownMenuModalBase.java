@@ -19,4 +19,5 @@ public abstract class DownMenuModalBase extends MyAbstractPageBase {
 
     public abstract AbstractPage openPageByName(DownMenuElement downMenuElement);
 
+    public abstract boolean isMenuElementPresent(DownMenuElement downMenuElement);
 }

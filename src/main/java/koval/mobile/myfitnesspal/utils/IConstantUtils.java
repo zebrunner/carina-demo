@@ -1,6 +1,7 @@
 package koval.mobile.myfitnesspal.utils;
 
 
+import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.resources.L10N;
 
 import java.util.Arrays;
@@ -26,7 +27,9 @@ public interface IConstantUtils {
 
     int TIMEOUT_TWO = 2;
 
+
     int TIMEOUT_FIFTEEN = 15;
+
 
     int TIMEOUT_TEN = 10;
 
@@ -36,7 +39,12 @@ public interface IConstantUtils {
 
     int TWENTY_COUNT = 20;
 
-    int FIVE_COUNT= 5;
+    int FORTY_COUNT = 40;
+
+    int FIVE_COUNT = 5;
+
+    int FAST_SPEED = 300;
+
 
     int MEDIUM_SPEED = 1000;
 
@@ -51,8 +59,6 @@ public interface IConstantUtils {
     String EMPTY_FIELD = "";
 
     String DOT_AND_COMMA_VALUE = "[,.]";
-
-    String COMMA_VALUE = ",";
 
     String ONE_VALUE = "one";
 
@@ -79,8 +85,6 @@ public interface IConstantUtils {
     String NO_THANKS_ANSWER = L10N.getText("no_thanks");
 
     String NUMBERS_ONLY = "[^0-9]";
-
-    String NUMBERS_AND_CROSS_CHARACTER_ONLY = "[^0-9]";
 
     String SAVE = L10N.getText("save");
 
@@ -109,8 +113,6 @@ public interface IConstantUtils {
     String GO_PREMIUM = L10N.getText("go_premium");
 
     String CALORIES_STRING = L10N.getText("calories");
-
-    String EMAIL_ADDRESS = L10N.getText("email_address");
 
     String PASSWORD = L10N.getText("password");
 
@@ -156,15 +158,23 @@ public interface IConstantUtils {
 
     String CARDIO_TEXT = "Cardio";
 
-    String YES_ANSWER =  L10N.getText("yes");
+    String YES_ANSWER = L10N.getText("yes");
 
     String LOG_OUT = L10N.getText("log_out");
 
+    String ACCEPT_CONTINUE = "Accept & continue";
+
+    String TAKE_SURVEY = "Take The Survey";
+
+    String NET_CARBS = L10N.getText("net_crabs");
+
     String USER_AVATAR = "User avatar";
 
-    String INTERSTITIAL_CLOSE_BUTTON = "Interstitial close button";
+    String PLANS_SURVEY_TITLE = "MyFitnessPal Plans Hub Survey";
 
     String CONNECT_A_STEP_TRACKER = L10N.getText("connect_a_step_tracker");
+
+    String LOCAL_LANGUAGE = R.CONFIG.get("locale");
 
     List<String> MY_EXERCISES = Arrays.asList("running", "dancing", "walking", "swimming");
 

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
+
 public abstract class MyAbstractPageBase extends AbstractPage implements IMyInterface {
 
     @FindBy(xpath = "//*[@resource-id='buttonExistingUserTutorial']/child::*[@class='android.widget.Button']")
@@ -18,8 +19,10 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
             "//android.widget.ImageButton[@content-desc='Interstitial close button']")
     private ExtendedWebElement advertisingCloseButton;
 
+
     @FindBy(xpath = "//*[@content-desc='%s']")
     public ExtendedWebElement itemByContent;
+
 
     @FindBy(xpath = "//*[@text='%s']")
     public ExtendedWebElement itemByText;

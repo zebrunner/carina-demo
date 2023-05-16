@@ -25,9 +25,17 @@ public class CreateMealPage extends CreateMealPageBase {
 
     @Override
     public boolean isPageOpened() {
-        return itemByText.format(ActionsFromTabsSearchFood.CREATE_A_MEAL.getPageName()).isElementPresent(TIMEOUT_FIVE);
+        return itemByText.format(ActionsFromTabsSearchFood.CREATE_A_MEAL.getPageName()).isElementPresent(TIMEOUT_TEN);
     }
 
+    @Override
+    public CreateMealPageBase closeGoPremiumPopIfPresent() {
+        if (itemByContent.format(NET_CARBS).isElementPresent(TIMEOUT_TEN)) {
+            LOGGER.info("[CREATE MEAL PAGE] Closing Go Premium Pop Up {}", NET_CARBS);
+            navigateBack();
+        }
+        return initPage(getDriver(), CreateMealPageBase.class);
+    }
 
     @Override
     public SearchFoodPageBase createMeal(String mealName) {

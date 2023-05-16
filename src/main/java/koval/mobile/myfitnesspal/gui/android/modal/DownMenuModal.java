@@ -9,11 +9,6 @@ import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-
-import java.lang.invoke.MethodHandles;
 
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = DownMenuModalBase.class)
@@ -34,11 +29,15 @@ public class DownMenuModal extends DownMenuModalBase {
 
     @Override
     public AbstractPage openPageByName(DownMenuElement downMenuElement) {
-
         downMenuIconElement.format(downMenuElement.getPageNameForXpath()).click(TIMEOUT_TEN);
-
         return initPage(getDriver(), downMenuElement.getClassName());
     }
 
+    @Override
+    public boolean isMenuElementPresent(DownMenuElement downMenuElement) {
+        boolean isElementPresent = downMenuIconElement.format(downMenuElement.getPageNameForXpath()).isElementPresent(TIMEOUT_TEN);
+        LOGGER.info("Menu element {} is present: {}", downMenuElement.getPageName(), isElementPresent);
+        return isElementPresent;
+    }
 
 }

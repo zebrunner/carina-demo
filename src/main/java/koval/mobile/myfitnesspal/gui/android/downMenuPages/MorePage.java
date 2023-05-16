@@ -36,8 +36,9 @@ public class MorePage extends MorePageBase {
         ExtendedWebElement logOut = itemByText.format(LOG_OUT);
 
         swipe(logOut, Direction.UP, TWENTY_COUNT, MEDIUM_SPEED);
-
+        swipeUp(1, MEDIUM_SPEED);
         logOut.click(TIMEOUT_TEN);
+
         itemByText.format(YES_ANSWER).click(TIMEOUT_TEN);
         return initPage(getDriver(), LoginPageBase.class);
 
