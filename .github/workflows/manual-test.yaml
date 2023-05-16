@@ -1,9 +1,10 @@
 name: Manual Test Execution
 
-on:
+on:      
   push:
     branches:
       - 18Task
+  pull_request:
   workflow_dispatch:
     inputs:
       report-type:
