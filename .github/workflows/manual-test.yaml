@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 18Task
   workflow_dispatch:
     inputs:
       report-type:
