@@ -1,0 +1,22 @@
+name: Scheduled Test Execution
+
+on:
+  schedule:
+    - cron: '0 11 * * *'  # Run every day at 11 AM
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Build and Run Java Tests
+        run: |
+          mvn clean test
