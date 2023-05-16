@@ -16,12 +16,16 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+        env:
+          node-version: 16
 
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
+        env:
+          node-version: 16
 
       - name: Build and Run Tests
         run: mvn clean test
