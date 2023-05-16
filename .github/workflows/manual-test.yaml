@@ -5,6 +5,15 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      report-type:
+        description: 'Select Report Type'
+        required: true
+        default: 'summary'
+        options:
+          - 'summary'
+          - 'detailed'
+          - 'xml'
 
 jobs:
   test:
@@ -29,3 +38,11 @@ jobs:
 
       - name: Build and Run Tests
         run: mvn clean test
+
+      - name: Generate Test Report
+        if: ${{ github.event.inputs.report-type == 'detailed' }}
+        run: echo "Generating detailed test report..."
+
+      - name: Generate XML Report
+        if: ${{ github.event.inputs.report-type == 'xml' }}
+        run: echo "Generating XML test report..."
