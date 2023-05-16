@@ -189,7 +189,6 @@ public class FitnessPalTest extends LoginTest {
         Assert.assertTrue(phoneHomePageBase.isSearchButtonPresent(TIMEOUT_FIFTEEN),
                 "[ PHONE HOME PAGE ] Search Button is not present in the widget!");
 
-
         SearchFoodPageBase searchFoodPageBase = phoneHomePageBase.pressSearchButton();
         Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
         Assert.assertTrue(searchFoodPageBase.isKeyboardShown(), "[ SEARCH FOOD PAGE ] KeyBoard is not opened!");
