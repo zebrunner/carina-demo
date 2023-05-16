@@ -12,27 +12,15 @@ on:
           - monthly
 
 jobs:
-  generate_report:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate report
-        run: |
-          report_type=${{ github.event.inputs.report_type }}
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-          case $report_type in
-            daily)
-              echo "Generating daily report";
-              
-            weekly)
-              echo "Generating weekly report";
-              
-            monthly)
-              echo "Generating monthly report";
-              
-            *)
-              echo "Invalid report type selected"
-              exit 1
-              ;;
-          esac
+      - name: Build and Run Java Tests
+        run: |
+          mvn clean test 
+
 
