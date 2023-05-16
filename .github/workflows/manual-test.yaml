@@ -1,0 +1,38 @@
+name: Manual Report Generation
+
+on:
+  workflow_dispatch:
+    inputs:
+      report_type:
+        description: 'Select report type'
+        required: true
+        options: 
+          - daily
+          - weekly
+          - monthly
+
+jobs:
+  generate_report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate report
+        run: |
+          report_type=${{ github.event.inputs.report_type }}
+
+          case $report_type in
+            daily)
+              echo "Generating daily report";
+              
+            weekly)
+              echo "Generating weekly report";
+              
+            monthly)
+              echo "Generating monthly report";
+              
+            *)
+              echo "Invalid report type selected"
+              exit 1
+              ;;
+          esac
+
