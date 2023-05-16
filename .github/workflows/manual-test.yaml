@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up JDK
         uses: actions/setup-java@v2
@@ -22,5 +25,4 @@ jobs:
 
       - name: Build and Run Tests
         run: mvn clean test
-
 
