@@ -3,6 +3,7 @@ name: Manual Test Execution
 on:      
   push:
     branches:
+      - master
       - 18Task
   pull_request:
   workflow_dispatch:
