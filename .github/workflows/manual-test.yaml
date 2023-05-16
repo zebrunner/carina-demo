@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'corretto'
+          distribution: 'openjdk'
 
       - name: Build and Run Tests
         run: mvn clean test
