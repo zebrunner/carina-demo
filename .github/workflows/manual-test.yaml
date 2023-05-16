@@ -10,8 +10,7 @@ on:
     inputs:
       report-type:
         description: 'Select Report Type'
-        required: true
-        default: 'daily'
+        required: false
         options: 
           - daily
           - weekly
@@ -41,14 +40,6 @@ jobs:
       - name: Build and Run Tests
         run: mvn clean test
 
-      - name: Generate Daily Report
-        if: ${{ github.event.inputs.report-type == 'daily' }}
-        run: echo "Generating daily report..."
-
-      - name: Generate Weekly Report
-        if: ${{ github.event.inputs.report-type == 'weekly' }}
-        run: echo "Generating weekly report..."
-        
-      - name: Generate Monthly Report
-        if: ${{ github.event.inputs.report-type == 'monthly' }}
-        run: echo "Generating monthly report..."
+      - name: Generate Report
+        if: ${{ github.event.inputs.report-type }}
+        run: echo "Generating ${REPORT_TYPE} report..."
