@@ -1,4 +1,4 @@
-name: Java Test Execution
+name: Manual Test Execution
 
 on:
   push:
