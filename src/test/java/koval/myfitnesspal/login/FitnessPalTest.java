@@ -192,7 +192,6 @@ public class FitnessPalTest extends LoginTest {
         SearchFoodPageBase searchFoodPageBase = phoneHomePageBase.pressSearchButton();
         Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
         Assert.assertTrue(searchFoodPageBase.isKeyboardShown(), "[ SEARCH FOOD PAGE ] KeyBoard is not opened!");
-
     }
 
 
