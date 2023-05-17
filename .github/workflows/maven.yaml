@@ -29,3 +29,13 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+  tests:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+      - uses: actions/checkout@v1
+      - run: mvn clean install 
+      - name: Run tests
+        run: mvn test
