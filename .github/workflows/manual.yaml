@@ -1,4 +1,4 @@
-name: Test
+name: Test on Emulator
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
 
     steps:
     - name: Checkout code
@@ -24,17 +24,31 @@ jobs:
       with:
         node-version: '14'
 
-    - name: Install Appium
-      run: npm install -g appium
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start Emulator
+      run: emulator -avd your_emulator_name -no-audio -no-window &
+
+    - name: Wait for Emulator to start
+      run: android-wait-for-emulator
 
     - name: Start Appium server
-      run: appium --log-level error &
+      run: npm install -g appium && appium --log-level error &
 
-    - name: Install Maven dependencies
-      run: mvn clean install
-
-    - name: Run tests
+    - name: Build and run tests
       run: mvn clean install -Dtest=FitnessPalTest
+
+    - name: Generate test report
+      run: mvn allure:report
+
+    - name: Upload test report
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-report
+        path: target/allure-report
+
+      
 
        
 
