@@ -28,7 +28,7 @@ jobs:
       run: npm install
 
     - name: Start Emulator
-      run: emulator -avd your_emulator_name -no-audio -no-window &
+      run: emulator -avd emulator-5554 -no-audio -no-window &
 
     - name: Wait for Emulator to start
       run: android-wait-for-emulator
