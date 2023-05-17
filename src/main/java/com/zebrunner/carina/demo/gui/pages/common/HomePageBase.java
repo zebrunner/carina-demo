@@ -44,7 +44,7 @@ public abstract class HomePageBase extends AbstractPage {
     @Override
     public void open() {
         super.open();
-        acceptCookies.clickIfPresent();
+        acceptCookies.clickIfPresent(3);
     }
 
 }
