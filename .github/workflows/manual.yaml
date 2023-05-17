@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -19,11 +19,23 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
-    - name: Install dependencies
-      run: mvn clean install
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Appium
+      run: npm install -g appium
 
     - name: Start Appium server
-      run: npm install -g appium && appium --log-level error &
+      run: appium --log-level error &
 
-    - name: Run tests on device
+    - name: Install Maven dependencies
+      run: mvn clean install
+
+    - name: Run tests
       run: mvn clean install -Dtest=FitnessPalTest
+
+       
+
+      
