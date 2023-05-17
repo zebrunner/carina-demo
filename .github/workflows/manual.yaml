@@ -45,7 +45,7 @@ jobs:
     - name: Build tests
       run: mvn clean install 
  
-   - name: Run tests
+    - name: Run tests
       run: mvn clean install -Dtest=FitnessPalTest
  
 
