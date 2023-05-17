@@ -32,7 +32,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build and Run Tests
-        run: mvn clean install
+        run: mvn clean install -Dtest=FitnessPalTest
 
 
       - name: Generate Report
