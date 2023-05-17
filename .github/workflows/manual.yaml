@@ -1,64 +1,28 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven - Manual Run
+name: Test
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  workflow_dispatch:
-    inputs:
-      report-type:
-        description: 'Select Report Type'
-        required: true
-        default: 'daily'
-        options: 
-          - daily
-          - weekly
-          - monthly
+    branches:
+      - master
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  test:
+    runs-on: macOS-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
 
-    - name: Generate Daily Report
-      if: ${{ github.event.inputs.report-type == 'daily' }}
-      run: echo "Generating daily report..."
+    - name: Install dependencies
+      run: mvn clean install
 
-    - name: Generate Weekly Report
-      if: ${{ github.event.inputs.report-type == 'weekly' }}
-      run: echo "Generating weekly report..."
-        
-    - name: Generate Monthly Report
-      if: ${{ github.event.inputs.report-type == 'monthly' }}
-      run: echo "Generating monthly report..."
-      
-  tests:
-    runs-on: ubuntu-latest
-    name: Run WDIO tests
-    steps:
-    - name: Start selenoid
-      uses: Xotabu4/selenoid-github-action@v2
-    - uses: actions/checkout@v1
-    - run: mvn clean install 
-    - name: Run tests
+    - name: Start Appium server
+      run: npm install -g appium && appium --log-level error &
+
+    - name: Run tests on device
       run: mvn clean install -Dtest=FitnessPalTest
