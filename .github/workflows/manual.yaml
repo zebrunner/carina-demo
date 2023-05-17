@@ -1,3 +1,4 @@
+
 name: Test on Emulator
 
 on:
@@ -7,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -31,7 +32,12 @@ jobs:
       run: emulator -avd emulator-5554 -no-audio -no-window &
 
     - name: Wait for Emulator to start
-      run: android-wait-for-emulator
+      run: |
+        boot_completed=""
+        until [[ "$boot_completed" == "1" ]]; do
+          boot_completed=$(adb shell getprop sys.boot_completed 2>&1 | tr -d '\r')
+          sleep 1
+        done
 
     - name: Start Appium server
       run: npm install -g appium && appium --log-level error &
@@ -49,6 +55,8 @@ jobs:
         path: target/allure-report
 
       
+
+
 
        
 
