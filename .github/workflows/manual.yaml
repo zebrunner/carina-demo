@@ -36,11 +36,9 @@ jobs:
       with:
         node-version: '14'
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Start Appium server
-      run: npm install -g appium && appium --log-level error &
+    - name: Setup Appium
+      uses: youngfreeFJS/setup-appium@0.1.6
+      
 
     - name: Build tests
       run: mvn clean install 
