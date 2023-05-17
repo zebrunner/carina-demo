@@ -7,9 +7,11 @@ import com.zebrunner.carina.core.registrar.tag.TestTag;
 import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.MorePageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.PlansPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.NewCardioExercisePageBase;
+import koval.mobile.myfitnesspal.gui.common.modal.DownMenuModalBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addFood.SearchFoodPageBase;
@@ -18,6 +20,7 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myFoods.CreateFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
+import koval.mobile.myfitnesspal.gui.common.webPages.PlansGoogleDocWebPageBase;
 import koval.mobile.myfitnesspal.service.enums.*;
 import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExercise;
 import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExerciseFactory;
@@ -46,6 +49,7 @@ public class FitnessPalTest extends LoginTest {
 
     private static final String WIDGET_NAME = AppAndWidgets.FITNESSPAL.getFirstWidget();
 
+    private static final String SURVEY_PLANS_URL = "docs.google.com/forms/d/e/1FAIpQLSdXJDLwt3_Ugbnnc1XDwdzoUObCeZxtypxCnM4rBSEWu9tNzQ/viewform";
 
     @Test(groups = {"logout"})
     @MethodOwner(owner = "koval")
@@ -117,8 +121,9 @@ public class FitnessPalTest extends LoginTest {
                 searchFoodPageBase.openActionPageByName(ActionsFromTabsSearchFood.CREATE_A_MEAL);
 
         createMealPageBase.closeTimestampsPopUpIfPresent();
+        createMealPageBase.closeGoPremiumPopIfPresent();
         Assert.assertTrue(createMealPageBase.isPageOpened(),
-                "[ COPY MEAL PAGE ] Copy meal page is not opened!");
+                "[ CREATE A MEAL PAGE ] Create a meal page is not opened!");
 
 
         searchFoodPageBase = createMealPageBase.createMeal(MEAL_NAME);
@@ -184,11 +189,9 @@ public class FitnessPalTest extends LoginTest {
         Assert.assertTrue(phoneHomePageBase.isSearchButtonPresent(TIMEOUT_FIFTEEN),
                 "[ PHONE HOME PAGE ] Search Button is not present in the widget!");
 
-
         SearchFoodPageBase searchFoodPageBase = phoneHomePageBase.pressSearchButton();
         Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
         Assert.assertTrue(searchFoodPageBase.isKeyboardShown(), "[ SEARCH FOOD PAGE ] KeyBoard is not opened!");
-
     }
 
 
@@ -210,6 +213,9 @@ public class FitnessPalTest extends LoginTest {
 
         double wasCaloriesCount = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
         DashboardPageBase dashboardPageBase = phoneHomePageBase.openAppFromWidget();
+
+        dashboardPageBase.closeAdvertisingPopUpIfPresent();
+        dashboardPageBase.closeUserTutorialBoxIfPresent();
 
         SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
         searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
@@ -287,7 +293,6 @@ public class FitnessPalTest extends LoginTest {
         Assert.assertEquals(actualFoodCaloriesFromWidget, expectedFoodCaloriesFromWidget, "[ PHONE HOME PAGE ] Total food logged Value is not updated!");
         Assert.assertEquals(actualExerciseCaloriesFromWidget, expectedExerciseCaloriesFromWidget, "[ PHONE HOME PAGE ] Total exercise logged Value is not updated!");
 
-
     }
 
 
@@ -358,6 +363,40 @@ public class FitnessPalTest extends LoginTest {
         LOGGER.info("[SEARCH FOOD PAGE]  Expected list of foods {}", expectedListOfMyFoods);
         Assert.assertEquals(actualListOfMyFoods, expectedListOfMyFoods,
                 "[SEARCH FOOD PAGE] Actual list of foods is not what expected!");
+
+    }
+
+
+    @Test(groups = {"closeApp"})
+    @MethodOwner(owner = "koval")
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
+    public void plansPageSurveyTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
+        LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE.toLowerCase()));
+
+        if(LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())){
+
+            PlansPageBase plansPageBase = (PlansPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
+            Assert.assertTrue(plansPageBase.isPageOpened(TIMEOUT_TEN), "[PLANS PAGE] Plans Page is not opened!");
+            plansPageBase.swipeToSurveyTitle(TIMEOUT_FIVE);
+            Assert.assertTrue(plansPageBase.isSurveyTitleAtTheBottom(),
+                    "[PLANS PAGE] Survey title is not at the bottom!");
+            Assert.assertTrue(plansPageBase.isSectionSurveyPresent(TIMEOUT_FIVE),
+                    "[PLANS PAGE] Survey section is not present!");
+
+            PlansGoogleDocWebPageBase plansGoogleDocWebPageBase = plansPageBase.clickTakeSurvey();
+            Assert.assertTrue(plansGoogleDocWebPageBase.isPageOpened(TIMEOUT_TEN, SURVEY_PLANS_URL),
+                    "[PLANS GOOGLE DOC WEB PAGE PAGE] Plans Google doc Web page is not opened!");
+
+        }
+        else {
+            DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
+            Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
+                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!",DownMenuElement.PLANS));
+        }
 
     }
 }

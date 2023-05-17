@@ -1,0 +1,22 @@
+name: Scheduled Test Execution(CRON)
+
+on:
+  schedule:
+     - cron: '0 11 * * ?'  # Runs every day at 11.00 am
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Build and Run Java Tests
+        run: mvn clean test

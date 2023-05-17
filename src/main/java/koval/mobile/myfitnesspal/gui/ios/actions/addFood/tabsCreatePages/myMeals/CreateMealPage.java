@@ -21,6 +21,11 @@ public class CreateMealPage extends CreateMealPageBase {
         throw new NotImplementedException();
     }
 
+    @Override
+    public CreateMealPageBase closeGoPremiumPopIfPresent() {
+        throw new NotImplementedException();
+    }
+
 
     @Override
     public SearchFoodPageBase createMeal(String mealName) {

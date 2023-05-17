@@ -37,9 +37,6 @@ public enum Items {
         return L10N.getText(itemName);
     }
 
-    public String getItemNameSmall() {
-        return itemName.toLowerCase();
-    }
 
     public Class<? extends AbstractPage> getClassName() {
         return className;

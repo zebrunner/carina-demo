@@ -1,0 +1,48 @@
+
+name: Test on Emulator
+
+on:      
+  push:
+    branches:
+      - master
+      - 18Task
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      report-type:
+        description: 'Select Report Type'
+        required: false
+        options: 
+          - daily
+          - weekly
+          - monthly
+          
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+      
+
+    - name: Build tests
+      run: mvn clean install 
+ 
+    - name: Run tests
+      run: mvn clean install -Dtest=FitnessPalTest
+ 
+
+      
+
+
+
+       
+
+      

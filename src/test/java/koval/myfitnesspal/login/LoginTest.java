@@ -32,6 +32,7 @@ public class LoginTest implements IMyInterface {
 
         adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
+        hideKeyboard();
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
         welcomePageBase.notificationSendPopUpIfPresent(ALLOW_ANSWER);
         Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
