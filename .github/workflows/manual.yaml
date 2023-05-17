@@ -1,11 +1,22 @@
 
 name: Test on Emulator
 
-on:
+on:      
   push:
     branches:
       - master
-
+      - 18Task
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      report-type:
+        description: 'Select Report Type'
+        required: false
+        options: 
+          - daily
+          - weekly
+          - monthly
+          
 jobs:
   test:
     runs-on: macos-latest
