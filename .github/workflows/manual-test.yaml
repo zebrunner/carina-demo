@@ -33,9 +33,8 @@ jobs:
           
       - name: Start selenoid
         uses: Xotabu4/selenoid-github-action@v2
-        with:
-         selenoid-start-arguments: |
-          --args "-timeout 60s"
+      - uses: actions/checkout@v1
+      - run: mvn clean install 
 
       - name: Build and Run Tests
         run: mvn test -Dtest=WebSampleSingleDriver#testOpenCompare
