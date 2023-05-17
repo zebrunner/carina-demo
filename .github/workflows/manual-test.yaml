@@ -30,11 +30,20 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          
+  appium:
+    runs-on: ubuntu-latest
+ 
+    steps:
+       - name: Checkout
+         uses: actions/checkout@v2
+       - name: Install and Run Appium Server
+         uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
 
-      - name: Build and Run Tests
-        run: mvn clean install -Dtest=FitnessPalTest
+       - name: Build and Run Tests
+         run: mvn clean install -Dtest=FitnessPalTest
 
 
-      - name: Generate Report
-        if: ${{ github.event.inputs.report-type }}
-        run: echo "Generating ${REPORT_TYPE} report..."
+       - name: Generate Report
+         if: ${{ github.event.inputs.report-type }}
+         run: echo "Generating ${REPORT_TYPE} report..."
