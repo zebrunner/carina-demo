@@ -32,7 +32,7 @@ jobs:
           distribution: 'adopt'
           
       - name: Start Selenoid Server
-        uses: selenoid/start-selenoid-server@v1
+        uses: marketplacer/selenoid@v1
 
       - name: Build and Run Tests
         run: mvn clean test
