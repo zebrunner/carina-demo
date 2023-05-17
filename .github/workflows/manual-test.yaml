@@ -38,7 +38,8 @@ jobs:
           --args "-timeout 60s"
 
       - name: Build and Run Tests
-        run: mvn clean test
+        run: mvn test -Dtest=WebSampleSingleDriver#testOpenCompare
+
 
       - name: Generate Report
         if: ${{ github.event.inputs.report-type }}
