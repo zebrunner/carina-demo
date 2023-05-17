@@ -43,8 +43,7 @@ jobs:
       run: npm install -g appium && appium --log-level error &
 
     - name: Build and run tests
-      run: mvn clean install -Dtest=FitnessPalTest
-
+      run: mvn clean install 
  
 
       
