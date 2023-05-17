@@ -34,7 +34,7 @@ jobs:
       run: mvn clean install
 
     - name: Run tests
-      run: mvn clean install -Dtest=FitnessPalTest -DdeviceName=emulator-5554 -DplatformVersion=13
+      run: mvn clean install -Dtest=FitnessPalTest -DdeviceName=R58T60JKDBX 
 
        
 
