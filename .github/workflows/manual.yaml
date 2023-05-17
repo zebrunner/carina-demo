@@ -30,14 +30,6 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-
-    - name: Install Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Setup Appium
-      uses: youngfreeFJS/setup-appium@0.1.6
       
 
     - name: Build tests
