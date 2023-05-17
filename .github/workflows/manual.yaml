@@ -42,8 +42,11 @@ jobs:
     - name: Start Appium server
       run: npm install -g appium && appium --log-level error &
 
-    - name: Build and run tests
+    - name: Build tests
       run: mvn clean install 
+ 
+   - name: Run tests
+      run: mvn clean install -Dtest=FitnessPalTest
  
 
       
