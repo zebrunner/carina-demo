@@ -31,8 +31,11 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           
-      - name: Start Selenoid Server
+      - name: Start selenoid
         uses: Xotabu4/selenoid-github-action@v2
+        with:
+         selenoid-start-arguments: |
+          --args "-timeout 60s"
 
       - name: Build and Run Tests
         run: mvn clean test
