@@ -59,6 +59,6 @@ jobs:
     - name: Start selenoid
       uses: Xotabu4/selenoid-github-action@v2
     - uses: actions/checkout@v1
-    - run: npm ci  
+    - run: mvn clean install 
     - name: Run tests
-      run: npm test
+      run: mvn test
