@@ -33,6 +33,13 @@ jobs:
         with: 
           api-level: 29
           emulator-build: 7425822
-          script: mvn clean test -Dtest=FitnessPalTest
+          
+      - name: Install App on Emulator
+        run: |
+          adb devices
+          adb install -r /Users/dianakoval/Documents/apk/MyFitnessPal.apk
+
+      - name: Run Tests
+        run: mvn clean test -Dtest=FitnessPalTest
      
 
