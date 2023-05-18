@@ -42,7 +42,7 @@ public class AdbService extends AndroidService {
     }
 
     public void startApp(AppPackage packName) {
-        String cm = "install -r /Users/dianakoval/Documents/apk/MyFitnessPal.apk";
+        String cm = "install -r MyFitnessPal.apk";
         executor.executeAdbCommand(cm);
         pause(TIMEOUT_FIVE);
 
