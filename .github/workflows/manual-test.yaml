@@ -35,7 +35,6 @@ jobs:
           emulator-build: 7425822
           script: |
            adb devices
-           adb install -r MyFitnessPal.apk
            mvn clean test -Dtest=FitnessPalTest
      
 
