@@ -46,18 +46,17 @@ public class AdbService extends AndroidService {
         executor.executeAdbCommand(cm);
         pause(TIMEOUT_FIVE);
 
-        String c = String.format("shell pm list packages %s", packName.toString());
-        if (executor.executeAdbCommand(c).equals("")) {
-            LOGGER.info("App was not installed!");
-        }
-
-        String command = "shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'";
-        LOGGER.info(executor.executeAdbCommand(command));
+        String c = String.format("shell pm list packages %s", packName.getPackageName());
+        executor.executeAdbCommand(c);
 
         LOGGER.info("Starting " + packName);
         String cmd = String.format("shell monkey -p %s -c android.intent.category.LAUNCHER 1", packName.getPackageName());
         executor.executeAdbCommand(cmd);
         pause(TIMEOUT_FIVE);
+
+        String command = "shell dumpsys window | grep -E 'mCurrentFocus'";
+        executor.executeAdbCommand(command);
+
     }
 
     public void closeApp(AppPackage packageName) {
