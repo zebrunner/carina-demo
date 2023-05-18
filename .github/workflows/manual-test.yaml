@@ -31,7 +31,7 @@ jobs:
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
         with: 
-          api-level: 33
+          api-level: 29
           emulator-build: 7425822
           script: mvn clean test -Dtest=FitnessPalTest
      
