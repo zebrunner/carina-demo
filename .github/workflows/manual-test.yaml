@@ -33,6 +33,7 @@ jobs:
         with: 
           api-level: 29
           emulator-build: 7425822
+          script: mvn clean
           
       - name: Install App on Emulator
         run: |
