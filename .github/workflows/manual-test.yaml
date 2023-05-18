@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: MyFitnessPal APK
-          path: /Users/dianakoval/Documents/apk/MyFitnessPal.apk
+          path: /Users/dianakoval/Documents/apk
 
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
