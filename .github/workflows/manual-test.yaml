@@ -29,7 +29,7 @@ jobs:
           appium &>/dev/null &
           
       - name: run appium android tests
-        uses: reactivecircus/android-emulator-runner@2
+        uses: reactivecircus/android-emulator-runner@v2
         with: 
           api-level: 29
           script: mvn clean test -Dtest=FitnessPalTest
