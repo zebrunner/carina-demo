@@ -4,17 +4,8 @@ on:
   push:
     branches:
       - master
-      - 18Task
   pull_request:
   workflow_dispatch:
-    inputs:
-      report-type:
-        description: 'Select Report Type'
-        required: false
-        options: 
-          - daily
-          - weekly
-          - monthly
 
 jobs:
   test:
@@ -31,19 +22,16 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           
-  appium:
-    runs-on: ubuntu-latest
- 
-    steps:
-       - name: Checkout
-         uses: actions/checkout@v2
-       - name: Install and Run Appium Server
-         uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
+      - name: setup appium
+        run: |
+          npm install -g appium@v1.22
+          appium -v
+          appium &>/dev/null &
+          
+      - name: run appium android tests
+        uses: reactivecircus/android-emulator-runner@2
+        with: 
+          api-level: 29
+          script: mvn clean test -Dtest=FitnessPalTest
+     
 
-       - name: Build and Run Tests
-         run: mvn clean install -Dtest=FitnessPalTest
-
-
-       - name: Generate Report
-         if: ${{ github.event.inputs.report-type }}
-         run: echo "Generating ${REPORT_TYPE} report..."
