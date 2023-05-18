@@ -9,6 +9,7 @@ import java.lang.invoke.MethodHandles;
 
 
 import static com.zebrunner.carina.utils.common.CommonUtils.pause;
+import static koval.mobile.myfit.service.interfaces.IConstantUtils.TIMEOUT_FIVE;
 import static koval.mobile.myfitnesspal.utils.IConstantUtils.*;
 
 
@@ -41,7 +42,19 @@ public class AdbService extends AndroidService {
     }
 
     public void startApp(AppPackage packName) {
-        LOGGER.info("Starting " + packName.toString());
+        String cm = "install -r /Users/dianakoval/Documents/apk/MyFitnessPal.apk";
+        executor.executeAdbCommand(cm);
+        pause(TIMEOUT_FIVE);
+
+        String c = String.format("shell pm list packages %s", packName.toString());
+        if (executor.executeAdbCommand(c).equals("")) {
+            LOGGER.info("App was not installed!");
+        }
+
+        String command = "shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'";
+        LOGGER.info(executor.executeAdbCommand(command));
+
+        LOGGER.info("Starting " + packName);
         String cmd = String.format("shell monkey -p %s -c android.intent.category.LAUNCHER 1", packName.getPackageName());
         executor.executeAdbCommand(cmd);
         pause(TIMEOUT_FIVE);
