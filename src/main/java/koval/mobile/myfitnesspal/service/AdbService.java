@@ -42,10 +42,19 @@ public class AdbService extends AndroidService {
     }
 
     public void startApp(AppPackage packName) {
-        String cm = "install /Users/dianakoval/Documents/apk/MyFitnessPal.apk";
+        String cm = "install -r /Users/dianakoval/Documents/apk/MyFitnessPal.apk";
         executor.executeAdbCommand(cm);
         pause(TIMEOUT_FIVE);
-        LOGGER.info("Starting " + packName.toString());
+
+        String c = String.format("shell pm list packages %s", packName.toString());
+        if (executor.executeAdbCommand(c).equals("")) {
+            LOGGER.info("App was not installed!");
+        }
+
+        String command = "shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'";
+        LOGGER.info(executor.executeAdbCommand(command));
+
+        LOGGER.info("Starting " + packName);
         String cmd = String.format("shell monkey -p %s -c android.intent.category.LAUNCHER 1", packName.getPackageName());
         executor.executeAdbCommand(cmd);
         pause(TIMEOUT_FIVE);
