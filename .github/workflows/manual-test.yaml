@@ -20,6 +20,9 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          
+      - name: Set up ADB
+        run: adb start-server
 
       - name: setup appium
         run: |
