@@ -28,7 +28,7 @@ public class LoginTest implements IMyInterface {
     @BeforeMethod
     public DashboardPageBase login() {
 
-        Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
+       // Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
         adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
