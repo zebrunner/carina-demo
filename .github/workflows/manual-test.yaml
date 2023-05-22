@@ -34,4 +34,4 @@ jobs:
           emulator-build: 7425822
           script: |
             adb devices
-            mvn clean test -Dtest=FitnessPalTest
+            mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
