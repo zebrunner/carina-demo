@@ -3,6 +3,7 @@ package koval.myfitnesspal.login;
 
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.resources.L10N;
+import koval.Apps;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
@@ -12,6 +13,13 @@ import koval.mobile.myfitnesspal.service.AdbService;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 
 public class LoginTest implements IMyInterface {
@@ -29,6 +37,27 @@ public class LoginTest implements IMyInterface {
 
 
     public DashboardPageBase simpleLogin() {
+
+//      //  String apkUrl = "https://drive.google.com/file/d/1RrKzzGJLhlAHykBP4A6Dd451sFUXRM5s/view?usp=share_link";
+//
+//        String apkUrl = "https://github.com/DianaKovall/carina-demo/releases/tag/v.1.1/MyFitnessPal.apk";
+//
+//
+//        String outputFile = System.getProperty("user.dir") + "/apk/MyFitnessPal.apk";
+//
+//        try {
+//            URL url = new URL(apkUrl);
+//            ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+//            FileOutputStream fos = new FileOutputStream(outputFile);
+//            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+//            fos.close();
+//            rbc.close();
+//            System.out.println("APK file downloaded successfully.");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
         adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
 

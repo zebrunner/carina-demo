@@ -16,18 +16,25 @@ import static koval.mobile.myfitnesspal.utils.IConstantUtils.*;
 public class AdbService extends AndroidService {
 
     public enum AppPackage {
-        MY_FITNESS_PAL("com.myfitnesspal.android"),
-        GOOGLE_FIT("com.google.android.apps.fitness"),
-        CARINA_DEMO("com.solvd.carinademoapplication");
+        MY_FITNESS_PAL("com.myfitnesspal.android", "MyFitnessPal.apk"),
+        GOOGLE_FIT("com.google.android.apps.fitness", "Fit_base.apk"),
+        CARINA_DEMO("com.solvd.carinademoapplication", "carinademoexample.apk");
 
         public final String appPackage;
 
-        AppPackage(String appPackage) {
+        public final String apkName;
+
+        AppPackage(String appPackage, String apkName) {
             this.appPackage = appPackage;
+            this.apkName = apkName;
         }
 
         public String getPackageName() {
             return appPackage;
+        }
+
+        public String getApkName() {
+            return apkName;
         }
     }
 
@@ -42,21 +49,14 @@ public class AdbService extends AndroidService {
     }
 
     public void startApp(AppPackage packName) {
-        String cm = "install -r MyFitnessPal.apk";
+        String cm = "install -r " + System.getProperty("user.dir") + "/apk/MyFitnessPal.apk";
         executor.executeAdbCommand(cm);
         pause(TIMEOUT_FIVE);
-
-        String c = String.format("shell pm list packages %s", packName.getPackageName());
-        executor.executeAdbCommand(c);
 
         LOGGER.info("Starting " + packName);
         String cmd = String.format("shell monkey -p %s -c android.intent.category.LAUNCHER 1", packName.getPackageName());
         executor.executeAdbCommand(cmd);
         pause(TIMEOUT_FIVE);
-
-        String command = "shell dumpsys window | grep -E 'mCurrentFocus'";
-        executor.executeAdbCommand(command);
-
     }
 
     public void closeApp(AppPackage packageName) {
