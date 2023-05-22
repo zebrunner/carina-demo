@@ -19,19 +19,16 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adopt'
-          
-      - name: Set up ADB
-        run: adb start-server
+          distribution: 'temurin'
 
       - name: setup appium
         run: |
-          npm install -g appium@v1.22.3
+          npm install -g appium@v1.22
           appium -v
           appium &>/dev/null &
 
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
+          api-level: 29
           script: mvn clean test -Dtest=FitnessPalTest#addFoodTest
