@@ -28,7 +28,6 @@ import koval.mobile.myfitnesspal.service.factories.foodFactory.Food;
 import koval.mobile.myfitnesspal.service.factories.foodFactory.FoodFactory;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.Recipe;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.RecipeFactory;
-import koval.mobile.myfitnesspal.utils.IConstantUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;

@@ -54,7 +54,7 @@ public class AdbService extends AndroidService {
         LOGGER.info("Installing " + packName);
         String cmd = String.format("install -r %s/apk/%s ", System.getProperty("user.dir"), packName.getApkName());
         executor.executeAdbCommand(cmd);
-        //pause(TIMEOUT_FIVE);
+        pause(TIMEOUT_FIVE);
     }
     public void startApp(AppPackage packName) {
 
