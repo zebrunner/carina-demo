@@ -51,19 +51,10 @@ public class AdbService extends AndroidService {
 
 
     public void installApp(AppPackage packName) {
-
-        try{
-
-
         LOGGER.info("Installing " + packName);
         String cmd = String.format("install -r %s/apk/%s ", System.getProperty("user.dir"), packName.getApkName());
         executor.executeAdbCommand(cmd);
-        pause(TIMEOUT_FIVE);
-        }
-        catch (Exception ex)
-        {
-            LOGGER.info(String.format("Exception while installing app: %s", ex));
-        }
+        //pause(TIMEOUT_FIVE);
     }
     public void startApp(AppPackage packName) {
 
