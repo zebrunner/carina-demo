@@ -30,7 +30,7 @@ public class LoginTest implements IMyInterface {
 
        // Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
-        adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
+      //  adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
         adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
 
