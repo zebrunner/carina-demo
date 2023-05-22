@@ -21,6 +21,11 @@ public class DashboardPage extends DashboardPageBase {
     }
 
     @Override
+    public boolean isPageOpened(int timeout) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public MePageBase openMePage() {
         throw new NotImplementedException();
     }

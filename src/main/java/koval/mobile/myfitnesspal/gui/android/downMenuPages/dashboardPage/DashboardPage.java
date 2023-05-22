@@ -25,9 +25,9 @@ public class DashboardPage extends DashboardPageBase {
     }
 
     @Override
-    public boolean isPageOpened() {
+    public boolean isPageOpened(int timeout) {
 
-        return itemByText.format(CALORIES_STRING).isElementPresent(TIMEOUT_FIVE);
+        return itemByText.format(CALORIES_STRING).isElementPresent(timeout);
 
     }
 

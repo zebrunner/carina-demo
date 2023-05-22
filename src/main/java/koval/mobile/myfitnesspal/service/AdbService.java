@@ -48,10 +48,16 @@ public class AdbService extends AndroidService {
         getDevice(getDriver()).execute(command);
     }
 
-    public void startApp(AppPackage packName) {
-        String cm = "install -r " + System.getProperty("user.dir") + "/apk/MyFitnessPal.apk";
+
+
+    public void installApp(AppPackage packName) {
+
+        LOGGER.info("Installing " + packName);
+        String cm = "install -r " + System.getProperty("user.dir") + "/apk/" + packName.getApkName();
         executor.executeAdbCommand(cm);
-        pause(TIMEOUT_FIVE);
+        pause(TIMEOUT_TWENTY);
+    }
+    public void startApp(AppPackage packName) {
 
         LOGGER.info("Starting " + packName);
         String cmd = String.format("shell monkey -p %s -c android.intent.category.LAUNCHER 1", packName.getPackageName());

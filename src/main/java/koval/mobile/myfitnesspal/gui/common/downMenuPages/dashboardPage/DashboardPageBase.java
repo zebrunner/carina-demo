@@ -15,6 +15,8 @@ public abstract class DashboardPageBase extends MyAbstractPageBase {
         super(driver);
     }
 
+    public abstract boolean isPageOpened(int timeout);
+
     public abstract MePageBase openMePage();
 
     public abstract AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement);

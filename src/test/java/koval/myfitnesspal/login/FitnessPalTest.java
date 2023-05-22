@@ -28,6 +28,7 @@ import koval.mobile.myfitnesspal.service.factories.foodFactory.Food;
 import koval.mobile.myfitnesspal.service.factories.foodFactory.FoodFactory;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.Recipe;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.RecipeFactory;
+import koval.mobile.myfitnesspal.utils.IConstantUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -244,7 +245,7 @@ public class FitnessPalTest extends LoginTest {
 
         dashboardPageBase = (DashboardPageBase) diaryPageBase.openPageFromDownMenuByName(DownMenuElement.DASHBOARD);
         dashboardPageBase.closeUserTutorialBoxIfPresent();
-        Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+        Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_FIFTEEN), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
 
         PhoneHomePageBase phoneHomePageBase = goHome();
         phoneHomePageBase.holdPhoneDesktop();

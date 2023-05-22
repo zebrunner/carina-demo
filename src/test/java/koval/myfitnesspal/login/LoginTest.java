@@ -28,6 +28,10 @@ public class LoginTest implements IMyInterface {
     @BeforeMethod
     public DashboardPageBase login() {
 
+        Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
+
+        adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
+
         adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
 
         simpleLogin();
@@ -37,27 +41,6 @@ public class LoginTest implements IMyInterface {
 
 
     public DashboardPageBase simpleLogin() {
-
-//      //  String apkUrl = "https://drive.google.com/file/d/1RrKzzGJLhlAHykBP4A6Dd451sFUXRM5s/view?usp=share_link";
-//
-//        String apkUrl = "https://github.com/DianaKovall/carina-demo/releases/tag/v.1.1/MyFitnessPal.apk";
-//
-//
-//        String outputFile = System.getProperty("user.dir") + "/apk/MyFitnessPal.apk";
-//
-//        try {
-//            URL url = new URL(apkUrl);
-//            ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-//            FileOutputStream fos = new FileOutputStream(outputFile);
-//            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-//            fos.close();
-//            rbc.close();
-//            System.out.println("APK file downloaded successfully.");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
         adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
@@ -79,7 +62,7 @@ public class LoginTest implements IMyInterface {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
-        Assert.assertTrue(dashboardPageBase.isPageOpened(), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+        Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_FIFTY), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
 
         L10N.assertAll();
         return (initPage(getDriver(), DashboardPageBase.class));
