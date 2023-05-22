@@ -4,6 +4,7 @@ package koval.myfitnesspal.login;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.resources.L10N;
 import koval.Apps;
+import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.IMyInterface;
@@ -32,7 +33,7 @@ public class LoginTest implements IMyInterface {
 
       //  adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
-        adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
+      //  adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
 
         simpleLogin();
 
@@ -42,9 +43,11 @@ public class LoginTest implements IMyInterface {
 
     public DashboardPageBase simpleLogin() {
 
-        adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
+    //    adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
-        hideKeyboard();
+       // hideKeyboard();
+
+
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
         welcomePageBase.notificationSendPopUpIfPresent(ALLOW_ANSWER);
         Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");

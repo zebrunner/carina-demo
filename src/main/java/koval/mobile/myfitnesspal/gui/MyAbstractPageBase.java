@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.CaseInsensitiveXPath;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -49,6 +50,12 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
         pressKey(BACK);
     }
 
+    public WelcomePageBase notificationSendPopUpIfPresent(String answer) {
+
+        itemByText.format(answer).clickIfPresent(TIMEOUT_FIVE);
+
+        return initPage(getDriver(), WelcomePageBase.class);
+    }
 
     public void closeTimestampsPopUpIfPresent() {
         itemByContent.format(NO_THANKS_ANSWER.toUpperCase()).clickIfPresent(TIMEOUT_FIVE);
