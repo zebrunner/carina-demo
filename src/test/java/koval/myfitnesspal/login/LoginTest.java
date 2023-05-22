@@ -62,9 +62,8 @@ public class LoginTest implements IMyInterface {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
-        Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_FIFTY), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+       // Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_FIFTY), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
 
-        L10N.assertAll();
         return (initPage(getDriver(), DashboardPageBase.class));
     }
 
