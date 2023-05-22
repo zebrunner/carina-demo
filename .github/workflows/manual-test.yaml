@@ -23,7 +23,7 @@ jobs:
 
       - name: setup appium
         run: |
-          npm install -g appium@1.22
+          npm install -g appium@v1.22.3
           appium -v
           appium &>/dev/null &
 
@@ -34,4 +34,4 @@ jobs:
           emulator-build: 7425822
           script: |
             adb devices
-            mvn clean test -Dtest=FitnessPalTest
+            mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
