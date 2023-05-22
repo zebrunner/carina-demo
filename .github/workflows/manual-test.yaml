@@ -27,12 +27,6 @@ jobs:
           appium -v
           appium &>/dev/null &
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: MyFitnessPal APK
-          path: /Users/dianakoval/Documents/apk/MyFitnessPal.apk
-
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -40,5 +34,4 @@ jobs:
           emulator-build: 7425822
           script: |
             adb devices
-            adb install ${{ github.workspace }}/MyFitnessPal.apk
             mvn clean test -Dtest=FitnessPalTest
