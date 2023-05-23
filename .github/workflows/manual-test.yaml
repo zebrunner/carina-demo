@@ -27,6 +27,10 @@ jobs:
           appium -v
           appium &>/dev/null &
 
+      - name: Create Folder
+        run: |
+          mkdir ${{ github.workspace }}/screenshots
+          
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
