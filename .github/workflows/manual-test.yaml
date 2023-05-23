@@ -31,6 +31,6 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: mvn clean test -Dtest=FitnessPalSignUpTest#signUpSimpleUserTest
+          script: mvn clean test -Dsuite=ANDROID. Google Fit Application
 
 
