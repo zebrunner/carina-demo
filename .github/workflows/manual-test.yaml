@@ -2,7 +2,8 @@ name: Run android tests
 
 on:
   push:
-    branches: mobile
+    branches: master
+  workflow_dispatch:
 
 jobs:
   run-mobile-tests:
