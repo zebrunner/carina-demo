@@ -29,11 +29,11 @@ public class LoginTest implements IMyInterface {
     @BeforeMethod
     public DashboardPageBase login() {
 
-       // Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
-
-      //  adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
-
-      //  adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
+//        Apps.downloadAndroidApp(AdbService.AppPackage.MY_FITNESS_PAL);
+//
+//        adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
+//
+//        adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
 
         simpleLogin();
 
@@ -42,11 +42,11 @@ public class LoginTest implements IMyInterface {
 
 
     public DashboardPageBase simpleLogin() {
-
-    //    adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
-
-       // hideKeyboard();
-
+//
+//        adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
+//
+//        hideKeyboard();
+//
 
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
         welcomePageBase.notificationSendPopUpIfPresent(ALLOW_ANSWER);
