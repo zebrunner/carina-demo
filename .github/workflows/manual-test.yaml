@@ -26,19 +26,11 @@ jobs:
           npm install -g appium@v1.22
           appium -v
           appium &>/dev/null &
-
-      - name: Create Folder
-        run: |
-          mkdir ${{ github.workspace }}/screenshots
           
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: |
-                  adb shell screencap -p /sdcard/screenshot_1.png
-                  adb pull /sdcard/screenshot_1.png ${{ github.workspace }}/screenshots/
-                  mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
-                  adb shell screencap -p /sdcard/screenshot.png
-                  adb pull /sdcard/screenshot.png ${{ github.workspace }}/screenshots/
+          script: mvn clean test -Dtest=FitnessPalSignUpTest#signUpSimpleUserTest
+
 
