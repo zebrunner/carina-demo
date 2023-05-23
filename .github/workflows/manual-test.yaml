@@ -1,32 +1,29 @@
-name: Manual Test Execution
+name: Run android tests
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-  workflow_dispatch:
+    branches: mobile
 
 jobs:
-  test:
+  run-mobile-tests:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up JDK
+      - name: setup java
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
           distribution: 'temurin'
+          java-version: '11'
+
+      - name: pull the project in to the runner
+        uses: actions/checkout@v3
 
       - name: setup appium
         run: |
           npm install -g appium@v1.22
           appium -v
           appium &>/dev/null &
-          
+
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
