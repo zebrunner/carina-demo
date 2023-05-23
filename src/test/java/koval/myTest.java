@@ -14,7 +14,7 @@ public class myTest implements IMyInterface {
 
 
 
-    @Test(enabled = false)
+    @Test()
     @MethodOwner(owner = "dkoval")
     public void loginSimpleUserTest() {
 
