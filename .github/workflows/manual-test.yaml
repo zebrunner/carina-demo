@@ -8,7 +8,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        api-level: [30]
+        api-level: [31]
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -18,12 +18,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-          
-      - name: Kill ADB server
-        run: adb kill-server
-
-      - name: Start ADB server
-        run: adb start-server
 
       - uses: actions/setup-node@v2
         with:
@@ -56,6 +50,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          emulator-build: 7425822
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
