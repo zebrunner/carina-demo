@@ -17,7 +17,7 @@ public interface IConstantUtils {
 
     String EXPECTED_EMAIL_NAME = "support";
 
-    String EXPECTED_EMAIL_AGENT = "zebrunner.com";
+    String EXPECTED_EMAIL_AGENT = "zebrunner.com ";
 
     int TIMEOUT_FIVE = 5;
 

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = MapPageBase.class)
 public class MapPage extends MapPageBase {
 
-    @FindBy(className = "/*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
+    @FindBy(xpath = "//*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
     @FindBy(xpath = "//*[@content-desc='Google Map']")

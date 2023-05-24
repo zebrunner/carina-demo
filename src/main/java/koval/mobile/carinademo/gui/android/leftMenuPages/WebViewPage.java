@@ -26,28 +26,28 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "//*[@resource-id='allrecords']/child::*[@resource-id='rec40292376']/child::*/*[@class='android.view.View'][1]/child::*[@class='android.widget.TextView'] |" +
-            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40368342']/child::*[@class='android.view.View'][1] |" +
+            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40368342']/child::*[@class='android.view.View'][2] |" +
             " //*[@resource-id='allrecords']/child::*[@resource-id='rec40091305']/child::*[@class='android.view.View'][1]")
     private ExtendedWebElement topicElements;
 
     @FindBy(xpath = "//*[@resource-id='allrecords']/child::*[@resource-id='rec40292376']/child::*/*[@class='android.view.View'][1]/child::*[@class='android.widget.TextView'] |" +
-            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40368342']/child::*[@class='android.view.View'][1] |" +
+            " //*[@resource-id='allrecords']/child::*[@resource-id='rec40368342']/child::*[@class='android.view.View'][2] |" +
             " //*[@resource-id='allrecords']/child::*[@resource-id='rec40091305']/child::*[@class='android.view.View'][1]")
     private List<ExtendedWebElement> listOfTopicElements;
 
-    @FindBy(xpath = "//*[@resource-id='t-footer']/child::*//*[@class='android.view.View'][3]/child::*[@class='android.view.View'][1]/child::*[@class='android.widget.TextView']")
+    @FindBy(xpath = "//android.view.View[@content-desc=\"support@zebrunner.com \"]")
     private ExtendedWebElement emailTextElement;
 
     @FindBy(xpath = "//*[@resource-id='com.solvd.carinademoapplication:id/lin']/child::*//*[@class='android.webkit.WebView']")
     private ExtendedWebElement webViewContainer;
 
-    @FindBy(className = "/*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
+    @FindBy(xpath = "//*[@resource-id='com.solvd.carinademoapplication:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
     @FindBy(id = "com.solvd.carinademoapplication:id/content_frame")
     private ExtendedWebElement webViewContent;
 
-    @FindBy(xpath = "//*[@resource-id='t-header']/child::*//*[@class='android.widget.TextView'][2]")
+    @FindBy(xpath = "//*[@resource-id='t-header']/child::*//*[@class='android.view.View'][2]")
     private ExtendedWebElement rightMenuButton;
 
     @FindBy(xpath = "//*[@resource-id='nav42972268']/child::*//*[@class='android.widget.TextView']")
@@ -93,7 +93,8 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
 
         swipe(emailTextElement, webViewContainer, Direction.UP, COUNT_THREE, HIGH_SPEED);
 
-        return emailTextElement.getText();
+        LOGGER.info(emailTextElement.getAttribute("content-desc"));
+        return emailTextElement.getAttribute("content-desc");
     }
 
 
@@ -106,7 +107,7 @@ public class WebViewPage extends WebViewPageBase implements IMobileUtils, IConst
 
         listOfMenuElement.get(index).click();
 
-        return initPage(getDriver(), AbstractPage.class);
+        return initPage(getDriver(), WebViewPageBase.class);
 
     }
 

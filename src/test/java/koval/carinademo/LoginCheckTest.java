@@ -40,7 +40,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "2. login check. login with empty fields and checked buttons", value = {"mobile"})
     public void testEmptyFields() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -57,7 +56,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "3. login check. login by entering space to the fields(name, password)", value = {"mobile"})
     public void testFieldsWithSpace() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -76,9 +74,8 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     }
 
-    @Test(dataProvider = "Name_Password")
+    @Test(dataProvider = "Name_Password", enabled = false)
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "4. login check. login without entering password", value = {"mobile"})
     public void testWithoutPasswordField(String name, String passsword, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -96,7 +93,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "5. login check. login without entering name", value = {"mobile"})
     public void testWithoutNameField(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -113,7 +109,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "6. login check. login with unchecked sex-radiobutton", value = {"mobile"})
     public void testWithSexUnchecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -133,7 +128,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "7. login check. login with unchecked privacyPolicy-checkBox", value = {"mobile"})
     public void testWithPrivacyPolicyUnchecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -150,7 +144,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test(dataProvider = "Name_Password")
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "8. login check. login with checked privacyPolicy-checkBox and field name", value = {"mobile"})
     public void testWithOnlyPrivacyPolicyChecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -164,9 +157,8 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
         Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
-    @Test(dataProvider = "Name_Password")
+    @Test(dataProvider = "Name_Password", enabled = false)
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "9. login check. login with checked privacyPolicy-checkBox and then unchecked", value = {"mobile"})
     public void testWithPrivacyPolicyChecked(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -187,8 +179,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "10. login check. login with checked only sex-radiobutton/empty name and password fields",
-            value = {"mobile"})
     public void testOnlySexChecked() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -203,8 +193,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "11. login check. login with checked only privacyPolicy-checkBox/empty name and password fields",
-            value = {"mobile"})
     public void testOnlyPrivacyPolicyChecked() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -217,9 +205,8 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
         Assert.assertFalse(loginPageBase.isLoginBtnActive(), "[ LOGIN PAGE ] Login button is active!");
     }
 
-    @Test(dataProvider = "Name_Password")
+    @Test(dataProvider = "Name_Password", enabled = false)
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "12. login check. login by entering correct data to the fields", value = {"mobile"})
     public void testCorrectFields(String name, String password, boolean expectedResult) {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);

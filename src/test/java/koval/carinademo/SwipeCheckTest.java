@@ -22,7 +22,6 @@ public class SwipeCheckTest extends LoginTest implements IAbstractTest, IMobileU
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "1. Open Web View Page and parse mail", value = {"mobile"})
     public void testParseMail() {
 
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
@@ -38,7 +37,6 @@ public class SwipeCheckTest extends LoginTest implements IAbstractTest, IMobileU
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "2. Open Web View Page and get 3 topics to the list(by swiping)", value = {"mobile"})
     public void testGetTopics() {
 
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);

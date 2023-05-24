@@ -22,9 +22,7 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "1. Open Web View Page and then each page from right menu", value = {"mobile"})
     public void testOpeningPages() {
-
 
         BasicPageBase pageBase = initPage(getDriver(), BasicPageBase.class);
 
