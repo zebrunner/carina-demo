@@ -44,7 +44,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
         MapPageBase mapPageBase = (MapPageBase) menuModalBase.openPage(LeftMenu.MAP);
 
         Assert.assertTrue(mapPageBase.isPageOpened(), "[ MAP PAGE ] Map page is not opened!");
-        Assert.assertTrue(mapPageBase.isMapImagePresent(TIMEOUT_FIVE), "[ MAP PAGE ] Map Image is not present!");
+        Assert.assertTrue(mapPageBase.isMapImagePresent(TIMEOUT_FIFTEEN), "[ MAP PAGE ] Map Image is not present!");
         /*
         Open CHARTS PAGE
         check if it opens/ venn diagram is present

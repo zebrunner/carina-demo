@@ -21,6 +21,8 @@ public interface IConstantUtils {
 
     int TIMEOUT_FIVE = 5;
 
+    int TIMEOUT_FIFTEEN = 15;
+
     int HIGH_SPEED = 60;
 
     int MEDIUM_SPEED = 620;

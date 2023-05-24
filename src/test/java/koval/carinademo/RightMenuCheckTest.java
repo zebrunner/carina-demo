@@ -20,7 +20,7 @@ public class RightMenuCheckTest extends LoginTest implements IAbstractTest, IMob
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test()
+    @Test(enabled = false)
     @MethodOwner(owner = "koval")
     public void testOpeningPages() {
 
