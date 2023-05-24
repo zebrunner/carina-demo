@@ -1,4 +1,4 @@
-name: Run android tests
+name: Run Android tests
 
 on:
   workflow_dispatch:
@@ -8,24 +8,28 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: setup java
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: pull the project in to the runner
+      - name: Pull the project into the runner
         uses: actions/checkout@v3
-        
-      - name: setup appium
+
+      - name: Setup Appium
         run: |
           npm install -g appium@v1.22
           appium -v
           appium &>/dev/null &
 
-      - name: run appium android tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
-          adb-timeout: 120000
+      - name: Kill ADB server
+        run: adb kill-server
+
+      - name: Start ADB server
+        run: adb start-server
+
+      - name: Run Appium Android tests
+        run: mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
+        timeout-minutes: 10
+
