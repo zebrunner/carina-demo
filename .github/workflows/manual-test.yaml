@@ -33,5 +33,6 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
+          emulator-build: 7425822
           script: mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
 
