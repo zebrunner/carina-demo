@@ -17,12 +17,6 @@ jobs:
       - name: pull the project in to the runner
         uses: actions/checkout@v3
 
-      - name: Kill ADB server
-        run: adb kill-server
-
-      - name: Start ADB server
-        run: adb start-server
-
       - name: setup appium
         run: |
           npm install -g appium@v1.22
@@ -33,6 +27,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: mvn clean test -Dtest=LeftMenuCheckTest#testOpeningPages
+          script: mvn clean test -Dsuite=suit_1
+
 
 
