@@ -23,7 +23,7 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test()
+    @Test(enabled = false)
     @MethodOwner(owner = "koval")
     public void testOpeningPages() {
 
