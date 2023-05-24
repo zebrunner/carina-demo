@@ -28,4 +28,4 @@ jobs:
         with:
           api-level: 29
           script: mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
-
+          adb-timeout: 120000
