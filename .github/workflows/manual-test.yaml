@@ -33,6 +33,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: mvn clean test -Dtest=LeftMenuCheckTest#testOpeningPages
+          script: mvn clean test -Dsuite=suit_1
+
 
 
