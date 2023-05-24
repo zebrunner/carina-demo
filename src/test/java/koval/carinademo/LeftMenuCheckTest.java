@@ -25,7 +25,6 @@ public class LeftMenuCheckTest extends LoginTest implements IAbstractTest, IMobi
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "1. Open Web View Page and then each page from left menu", value = {"mobile"})
     public void testOpeningPages() {
 
         WebViewPageBase webViewPageBasePage = initPage(getDriver(), WebViewPageBase.class);
