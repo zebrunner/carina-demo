@@ -52,6 +52,6 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          run: mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
+          script: mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
 
 
