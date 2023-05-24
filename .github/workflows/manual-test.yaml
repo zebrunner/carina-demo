@@ -18,6 +18,12 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
+          
+      - name: Kill ADB server
+        run: adb kill-server
+
+      - name: Start ADB server
+        run: adb start-server
 
       - uses: actions/setup-node@v2
         with:
