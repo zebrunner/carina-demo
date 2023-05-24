@@ -1,8 +1,7 @@
+
 name: Run android tests
 
 on:
-  push:
-    branches: master
   workflow_dispatch:
 
 jobs:
@@ -28,5 +27,5 @@ jobs:
       - name: run appium android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 25
-          script: mvn clean test -Dtest=FitnessPalTest#loginSimpleUserTest
+          api-level: 28
+          script: mvn clean test -Dtest=myTest#loginSimpleUserTest
