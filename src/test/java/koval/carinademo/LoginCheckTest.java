@@ -28,7 +28,6 @@ public class LoginCheckTest implements IAbstractTest, IMobileUtils, IConstantUti
 
     @Test()
     @MethodOwner(owner = "koval")
-    @TestLabel(name = "1. login check. login with empty fields and unchecked buttons", value = {"mobile"})
     public void testAllEmpty() {
 
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
