@@ -27,6 +27,11 @@ public class LogInPage extends LogInPageBase {
     }
 
     @Override
+    public LogInPageBase clickOnLoginFailed() {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public LogInPageBase typePassword(String password) {
         throw new NotImplementedException();
     }
