@@ -48,7 +48,7 @@ public class LogInPage extends LogInPageBase {
 
     @Override
     public LogInPageBase closeLoginFailedPopUpIfPresent() {
-        itemByText.format(CLOSE).clickIfPresent();
+        itemByText.format("Close").clickIfPresent();
         return initPage(getDriver(), LogInPageBase.class);
     }
 
@@ -70,7 +70,7 @@ public class LogInPage extends LogInPageBase {
     @Override
     public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
 
-      //  waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_TWENTY);
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_TWENTY);
 
         int attemp = 3;
         while (itemByText.format(CANCEL).isElementPresent(TIMEOUT_FIFTEEN) && attemp > 0) {
