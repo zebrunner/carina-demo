@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LogInPageBase.class)
 public class LogInPage extends LogInPageBase {
 
@@ -49,7 +48,7 @@ public class LogInPage extends LogInPageBase {
 
     @Override
     public LogInPageBase closeLoginFailedPopUpIfPresent() {
-       itemByText.format(CLOSE).clickIfPresent(TIMEOUT_TEN);
+        itemByText.format("Close").clickIfPresent(TIMEOUT_TEN);
         return initPage(getDriver(), LogInPageBase.class);
     }
 
@@ -60,10 +59,8 @@ public class LogInPage extends LogInPageBase {
     }
 
 
-
     @Override
     public LogInPageBase clickLoginButton() {
-
         loginButton.click(TIMEOUT_TEN);
         return initPage(getDriver(), LogInPageBase.class);
 
