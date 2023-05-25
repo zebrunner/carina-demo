@@ -48,6 +48,13 @@ public class LogInPage extends LogInPageBase {
 
 
     @Override
+    public LogInPageBase clickOnLoginFailed() {
+       itemByText.format("Close").clickIfPresent();
+       LOGGER.info("is: " + itemByContent.format("Close").isElementPresent(15));
+        return initPage(getDriver(), LogInPageBase.class);
+    }
+
+    @Override
     public LogInPageBase typePassword(String password) {
         passwordField.type(password, TIMEOUT_FIVE);
         return initPage(getDriver(), LogInPageBase.class);
