@@ -47,6 +47,18 @@ public class LogInPage extends LogInPageBase {
 
 
     @Override
+    public boolean closeNotRespondingPopUpIfPresent() {
+
+        ExtendedWebElement closeAppButton = itemByText.format("Close app");
+        boolean isNotRespondingPopUpPresent = closeAppButton.isElementPresent(TIMEOUT_FIFTEEN);
+
+        closeAppButton.clickIfPresent(TIMEOUT_TEN);
+
+
+        return isNotRespondingPopUpPresent;
+    }
+
+    @Override
     public LogInPageBase closeLoginFailedPopUpIfPresent() {
         itemByText.format(CLOSE).clickIfPresent();
         return initPage(getDriver(), LogInPageBase.class);

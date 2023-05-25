@@ -63,6 +63,10 @@ public class LoginTest implements IMyInterface {
 
         loginPageBase.closeNoSubscriptionsPopUpIfPresent();
         loginPageBase.closeUserTutorialBoxIfPresent();
+        if(loginPageBase.closeNotRespondingPopUpIfPresent())
+        {
+            simpleLogin();
+        }
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 

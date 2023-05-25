@@ -47,7 +47,7 @@ public class PlansPage extends PlansPageBase {
     public PlansGoogleDocWebPageBase clickTakeSurvey() {
         itemByText.format(TAKE_SURVEY).click(TIMEOUT_TEN);
         itemByText.format(ACCEPT_CONTINUE).clickIfPresent(TIMEOUT_TEN);
-        itemByText.format(NO_THANKS_ANSWER).clickIfPresent(TIMEOUT_TEN);
+        itemByText.format(NO_THANKS).clickIfPresent(TIMEOUT_TEN);
         itemByText.format(NO_THANKS_ANSWER).clickIfPresent(TIMEOUT_TEN);
         return initPage(getDriver(), PlansGoogleDocWebPageBase.class);
 

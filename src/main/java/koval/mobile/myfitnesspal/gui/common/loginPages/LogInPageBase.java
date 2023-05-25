@@ -15,6 +15,8 @@ public abstract class LogInPageBase extends MyAbstractPageBase {
 
     public abstract LogInPageBase typeMail(String password);
 
+    public abstract boolean closeNotRespondingPopUpIfPresent();
+
     public abstract LogInPageBase closeLoginFailedPopUpIfPresent();
 
     public abstract LogInPageBase typePassword(String password);

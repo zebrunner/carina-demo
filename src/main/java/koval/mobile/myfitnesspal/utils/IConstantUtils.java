@@ -84,7 +84,9 @@ public interface IConstantUtils {
 
     String NEW_RECIPE = L10N.getText("new_recipe");
 
-    String NO_THANKS_ANSWER = L10N.getText("no_thanks");
+    String NO_THANKS_ANSWER = L10N.getText("no_Thanks");
+
+    String NO_THANKS = L10N.getText("no_thanks");
 
     String NUMBERS_ONLY = "[^0-9]";
 

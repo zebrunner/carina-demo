@@ -27,6 +27,11 @@ public class LogInPage extends LogInPageBase {
     }
 
     @Override
+    public boolean closeNotRespondingPopUpIfPresent() {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public LogInPageBase closeLoginFailedPopUpIfPresent() {
         throw new NotImplementedException();
     }
