@@ -59,7 +59,7 @@ public class LoginTest implements IMyInterface {
         loginPageBase.typeMail(R.TESTDATA.get("fitnessPal_mail"));
         loginPageBase.typePassword(R.TESTDATA.get("fitnessPal_password"));
         loginPageBase.clickLoginButton();
-        loginPageBase.clickOnLoginFailed();
+        loginPageBase.closeLoginFailedPopUpIfPresent();
 
         loginPageBase.closeNoSubscriptionsPopUpIfPresent();
         loginPageBase.closeUserTutorialBoxIfPresent();

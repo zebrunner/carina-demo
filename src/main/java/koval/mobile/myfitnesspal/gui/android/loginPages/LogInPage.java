@@ -48,9 +48,8 @@ public class LogInPage extends LogInPageBase {
 
 
     @Override
-    public LogInPageBase clickOnLoginFailed() {
-       itemByText.format("Close").clickIfPresent();
-       LOGGER.info("is: " + itemByContent.format("Close").isElementPresent(15));
+    public LogInPageBase closeLoginFailedPopUpIfPresent() {
+       itemByText.format(CLOSE).clickIfPresent(TIMEOUT_TEN);
         return initPage(getDriver(), LogInPageBase.class);
     }
 

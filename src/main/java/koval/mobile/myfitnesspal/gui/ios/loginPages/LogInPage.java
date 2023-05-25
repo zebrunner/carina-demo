@@ -27,7 +27,7 @@ public class LogInPage extends LogInPageBase {
     }
 
     @Override
-    public LogInPageBase clickOnLoginFailed() {
+    public LogInPageBase closeLoginFailedPopUpIfPresent() {
         throw new NotImplementedException();
     }
 
