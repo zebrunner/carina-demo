@@ -33,8 +33,6 @@ public class LoginTest implements IMyInterface {
 
         adbService.installApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
-        adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
-
         simpleLogin();
 
         return (initPage(getDriver(), DashboardPageBase.class));
@@ -42,6 +40,8 @@ public class LoginTest implements IMyInterface {
 
 
     public DashboardPageBase simpleLogin() {
+
+        adbService.clearAppCache(AdbService.AppPackage.MY_FITNESS_PAL);
 
         adbService.startApp(AdbService.AppPackage.MY_FITNESS_PAL);
 
@@ -63,15 +63,14 @@ public class LoginTest implements IMyInterface {
 
         loginPageBase.closeNoSubscriptionsPopUpIfPresent();
         loginPageBase.closeUserTutorialBoxIfPresent();
-        if(loginPageBase.closeNotRespondingPopUpIfPresent())
-        {
+        if (loginPageBase.closeNotRespondingPopUpIfPresent()) {
             simpleLogin();
+        } else {
+
+            DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
+            Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_FIFTY), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
         }
-
-        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
-
-        Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_FIFTY), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
-
         return (initPage(getDriver(), DashboardPageBase.class));
     }
 

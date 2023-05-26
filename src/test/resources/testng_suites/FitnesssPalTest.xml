@@ -8,6 +8,12 @@
     <test name="FitnessPal">
         <classes>
             <class name="koval.myfitnesspal.login.FitnessPalTest">
+                <methods>
+                    <include name="loginSimpleUserTest"/>
+                    <include name="localizationTest"/>
+                    <include name="searchButtonFromWidget2x2Test"/>
+                    <include name="resizeWidgetTo5x1Test"/>
+                </methods>
             </class>
         </classes>
     </test>
