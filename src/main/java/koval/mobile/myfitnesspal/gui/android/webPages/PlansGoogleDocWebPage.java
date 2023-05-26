@@ -24,4 +24,13 @@ public class PlansGoogleDocWebPage extends PlansGoogleDocWebPageBase {
         return itemByText.format(PLANS_SURVEY_TITLE).isElementPresent(timeout) && urlBar.getText().equals(url);
     }
 
+
+    @Override
+    public PlansGoogleDocWebPageBase closeChromeStopsWorkingPopUpIfPresent() {
+
+        itemByText.format("Close app").clickIfPresent();
+        return initPage(getDriver(), PlansGoogleDocWebPageBase.class);
+
+    }
+
 }

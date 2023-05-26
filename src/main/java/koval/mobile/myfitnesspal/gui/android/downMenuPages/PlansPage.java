@@ -51,7 +51,6 @@ public class PlansPage extends PlansPageBase {
         itemByText.format(NO_THANKS_ANSWER).clickIfPresent(TIMEOUT_TEN);
         return initPage(getDriver(), PlansGoogleDocWebPageBase.class);
 
-
     }
 
     @Override
