@@ -82,7 +82,7 @@ public class LogInPage extends LogInPageBase {
     @Override
     public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
 
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_TWENTY);
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_THIRTY);
 
         int attemp = 3;
         while (itemByText.format(CANCEL).isElementPresent() && attemp > 0) {

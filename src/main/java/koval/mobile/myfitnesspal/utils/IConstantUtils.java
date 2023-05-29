@@ -37,6 +37,8 @@ public interface IConstantUtils {
 
     int TIMEOUT_TWENTY = 20;
 
+    int TIMEOUT_THIRTY = 30;
+
     int TIMEOUT_FORTY = 40;
 
     int TWENTY_COUNT = 20;
