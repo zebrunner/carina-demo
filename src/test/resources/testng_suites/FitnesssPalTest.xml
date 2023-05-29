@@ -10,6 +10,7 @@
             <class name="koval.myfitnesspal.login.FitnessPalTest">
                 <methods>
                     <include name="loginSimpleUserTest"/>
+                    <include name="searchButtonFromWidget2x2Test"/>
                 </methods>
             </class>
         </classes>
