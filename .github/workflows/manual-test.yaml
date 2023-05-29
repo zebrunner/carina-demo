@@ -6,7 +6,6 @@ on:
 jobs:
   run-mobile-tests:
     runs-on: macos-latest
-    timeout-minutes: 15
 
     steps:
       - name: setup java
