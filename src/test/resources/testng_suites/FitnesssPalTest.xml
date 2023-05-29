@@ -10,7 +10,6 @@
             <class name="koval.myfitnesspal.login.FitnessPalTest">
                 <methods>
                     <include name="loginSimpleUserTest"/>
-                    <include name="localizationTest"/>
                 </methods>
             </class>
         </classes>

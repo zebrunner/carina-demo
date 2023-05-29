@@ -182,6 +182,7 @@ public class FitnessPalTest extends LoginTest {
         phoneHomePageBase.holdPhoneDesktop();
 
         PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton();
+        phoneWidgetPageBase.closeFingertipsPopUpIfPresent();
         phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(APP_NAME, WIDGET_NAME);
         phoneHomePageBase.resizeWidgetFromTo(WidgetSize.SIZE_4X2, WidgetSize.SIZE_2X2);
 
@@ -207,6 +208,7 @@ public class FitnessPalTest extends LoginTest {
         phoneHomePageBase.holdPhoneDesktop();
 
         PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton();
+        phoneWidgetPageBase.closeFingertipsPopUpIfPresent();
         phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(APP_NAME, WIDGET_NAME);
         phoneHomePageBase.resizeWidgetFromTo(WidgetSize.SIZE_4X2, WidgetSize.SIZE_2X1);
 
@@ -250,6 +252,7 @@ public class FitnessPalTest extends LoginTest {
         phoneHomePageBase.holdPhoneDesktop();
 
         PhoneWidgetPageBase phoneWidgetPageBase = phoneHomePageBase.tapWidgetButton();
+        phoneWidgetPageBase.closeFingertipsPopUpIfPresent();
         phoneHomePageBase = phoneWidgetPageBase.addWidgetToDesktop(APP_NAME, WIDGET_NAME);
         phoneHomePageBase.resizeWidgetFromTo(WidgetSize.SIZE_4X2, WidgetSize.SIZE_5X1);
 

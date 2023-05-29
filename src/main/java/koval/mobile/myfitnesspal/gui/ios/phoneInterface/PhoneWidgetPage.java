@@ -21,6 +21,11 @@ public class PhoneWidgetPage extends PhoneWidgetPageBase {
     }
 
     @Override
+    public PhoneHomePageBase closeFingertipsPopUpIfPresent() {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public PhoneHomePageBase addWidgetToDesktop(String appName, String widgetName) {
         throw new NotImplementedException();
     }

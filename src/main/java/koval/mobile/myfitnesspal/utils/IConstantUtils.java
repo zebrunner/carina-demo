@@ -142,6 +142,8 @@ public interface IConstantUtils {
 
     String WIDGETS_STRING = "Widgets";
 
+    String GOT_IT = "Got it";
+
     String CURRENT_WEIGHT = "current_weight";
 
     String INPUT_GOAL_WEIGHT = "inputGoalWeight";

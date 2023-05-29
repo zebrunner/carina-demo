@@ -13,5 +13,7 @@ public abstract class PhoneWidgetPageBase extends MyAbstractPageBase {
     public abstract boolean isPageOpened(int timeout);
 
 
+    public abstract PhoneHomePageBase closeFingertipsPopUpIfPresent();
+
     public abstract PhoneHomePageBase addWidgetToDesktop(String appName, String widgetName);
 }
