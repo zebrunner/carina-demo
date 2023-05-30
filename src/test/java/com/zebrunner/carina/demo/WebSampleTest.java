@@ -15,28 +15,31 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo;
 
-import java.util.List;
-
+import com.zebrunner.agent.core.annotation.TestLabel;
+import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.core.registrar.tag.Priority;
+import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import com.zebrunner.carina.demo.gui.components.ModelItem;
 import com.zebrunner.carina.demo.gui.components.NewsItem;
 import com.zebrunner.carina.demo.gui.components.compare.ModelSpecs;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import com.zebrunner.carina.demo.gui.pages.common.AllBrandsPageBase;
 import com.zebrunner.carina.demo.gui.pages.common.BrandModelsPageBase;
 import com.zebrunner.carina.demo.gui.pages.common.CompareModelsPageBase;
 import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.demo.gui.pages.common.ModelInfoPageBase;
 import com.zebrunner.carina.demo.gui.pages.common.NewsPageBase;
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.HasCapabilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 /**
  * This sample shows how create Web test.
@@ -44,6 +47,7 @@ import com.zebrunner.carina.core.registrar.tag.TestPriority;
  * @author qpsdemo
  */
 public class WebSampleTest implements IAbstractTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
     @MethodOwner(owner = "qpsdemo")
@@ -54,6 +58,7 @@ public class WebSampleTest implements IAbstractTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        LOGGER.info("{}", ((HasCapabilities) getDriver()).getCapabilities());
 
         // Select phone brand
         BrandModelsPageBase productsPage = homePage.selectBrand("Samsung");
@@ -77,6 +82,8 @@ public class WebSampleTest implements IAbstractTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        LOGGER.info("{}", ((HasCapabilities) getDriver()).getCapabilities());
+
         // Open model compare page
         CompareModelsPageBase comparePage = homePage.openComparePage();
         // Compare 2 (for mobile testing) or 3 (for desktop testing) models
@@ -103,6 +110,8 @@ public class WebSampleTest implements IAbstractTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
+        LOGGER.info("{}", ((HasCapabilities) getDriver()).getCapabilities());
+
 
         NewsPageBase newsPage = homePage.getFooterMenu().openNewsPage();
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
