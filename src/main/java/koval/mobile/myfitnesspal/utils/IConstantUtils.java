@@ -86,6 +86,8 @@ public interface IConstantUtils {
 
     String NEW_RECIPE = L10N.getText("new_recipe");
 
+    String NO_THANKS_CAPS = L10N.getText("no_THANKS");
+
     String NO_THANKS_ANSWER = L10N.getText("no_Thanks");
 
     String NO_THANKS = L10N.getText("no_thanks");

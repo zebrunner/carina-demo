@@ -391,6 +391,7 @@ public class FitnessPalTest extends LoginTest {
                     "[PLANS PAGE] Survey section is not present!");
 
             PlansGoogleDocWebPageBase plansGoogleDocWebPageBase = plansPageBase.clickTakeSurvey();
+            plansGoogleDocWebPageBase.closeChromeNotificationPopUpIfPresent();
             plansGoogleDocWebPageBase.closeChromeStopsWorkingPopUpIfPresent();
             Assert.assertTrue(plansGoogleDocWebPageBase.isPageOpened(TIMEOUT_TEN, SURVEY_PLANS_URL),
                     "[PLANS GOOGLE DOC WEB PAGE PAGE] Plans Google doc Web page is not opened!");

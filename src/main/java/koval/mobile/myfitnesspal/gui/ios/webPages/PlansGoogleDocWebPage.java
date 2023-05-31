@@ -18,6 +18,11 @@ public class PlansGoogleDocWebPage extends PlansGoogleDocWebPageBase {
     }
 
     @Override
+    public PlansGoogleDocWebPageBase closeChromeNotificationPopUpIfPresent() {
+        throw new NotImplementedException();
+    }
+
+    @Override
     public PlansGoogleDocWebPageBase closeChromeStopsWorkingPopUpIfPresent() {
         throw new NotImplementedException();
     }

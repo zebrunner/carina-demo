@@ -12,5 +12,7 @@ public abstract class PlansGoogleDocWebPageBase extends MyAbstractPageBase {
 
     public abstract boolean isPageOpened(int timeout, String url);
 
+    public abstract PlansGoogleDocWebPageBase closeChromeNotificationPopUpIfPresent();
+
     public abstract PlansGoogleDocWebPageBase closeChromeStopsWorkingPopUpIfPresent();
 }
