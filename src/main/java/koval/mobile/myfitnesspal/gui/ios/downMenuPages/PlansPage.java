@@ -4,7 +4,8 @@ package koval.mobile.myfitnesspal.gui.ios.downMenuPages;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.PlansPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansPageBase;
 import koval.mobile.myfitnesspal.gui.common.webPages.PlansGoogleDocWebPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import org.openqa.selenium.Point;
@@ -30,6 +31,16 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public boolean isSurveyTitleAtTheBottom() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public PlansHubPageBase clickOnPlusSign() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public PlansPageBase closeWelcomeMessageIfPresent(int timeout) {
         throw new NotImplementedException();
     }
 

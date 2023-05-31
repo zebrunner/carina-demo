@@ -7,7 +7,9 @@ import com.zebrunner.carina.core.registrar.tag.TestTag;
 import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.MorePageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.PlansPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansDetailsPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.NewCardioExercisePageBase;
@@ -380,7 +382,7 @@ public class FitnessPalTest extends LoginTest {
 
         LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE.toLowerCase()));
 
-        if(LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())){
+        if (LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())) {
 
             PlansPageBase plansPageBase = (PlansPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
             Assert.assertTrue(plansPageBase.isPageOpened(TIMEOUT_TEN), "[PLANS PAGE] Plans Page is not opened!");
@@ -391,16 +393,45 @@ public class FitnessPalTest extends LoginTest {
                     "[PLANS PAGE] Survey section is not present!");
 
             PlansGoogleDocWebPageBase plansGoogleDocWebPageBase = plansPageBase.clickTakeSurvey();
-            plansGoogleDocWebPageBase.closeChromeNotificationPopUpIfPresent();
             plansGoogleDocWebPageBase.closeChromeStopsWorkingPopUpIfPresent();
+            plansGoogleDocWebPageBase.closeChromeNotificationPopUpIfPresent();
             Assert.assertTrue(plansGoogleDocWebPageBase.isPageOpened(TIMEOUT_TEN, SURVEY_PLANS_URL),
                     "[PLANS GOOGLE DOC WEB PAGE PAGE] Plans Google doc Web page is not opened!");
 
-        }
-        else {
+        } else {
             DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
             Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
-                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!",DownMenuElement.PLANS));
+                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
+        }
+
+    }
+
+
+    @Test(groups = {"closeApp"})
+    @MethodOwner(owner = "koval")
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
+    public void activePlanTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
+        LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE.toLowerCase()));
+
+        if (LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())) {
+
+            PlansPageBase plansPageBase = (PlansPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
+            PlansHubPageBase plansHubPageBase = plansPageBase.clickOnPlusSign();
+            PlansDetailsPageBase plansDetailsPageBase = plansHubPageBase.clickOnAvailablePlan(Filters.FREE);
+            plansDetailsPageBase.clickOnStartPlan();
+            Assert.assertTrue(plansDetailsPageBase.isAlertMessageAboutEndingPlanOpen());
+            plansPageBase = plansDetailsPageBase.clickOnContinueAlertMessage();
+            plansPageBase.closeWelcomeMessageIfPresent(TIMEOUT_TEN);
+            plansPageBase.clickOnPlusSign();
+
+        } else {
+            DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
+            Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
+                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
         }
 
     }

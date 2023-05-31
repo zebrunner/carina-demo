@@ -1,11 +1,12 @@
-package koval.mobile.myfitnesspal.gui.android.downMenuPages;
+package koval.mobile.myfitnesspal.gui.android.downMenuPages.plansPage;
 
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.android.modal.DownMenuModal;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.PlansPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansPageBase;
 import koval.mobile.myfitnesspal.gui.common.webPages.PlansGoogleDocWebPageBase;
 import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import org.openqa.selenium.Point;
@@ -31,8 +32,16 @@ public class PlansPage extends PlansPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/toolbar']/child::*[@class='android.widget.TextView']")
     private ExtendedWebElement title;
 
+    @FindBy(id = "com.myfitnesspal.android.plans:id/action_show_plans_hub")
+    private ExtendedWebElement addPlansPlusButton;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/welcomeActionBtn")
+    private ExtendedWebElement welcomeActionButton;
+
     @FindBy(id = "com.myfitnesspal.android:id/bottomNavigationBar")
     private DownMenuModal downMenuModal;
+
+
 
     public PlansPage(WebDriver driver) {
         super(driver);
@@ -60,6 +69,18 @@ public class PlansPage extends PlansPageBase {
         return getLocationElement().getY() == point.getY();
     }
 
+    @Override
+    public PlansHubPageBase clickOnPlusSign() {
+        addPlansPlusButton.click(TIMEOUT_FIFTEEN);
+        return initPage(getDriver(), PlansHubPageBase.class);
+    }
+
+
+    @Override
+    public PlansPageBase closeWelcomeMessageIfPresent(int timeout) {
+       welcomeActionButton.clickIfPresent(TIMEOUT_FIFTEEN);
+        return initPage(getDriver(), PlansPageBase.class);
+    }
 
     @Override
     public PlansPageBase swipeToSurveyTitle(int timeout) {

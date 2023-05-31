@@ -1,4 +1,4 @@
-package koval.mobile.myfitnesspal.gui.common.downMenuPages;
+package koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.mobile.myfitnesspal.gui.MyAbstractPageBase;
@@ -20,6 +20,10 @@ public abstract class PlansPageBase extends MyAbstractPageBase {
     public abstract PlansGoogleDocWebPageBase clickTakeSurvey();
 
     public abstract boolean isSurveyTitleAtTheBottom();
+
+    public abstract PlansHubPageBase clickOnPlusSign();
+
+    public abstract PlansPageBase closeWelcomeMessageIfPresent(int timeout);
 
     public abstract PlansPageBase swipeToSurveyTitle(int timeout);
 

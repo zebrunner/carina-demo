@@ -5,6 +5,7 @@ import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.*;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansPageBase;
 
 
 public enum DownMenuElement {
