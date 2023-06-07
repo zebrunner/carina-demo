@@ -49,7 +49,7 @@ public class LogInPage extends LogInPageBase {
     @Override
     public boolean closeNotRespondingPopUpIfPresent() {
 
-        ExtendedWebElement closeAppButton = itemByText.format("Close app");
+        ExtendedWebElement closeAppButton = itemByText.format(CLOSE_APP);
         boolean isNotRespondingPopUpPresent = closeAppButton.isElementPresent(TIMEOUT_FIFTEEN);
 
         closeAppButton.clickIfPresent(TIMEOUT_TEN);
@@ -82,7 +82,7 @@ public class LogInPage extends LogInPageBase {
     @Override
     public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
 
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_THIRTY);
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_FIFTY);
 
         int attemp = 3;
         while (itemByText.format(CANCEL).isElementPresent() && attemp > 0) {

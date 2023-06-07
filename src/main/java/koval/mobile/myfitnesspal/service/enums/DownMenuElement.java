@@ -5,6 +5,7 @@ import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.*;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
 
 
 public enum DownMenuElement {
@@ -14,7 +15,7 @@ public enum DownMenuElement {
 
     NEWSFEED("newsfeed", "newsfeed", 2, NewsfeedPageBase.class),
 
-    PLANS("plans", "plans", 3, PlansPageBase.class),
+    PLANS("plans", "plans", 3, PlansHubPageBase.class),
 
     MORE("more", "more", 4, MorePageBase.class),;
 

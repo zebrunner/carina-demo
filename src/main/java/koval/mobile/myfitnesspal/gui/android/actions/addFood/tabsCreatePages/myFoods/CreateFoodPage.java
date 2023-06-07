@@ -59,7 +59,7 @@ public class CreateFoodPage extends CreateFoodPageBase {
             attemp--;
         }
 
-        itemByText.format(NO_THANKS_ANSWER).clickIfPresent(TIMEOUT_FIVE);
+        itemByText.format(NO_THANKS_ADD_NUTRIENT_POP_UP).clickIfPresent(TIMEOUT_FIVE);
         return initPage(getDriver(), DiaryPageBase.class);
     }
 

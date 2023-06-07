@@ -3,7 +3,6 @@ package koval.mobile.myfitnesspal.gui;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.CaseInsensitiveXPath;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -71,7 +70,10 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
             attemp--;
         }
 
-        initPage(getDriver(), DashboardPageBase.class);
+    }
+
+    public void closeCompleteTasksMessageBoxIfPresent() {
+        itemByText.format(LATER).clickIfPresent(TIMEOUT_TEN);
     }
 
 

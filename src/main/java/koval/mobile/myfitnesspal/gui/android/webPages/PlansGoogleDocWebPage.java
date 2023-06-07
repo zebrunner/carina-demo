@@ -32,7 +32,7 @@ public class PlansGoogleDocWebPage extends PlansGoogleDocWebPageBase {
 
     @Override
     public PlansGoogleDocWebPageBase closeChromeStopsWorkingPopUpIfPresent() {
-        itemByText.format("Close app").clickIfPresent();
+        itemByText.format(CLOSE_APP).clickIfPresent();
         return initPage(getDriver(), PlansGoogleDocWebPageBase.class);
     }
 

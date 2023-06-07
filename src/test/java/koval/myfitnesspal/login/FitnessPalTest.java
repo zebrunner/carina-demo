@@ -7,10 +7,12 @@ import com.zebrunner.carina.core.registrar.tag.TestTag;
 import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.MorePageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.PlansPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansDetailsPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.NewCardioExercisePageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerPageBase;
 import koval.mobile.myfitnesspal.gui.common.modal.DownMenuModalBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
@@ -90,6 +92,7 @@ public class FitnessPalTest extends LoginTest {
             searchFoodPageBase.addFoodToMealByName(FOOD.get(i));
 
             diaryPageBase = (DiaryPageBase) searchFoodPageBase.clickBackButton(ReturnPages.DIARY);
+            diaryPageBase.closeCompleteTasksMessageBoxIfPresent();
             Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(i), mealsArr[i]), String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: '%s'",
                     FOOD.get(i), mealsArr[i]));
         }
@@ -134,7 +137,7 @@ public class FitnessPalTest extends LoginTest {
 
         searchFoodPageBase.addFoodToMealByName(MEAL_NAME);
         diaryPageBase = (DiaryPageBase) searchFoodPageBase.clickBackButton(ReturnPages.DIARY);
-
+        diaryPageBase.closeCompleteTasksMessageBoxIfPresent();
 
         Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(FOOD_MEAL_INDEX), Meals.BREAKFAST),
                 String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", FOOD.get(FOOD_MEAL_INDEX)));
@@ -218,6 +221,7 @@ public class FitnessPalTest extends LoginTest {
 
         dashboardPageBase.closeAdvertisingPopUpIfPresent();
         dashboardPageBase.closeUserTutorialBoxIfPresent();
+        dashboardPageBase.closeCompleteTasksMessageBoxIfPresent();
 
         SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
         searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
@@ -261,6 +265,7 @@ public class FitnessPalTest extends LoginTest {
         int caloriesRemainingFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
 
         dashboardPageBase = phoneHomePageBase.openAppFromWidget();
+        dashboardPageBase.closeCompleteTasksMessageBoxIfPresent();
 
         SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
         Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
@@ -354,6 +359,8 @@ public class FitnessPalTest extends LoginTest {
 
         mePageBase = recipesMealsFoodsPageBase.clickBackButton();
         dashboardPageBase = mePageBase.clickBackButton();
+        dashboardPageBase.closeCompleteTasksMessageBoxIfPresent();
+
         MorePageBase morePageBase = (MorePageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.MORE);
         morePageBase.clickLogout();
         dashboardPageBase = simpleLogin();
@@ -380,28 +387,87 @@ public class FitnessPalTest extends LoginTest {
 
         LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE.toLowerCase()));
 
-        if(LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())){
+        if (LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())) {
 
-            PlansPageBase plansPageBase = (PlansPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
-            Assert.assertTrue(plansPageBase.isPageOpened(TIMEOUT_TEN), "[PLANS PAGE] Plans Page is not opened!");
-            plansPageBase.swipeToSurveyTitle(TIMEOUT_FIVE);
-            Assert.assertTrue(plansPageBase.isSurveyTitleAtTheBottom(),
+            PlansHubPageBase plansHubPageBase = (PlansHubPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
+            PlansTaskManagerPageBase plansTaskManagerPageBase = initPage(getDriver(), PlansTaskManagerPageBase.class);
+
+            if (!plansHubPageBase.isPageOpened(TIMEOUT_FIFTEEN)) {
+                plansHubPageBase = plansTaskManagerPageBase.endPlan();
+            }
+
+            plansHubPageBase.swipeToSurveyTitle(TIMEOUT_FIVE);
+            Assert.assertTrue(plansHubPageBase.isSurveyTitleAtTheBottom(),
                     "[PLANS PAGE] Survey title is not at the bottom!");
-            Assert.assertTrue(plansPageBase.isSectionSurveyPresent(TIMEOUT_FIVE),
+            Assert.assertTrue(plansHubPageBase.isSectionSurveyPresent(TIMEOUT_FIVE),
                     "[PLANS PAGE] Survey section is not present!");
 
-            PlansGoogleDocWebPageBase plansGoogleDocWebPageBase = plansPageBase.clickTakeSurvey();
-            plansGoogleDocWebPageBase.closeChromeNotificationPopUpIfPresent();
+            PlansGoogleDocWebPageBase plansGoogleDocWebPageBase = plansHubPageBase.clickTakeSurvey();
             plansGoogleDocWebPageBase.closeChromeStopsWorkingPopUpIfPresent();
+            plansGoogleDocWebPageBase.closeChromeNotificationPopUpIfPresent();
             Assert.assertTrue(plansGoogleDocWebPageBase.isPageOpened(TIMEOUT_TEN, SURVEY_PLANS_URL),
                     "[PLANS GOOGLE DOC WEB PAGE PAGE] Plans Google doc Web page is not opened!");
 
-        }
-        else {
+        } else {
             DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
             Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
-                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!",DownMenuElement.PLANS));
+                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
         }
 
     }
+
+
+    @Test(groups = {"closeApp"})
+    @MethodOwner(owner = "koval")
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
+    public void activePlanTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+        LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE));
+
+        if (LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())) {
+
+            PlansHubPageBase plansHubPageBase = (PlansHubPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
+            PlansTaskManagerPageBase plansTaskManagerPageBase = initPage(getDriver(), PlansTaskManagerPageBase.class);
+
+            if (!plansHubPageBase.isPageOpened(TIMEOUT_FIFTEEN)) {
+                plansHubPageBase = plansTaskManagerPageBase.endPlan();
+            }
+
+            PlansDetailsPageBase plansDetailsPageBase = plansHubPageBase.clickOnAvailablePlan(Filters.FREE);
+            plansDetailsPageBase.clickOnStartPlan();
+            plansTaskManagerPageBase = plansDetailsPageBase.clickOnContinueAlertMessageIfPresent();
+            plansTaskManagerPageBase.closeWelcomeMessageIfPresent(TIMEOUT_TEN);
+
+            Assert.assertTrue(plansTaskManagerPageBase.isPageOpened(TIMEOUT_TEN),
+                    "[PLANS TASK MANAGER PAGE] Plans task manager page is not opened!");
+
+            String currentPlanTitle = plansTaskManagerPageBase.getCurrentPlanTitle();
+            plansHubPageBase = plansTaskManagerPageBase.clickOnPlusSign();
+            Assert.assertTrue(plansHubPageBase.isCurrentActivePlanDisplayed(currentPlanTitle));
+
+            plansDetailsPageBase = plansHubPageBase.clickOnAvailablePlan(Filters.FREE);
+            Assert.assertTrue(plansDetailsPageBase.isPageOpened(TIMEOUT_TEN),
+                    "[PLANS DETAILS PAGE ] Plans details page is not opened!");
+            plansDetailsPageBase.clickOnStartPlan();
+            Assert.assertTrue(plansDetailsPageBase.isAlertMessageAboutEndingPlanOpen());
+            plansTaskManagerPageBase = plansDetailsPageBase.clickOnContinueAlertMessageIfPresent();
+            plansTaskManagerPageBase.closeWelcomeMessageIfPresent(TIMEOUT_TEN);
+            currentPlanTitle = plansTaskManagerPageBase.getCurrentPlanTitle();
+            plansTaskManagerPageBase.clickOnPlusSign();
+            Assert.assertTrue(plansHubPageBase.isCurrentActivePlanDisplayed(currentPlanTitle));
+            plansTaskManagerPageBase = plansHubPageBase.clickBackButton();
+            plansHubPageBase = plansTaskManagerPageBase.endPlan();
+
+            Assert.assertTrue(plansHubPageBase.isPageOpened(TIMEOUT_TEN),
+                    "[PLANS HUB PAGE] Plans hub page is not opened!");
+
+        } else {
+            DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
+            Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
+                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
+        }
+    }
+
 }
