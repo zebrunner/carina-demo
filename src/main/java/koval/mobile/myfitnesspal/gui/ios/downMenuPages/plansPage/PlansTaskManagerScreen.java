@@ -1,31 +1,29 @@
-package koval.mobile.myfitnesspal.gui.ios.downMenuPages;
+package koval.mobile.myfitnesspal.gui.ios.downMenuPages.plansPage;
 
-
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubScreenBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansPageBase;
-import koval.mobile.myfitnesspal.gui.common.webPages.PlansGoogleDocWebPageBase;
-import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerScreenBase;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = PlansPageBase.class)
-public class PlansPage extends PlansPageBase {
 
-    public PlansPage(WebDriver driver) {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = PlansTaskManagerScreenBase.class)
+public class PlansTaskManagerScreen extends PlansTaskManagerScreenBase {
+
+    public PlansTaskManagerScreen(WebDriver driver) {
         super(driver);
     }
 
     @Override
     public boolean isPageOpened(int timeout) {
-        throw new NotImplementedException();
+        return false;
     }
 
     @Override
-    public PlansGoogleDocWebPageBase clickTakeSurvey() {
+    public String getCurrentPlanTitle() {
         throw new NotImplementedException();
     }
 
@@ -35,9 +33,10 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public PlansHubPageBase clickOnPlusSign() {
+    public PlansHubScreenBase clickOnPlusSign() {
         throw new NotImplementedException();
     }
+
 
     @Override
     public PlansPageBase closeWelcomeMessageIfPresent(int timeout) {
@@ -58,12 +57,5 @@ public class PlansPage extends PlansPageBase {
     public Point getLocationElement() {
         throw new NotImplementedException();
     }
-
-
-    @Override
-    public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
-        throw new NotImplementedException();
-    }
-
 
 }

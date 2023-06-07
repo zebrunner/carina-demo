@@ -37,8 +37,6 @@ public interface IConstantUtils {
 
     int TIMEOUT_TWENTY = 20;
 
-    int TIMEOUT_THIRTY = 30;
-
     int TIMEOUT_FORTY = 40;
 
     int TWENTY_COUNT = 20;
@@ -86,13 +84,21 @@ public interface IConstantUtils {
 
     String NEW_RECIPE = L10N.getText("new_recipe");
 
-    String NO_THANKS_CAPS = L10N.getText("no_THANKS");
+    String ENDING_PLAN_MESSAGE = "If you join this new plan, your current active plan will end. Do you want to continue?";
 
     String NO_THANKS_ANSWER = L10N.getText("no_Thanks");
+
+    String NO_THANKS_ADD_NUTRIENT_POP_UP = L10N.getText("no_thanks_nutrient");
 
     String NO_THANKS = L10N.getText("no_thanks");
 
     String NUMBERS_ONLY = "[^0-9]";
+
+    String FIND_PLAN = "Find a Plan";
+
+    String PLAN_DETAILS = "Plan Details";
+
+    String LATER = "Later";
 
     String SAVE = L10N.getText("save");
 
@@ -140,13 +146,15 @@ public interface IConstantUtils {
 
     String HEIGHT = "height";
 
+    String CLOSE_APP = L10N.getText("close_app");
+
     String HOME_STRING = L10N.getText("home");
 
     String WEEKLY_GOAL = "Weekly Goal";
 
     String WIDGETS_STRING = "Widgets";
 
-    String GOT_IT = "Got it";
+    String GOT_IT = L10N.getText("got_it");
 
     String CURRENT_WEIGHT = "current_weight";
 
@@ -174,6 +182,7 @@ public interface IConstantUtils {
 
     String ACCEPT_CONTINUE = "Accept & continue";
 
+    String TEXT = "text";
     String TAKE_SURVEY = "Take The Survey";
 
     String NET_CARBS = L10N.getText("net_crabs");

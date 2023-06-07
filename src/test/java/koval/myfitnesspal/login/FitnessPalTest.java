@@ -8,11 +8,12 @@ import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.actions.RecipesMealsFoodsPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.MorePageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansDetailsPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubScreenBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.MePageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.NewCardioExercisePageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerScreenBase;
 import koval.mobile.myfitnesspal.gui.common.modal.DownMenuModalBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
@@ -92,6 +93,7 @@ public class FitnessPalTest extends LoginTest {
             searchFoodPageBase.addFoodToMealByName(FOOD.get(i));
 
             diaryPageBase = (DiaryPageBase) searchFoodPageBase.clickBackButton(ReturnPages.DIARY);
+            diaryPageBase.closeCompleteTasksMessageBoxIfPresent();
             Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(i), mealsArr[i]), String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: '%s'",
                     FOOD.get(i), mealsArr[i]));
         }
@@ -136,7 +138,7 @@ public class FitnessPalTest extends LoginTest {
 
         searchFoodPageBase.addFoodToMealByName(MEAL_NAME);
         diaryPageBase = (DiaryPageBase) searchFoodPageBase.clickBackButton(ReturnPages.DIARY);
-
+        diaryPageBase.closeCompleteTasksMessageBoxIfPresent();
 
         Assert.assertTrue(diaryPageBase.isFoodAddedToMeal(FOOD.get(FOOD_MEAL_INDEX), Meals.BREAKFAST),
                 String.format("[ DIARY PAGE ] Food '%s' is not added! Meal: Breakfast", FOOD.get(FOOD_MEAL_INDEX)));
@@ -220,6 +222,7 @@ public class FitnessPalTest extends LoginTest {
 
         dashboardPageBase.closeAdvertisingPopUpIfPresent();
         dashboardPageBase.closeUserTutorialBoxIfPresent();
+        dashboardPageBase.closeCompleteTasksMessageBoxIfPresent();
 
         SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
         searchFoodPageBase.searchFood(FOOD.get(FOOD_MEAL_INDEX));
@@ -263,6 +266,7 @@ public class FitnessPalTest extends LoginTest {
         int caloriesRemainingFromWidget = phoneHomePageBase.getCaloriesValueFromWidget(Calories.CALS_REMAINING);
 
         dashboardPageBase = phoneHomePageBase.openAppFromWidget();
+        dashboardPageBase.closeCompleteTasksMessageBoxIfPresent();
 
         SearchFoodPageBase searchFoodPageBase = dashboardPageBase.clickSearchForFoodContainer();
         Assert.assertTrue(searchFoodPageBase.isPageOpened(), "[ SEARCH FOOD PAGE ] Search Food page is not opened!");
@@ -356,6 +360,8 @@ public class FitnessPalTest extends LoginTest {
 
         mePageBase = recipesMealsFoodsPageBase.clickBackButton();
         dashboardPageBase = mePageBase.clickBackButton();
+        dashboardPageBase.closeCompleteTasksMessageBoxIfPresent();
+
         MorePageBase morePageBase = (MorePageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.MORE);
         morePageBase.clickLogout();
         dashboardPageBase = simpleLogin();
@@ -386,13 +392,21 @@ public class FitnessPalTest extends LoginTest {
 
             PlansPageBase plansPageBase = (PlansPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
             Assert.assertTrue(plansPageBase.isPageOpened(TIMEOUT_TEN), "[PLANS PAGE] Plans Page is not opened!");
-            plansPageBase.swipeToSurveyTitle(TIMEOUT_FIVE);
-            Assert.assertTrue(plansPageBase.isSurveyTitleAtTheBottom(),
+
+
+            if (!plansPageBase.isPlansHubScreenOpen()) {
+                PlansTaskManagerScreenBase plansTaskManagerScreenBase = initPage(getDriver(), PlansTaskManagerScreenBase.class);
+                plansTaskManagerScreenBase.clickOnPlusSign();
+            }
+
+            PlansHubScreenBase plansHubScreenBase = initPage(getDriver(), PlansHubScreenBase.class);
+            plansHubScreenBase.swipeToSurveyTitle(TIMEOUT_FIVE);
+            Assert.assertTrue(plansHubScreenBase.isSurveyTitleAtTheBottom(),
                     "[PLANS PAGE] Survey title is not at the bottom!");
-            Assert.assertTrue(plansPageBase.isSectionSurveyPresent(TIMEOUT_FIVE),
+            Assert.assertTrue(plansHubScreenBase.isSectionSurveyPresent(TIMEOUT_FIVE),
                     "[PLANS PAGE] Survey section is not present!");
 
-            PlansGoogleDocWebPageBase plansGoogleDocWebPageBase = plansPageBase.clickTakeSurvey();
+            PlansGoogleDocWebPageBase plansGoogleDocWebPageBase = plansHubScreenBase.clickTakeSurvey();
             plansGoogleDocWebPageBase.closeChromeStopsWorkingPopUpIfPresent();
             plansGoogleDocWebPageBase.closeChromeNotificationPopUpIfPresent();
             Assert.assertTrue(plansGoogleDocWebPageBase.isPageOpened(TIMEOUT_TEN, SURVEY_PLANS_URL),
@@ -414,25 +428,43 @@ public class FitnessPalTest extends LoginTest {
     public void activePlanTest() {
 
         DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
-
-        LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE.toLowerCase()));
+        LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE));
 
         if (LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())) {
 
             PlansPageBase plansPageBase = (PlansPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
-            PlansHubPageBase plansHubPageBase = plansPageBase.clickOnPlusSign();
-            PlansDetailsPageBase plansDetailsPageBase = plansHubPageBase.clickOnAvailablePlan(Filters.FREE);
+            PlansTaskManagerScreenBase plansTaskManagerScreenBase = initPage(getDriver(), PlansTaskManagerScreenBase.class);
+
+            if (plansPageBase.isPlansHubScreenOpen()) {
+                PlansHubScreenBase plansHubScreenBase = initPage(getDriver(), PlansHubScreenBase.class);
+                PlansDetailsPageBase plansDetailsPageBase = plansHubScreenBase.clickOnAvailablePlan(Filters.FREE);
+                plansDetailsPageBase.clickOnStartPlan();
+                plansTaskManagerScreenBase = plansDetailsPageBase.clickOnContinueAlertMessageIfPresent();
+                plansTaskManagerScreenBase.closeWelcomeMessageIfPresent(TIMEOUT_TEN);
+            }
+
+            Assert.assertTrue(plansTaskManagerScreenBase.isPageOpened(TIMEOUT_TEN),
+                    "[PLANS PAGE] Plans task manager screen is not opened!");
+
+            String currentPlanTitle = plansTaskManagerScreenBase.getCurrentPlanTitle();
+            PlansHubScreenBase plansHubScreenBase = plansTaskManagerScreenBase.clickOnPlusSign();
+            Assert.assertTrue(plansHubScreenBase.isCurrentActivePlanDisplayed(currentPlanTitle));
+
+            PlansDetailsPageBase plansDetailsPageBase = plansHubScreenBase.clickOnAvailablePlan(Filters.FREE);
+            Assert.assertTrue(plansDetailsPageBase.isPageOpened(TIMEOUT_TEN),
+                    "[PLANS DETAILS PAGE ] Plans details page is not opened!");
             plansDetailsPageBase.clickOnStartPlan();
             Assert.assertTrue(plansDetailsPageBase.isAlertMessageAboutEndingPlanOpen());
-            plansPageBase = plansDetailsPageBase.clickOnContinueAlertMessage();
-            plansPageBase.closeWelcomeMessageIfPresent(TIMEOUT_TEN);
-            plansPageBase.clickOnPlusSign();
+            plansTaskManagerScreenBase = plansDetailsPageBase.clickOnContinueAlertMessageIfPresent();
+            plansTaskManagerScreenBase.closeWelcomeMessageIfPresent(TIMEOUT_TEN);
+            currentPlanTitle = plansTaskManagerScreenBase.getCurrentPlanTitle();
+            plansTaskManagerScreenBase.clickOnPlusSign();
+            Assert.assertTrue(plansHubScreenBase.isCurrentActivePlanDisplayed(currentPlanTitle));
 
         } else {
             DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
             Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
                     String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
         }
-
     }
 }
