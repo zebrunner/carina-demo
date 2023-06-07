@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
 
+import com.zebrunner.carina.demo.utils.ArtifactUtils;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -77,8 +78,8 @@ public class AutoDownloadTest implements IAbstractTest {
 
         SoftAssert softAssert = new SoftAssert();
 
-        softAssert.assertTrue(isArtifactPresent(wait, "tropiko.zip"), "tropiko.zip not found");
-        softAssert.assertTrue(isArtifactPresent(wait, "solar.zip"), "solar.zip not found");
+        softAssert.assertTrue(ArtifactUtils.isArtifactPresent(wait, "tropiko.zip"), "tropiko.zip not found");
+        softAssert.assertTrue(ArtifactUtils.isArtifactPresent(wait, "solar.zip"), "solar.zip not found");
 
         softAssert.assertAll();
 
@@ -91,22 +92,6 @@ public class AutoDownloadTest implements IAbstractTest {
         files = ReportContext.getArtifacts(getDriver(), "UUID.randomUUID().toString()");
         Assert.assertEquals(files.size(), 0);
 
-    }
-
-    private static boolean isArtifactPresent(FluentWait<WebDriver> wait, String name) {
-        boolean isFound = false;
-        try {
-            isFound = wait.until(dr -> {
-                List<String> list = ReportContext.listArtifacts(dr);
-                if (list.contains(name)) {
-                    return true;
-                }
-                return null;
-            });
-        } catch (TimeoutException e) {
-            // do nothing
-        }
-        return isFound;
     }
 
 }
