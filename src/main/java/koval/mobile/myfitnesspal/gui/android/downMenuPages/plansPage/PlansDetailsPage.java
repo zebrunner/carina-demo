@@ -21,8 +21,6 @@ public class PlansDetailsPage extends PlansDetailsPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/message' and @text='%s']")
     private ExtendedWebElement alertMessage;
 
-
-
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android.plans:id/internalToolbar']/child::*[@text='%s']")
     private ExtendedWebElement title;
 
