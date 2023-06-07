@@ -15,7 +15,7 @@ public abstract class PlansDetailsPageBase extends MyAbstractPageBase {
 
     public abstract PlansDetailsPageBase clickOnStartPlan();
 
-    public abstract PlansTaskManagerScreenBase clickOnContinueAlertMessageIfPresent();
+    public abstract PlansTaskManagerPageBase clickOnContinueAlertMessageIfPresent();
 
     public abstract boolean isAlertMessageAboutEndingPlanOpen();
 }

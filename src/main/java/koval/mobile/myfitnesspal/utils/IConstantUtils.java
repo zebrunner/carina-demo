@@ -106,6 +106,10 @@ public interface IConstantUtils {
 
     String CHECKED = "checked";
 
+    String END_PLAN = "End Plan";
+
+    String END = "End";
+
     String LOGIN = L10N.getText("logIn");
 
     String LOADING = "Loading…";

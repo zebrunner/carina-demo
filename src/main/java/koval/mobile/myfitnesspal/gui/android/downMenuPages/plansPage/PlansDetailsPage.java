@@ -4,7 +4,7 @@ package koval.mobile.myfitnesspal.gui.android.downMenuPages.plansPage;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansDetailsPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerScreenBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,7 +22,7 @@ public class PlansDetailsPage extends PlansDetailsPageBase {
     private ExtendedWebElement alertMessage;
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android.plans:id/internalToolbar']/child::*[@text='%s']")
-    private ExtendedWebElement title;
+    private ExtendedWebElement titleByText;
 
 
     public PlansDetailsPage(WebDriver driver) {
@@ -32,7 +32,7 @@ public class PlansDetailsPage extends PlansDetailsPageBase {
 
     @Override
     public boolean isPageOpened(int timeout) {
-        return title.format(PLAN_DETAILS).isElementPresent(timeout);
+        return titleByText.format(PLAN_DETAILS).isElementPresent(timeout);
     }
 
 
@@ -43,9 +43,9 @@ public class PlansDetailsPage extends PlansDetailsPageBase {
     }
 
     @Override
-    public PlansTaskManagerScreenBase clickOnContinueAlertMessageIfPresent() {
+    public PlansTaskManagerPageBase clickOnContinueAlertMessageIfPresent() {
         continueAlertButton.clickIfPresent(TIMEOUT_FIFTEEN);
-        return initPage(getDriver(), PlansTaskManagerScreenBase.class);
+        return initPage(getDriver(), PlansTaskManagerPageBase.class);
     }
 
     @Override

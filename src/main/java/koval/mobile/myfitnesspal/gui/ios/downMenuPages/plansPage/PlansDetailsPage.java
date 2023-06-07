@@ -4,7 +4,7 @@ package koval.mobile.myfitnesspal.gui.ios.downMenuPages.plansPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansDetailsPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerScreenBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerPageBase;
 import org.openqa.selenium.WebDriver;
 
 
@@ -18,7 +18,7 @@ public class PlansDetailsPage extends PlansDetailsPageBase {
 
     @Override
     public boolean isPageOpened(int timeout) {
-        return false;
+        throw new NotImplementedException();
     }
 
 
@@ -28,7 +28,7 @@ public class PlansDetailsPage extends PlansDetailsPageBase {
     }
 
     @Override
-    public PlansTaskManagerScreenBase clickOnContinueAlertMessageIfPresent() {
+    public PlansTaskManagerPageBase clickOnContinueAlertMessageIfPresent() {
         throw new NotImplementedException();
     }
 

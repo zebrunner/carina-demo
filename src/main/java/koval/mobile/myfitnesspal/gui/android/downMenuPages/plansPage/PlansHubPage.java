@@ -2,10 +2,14 @@ package koval.mobile.myfitnesspal.gui.android.downMenuPages.plansPage;
 
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import koval.mobile.myfitnesspal.gui.android.modal.DownMenuModal;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansDetailsPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubScreenBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerPageBase;
 import koval.mobile.myfitnesspal.gui.common.webPages.PlansGoogleDocWebPageBase;
+import koval.mobile.myfitnesspal.service.enums.DownMenuElement;
 import koval.mobile.myfitnesspal.service.enums.Filters;
 import koval.mobile.myfitnesspal.service.enums.PlansCategory;
 import org.openqa.selenium.By;
@@ -14,8 +18,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PlansHubScreenBase.class)
-public class PlansHubScreen extends PlansHubScreenBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PlansHubPageBase.class)
+public class PlansHubPage extends PlansHubPageBase {
 
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android.plans:id/plans_segment_header' and @text='%s']//following-sibling::*//android.view.ViewGroup")
@@ -36,15 +40,30 @@ public class PlansHubScreen extends PlansHubScreenBase {
     @FindBy(id = "com.myfitnesspal.android.plans:id/take_the_survey")
     private ExtendedWebElement takeTheSurveyTitle;
 
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/toolbar']/child::*[@class='android.widget.TextView']")
+    private ExtendedWebElement title;
 
-    public PlansHubScreen(WebDriver driver) {
+    @FindBy(id = "com.myfitnesspal.android:id/bottomNavigationBar")
+    private DownMenuModal downMenuModal;
+
+    @FindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Navigate up\"]")
+    private ExtendedWebElement backButton;
+
+    public PlansHubPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
     public boolean isPageOpened(int timeout) {
-        return false;
+        return isPageOpened(title, DownMenuElement.PLANS.getPageName(), timeout) &&
+                itemByText.format(FIND_PLAN).isElementPresent(TIMEOUT_TEN);
     }
+
+    @Override
+    public AbstractPage openPageFromDownMenuByName(DownMenuElement downMenuElement) {
+        return downMenuModal.openPageByName(downMenuElement);
+    }
+
 
     @Override
     public PlansDetailsPageBase clickOnAvailablePlan(Filters filters) {
@@ -101,10 +120,16 @@ public class PlansHubScreen extends PlansHubScreenBase {
     }
 
     @Override
-    public PlansHubScreenBase swipeToSurveyTitle(int timeout) {
+    public PlansTaskManagerPageBase clickBackButton() {
+        backButton.click(TIMEOUT_FIFTEEN);
+        return initPage(getDriver(), PlansTaskManagerPageBase.class);
+    }
+
+    @Override
+    public PlansHubPageBase swipeToSurveyTitle(int timeout) {
         swipe(takeTheSurveyTitle, plansContainer, Direction.UP, FORTY_COUNT, FAST_SPEED);
         swipeUp(1, MEDIUM_SPEED);
-        return initPage(getDriver(), PlansHubScreenBase.class);
+        return initPage(getDriver(), PlansHubPageBase.class);
     }
 
     @Override

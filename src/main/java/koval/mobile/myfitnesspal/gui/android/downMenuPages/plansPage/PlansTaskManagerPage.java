@@ -3,16 +3,15 @@ package koval.mobile.myfitnesspal.gui.android.downMenuPages.plansPage;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubScreenBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansPageBase;
-import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerScreenBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansHubPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerPageBase;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PlansTaskManagerScreenBase.class)
-public class PlansTaskManagerScreen extends PlansTaskManagerScreenBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PlansTaskManagerPageBase.class)
+public class PlansTaskManagerPage extends PlansTaskManagerPageBase {
 
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/hubRecyclerView")
@@ -42,7 +41,12 @@ public class PlansTaskManagerScreen extends PlansTaskManagerScreenBase {
     private ExtendedWebElement dateLabel;
 
 
-    public PlansTaskManagerScreen(WebDriver driver) {
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/task_day_more_menu")
+    private ExtendedWebElement moreMenu;
+
+
+    public PlansTaskManagerPage(WebDriver driver) {
         super(driver);
     }
 
@@ -64,23 +68,31 @@ public class PlansTaskManagerScreen extends PlansTaskManagerScreenBase {
     }
 
     @Override
-    public PlansHubScreenBase clickOnPlusSign() {
+    public PlansHubPageBase clickOnPlusSign() {
         addPlansPlusButton.click(TIMEOUT_FIFTEEN);
-        return initPage(getDriver(), PlansHubScreenBase.class);
+        return initPage(getDriver(), PlansHubPageBase.class);
+    }
+
+    @Override
+    public PlansHubPageBase endPlan() {
+        moreMenu.click(TIMEOUT_FIFTEEN);
+        itemByText.format(END_PLAN).click(TIMEOUT_FIFTEEN);
+        itemByText.format(END).click(TIMEOUT_FIFTEEN);
+        return initPage(getDriver(), PlansHubPageBase.class);
     }
 
 
     @Override
-    public PlansPageBase closeWelcomeMessageIfPresent(int timeout) {
+    public PlansTaskManagerPageBase closeWelcomeMessageIfPresent(int timeout) {
         welcomeActionButton.clickIfPresent(TIMEOUT_FIFTEEN);
-        return initPage(getDriver(), PlansPageBase.class);
+        return initPage(getDriver(), PlansTaskManagerPageBase.class);
     }
 
     @Override
-    public PlansPageBase swipeToSurveyTitle(int timeout) {
+    public PlansTaskManagerPageBase swipeToSurveyTitle(int timeout) {
         swipe(takeTheSurveyTitle, plansContainer, Direction.UP, FORTY_COUNT, FAST_SPEED);
         swipeUp(1, MEDIUM_SPEED);
-        return initPage(getDriver(), PlansPageBase.class);
+        return initPage(getDriver(), PlansTaskManagerPageBase.class);
     }
 
     @Override

@@ -5,9 +5,9 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 
 
-public abstract class PlansTaskManagerScreenBase extends MyAbstractPageBase {
+public abstract class PlansTaskManagerPageBase extends MyAbstractPageBase {
 
-    public PlansTaskManagerScreenBase(WebDriver driver) {
+    public PlansTaskManagerPageBase(WebDriver driver) {
         super(driver);
     }
 
@@ -18,11 +18,13 @@ public abstract class PlansTaskManagerScreenBase extends MyAbstractPageBase {
 
     public abstract boolean isSurveyTitleAtTheBottom();
 
-    public abstract PlansHubScreenBase clickOnPlusSign();
+    public abstract PlansHubPageBase clickOnPlusSign();
 
-    public abstract PlansPageBase closeWelcomeMessageIfPresent(int timeout);
+    public abstract PlansHubPageBase endPlan();
 
-    public abstract PlansPageBase swipeToSurveyTitle(int timeout);
+    public abstract PlansTaskManagerPageBase closeWelcomeMessageIfPresent(int timeout);
+
+    public abstract PlansTaskManagerPageBase swipeToSurveyTitle(int timeout);
 
     public abstract boolean isSectionSurveyPresent(int timeout);
 
