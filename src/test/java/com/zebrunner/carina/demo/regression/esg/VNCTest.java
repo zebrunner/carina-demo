@@ -18,7 +18,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.zebrunner.carina.demo.websocket.EndpointUtils.getWebSocketSelenoidUrl;
+import static com.zebrunner.carina.demo.websocket.EndpointUtils.getWebSocketUrl;
 import static com.zebrunner.carina.demo.websocket.EndpointUtils.isMessagePresent;
 
 public class VNCTest implements IAbstractTest {
@@ -32,7 +32,7 @@ public class VNCTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
 
         LOGGER.info("Trying to create connection with the VNC endpoint...");
-        final WebsocketClientEndpoint clientEndPoint = new WebsocketClientEndpoint(new URI(getWebSocketSelenoidUrl(getDriver(), "ws/vnc/")));
+        final WebsocketClientEndpoint clientEndPoint = new WebsocketClientEndpoint(new URI(getWebSocketUrl(getDriver(), "ws/vnc/")));
         List<Object> messages = new ArrayList<>();
         clientEndPoint.addMessageHandler(messages::add);
 

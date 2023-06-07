@@ -20,14 +20,14 @@ public final class EndpointUtils {
         //hide
     }
 
-    public static String getWebSocketSelenoidUrl(WebDriver driver, String endpoint) {
+    public static String getWebSocketUrl(WebDriver driver, String endpoint) {
         return String.format("%s%s", Configuration.getSeleniumUrl()
                         .replace("wd/hub", endpoint)
                         .replaceFirst("http([s]?):", "wss:"),
                 (DriverListener.castDriver(driver, RemoteWebDriver.class)).getSessionId().toString());
     }
 
-    public static String getHttpSelenoidUrl(WebDriver driver, String endpoint) {
+    public static String getHttpUrl(WebDriver driver, String endpoint) {
         return String.format("%s%s", Configuration.getSeleniumUrl()
                         .replace("wd/hub", endpoint),
                 (DriverListener.castDriver(driver, RemoteWebDriver.class))

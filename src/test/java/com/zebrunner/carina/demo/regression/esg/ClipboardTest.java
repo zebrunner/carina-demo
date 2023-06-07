@@ -20,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.zebrunner.carina.demo.websocket.EndpointUtils.getHttpSelenoidUrl;
+import static com.zebrunner.carina.demo.websocket.EndpointUtils.getHttpUrl;
 
 public class ClipboardTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -39,7 +39,7 @@ public class ClipboardTest implements IAbstractTest {
         LOGGER.info("HomePage is opened.");
 
         LOGGER.info("Creating output connection with the clipboard endpoint....");
-        HttpURLConnection con = (HttpURLConnection) new URI(getHttpSelenoidUrl(getDriver(), "clipboard/"))
+        HttpURLConnection con = (HttpURLConnection) new URI(getHttpUrl(getDriver(), "clipboard/"))
                 .toURL()
                 .openConnection();
         con.setRequestMethod("POST");
@@ -61,7 +61,7 @@ public class ClipboardTest implements IAbstractTest {
     @Test(dependsOnMethods = "clipboardWriteTest")
     public void clipboardReadTest() throws IOException, URISyntaxException {
         LOGGER.info("Creating input connection with the clipboard endpoint....");
-        HttpURLConnection con = (HttpURLConnection) new URI(getHttpSelenoidUrl(getDriver(), "clipboard/"))
+        HttpURLConnection con = (HttpURLConnection) new URI(getHttpUrl(getDriver(), "clipboard/"))
                 .toURL()
                 .openConnection();
         con.setRequestMethod("GET");
