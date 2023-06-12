@@ -1,15 +1,9 @@
 package com.zebrunner.carina.demo;
 
-import java.io.File;
-import java.lang.invoke.MethodHandles;
-import java.time.Duration;
-import java.util.List;
-import java.util.UUID;
-
-import com.zebrunner.carina.demo.utils.ArtifactUtils;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.FluentWait;
+import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.utils.R;
+import com.zebrunner.carina.utils.report.SessionContext;
+import com.zebrunner.carina.webdriver.DriverHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -17,10 +11,13 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.utils.report.ReportContext;
-import com.zebrunner.carina.webdriver.DriverHelper;
+import java.lang.invoke.MethodHandles;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Duration;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class AutoDownloadTest implements IAbstractTest {
 
@@ -34,28 +31,27 @@ public class AutoDownloadTest implements IAbstractTest {
 
     @Test()
     public void getArtifactTest() {
-        String url = "https://www.free-css.com/assets/files/free-css-templates/download/page280/klassy-cafe.zip";
+        String url = "https://www.free-css.com/assets/files/free-css-templates/download/page292/grandcoffee.zip";
 
-        LOGGER.info("Artifact's folder: {}", ReportContext.getArtifactsFolder().getAbsolutePath());
+        LOGGER.info("Artifact's folder: {}", SessionContext.getArtifactsFolder());
 
         DriverHelper driverHelper = new DriverHelper(getDriver());
         driverHelper.openURL(url);
-        pause(1);
 
-        File file = ReportContext.getArtifact(getDriver(), "klassy-cafe.zip");
-        Assert.assertTrue(file.exists(), "klassy-cafe.zip is not available among downloaded artifacts");
+        Optional<Path> file = SessionContext.getArtifact(getDriver(), "grandcoffee.zip", Duration.ofSeconds(30));
+        Assert.assertTrue(file.isPresent() && Files.exists(file.get()), "grandcoffee.zip is not available among downloaded artifacts");
     }
     
     @Test(expectedExceptions = AssertionError.class, expectedExceptionsMessageRegExp = "Unable to find artifact:.*")
     public void getInvalidArtifactTest() {
         String url = "https://www.free-css.com/assets/files/free-css-templates/download/page280/klassy-cafe.zip";
 
-        LOGGER.info("Artifact's folder: {}", ReportContext.getArtifactsFolder().getAbsolutePath());
+        LOGGER.info("Artifact's folder: {}", SessionContext.getArtifactsFolder());
 
         DriverHelper driverHelper = new DriverHelper(getDriver());
         driverHelper.openURL(url);
 
-        ReportContext.getArtifact(getDriver(), UUID.randomUUID().toString());
+        SessionContext.getArtifact(getDriver(), UUID.randomUUID().toString());
     }
    
     
@@ -66,30 +62,27 @@ public class AutoDownloadTest implements IAbstractTest {
 
         R.CONFIG.put("auto_download", "true");
 
-        LOGGER.info("Artifact's folder: {}", ReportContext.getArtifactsFolder().getAbsolutePath());
+        LOGGER.info("Artifact's folder: {}", SessionContext.getArtifactsFolder());
 
         DriverHelper driverHelper = new DriverHelper(getDriver());
         driverHelper.openURL(url1);
         driverHelper.openURL(url2);
 
-        FluentWait<WebDriver> wait = new FluentWait<>(getDriver())
-                .pollingEvery(Duration.ofSeconds(1))
-                .withTimeout(Duration.ofSeconds(30));
 
         SoftAssert softAssert = new SoftAssert();
 
-        softAssert.assertTrue(ArtifactUtils.isArtifactPresent(wait, "tropiko.zip"), "tropiko.zip not found");
-        softAssert.assertTrue(ArtifactUtils.isArtifactPresent(wait, "solar.zip"), "solar.zip not found");
+        softAssert.assertTrue(SessionContext.getArtifact(getDriver(), "tropiko.zip", Duration.ofSeconds(30)).isPresent(), "tropiko.zip not found");
+        softAssert.assertTrue(SessionContext.getArtifact(getDriver(), "solar.zip", Duration.ofSeconds(30)).isPresent(), "solar.zip not found");
 
         softAssert.assertAll();
 
-        List<File> files = ReportContext.getArtifacts(getDriver(), ".+");
+        List<Path> files = SessionContext.getArtifacts(getDriver(), ".+");
         Assert.assertEquals(files.size(), 2);
 
-        files = ReportContext.getArtifacts(getDriver(), "solar.z.+");
+        files = SessionContext.getArtifacts(getDriver(), "solar.z.+");
         Assert.assertEquals(files.size(), 1);
 
-        files = ReportContext.getArtifacts(getDriver(), "UUID.randomUUID().toString()");
+        files = SessionContext.getArtifacts(getDriver(), "UUID.randomUUID().toString()");
         Assert.assertEquals(files.size(), 0);
 
     }

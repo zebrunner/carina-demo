@@ -39,6 +39,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.zebrunner</groupId>
+			<artifactId>carina-webdriver</artifactId>
+			<version>1.0.5.111-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zebrunner</groupId>
 			<artifactId>carina-core</artifactId>
 			<version>${carina-core_version}</version>
 		</dependency>

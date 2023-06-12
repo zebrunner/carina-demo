@@ -15,12 +15,23 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.invoke.MethodHandles;
-
+import com.browserup.bup.BrowserUpProxy;
+import com.browserup.bup.proxy.CaptureType;
+import com.zebrunner.agent.core.registrar.Artifact;
+import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
+import com.zebrunner.carina.demo.gui.pages.desktop.NewsPage;
+import com.zebrunner.carina.demo.proxy.CustomProxy;
+import com.zebrunner.carina.demo.proxy.CustomProxyRule;
+import com.zebrunner.carina.demo.proxy.DemoResponseFilter;
+import com.zebrunner.carina.proxy.ProxyPool;
+import com.zebrunner.carina.proxy.browserup.CarinaBrowserUpProxy;
+import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.R;
+import com.zebrunner.carina.utils.report.SessionContext;
+import com.zebrunner.carina.webdriver.Screenshot;
+import com.zebrunner.carina.webdriver.ScreenshotType;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Proxy;
@@ -31,23 +42,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.browserup.bup.BrowserUpProxy;
-import com.browserup.bup.proxy.CaptureType;
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
-import com.zebrunner.carina.demo.gui.pages.desktop.NewsPage;
-import com.zebrunner.carina.demo.proxy.CustomProxy;
-import com.zebrunner.carina.demo.proxy.CustomProxyRule;
-import com.zebrunner.carina.demo.proxy.DemoResponseFilter;
-import com.zebrunner.agent.core.registrar.Artifact;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.proxy.ProxyPool;
-import com.zebrunner.carina.proxy.browserup.CarinaBrowserUpProxy;
-import com.zebrunner.carina.utils.Configuration;
-import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.utils.report.ReportContext;
-import com.zebrunner.carina.webdriver.Screenshot;
-import com.zebrunner.carina.webdriver.ScreenshotType;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.invoke.MethodHandles;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Test proxy in different modes
@@ -109,7 +108,7 @@ public class ProxySampleTest implements IAbstractTest {
 
     @Test(description = "Test 'PAC' proxy mode (send local pac file)")
     @MethodOwner(owner = "qpsdemo")
-    public void pacModeTest() throws FileNotFoundException {
+    public void pacModeTest() throws IOException {
         R.CONFIG.put("proxy_type", "PAC", true);
         R.CONFIG.put("proxy_pac_local", "true", true);
 
@@ -125,13 +124,13 @@ public class ProxySampleTest implements IAbstractTest {
                 Configuration.get(Configuration.Parameter.PROXY_HOST),
                 Configuration.get(Configuration.Parameter.PROXY_PORT));
 
-        File file = new File(ReportContext.getArtifactsFolder() + "/test.pac");
+        Path file = SessionContext.getArtifactsFolder().resolve("test.pac");
 
-        try (PrintWriter out = new PrintWriter(file)) {
+        try (PrintWriter out = new PrintWriter(Files.newOutputStream(file))) {
             out.write(pacContent);
         }
 
-        R.CONFIG.put("proxy_autoconfig_url", file.getAbsolutePath(), true);
+        R.CONFIG.put("proxy_autoconfig_url", file.toString(), true);
 
         Capabilities capabilities = ((HasCapabilities) getDriver()).getCapabilities();
         Assert.assertNotNull(capabilities.getCapability(CapabilityType.PROXY), "Proxy capability should exists.");
@@ -219,11 +218,11 @@ public class ProxySampleTest implements IAbstractTest {
 
         // Saving har to a file...
         String name = "ProxyReport.har";
-        File file = new File(ReportContext.getArtifactsFolder() + "/" + name);
+        Path file = SessionContext.getArtifactsFolder().resolve(name);
         Assert.assertNotNull(proxy.getHar(), "Har is NULL!");
 
         try {
-            proxy.getHar().writeTo(file);
+            proxy.getHar().writeTo(Files.newOutputStream(file));
             Artifact.attachToTest(name, file);
         } catch (IOException e) {
             LOGGER.error("Unable to generate har archive!", e);
@@ -274,11 +273,11 @@ public class ProxySampleTest implements IAbstractTest {
                 .getProxy();
         // Saving har to a file...
         String name = "ProxyReport.har";
-        File file = new File(ReportContext.getArtifactsFolder() + "/" + name);
+        Path file = SessionContext.getArtifactsFolder().resolve(name);
         Assert.assertNotNull(proxy.getHar(), "Har is NULL!");
 
         try {
-            proxy.getHar().writeTo(file);
+            proxy.getHar().writeTo(Files.newOutputStream(file));
             Artifact.attachToTest(name, file);
         } catch (IOException e) {
             LOGGER.error("Unable to generate har archive!", e);
@@ -287,7 +286,7 @@ public class ProxySampleTest implements IAbstractTest {
 
     @Test(description = "Test 'DYNAMIC' proxy mode with response filtering")
     @MethodOwner(owner = "qpsdemo")
-    public void dynamicModeWithResponseFilterTest() throws FileNotFoundException {
+    public void dynamicModeWithResponseFilterTest() throws IOException {
         R.CONFIG.put("browserup_proxy", "true", true);
         R.CONFIG.put("proxy_type", "DYNAMIC", true);
         R.CONFIG.put("proxy_port", "0", true);
@@ -328,8 +327,8 @@ public class ProxySampleTest implements IAbstractTest {
         Screenshot.capture(homePage.getPhoneFinderButton().getElement(), ScreenshotType.EXPLICIT_VISIBLE,
                 "The modified representation of the 'Phone Finder' element on the page");
 
-        File file = new File(ReportContext.getArtifactsFolder() + "/" + pageSourceFileName);
-        try (PrintWriter pw = new PrintWriter(file)) {
+        Path file = SessionContext.getArtifactsFolder().resolve(pageSourceFileName);
+        try (PrintWriter pw = new PrintWriter(Files.newOutputStream(file))) {
             pw.write(getDriver().getPageSource());
         }
         Artifact.attachToTest(pageSourceFileName, file);
