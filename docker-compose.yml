@@ -1,0 +1,16 @@
+version: '3'
+services:
+  carina-demo:
+    image: openjdk:11
+    container_name: carina
+    environment:
+      - 'SUITE=api'
+    command: ["sh", "-c",
+      "apt-get update 
+      && apt-get install -y maven 
+      && cd carina-demo 
+      && mvn test -Dsuite=$${SUITE}"]
+    volumes:
+      - "./src:/carina-demo/src:ro"
+      - "./pom.xml:/carina-demo/pom.xml:ro"
+      - "./new-target:/carina-demo/target"
