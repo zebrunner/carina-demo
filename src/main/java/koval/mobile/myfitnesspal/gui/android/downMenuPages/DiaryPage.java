@@ -107,7 +107,7 @@ public class DiaryPage extends DiaryPageBase {
 
     @Override
     public boolean isExerciseAdded() {
-        return itemByNameTitle.format(EXERCISE_STRING, "Gym Workout").isElementPresent(TIMEOUT_TEN);
+        return itemByNameTitle.format(EXERCISE_STRING, GYM_WORKOUT).isElementPresent(TIMEOUT_TEN);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public AbstractPage clickAddExerciseButton(ExercisesType exercisesType) {
 
-        swipe(mealTitleByText.format(L10N.getText("water")), Direction.UP, TWENTY_COUNT, LOW_SPEED);
+        swipe(mealTitleByText.format(WATER), Direction.UP, TWENTY_COUNT, LOW_SPEED);
 
         addExerciseButton.click();
 
