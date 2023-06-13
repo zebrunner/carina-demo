@@ -20,14 +20,6 @@ public class WelcomePage extends WelcomePageBase {
         return itemByText.format(SIGNUP).isElementPresent(TIMEOUT_TEN) && itemByText.format(LOGIN).isElementPresent(TIMEOUT_TEN);
     }
 
-//    @Override
-//    public WelcomePageBase notificationSendPopUpIfPresent(String answer) {
-//
-//        itemByText.format(answer).clickIfPresent(TIMEOUT_FIVE);
-//
-//        return initPage(getDriver(), WelcomePageBase.class);
-//    }
-
     @Override
     public SignUpPageBase signUp() {
         itemByText.format(SIGNUP).click(TIMEOUT_TEN);
@@ -36,7 +28,7 @@ public class WelcomePage extends WelcomePageBase {
 
     @Override
     public LogInPageBase logIn() {
-        itemByText.format(L10N.getText("logIn")).click(TIMEOUT_TEN);
+        itemByText.format(LOGIN).click(TIMEOUT_TEN);
         return initPage(getDriver(), LogInPageBase.class);
     }
 
