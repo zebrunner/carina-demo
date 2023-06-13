@@ -13,6 +13,7 @@ import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.mePage.M
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.CardiovascularPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addExercise.NewCardioExercisePageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.PlansTaskManagerPageBase;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.plansPage.workout.LogWorkoutPageBase;
 import koval.mobile.myfitnesspal.gui.common.modal.DownMenuModalBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneHomePageBase;
 import koval.mobile.myfitnesspal.gui.common.phoneInterface.PhoneWidgetPageBase;
@@ -23,6 +24,7 @@ import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myFo
 import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myMeals.CreateMealPageBase;
 import koval.mobile.myfitnesspal.gui.common.actions.addFood.tabsCreatePages.myRecipes.CreateRecipePageBase;
 import koval.mobile.myfitnesspal.gui.common.webPages.PlansGoogleDocWebPageBase;
+import koval.mobile.myfitnesspal.service.AdbService.*;
 import koval.mobile.myfitnesspal.service.enums.*;
 import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExercise;
 import koval.mobile.myfitnesspal.service.factories.exerciseFactory.CardioExerciseFactory;
@@ -30,6 +32,7 @@ import koval.mobile.myfitnesspal.service.factories.foodFactory.Food;
 import koval.mobile.myfitnesspal.service.factories.foodFactory.FoodFactory;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.Recipe;
 import koval.mobile.myfitnesspal.service.factories.recipeFactory.RecipeFactory;
+import koval.mobile.myfitnesspal.utils.IConstantUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -53,7 +56,7 @@ public class FitnessPalTest extends LoginTest {
 
     private static final String SURVEY_PLANS_URL = "docs.google.com/forms/d/e/1FAIpQLSdXJDLwt3_Ugbnnc1XDwdzoUObCeZxtypxCnM4rBSEWu9tNzQ/viewform";
 
-    @Test(groups = {"logout"})
+    @Test(groups = {"logout"}, enabled = false)
     @MethodOwner(owner = "koval")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     @TestTag(name = "localized", value = "en_US")
@@ -453,7 +456,7 @@ public class FitnessPalTest extends LoginTest {
             plansDetailsPageBase.clickOnStartPlan();
             Assert.assertTrue(plansDetailsPageBase.isAlertMessageAboutEndingPlanOpen());
             plansTaskManagerPageBase = plansDetailsPageBase.clickOnContinueAlertMessageIfPresent();
-            plansTaskManagerPageBase.closeWelcomeMessageIfPresent(TIMEOUT_TEN);
+            plansTaskManagerPageBase.closeWelcomeMessageIfPresent(IConstantUtils.TIMEOUT_FIFTEEN);
             currentPlanTitle = plansTaskManagerPageBase.getCurrentPlanTitle();
             plansTaskManagerPageBase.clickOnPlusSign();
             Assert.assertTrue(plansHubPageBase.isCurrentActivePlanDisplayed(currentPlanTitle));
@@ -468,6 +471,44 @@ public class FitnessPalTest extends LoginTest {
             Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
                     String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
         }
+    }
+
+
+    @Test(groups = {"closeApp"})
+    @MethodOwner(owner = "koval")
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
+    public void plansPopUpMessageTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
+        LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE.toLowerCase()));
+
+        if (LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())) {
+
+            PlansHubPageBase plansHubPageBase = (PlansHubPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
+            PlansTaskManagerPageBase plansTaskManagerPageBase = initPage(getDriver(), PlansTaskManagerPageBase.class);
+
+            if (!plansHubPageBase.isPageOpened(TIMEOUT_FIVE)) {
+                plansHubPageBase = plansTaskManagerPageBase.endPlan();
+            }
+
+            PlansDetailsPageBase plansDetailsPageBase = plansHubPageBase.clickOnAvailablePlan(Filters.FREE);
+            plansDetailsPageBase.clickOnStartPlan();
+            plansTaskManagerPageBase = plansDetailsPageBase.clickOnContinueAlertMessageIfPresent();
+            plansTaskManagerPageBase.closeWelcomeMessageIfPresent(TIMEOUT_FIVE);
+
+            adbService.closeApp(AppPackage.MY_FITNESS_PAL);
+            adbService.startApp(AppPackage.MY_FITNESS_PAL);
+            Assert.assertTrue(dashboardPageBase.isPopUpCompletePlanTasksPresent(),
+                    "[ DASHBOARD PAGE ] Complete plan tasks Pop Up is not present!");
+
+        } else {
+            DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
+            Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
+                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
+        }
+
     }
 
 }

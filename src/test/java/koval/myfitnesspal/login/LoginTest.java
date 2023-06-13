@@ -39,7 +39,6 @@ public class LoginTest implements IMyInterface {
 
         hideKeyboard();
 
-
         WelcomePageBase welcomePageBase = initPage(getDriver(), WelcomePageBase.class);
         welcomePageBase.notificationSendPopUpIfPresent(ALLOW_ANSWER);
         Assert.assertTrue(welcomePageBase.isPageOpened(), "[ WELCOME PAGE ] Welcome page is not opened!");
@@ -61,7 +60,7 @@ public class LoginTest implements IMyInterface {
 
             DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
 
-            Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_FIFTY), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
+            Assert.assertTrue(dashboardPageBase.isPageOpened(TIMEOUT_TEN), "[ DASHBOARD PAGE ] Dashboard page is not opened!");
         }
         return (initPage(getDriver(), DashboardPageBase.class));
     }

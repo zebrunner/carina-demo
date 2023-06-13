@@ -29,6 +29,8 @@ public abstract class DiaryPageBase extends MyAbstractPageBase {
 
     public abstract SearchFoodPageBase clickAddFoodButton(Meals meals);
 
+    public abstract boolean isExerciseAdded();
+
     public abstract boolean isFoodAddedToMeal(String food, Meals meals);
 
 

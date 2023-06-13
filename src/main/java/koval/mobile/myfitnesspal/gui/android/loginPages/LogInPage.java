@@ -72,9 +72,9 @@ public class LogInPage extends LogInPageBase {
 
 
     @Override
-    public LogInPageBase clickLoginButton() {
+    public DashboardPageBase clickLoginButton() {
         loginButton.click(TIMEOUT_TEN);
-        return initPage(getDriver(), LogInPageBase.class);
+        return initPage(getDriver(), DashboardPageBase.class);
 
     }
 

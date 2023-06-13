@@ -69,7 +69,7 @@ public class DiaryPage extends DiaryPageBase {
     private ExtendedWebElement addExerciseButton;
 
     @FindBy(xpath = "//*[@resource-id=\"com.myfitnesspal.android:id/txtSectionHeader\" and @text='%s']/parent::*/parent::*/following-sibling::*//*[@resource-id=\"com.myfitnesspal.android:id/txtItemDescription\" and contains(@text,'%s')]")
-    private ExtendedWebElement foodTitle;
+    private ExtendedWebElement itemByNameTitle;
 
     public DiaryPage(WebDriver driver) {
         super(driver);
@@ -106,6 +106,11 @@ public class DiaryPage extends DiaryPageBase {
 
 
     @Override
+    public boolean isExerciseAdded() {
+        return itemByNameTitle.format(EXERCISE_STRING, "Gym Workout").isElementPresent(TIMEOUT_TEN);
+    }
+
+    @Override
     public boolean isFoodAddedToMeal(String food, Meals meals) {
 
         boolean isFoodAddedToMeal;
@@ -113,11 +118,11 @@ public class DiaryPage extends DiaryPageBase {
         if (meals.getMeal().equals(Meals.SNACKS.getMeal())) {
             ExtendedWebElement snackTitleByText = itemByText.format(CONNECT_A_STEP_TRACKER);
             swipe(snackTitleByText, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
-            isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
+            isFoodAddedToMeal = itemByNameTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
         } else {
             ExtendedWebElement mealByText = mealTitleByText.format(meals.getMeal());
             swipe(mealByText, diaryRecyclerViewContainer, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
-            isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
+            isFoodAddedToMeal = itemByNameTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
         }
 
 

@@ -110,6 +110,8 @@ public interface IConstantUtils {
 
     String END = "End";
 
+    String COMPLETE_PLAN = "to complete today";
+
     String LOGIN = L10N.getText("logIn");
 
     String LOADING = "Loading…";

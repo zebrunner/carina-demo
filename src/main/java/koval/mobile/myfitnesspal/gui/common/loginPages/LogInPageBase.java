@@ -21,7 +21,7 @@ public abstract class LogInPageBase extends MyAbstractPageBase {
 
     public abstract LogInPageBase typePassword(String password);
 
-    public abstract LogInPageBase clickLoginButton();
+    public abstract DashboardPageBase clickLoginButton();
 
     public abstract DashboardPageBase closeNoSubscriptionsPopUpIfPresent();
 
