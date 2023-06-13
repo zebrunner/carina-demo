@@ -114,6 +114,10 @@ public interface IConstantUtils {
 
     String LOGIN = L10N.getText("logIn");
 
+    String WATER = L10N.getText("water");
+
+    String GYM_WORKOUT = "Gym Workout";
+
     String LOADING = "Loading…";
 
     String SIGNUP = L10N.getText("signUp");
