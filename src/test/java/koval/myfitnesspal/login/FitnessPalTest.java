@@ -511,4 +511,49 @@ public class FitnessPalTest extends LoginTest {
 
     }
 
+    @Test(groups = {"closeApp"})
+    @MethodOwner(owner = "koval")
+    @TestTag(name = "localized", value = "en_US")
+    @TestTag(name = "localized", value = "es_ES")
+    public void workoutPlanTest() {
+
+        DashboardPageBase dashboardPageBase = initPage(getDriver(), DashboardPageBase.class);
+
+        DiaryPageBase diaryPageBase = (DiaryPageBase) dashboardPageBase.openPageFromDownMenuByName(DownMenuElement.DIARY);
+        diaryPageBase.deleteAllItems();
+
+        LOGGER.info("Locale language is {}", Languages.getLanguage(LOCAL_LANGUAGE.toLowerCase()));
+
+        if (LOCAL_LANGUAGE.equals(Languages.ENGLISH.getShortLanguage())) {
+
+            PlansHubPageBase plansHubPageBase = (PlansHubPageBase) diaryPageBase.openPageFromDownMenuByName(DownMenuElement.PLANS);
+            PlansTaskManagerPageBase plansTaskManagerPageBase = initPage(getDriver(), PlansTaskManagerPageBase.class);
+
+            if (!plansHubPageBase.isPageOpened(TIMEOUT_FIVE)) {
+                plansHubPageBase = plansTaskManagerPageBase.endPlan();
+            }
+
+            PlansDetailsPageBase plansDetailsPageBase = plansHubPageBase.clickOnAvailablePlan(Filters.WORKOUT);
+            plansDetailsPageBase.clickOnStartPlan();
+            plansTaskManagerPageBase = plansDetailsPageBase.clickOnContinueAlertMessageIfPresent();
+            plansTaskManagerPageBase.closeWelcomeMessageIfPresent(TIMEOUT_FIVE);
+            LogWorkoutPageBase logWorkoutPageBase = plansTaskManagerPageBase.clickLogWorkoutButton();
+            plansTaskManagerPageBase = logWorkoutPageBase.clickOnCheckmark();
+
+            Assert.assertTrue(plansTaskManagerPageBase.isLoggedWorkoutConfirmMsgPresent(),
+                    "[PLANS TASK MANAGER PAGE] “Workout logged” confirmation message is not present!");
+
+            diaryPageBase = plansTaskManagerPageBase.clickViewButton();
+            Assert.assertTrue(diaryPageBase.isExerciseAdded(),
+                    "[ DIARY PAGE ] Exercise is not added!");
+            diaryPageBase.deleteAllItems();
+
+        } else {
+            DownMenuModalBase downMenuModal = initPage(getDriver(), DownMenuModalBase.class);
+            Assert.assertFalse(downMenuModal.isMenuElementPresent(DownMenuElement.PLANS),
+                    String.format("[DOWN MENU MODAL] Menu element '%s' is present!", DownMenuElement.PLANS));
+        }
+
+    }
+
 }
