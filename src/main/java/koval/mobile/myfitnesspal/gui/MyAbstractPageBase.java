@@ -3,11 +3,16 @@ package koval.mobile.myfitnesspal.gui;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.CaseInsensitiveXPath;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.zebrunner.carina.utils.R;
+import koval.mobile.myfitnesspal.gui.common.downMenuPages.dashboardPage.DashboardPageBase;
+import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public abstract class MyAbstractPageBase extends AbstractPage implements IMyInterface {
@@ -74,10 +79,6 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
     }
 
 
-    public void clickButtnByText(String text) {
-        itemByText.format(text).click(TIMEOUT_FIVE);
-    }
-
     public void closeUserTutorialBoxIfPresent() {
 
         int attemp = 3;
@@ -124,5 +125,53 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
 
         return (upperY + (upperY + lowerY)) / 2;
     }
+
+
+    public static String getText(String key) {
+        Locale currentLocale = getCurrentLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("locale", currentLocale);
+        return bundle.getString(key);
+    }
+
+    public static Locale getCurrentLocale() {
+        String[] currentLocaleString = R.CONFIG.getProperties().getProperty("locale").split("_");
+        return new Locale(currentLocaleString[0], currentLocaleString[1]);
+    }
+
+
+    public DashboardPageBase closeNoSubscriptionsPopUpIfPresent() {
+
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(itemByText.format(CANCEL).getBy()), TIMEOUT_FIFTY);
+
+        int attemp = 3;
+        while (itemByText.format(CANCEL).isElementPresent() && attemp > 0) {
+            itemByText.format(CANCEL).click(TIMEOUT_TEN);
+
+            LOGGER.info("[ DASHBOARD PAGE ] Attempt left: {} for clicking on exit No Subscriptions PopUp button", attemp);
+            attemp--;
+        }
+
+        return initPage(getDriver(), DashboardPageBase.class);
+    }
+
+
+
+    public boolean closeNotRespondingPopUpIfPresent() {
+
+        ExtendedWebElement closeAppButton = itemByText.format(CLOSE_APP);
+        boolean isNotRespondingPopUpPresent = closeAppButton.isElementPresent(TIMEOUT_FIFTEEN);
+
+        closeAppButton.clickIfPresent(TIMEOUT_TEN);
+
+
+        return isNotRespondingPopUpPresent;
+    }
+
+
+    public LogInPageBase closeLoginFailedPopUpIfPresent() {
+        itemByText.format(CLOSE).clickIfPresent();
+        return initPage(getDriver(), LogInPageBase.class);
+    }
+
 
 }

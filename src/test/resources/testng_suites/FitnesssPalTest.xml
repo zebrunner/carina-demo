@@ -7,7 +7,7 @@
 
     <test name="FitnessPal">
         <classes>
-            <class name="koval.myfitnesspal.login.FitnessPalTest">
+            <class name="koval.mobile.myfitnesspal.login.FitnessPalTest">
                 <methods>
                     <include name="loginSimpleUserTest"/>
                     <include name="searchButtonFromWidget2x2Test"/>

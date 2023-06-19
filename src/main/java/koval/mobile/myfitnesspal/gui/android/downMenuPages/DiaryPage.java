@@ -21,7 +21,6 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/toolbar")
     private ExtendedWebElement upperToolbar;
 
-
     @FindBy(id = "com.myfitnesspal.android:id/bottomNavigationBar")
     private DownMenuModal downMenuModal;
 

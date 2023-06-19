@@ -8,7 +8,7 @@
 
     <test name="Login check test">
         <classes>
-            <class name="koval.carinademo.LoginCheckTest">
+            <class name="koval.mobile.carinademo.LoginCheckTest">
                 <methods>
                     <include name="testAllEmpty"/>
                     <include name="testCorrectFields"/>
@@ -19,7 +19,7 @@
 
 <!--    <test name="Left menu check test">-->
 <!--        <classes>-->
-<!--            <class name="koval.carinademo.LeftMenuCheckTest" />-->
+<!--            <class name="koval.mobile.carinademo.LeftMenuCheckTest" />-->
 <!--        </classes>-->
 <!--    </test>-->
 

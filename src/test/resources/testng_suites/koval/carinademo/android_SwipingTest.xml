@@ -8,7 +8,7 @@
 
     <test name="1. Get Parsed Mail">
         <classes>
-            <class name="koval.carinademo.SwipeCheckTest">
+            <class name="koval.mobile.carinademo.SwipeCheckTest">
                 <methods>
                     <include name="testParseMail"/>
                 </methods>
@@ -19,7 +19,7 @@
 
     <test name="2. Get Topics">
         <classes>
-            <class name="koval.carinademo.SwipeCheckTest">
+            <class name="koval.mobile.carinademo.SwipeCheckTest">
                 <methods>
                     <include name="testGetTopics"/>
                 </methods>
