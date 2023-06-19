@@ -2,6 +2,7 @@ package koval.mobile.myfitnesspal.gui.android.loginPages;
 
 
 import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.SignUpPageBase;
 import koval.mobile.myfitnesspal.gui.common.loginPages.WelcomePageBase;
@@ -17,14 +18,6 @@ public class WelcomePage extends WelcomePageBase {
     @Override
     public boolean isPageOpened() {
         return itemByText.format(SIGNUP).isElementPresent(TIMEOUT_TEN) && itemByText.format(LOGIN).isElementPresent(TIMEOUT_TEN);
-    }
-
-    @Override
-    public WelcomePageBase notificationSendPopUpIfPresent(String answer) {
-
-        itemByText.format(answer).clickIfPresent(TIMEOUT_FIVE);
-
-        return initPage(getDriver(), WelcomePageBase.class);
     }
 
     @Override

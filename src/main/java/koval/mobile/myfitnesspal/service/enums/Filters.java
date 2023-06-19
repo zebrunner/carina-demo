@@ -3,6 +3,8 @@ package koval.mobile.myfitnesspal.service.enums;
 public enum Filters {
     FREE("Free"),
 
+    WORKOUT("Workout"),
+
     WALKING("Walking"),
 
     NUTRITION("Nutrition");

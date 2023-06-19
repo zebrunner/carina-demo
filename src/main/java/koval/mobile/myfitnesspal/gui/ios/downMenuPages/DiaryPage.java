@@ -57,6 +57,11 @@ public class DiaryPage extends DiaryPageBase {
         throw new NotImplementedException();
     }
 
+    @Override
+    public boolean isExerciseAdded() {
+        throw new NotImplementedException();
+    }
+
 
     @Override
     public DiaryPageBase deleteAllItems() {

@@ -44,7 +44,7 @@ public class PlansDetailsPage extends PlansDetailsPageBase {
 
     @Override
     public PlansTaskManagerPageBase clickOnContinueAlertMessageIfPresent() {
-        continueAlertButton.clickIfPresent(TIMEOUT_FIFTEEN);
+        continueAlertButton.clickIfPresent(TIMEOUT_TEN);
         return initPage(getDriver(), PlansTaskManagerPageBase.class);
     }
 

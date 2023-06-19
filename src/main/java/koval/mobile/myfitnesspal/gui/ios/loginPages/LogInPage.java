@@ -42,7 +42,7 @@ public class LogInPage extends LogInPageBase {
     }
 
     @Override
-    public LogInPageBase clickLoginButton() {
+    public DashboardPageBase clickLoginButton() {
         throw new NotImplementedException();
     }
 

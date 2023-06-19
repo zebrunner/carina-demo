@@ -32,8 +32,16 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
     public ExtendedWebElement itemByContainsText;
 
 
+    @FindBy(xpath ="//*[@resource-id='android:id/content']/child::*//*[@resource-id='com.myfitnesspal.android:id/subtitle' and contains(@text, '%s')]")
+    public ExtendedWebElement popUpCompletePlanTasks;
+
     public MyAbstractPageBase(WebDriver driver) {
         super(driver);
+    }
+
+
+    public boolean isPopUpCompletePlanTasksPresent() {
+        return popUpCompletePlanTasks.format(COMPLETE_PLAN).isElementPresent(TIMEOUT_FIVE);
     }
 
 
@@ -51,13 +59,23 @@ public abstract class MyAbstractPageBase extends AbstractPage implements IMyInte
 
     public WelcomePageBase notificationSendPopUpIfPresent(String answer) {
 
-        itemByText.format(answer).clickIfPresent(TIMEOUT_FIVE);
+        itemByText.format(answer).clickIfPresent(TIMEOUT_TEN);
 
         return initPage(getDriver(), WelcomePageBase.class);
     }
 
+    public boolean isNotificationSendPopUpPresent(String answer) {
+        return itemByText.format(answer).isElementPresent(TIMEOUT_TEN);
+    }
+
+
     public void closeTimestampsPopUpIfPresent() {
         itemByContent.format(NO_THANKS_ANSWER.toUpperCase()).clickIfPresent(TIMEOUT_FIVE);
+    }
+
+
+    public void clickButtnByText(String text) {
+        itemByText.format(text).click(TIMEOUT_FIVE);
     }
 
     public void closeUserTutorialBoxIfPresent() {

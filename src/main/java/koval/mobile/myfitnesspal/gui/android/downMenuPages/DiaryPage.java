@@ -5,7 +5,6 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Localized;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.utils.resources.L10N;
 import koval.mobile.myfitnesspal.gui.android.modal.DownMenuModal;
 import koval.mobile.myfitnesspal.gui.common.actions.addFood.SearchFoodPageBase;
 import koval.mobile.myfitnesspal.gui.common.downMenuPages.DiaryPageBase;
@@ -69,7 +68,7 @@ public class DiaryPage extends DiaryPageBase {
     private ExtendedWebElement addExerciseButton;
 
     @FindBy(xpath = "//*[@resource-id=\"com.myfitnesspal.android:id/txtSectionHeader\" and @text='%s']/parent::*/parent::*/following-sibling::*//*[@resource-id=\"com.myfitnesspal.android:id/txtItemDescription\" and contains(@text,'%s')]")
-    private ExtendedWebElement foodTitle;
+    private ExtendedWebElement itemByNameTitle;
 
     public DiaryPage(WebDriver driver) {
         super(driver);
@@ -106,6 +105,11 @@ public class DiaryPage extends DiaryPageBase {
 
 
     @Override
+    public boolean isExerciseAdded() {
+        return itemByNameTitle.format(EXERCISE_STRING, GYM_WORKOUT).isElementPresent(TIMEOUT_TEN);
+    }
+
+    @Override
     public boolean isFoodAddedToMeal(String food, Meals meals) {
 
         boolean isFoodAddedToMeal;
@@ -113,11 +117,11 @@ public class DiaryPage extends DiaryPageBase {
         if (meals.getMeal().equals(Meals.SNACKS.getMeal())) {
             ExtendedWebElement snackTitleByText = itemByText.format(CONNECT_A_STEP_TRACKER);
             swipe(snackTitleByText, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
-            isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
+            isFoodAddedToMeal = itemByNameTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
         } else {
             ExtendedWebElement mealByText = mealTitleByText.format(meals.getMeal());
             swipe(mealByText, diaryRecyclerViewContainer, Direction.DOWN, TWENTY_COUNT, MEDIUM_SPEED);
-            isFoodAddedToMeal = foodTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
+            isFoodAddedToMeal = itemByNameTitle.format(meals.getMeal(), food).isElementPresent(TIMEOUT_TEN);
         }
 
 
@@ -151,7 +155,7 @@ public class DiaryPage extends DiaryPageBase {
     @Override
     public AbstractPage clickAddExerciseButton(ExercisesType exercisesType) {
 
-        swipe(mealTitleByText.format(L10N.getText("water")), Direction.UP, TWENTY_COUNT, LOW_SPEED);
+        swipe(mealTitleByText.format(WATER), Direction.UP, TWENTY_COUNT, LOW_SPEED);
 
         addExerciseButton.click();
 
