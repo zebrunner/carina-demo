@@ -4,40 +4,38 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.R;
-import koval.web.myfitnesspal.pages.LoginPage;
-import koval.web.myfitnesspal.pages.WelcomePage;
-import org.openqa.selenium.chrome.ChromeOptions;
+import koval.web.myfitnesspal.modal.MainMenuModal;
+import koval.web.myfitnesspal.pages.*;
+import koval.web.myfitnesspal.pages.menuPages.*;
+import koval.web.myfitnesspal.service.enums.MainMenu;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.lang.invoke.MethodHandles;
+
 
 
 public class MyFitnessPalWebTest implements IAbstractTest {
 
-    WelcomePage welcomePage;
 
-    @BeforeTest
-    public void startDriver() {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-        getDriver().manage().window().minimize();
-        welcomePage = new WelcomePage(getDriver());
-        welcomePage.openURL(R.CONFIG.get("url"), 40);
+    WelcomePage welcomePage = new WelcomePage(getDriver());
 
+    @BeforeMethod()
+    public void login() {
+
+        getDriver().get(R.CONFIG.get("url"));
         getDriver().manage().deleteAllCookies();
+        getDriver().navigate().refresh();
 
-    }
-
-    @Test()
-    @MethodOwner(owner = "dkoval")
-    @TestLabel(name = "feature", value = {"web", "regression"})
-    public void test() throws InterruptedException {
-        //  pause(900000);
-       // welcomePage.closeCookiesPopUpIfPresent();
-
-
-
-       //driver.ExecuteChromeCommand("Storage.clearCookies", new Dictionary<string, object>())
+        LoginPage loginPage = welcomePage.clickLogInButton();
+        loginPage.typeMail(R.TESTDATA.get("fitnessPal_mail"));
+        loginPage.typePassword(R.TESTDATA.get("fitnessPal_password"));
+        HomePage homePage = loginPage.clickLogInButton();
+        Assert.assertTrue(homePage.isPageOpened(), "no");
     }
 
 
@@ -52,26 +50,15 @@ public class MyFitnessPalWebTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"web", "regression"})
-    public void loginSimpleUserTest() {
-
-        //welcomePage.closeCookiesPopUpIfPresent();
-
-        getDriver().navigate().refresh();
-
-        LoginPage loginPage = welcomePage.clickLogInButton();
-
-        loginPage.typeMail(R.TESTDATA.get("fitnessPal_mail"));
-        loginPage.typePassword(R.TESTDATA.get("fitnessPal_password"));
-        loginPage.clickLogInButton();
-
-
+    public void openFoodMenuTest() {
+        MainMenuModal mainMenuModal = new MainMenuModal(getDriver());
+        FoodPage foodPage = mainMenuModal.openPageFromMenu(MainMenu.FOOD);
     }
 
 
-//    @AfterTest
-//    public void quitDriver() {
-//        getDriver().quit();
-//    }
-
+    @AfterMethod
+    public void openWelcomePage() {
+        welcomePage.openURL(R.CONFIG.get("url"), 60);
+    }
 
 }

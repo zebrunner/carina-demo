@@ -2,14 +2,15 @@ package koval.web.myfitnesspal.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.zebrunner.carina.utils.Configuration;
-import com.zebrunner.carina.utils.R;
+import koval.web.myfitnesspal.pages.menuPages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+
+import static koval.web.myfitnesspal.utils.IConstant.TIMEOUT_FIFTEEN;
 
 public class LoginPage extends AbstractPage {
 
@@ -33,9 +34,9 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage typeMail(String mail)
     {
-        mailField.click(10);
+        mailField.click(TIMEOUT_FIFTEEN);
         mailField.type(mail);
-        return new LoginPage(driver);
+        return new LoginPage(getDriver());
     }
 
 
@@ -43,12 +44,12 @@ public class LoginPage extends AbstractPage {
     {
         passwordField.click();
         passwordField.type(password);
-        return new LoginPage(driver);
+        return new LoginPage(getDriver());
     }
 
-    public LoginPage clickLogInButton() {
+    public HomePage clickLogInButton() {
         logInButton.click();
-        return new LoginPage(driver);
+        return new HomePage(getDriver());
     }
 
 }

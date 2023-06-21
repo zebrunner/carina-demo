@@ -6,7 +6,6 @@ import com.zebrunner.carina.utils.Configuration;
 import com.zebrunner.carina.utils.R;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,26 +24,12 @@ public class WelcomePage extends AbstractPage {
     @FindBy(xpath = "//*[@id='__next']/div/header/div/div/a")
     ExtendedWebElement logInButton;
 
-
-    @FindBy(xpath = "//button[@title='ACCEPT']")
-    ExtendedWebElement closeCookiesPopUpButton;
-
     public boolean isPageOpened() {
         return logInButton.isElementPresent();
     }
 
     public LoginPage clickLogInButton() {
-
-        getDriver().manage().deleteAllCookies();
-       // getDriver().navigate().refresh();
-
-        logInButton.click(10);
-        return new LoginPage(driver);
-    }
-
-    public LoginPage closeCookiesPopUpIfPresent() {
-        closeCookiesPopUpButton.click();
-
+        logInButton.click();
         return new LoginPage(driver);
     }
 
