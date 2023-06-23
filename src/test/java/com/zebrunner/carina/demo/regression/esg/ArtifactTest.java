@@ -62,8 +62,27 @@ public class ArtifactTest implements IAbstractTest {
                         "dump.mitm"),
                 "Artifact 'dump.mitm' was not found.");
         LOGGER.info("Artifact 'dump.mitm' is present.");
-        Assert.assertTrue(FileUtils.sizeOf(ReportContext.getArtifact(getDriver(), "mitm.dump")) > 0,
+        Assert.assertTrue(FileUtils.sizeOf(ReportContext.getArtifact(getDriver(), "dump.mitm")) > 0,
                 "Artifact 'dump.mitm' is empty.");
         LOGGER.info("Artifact 'dump.mitm' is not empty.");
+    }
+
+    @Test
+    public void mitmHarArtifactTest() {
+        R.CONFIG.put("proxy_type", "Zebrunner", true);
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+
+        LOGGER.info("Checking the presence of the dump.har artifact...");
+        Assert.assertTrue(ArtifactUtils.isArtifactPresent(new FluentWait<>(getDriver())
+                                .pollingEvery(Duration.ofSeconds(1))
+                                .withTimeout(Duration.ofSeconds(30)),
+                        "dump.har"),
+                "Artifact 'dump.har' was not found.");
+        LOGGER.info("Artifact 'dump.har' is present.");
+        Assert.assertTrue(FileUtils.sizeOf(ReportContext.getArtifact(getDriver(), "dump.har")) > 0,
+                "Artifact 'dump.har' is empty.");
+        LOGGER.info("Artifact 'dump.har' is not empty.");
     }
 }
