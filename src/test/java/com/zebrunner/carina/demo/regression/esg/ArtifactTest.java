@@ -55,15 +55,15 @@ public class ArtifactTest implements IAbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
 
-        LOGGER.info("Checking the presence of the mitm.dump artifact...");
+        LOGGER.info("Checking the presence of the dump.mitm artifact...");
         Assert.assertTrue(ArtifactUtils.isArtifactPresent(new FluentWait<>(getDriver())
                                 .pollingEvery(Duration.ofSeconds(1))
                                 .withTimeout(Duration.ofSeconds(30)),
-                        "mitm.dump"),
-                "Artifact 'mitm.dump' was not found.");
-        LOGGER.info("Artifact 'mitm.dump' is present.");
+                        "dump.mitm"),
+                "Artifact 'dump.mitm' was not found.");
+        LOGGER.info("Artifact 'dump.mitm' is present.");
         Assert.assertTrue(FileUtils.sizeOf(ReportContext.getArtifact(getDriver(), "mitm.dump")) > 0,
-                "Artifact 'mitm.dump' is empty.");
-        LOGGER.info("Artifact 'mitm.dump' is not empty.");
+                "Artifact 'dump.mitm' is empty.");
+        LOGGER.info("Artifact 'dump.mitm' is not empty.");
     }
 }
