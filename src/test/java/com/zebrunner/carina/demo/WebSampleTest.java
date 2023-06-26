@@ -58,6 +58,61 @@ public class WebSampleTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = { "web", "regression" })
+    public void testModelSpecs01() {
+        // Open GSM Arena home page and verify page is opened
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestLabel(name = "feature", value = { "web", "regression" })
+    public void testModelSpecs02() {
+        // Open GSM Arena home page and verify page is opened
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestLabel(name = "feature", value = { "web", "regression" })
+    public void testModelSpecs03() {
+        // Open GSM Arena home page and verify page is opened
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestLabel(name = "feature", value = { "web", "regression" })
+    public void testModelSpecs04() {
+        // Open GSM Arena home page and verify page is opened
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestLabel(name = "feature", value = { "web", "regression" })
+    public void testModelSpecs05() {
+        // Open GSM Arena home page and verify page is opened
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestPriority(Priority.P3)
+    @TestLabel(name = "feature", value = { "web", "regression" })
     public void testModelSpecs1() {
         // Open GSM Arena home page and verify page is opened
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
