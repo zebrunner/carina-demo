@@ -145,6 +145,7 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
 					</suiteXmlFiles>
+					<forkCount>1</forkCount>
 				</configuration>
 			</plugin>
 		</plugins>
