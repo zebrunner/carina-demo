@@ -140,10 +140,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M6</version>
+				<version>3.0.0-M4</version>
 				<configuration>
 					<forkCount>1</forkCount>
-					<forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>
+<!--					<forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>-->
 					<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar -Dtestng.strict.parallel=true -Dtestng.limit.threadcount=true -Xmx2560m</argLine>
 					<useSystemClassLoader>false</useSystemClassLoader>
 					<suiteXmlFiles>
