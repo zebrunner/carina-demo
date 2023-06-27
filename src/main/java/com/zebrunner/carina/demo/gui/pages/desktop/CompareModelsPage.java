@@ -15,20 +15,20 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo.gui.pages.desktop;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.zebrunner.carina.demo.gui.components.compare.CandidateBlock;
+import com.zebrunner.carina.demo.gui.components.compare.ModelSpecs;
 import com.zebrunner.carina.demo.gui.pages.common.CompareModelsPageBase;
+import com.zebrunner.carina.utils.config.Configuration;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.config.WebDriverConfiguration;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.zebrunner.carina.demo.gui.components.compare.CandidateBlock;
-import com.zebrunner.carina.demo.gui.components.compare.ModelSpecs;
-import com.zebrunner.carina.utils.Configuration;
-import com.zebrunner.carina.utils.factory.DeviceType;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import java.util.ArrayList;
+import java.util.List;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = CompareModelsPageBase.class)
 public class CompareModelsPage extends CompareModelsPageBase {
@@ -48,7 +48,8 @@ public class CompareModelsPage extends CompareModelsPageBase {
     public List<ModelSpecs> compareModels(String... models) {
         CandidateBlock candidateBlock;
         List<ModelSpecs> modelSpecs = new ArrayList<>();
-        waitUntil(ExpectedConditions.presenceOfElementLocated(compareMenu.getBy()), (Configuration.getLong(Configuration.Parameter.EXPLICIT_TIMEOUT)));
+        waitUntil(ExpectedConditions.presenceOfElementLocated(compareMenu.getBy()),
+                (Configuration.getRequired(WebDriverConfiguration.Parameter.EXPLICIT_TIMEOUT, Long.class)));
         ModelSpecs modelSpec;
         for (int index = 0; index < models.length; index++) {
             modelSpec = new ModelSpecs();

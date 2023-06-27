@@ -1,7 +1,8 @@
 package com.zebrunner.carina.demo.websocket;
 
-import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.config.Configuration;
 import com.zebrunner.carina.utils.report.ReportContext;
+import com.zebrunner.carina.webdriver.config.WebDriverConfiguration;
 import com.zebrunner.carina.webdriver.listener.DriverListener;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -21,14 +22,14 @@ public final class EndpointUtils {
     }
 
     public static String getWebSocketUrl(WebDriver driver, String endpoint) {
-        return String.format("%s%s", Configuration.getSeleniumUrl()
+        return String.format("%s%s", Configuration.getRequired(WebDriverConfiguration.Parameter.SELENIUM_URL)
                         .replace("wd/hub", endpoint)
                         .replaceFirst("http([s]?):", "wss:"),
                 (DriverListener.castDriver(driver, RemoteWebDriver.class)).getSessionId().toString());
     }
 
     public static String getHttpUrl(WebDriver driver, String endpoint) {
-        return String.format("%s%s", Configuration.getSeleniumUrl()
+        return String.format("%s%s", Configuration.getRequired(WebDriverConfiguration.Parameter.SELENIUM_URL)
                         .replace("wd/hub", endpoint),
                 (DriverListener.castDriver(driver, RemoteWebDriver.class))
                         .getSessionId()
@@ -61,7 +62,7 @@ public final class EndpointUtils {
 
     private static String getUsername() {
         Matcher matcher = Pattern.compile(".*:\\/\\/(.*):(.*)@")
-                .matcher(Configuration.getSeleniumUrl());
+                .matcher(Configuration.getRequired(WebDriverConfiguration.Parameter.SELENIUM_URL));
         if (matcher.find()) {
             return matcher.group(1);
         } else {
@@ -71,7 +72,7 @@ public final class EndpointUtils {
 
     private static String getPassword() {
         Matcher matcher = Pattern.compile(".*:\\/\\/(.*):(.*)@")
-                .matcher(Configuration.getSeleniumUrl());
+                .matcher(Configuration.getRequired(WebDriverConfiguration.Parameter.SELENIUM_URL));
         if (matcher.find()) {
             return matcher.group(2);
         } else {
