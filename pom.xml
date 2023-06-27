@@ -105,15 +105,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
+				<version>3.10.1</version>
 				<configuration>
 					<release>${java.version}</release>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.1.2</version>
+				<version>3.3.0</version>
 				<executions>
 					<execution>
 						<id>copy</id>
@@ -140,12 +142,13 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M6</version>
 				<configuration>
-					<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar</argLine>
+					<forkCount>1</forkCount>
+					<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar
+						-Dtestng.strict.parallel=true -Dtestng.limit.threadcount=true -Xmx2560m</argLine>
 					<useSystemClassLoader>false</useSystemClassLoader>
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<forkCount>1</forkCount>
 				</configuration>
 			</plugin>
 		</plugins>
