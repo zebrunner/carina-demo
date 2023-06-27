@@ -20,7 +20,6 @@ public enum LoginSignUp {
     }
 
     public String getStringValue() {
-//        return L10N.getText(stringValue);
         return stringValue;
     }
 
