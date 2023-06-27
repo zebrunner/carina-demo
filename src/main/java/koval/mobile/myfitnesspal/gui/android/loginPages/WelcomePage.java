@@ -29,22 +29,6 @@ public class WelcomePage extends WelcomePageBase {
         return initPage(getDriver(), SignUpPageBase.class);
     }
 
-//    public static String getText(String key) {
-//        // Determine the current language or locale
-//        Locale currentLocale = Locale.forLanguageTag("en_US"); // Implement this method to get the current locale
-//
-//        LOGGER.info("cur locale: " + currentLocale);
-//        // Load the appropriate resource bundle based on the current locale
-//        ResourceBundle bundle = ResourceBundle.getBundle("locale", currentLocale);
-//
-//        // Retrieve the localized text for the key
-//
-//        return bundle.getString(key);
-//    }
-
-
-
-
     @Override
     public LogInPageBase logIn() {
         itemByText.format(LOGIN).click(TIMEOUT_TEN);
