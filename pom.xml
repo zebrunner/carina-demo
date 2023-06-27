@@ -144,7 +144,7 @@
 				<configuration>
 					<forkCount>1</forkCount>
 <!--					<forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>-->
-					<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar -Dtestng.strict.parallel=true -Dtestng.limit.threadcount=true -Xmx2560m</argLine>
+					<argLine>-javaagent:${project.build.directory}/agent/zebrunner-agent.jar -Dtestng.strict.parallel=true -Dtestng.limit.threadcount=true</argLine>
 					<useSystemClassLoader>false</useSystemClassLoader>
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFile>
