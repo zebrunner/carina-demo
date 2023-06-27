@@ -7,6 +7,8 @@ import com.zebrunner.carina.utils.resources.L10N;
 import java.util.Arrays;
 import java.util.List;
 
+import static koval.mobile.myfitnesspal.gui.android.loginPages.WelcomePage.getText;
+
 public interface IConstantUtils {
 
     int ONE_TIME = 1;
@@ -68,7 +70,7 @@ public interface IConstantUtils {
 
     String ADD_STRING = L10N.getText("add");
 
-    String ALLOW_ANSWER = L10N.getText("allow");
+    String ALLOW_ANSWER = getText("allow");
 
     String ADD_TO_DIARY_STRING = L10N.getText("add_to_diary");
 
@@ -112,7 +114,7 @@ public interface IConstantUtils {
 
     String COMPLETE_PLAN = "to complete today";
 
-    String LOGIN = L10N.getText("logIn");
+    String LOGIN = getText("logIn");
 
     String WATER = L10N.getText("water");
 
@@ -120,7 +122,7 @@ public interface IConstantUtils {
 
     String LOADING = "Loading…";
 
-    String SIGNUP = L10N.getText("signUp");
+    String SIGNUP = getText("signUp");
 
     String GYM_WORKOUT = "Gym Workout";
 
@@ -140,7 +142,7 @@ public interface IConstantUtils {
 
     String GO_PREMIUM = L10N.getText("go_premium");
 
-    String CALORIES_STRING = L10N.getText("calories");
+    String CALORIES_STRING = getText("calories");
 
     String PASSWORD = L10N.getText("password");
 

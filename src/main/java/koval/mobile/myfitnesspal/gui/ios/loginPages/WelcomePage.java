@@ -1,6 +1,7 @@
 package koval.mobile.myfitnesspal.gui.ios.loginPages;
 
 
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.zebrunner.carina.utils.exception.NotImplementedException;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import koval.mobile.myfitnesspal.gui.common.loginPages.LogInPageBase;
@@ -34,6 +35,11 @@ public class WelcomePage extends WelcomePageBase {
 
     @Override
     public LogInPageBase logIn() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public AbstractPage clickButton(String buttonText) {
         throw new NotImplementedException();
     }
 

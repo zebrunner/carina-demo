@@ -6,9 +6,9 @@
 
     <test name="CarinaDemo">
         <classes>
-            <class name="koval.carinademo.LoginCheckTest"/>
-            <class name="koval.carinademo.LeftMenuCheckTest"/>
-            <class name="koval.carinademo.RightMenuCheckTest"/>
+            <class name="koval.mobile.carinademo.LoginCheckTest"/>
+            <class name="koval.mobile.carinademo.LeftMenuCheckTest"/>
+            <class name="koval.mobile.carinademo.RightMenuCheckTest"/>
         </classes>
     </test>
 
