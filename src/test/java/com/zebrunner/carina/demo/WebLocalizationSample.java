@@ -49,7 +49,219 @@ public class WebLocalizationSample implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = "l10n")
-    public void testLanguages() {
+    public void testLanguages1() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages2() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages3() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages4() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages5() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages6() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages7() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages8() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages9() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages10() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages11() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages12() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages13() {
         WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
         wikipediaHomePage.open();
 
@@ -65,7 +277,339 @@ public class WebLocalizationSample implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = "l10n")
-    public void testAddNewLanguages() {
+    public void testLanguages14() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages15() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages16() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages17() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages18() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages19() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages20() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages21() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages22() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages23() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages24() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages25() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages26() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages27() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages28() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages29() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages30() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages31() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages32() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages33() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages34() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testLanguages35() {
+        WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
+        wikipediaHomePage.open();
+
+        WikipediaLocalePage wikipediaLocalePage = wikipediaHomePage.goToWikipediaLocalePage(getDriver());
+
+        wikipediaLocalePage.clickMoreButton();
+        wikipediaLocalePage.hoverContribElem();
+        wikipediaLocalePage.clickDiscussionBtn();
+
+        L10N.assertAll();
+    }
+
+
+    @Test
+    @MethodOwner(owner = "qpsdemo")
+    @TestLabel(name = "feature", value = "l10n")
+    public void testAddNewLanguages36() {
         WikipediaHomePage wikipediaHomePage = new WikipediaHomePage(getDriver());
         wikipediaHomePage.open();
 
