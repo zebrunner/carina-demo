@@ -19,9 +19,6 @@
     <test name="Wikipedia Localization Test">
         <classes>
             <class name="com.zebrunner.carina.demo.WebLocalizationSample" >
-                <methods>
-                    <include name="testLanguages" />
-                </methods>
             </class>
         </classes>
     </test>
