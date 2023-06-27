@@ -6,12 +6,19 @@ import koval.web.myfitnesspal.pages.menuPages.mainMenu.*;
 
 public enum MainMenu {
     MY_HOME("My Home",  HomePage.class),
+
     FOOD("Food",  FoodPage.class),
+
     EXERCISE("Exercise",  ExercisePage.class),
+
     REPORTS("Reports",  ReportsPage.class),
+
     APPS("Apps",  AppsPage.class),
+
     COMMUNITY("Community",  CommunityPage.class),
+
     BLOG("Blog",  BlogPage.class),
+
     PREMIUM("Premium",  PremiumPage.class);
 
     private final String pageName;

@@ -23,21 +23,15 @@ public class HomePage extends MyAbstractPage {
 
 
     public boolean isPageOpened() {
-
         waitUntil(ExpectedConditions.visibilityOfElementLocated(title.getBy()), TIMEOUT_FORTY);
-
-
         return title.isElementPresent(TIMEOUT_TWENTY) &&
                 title.getText().equals(DAILY_SUMMARY);
     }
 
 
-
     public MainMenuModal getMainMenu() {
         return mainMenuModal;
     }
-
-
 
 
 }

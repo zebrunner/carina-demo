@@ -7,10 +7,15 @@ import koval.web.myfitnesspal.pages.menuPages.foodMenu.foodDiaryPages.FoodDiaryP
 public enum FoodMenu {
 
     FOOD_DIARY("Food Diary", FoodDiaryPage.class),
+
     DATABASE("Database", DatabasePage.class),
+
     MY_FOODS("My Foods", MyFoodsPage.class),
+
     MY_MEALS("My Meals", MyMealsPage.class),
+
     RECIPES("Recipes", RecipesPage.class),
+
     SETTINGS("Settings", SettingsPage.class);
 
 

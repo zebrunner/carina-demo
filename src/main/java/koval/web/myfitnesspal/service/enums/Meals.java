@@ -3,8 +3,11 @@ package koval.web.myfitnesspal.service.enums;
 public enum Meals {
 
     BREAKFAST("Breakfast"),
+
     LUNCH("Lunch"),
+
     DINNER("Dinner"),
+
     SNACKS("Snacks");
 
     private final String meal;
