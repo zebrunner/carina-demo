@@ -1,6 +1,6 @@
 package com.zebrunner.carina.demo.utils;
 
-import com.zebrunner.carina.utils.report.ReportContext;
+import com.zebrunner.carina.utils.report.SessionContext;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -17,7 +17,7 @@ public final class ArtifactUtils {
         boolean isFound = false;
         try {
             isFound = wait.until(dr -> {
-                List<String> list = ReportContext.listArtifacts(dr);
+                List<String> list = SessionContext.listArtifacts(dr);
                 if (list.contains(name)) {
                     return true;
                 }

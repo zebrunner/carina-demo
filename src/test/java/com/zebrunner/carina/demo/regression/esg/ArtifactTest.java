@@ -4,8 +4,7 @@ import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.demo.utils.ArtifactUtils;
 import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.utils.report.ReportContext;
-import org.apache.commons.io.FileUtils;
+import com.zebrunner.carina.utils.report.SessionContext;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ArtifactTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
-    public void artifactTest() {
+    public void artifactTest() throws IOException {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
@@ -38,7 +39,7 @@ public class ArtifactTest implements IAbstractTest {
             softAssert.assertTrue(isPresent, artifact + " not found.");
             if (isPresent) {
                 LOGGER.info("Artifact '{}' is present.", artifact);
-                boolean isNotEmpty = FileUtils.sizeOf(ReportContext.getArtifact(getDriver(), artifact)) > 0;
+                boolean isNotEmpty = Files.size(SessionContext.getArtifact(getDriver(), artifact).orElseThrow()) > 0;
                 if (isNotEmpty) {
                     LOGGER.info("Artifact '{}' is not empty.", artifact);
                 }
@@ -49,7 +50,7 @@ public class ArtifactTest implements IAbstractTest {
     }
 
     @Test
-    public void mitmDumpArtifactTest() {
+    public void mitmDumpArtifactTest() throws IOException {
         R.CONFIG.put("proxy_type", "Zebrunner", true);
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
@@ -62,13 +63,13 @@ public class ArtifactTest implements IAbstractTest {
                         "dump.mitm"),
                 "Artifact 'dump.mitm' was not found.");
         LOGGER.info("Artifact 'dump.mitm' is present.");
-        Assert.assertTrue(FileUtils.sizeOf(ReportContext.getArtifact(getDriver(), "dump.mitm")) > 0,
+        Assert.assertTrue(Files.size(SessionContext.getArtifact(getDriver(), "dump.mitm").orElseThrow()) > 0,
                 "Artifact 'dump.mitm' is empty.");
         LOGGER.info("Artifact 'dump.mitm' is not empty.");
     }
 
     @Test
-    public void mitmHarArtifactTest() {
+    public void mitmHarArtifactTest() throws IOException {
         R.CONFIG.put("proxy_type", "Zebrunner", true);
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
@@ -81,7 +82,7 @@ public class ArtifactTest implements IAbstractTest {
                         "dump.har"),
                 "Artifact 'dump.har' was not found.");
         LOGGER.info("Artifact 'dump.har' is present.");
-        Assert.assertTrue(FileUtils.sizeOf(ReportContext.getArtifact(getDriver(), "dump.har")) > 0,
+        Assert.assertTrue(Files.size(SessionContext.getArtifact(getDriver(), "dump.har").orElseThrow()) > 0,
                 "Artifact 'dump.har' is empty.");
         LOGGER.info("Artifact 'dump.har' is not empty.");
     }

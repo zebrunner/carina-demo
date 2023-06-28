@@ -4,7 +4,7 @@ import com.zebrunner.agent.core.registrar.Artifact;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.utils.report.ReportContext;
+import com.zebrunner.carina.utils.report.SessionContext;
 import com.zebrunner.carina.webdriver.Screenshot;
 import com.zebrunner.carina.webdriver.ScreenshotType;
 import com.zebrunner.carina.webdriver.proxy.ZebrunnerProxyBuilder;
@@ -13,16 +13,16 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class ProxyTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
-    public void dynamicModeWithResponseFilterTest() throws FileNotFoundException {
+    public void dynamicModeWithResponseFilterTest() throws IOException {
         R.CONFIG.put("proxy_type", "Zebrunner", true);
         LOGGER.info("Creating command for Zebrunner proxy.");
         ZebrunnerProxyBuilder.getInstance()
@@ -45,10 +45,8 @@ public class ProxyTest implements IAbstractTest {
         Screenshot.capture(homePage.getPhoneFinderButton().getElement(), ScreenshotType.EXPLICIT_VISIBLE,
                 "The modified representation of the 'Phone Finder' element on the page");
 
-        File file = new File(ReportContext.getArtifactsFolder() + "/" + pageSourceFileName);
-        try (PrintWriter pw = new PrintWriter(file)) {
-            pw.write(getDriver().getPageSource());
-        }
+        Path file = SessionContext.getArtifactsFolder().resolve(pageSourceFileName);
+        Files.writeString(file, getDriver().getPageSource());
         Artifact.attachToTest(pageSourceFileName, file);
     }
 }
