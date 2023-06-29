@@ -13,10 +13,13 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>1.0.2</carina-core_version>
-		<carina-dataprovider.version>1.0.2</carina-dataprovider.version>
-		<carina-api.version>1.0.2</carina-api.version>
-		<carina-aws-s3.version>1.0.3</carina-aws-s3.version>
+		<carina-core_version>1.1.3</carina-core_version>
+		<carina-dataprovider.version>1.1.3</carina-dataprovider.version>
+		<carina-api.version>1.1.3</carina-api.version>
+		<carina-aws-s3.version>1.1.4</carina-aws-s3.version>
+		<carina-azure.version>1.1.4</carina-azure.version>
+		<carina-appcenter.version>1.1.4</carina-appcenter.version>
+
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.9.6</zebrunner-agent.version>
 		<suite>helloWorld</suite>
@@ -64,6 +67,16 @@
 			<version>${carina-aws-s3.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>carina-azure</artifactId>
+			<version>${carina-azure.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>carina-appcenter</artifactId>
+			<version>${carina-appcenter.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.30</version>
@@ -97,6 +110,7 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.5.3</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -112,7 +126,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.5.0</version>
+				<version>3.6.0</version>
 				<executions>
 					<execution>
 						<id>copy</id>
