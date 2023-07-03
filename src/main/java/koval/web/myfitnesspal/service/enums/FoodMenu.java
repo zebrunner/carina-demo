@@ -3,6 +3,7 @@ package koval.web.myfitnesspal.service.enums;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import koval.web.myfitnesspal.pages.menuPages.foodMenu.*;
 import koval.web.myfitnesspal.pages.menuPages.foodMenu.foodDiaryPages.FoodDiaryPage;
+import koval.web.myfitnesspal.pages.menuPages.foodMenu.myFoods.MyFoodsPage;
 
 public enum FoodMenu {
 

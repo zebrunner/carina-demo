@@ -20,8 +20,9 @@ public class MyAbstractPage extends AbstractPage implements IConstantUtils {
     @FindBy(xpath = "//*[text()='%s']")
     public ExtendedWebElement itemByText;
 
-    @FindBy(xpath = "//*[@id=\"notice\"]")
+    @FindBy(id = "sp_message_iframe_760094")
     private ExtendedWebElement cookiesPopUp;
+
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -34,5 +35,6 @@ public class MyAbstractPage extends AbstractPage implements IConstantUtils {
         cookies.acceptCookiesPopUp();
         getDriver().switchTo().defaultContent();
     }
+
 
 }

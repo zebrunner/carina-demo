@@ -1,7 +1,6 @@
 package koval.web.myfitnesspal.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import koval.web.myfitnesspal.utils.IConstantUtils;
 import org.openqa.selenium.SearchContext;

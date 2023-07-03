@@ -1,6 +1,7 @@
 package koval.web.myfitnesspal.pages.menuPages.foodMenu.foodDiaryPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import koval.web.myfitnesspal.modal.FoodMenuModal;
 import koval.web.myfitnesspal.pages.MyAbstractPage;
 import koval.web.myfitnesspal.service.enums.Meals;
 import koval.web.myfitnesspal.service.factories.foodFactory.Food;
@@ -13,12 +14,19 @@ public class FoodDiaryPage extends MyAbstractPage {
     public FoodDiaryPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//*[@class='delete']")
     List<ExtendedWebElement> listOfDeleteFoodButton;
+
     @FindBy(xpath = "//*[@class='meal_header']//child::*[text()='%s']//following::tr[@class='bottom'][1]//a[@class='add_food']")
     ExtendedWebElement addFoodButtonByText;
+
     @FindBy(xpath = "//*[@class='meal_header']//child::*[text()='%s']//following::a[contains(text(),'%s')]")
     ExtendedWebElement addedFoodByText;
+
+    @FindBy(id = "subNav")
+    FoodMenuModal foodMenuModal;
+
 
     public FoodDiaryPage deleteAllFood() {
         int attemp = listOfDeleteFoodButton.size();
@@ -31,13 +39,18 @@ public class FoodDiaryPage extends MyAbstractPage {
     }
 
 
-    public AddFoodPage addFoodToMeal(Meals meal) {
+    public AddFoodPage clickOnAddFoodButton(Meals meal) {
         addFoodButtonByText.format(meal.getMeal()).click();
         return new AddFoodPage(driver);
     }
 
-
     public boolean isFoodAdded(Meals meal, Food food) {
-        return addedFoodByText.format(meal.getMeal(), food.getFoodName()).isElementPresent(TIMEOUT_TWENTY);
+        return addedFoodByText.format(meal.getMeal(), food.getFoodDescription()).isElementPresent(TIMEOUT_TWENTY);
     }
+
+    public FoodMenuModal getFoodMenu() {
+        return foodMenuModal;
+    }
+
+
 }
