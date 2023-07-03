@@ -6,6 +6,8 @@ public interface IConstantUtils {
 
     int TIMEOUT_TWENTY = 20;
 
+    int TIMEOUT_TWENTY_FIVE = 25;
+
     int TIMEOUT_FORTY = 40;
 
     String DAILY_SUMMARY = "Your Daily Summary";
