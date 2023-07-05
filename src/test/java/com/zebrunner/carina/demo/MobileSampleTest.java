@@ -16,6 +16,8 @@
 package com.zebrunner.carina.demo;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -32,7 +34,10 @@ import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
+import java.lang.invoke.MethodHandles;
+
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
@@ -41,6 +46,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        LOGGER.warn("{}", getDevice().toString());
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
         LoginPageBase loginPage = welcomePage.clickNextBtn();
         Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
@@ -57,6 +63,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testWebView() {
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        LOGGER.warn("{}", getDevice().toString());
         LoginPageBase loginPage = welcomePage.clickNextBtn();
         loginPage.login();
         WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
@@ -79,6 +86,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "acceptance"})
     public void testUIElements() {
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        LOGGER.warn("{}", getDevice().toString());
         LoginPageBase loginPage = welcomePage.clickNextBtn();
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
         UIElementsPageBase uiElements = carinaDescriptionPage.navigateToUIElementsPage();
