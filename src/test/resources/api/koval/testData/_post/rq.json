@@ -1,0 +1,9 @@
+{
+  "name": "${name}",
+  "data": {
+    "year": 2023,
+    "price": 2000.20,
+    "CPU model": "${CPU_model}",
+    "Hard disk size": "${hard_disk_size}"
+  }
+}

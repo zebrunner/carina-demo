@@ -1,0 +1,295 @@
+{
+"$schema": "http://json-schema.org/draft-04/schema#",
+"type": "object",
+"properties": {s
+"_id": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"sensors": {
+"type": "array",
+"items": [
+{
+"type": "object",
+"properties": {
+"_id": {
+"type": "string"
+},
+"__v": {
+"type": "integer"
+},
+"boxes_id": {
+"type": "string"
+},
+"lastMeasurement": {
+"type": "null"
+},
+"sensorType": {
+"type": "string"
+},
+"title": {
+"type": "string"
+},
+"unit": {
+"type": "string"
+}
+},
+"required": [
+"_id",
+"__v",
+"boxes_id",
+"lastMeasurement",
+"sensorType",
+"title",
+"unit"
+]
+},
+{
+"type": "object",
+"properties": {
+"_id": {
+"type": "string"
+},
+"__v": {
+"type": "integer"
+},
+"boxes_id": {
+"type": "string"
+},
+"lastMeasurement": {
+"type": "null"
+},
+"sensorType": {
+"type": "string"
+},
+"title": {
+"type": "string"
+},
+"unit": {
+"type": "string"
+}
+},
+"required": [
+"_id",
+"__v",
+"boxes_id",
+"lastMeasurement",
+"sensorType",
+"title",
+"unit"
+]
+},
+{
+"type": "object",
+"properties": {
+"_id": {
+"type": "string"
+},
+"__v": {
+"type": "integer"
+},
+"boxes_id": {
+"type": "string"
+},
+"lastMeasurement": {
+"type": "null"
+},
+"sensorType": {
+"type": "string"
+},
+"title": {
+"type": "string"
+},
+"unit": {
+"type": "string"
+}
+},
+"required": [
+"_id",
+"__v",
+"boxes_id",
+"lastMeasurement",
+"sensorType",
+"title",
+"unit"
+]
+},
+{
+"type": "object",
+"properties": {
+"_id": {
+"type": "string"
+},
+"__v": {
+"type": "integer"
+},
+"boxes_id": {
+"type": "string"
+},
+"lastMeasurement": {
+"type": "null"
+},
+"sensorType": {
+"type": "string"
+},
+"title": {
+"type": "string"
+},
+"unit": {
+"type": "string"
+}
+},
+"required": [
+"_id",
+"__v",
+"boxes_id",
+"lastMeasurement",
+"sensorType",
+"title",
+"unit"
+]
+},
+{
+"type": "object",
+"properties": {
+"_id": {
+"type": "string"
+},
+"__v": {
+"type": "integer"
+},
+"boxes_id": {
+"type": "string"
+},
+"lastMeasurement": {
+"type": "null"
+},
+"sensorType": {
+"type": "string"
+},
+"title": {
+"type": "string"
+},
+"unit": {
+"type": "string"
+}
+},
+"required": [
+"_id",
+"__v",
+"boxes_id",
+"lastMeasurement",
+"sensorType",
+"title",
+"unit"
+]
+}
+]
+},
+"exposure": {
+"type": "string"
+},
+"createdAt": {
+"type": "string"
+},
+"model": {
+"type": "string"
+},
+"currentLocation": {
+"type": "object",
+"properties": {
+"coordinates": {
+"type": "array",
+"items": [
+{
+"type": "number"
+},
+{
+"type": "number"
+}
+]
+},
+"type": {
+"type": "string"
+},
+"timestamp": {
+"type": "string"
+}
+},
+"required": [
+"coordinates",
+"type",
+"timestamp"
+]
+},
+"grouptag": {
+"type": "array",
+"items": [
+{
+"type": "string"
+}
+]
+},
+"updatedAt": {
+"type": "string"
+},
+"loc": {
+"type": "array",
+"items": [
+{
+"type": "object",
+"properties": {
+"geometry": {
+"type": "object",
+"properties": {
+"coordinates": {
+"type": "array",
+"items": [
+{
+"type": "number"
+},
+{
+"type": "number"
+}
+]
+},
+"type": {
+"type": "string"
+},
+"timestamp": {
+"type": "string"
+}
+},
+"required": [
+"coordinates",
+"type",
+"timestamp"
+]
+},
+"type": {
+"type": "string"
+}
+},
+"required": [
+"geometry",
+"type"
+]
+}
+]
+}
+},
+"required": [
+"_id",
+"name",
+"sensors",
+"exposure",
+"createdAt",
+"model",
+"currentLocation",
+"grouptag",
+"updatedAt",
+"loc"
+]
+}

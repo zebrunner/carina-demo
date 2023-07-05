@@ -1,0 +1,10 @@
+[
+  {
+    "id": "type:String",
+    "name": "type:String",
+    "data": {
+      "capacity": "type:String",
+      "color": "type:String"
+    }
+  }
+]

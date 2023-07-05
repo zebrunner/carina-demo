@@ -1,0 +1,10 @@
+{
+  "id": "type:String",
+  "name": "type:String",
+  "data": {
+    "year": "type:Integer",
+    "price":  "type:Double",
+    "CPU model": "type:String",
+    "Hard disk size": "type:String"
+  }
+}

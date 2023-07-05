@@ -25,7 +25,7 @@ import org.testng.annotations.*;
 import static koval.web.myfitnesspal.utils.IConstantUtils.TIMEOUT_TWENTY_FIVE;
 
 
-public class MyFitnessPalWebTest implements IMyInterface {
+public class MyFitnessPalWEBTest implements IMyInterface {
 
 
     MyAbstractPage myAbstractPage = new MyAbstractPage(getDriver());

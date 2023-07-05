@@ -1,0 +1,11 @@
+{
+  "id": "ff8081818905fd0e0189262d58ae133a",
+  "name": "Phone 6",
+  "data": {
+    "year": 2024,
+    "price": 2000.2,
+    "CPU model": "Intel",
+    "Hard disk size": "2 TB"
+  },
+  "updatedAt": "type:String"
+}
