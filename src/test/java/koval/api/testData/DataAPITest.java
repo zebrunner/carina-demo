@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class DataAPITest implements IAbstractTest {
 
-    final String OBJECT_ID = "ff8081818905fd0e0189262d58ae133a";
+    final String OBJECT_ID = "ff8081818905fd0e01892aa21b7315a2";
     @Test
     @MethodOwner(owner = "dkoval")
     public void getAllObjects() {
