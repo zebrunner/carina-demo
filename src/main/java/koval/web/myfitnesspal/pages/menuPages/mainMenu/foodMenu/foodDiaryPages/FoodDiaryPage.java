@@ -23,9 +23,6 @@ public class FoodDiaryPage extends MyAbstractPage {
     @FindBy(xpath = "//*[@class='meal_header']//child::*[text()='%s']//following::a[contains(text(),'%s')]")
     ExtendedWebElement addedFoodByText;
 
-    @FindBy(id = "subNav")
-    FoodMenuModal foodMenuModal;
-
 
     public FoodDiaryPage deleteAllFood() {
         int attemp = listOfDeleteFoodButton.size();
@@ -45,10 +42,6 @@ public class FoodDiaryPage extends MyAbstractPage {
 
     public boolean isFoodAdded(Meals meal, Food food) {
         return addedFoodByText.format(meal.getMeal(), food.getFoodDescription()).isElementPresent(TIMEOUT_TWENTY);
-    }
-
-    public FoodMenuModal getFoodMenu() {
-        return foodMenuModal;
     }
 
 

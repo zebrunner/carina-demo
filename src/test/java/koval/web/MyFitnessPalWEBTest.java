@@ -55,7 +55,6 @@ public class MyFitnessPalWEBTest implements IMyInterface {
         loginPage.typeMail(R.TESTDATA.get("fitnessPal_mail"));
         loginPage.typePassword(R.TESTDATA.get("fitnessPal_password"));
         HomePage homePage = loginPage.clickLogInButton();
-        //loginPage.captchaReLogin();
         Assert.assertTrue(homePage.isPageOpened(), "[ HOME PAGE ] Home Page is not opened!");
 
     }

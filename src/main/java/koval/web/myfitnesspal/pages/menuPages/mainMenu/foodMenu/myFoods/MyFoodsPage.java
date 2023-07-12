@@ -25,9 +25,6 @@ public class MyFoodsPage extends MyAbstractPage {
         setPageURL("https://www.myfitnesspal.com/food/mine");
     }
 
-    @FindBy(xpath = "//*[@id=\"__next\"]/div/header/div[3]/div/div")
-    FoodMenuModal foodMenuModal;
-
 
     public boolean isCreatedFoodAdded(Food foodName) {
         return firstCreatedFood.getText().equals(foodName.getFoodDescription());
@@ -48,10 +45,6 @@ public class MyFoodsPage extends MyAbstractPage {
     public SubmitNewFood clickOnCreateButton() {
         createFoodButton.click();
         return new SubmitNewFood(driver);
-    }
-
-    public FoodMenuModal getFoodMenu() {
-        return foodMenuModal;
     }
 
 
