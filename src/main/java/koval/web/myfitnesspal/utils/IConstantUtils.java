@@ -4,6 +4,8 @@ public interface IConstantUtils {
 
     int TIMEOUT_FIFTEEN = 15;
 
+    int TIMEOUT_TEN= 10;
+
     int TIMEOUT_TWENTY = 20;
 
     int TIMEOUT_TWENTY_FIVE = 25;

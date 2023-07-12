@@ -18,7 +18,7 @@ public class MyAbstractUIPage extends AbstractUIObject implements IConstantUtils
     }
 
     @FindBy(xpath = "//*[text()='%s']")
-    public ExtendedWebElement itemByText;
+    public static ExtendedWebElement itemByText;
 
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
