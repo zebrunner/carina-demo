@@ -11,8 +11,13 @@ public class FoodFactory {
     public static Food generateFood() {
         Food food = new Food();
         List<String> FOOD_LIST = Arrays.asList("Milk", "Honey", "Butter", "Apple", "Bread", "Water", "Cherries");
-        String FOOD_NAME = FOOD_LIST.get(random.nextInt(FOOD_LIST.size() - 2) + 1);
-        food.setFoodName(FOOD_NAME);
+        String FOOD_DESCRIPTION = FOOD_LIST.get(random.nextInt(FOOD_LIST.size() - 2) + 1);
+        String FOOD_SERVINGS = "2 cups";
+        int SERVINGS_PER_CONTAINER = new Random().nextInt(5) + 1;
+
+        food.setFoodDescription(FOOD_DESCRIPTION);
+        food.setServingSize(FOOD_SERVINGS);
+        food.setServingsPerContainer(SERVINGS_PER_CONTAINER);
         return food;
     }
 

@@ -26,8 +26,14 @@ public class AddFoodPage extends MyAbstractPage {
         return title.isElementPresent() && title.getText().contains(meal.getMeal());
     }
 
+    public AddFoodPage searchForFood(String food) {
+        searchBar.type(food);
+        searchButton.click(TIMEOUT_TWENTY);
+        return new AddFoodPage(driver);
+    }
+
     public AddFoodPage searchForFood(Food food) {
-        searchBar.type(food.getFoodName());
+        searchBar.type(food.getFoodDescription());
         searchButton.click(TIMEOUT_TWENTY);
         return new AddFoodPage(driver);
     }

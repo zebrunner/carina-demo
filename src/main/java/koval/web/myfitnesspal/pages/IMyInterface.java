@@ -12,11 +12,6 @@ public interface IMyInterface extends IAbstractTest {
   Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
-  default void quitDriver()
-  {
-      getDriver().quit();
-  }
-
   default void startDriver()
   {
       getDriver().get(R.CONFIG.get("url"));
