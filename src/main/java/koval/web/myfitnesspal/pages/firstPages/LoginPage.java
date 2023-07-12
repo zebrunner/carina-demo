@@ -1,20 +1,12 @@
-package koval.web.myfitnesspal.pages;
+package koval.web.myfitnesspal.pages.firstPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import koval.web.myfitnesspal.pages.menuPages.HomePage;
+import koval.web.myfitnesspal.pages.MyAbstractPage;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.lang.invoke.MethodHandles;
-
-import static koval.web.myfitnesspal.utils.IConstant.TIMEOUT_FIFTEEN;
-
-public class LoginPage extends AbstractPage {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+public class LoginPage extends MyAbstractPage {
 
 
     public LoginPage(WebDriver driver) {
@@ -28,7 +20,6 @@ public class LoginPage extends AbstractPage {
     @FindBy(id = "password")
     ExtendedWebElement passwordField;
 
-
     @FindBy(xpath = "//*[@id='__next']/div/main/div/div/form/div/div[2]/button[1]")
     ExtendedWebElement logInButton;
 
@@ -36,7 +27,7 @@ public class LoginPage extends AbstractPage {
     {
         mailField.click(TIMEOUT_FIFTEEN);
         mailField.type(mail);
-        return new LoginPage(getDriver());
+        return new LoginPage(driver);
     }
 
 
@@ -44,12 +35,12 @@ public class LoginPage extends AbstractPage {
     {
         passwordField.click();
         passwordField.type(password);
-        return new LoginPage(getDriver());
+        return new LoginPage(driver);
     }
 
-    public HomePage clickLogInButton() {
-        logInButton.click();
-        return new HomePage(getDriver());
+    public HomePage clickLogInButton() throws InterruptedException {
+        logInButton.click(TIMEOUT_TWENTY);
+        return new HomePage(driver);
     }
 
 }

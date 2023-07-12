@@ -43,14 +43,6 @@ import java.util.List;
 import java.util.Random;
 
 
-@CucumberOptions(features = "src/test/resources/koval_features/login.feature",
-        glue = "com.zebrunner.carina.demo.cucumber.steps",
-        plugin = {"pretty",
-                "html:target/cucumber-core-test-report",
-                "pretty:target/cucumber-core-test-report.txt",
-                "json:target/cucumber-core-test-report.json",
-                "junit:target/cucumber-core-test-report.xml"}
-)
 public class FitnessPalTest extends LoginTest {
 
     private static final List<String> FOOD = Arrays.asList("Apple", "Bread", "Water", "Cherries");
