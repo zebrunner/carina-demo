@@ -1,6 +1,8 @@
 package koval.web.myfitnesspal.pages.firstPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.utils.Configuration;
+import com.zebrunner.carina.utils.R;
 import koval.web.myfitnesspal.pages.MyAbstractPage;
 import koval.web.myfitnesspal.pages.menuPages.mainMenu.HomePage;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +13,7 @@ public class LoginPage extends MyAbstractPage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        setPageAbsoluteURL("https://www.myfitnesspal.com/account/login");
     }
 
 

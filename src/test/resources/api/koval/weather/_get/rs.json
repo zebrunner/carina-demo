@@ -1,0 +1,79 @@
+{
+  "_id": "5391be52a8341554157792e6",
+  "name": "LeKa Berlin",
+  "sensors": [
+    {
+      "_id": "5391be52a8341554157792e7",
+      "__v": 0,
+      "boxes_id": "5391be52a8341554157792e6",
+      "lastMeasurement": null,
+      "sensorType": "GL5528",
+      "title": "Helligkeit",
+      "unit": "Pegel"
+    },
+    {
+      "_id": "5391be52a8341554157792e8",
+      "__v": 0,
+      "boxes_id": "5391be52a8341554157792e6",
+      "lastMeasurement": null,
+      "sensorType": "LM386",
+      "title": "Schall",
+      "unit": "Pegel"
+    },
+    {
+      "_id": "5391be52a8341554157792e9",
+      "__v": 0,
+      "boxes_id": "5391be52a8341554157792e6",
+      "lastMeasurement": null,
+      "sensorType": "BMP085",
+      "title": "Luftdruck",
+      "unit": "Pa"
+    },
+    {
+      "_id": "5391be52a8341554157792ea",
+      "__v": 0,
+      "boxes_id": "5391be52a8341554157792e6",
+      "lastMeasurement": null,
+      "sensorType": "DHT11",
+      "title": "Luftfeuchtigkeit",
+      "unit": "%"
+    },
+    {
+      "_id": "5391be52a8341554157792eb",
+      "__v": 0,
+      "boxes_id": "5391be52a8341554157792e6",
+      "lastMeasurement": null,
+      "sensorType": "BMP085",
+      "title": "Temperatur",
+      "unit": "°C"
+    }
+  ],
+  "exposure": "unknown",
+  "createdAt": "2022-03-30T11:25:43.193Z",
+  "model": "custom",
+  "currentLocation": {
+    "coordinates": [
+      13.42761039733887,
+      52.54760056249269
+    ],
+    "type": "Point",
+    "timestamp": "2014-06-06T13:12:50.000Z"
+  },
+  "grouptag": [
+    ""
+  ],
+  "updatedAt": "2022-03-30T11:25:43.193Z",
+  "loc": [
+    {
+      "geometry": {
+        "coordinates": [
+          13.42761039733887,
+          52.54760056249269
+        ],
+        "type": "Point",
+        "timestamp": "2014-06-06T13:12:50.000Z"
+      },
+      "type": "Feature"
+    }
+  ]
+}

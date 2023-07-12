@@ -22,23 +22,28 @@ import koval.web.myfitnesspal.service.factories.foodFactory.FoodFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import static koval.web.myfitnesspal.utils.IConstantUtils.TIMEOUT_TWENTY_FIVE;
 
 
-public class MyFitnessPalWebTest implements IMyInterface {
+public class MyFitnessPalWEBTest implements IMyInterface {
 
-    WelcomePage welcomePage = new WelcomePage(getDriver());
+
     MyAbstractPage myAbstractPage = new MyAbstractPage(getDriver());
 
+    WelcomePage welcomePage = new WelcomePage(getDriver());
+
     @BeforeTest()
-    public void setUpDriver(){
-        startDriver();
+    public void setUpDriver() {
+        welcomePage.open();
+        myAbstractPage.acceptCookies();
+        welcomePage.clickLogInButton();
     }
 
     @BeforeMethod()
     public void login() throws InterruptedException {
-        myAbstractPage.acceptCookies();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.openURL(R.CONFIG.get("url") + "account/login", TIMEOUT_TWENTY_FIVE);
 
-        LoginPage loginPage = welcomePage.clickLogInButton();
         loginPage.typeMail(R.TESTDATA.get("fitnessPal_mail"));
         loginPage.typePassword(R.TESTDATA.get("fitnessPal_password"));
         HomePage homePage = loginPage.clickLogInButton();
@@ -73,6 +78,7 @@ public class MyFitnessPalWebTest implements IMyInterface {
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"web", "regression"})
     public void addCreateOwnFood() {
+
         HomePage homePage = new HomePage(getDriver());
         FoodPage foodPage = (FoodPage) homePage.getMainMenu().openPageFromMenu(MainMenu.FOOD);
         MyFoodsPage myFoodsPage = (MyFoodsPage) foodPage.getFoodMenu().openPageFromSubMenu(FoodMenu.MY_FOODS);
