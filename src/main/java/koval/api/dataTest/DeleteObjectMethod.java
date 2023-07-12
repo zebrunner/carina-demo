@@ -19,7 +19,6 @@ public class DeleteObjectMethod extends AbstractApiMethodV2 {
     public DeleteObjectMethod(String objectID) {
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url_test"));
         replaceUrlPlaceholder("objectID", objectID);
-
     }
 
 }

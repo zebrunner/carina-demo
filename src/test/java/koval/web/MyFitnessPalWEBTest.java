@@ -7,20 +7,27 @@ import koval.web.myfitnesspal.pages.IMyInterface;
 import koval.web.myfitnesspal.pages.MyAbstractPage;
 import koval.web.myfitnesspal.pages.firstPages.LoginPage;
 import koval.web.myfitnesspal.pages.firstPages.WelcomePage;
-import koval.web.myfitnesspal.pages.menuPages.foodMenu.myFoods.MyFoodsPage;
-import koval.web.myfitnesspal.pages.menuPages.foodMenu.foodDiaryPages.AddFoodPage;
-import koval.web.myfitnesspal.pages.menuPages.foodMenu.foodDiaryPages.FoodDiaryPage;
-import koval.web.myfitnesspal.pages.menuPages.foodMenu.myFoods.NutritionalInformationPage;
-import koval.web.myfitnesspal.pages.menuPages.foodMenu.myFoods.SubmitNewFood;
-import koval.web.myfitnesspal.pages.menuPages.mainMenu.FoodPage;
-import koval.web.myfitnesspal.pages.menuPages.mainMenu.HomePage;
-import koval.web.myfitnesspal.service.enums.FoodMenu;
-import koval.web.myfitnesspal.service.enums.MainMenu;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.exerciseMenu.ExerciseDiary;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.exerciseMenu.myExercise.CreateExercise;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.exerciseMenu.myExercise.MyExercises;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.foodMenu.myFoods.MyFoodsPage;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.foodMenu.foodDiaryPages.AddFoodPage;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.foodMenu.foodDiaryPages.FoodDiaryPage;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.foodMenu.myFoods.NutritionalInformationPage;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.foodMenu.myFoods.SubmitNewFood;
+import koval.web.myfitnesspal.pages.menuPages.mainMenu.myhomeMenu.HomePage;
+import koval.web.myfitnesspal.service.enums.menus.ExerciseMenu;
+import koval.web.myfitnesspal.service.enums.menus.FoodMenu;
+import koval.web.myfitnesspal.service.enums.menus.MainMenu;
 import koval.web.myfitnesspal.service.enums.Meals;
+import koval.web.myfitnesspal.service.factories.exerciseFactory.Exercise;
+import koval.web.myfitnesspal.service.factories.exerciseFactory.ExerciseFactory;
 import koval.web.myfitnesspal.service.factories.foodFactory.Food;
 import koval.web.myfitnesspal.service.factories.foodFactory.FoodFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
+import java.lang.reflect.InvocationTargetException;
 
 import static koval.web.myfitnesspal.utils.IConstantUtils.TIMEOUT_TWENTY_FIVE;
 
@@ -39,6 +46,7 @@ public class MyFitnessPalWEBTest implements IMyInterface {
         welcomePage.clickLogInButton();
     }
 
+
     @BeforeMethod()
     public void login() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -55,11 +63,10 @@ public class MyFitnessPalWEBTest implements IMyInterface {
     @Test()
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"web", "regression"})
-    public void addFoodTest() {
+    public void addFoodTest() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
         HomePage homePage = new HomePage(getDriver());
-        FoodPage foodPage = (FoodPage) homePage.getMainMenu().openPageFromMenu(MainMenu.FOOD);
-        FoodDiaryPage foodDiaryPage = (FoodDiaryPage) foodPage.getFoodMenu().openPageFromSubMenu(FoodMenu.FOOD_DIARY);
+        FoodDiaryPage foodDiaryPage = (FoodDiaryPage) homePage.getMainMenu().openPageFromMenu(MainMenu.FOOD);
         foodDiaryPage.deleteAllFood();
 
         for (Meals meals : Meals.values()) {
@@ -77,11 +84,11 @@ public class MyFitnessPalWEBTest implements IMyInterface {
     @Test()
     @MethodOwner(owner = "dkoval")
     @TestLabel(name = "feature", value = {"web", "regression"})
-    public void addCreateOwnFood() {
+    public void addCreateOwnFood() throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
 
         HomePage homePage = new HomePage(getDriver());
-        FoodPage foodPage = (FoodPage) homePage.getMainMenu().openPageFromMenu(MainMenu.FOOD);
-        MyFoodsPage myFoodsPage = (MyFoodsPage) foodPage.getFoodMenu().openPageFromSubMenu(FoodMenu.MY_FOODS);
+        FoodDiaryPage foodDiaryPage = (FoodDiaryPage) homePage.getMainMenu().openPageFromMenu(MainMenu.FOOD);
+        MyFoodsPage myFoodsPage = (MyFoodsPage) foodDiaryPage.getSubMenu().openPageFromSubMenu(FoodMenu.MY_FOODS);
         myFoodsPage.deleteAllFoodButton();
         SubmitNewFood submitNewFood = myFoodsPage.clickOnCreateButton();
         Food food = FoodFactory.generateFood();
@@ -89,17 +96,34 @@ public class MyFitnessPalWEBTest implements IMyInterface {
         NutritionalInformationPage nutritionalInformationPage = submitNewFood.clickOnContinueButton();
         nutritionalInformationPage.typeServingsPerContainer(food);
         nutritionalInformationPage.typeServingSize(food);
-        FoodDiaryPage foodDiaryPage = nutritionalInformationPage.clickOnSaveButton();
+        foodDiaryPage = nutritionalInformationPage.clickOnSaveButton();
         foodDiaryPage.deleteAllFood();
-        myFoodsPage = (MyFoodsPage) foodDiaryPage.getFoodMenu().openPageFromSubMenu(FoodMenu.MY_FOODS);
+
+
+        myFoodsPage = (MyFoodsPage) foodDiaryPage.getSubMenu().openPageFromSubMenu(FoodMenu.MY_FOODS);
         Assert.assertTrue(myFoodsPage.isCreatedFoodAdded(food), String.format("[ MY FOODS PAGE ] Created food '%s' was not added!", food.getFoodDescription()));
 
-        foodDiaryPage = (FoodDiaryPage) myFoodsPage.getFoodMenu().openPageFromSubMenu(FoodMenu.FOOD_DIARY);
+        foodDiaryPage = (FoodDiaryPage) myFoodsPage.getSubMenu().openPageFromSubMenu(FoodMenu.FOOD_DIARY);
         AddFoodPage addFoodPage = foodDiaryPage.clickOnAddFoodButton(Meals.BREAKFAST);
         addFoodPage.searchForFood(food);
         foodDiaryPage = addFoodPage.addFoundFood();
         Assert.assertTrue(foodDiaryPage.isFoodAdded(Meals.BREAKFAST, food), String.format("[ FOOD DIARY ] Food '%s' is not added", food.getFoodDescription()));
 
+    }
+
+    @Test()
+    @MethodOwner(owner = "dkoval")
+    @TestLabel(name = "feature", value = {"web", "regression"})
+    public void addExerciseTest() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        HomePage homePage = new HomePage(getDriver());
+        ExerciseDiary exerciseDiary = (ExerciseDiary) homePage.getMainMenu().openPageFromMenu(MainMenu.EXERCISE);
+        exerciseDiary.deleteAllExercises();
+
+        MyExercises myExercises = (MyExercises) exerciseDiary.getSubMenu().openPageFromSubMenu(ExerciseMenu.MY_EXERCISES);
+        CreateExercise createExercise = myExercises.clickOnCreateExerciseButton();
+        Exercise exercise = ExerciseFactory.generateExercise();
+        exerciseDiary = createExercise.createExercise(exercise);
+        Assert.assertTrue(exerciseDiary.isExerciseAdded(exercise), "[ EXERCISE DIARY ] Exercise was not added!");
     }
 
 }
