@@ -124,10 +124,6 @@ public interface IConstantUtils {
 
     String SIGNUP = getText("signUp");
 
-    String GYM_WORKOUT = "Gym Workout";
-
-    String WATER = L10N.getText("water");
-
     String SET = "Set";
 
     String SKIP = "Skip";

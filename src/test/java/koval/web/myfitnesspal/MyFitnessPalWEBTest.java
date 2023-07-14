@@ -1,4 +1,4 @@
-package koval.web;
+package koval.web.myfitnesspal;
 
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;

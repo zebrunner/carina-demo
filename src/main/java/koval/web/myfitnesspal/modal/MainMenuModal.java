@@ -15,7 +15,6 @@ public class MainMenuModal extends MyAbstractUIPage {
         super(driver, searchContext);
     }
 
-
     public AbstractPage openPageFromMenu(MainMenu mainMenuEnum) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         itemByText.format(mainMenuEnum.getPageName()).click();
             return mainMenuEnum.getClassName().getDeclaredConstructor(WebDriver.class).newInstance(driver);
