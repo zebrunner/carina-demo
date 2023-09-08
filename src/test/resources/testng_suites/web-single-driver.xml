@@ -5,18 +5,18 @@
 	<parameter name="jenkinsJobName" value="Web-Demo-Single-Driver-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
-	<parameter name="jenkinsEmail" value="demo@qaprosoft.com"/>
+	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
 
 	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
 
-	<parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome; browser: firefox"/>
+	<parameter name="jenkinsRegressionMatrix_full_regression" value="browser:chrome;browser:firefox"/>
 	<parameter name="jenkinsJobExecutionOrder" value="2"/>
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 	<parameter name="jenkinsAutoScreenshot" value="true"/>
 
 	<test name="GSM arena web tests using single driver between tests">
 		<classes>
-			<class name="com.qaprosoft.carina.demo.WebSampleSingleDriver" />
+			<class name="com.zebrunner.carina.demo.WebSampleSingleDriver" />
 		</classes>
 	</test>
 	
