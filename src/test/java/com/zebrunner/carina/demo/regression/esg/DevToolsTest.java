@@ -1,15 +1,16 @@
 package com.zebrunner.carina.demo.regression.esg;
 
-import com.github.kklisura.cdt.services.ChromeDevToolsService;
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
-import com.zebrunner.carina.webdriver.DriverHelper;
+import java.lang.invoke.MethodHandles;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.lang.invoke.MethodHandles;
+import com.github.kklisura.cdt.services.ChromeDevToolsService;
+import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
+import com.zebrunner.carina.webdriver.DriverHelper;
 
 public class DevToolsTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

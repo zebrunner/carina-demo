@@ -19,22 +19,13 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.zebrunner.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
-import com.zebrunner.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.zebrunner.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
-import com.zebrunner.carina.demo.mobile.gui.pages.common.WebViewPageBase;
-import com.zebrunner.carina.demo.mobile.gui.pages.common.WelcomePageBase;
-import com.zebrunner.carina.demo.utils.MobileContextUtils;
-import com.zebrunner.carina.demo.utils.MobileContextUtils.View;
-import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
+import com.zebrunner.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import com.zebrunner.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
-import com.zebrunner.agent.core.annotation.TestLabel;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
