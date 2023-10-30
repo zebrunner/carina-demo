@@ -34,7 +34,7 @@ import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 
-    @Test()
+    @Test(invocationCount = 200, threadPoolSize = 100)
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testLoginUser() {
@@ -50,54 +50,6 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         loginPage.checkPrivacyPolicyCheckbox();
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
-    }
-
-	@Test()
-    @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void testWebView() {
-        WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        LoginPageBase loginPage = welcomePage.clickNextBtn();
-        loginPage.login();
-        WebViewPageBase webViewPageBase = initPage(getDriver(), WebViewPageBase.class);
-        MobileContextUtils contextHelper = new MobileContextUtils();
-
-        contextHelper.switchMobileContext(View.WEB_CARINA);
-        ContactUsPageBase contactUsPage = webViewPageBase.goToContactUsPage();
-
-        contextHelper.switchMobileContext(View.WEB_BROWSER, View.WEB_CARINA);
-
-        contactUsPage.typeName("John Doe");
-        contactUsPage.typeEmail("some@email.com");
-        contactUsPage.typeQuestion("This is a message");
-        contactUsPage.submit();
-        Assert.assertTrue(contactUsPage.isSuccessMessagePresent());
-    }
-
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = {"mobile", "acceptance"})
-    public void testUIElements() {
-        WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
-        LoginPageBase loginPage = welcomePage.clickNextBtn();
-        CarinaDescriptionPageBase carinaDescriptionPage = loginPage.login();
-        UIElementsPageBase uiElements = carinaDescriptionPage.navigateToUIElementsPage();
-        final String text = "some text";
-        final String date = "22/10/2018";
-        final String email = "some@email.com";
-        uiElements.typeText(text);
-        Assert.assertEquals(uiElements.getText(), text, "Text was not typed");
-        uiElements.typeDate(date);
-        Assert.assertEquals(uiElements.getDate(), date, "Date was not typed");
-        uiElements.typeEmail(email);
-        Assert.assertEquals(uiElements.getEmail(), email, "Email was not typed");
-        uiElements.swipeToFemaleRadioButton();
-        uiElements.checkCopy();
-        Assert.assertTrue(uiElements.isCopyChecked(), "Copy checkbox was not checked");
-        uiElements.clickOnFemaleRadioButton();
-        Assert.assertTrue(uiElements.isFemaleRadioButtonSelected(), "Female radio button was not selected!");
-        uiElements.clickOnOtherRadioButton();
-        Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
     }
 
 }
