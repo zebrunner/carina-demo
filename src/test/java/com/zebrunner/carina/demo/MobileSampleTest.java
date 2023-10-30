@@ -15,8 +15,10 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo;
 
+import com.zebrunner.carina.webdriver.config.WebDriverConfiguration;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import com.zebrunner.carina.core.IAbstractTest;
@@ -33,6 +35,10 @@ import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
+    @BeforeSuite
+    public void beforeSuite() {
+        WebDriverConfiguration.addIgnoredNewSessionErrorMessages("timed out waiting for a node to become available");
+    }
 
     @Test(invocationCount = 200, threadPoolSize = 100)
     @MethodOwner(owner = "qpsdemo")
