@@ -38,7 +38,7 @@ import com.zebrunner.carina.utils.mobile.IMobileUtils;
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
     @BeforeSuite
     public void beforeSuite() {
-        WebDriverConfiguration.addIgnoredNewSessionErrorMessages("timed out waiting for a node to become available");
+        WebDriverConfiguration.addIgnoredNewSessionErrorMessages("timed out waiting for a node to become available", "502");
         WebDriverConfiguration.setNewSessionPause(() -> RandomUtils.nextLong(1, 30));
     }
 
