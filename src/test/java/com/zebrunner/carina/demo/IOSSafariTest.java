@@ -23,7 +23,7 @@ import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
 public class IOSSafariTest implements IAbstractTest, IMobileUtils {
 
-    @Test
+    @Test(invocationCount = 200, threadPoolSize = 100)
     public void safariTest() {
         SaucePage saucePage = new SaucePage(getDriver());
         saucePage.openURL("http://saucelabs.com/test/guinea-pig");
