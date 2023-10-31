@@ -53,7 +53,7 @@ public class WebSampleTest implements IAbstractTest {
         WebDriverConfiguration.addIgnoredNewSessionErrorMessages("timed out waiting for a node to become available", "TimeoutException");
     }
 
-    @Test(invocationCount = 200, threadPoolSize = 100)
+    @Test(invocationCount = 200)
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = { "web", "regression" })
