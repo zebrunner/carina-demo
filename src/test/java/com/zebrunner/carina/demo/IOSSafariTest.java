@@ -15,6 +15,8 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo;
 
+import com.zebrunner.carina.webdriver.config.WebDriverConfiguration;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import com.zebrunner.carina.core.IAbstractTest;
@@ -22,6 +24,11 @@ import com.zebrunner.carina.demo.mobile.gui.pages.ios.SaucePage;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
 public class IOSSafariTest implements IAbstractTest, IMobileUtils {
+
+    @BeforeSuite
+    public void beforeSuite() {
+        WebDriverConfiguration.addIgnoredNewSessionErrorMessages("timed out waiting for a node to become available", "TimeoutException");
+    }
 
     @Test(invocationCount = 200, threadPoolSize = 100)
     public void safariTest() {
