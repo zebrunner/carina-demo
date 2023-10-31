@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>1.0.2.3-SNAPSHOT</carina-core_version>
+		<carina-core_version>1.0.2.3</carina-core_version>
 		<carina-dataprovider.version>1.0.2</carina-dataprovider.version>
 		<carina-api.version>1.0.2</carina-api.version>
 		<carina-aws-s3.version>1.0.3</carina-aws-s3.version>
@@ -22,7 +22,7 @@
 		<suite>helloWorld</suite>
 	</properties>
 
-	<repositories>
+	<!--repositories>
 		<repository>
 			<id>zebrunner_snapshots</id>
 			<name>zebrunner Snapshots</name>
@@ -34,7 +34,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-	</repositories>
+	</repositories-->
 
 	<dependencies>
 		<dependency>
