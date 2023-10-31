@@ -39,7 +39,6 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
     @BeforeSuite
     public void beforeSuite() {
         WebDriverConfiguration.addIgnoredNewSessionErrorMessages("timed out waiting for a node to become available", "TimeoutException");
-        WebDriverConfiguration.setNewSessionPause(() -> RandomUtils.nextLong(1, 30));
     }
 
     @Test(invocationCount = 200, threadPoolSize = 100)
