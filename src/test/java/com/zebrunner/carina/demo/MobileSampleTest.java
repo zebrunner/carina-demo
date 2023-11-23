@@ -47,7 +47,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
                 .pollingEvery(Duration.ofSeconds(1))
                 .withTimeout(Duration.ofHours(2))
                 .until((driver) -> {
-                    driver.findElements(By.xpath("//."))
+                    driver.findElements(By.xpath("//."));
                     return null;
                 });
     }
