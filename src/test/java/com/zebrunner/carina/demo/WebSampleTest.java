@@ -126,20 +126,24 @@ public class WebSampleTest implements IAbstractTest {
     public void testBrandGroup() {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
+        pause(1100);
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened!");
 
         AllBrandsPageBase allBrandsPage = homePage.openAllBrandsPage();
+        pause(1100);
         Assert.assertTrue(allBrandsPage.isPageOpened(), "All mobile phone brands page is not opened!");
-
+        pause(1100);
         final String brandName = "Lava";
         BrandModelsPageBase brandModelsPage = allBrandsPage.selectBrand(brandName);
+        pause(1100);
         List<ModelItem> models = brandModelsPage.getModels();
+        pause(1100);
         SoftAssert softAssert = new SoftAssert();
         for (ModelItem modelItem : models) {
             softAssert.assertFalse(modelItem.readModel().contains(brandName),
                     "Model " + modelItem.readModel() + " should not include brand " + brandName + " in title");
         }
-
+        pause(1100);
         softAssert.assertAll();
     }
 
