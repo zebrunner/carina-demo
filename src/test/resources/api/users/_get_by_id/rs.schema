@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "employee_name": {
+          "type": "string"
+        },
+        "employee_salary": {
+          "type": "number"
+        },
+        "employee_age": {
+          "type": "number"
+        },
+        "profile_image": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "employee_name",
+        "employee_salary",
+        "employee_age",
+        "profile_image"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "message"
+  ]
+}

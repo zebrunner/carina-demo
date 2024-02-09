@@ -1,1 +1,5 @@
-{}
+{
+  "status": "success",
+  "data": "type:String",
+  "message": "Successfully! Record has been deleted"
+}

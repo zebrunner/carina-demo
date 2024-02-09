@@ -1,3 +1,4 @@
+
 {
   <#if employee_name??>"employee_name": "${name}",</#if>
   <#if employee_salary??>"employee_salary": "${salary}",</#if>
