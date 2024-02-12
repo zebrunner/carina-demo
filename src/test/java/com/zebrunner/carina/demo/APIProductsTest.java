@@ -82,4 +82,13 @@ public class APIProductsTest implements IAbstractTest {
         getProductsCategory.validateResponseAgainstSchema("api/users/_get_products_of_category/rs.schema");
     }
 
+    @Test()
+    @MethodOwner(owner = "knysh")
+    public void testAddProduct() {
+        PostProductMethod api = new PostProductMethod();
+        api.setProperties("api/users/user.properties");
+        api.callAPIExpectSuccess();
+        api.validateResponse();
+    }
+
 }
