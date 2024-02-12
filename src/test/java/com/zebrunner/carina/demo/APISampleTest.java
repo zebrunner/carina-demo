@@ -61,7 +61,7 @@ public class APISampleTest implements IAbstractTest {
     public void testGetUsers() {
         GetAllUsersMethod getUsersMethods = new GetAllUsersMethod();
         getUsersMethods.callAPIExpectSuccess();
-        getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
+        getUsersMethods.validateResponse();
         getUsersMethods.validateResponseAgainstSchema("api/users/_get_all/rs.schema");
     }
 
