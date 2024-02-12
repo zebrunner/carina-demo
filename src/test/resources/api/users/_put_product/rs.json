@@ -1,0 +1,17 @@
+{
+  "id": 7,
+  <#if title??>"title": "${title}",</#if>
+  <#if price??>"price": "${price}",</#if>
+  "stock": 50,
+  "rating": 4.25,
+  "images": [
+    "https://cdn.dummyjson.com/product-images/7/1.jpg",
+    "https://cdn.dummyjson.com/product-images/7/2.jpg",
+    "https://cdn.dummyjson.com/product-images/7/3.jpg",
+    "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+  ],
+  "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+  "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+  <#if brand??>"brand": "${brand}",</#if>
+  <#if category??>"category": "${category}",</#if>
+}

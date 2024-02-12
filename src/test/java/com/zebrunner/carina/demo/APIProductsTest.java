@@ -91,4 +91,33 @@ public class APIProductsTest implements IAbstractTest {
         api.validateResponse();
     }
 
+
+    // didn't work
+    @Test()
+    @MethodOwner(owner = "knysh")
+    public void testUpdateProduct() {
+        PutProductMethod api = new PutProductMethod(7);
+        api.setProperties("api/users/user.properties");
+        api.callAPIExpectSuccess();
+        api.validateResponse();
+    }
+
+    // didn't work
+    @Test()
+    @MethodOwner(owner = "knysh")
+    public void testUpdatePatchProduct() {
+        PatchProductMethod api = new PatchProductMethod(7);
+        api.setProperties("api/users/user.properties");
+        api.callAPIExpectSuccess();
+        api.validateResponse();
+    }
+
+    @Test()
+    @MethodOwner(owner = "knysh")
+    @TestPriority(Priority.P1)
+    public void testDeleteProduct() {
+        DeleteProductMethod deleteProductMethod = new DeleteProductMethod(8);
+        deleteProductMethod.callAPIExpectSuccess();
+        deleteProductMethod.validateResponse();
+    }
 }
