@@ -13,12 +13,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<carina-core_version>1.2.6</carina-core_version>
+		<carina-core_version>1.2.7</carina-core_version>
 		<carina-dataprovider.version>1.2.4</carina-dataprovider.version>
 		<carina-api.version>1.2.4</carina-api.version>
 		<carina-aws-s3.version>1.2.5</carina-aws-s3.version>
 		<carina-azure.version>1.2.5</carina-azure.version>
-		<carina-appcenter.version>1.2.6</carina-appcenter.version>
+		<carina-appcenter.version>1.2.7</carina-appcenter.version>
 
 		<java.version>11</java.version>
 		<zebrunner-agent.version>1.9.8</zebrunner-agent.version>
