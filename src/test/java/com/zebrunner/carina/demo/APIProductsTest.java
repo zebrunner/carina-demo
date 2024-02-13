@@ -21,6 +21,8 @@ import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import com.zebrunner.carina.demo.api.*;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -119,5 +121,20 @@ public class APIProductsTest implements IAbstractTest {
         DeleteProductMethod deleteProductMethod = new DeleteProductMethod(8);
         deleteProductMethod.callAPIExpectSuccess();
         deleteProductMethod.validateResponse();
+    }
+
+    @Test()
+    @MethodOwner(owner = "knysh")
+    public void testGetProductsWithAuthToken() {
+        LoginUserMethod login = new LoginUserMethod();
+        Response rs = login.callAPI();
+        String actualRsBody = rs.asString();
+        String token = JsonPath.from(actualRsBody).getString("token");
+        login.callAPIExpectSuccess();
+        ProvideTokenInBearerMethod provide = new ProvideTokenInBearerMethod(token);
+        provide.callAPIExpectSuccess();
+        GetProductsWithAuthTokenMethod get= new GetProductsWithAuthTokenMethod(token);
+        get.callAPIExpectSuccess();
+        get.validateResponse();
     }
 }
