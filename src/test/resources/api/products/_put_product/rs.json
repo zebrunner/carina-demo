@@ -10,7 +10,7 @@
     "https://cdn.dummyjson.com/product-images/7/3.jpg",
     "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
   ],
-  "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+  "thumbnail": "regex:https:\\/\\/cdn.dummyjson.com\\/product-images.*?thumbnail\\.jpg",
   <#if description??>"description": "${description}",</#if>
   <#if brand??>"brand": "${brand}",</#if>
   <#if category??>"category": "${category}",</#if>

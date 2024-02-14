@@ -1,22 +1,17 @@
 {
   "products": [
     {
-      "id": 7,
-      "title": "Samsung Galaxy Book",
-      "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
-      "price": 1499,
-      "discountPercentage": 4.15,
-      "rating": 4.25,
-      "stock": 50,
-      "brand": "Samsung",
-      "category": "laptops",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/7/1.jpg",
-        "https://cdn.dummyjson.com/product-images/7/2.jpg",
-        "https://cdn.dummyjson.com/product-images/7/3.jpg",
-        "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
-      ]
+      "id": "regex:[\\d]",
+      "title": "type:String",
+      "description": "type:String",
+      "price": "type:Integer",
+      "discountPercentage": "type:Double",
+      "rating": "type:Double",
+      "stock": "type:Integer",
+      "brand": "type:String",
+      "category": "type:String",
+      "thumbnail": "regex:https:\\/\\/cdn.dummyjson.com\\/product-images.*?thumbnail\\.jpg",
+      "images": "skip"
     },
     {
       "id": 8,
