@@ -24,7 +24,7 @@ import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
 @Endpoint(url = "${base_url}/products/categories", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/users/_get_product_categories/rs.json")
+@ResponseTemplatePath(path = "api/products/_get_product_categories/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetProductCategoriesMethod extends AbstractApiMethodV2 {
 

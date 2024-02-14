@@ -23,7 +23,7 @@ public class APIProductsTest implements IAbstractTest {
         GetAllProductsMethod getProductsMethods = new GetAllProductsMethod();
         getProductsMethods.callAPIExpectSuccess();
         getProductsMethods.validateResponse();
-        getProductsMethods.validateResponseAgainstSchema("api/users/_get_products/rs.schema");
+        getProductsMethods.validateResponseAgainstSchema("api/products/_get_products/rs.schema");
     }
 
     @Test()
@@ -32,7 +32,7 @@ public class APIProductsTest implements IAbstractTest {
         GetProductByIdMethod getProductMethod = new GetProductByIdMethod(1);
         getProductMethod.callAPIExpectSuccess();
         getProductMethod.validateResponse();
-        getProductMethod.validateResponseAgainstSchema("api/users/_get_product_by_id/rs.schema");
+        getProductMethod.validateResponseAgainstSchema("api/products/_get_product_by_id/rs.schema");
     }
 
     @Test()
@@ -41,7 +41,7 @@ public class APIProductsTest implements IAbstractTest {
         GetProductsFromSearchMethod getProductMethod = new GetProductsFromSearchMethod();
         getProductMethod.callAPIExpectSuccess();
         getProductMethod.validateResponse();
-        getProductMethod.validateResponseAgainstSchema("api/users/_get_product_by_id/rs.schema");
+        getProductMethod.validateResponseAgainstSchema("api/products/_get_product_by_id/rs.schema");
     }
 
     @Test()
@@ -50,7 +50,7 @@ public class APIProductsTest implements IAbstractTest {
         GetProductCategoriesMethod getProductsCategories = new GetProductCategoriesMethod();
         getProductsCategories.callAPIExpectSuccess();
         getProductsCategories.validateResponse();
-        getProductsCategories.validateResponseAgainstSchema("api/users/_get_product_categories/rs.schema");
+        getProductsCategories.validateResponseAgainstSchema("api/products/_get_product_categories/rs.schema");
     }
 
     @Test()
@@ -59,14 +59,14 @@ public class APIProductsTest implements IAbstractTest {
         GetProductsOfCategoryMethod getProductsCategory = new GetProductsOfCategoryMethod("smartphones");
         getProductsCategory.callAPIExpectSuccess();
         getProductsCategory.validateResponse();
-        getProductsCategory.validateResponseAgainstSchema("api/users/_get_products_of_category/rs.schema");
+        getProductsCategory.validateResponseAgainstSchema("api/products/_get_products_of_category/rs.schema");
     }
 
     @Test()
     @MethodOwner(owner = "nknysh")
     public void testAddProduct() {
         PostProductMethod api = new PostProductMethod();
-        api.setProperties("api/users/user.properties");
+        api.setProperties("api/products/product.properties");
         api.callAPIExpectSuccess();
         api.validateResponse();
     }
@@ -75,7 +75,7 @@ public class APIProductsTest implements IAbstractTest {
     @MethodOwner(owner = "nknysh")
     public void testUpdateProduct() {
         PutProductMethod api = new PutProductMethod(7);
-        api.setProperties("api/users/user.properties");
+        api.setProperties("api/products/product.properties");
         api.callAPIExpectSuccess();
         api.validateResponse();
     }
@@ -84,7 +84,7 @@ public class APIProductsTest implements IAbstractTest {
     @MethodOwner(owner = "nknysh")
     public void testUpdatePatchProduct() {
         PatchProductMethod api = new PatchProductMethod(7);
-        api.setProperties("api/users/user.properties");
+        api.setProperties("api/products/product.properties");
         api.callAPIExpectSuccess();
         api.validateResponse();
     }

@@ -25,7 +25,7 @@ import com.zebrunner.carina.utils.config.Configuration;
 import org.apache.http.HttpHeaders;
 
 @Endpoint(url = "${base_url}/auth/products", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/users/_get_products/rs.json")
+@ResponseTemplatePath(path = "api/products/_get_products/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetProductsWithAuthTokenMethod extends AbstractApiMethodV2 {
 

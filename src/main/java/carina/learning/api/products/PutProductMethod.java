@@ -26,8 +26,8 @@ import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
 @Endpoint(url = "${base_url}/products/${id}", methodType = HttpMethodType.PUT)
-@RequestTemplatePath(path = "api/users/_put_product/rq.json")
-@ResponseTemplatePath(path = "api/users/_put_product/rs.json")
+@RequestTemplatePath(path = "api/products/_put_product/rq.json")
+@ResponseTemplatePath(path = "api/products/_put_product/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class PutProductMethod extends AbstractApiMethodV2 {
 
