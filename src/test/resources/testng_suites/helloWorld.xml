@@ -9,7 +9,7 @@
 	
 	<test name="Hello World test">
 		<classes>
-			<class name="com.zebrunner.carina.demo.HelloWorld" />
+			<class name="carina.learning.HelloWorld" />
 		</classes>
 	</test>
 
