@@ -1,0 +1,18 @@
+{
+  "id": 101,
+  <#if title??>"title": "${title}",</#if>
+  <#if price??>"price": ${price},</#if>
+  "stock": "type:Integer",
+  <#if rating??>"rating": "${rating}",</#if>
+  "images": [
+    "https://cdn.dummyjson.com/product-images/1/1.jpg",
+    "https://cdn.dummyjson.com/product-images/1/2.jpg",
+    "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+  ],
+  "thumbnail": "regex:[(http)?s?:?(\/\/[^"']*\.(jpg))]",
+
+"https://cdn.dummyjson.com/product-images/17/thumbnail.jpg",
+  <#if description??>"description": "${description}",</#if>
+  <#if brand??>"brand": "${brand}",</#if>
+  <#if category??>"category": "${category}",</#if>
+}

@@ -1,0 +1,17 @@
+{
+  "id": "type:Integer",
+  <#if title??>"title": "${title}",</#if>
+  <#if price??>"price": ${price},</#if>
+  "stock": "type:Integer",
+  "rating": "type:Double",
+  "images": [
+    "https://cdn.dummyjson.com/product-images/7/1.jpg",
+    "https://cdn.dummyjson.com/product-images/7/2.jpg",
+    "https://cdn.dummyjson.com/product-images/7/3.jpg",
+    "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+  ],
+  "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+  <#if description??>"description": "${description}",</#if>
+  <#if brand??>"brand": "${brand}",</#if>
+  <#if category??>"category": "${category}",</#if>
+}

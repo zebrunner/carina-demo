@@ -1,0 +1,7 @@
+{
+  <#if title??>"title": "${title}",</#if>
+  <#if price??>"price": ${price},</#if>
+  <#if brand??>"brand": "${brand}",</#if>
+  <#if category??>"category": "${category}"</#if>
+  <#if description??>"description": "${description}",</#if>
+}

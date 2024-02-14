@@ -1,9 +1,6 @@
 {
   "status": "success",
   "data": {
-    <#if employee_name??>"employee_name": "${name}",</#if>
-    <#if employee_salary??>"employee_salary": "${salary}",</#if>
-    <#if employee_age??>"employee_age": "${age}",</#if>
     "id": "type:Integer"
   },
   "message": "Successfully! Record has been added."

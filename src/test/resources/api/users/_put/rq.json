@@ -1,6 +1,5 @@
-
 {
-  <#if employee_name??>"employee_name": "${name}",</#if>
-  <#if employee_salary??>"employee_salary": "${salary}",</#if>
-  <#if employee_age??>"employee_age": "${age}",</#if>
+  <#if name??>"name": "${name}",</#if>
+  <#if salary??>"salary": "${salary}",</#if>
+  <#if age??>"age": "${age}",</#if>
 }
