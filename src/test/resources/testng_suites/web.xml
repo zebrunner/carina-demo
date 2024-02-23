@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - Web Sample" parallel="methods">
+<suite verbose="1" name="Carina Demo Tests - Label Sample" parallel="methods">
 
 	<parameter name="suiteOwner" value="qpsdemo"/>
-	<parameter name="jenkinsJobName" value="Web-Demo-Test"/>
+	<parameter name="jenkinsJobName" value="Label-Demo-Test"/>
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
@@ -14,9 +14,9 @@
 	<parameter name="jenkinsJobExecutionMode" value="continue"/>
 	<parameter name="jenkinsAutoScreenshot" value="true"/>
 
-	<test name="GSM arena web tests">
+	<test name="Label web tests">
 		<classes>
-			<class name="com.zebrunner.carina.demo.WebSampleTest" />
+			<class name="com.zebrunner.carina.demo.WebSampleTestTest" />
 		</classes>
 	</test>
 
