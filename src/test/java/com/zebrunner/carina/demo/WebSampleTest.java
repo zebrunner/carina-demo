@@ -17,9 +17,11 @@ package com.zebrunner.carina.demo;
 
 import java.util.List;
 
+import com.zebrunner.agent.core.registrar.Label;
 import com.zebrunner.carina.demo.gui.components.ModelItem;
 import com.zebrunner.carina.demo.gui.components.NewsItem;
 import com.zebrunner.carina.demo.gui.components.compare.ModelSpecs;
+import com.zebrunner.carina.utils.config.Configuration;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
@@ -50,6 +52,9 @@ public class WebSampleTest implements IAbstractTest {
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = { "web", "regression" })
     public void testModelSpecs() {
+        Configuration.get("label_name").ifPresent(label -> {
+            Label.attachToTestRun(label, Configuration.getRequired("label_value"));
+        });
         // Open GSM Arena home page and verify page is opened
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
