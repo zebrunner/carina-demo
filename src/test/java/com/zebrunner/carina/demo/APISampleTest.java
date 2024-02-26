@@ -24,15 +24,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.api.DeleteUserMethod;
-import com.zebrunner.carina.demo.api.GetUserMethods;
-import com.zebrunner.carina.demo.api.PostUserMethod;
+import com.zebrunner.agent.core.registrar.Label;
 import com.zebrunner.carina.api.APIMethodPoller;
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
+import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import com.zebrunner.carina.demo.api.DeleteUserMethod;
+import com.zebrunner.carina.demo.api.GetUserMethods;
+import com.zebrunner.carina.demo.api.PostUserMethod;
 
 /**
  * This sample shows how create REST API tests.
@@ -47,6 +48,7 @@ public class APISampleTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
         LOGGER.info("test");
+        Label.attachToTest("application", "testCreateUser");
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
@@ -66,6 +68,7 @@ public class APISampleTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUserMissingSomeFields() throws Exception {
+        Label.attachToTest("application", "testCreateUserMissingSomeFields");
         PostUserMethod api = new PostUserMethod();
         api.setProperties("api/users/user.properties");
         api.getProperties().remove("name");
@@ -77,6 +80,7 @@ public class APISampleTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "qpsdemo")
     public void testGetUsers() {
+        Label.attachToTest("applicatioN", "testGetUsers");
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.callAPIExpectSuccess();
         getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
@@ -87,6 +91,7 @@ public class APISampleTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
     public void testDeleteUsers() {
+        Label.attachToTest("Application", "testDeleteUsers");
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
         deleteUserMethod.setProperties("api/users/user.properties");
         deleteUserMethod.callAPIExpectSuccess();
