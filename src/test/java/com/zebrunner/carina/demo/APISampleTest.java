@@ -101,7 +101,108 @@ public class APISampleTest implements IAbstractTest {
         LOGGER.info("numberOfCores: ", numberOfCores);
         LOGGER.info("sockets: ", sockets);
         LOGGER.info("Total: ", numberOfCores * sockets);
+        
 
+        LOGGER.info("First, read the location where the corresponding resources are mounted");
+        command = "cat /proc/mounts  | grep -E -w '(cpu|memory)'";
+        try {
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        try {
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        LOGGER.info("For memory:");
+        command = "cat /sys/fs/cgroup/memory/memory.limit_in_bytes";
+        try {
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        try {
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        LOGGER.info("CPU resources:");
+        LOGGER.info("the total time slice quota per CPU, in microseconds");
+        command = "cat /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_period_us";
+        try {
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        try {
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        
+        LOGGER.info("the CPU time that the container can occupy in the time slice");
+        command = "cat /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_quota_us";
+        try {
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        try {
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        
+        LOGGER.info("cpu.shares");
+        command = "cat /sys/fs/cgroup/cpu,cpuacct/cpu.shares";
+        try {
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        try {
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         // Windows
         //LOGGER.info("numberOfCores: ", numberOfCores);
     }
