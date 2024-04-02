@@ -22,7 +22,7 @@ preDirectives:
     - export
     - export TERM="xterm" && export && top -b -n 1
     - uname -a
-    - find / -name htop
+    - apt-get update && apt-get install -y htop && { sleep 5; killall htop; exit; } ;; htop -C
 
 #pre:
 #  # Skip execution of the tests in the pre step
