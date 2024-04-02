@@ -225,8 +225,8 @@ public class APISampleTest implements IAbstractTest {
         }
         
         
-        LOGGER.info("adb devices");
-        command = "adb devices";
+        LOGGER.info("top -n 1");
+        command = "top -n 1";
         try {
             String[] cmd = { "/bin/sh", "-c", command};
             process = Runtime.getRuntime().exec(cmd);
