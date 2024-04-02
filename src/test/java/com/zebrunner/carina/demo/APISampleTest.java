@@ -203,6 +203,26 @@ public class APISampleTest implements IAbstractTest {
             e.printStackTrace();
         }
         
+        
+        LOGGER.info("cat /proc/cpuinfo");
+        command = "cat /proc/cpuinfo";
+        try {
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        try {
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }        
+        
         // Windows
         //LOGGER.info("numberOfCores: ", numberOfCores);
     }
