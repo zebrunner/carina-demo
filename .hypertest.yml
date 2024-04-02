@@ -1,5 +1,5 @@
 ---
-version: 0.1
+version: 0.2
 globalTimeout: 150
 testSuiteTimeout: 150
 testSuiteStep: 150
@@ -16,17 +16,13 @@ retryOnFailure: true
 maxRetries: 1
 concurrency: 1
 
-backgroundDirectives:
-  shell: bash
-  commands:
-    - name: top
-      command: export TERM="xterm" && export && top -b -n 100
-
-#preDirectives:
-#  commands: 
-#    - cat /proc/mounts
-#    - export
-#    - export TERM="xterm" && export && top -b -n 1
+preDirectives:
+  commands: 
+    - cat /proc/mounts
+    - export
+    - export TERM="xterm" && export && top -b -n 1
+    - uname -a
+    - find / -name htop
 
 #pre:
 #  # Skip execution of the tests in the pre step
