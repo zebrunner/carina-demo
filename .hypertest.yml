@@ -6,6 +6,10 @@ testSuiteStep: 150
 
 runson: linux
 
+runtime:
+  - language: java
+    version: '17'
+
 autosplit: true
 retryOnFailure: true
 
