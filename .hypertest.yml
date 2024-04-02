@@ -24,7 +24,6 @@ backgroundDirectives:
 
 preDirectives:
   commands: 
-    - which htop
 #    - cat /proc/mounts
 #    - export
 #    - export TERM="xterm" && export && top -b -n 1
