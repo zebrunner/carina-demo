@@ -16,11 +16,19 @@ retryOnFailure: true
 maxRetries: 1
 concurrency: 2
 
+backgroundDirectives:
+  shell: bash
+  commands:
+    - name: top
+      command: export TERM="xterm" && export && top -b -n 100
+
 preDirectives:
   commands: 
-    - cat /proc/mounts
-    - export
-    - export TERM="xterm" && export && top -b -n 1
+    - which htop
+#    - cat /proc/mounts
+#    - export
+#    - export TERM="xterm" && export && top -b -n 1
+
 #pre:
 #  # Skip execution of the tests in the pre step
 #  - mvn dependency:resolve
