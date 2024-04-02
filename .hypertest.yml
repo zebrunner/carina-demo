@@ -25,10 +25,11 @@ preDirectives:
     - sudo apt-get update && sudo apt-get install -y htop
     - ps -ef
     - sudo ls -la /home/ltuser/
-    - ls -la /home/ltuser/foreman
-    - ls -la /home/ltuser/foreman/
-    - export TERM="xterm" && export && htop -C
+    - ls -la /home/ltuser/foreman/workspace
+    - export TERM="xterm" && export && htop
     - sleep 5
+    - sudo ls -la /home/ltuser/fo62
+    - sudo ls -la /home/ltuser/fo62/workspace
 
 #pre:
 #  # Skip execution of the tests in the pre step
