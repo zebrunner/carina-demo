@@ -20,7 +20,7 @@ preDirectives:
   commands: 
     - cat /proc/mounts
     - export
-    - top -n 1
+    - export TERM="xterm" && top -n 1
 #pre:
 #  # Skip execution of the tests in the pre step
 #  - mvn dependency:resolve
