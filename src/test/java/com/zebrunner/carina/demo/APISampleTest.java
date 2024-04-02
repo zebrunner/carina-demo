@@ -204,8 +204,8 @@ public class APISampleTest implements IAbstractTest {
         }
         
         
-        LOGGER.info("cat /proc/cpuinfo");
-        command = "cat /proc/cpuinfo";
+        LOGGER.info("export");
+        command = "export";
         try {
             String[] cmd = { "/bin/sh", "-c", command};
             process = Runtime.getRuntime().exec(cmd);
