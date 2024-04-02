@@ -24,11 +24,11 @@ preDirectives:
     - uname -a
     - sudo apt-get update && sudo apt-get install -y htop
     - ps -ef
-    - export TERM="xterm" && export && htop -C
-    - sleep 5
     - sudo ls -la /home/ltuser/
     - ls -la /home/ltuser/foreman
     - ls -la /home/ltuser/foreman/
+    - export TERM="xterm" && export && htop -C
+    - sleep 5
 
 #pre:
 #  # Skip execution of the tests in the pre step
