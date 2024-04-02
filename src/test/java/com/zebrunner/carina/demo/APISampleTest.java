@@ -15,6 +15,9 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.invoke.MethodHandles;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,15 +27,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.api.DeleteUserMethod;
-import com.zebrunner.carina.demo.api.GetUserMethods;
-import com.zebrunner.carina.demo.api.PostUserMethod;
 import com.zebrunner.carina.api.APIMethodPoller;
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
+import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import com.zebrunner.carina.demo.api.DeleteUserMethod;
+import com.zebrunner.carina.demo.api.GetUserMethods;
+import com.zebrunner.carina.demo.api.PostUserMethod;
 
 /**
  * This sample shows how create REST API tests.
@@ -42,10 +45,71 @@ import com.zebrunner.carina.core.registrar.tag.TestPriority;
 public class APISampleTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    
+    @Test()
+    @MethodOwner(owner = "qpsdemo")
+    public void getNumberOfCPUCores() {
+        String command = "";
+        //if(osValidator.isMac()){
+        //command = "sysctl -n machdep.cpu.core_count";
+
+        command = "lscpu";
+        //if(osValidator.isWindows()){
+        //    command = "cmd /C WMIC CPU Get /Format:List";
+        
+        Process process = null;
+        int numberOfCores = 0;
+        int sockets = 0;
+        try {
+            //if(osValidator.isMac()){
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+            // windows
+            //process = Runtime.getRuntime().exec(command);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        String line;
+
+        try {
+            while ((line = reader.readLine()) != null) {
+                //if(osValidator.isMac()){
+                numberOfCores = line.length() > 0 ? Integer.parseInt(line) : 0;
+                //}else if (osValidator.isUnix()) {
+                if (line.contains("Core(s) per socket:")) {
+                    numberOfCores = Integer.parseInt(line.split("\\s+")[line.split("\\s+").length - 1]);
+                }
+                if(line.contains("Socket(s):")){
+                    sockets = Integer.parseInt(line.split("\\s+")[line.split("\\s+").length - 1]);
+                }
+                //} else if (osValidator.isWindows()) {
+                //if (line.contains("NumberOfCores")) {
+                //    numberOfCores = Integer.parseInt(line.split("=")[1]);
+                //}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        //if(osValidator.isUnix()){
+        LOGGER.info("numberOfCores: ", numberOfCores);
+        LOGGER.info("sockets: ", sockets);
+        LOGGER.info("Total: ", numberOfCores * sockets);
+
+        // Windows
+        //LOGGER.info("numberOfCores: ", numberOfCores);
+    }
 
     @Test()
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
+        int cores = Runtime.getRuntime().availableProcessors();
+        LOGGER.info("cpu cores: ", cores);
+        
         LOGGER.info("test");
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
