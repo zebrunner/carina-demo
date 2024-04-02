@@ -18,7 +18,7 @@ concurrency: 2
 
 preDirectives:
   commands: 
-    - cat /proc/mounts  | grep -E -w '(cpu|memory)'
+    - cat /proc/mounts  | grep -E -w \'(cpu|memory)\'
     - cat /sys/fs/cgroup/memory/memory.limit_in_bytes
     - cat /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_period_us
     - cat /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_quota_us
