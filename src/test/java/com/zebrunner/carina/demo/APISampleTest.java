@@ -112,8 +112,8 @@ public class APISampleTest implements IAbstractTest {
         int cores = Runtime.getRuntime().availableProcessors();
         LOGGER.info("cpu cores: {}", cores);
         
-        long totalMemory = Runtime.getRuntime().totalMemory();
-        LOGGER.info("Total memory: {}", totalMemory);
+        long maxMemory = Runtime.getRuntime().maxMemory();
+        LOGGER.info("Max memory: {}", maxMemory);
         
         LOGGER.info("test");
         setCases("4555,54545");
