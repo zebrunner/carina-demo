@@ -19,9 +19,6 @@ concurrency: 2
 preDirectives:
   commands: 
     - cat /proc/mounts
-    - cat /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_period_us
-    - cat /sys/fs/cgroup/cpu,cpuacct/cpu.cfs_quota_us
-    - cat /sys/fs/cgroup/cpu,cpuacct/cpu.shares
     - export
     - top -n 1
 #pre:
