@@ -22,7 +22,7 @@ preDirectives:
     - export
     - export TERM="xterm" && export && top -b -n 1
     - uname -a
-    - apt-get update && apt-get install -y htop
+    - sudo apt-get update && sudo apt-get install -y htop
     - htop -C
     - sleep 5 && killall htop
 
