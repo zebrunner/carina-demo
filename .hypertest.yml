@@ -29,10 +29,10 @@ mergeArtifacts: true
 uploadArtefacts:
  - name: ExecutionSnapshots
    path:
-    - target/surefire-reports/html/**
+    - target/surefire-reports/**
 
 framework:
   name: maven/testng
-  defaultReports: false
+  defaultReports: true
   flags:
     - "-Dsuite=api"
