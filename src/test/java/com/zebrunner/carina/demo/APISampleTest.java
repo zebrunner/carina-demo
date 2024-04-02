@@ -77,16 +77,18 @@ public class APISampleTest implements IAbstractTest {
 
         try {
             while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
                 //if(osValidator.isMac()){
-                numberOfCores = line.length() > 0 ? Integer.parseInt(line) : 0;
-                //}else if (osValidator.isUnix()) {
+                // numberOfCores = line.length() > 0 ? Integer.parseInt(line) : 0;
+
+                //Linux
                 if (line.contains("Core(s) per socket:")) {
                     numberOfCores = Integer.parseInt(line.split("\\s+")[line.split("\\s+").length - 1]);
                 }
                 if(line.contains("Socket(s):")){
                     sockets = Integer.parseInt(line.split("\\s+")[line.split("\\s+").length - 1]);
                 }
-                //} else if (osValidator.isWindows()) {
+                //Windows
                 //if (line.contains("NumberOfCores")) {
                 //    numberOfCores = Integer.parseInt(line.split("=")[1]);
                 //}
