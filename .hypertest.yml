@@ -1,5 +1,5 @@
 ---
-version: 0.2
+version: 0.1
 globalTimeout: 150
 testSuiteTimeout: 150
 testSuiteStep: 150
@@ -14,7 +14,7 @@ autosplit: true
 retryOnFailure: true
 
 maxRetries: 1
-concurrency: 2
+concurrency: 1
 
 backgroundDirectives:
   shell: bash
@@ -22,8 +22,8 @@ backgroundDirectives:
     - name: top
       command: export TERM="xterm" && export && top -b -n 100
 
-preDirectives:
-  commands: 
+#preDirectives:
+#  commands: 
 #    - cat /proc/mounts
 #    - export
 #    - export TERM="xterm" && export && top -b -n 1
@@ -38,10 +38,10 @@ post:
 mergeArtifacts: true
 
 
-uploadArtefacts:
- - name: ExecutionSnapshots
-   path:
-    - target/surefire-reports/**
+#uploadArtefacts:
+# - name: ExecutionSnapshots
+#   path:
+#    - target/surefire-reports/**
 
 framework:
   name: maven/testng
