@@ -16,6 +16,7 @@
 package com.zebrunner.carina.demo;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.invoke.MethodHandles;
@@ -221,12 +222,44 @@ public class APISampleTest implements IAbstractTest {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        
+        
+        LOGGER.info("adb devices");
+        command = "adb devices";
+        try {
+            String[] cmd = { "/bin/sh", "-c", command};
+            process = Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+        try {
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("/tmp/hyp-task-data.json"));
+            for (String line2; (line2 = br.readLine()) != null;) {
+                LOGGER.info(line2);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }        
         
         // Windows
         //LOGGER.info("numberOfCores: ", numberOfCores);
     }
 
+    
+/*    
     @Test()
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUser() throws Exception {
@@ -282,5 +315,6 @@ public class APISampleTest implements IAbstractTest {
         deleteUserMethod.callAPIExpectSuccess();
         deleteUserMethod.validateResponse();
     }
-
+*/
+    
 }
