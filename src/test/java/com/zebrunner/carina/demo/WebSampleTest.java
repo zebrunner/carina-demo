@@ -93,6 +93,7 @@ public class WebSampleTest implements IAbstractTest {
             softAssert.assertEquals(specs.get(2).readSpec(ModelSpecs.SpecType.TECHNOLOGY), "GSM / HSPA / LTE");
         }
 
+        LOGGER.info(getDriver().getPageSource());
         softAssert.assertAll();
     }
 
