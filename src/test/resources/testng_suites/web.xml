@@ -6,7 +6,7 @@
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
   
-	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression, sample_regression"/>
+	<parameter name="jenkinsRegressionPipeline" value="sample_regression"/>
 	<parameter name="jenkinsRegressionScheduling" value="*/10 * * * *" />
 
 	<parameter name="jenkinsRegressionMatrix_sample_regression" value="browser:chrome; browser:firefox"/>
