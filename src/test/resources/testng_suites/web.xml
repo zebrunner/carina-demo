@@ -6,10 +6,6 @@
 	<parameter name="jenkinsJobType" value="web"/>
 	<parameter name="jenkinsEnvironments" value="DEMO"/>
 	<parameter name="jenkinsEmail" value="demo@zebrunner.com"/>
-
-	<parameter name="browserName" value="chrome" />
-	<parameter name="platformName" value="Windows" />
-	<parameter name="udid" value="mydeviceudid" />
   
 	<parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
 
