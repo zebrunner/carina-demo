@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - Web Sample Test" parallel="methods">
+<suite verbose="1" name="Carina Demo Tests - Web Sample Tests" parallel="methods">
 
 	<parameter name="suiteOwner" value="akhivyk"/>
 	<parameter name="jenkinsJobName" value="Web-Test"/>
