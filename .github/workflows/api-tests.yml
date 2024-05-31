@@ -33,5 +33,11 @@ jobs:
       - name: Install dependencies
         run: mvn install -DskipTests
 
+      - name: Display Git information
+        run: |
+          echo "Branch: ${{ github.ref }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "SHA: ${{ github.sha }}"
+
       - name: Run API tests
         run: mvn clean test -Dsuite=api
