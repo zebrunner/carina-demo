@@ -34,4 +34,4 @@ jobs:
         run: mvn install -DskipTests
 
       - name: Run API tests
-        run: mvn test -Dsurefire.suiteXmlFiles=src/test/resources/api.xml
+        run: mvn test -Dsurefire.suiteXmlFiles=api.xml
