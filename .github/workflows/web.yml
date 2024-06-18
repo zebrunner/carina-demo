@@ -1,10 +1,7 @@
-name: API Tests
+name: WEB Tests
 
 on:
   pull_request:
-    branches:
-      - '**'
-  push:
     branches:
       - '**'
 
@@ -33,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: mvn install -DskipTests
 
+      - name: Set up ChromeDriver
+        uses: nanasess/setup-chromedriver@v1
+
       - name: Display Git information
         run: |
           echo "Branch: ${{ github.ref }}"
@@ -40,4 +40,4 @@ jobs:
           echo "SHA: ${{ github.sha }}"
 
       - name: Run API tests
-        run: mvn clean test -Dsuite=api
+        run: mvn clean test -Dsuite=web
