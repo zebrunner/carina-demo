@@ -49,12 +49,12 @@
 			<groupId>com.zebrunner</groupId>
 			<artifactId>carina-dataprovider</artifactId>
 			<version>${carina-dataprovider.version}</version>
-			<exclusions>
+			<!--<exclusions>
 				<exclusion>
 					<groupId>org.testng</groupId>
 					<artifactId>*</artifactId>
 				</exclusion>
-			</exclusions>
+			</exclusions>-->
 		</dependency>
 		<dependency>
 			<groupId>com.zebrunner</groupId>
