@@ -18,7 +18,7 @@
 		<carina-api.version>1.0.1</carina-api.version>
 		<carina-aws-s3.version>1.0.2</carina-aws-s3.version>
 		<java.version>11</java.version>
-		<zebrunner-agent.version>1.9.3</zebrunner-agent.version>
+		<zebrunner-agent.version>1.10.0.46-SNAPSHOT</zebrunner-agent.version>
 		<suite>helloWorld</suite>
 	</properties>
 
@@ -26,7 +26,7 @@
 		<repository>
 			<id>zebrunner_snapshots</id>
 			<name>zebrunner Snapshots</name>
-			<url>https://nexus.zebrunner.dev/repository/ce-snapshots/</url>
+			<url>https://public-nexus.zebrunner.com/repository/ce-snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -41,6 +41,11 @@
 			<groupId>com.zebrunner</groupId>
 			<artifactId>carina-core</artifactId>
 			<version>${carina-core_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>agent-testng-pluggable</artifactId>
+			<version>1.10.0.8-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.zebrunner</groupId>
@@ -85,7 +90,7 @@
 				sesssion(s) declaration -->
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy</artifactId>
-			<version>1.12.10</version>
+			<version>1.12.18</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>

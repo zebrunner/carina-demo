@@ -15,37 +15,38 @@
  *******************************************************************************/
 package com.zebrunner.carina.demo;
 
-import java.lang.invoke.MethodHandles;
-import java.time.temporal.ChronoUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
+import java.lang.invoke.MethodHandles;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import com.zebrunner.agent.core.annotation.MaintainerProvider;
+import com.zebrunner.agent.core.annotation.TestCaseKey;
+import com.zebrunner.agent.core.registrar.TestCase;
+import com.zebrunner.carina.api.APIMethodPoller;
+import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.core.registrar.tag.Priority;
+import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import com.zebrunner.carina.demo.api.DeleteUserMethod;
 import com.zebrunner.carina.demo.api.GetUserMethods;
 import com.zebrunner.carina.demo.api.PostUserMethod;
-import com.zebrunner.carina.api.APIMethodPoller;
-import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import com.zebrunner.carina.demo.utils.CustomMaintainerProvider;
+import com.zebrunner.carina.demo.utils.CustomMaintainerProvider2;
 
-/**
- * This sample shows how create REST API tests.
- *
- * @author qpsdemo
- */
+@MaintainerProvider(CustomMaintainerProvider.class)
 public class APISampleTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
-    public void testCreateUser() throws Exception {
+    @Test
+    @TestCaseKey("DEF-741")
+    @MaintainerProvider(CustomMaintainerProvider2.class)
+    public void testCreateUser() {
         LOGGER.info("test");
         setCases("4555,54545");
         PostUserMethod api = new PostUserMethod();
@@ -54,19 +55,20 @@ public class APISampleTest implements IAbstractTest {
         AtomicInteger counter = new AtomicInteger(0);
 
         api.callAPIWithRetry()
-                .withLogStrategy(APIMethodPoller.LogStrategy.ALL)
-                .peek(rs -> counter.getAndIncrement())
-                .until(rs -> counter.get() == 4)
-                .pollEvery(1, ChronoUnit.SECONDS)
-                .stopAfter(10, ChronoUnit.SECONDS)
-                .execute();
+           .withLogStrategy(APIMethodPoller.LogStrategy.ALL)
+           .peek(rs -> counter.getAndIncrement())
+           .until(rs -> counter.get() == 4)
+           .pollEvery(1, ChronoUnit.SECONDS)
+           .stopAfter(10, ChronoUnit.SECONDS)
+           .execute();
         api.validateResponse();
     }
 
     @Test()
-    @MethodOwner(owner = "qpsdemo")
-    public void testCreateUserMissingSomeFields() throws Exception {
+    @TestCaseKey("DEF-742")
+    public void testCreateUserMissingSomeFields() {
         PostUserMethod api = new PostUserMethod();
+        TestCase.setTestCaseStatus("DEF-742", "invalid");
         api.setProperties("api/users/user.properties");
         api.getProperties().remove("name");
         api.getProperties().remove("username");
@@ -74,17 +76,21 @@ public class APISampleTest implements IAbstractTest {
         api.validateResponse();
     }
 
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @Test
+    @TestCaseKey("DEFFF-27228")
     public void testGetUsers() {
         GetUserMethods getUsersMethods = new GetUserMethods();
         getUsersMethods.callAPIExpectSuccess();
         getUsersMethods.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getUsersMethods.validateResponseAgainstSchema("api/users/_get/rs.schema");
+        try {
+            getUsersMethods.validateResponseAgainstSchema("api/users/_get/rs.schema");
+        } catch (AssertionError e) {
+            throw new RuntimeException("Zebrunner issue token: pisosik", e);
+        }
     }
 
-    @Test()
-    @MethodOwner(owner = "qpsdemo")
+    @Test
+    @TestCaseKey("DEFFF-27501")
     @TestPriority(Priority.P1)
     public void testDeleteUsers() {
         DeleteUserMethod deleteUserMethod = new DeleteUserMethod();
