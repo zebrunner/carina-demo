@@ -43,7 +43,7 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//div[contains(@class, 'brandmenu-v2')]//a")
     private List<ExtendedWebElement> brandLinks;
 
-    @FindBys({ @FindBy(xpath = "//p[contains(@class, 'pad')]"), @FindBy(xpath = ".//*[contains(@class, 'pad-single')]") })
+    @FindBys({@FindBy(xpath = "//p[contains(@class, 'pad')]"), @FindBy(xpath = ".//*[contains(@class, 'pad-single')]")})
     private ExtendedWebElement phoneFinderButton;
 
     @FindBy(className = "news-column-index")
@@ -52,6 +52,11 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//span[text()='All brands']//parent::a")
     private ExtendedWebElement allBrandsButton;
 
+    @FindBy(xpath="//a[contains(text(),'To footer')]")
+    private ExtendedWebElement toFooterButton;
+
+
+
     public HomePage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(newsColumn);
@@ -59,6 +64,7 @@ public class HomePage extends HomePageBase {
 
     @Override
     public FooterMenu getFooterMenu() {
+        clickToFooterButton();
         return footerMenu;
     }
 
@@ -85,9 +91,15 @@ public class HomePage extends HomePageBase {
         return phoneFinderButton;
     }
 
-    public AllBrandsPageBase openAllBrandsPage(){
+    public AllBrandsPageBase openAllBrandsPage() {
         allBrandsButton.click();
         return initPage(driver, AllBrandsPageBase.class);
     }
+
+    public void clickToFooterButton(){
+        toFooterButton.scrollTo();
+        toFooterButton.click();
+    }
+
 
 }

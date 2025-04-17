@@ -52,24 +52,14 @@ public class FooterMenu extends FooterMenuBase {
 
 
     public CompareModelsPage openComparePage() {
-        int attempts = 7;
         compareLink.scrollTo();
-        while (!compareLink.isClickable(2) && attempts-- > 0) {
-            LOGGER.info("Trying to scroll down to 'compare' link. Attempts left: " + attempts);
-            compareLink.scrollTo();
-        }
         compareLink.hover();
         compareLink.click();
         return new CompareModelsPage(driver);
     }
 
     public NewsPage openNewsPage() {
-        int attempts = 7;
         newsLink.scrollTo();
-        while (!newsLink.isClickable(2) && attempts-- > 0) {
-            LOGGER.info("Trying to scroll down to 'news' link. Attempts left: " + attempts);
-            newsLink.scrollTo();
-        }
         newsLink.hover();
         newsLink.click();
         return new NewsPage(driver);
