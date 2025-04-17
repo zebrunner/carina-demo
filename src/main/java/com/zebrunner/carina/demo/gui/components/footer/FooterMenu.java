@@ -23,15 +23,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 public class FooterMenu extends FooterMenuBase {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(linkText = "Home")
     private ExtendedWebElement homeLink;
 
     @FindBy(xpath = ".//a[contains(text(),'Compare')]")
     private ExtendedWebElement compareLink;
-    
+
     @FindBy(linkText = "News")
     private ExtendedWebElement newsLink;
 
@@ -45,15 +50,26 @@ public class FooterMenu extends FooterMenuBase {
         return new HomePage(driver);
     }
 
+
     public CompareModelsPage openComparePage() {
+        int attempts = 7;
         compareLink.scrollTo();
+        while (!compareLink.isClickable(2) && attempts-- > 0) {
+            LOGGER.info("Trying to scroll down to 'compare' link. Attempts left: " + attempts);
+            compareLink.scrollTo();
+        }
         compareLink.hover();
         compareLink.click();
         return new CompareModelsPage(driver);
     }
-    
+
     public NewsPage openNewsPage() {
+        int attempts = 7;
         newsLink.scrollTo();
+        while (!newsLink.isClickable(2) && attempts-- > 0) {
+            LOGGER.info("Trying to scroll down to 'news' link. Attempts left: " + attempts);
+            newsLink.scrollTo();
+        }
         newsLink.hover();
         newsLink.click();
         return new NewsPage(driver);
