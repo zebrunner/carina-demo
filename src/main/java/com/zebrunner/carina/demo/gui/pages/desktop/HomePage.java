@@ -52,9 +52,8 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//span[text()='All brands']//parent::a")
     private ExtendedWebElement allBrandsButton;
 
-    @FindBy(xpath="//a[contains(text(),'To footer')]")
+    @FindBy(xpath = "//a[contains(text(),'To footer')]")
     private ExtendedWebElement toFooterButton;
-
 
 
     public HomePage(WebDriver driver) {
@@ -96,7 +95,7 @@ public class HomePage extends HomePageBase {
         return initPage(driver, AllBrandsPageBase.class);
     }
 
-    public void clickToFooterButton(){
+    public void clickToFooterButton() {
         toFooterButton.scrollTo();
         toFooterButton.click();
     }
