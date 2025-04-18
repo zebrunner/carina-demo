@@ -42,6 +42,7 @@ public class AllBrandsPage extends AllBrandsPageBase {
         brandName = brandName.toUpperCase();
         for (ExtendedWebElement brand: findExtendedWebElements(By.xpath("//div[@class='st-text']//td/a"))){
             if (brand.getText().contains(brandName)){
+                brand.scrollTo();
                 brand.click();
                 return initPage(driver, BrandModelsPageBase.class);
             }
