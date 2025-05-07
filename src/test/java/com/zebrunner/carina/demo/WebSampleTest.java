@@ -48,7 +48,7 @@ public class WebSampleTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
-    @TestLabel(name = "feature", value = { "web", "regression" })
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testModelSpecs() {
         // Open GSM Arena home page and verify page is opened
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
@@ -71,7 +71,7 @@ public class WebSampleTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
-    @TestLabel(name = "feature", value = { "web", "acceptance" })
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
@@ -98,7 +98,7 @@ public class WebSampleTest implements IAbstractTest {
 
     @Test
     @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = { "web", "acceptance" })
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testNewsSearch() {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
@@ -122,7 +122,7 @@ public class WebSampleTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
-    @TestLabel(name = "feature", value = { "web", "regression" })
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testBrandGroup() {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();

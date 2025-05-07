@@ -24,6 +24,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
+
 public class FooterMenu extends FooterMenuBase {
 
     @FindBy(linkText = "Home")
@@ -31,7 +32,7 @@ public class FooterMenu extends FooterMenuBase {
 
     @FindBy(xpath = ".//a[contains(text(),'Compare')]")
     private ExtendedWebElement compareLink;
-    
+
     @FindBy(linkText = "News")
     private ExtendedWebElement newsLink;
 
@@ -51,7 +52,7 @@ public class FooterMenu extends FooterMenuBase {
         compareLink.click();
         return new CompareModelsPage(driver);
     }
-    
+
     public NewsPage openNewsPage() {
         newsLink.scrollTo();
         newsLink.hover();
