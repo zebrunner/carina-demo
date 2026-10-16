@@ -1,11 +1,17 @@
 package com.zebrunner.carina.demo.regression.esg;
 
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
+import com.zebrunner.agent.core.registrar.Artifact;
+import com.zebrunner.carina.demo.gui.pages.desktop.WebFormPage;
 import com.zebrunner.carina.demo.utils.ArtifactUtils;
+import com.zebrunner.carina.demo.websocket.EndpointUtils;
 import com.zebrunner.carina.utils.R;
-import com.zebrunner.carina.utils.report.SessionContext;
-import org.openqa.selenium.support.ui.FluentWait;
+import com.zebrunner.carina.webdriver.Screenshot;
+import com.zebrunner.carina.webdriver.ScreenshotType;
+import com.zebrunner.carina.webdriver.helper.IProxyHelper;
+import com.zebrunner.carina.webdriver.listener.DriverListener;
+import com.zebrunner.carina.webdriver.proxy.ZebrunnerProxyBuilder;
+
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -15,75 +21,67 @@ import org.testng.asserts.SoftAssert;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.List;
+import java.util.Optional;
 
-public class ArtifactTest implements IAbstractTest {
+public class ArtifactTest extends EsgTestBase implements IProxyHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @Test
+    @Test(description = "ESG Artifacts: download logs and finalized video")
     public void artifactTest() throws IOException {
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        R.CONFIG.put("capabilities.zebrunner:enableVideo", "true", true);
+        openArtifactPage();
 
-        LOGGER.info("Checking the presence of artifacts (video.log, task.log)...");
-        List<String> artifacts = List.of("video.log", "task.log");
+        String sessionId = DriverListener.castDriver(getDriver(), RemoteWebDriver.class).getSessionId().toString();
         SoftAssert softAssert = new SoftAssert();
-        for (String artifact : artifacts) {
-            boolean isPresent = ArtifactUtils.isArtifactPresent(
-                    new FluentWait<>(getDriver())
-                            .pollingEvery(Duration.ofSeconds(1))
-                            .withTimeout(Duration.ofSeconds(30)),
-                    artifact);
-            softAssert.assertTrue(isPresent, artifact + " not found.");
-            if (isPresent) {
-                LOGGER.info("Artifact '{}' is present.", artifact);
-                boolean isNotEmpty = Files.size(SessionContext.getArtifact(getDriver(), artifact).orElseThrow()) > 0;
-                if (isNotEmpty) {
-                    LOGGER.info("Artifact '{}' is not empty.", artifact);
-                }
-                softAssert.assertTrue(isNotEmpty, String.format("Artifact '%s' is empty.", artifact));
+        for (String artifact : List.of("task.log", sessionId + "/video.log")) {
+            Optional<Path> downloaded = ArtifactUtils.downloadArtifact(getDriver(), artifact, 1);
+            softAssert.assertTrue(downloaded.isPresent(), "Remote artifact is missing or empty: " + artifact);
+            if (downloaded.isPresent()) {
+                softAssert.assertTrue(Files.size(downloaded.get()) > 0, "Downloaded artifact is empty: " + artifact);
+                LOGGER.info("Downloaded artifact '{}' ({} bytes)", artifact, Files.size(downloaded.get()));
             }
+        }
+        String videoUrl = EndpointUtils.getHttpUrl(getDriver(), "video");
+        quitDriver();
+        Optional<Path> video = ArtifactUtils.downloadArtifact(videoUrl, "video.mp4", 1024, Duration.ofSeconds(90));
+        softAssert.assertTrue(video.isPresent(), "Finalized session video could not be downloaded or contains no recording data");
+        if (video.isPresent()) {
+            LOGGER.info("Downloaded finalized session video ({} bytes)", Files.size(video.get()));
         }
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(description = "ESG MITM: export and download traffic dump")
     public void mitmDumpArtifactTest() throws IOException {
         R.CONFIG.put("proxy_type", "Zebrunner", true);
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        ZebrunnerProxyBuilder.getInstance().useExtendedProxy().build(true);
+        openArtifactPage();
 
-        LOGGER.info("Checking the presence of the dump.mitm artifact...");
-        Assert.assertTrue(ArtifactUtils.isArtifactPresent(new FluentWait<>(getDriver())
-                                .pollingEvery(Duration.ofSeconds(1))
-                                .withTimeout(Duration.ofSeconds(30)),
-                        "dump.mitm"),
-                "Artifact 'dump.mitm' was not found.");
-        LOGGER.info("Artifact 'dump.mitm' is present.");
-        Assert.assertTrue(Files.size(SessionContext.getArtifact(getDriver(), "dump.mitm").orElseThrow()) > 0,
-                "Artifact 'dump.mitm' is empty.");
-        LOGGER.info("Artifact 'dump.mitm' is not empty.");
+        Optional<Path> dump = getProxyDumpArtifact("mitm");
+        Assert.assertTrue(dump.isPresent(), "Proxy dump could not be exported and downloaded");
+        Assert.assertTrue(Files.size(dump.orElseThrow()) > 0, "Downloaded proxy dump is empty");
+        Artifact.attachToTest("mitm.dump", dump.orElseThrow());
     }
 
-    @Test
+    @Test(description = "ESG MITM: export and download HAR")
     public void mitmHarArtifactTest() throws IOException {
         R.CONFIG.put("proxy_type", "Zebrunner", true);
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        ZebrunnerProxyBuilder.getInstance().useExtendedProxy().build(true);
+        openArtifactPage();
 
-        LOGGER.info("Checking the presence of the dump.har artifact...");
-        Assert.assertTrue(ArtifactUtils.isArtifactPresent(new FluentWait<>(getDriver())
-                                .pollingEvery(Duration.ofSeconds(1))
-                                .withTimeout(Duration.ofSeconds(30)),
-                        "dump.har"),
-                "Artifact 'dump.har' was not found.");
-        LOGGER.info("Artifact 'dump.har' is present.");
-        Assert.assertTrue(Files.size(SessionContext.getArtifact(getDriver(), "dump.har").orElseThrow()) > 0,
-                "Artifact 'dump.har' is empty.");
-        LOGGER.info("Artifact 'dump.har' is not empty.");
+        Optional<Path> har = getProxyHarArtifact("mitm");
+        Assert.assertTrue(har.isPresent(), "Proxy HAR could not be exported and downloaded");
+        Assert.assertTrue(Files.size(har.orElseThrow()) > 0, "Downloaded proxy HAR is empty");
+        Artifact.attachToTest("mitm.har", har.orElseThrow());
+    }
+
+    private void openArtifactPage() {
+        WebFormPage webForm = openWebForm();
+        webForm.typeText("ESG artifact test");
+        Assert.assertEquals(webForm.getText(), "ESG artifact test", "Text input value");
+        Screenshot.capture(getDriver(), ScreenshotType.EXPLICIT_VISIBLE, "Web form opened and text typed");
     }
 }

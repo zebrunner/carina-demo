@@ -1,89 +1,82 @@
 package com.zebrunner.carina.demo.regression.esg;
 
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
+import com.zebrunner.carina.demo.gui.pages.desktop.WebFormPage;
 import com.zebrunner.carina.demo.websocket.EndpointUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.zebrunner.carina.webdriver.Screenshot;
+import com.zebrunner.carina.webdriver.ScreenshotType;
+
+import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.lang.invoke.MethodHandles;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 
-import static com.zebrunner.carina.demo.websocket.EndpointUtils.getHttpUrl;
+public class ClipboardTest extends EsgTestBase {
+    private static final String CLIPBOARD_TEXT = "Example text for the clipboard.";
 
-public class ClipboardTest implements IAbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    private static final String clipboardString = "Example text for the clipboard.";
-
-    @BeforeSuite
-    public void beforeSuite() {
-        getDriver();
+    @Test(description = "ESG Clipboard: write and read remote clipboard")
+    public void clipboardWriteTest() throws IOException {
+        openWebForm();
+        writeClipboard(CLIPBOARD_TEXT);
+        Assert.assertEquals(readClipboard(), CLIPBOARD_TEXT, "Remote clipboard text after writing");
     }
 
-    @Test
-    public void clipboardWriteTest() throws IOException, URISyntaxException {
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
-        LOGGER.info("HomePage is opened.");
-
-        LOGGER.info("Creating output connection with the clipboard endpoint....");
-        HttpURLConnection con = (HttpURLConnection) new URI(getHttpUrl(getDriver(), "clipboard/"))
-                .toURL()
-                .openConnection();
-        con.setRequestMethod("POST");
-        con.setDoOutput(true);
-        con.setInstanceFollowRedirects(true);
-        EndpointUtils.getHttpAuthorization().ifPresent(con::setAuthenticator);
-        LOGGER.info("Created connection with the clipboard endpoint.");
-        LOGGER.info("Trying to put '{}' text to the clipboard.", clipboardString);
-        try (OutputStream os = con.getOutputStream();
-                DataOutputStream ostream = new DataOutputStream(os)) {
-            ostream.writeBytes(clipboardString);
-            ostream.flush();
-        }
-        LOGGER.info("Text '{}' sent to the clipboard.", clipboardString);
-        Assert.assertEquals(con.getResponseCode(), 200, "Response code is not as expected.");
-        LOGGER.info("Response code of connection is correct.");
+    @Test(description = "ESG Clipboard: copy page text to remote clipboard")
+    public void clipboardReadTest() throws IOException {
+        WebFormPage webForm = openWebForm();
+        writeClipboard("");
+        webForm.typeText(CLIPBOARD_TEXT);
+        webForm.copyText();
+        new FluentWait<>(getDriver())
+                .pollingEvery(Duration.ofMillis(200))
+                .withTimeout(Duration.ofSeconds(10))
+                .until(driver -> {
+                    try {
+                        return CLIPBOARD_TEXT.equals(readClipboard());
+                    } catch (IOException e) {
+                        return false;
+                    }
+                });
+        Assert.assertEquals(readClipboard(), CLIPBOARD_TEXT, "Remote clipboard text");
     }
 
-    @Test(dependsOnMethods = "clipboardWriteTest")
-    public void clipboardReadTest() throws IOException, URISyntaxException {
-        LOGGER.info("Creating input connection with the clipboard endpoint....");
-        HttpURLConnection con = (HttpURLConnection) new URI(getHttpUrl(getDriver(), "clipboard/"))
-                .toURL()
-                .openConnection();
-        con.setRequestMethod("GET");
-        con.setDoInput(true);
-        con.setInstanceFollowRedirects(false);
-        EndpointUtils.getHttpAuthorization().ifPresent(con::setAuthenticator);
-        LOGGER.info("Created input connection with the clipboard endpoint.");
+    @Test(description = "ESG Clipboard: paste remote clipboard into page")
+    public void clipboardPasteToPageTest() throws IOException {
+        WebFormPage webForm = openWebForm();
+        writeClipboard(CLIPBOARD_TEXT);
+        webForm.pasteIntoText();
+        Assert.assertEquals(webForm.getText(), CLIPBOARD_TEXT, "Text pasted from the remote clipboard");
+        Screenshot.capture(getDriver(), ScreenshotType.EXPLICIT_VISIBLE, "Clipboard pasted into the text input");
+    }
 
-        Assert.assertEquals(con.getResponseCode(), 200, "Response code is not as expected.");
-        LOGGER.info("Response code of connection is correct: 200.");
-        LOGGER.info("Trying to get text from the clipboard...");
-        try (InputStream is = con.getInputStream();
-                InputStreamReader ir = new InputStreamReader(is);
-                BufferedReader br = new BufferedReader(ir)) {
-            String inputLine;
-            StringBuilder sb = new StringBuilder();
-            while ((inputLine = br.readLine()) != null) {
-                sb.append(inputLine);
+    private void writeClipboard(String text) throws IOException {
+        HttpURLConnection connection = EndpointUtils.openConnection(EndpointUtils.getHttpUrl(getDriver(), "clipboard"));
+        try {
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+            try (OutputStream output = connection.getOutputStream()) {
+                output.write(text.getBytes(StandardCharsets.UTF_8));
             }
-            Assert.assertEquals(sb.toString().trim(), clipboardString,
-                    "The string placed on the clipboard does not match the string taken from the clipboard.");
-            LOGGER.info("Got text from the clipboard. Text as expected: '{}'", sb);
+            Assert.assertEquals(connection.getResponseCode(), HttpURLConnection.HTTP_OK, "Clipboard write response");
+        } finally {
+            connection.disconnect();
+        }
+    }
+
+    private String readClipboard() throws IOException {
+        HttpURLConnection connection = EndpointUtils.openConnection(EndpointUtils.getHttpUrl(getDriver(), "clipboard"));
+        try {
+            Assert.assertEquals(connection.getResponseCode(), HttpURLConnection.HTTP_OK, "Clipboard read response");
+            try (InputStream input = connection.getInputStream()) {
+                return new String(input.readAllBytes(), StandardCharsets.UTF_8).stripTrailing();
+            }
+        } finally {
+            connection.disconnect();
         }
     }
 }
