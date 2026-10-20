@@ -11,16 +11,19 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
+
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
 @ClientEndpoint
-public final class WebsocketClientEndpoint {
+public final class WebsocketClientEndpoint implements AutoCloseable {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    private Session userSession = null;
-    private MessageHandler messageHandler;
+    private volatile Session userSession;
+    private final MessageHandler messageHandler;
 
-    public WebsocketClientEndpoint(URI endpointURI) {
+    public WebsocketClientEndpoint(URI endpointURI, MessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             container.connectToServer(this, endpointURI);
@@ -53,18 +56,17 @@ public final class WebsocketClientEndpoint {
     }
 
     @OnMessage
-    public void onMessage(Object bytes) {
-        LOGGER.info("Message: {}", bytes);
+    public void onMessage(byte[] bytes) {
+        LOGGER.debug("Received {} WebSocket bytes", bytes.length);
         this.messageHandler.handleMessage(bytes);
     }
 
-    /**
-     * Register message handler
-     *
-     * @param msgHandler see {@link MessageHandler}
-     */
-    public void addMessageHandler(MessageHandler msgHandler) {
-        this.messageHandler = msgHandler;
+    @Override
+    public void close() throws IOException {
+        Session session = userSession;
+        if (session != null && session.isOpen()) {
+            session.close();
+        }
     }
 
     /**
